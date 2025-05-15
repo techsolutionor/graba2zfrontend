@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="./assets/css/styles.min.css" />
+  <link rel="stylesheet" href="./assets/css/navbar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+ 
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<!-- Quill JS -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="./popupMessages.js"></script> 
+<script>
+    //(function() {
+    //     let(function() {
+    //     let path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })(); path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })();
+
+
+    (function checkAuth() {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        window.location.replace('./login.html'); // Redirect to login page
+      }
+    })();
+  </script> 
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <div class="sidebar" id="sidebar">
+          <a class="navbar-brand" href="#">
+              <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          
+          <div class="section-title mt-9">HOME</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./index.html">
+                      <i class="ti ti-layout-dashboard"></i> Dashboard
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">PRODUCTS & STOCK</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./products.html">
+                      <i class="fas fa-box"></i> Products
+                  </a>
+              </li>
+               <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="purchaseToggle">
+                <i class="fas fa-shopping-cart"></i> Purchases 
+              </a>
+              <ul class="nav-submenu" id="purchaseSubmenu">
+                <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
+                <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
+                <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
+              </ul>
+            </li>
+          </ul>
+              <li class="nav-item">
+                  <a class="nav-link" href="./damages.html">
+                      <i class="fas fa-exclamation-circle"></i> Damages
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./stock.html">
+                      <i class="fas fa-archive"></i> Stock
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">POS & ORDERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos.html">
+                      <i class="fas fa-cash-register"></i> POS
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos-orders.html">
+                      <i class="fas fa-receipt"></i> POS Orders
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./online-orders.html">
+                      <i class="fas fa-shopping-basket"></i> Online Orders
+                  </a>
+              </li>
+          </ul>
+
+          <div class="section-title">PROMO</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./coupons.html">
+                      <i class="fas fa-tags"></i> Coupons
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./promotions.html">
+                      <i class="fas fa-bullhorn"></i> Promotions
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./product-sections.html">
+                      <i class="fas fa-cube"></i>  Product Sections
+                  </a>
+              </li>
+          </ul>
+
+          <div class="section-title">COMMUNICATIONS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./push-notifications.html">
+                      <i class="fas fa-bell"></i> Push Notifications
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./subscribers.html">
+                      <i class="fas fa-users"></i> Subscribers
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">USERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./admin.html">
+                      <i class="fas fa-user"></i> Administrators
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./customer.html">
+                      <i class="fas fa-users"></i> Customers
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./employee.html">
+                      <i class="fas fa-user-tie"></i> Employees
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">ACCOUNTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-exchange-alt"></i> Transactions
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">REPORTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./sales-report.html">
+                      <i class="fas fa-chart-line"></i> Sales Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./products-report.html">
+                      <i class="fas fa-file-alt"></i> Products Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-credit-card"></i> Credit Balance Report
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">SETUP</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" id="settingsToggle" href="#">
+                      <i class="fas fa-cog"></i> Settings
+                  </a>
+              </li>
+          </ul>
+          
+          <div class="submenu" id="settingsSubmenu">
+              <ul class="nav flex-column">
+                  <li class="nav-item">
+                      <a class="nav-link" href="./company.html">
+                          <i class="fas fa-building"></i> Company
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./site.html">
+                          <i class="fas fa-globe"></i> Site
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./mail.html">
+                          <i class="fas fa-envelope"></i> Mail
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./location-setup.html">
+                          <i class="fas fa-map-marker-alt"></i> Location Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./shipping-setup.html">
+                          <i class="fas fa-truck"></i> Shipping Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">
+                          <i class="fas fa-lock"></i> OTP
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification.html">
+                          <i class="fas fa-bell"></i> Notification
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification-alert.html">
+                          <i class="fas fa-bell"></i> Notification alert
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./social-media.html">
+                          <i class="fas fa-share-alt"></i> Social Media
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./cookies.html">
+                          <i class="fas fa-cookie-bite"></i> Cookies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./analytics.html">
+                          <i class="fas fa-chart-bar"></i> Analytics
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./theme.html">
+                          <i class="fas fa-paint-brush"></i> Theme
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sliders.html">
+                          <i class="fas fa-sliders-h"></i> Sliders
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./currencies.html">
+                          <i class="fas fa-money-bill-wave"></i> Currencies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-categories.html">
+                          <i class="fas fa-tags"></i> Product Categories
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-attributes.html">
+                          <i class="fas fa-cube"></i> Product Attributes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-brands.html">
+                          <i class="fas fa-tag"></i> Product Brands
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./supplier.html">
+                          <i class="fas fa-industry"></i> Suppliers
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./outlets.html">
+                          <i class="fas fa-store"></i> Outlets
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./benefits.html">
+                          <i class="fas fa-gift"></i> Benefits
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./units.html">
+                          <i class="fas fa-balance-scale"></i> Units
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./taxes.html">
+                          <i class="fas fa-percent"></i>  Taxes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./page.html">
+                          <i class="fas fa-file-alt"></i> Pages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./role & permissions.html">
+                          <i class="fas fa-user-shield"></i> Role & Permissions
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./languages-list.html">
+                          <i class="fas fa-globe"></i> Languages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sms-gateway.html">
+                          <i class="fas fa-comments"></i> Sms Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./payment-gateway.html">
+                          <i class="fas fa-credit-card"></i> Payment Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./license.html">
+                          <i class="fas fa-file-contract"></i> License
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="./assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-3">My Profile</p>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-mail fs-6"></i>
+                      <p class="mb-0 fs-3">My Account</p>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-list-check fs-6"></i>
+                      <p class="mb-0 fs-3">My Task</p>
+                    </a>
+                    <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>   
+
+      <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title fw-semibold mb-4">Dashboard / Role & Permissions</h5>
+                <div class="container">
+                    <h5>Role & Permissions</h5>
+                    <div class="actions-bar d-flex flex-column flex-md-row align-items-center align-items-lg-end justify-content-center justify-content-md-center justify-content-lg-end">
+                        <div class="d-flex justify-content-center w-100" style="max-width: 150px;">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#roleModal">+ Add Role</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Modal for Adding Role -->
+                     <div class="modal fade" id="roleModal" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="roleModalLabel">Add Role</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="addRoleForm">
+                                        <div class="mb-3">
+                                            <label for="roleName" class="form-label">Role Name</label>
+                                            <input type="text" class="form-control" id="roleName" name="name" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Role Items --> 
+                     <div class="row align-items-center border-bottom py-3">
+                        <div class="col-6 col-md-8">
+                            <strong>Admin</strong> <span class="text-muted">(1 Member)</span>
+                        </div>
+                        <div class="col-6 col-md-4 text-end">
+                            <!-- <button class="btn btn-sm btn-danger">Permissions</button> -->
+                            <button class="btn btn-sm btn-danger" onclick="openPermissionsModal(1, 'Admin')">Permissions</button>
+                            <!-- <button class="btn btn-sm btn-success">Edit</button> -->
+                            <button class="btn btn-sm btn-success edit-btn" data-bs-toggle="modal" data-bs-target="#editModal" data-role="Admin">Edit</button>
+                        </div>
+                    </div>
+                    <div class="row align-items-center border-bottom py-3">
+                        <div class="col-6 col-md-8">
+                            <strong>Customer</strong> <span class="text-muted">(1 Member)</span>
+                        </div>
+                        <div class="col-6 col-md-4 text-end">
+                            <button class="btn btn-sm btn-danger">Permissions</button>
+                            <!-- <button class="btn btn-sm btn-success">Edit</button> -->
+                            <button class="btn btn-sm btn-success edit-btn" data-bs-toggle="modal" data-bs-target="#editModal" data-role="Customer">Edit</button>
+                        </div>
+                    </div>
+                    <div class="row align-items-center border-bottom py-3">
+                        <div class="col-6 col-md-8">
+                            <strong>Manager</strong> <span class="text-muted">(0 Members)</span>
+                        </div>
+                        <div class="col-6 col-md-4 text-end">
+                            <button class="btn btn-sm btn-danger">Permissions</button>
+                            <!-- <button class="btn btn-sm btn-success">Edit</button> -->
+                            <button class="btn btn-sm btn-success edit-btn" data-bs-toggle="modal" data-bs-target="#editModal" data-role="Manager">Edit</button>
+                        </div>
+                    </div>
+                    <div class="row align-items-center border-bottom py-3">
+                        <div class="col-6 col-md-8">
+                            <strong>POS Operator</strong> <span class="text-muted">(1 Member)</span>
+                        </div>
+                        <div class="col-6 col-md-4 text-end">
+                            <button class="btn btn-sm btn-danger">Permissions</button>
+                            <!-- <button class="btn btn-sm btn-success">Edit</button> -->
+                            <button class="btn btn-sm btn-success edit-btn" data-bs-toggle="modal" data-bs-target="#editModal" data-role="POS Operator">Edit</button>
+                        </div>
+                    </div>
+                    <div class="row align-items-center py-3">
+                        <div class="col-6 col-md-8">
+                            <strong>Stuff</strong> <span class="text-muted">(0 Members)</span>
+                        </div>
+                        <div class="col-6 col-md-4 text-end">
+                            <button class="btn btn-sm btn-danger">Permissions</button>
+                            <!-- <button class="btn btn-sm btn-success">Edit</button> -->
+                            <button class="btn btn-sm btn-success edit-btn" data-bs-toggle="modal" data-bs-target="#editModal" data-role="Stuff">Edit</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Edit Modal -->
+                     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editModalLabel">Edit Role</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Edit Form -->
+                                     <form id="editForm">
+                                        <div class="mb-3">
+                                            <label for="roleName" class="form-label">Role Name</label>
+                                            <input type="text" class="form-control" id="roleName" placeholder="Enter role name">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="modal fade" id="permissionsModal" tabindex="-1" aria-labelledby="permissionsModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="permissionsModalLabel">Role & Permissions (<span id="roleName"></span>)</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <!-- Permissions Table goes here -->
+                              <form id="permissionsForm">
+                                <table class="table table-bordered">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Page</th>
+                                      <th>Create</th>
+                                      <th>Update</th>
+                                      <th>Delete</th>
+                                      <th>View</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody id="permissionsTableBody">
+                                    <!-- Dynamic rows will be inserted here -->
+                                  </tbody>
+                                </table>
+                                <div class="text-end">
+                                  <button type="submit" class="btn btn-primary">Save Permissions</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    
+                    
+                    </div>
+                </div>
+            </div>
+
+            
+            
+  <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/sidebarmenu.js"></script>
+  <script src="./assets/js/app.min.js"></script>
+  <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="./apiConfig/apiConfig.js"></script>
+
+
+  <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    const purchaseToggle = document.getElementById('purchaseToggle');
+    const purchaseSubmenu = document.getElementById('purchaseSubmenu');
+
+    purchaseToggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        purchaseSubmenu.style.display = (purchaseSubmenu.style.display === 'none' || purchaseSubmenu.style.display === '') ? 'block' : 'none';
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            const settingsToggle = document.getElementById('settingsToggle');
+            const settingsSubmenu = document.getElementById('settingsSubmenu');
+
+            // Handle submenu toggle
+            settingsToggle.addEventListener('click', function (event) {
+                event.preventDefault();
+                settingsSubmenu.style.display = (settingsSubmenu.style.display === 'block') ? 'none' : 'block';
+            });
+
+            // Handle active link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    // Remove active class from all links
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    // Add active class to the clicked link
+                    this.classList.add('active');
+                });
+            });
+        });
+
+    
+
+    document.getElementById('addRoleForm').addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent default form submission
+
+    const roleName = document.getElementById('roleName').value.trim();
+
+    if (!roleName) {
+        showErrorMessage('Role name is required.');
+        return;
+    }
+
+    // Fetch token for authorization
+    const token = localStorage.getItem('token'); // Ensure the token is saved in localStorage
+
+    if (!token) {
+        showErrorMessage('Authorization token is missing. Please log in again.');
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/roles-permissions`, {
+            method: 'POST', // Ensure this is a POST request
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${token}`, // Send the token for authentication
+            },
+            body: JSON.stringify({ name: roleName }), // Send the role name in the body
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            showSuccessMessage(`Role added successfully: ${data.name}`);
+
+            // Optionally, update the UI with the new role
+            document.getElementById('addRoleForm').reset(); // Clear form fields
+            const modal = bootstrap.Modal.getInstance(document.getElementById('roleModal'));
+            modal.hide(); // Close the modal
+        } else {
+            // Handle non-OK responses
+            const error = await response.json();
+            showErrorMessage(`Error: ${error.message}`);
+        }
+    } catch (err) {
+        console.error('Error adding role:', err);
+        showErrorMessage('An error occurred while adding the role. Please try again later.');
+    }
+});
+
+
+
+async function openPermissionsModal(roleId, roleName) {
+    try {
+        const token = localStorage.getItem("token"); // Example: retrieve token for API auth
+
+        // Simulating an API fetch with the provided permissions
+        const permissions = [
+            { id: 1, page: "Dashboard", create: true, update: true, delete: false, view: true },
+            { id: 2, page: "Products", create: true, update: true, delete: true, view: true },
+            { id: 3, page: "Purchase", create: true, update: true, delete: true, view: true },
+            { id: 4, page: "Damages", create: true, update: true, delete: true, view: true },
+            { id: 5, page: "Stock", create: true, update: true, delete: true, view: true },
+            { id: 6, page: "POS", create: true, update: true, delete: true, view: true },
+            { id: 7, page: "POS Orders", create: true, update: true, delete: true, view: true },
+            { id: 8, page: "Online Orders", create: true, update: true, delete: true, view: true },
+            { id: 9, page: "Coupons", create: true, update: true, delete: true, view: true },
+            { id: 10, page: "Promotions", create: true, update: true, delete: true, view: true },
+            { id: 11, page: "Product Sections", create: true, update: true, delete: true, view: true },
+            { id: 12, page: "Push Notifications", create: true, update: true, delete: true, view: true },
+            { id: 13, page: "Subscribers", create: true, update: true, delete: true, view: true },
+            { id: 14, page: "Administrators", create: true, update: false, delete: false, view: true },
+            { id: 15, page: "Customers", create: true, update: true, delete: true, view: true },
+            { id: 16, page: "Employees", create: true, update: true, delete: true, view: true },
+            { id: 17, page: "Transactions", create: true, update: false, delete: false, view: true },
+            { id: 18, page: "Sales Report", create: false, update: false, delete: false, view: true },
+            { id: 19, page: "Products Report", create: false, update: false, delete: false, view: true },
+            { id: 20, page: "Credit Balance Report", create: false, update: false, delete: false, view: true },
+            { id: 21, page: "Settings", create: true, update: true, delete: false, view: true },
+        ];
+
+        // Set role name in modal title
+        document.getElementById("roleName").innerText = roleName;
+
+        // Populate permissions dynamically
+        const tableBody = document.getElementById("permissionsTableBody");
+        tableBody.innerHTML = ""; // Clear table content before rendering
+        // Render each permission row dynamically
+        permissions.forEach((perm, index) => {
+            const row = `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${perm.page}</td>
+                    <td class="text-center">
+                        <input type="checkbox" id="permission-${perm.id}-create" ${perm.create ? "checked" : ""} class="form-check-input">
+                    </td>
+                    <td class="text-center"> 
+                        <input type="checkbox" id="permission-${perm.id}-update" ${perm.update ? "checked" : ""} class="form-check-input">
+                    </td>
+                    <td class="text-center">
+                        <input type="checkbox" id="permission-${perm.id}-delete" ${perm.delete ? "checked" : ""} class="form-check-input">
+                    </td>
+                    <td class="text-center">
+                        <input type="checkbox" id="permission-${perm.id}-view" ${perm.view ? "checked" : ""} class="form-check-input">
+                    </td>
+                </tr>
+            `;
+            tableBody.insertAdjacentHTML("beforeend", row);
+        });
+
+        // Open the modal
+        const modal = new bootstrap.Modal(document.getElementById("permissionsModal"));
+        modal.show();
+    } catch (error) {
+        console.error("Error fetching permissions data or opening modal:", error);
+    }
+}
+
+
+
+
+
+  </script>
+</body>
+
+</html>

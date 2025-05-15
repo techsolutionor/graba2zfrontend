@@ -1,0 +1,919 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="./assets/css/styles.min.css" />
+  <link rel="stylesheet" href="./assets/css/navbar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/charts/chart-4/assets/css/chart-4.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/charts/chart-1/assets/css/chart-1.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="./popupMessages.js"></script>
+  
+  <script>
+    // //(function() {
+    //     let(function() {
+    //     let path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })(); path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })();
+
+
+    (function checkAuth() {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        window.location.replace('./login.html'); // Redirect to login page
+      }
+    })();
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    navLinks.forEach(link => {
+        link.addEventListener("click", function () {
+            // Remove "active" class from all links
+            navLinks.forEach(nav => nav.classList.remove("active"));
+
+            // Add "active" class to the clicked link
+            this.classList.add("active");
+        });
+    });
+});
+
+  </script>
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <div class="sidebar" id="sidebar">
+          <a class="navbar-brand" href="#">
+              <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          
+          <div class="section-title mt-9">HOME</div>
+          <ul class="nav flex-column ">
+              <li class="nav-item">
+                  <a class="nav-link" href="./index.html">
+                      <i class="ti ti-layout-dashboard"></i> Dashboard
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">PRODUCTS & STOCK</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./products.html">
+                      <i class="fas fa-box"></i> Products
+                  </a>
+              </li>
+              <ul class="nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="#" id="purchaseToggle">
+                    <i class="fas fa-shopping-cart"></i> Purchases 
+                  </a>
+                  <ul class="nav-submenu" id="purchaseSubmenu">
+                    <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
+                    <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
+                    <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
+                  </ul>
+                </li>
+              </ul>
+            
+              <li class="nav-item">
+                  <a class="nav-link" href="./damages.html">
+                      <i class="fas fa-exclamation-circle"></i> Damages
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./stock.html">
+                      <i class="fas fa-archive"></i> Stock
+                  </a>
+              </li>
+            </ul>
+            
+            <div class="section-title">POS & ORDERS</div>
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos.html">
+                      <i class="fas fa-cash-register"></i> POS
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos-orders.html">
+                      <i class="fas fa-receipt"></i> POS Orders
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./online-orders.html">
+                      <i class="fas fa-shopping-basket"></i> Online Orders
+                  </a>
+              </li>
+          </ul>
+
+          <div class="section-title">PROMO</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./coupons.html">
+                      <i class="fas fa-tags"></i> Coupons
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./promotions.html">
+                      <i class="fas fa-bullhorn"></i> Promotions
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./product-sections.html">
+                      <i class="fas fa-cube"></i>  Product Sections
+                  </a>
+              </li>
+          </ul>
+
+          <div class="section-title">COMMUNICATIONS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./push-notifications.html">
+                      <i class="fas fa-bell"></i> Push Notifications
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./subscribers.html">
+                      <i class="fas fa-users"></i> Subscribers
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">USERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="..html">
+                      <i class="fas fa-user"></i> Administrators
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./customer.html">
+                      <i class="fas fa-users"></i> Customers
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./employee.html">
+                      <i class="fas fa-user-tie"></i> Employees
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">ACCOUNTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-exchange-alt"></i> Transactions
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">REPORTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./sales-report.html">
+                      <i class="fas fa-chart-line"></i> Sales Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./products-report.html">
+                      <i class="fas fa-file-alt"></i> Products Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-credit-card"></i> Credit Balance Report
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">SETUP</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" id="settingsToggle" href="#">
+                      <i class="fas fa-cog"></i> Settings
+                  </a>
+              </li>
+          </ul>
+          
+        
+            <div class="submenu" id="settingsSubmenu">
+              <ul class="nav flex-column">
+                  <li class="nav-item">
+                      <a class="nav-link" href="./company.html">
+                          <i class="fas fa-building"></i> Company
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./site.html">
+                          <i class="fas fa-globe"></i> Site
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./mail.html">
+                          <i class="fas fa-envelope"></i> Mail
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./location-setup.html">
+                          <i class="fas fa-map-marker-alt"></i> Location Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./shipping-setup.html">
+                          <i class="fas fa-truck"></i> Shipping Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">
+                          <i class="fas fa-lock"></i> OTP
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification.html">
+                          <i class="fas fa-bell"></i> Notification
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification-alert.html">
+                          <i class="fas fa-bell"></i> Notification alert
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./social-media.html">
+                          <i class="fas fa-share-alt"></i> Social Media
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./cookies.html">
+                          <i class="fas fa-cookie-bite"></i> Cookies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./analytics.html">
+                          <i class="fas fa-chart-bar"></i> Analytics
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./theme.html">
+                          <i class="fas fa-paint-brush"></i> Theme
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sliders.html">
+                          <i class="fas fa-sliders-h"></i> Sliders
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./currencies.html">
+                          <i class="fas fa-money-bill-wave"></i> Currencies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-categories.html">
+                          <i class="fas fa-tags"></i> Product Categories
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-attributes.html">
+                          <i class="fas fa-cube"></i> Product Attributes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-brands.html">
+                          <i class="fas fa-tag"></i> Product Brands
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./supplier.html">
+                          <i class="fas fa-industry"></i> Suppliers
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./outlets.html">
+                          <i class="fas fa-store"></i> Outlets
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./benefits.html">
+                          <i class="fas fa-gift"></i> Benefits
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./units.html">
+                          <i class="fas fa-balance-scale"></i> Units
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./taxes.html">
+                          <i class="fas fa-percent"></i>  Taxes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./page.html">
+                          <i class="fas fa-file-alt"></i> Pages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./role-&-permissions.html">
+                          <i class="fas fa-user-shield"></i> Role & Permissions
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./languages-list.html">
+                          <i class="fas fa-globe"></i> Languages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sms-gateway.html">
+                          <i class="fas fa-comments"></i> Sms Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./payment-gateway.html">
+                          <i class="fas fa-credit-card"></i> Payment Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./license.html">
+                          <i class="fas fa-file-contract"></i> License
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      
+      <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+        <header class="app-header">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+              <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+                <li class="nav-item dropdown">
+                  <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="./assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                    <div class="message-body">
+                      <!-- <a href="http://127.0.0.1:5502/Office_Project/src/html/my-profile.html" class="d-flex align-items-center gap-2 dropdown-item"> -->
+                        <a href="./my-profile.html" class="d-flex align-items-center gap-2 dropdown-item">
+                        <i class="ti ti-user fs-6"></i>
+                        <p class="mb-0 fs-3">My Profile</p>
+                      </a>
+                      <span id="auth">
+                        <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Logout</a>
+                      </span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </header>
+        
+      <div class="container-fluid">
+        <h5 class="mb-4">Overview</h5>
+        <div class="row">
+          <!-- Card 1 -->
+           <div class="col-md-3 mb-4">
+            <div class="card text-white bg-danger shadow-lg" style="height: 100px;">
+              <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                <i class="fa fa-dollar fa-2x mb-2"></i>
+                <h5 class="card-title">Total Earnings</h5>
+              </div>
+            </div>
+          </div>
+          <!-- Card 2 -->
+           <div class="col-md-3 mb-4">
+            <div class="card text-white bg-warning shadow-lg" style="height: 100px;">
+              <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                <i class="fa fa-cube fa-2x mb-2"></i>
+                <h5 class="card-title">Total Orders</h5>
+              </div>
+            </div>
+          </div>
+          <!-- Card 3 -->
+           <div class="col-md-3 mb-4">
+            <div class="card text-white bg-info shadow-lg" style="height: 100px;">
+              <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                <i class="fa fa-users fa-2x mb-2"></i>
+                <h5 class="card-title">Total Customers</h5>
+              </div>
+            </div>
+          </div>
+          <!-- Card 4 -->
+           <div class="col-md-3 mb-4">
+            <div class="card text-white bg-primary shadow-lg" style="height: 100px;">
+              <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                <i class="fa fa-file-text fa-2x mb-2"></i>
+                <h5 class="card-title">Total Products</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="mb-4">Order Statistics</h5>
+        <div class="row">
+            <!-- Card 1 - Total Orders -->
+            <div class="col-md-3 mb-4">
+              <div class="card text-dark bg-light shadow-lg" style="height: 150px;">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                  <i class="fas fa-box fa-2x mb-2 text-danger"></i>
+                  <h5 class="card-title">Total Orders</h5>
+                </div>
+              </div>
+            </div>
+            <!-- Card 2 - Pending -->
+            <div class="col-md-3 mb-4">
+              <div class="card text-dark bg-light shadow-lg" style="height: 150px;">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                  <i class="fas fa-clock fa-2x mb-2 text-warning"></i>
+                  <h5 class="card-title">Pending</h5>
+                </div>
+              </div>
+            </div>
+            <!-- Card 3 - Confirmed -->
+            <div class="col-md-3 mb-4">
+              <div class="card text-dark bg-light shadow-lg" style="height: 150px;">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                  <i class="fas fa-check-circle fa-2x mb-2 text-success"></i>
+                  <h5 class="card-title">Confirmed</h5>
+                </div>
+              </div>
+            </div>
+            <!-- Card 4 - Delivered -->
+            <div class="col-md-3 mb-4">
+              <div class="card text-dark bg-light shadow-lg" style="height: 150px;">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                  <i class="fas fa-truck fa-2x mb-2 text-info"></i>
+                  <h5 class="card-title">Delivered</h5>
+                </div>
+              </div>
+            </div>
+            <!-- Card 5 - Canceled -->
+            <div class="col-md-3 mb-4">
+              <div class="card text-dark bg-light shadow-lg" style="height: 150px;">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                  <i class="fas fa-ban fa-2x mb-2 text-danger"></i>
+                  <h5 class="card-title">Canceled</h5>
+                </div>
+              </div>
+            </div>
+            <!-- Card 6 - Returned -->
+            <div class="col-md-3 mb-4">
+              <div class="card text-dark bg-light shadow-lg" style="height: 150px;">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                  <i class="fas fa-undo fa-2x mb-2 text-primary"></i>
+                  <h5 class="card-title">Returned</h5>
+                </div>
+              </div>
+            </div>
+            <!-- Card 7 - Ongoing -->
+            <div class="col-md-3 mb-4">
+              <div class="card text-dark bg-light shadow-lg" style="height: 150px;">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                  <i class="fas fa-spinner fa-2x mb-2 text-warning"></i>
+                  <h5 class="card-title">Ongoing</h5>
+                </div>
+              </div>
+            </div>
+            <!-- Card 8 - Rejected -->
+            <div class="col-md-3 mb-4">
+              <div class="card text-dark bg-light shadow-lg" style="height: 150px;">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                  <i class="fas fa-times-circle fa-2x mb-2 text-danger"></i>
+                  <h5 class="card-title">Rejected</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- con fluid -->
+        
+        <section class="py-3 py-md-5">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                <div class="card widget-card border-light shadow-sm" style="height: 500px;"> <!-- Set the height -->
+                  <div class="card-body p-4 d-flex flex-column justify-content-between" style="height: 100%;"> <!-- Ensure body takes up full height -->
+                    <div class="d-block d-sm-flex align-items-center justify-content-between mb-3">
+                      <div class="mb-3 mb-sm-0">
+                        <h5 class="card-title widget-card-title">Orders Summary</h5>
+                      </div>
+                    </div>
+                    <div id="bsb-chart-4" style="flex-grow: 1;"></div> <!-- Ensure chart takes up remaining space -->
+                  </div>
+                </div>
+              </div>
+        
+              <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                <div class="card widget-card border-light shadow-sm" style="height: 500px;"> <!-- Set the height -->
+                  <div class="card-body p-4 d-flex flex-column justify-content-between" style="height: 100%;"> <!-- Ensure body takes up full height -->
+                    <div class="d-block d-sm-flex align-items-center justify-content-between mb-3">
+                      <div class="mb-3 mb-sm-0">
+                        <h5 class="card-title widget-card-title">Summary</h5>
+                      </div>
+                    </div>
+                    <div id="bsb-chart-1" style="flex-grow: 1;"></div> <!-- Ensure chart takes up remaining space -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <div class="row" style="width: 90%; margin: 0px auto 0 auto;">
+          <div class="col-12 col-md-6">
+        <div id="thirdgraph"></div>
+        </div>
+        <div class="col-12 col-md-6">
+        <div id="fourthgraph"></div>
+      </div>
+      </div>
+    
+     
+  
+  <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/sidebarmenu.js"></script>
+  <script src="./assets/js/app.min.js"></script>
+  <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="./assets/js/dashboard.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script src="https://unpkg.com/bs-brain@2.0.4/components/charts/chart-4/assets/controller/chart-4.js"></script>
+  <script src="https://unpkg.com/bs-brain@2.0.4/components/charts/chart-1/assets/controller/chart-1.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script>
+
+// This function is called when the page loads
+window.onload = function() {
+    const token = localStorage.getItem('token');
+    const authContainer = document.getElementById('auth');
+    
+    if (token) {
+        // If token exists, user is logged in, show the logout button
+        authContainer.innerHTML = `
+            <a href="./login.html" class="btn btn-outline-danger mx-3 mt-2 d-block" id="logoutButton">Logout</a>
+        `;
+
+        // Add event listener to logout button
+        document.getElementById('logoutButton').addEventListener('click', logout);
+    } else {
+        // If token doesn't exist, show the login button
+        authContainer.innerHTML = `
+            <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Logout</a>
+        `;
+    }
+}
+
+// Logout function
+function logout() {
+    // Remove the token from localStorage
+    localStorage.removeItem('token');
+
+    // Redirect to login page after logout
+    window.location.href = './login.html';
+}
+
+function checkTokenExpiration() {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+        const decodedToken = JSON.parse(atob(token.split('.')[1]));
+
+        // Check if the token has expired
+        const expirationTime = decodedToken.exp * 1000; // Convert to milliseconds
+        const currentTime = Date.now();
+
+        if (currentTime > expirationTime) {
+          showErrorMessage('Session expired. Please log in again.');
+            logout(); // Log out the user if the token has expired
+        }
+    }
+}
+
+// Call checkTokenExpiration() on page load or on regular intervals (e.g., every 5 minutes)
+checkTokenExpiration();
+
+// document.addEventListener('DOMContentLoaded', function() {
+//         const settingsToggle = document.getElementById('settingsToggle');
+//         const settingsSubmenu = document.getElementById('settingsSubmenu');
+
+//         settingsToggle.addEventListener('click', function(event) {
+//             event.preventDefault();
+//             settingsSubmenu.style.display = (settingsSubmenu.style.display === 'block') ? 'none' : 'block';
+//         });
+
+//     });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            const settingsToggle = document.getElementById('settingsToggle');
+            const settingsSubmenu = document.getElementById('settingsSubmenu');
+
+            // Handle submenu toggle
+            settingsToggle.addEventListener('click', function (event) {
+                event.preventDefault();
+                settingsSubmenu.style.display = (settingsSubmenu.style.display === 'block') ? 'none' : 'block';
+            });
+
+            // Handle active link 
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    // Remove active class from all links
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    // Add active class to the clicked link
+                    this.classList.add('active');
+                });
+            });
+        });
+
+// document.addEventListener('DOMContentLoaded', function () {
+//     const navLinks = document.querySelectorAll('.sidebar .nav-link');
+
+//     // Highlight the active link
+//     const currentPath = window.location.pathname.split('/').pop();
+//     navLinks.forEach(link => {
+//         if (link.getAttribute('href') === currentPath) {
+//             link.classList.add('active');
+//         }
+//     });
+// });
+
+// document.querySelectorAll('#settingsToggle').forEach(toggle => {
+//     toggle.addEventListener('click', function () {
+//       const submenu = document.getElementById('settingsSubmenu');
+//       submenu.classList.toggle('show');
+//     });
+//   });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const purchaseToggle = document.getElementById('purchaseToggle');
+    const purchaseSubmenu = document.getElementById('purchaseSubmenu');
+
+    purchaseToggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        purchaseSubmenu.style.display = (purchaseSubmenu.style.display === 'none' || purchaseSubmenu.style.display === '') ? 'block' : 'none';
+    });
+});
+
+
+
+var options = {
+          series: [{
+          name: 'Customer Stats',
+          data: [44, 55, 41, 67, 22, 43, 21, 33, 45, 31, 87, 65, 35]
+        }],
+          annotations: {
+          points: [{
+            x: 'Bananas',
+            seriesIndex: 0,
+            label: {
+              borderColor: '#775DD0',
+              offsetY: 0,
+              style: {
+                color: '#fff',
+                background: '#775DD0',
+              },
+              text: 'Bananas are good',
+            }
+          }]
+        },
+        chart: {
+          height: 350,
+          type: 'bar',
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 10,
+            columnWidth: '50%',
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          width: 0
+        },
+        grid: {
+          row: {
+            colors: ['#fff', '#f2f2f2']
+          }
+        },
+        xaxis: {
+          labels: {
+            rotate: -45
+          },
+          categories: ['Apples', 'Oranges', 'Strawberries', 'Pineapples', 'Mangoes', 'Bananas',
+            'Blackberries', 'Pears', 'Watermelons', 'Cherries', 'Pomegranates', 'Tangerines', 'Papayas'
+          ],
+          tickPlacement: 'on'
+        },
+        yaxis: {
+          title: {
+            text: 'Customer Stats',
+          },
+        },
+        fill: {
+          type: 'gradient',
+          gradient: {
+            shade: 'light',
+            type: "horizontal",
+            shadeIntensity: 0.25,
+            gradientToColors: undefined,
+            inverseColors: true,
+            opacityFrom: 0.85,
+            opacityTo: 0.85,
+            stops: [50, 0, 100]
+          },
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#thirdgraph"), options);
+        chart.render();
+
+        var options = {
+          series: [
+          {
+            name: 'box',
+            type: 'boxPlot',
+            data: [
+              {
+                x: 'Alice',
+                y: [54, 66, 69, 75, 88],
+                goals: [
+                  {
+                    value: 32,
+                    strokeWidth: 0,
+                    strokeHeight: 13,
+                    strokeLineCap: 'round',
+                    strokeColor: '#FEB019',
+                  },
+                ],
+              },
+              {
+                x: 'Bob',
+                y: [43, 65, 69, 76, 81],
+                goals: [
+                  {
+                    value: 35,
+                    strokeWidth: 0,
+                    strokeHeight: 13,
+                    strokeLineCap: 'round',
+                    strokeColor: '#FEB019',
+                  },
+                  {
+                    value: 95,
+                    strokeWidth: 0,
+                    strokeHeight: 13,
+                    strokeLineCap: 'round',
+                    strokeColor: '#FEB019',
+                  },
+                ],
+              },
+              {
+                x: 'Charlie',
+                y: [31, 39, 45, 51, 59],
+                goals: [
+                  {
+                    value: 64,
+                    strokeWidth: 0,
+                    strokeHeight: 13,
+                    strokeLineCap: 'round',
+                    strokeColor: '#FEB019',
+                  },
+                  {
+                    value: 75,
+                    strokeWidth: 0,
+                    strokeHeight: 13,
+                    strokeLineCap: 'round',
+                    strokeColor: '#FEB019',
+                  },
+                ],
+              },
+              {
+                x: 'David',
+                y: [39, 46, 55, 65, 71],
+                goals: [
+                  {
+                    value: 27,
+                    strokeWidth: 0,
+                    strokeHeight: 13,
+                    strokeLineCap: 'round',
+                    strokeColor: '#FEB019',
+                  },
+                  {
+                    value: 77,
+                    strokeWidth: 0,
+                    strokeHeight: 13,
+                    strokeLineCap: 'round',
+                    strokeColor: '#FEB019',
+                  },
+                ],
+              },
+              {
+                x: 'Ahmed',
+                y: [29, 31, 35, 39, 44],
+                goals: [
+                  {
+                    value: 10,
+                    strokeWidth: 0,
+                    strokeHeight: 13,
+                    strokeLineCap: 'round',
+                    strokeColor: '#FEB019',
+                  },
+                  {
+                    value: 56,
+                    strokeWidth: 0,
+                    strokeHeight: 13,
+                    strokeLineCap: 'round',
+                    strokeColor: '#FEB019',
+                  },
+                  {
+                    value: 62,
+                    strokeWidth: 0,
+                    strokeHeight: 13,
+                    strokeLineCap: 'round',
+                    strokeColor: '#FEB019',
+                  },
+                  {
+                    value: 98,
+                    strokeWidth: 0,
+                    strokeHeight: 13,
+                    strokeLineCap: 'round',
+                    strokeColor: '#FEB019',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+          chart: {
+          type: 'boxPlot',
+          height: 350,
+        },
+        colors: ['#008FFB', '#FEB019'],
+        title: {
+          text: 'Top Customers',
+          align: 'left',
+        },
+        xaxis: {
+          type: 'category',
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#fourthgraph"), options);
+        chart.render();
+
+
+
+        document.getElementById("profileButton").addEventListener("click", function () {
+        var form = document.getElementById("profileForm");
+        form.style.display = form.style.display === "none" ? "block" : "none";
+    });
+
+
+
+  </script>
+</body>
+
+</html>

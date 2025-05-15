@@ -1,0 +1,1195 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="./assets/css/styles.min.css" />
+  <link rel="stylesheet" href="./assets/css/navbar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="./popupMessages.js"></script>
+  <script>
+    //(function() {
+    //     let(function() {
+    //     let path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })(); path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })();
+
+
+    (function checkAuth() {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        window.location.replace('./login.html'); // Redirect to login page
+      }
+    })();
+  </script> 
+
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4 d-flex justify-content-between align-items-center">
+                <span>Dashboard / POS</span>
+                <a href="./index.html">
+                  <button class="btn btn-secondary btn-sm" id="backToAdminBtn">Back to Admin Panel</button>
+                </a>
+              </h5>          
+          <div class="container">
+            <div class="row">
+                <!-- Left Side: Filter Section -->
+  
+                <div class="row align-items-center g-3 ">
+                  <!-- Search Box -->
+                  <div class="col-lg-3 col-md-3 col-sm-12 mb-5">
+                    <input type="text" class="form-control" placeholder="Search Here..." />
+                  </div>
+                  <!-- Category Dropdown -->
+                  <!-- <div class="col-lg-3 col-md-2 col-sm-12 mb-5">
+                    <select class="form-select">
+                      
+                        <option value="">Select a Category</option>
+                      
+                    </select>
+                  </div> -->
+                  <div class="col-lg-3 col-md-2 col-sm-12 mb-5">
+                    <!-- <label for="categorySelect" class="form-label">Category</label> -->
+                    <select id="categorySelect" class="form-select">
+                        <option value="">Select a Category</option>
+                    </select>
+                  </div>
+                  <!-- Brand Dropdown -->
+                  <!-- <div class="col-lg-3 col-md-2 col-sm-12 mb-5">
+                    <select class="form-select">
+                      <option selected disabled>Select Brand</option>
+                      <option value="brand1">Brand 1</option>
+                      <option value="brand2">Brand 2</option>
+                      <option value="brand3">Brand 3</option>
+                    </select>
+                  </div> -->
+                  <div class="col-lg-3 col-md-2 col-sm-12 mb-5">
+                    <select id="brand" class="form-select">
+                        <option value="">Select a Brand</option>
+                    </select>
+                </div>
+                </div>
+                
+                
+
+              <!-- Left Side: Product Section -->
+              <div class="col-lg-8 col-md-7">
+                
+                <div class="row g-3" id="product-container">
+                  <!-- Product cards will be dynamically added here -->
+                </div>
+              </div>
+      
+
+
+<!-- Product Detail Modal -->
+<div class="modal fade" id="productDetailModal" tabindex="-1" aria-labelledby="productDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-semibold" id="productDetailModalLabel">Product Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 text-center">
+              <!-- Product Image -->
+              <img id="modalProductImage" src="https://via.placeholder.com/400x400" class="img-fluid" alt="Product Image">
+            </div>
+            <div class="col-md-6">
+              <!-- Product Info -->
+              <h3 id="modalProductName" class="fw-bold">Product Name</h3>
+              <p>
+                <span id="modalProductPrice" class="text-success fw-bold" style="font-size: 1.5rem;">$0.00</span>
+                <span id="modalProductOriginalPrice" class="text-danger text-decoration-line-through ms-2">$0.00</span>
+              </p>
+              <div class="d-flex align-items-center mb-3" style="font-size: 16px; color: #FFD700;">
+                <!-- Star Ratings -->
+                <span id="modalProductStars">★ ★ ★ ★ ★</span>
+              </div>
+              <!-- Color Options -->
+              <p><strong>Color:</strong></p>
+              <div id="modalProductColors" class="d-flex mb-3">
+                
+                  <button class="btn btn-light rounded-pill border fw-medium me-2 px-3 py-2 color-btn" data-color="silver">Silver</button>
+                  <button class="btn btn-light rounded-pill border fw-medium me-2 px-3 py-2 color-btn" data-color="black">Black</button>
+                  <button class="btn btn-light rounded-pill border fw-medium px-3 py-2 color-btn" data-color="grey">Grey</button>
+            
+                
+              </div>
+              <!-- Size Options -->
+              <p><strong>Size:</strong></p>
+              <div id="modalProductSizes" class="d-flex mb-3">
+                <!-- Sizes will be dynamically inserted here -->
+              </div>
+              <div class="d-flex align-items-center mb-3">
+                <strong class="me-3">Quantity:</strong>
+                <button class="btn btn-outline-secondary btn-sm" id="decreaseQuantity">-</button>
+                <input type="number" id="quantityInput" class="form-control mx-2" value="1" min="1" style="width: 60px;">
+                <button class="btn btn-outline-secondary btn-sm" id="increaseQuantity">+</button>
+              </div>
+              
+              <button class="btn btn-primary w-100">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+              <!-- Right Side: Customer and Order Info -->
+              <div class="col-xl-4 col-md-5">
+                <div class="card shadow-sm" style="border-radius: 12px;">
+                  <div class="card-body">
+                    <!-- Customer Dropdown -->
+                    <div class="mb-4">
+                      <label for="customerType" class="form-label fw-bold">Customer</label>
+                      <select id="customerType" class="form-select" style="border-radius: 8px;">
+                        <option>Walking Customer</option>
+                        <option>Regular Customer</option>
+                      </select>
+                    </div>
+      
+                    <!-- Cart Items Section -->
+                    <div id="cartItems" style="max-height: 300px; overflow-y: auto;">
+                      <div class="text-center">
+                        <img src="https://via.placeholder.com/120x120" class="img-fluid mb-3" alt="Empty Cart">
+                        <p class="text-muted">Your cart is empty.</p>
+                      </div>
+                    </div>
+      
+                    <!-- Discount Section -->
+                    <div class="mt-4">
+                      <div class="input-group mb-3">
+                        <input type="number" id="discountValue" class="form-control" placeholder="Add Discount" style="border-radius: 8px 0 0 8px;">
+                        <button class="btn btn-primary" id="applyDiscount" style="border-radius: 0 8px 8px 0;">Apply</button>
+                      </div>
+      
+                      <!-- Payment Section -->
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <select id="paymentMethod" class="form-select w-100" style="border-radius: 8px; font-size: 14px; color: #6b7280; border: 1px solid #e5e7eb;">
+                          <option value="cash">Enter Payment method</option>
+                          <option value="cash">Cash</option>
+                          <option value="card">Card</option>
+                          <option value="mobile">Mobile Banking</option>
+                          <option value="others">Others</option>
+                        </select>
+                      </div>
+      
+                      <!-- Additional Fields Container -->
+                      <div id="additionalFields" class="mt-3"></div>
+                    </div>
+      
+                    <!-- Totals Section -->
+                    <table class="table table-borderless">
+                      <tbody>
+                        <tr>
+                          <th>Subtotal</th>
+                          <td id="subtotal" class="text-end fw-bold">$0.00</td>
+                        </tr>
+                        <tr>
+                          <th>Tax</th>
+                          <td id="tax" class="text-end fw-bold">$0.00</td>
+                        </tr>
+                        <tr>
+                          <th>Discount</th>
+                          <td id="discount" class="text-end fw-bold">$0.00</td>
+                        </tr>
+                        <tr>
+                          <th>Total</th>
+                          <td id="total" class="text-end fw-bold text-success">$0.00</td>
+                        </tr>
+                      </tbody>
+                    </table>
+      
+                    <!-- Action Buttons -->
+                    <div class="d-flex justify-content-between mt-4">
+                      <button class="btn btn-danger w-50 me-2 fw-bold" id="cancelOrder" style="border-radius: 8px;">Cancel</button>
+                      <button class="btn btn-success w-50 fw-bold" id="placeOrder" style="border-radius: 8px;">Order</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      
+  <!-- Invoice Modal -->
+  <div class="modal fade" id="invoiceModal" tabindex="-1" aria-labelledby="invoiceModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" id="printInvoice">Print Invoice</button>
+        </div>
+        <div class="modal-body" id="invoiceContent" style="font-family: Arial, sans-serif; font-size: 14px;">
+          <div class="text-center">
+            <h5 style="font-weight: bold;">ShopKing - eCommerce App with Laravel Website & Admin Panel with POS | Inventory Management</h5>
+            <p>
+              House: 25, Road No: 2, Block A, Mirpur-1, Dhaka 1216 <br>
+              Tel: +880 13333846282
+            </p>
+          </div>
+          <hr>
+          <p>
+            <strong>Order ID:</strong> <span id="orderId">#123456</span> <span style="float: right;" id="orderTime">14-12-2024 04:13 PM</span>
+          </p>
+          <hr>
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="text-align: left;">Qty</th>
+                <th style="text-align: left;">Product Description</th>
+                <th style="text-align: right;">Price</th>
+              </tr>
+            </thead>
+            <tbody id="invoiceItems">
+              <!-- Items will be dynamically added here -->
+            </tbody>
+          </table>
+          <hr>
+          <table class="table table-borderless">
+            <tr>
+              <td>SUBTOTAL:</td>
+              <td id="invoiceSubtotal" style="text-align: right;">$0.00</td>
+            </tr>
+            <tr>
+              <td>TAX FEE (15%):</td>
+              <td id="invoiceTax" style="text-align: right;">$0.00</td>
+            </tr>
+            <tr>
+              <td>DISCOUNT:</td>
+              <td id="invoiceDiscount" style="text-align: right;">$0.00</td>
+            </tr>
+            <tr>
+              <td><strong>TOTAL:</strong></td>
+              <td id="invoiceTotal" style="text-align: right; font-weight: bold;">$0.00</td>
+            </tr>
+          </table>
+          <p><strong>Payment Type:</strong> <span id="invoicePaymentType">Cash</span></p>
+          <hr>
+          <p class="text-center">Thank You <br> Please Come Again</p>
+          <p class="text-center" style="font-size: 12px;">
+            Powered by ShopKing - eCommerce App with Laravel Website & Admin Panel with POS | Inventory Management
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+            </div> <!-- End of Row -->
+          </div> <!-- End of Container -->
+        </div> <!-- End of Card Body -->
+      </div> <!-- End of Card -->
+      
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/sidebarmenu.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="./assets/js/app.min.js"></script>
+  <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="./apiConfig/apiConfig.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            const settingsToggle = document.getElementById('settingsToggle');
+            const settingsSubmenu = document.getElementById('settingsSubmenu');
+
+            // Handle submenu toggle
+            settingsToggle.addEventListener('click', function (event) {
+                event.preventDefault();
+                settingsSubmenu.style.display = (settingsSubmenu.style.display === 'block') ? 'none' : 'block';
+            });
+
+            // Handle active link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    // Remove active class from all links
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    // Add active class to the clicked link
+                    this.classList.add('active');
+                });
+            });
+        });
+
+
+
+document.getElementById("paymentMethod").addEventListener("change", function () {
+  const selectedValue = this.value; // Get the selected payment method
+  const additionalFieldsContainer = document.getElementById("additionalFields");
+
+  // Clear previous fields
+  additionalFieldsContainer.innerHTML = "";
+
+  if (selectedValue === "card") {
+    // Add fields for card payment
+    additionalFieldsContainer.innerHTML = `
+      <div class="form-group mb-3">
+        <label for="cardLast4" class="form-label fw-bold">Enter Card Last 4 Digits</label>
+        <input type="text" id="cardLast4" class="form-control" placeholder="Enter Card Last 4 Digits" maxlength="4" style="border-radius: 8px;">
+      </div>
+    `;
+  }
+  else if (selectedValue === "mobile") {
+    // Add fields for card payment
+    additionalFieldsContainer.innerHTML = `
+      <div class="form-group mb-3">
+        <label for="cardLast4" class="form-label fw-bold">Enter transaction ID</label>
+        <input type="text" id="cardLast4" class="form-control" placeholder="Enter transaction ID" maxlength="4" style="border-radius: 8px;">
+      </div>
+    `;
+  }
+});
+
+
+
+// Colors and sizes mapping
+const colorSizeMapping = {
+  silver: ['S', 'M', 'L'],
+  black: ['S', 'M', 'L', 'XL'],
+  grey: ['S', 'M', 'L'],
+};
+// Function to handle the "Add to Cart" button state
+function updateAddToCartState() {
+  const addToCartButton = document.querySelector('.btn-primary.w-100');
+  const selectedColor = document.querySelector('#modalProductColors .bg-danger.text-black'); // Selected color
+  const selectedSize = document.querySelector('#modalProductSizes .bg-danger.text-black'); // Selected size
+
+  // Enable the button only if both a color and size are selected
+  if (selectedColor && selectedSize) {
+    addToCartButton.disabled = false; // Enable button
+    addToCartButton.classList.remove('btn-secondary'); // Remove inactive styling
+    addToCartButton.classList.add('btn-danger'); // Apply active styling
+  } else {
+    addToCartButton.disabled = true; // Disable button
+    addToCartButton.classList.remove('btn-danger'); // Remove active styling
+    addToCartButton.classList.add('btn-secondary'); // Apply inactive styling
+  }
+}
+
+const cart = [];
+const TAX_RATE = 0.15; // 15% tax rate
+let subtotal = 0;
+let tax = 0;
+let discount = 0;
+let total = 0;
+
+
+// Function to show a success message
+function showSuccessMessage(message) {
+  // Check if a message is already being displayed
+  if (document.getElementById("success-message")) {
+    document.getElementById("success-message").remove();
+  }
+
+  // Create a div for the success message
+  const alertDiv = document.createElement("div");
+  alertDiv.id = "success-message";
+  alertDiv.className = "alert alert-success alert-dismissible fade show position-fixed top-0 end-0 m-3";
+  alertDiv.style.zIndex = "1050"; // Ensure it appears above other elements
+  alertDiv.style.width = "300px"; // Set a fixed width for consistency
+  alertDiv.style.borderRadius = "8px"; // Rounded corners
+  alertDiv.innerHTML = `
+    <div class="d-flex align-items-center">
+      <i class="bi bi-check-circle-fill me-2"></i>
+      <span>${message}</span>
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  `;
+
+  // Append the message to the body
+  document.body.appendChild(alertDiv);
+
+  // Automatically remove the message after 3 seconds
+  setTimeout(() => {
+    if (alertDiv) alertDiv.remove();
+  }, 3000);
+}
+
+// Function to add an item to the cart
+function addToCart(product, color, size, quantity) {
+  const existingItem = cart.find(
+    (item) => item.id === product.id && item.color === color && item.size === size
+  );
+
+  if (existingItem) {
+    existingItem.quantity += quantity;
+  } else {
+    cart.push({
+      id: product.id,
+      name: product.name,
+      price: product.selling_price,
+      color,
+      size,
+      quantity,
+      image: product.image_path || "https://via.placeholder.com/100x100",
+    });
+  }
+
+  showSuccessMessage("Successfully added to cart!");
+  updateCartDisplay();
+}
+
+// Function to apply the discount and update totals
+document.getElementById("applyDiscount").addEventListener("click", () => {
+  const discountValue = parseFloat(document.getElementById("discountValue").value || 0);
+
+  // Validate the discount value
+  if (isNaN(discountValue) || discountValue < 0) {
+    showErrorMessage("Please enter a valid discount amount.");
+    return;
+  }
+
+  // Recalculate totals
+  updateCartDisplay(); // This will pick up the updated discount and recalculate totals
+});
+
+// Function to update the cart display
+function updateCartDisplay() {
+  const cartItemsContainer = document.getElementById("cartItems");
+  const subtotalElement = document.getElementById("subtotal");
+  const taxElement = document.getElementById("tax");
+  const discountElement = document.getElementById("discount");
+  const totalElement = document.getElementById("total");
+
+  cartItemsContainer.innerHTML = ""; // Clear previous content
+
+  if (cart.length === 0) {
+    cartItemsContainer.innerHTML = `
+      <div class="text-center">
+        <img src="https://via.placeholder.com/100x100" class="img-fluid mb-3" alt="Empty Cart">
+        <p class="text-muted">Your cart is empty.</p>
+      </div>`;
+    subtotalElement.textContent = "$0.00";
+    taxElement.textContent = "$0.00";
+    discountElement.textContent = "$0.00";
+    totalElement.textContent = "$0.00";
+    return;
+  }
+
+  // Populate cart items
+  cart.forEach((item, index) => {
+    const itemDiv = document.createElement("div");
+    itemDiv.className = "d-flex justify-content-between align-items-center border-bottom py-2";
+    itemDiv.innerHTML = `
+      <div class="d-flex align-items-center">
+        <img src="${item.image}" alt="${item.name}" class="img-fluid" style="width: 50px; height: 50px; object-fit: cover;">
+        <div class="ms-3">
+          <h6 class="mb-0">${item.name}</h6>
+          <small class="text-muted">${item.color} | ${item.size}</small>
+        </div>
+      </div>
+      <div class="d-flex align-items-center">
+        <span class="me-2">$${(item.price * item.quantity).toFixed(2)}</span>
+        <button class="btn btn-sm btn-outline-danger d-flex align-items-center" onclick="removeCartItem(${index})" style="border-radius: 12px; padding: 5px 10px;">
+          <i class="fas fa-trash me-2" style="font-size: 1rem;"></i>
+          <span>Remove</span>
+        </button>
+      </div>
+    `;
+    cartItemsContainer.appendChild(itemDiv);
+  });
+
+  // Calculate totals
+  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const tax = subtotal * TAX_RATE;
+  const discount = parseFloat(document.getElementById("discountValue").value || 0);
+  const total = subtotal + tax - discount;
+
+  // Ensure total doesn't drop below 0
+  const finalTotal = total < 0 ? 0 : total;
+
+  // Update totals display
+  subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+  taxElement.textContent = `$${tax.toFixed(2)}`;
+  discountElement.textContent = `$${discount.toFixed(2)}`;
+  totalElement.textContent = `$${finalTotal.toFixed(2)}`;
+}
+
+// Function to remove an item from the cart
+function removeCartItem(index) {
+  cart.splice(index, 1);
+  updateCartDisplay();
+}
+
+// Add-to-cart button click handler
+document.querySelector(".btn-primary.w-100").addEventListener("click", () => {
+  // Get selected color
+  const selectedColor = document.querySelector("#modalProductColors .bg-danger.text-black").textContent.trim();
+
+  // Get selected size
+  const selectedSize = document.querySelector("#modalProductSizes .bg-danger.text-black").textContent.trim();
+
+  // Get quantity
+  const quantity = parseInt(document.getElementById("quantityInput").value, 10);
+
+  // Get product name from the modal
+  const productName = document.getElementById("modalProductName").textContent.trim();
+
+  // Get product price from the modal
+  const productPrice = parseFloat(
+    document.getElementById("modalProductPrice").textContent.replace("$", "").trim()
+  );
+
+  // Get product image URL
+  const productImage = document.getElementById("modalProductImage").src;
+
+  // Create a product object
+  const product = {
+    id: new Date().getTime(), // Temporary unique ID
+    name: productName,
+    selling_price: productPrice,
+    image_path: productImage,
+  };
+
+  // Add product to cart
+  addToCart(product, selectedColor, selectedSize, quantity);
+
+  // Close the modal
+  const modal = bootstrap.Modal.getInstance(document.getElementById("productDetailModal"));
+  modal.hide();
+
+  // Show success message
+  showSuccessMessage("Successfully added to cart!");
+});
+
+
+// Function to show the product modal
+function showProductModal(product, imageUrl) {
+  // Populate modal with product details
+  document.getElementById('modalProductImage').src = imageUrl;
+  document.getElementById('modalProductName').textContent = product.name;
+  document.getElementById('modalProductPrice').textContent = `$${parseFloat(product.selling_price).toFixed(2)}`;
+  document.getElementById('modalProductOriginalPrice').textContent = `$${parseFloat(product.original_price).toFixed(2) || 0}`;
+  document.getElementById('modalProductStars').innerHTML = '★ ★ ★ ★ ★';
+
+  const addToCartButton = document.querySelector('.btn-primary.w-100');
+  const sizeContainer = document.getElementById('modalProductSizes');
+
+  // Disable "Add to Cart" button initially
+  addToCartButton.disabled = true;
+
+  // Clear sizes initially
+  sizeContainer.innerHTML = '';
+
+  // Add click events for color options
+  const colorButtons = document.querySelectorAll('#modalProductColors .color-btn');
+  colorButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      // Reset all buttons' active state
+      colorButtons.forEach((b) => b.classList.remove('btn-danger', 'text-black'));
+      // Highlight the selected color
+      btn.classList.add('btn-danger', 'text-black');
+
+      // Get the selected color
+      const selectedColor = btn.getAttribute('data-color');
+
+      // Update sizes dynamically
+      updateSizes(selectedColor);
+
+      // Reset size selection and disable "Add to Cart" button
+      addToCartButton.disabled = true;
+    });
+  });
+
+  // Show modal
+  const modal = new bootstrap.Modal(document.getElementById('productDetailModal'));
+  modal.show();
+}
+                                                   
+
+// Function to handle color button selection
+function handleColorSelection() {
+  const colorButtons = document.querySelectorAll('.color-btn');
+  colorButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      // Reset all color buttons' styles
+      colorButtons.forEach((b) => {
+        b.classList.remove('bg-danger', 'text-black'); // Remove active styles
+        b.classList.add('bg-light', 'text-dark'); // Reset to default
+      });
+
+      // Apply active styles to the selected color button
+      btn.classList.remove('bg-light', 'text-dark'); // Remove default
+      btn.classList.add('bg-danger', 'text-black'); // Add active styles
+
+      // Update the "Add to Cart" button state
+      updateAddToCartState();
+    });
+  });
+}
+
+// Function to update sizes based on the selected color
+function updateSizes(color) {
+  const sizeContainer = document.getElementById('modalProductSizes');
+  sizeContainer.innerHTML = ''; // Clear existing sizes
+
+  // Example sizes for the selected color
+  const sizes = colorSizeMapping[color];
+
+  sizes.forEach((size) => {
+    const sizeButton = document.createElement('button');
+    sizeButton.className = 'btn rounded-pill me-2 px-3 py-2';
+    sizeButton.textContent = size;
+
+    // Apply default styles
+    sizeButton.classList.add('bg-light', 'text-dark', 'border'); // Default
+
+    // Add click event for size button selection
+    sizeButton.addEventListener('click', () => {
+      // Reset all size buttons' styles
+      const allSizeButtons = document.querySelectorAll('#modalProductSizes button');
+      allSizeButtons.forEach((b) => {
+        b.classList.remove('bg-danger', 'text-black'); // Remove active styles
+        b.classList.add('bg-light', 'text-dark'); // Reset to default
+      });
+
+      // Apply active styles to the selected size button
+      sizeButton.classList.remove('bg-light', 'text-dark'); // Remove default
+      sizeButton.classList.add('bg-danger', 'text-black'); // Add active styles
+
+      // Update the "Add to Cart" button state
+      updateAddToCartState();
+    });
+
+    // Append size button to container
+    sizeContainer.appendChild(sizeButton);
+  });
+}
+
+// Initialize the color selection handler
+handleColorSelection();
+
+// Fetch products and populate cards
+async function fetchProducts() {
+  try {
+    const response = await fetch(`${API_ADMINGRAB_URL}/api/products`);
+   
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+    const products = await response.json();
+    const container = document.getElementById('product-container');
+    container.innerHTML = '';
+
+    products.forEach((product) => {
+      const imageUrl = product.image_path
+        ? `${API_ADMINGRAB_URL}/${product.image_path}`
+        : 'https://via.placeholder.com/200x200';
+
+      const card = document.createElement('div');
+      card.classList.add('col-md-4', 'mb-4');
+
+      card.innerHTML = `
+        <div class="card shadow-sm border-0" style="border-radius: 12px; cursor: pointer;">
+          <img src="${imageUrl}" class="card-img-top" style="border-radius: 12px 12px 0 0;" alt="${product.name}">
+          <div class="card-body text-left">
+            <h5 class="card-title text-muted fw-normal" style="font-size: 16px;">${product.name}</h5>
+            <div class="d-flex justify-content-left mb-3" style="font-size: 16px; color: #FFD700;">
+              <span class="me-1">★</span>
+              <span class="me-1">★</span>
+              <span class="me-1">★</span>
+              <span class="me-1">★</span>
+              <span class="me-1">★</span>
+            </div>
+            <p class="card-text mb-1">
+              <span class="fw-bold" style="color: #4A4A4A;">$${parseFloat(product.selling_price).toFixed(2)}</span>
+            </p>
+          </div>
+        </div>
+      `;
+
+      // Add click event listener to show modal
+      card.addEventListener('click', () => {
+        showProductModal(product, imageUrl);
+      });
+
+      container.appendChild(card);
+    });
+  } catch (error) {
+    console.error('Error fetching products:', error);
+  }
+}
+
+
+// Function to handle quantity increment and decrement
+function handleQuantityChange() {
+  const decreaseButton = document.getElementById('decreaseQuantity');
+  const increaseButton = document.getElementById('increaseQuantity');
+  const quantityInput = document.getElementById('quantityInput');
+
+  // Event listener for the decrement button
+  decreaseButton.addEventListener('click', () => {
+    let currentValue = parseInt(quantityInput.value, 10);
+    if (currentValue > 1) {
+      quantityInput.value = currentValue - 1; // Decrement value
+    }
+  });
+
+  // Event listener for the increment button
+  increaseButton.addEventListener('click', () => {
+    let currentValue = parseInt(quantityInput.value, 10);
+    quantityInput.value = currentValue + 1; // Increment value
+  });
+
+  // Ensure the quantity cannot go below 1 when typing manually
+  quantityInput.addEventListener('input', () => {
+    if (quantityInput.value < 1 || isNaN(quantityInput.value)) {
+      quantityInput.value = 1; // Reset to 1 if the value is invalid
+    }
+  });
+}
+
+// Call the function to initialize the handlers
+handleQuantityChange();
+
+// Fetch products on page load
+fetchProducts();
+
+
+// document.getElementById("placeOrder").addEventListener("click", function () {
+//     // Generate Order Details
+//     const orderID = `#${Math.floor(100000 + Math.random() * 900000)}`;
+//     const currentDate = new Date();
+//     const orderDate = currentDate.toLocaleDateString();
+//     const orderTime = currentDate.toLocaleTimeString();
+//     const customerType = document.getElementById("customerType").value || "Walking Customer";
+//     const paymentType = document.getElementById("paymentMethod").value || "Cash";
+//     const discountValue = parseFloat(document.getElementById("discountValue").value) || 0;
+
+//     // Calculation Logic
+//     let subtotal = 0; // Sum of all item prices
+//     let tax = 0;      // Total tax for all items
+//     let total = 0;    // Final total after tax and discount
+
+//     const invoiceItemsContainer = document.getElementById("invoiceItems");
+//     invoiceItemsContainer.innerHTML = ""; // Clear any previous items in the invoice
+
+//     // Iterate over the cart to calculate totals and populate invoice items
+//     cart.forEach(item => {
+        
+//         const itemSubtotal = item.price * item.quantity;
+//         const itemTax = (itemSubtotal * 15) / 100; // Assuming 15% VAT
+//         console.log("Item Subtotal:", itemSubtotal);
+//         console.log("Item Tax:", itemTax);
+//         subtotal += itemSubtotal;
+//         tax += itemTax;
+
+//         // Add the item row to the invoice table
+//         const row = `
+//             <tr>
+//                 <td>${item.quantity}</td>
+//                 <td>
+//                     ${item.name} <br>
+//                     <small>${item.color} | ${item.size}</small>
+//                 </td>
+//                 <td style="text-align: right;">$${itemSubtotal.toFixed(2)}</td>
+//             </tr>
+//         `;
+//         invoiceItemsContainer.innerHTML += row;
+//     });
+
+//     // Calculate the total (subtotal + tax - discount)
+//     total = subtotal + tax - discountValue;
+
+//     // Populate Modal Fields
+//     document.getElementById("orderId").innerText = orderID;
+//     document.getElementById("orderTime").innerText = `${orderDate} ${orderTime}`;
+//     document.getElementById("invoiceSubtotal").innerText = `$${subtotal.toFixed(2)}`;
+//     document.getElementById("invoiceTax").innerText = `$${tax.toFixed(2)}`;
+//     document.getElementById("invoiceDiscount").innerText = `$${discountValue.toFixed(2)}`;
+//     document.getElementById("invoiceTotal").innerText = `$${total.toFixed(2)}`;
+//     document.getElementById("invoicePaymentType").innerText = paymentType;
+
+//     // Show the Invoice Modal
+//     const invoiceModal = new bootstrap.Modal(document.getElementById("invoiceModal"));
+//     invoiceModal.show();
+    
+// });
+
+
+
+document.getElementById("placeOrder").addEventListener("click", function () {
+    // Generate Order Details
+    const orderID = `#${Math.floor(100000 + Math.random() * 900000)}`;
+    const currentDate = new Date();
+    const orderDate = new Date().toISOString().split('T')[0]; // Format for MySQL
+    const orderTime = currentDate.toLocaleTimeString();
+    const customerType = document.getElementById("customerType").value || "Walking Customer";
+    const paymentType = document.getElementById("paymentMethod").value || "Cash";
+    const discountValue = parseFloat(document.getElementById("discountValue").value) || 0;
+
+    // Calculation Logic
+    let subtotal = 0; // Sum of all item prices
+    let tax = 0;      // Total tax for all items
+    let total = 0;    // Final total after tax and discount
+
+    const invoiceItemsContainer = document.getElementById("invoiceItems");
+    invoiceItemsContainer.innerHTML = ""; // Clear any previous items in the invoice
+
+    // Prepare data to send to the backend
+    const orderData1 = {
+        orderID,
+        orderDate,
+        orderTime,
+        customerType,
+        paymentType,
+        discountValue,
+        items: [], // Array to store cart items
+    };
+    const orderData = {
+    orderID,
+    orderDate,
+    orderTime,
+    customerType,
+    paymentType,
+    discountValue,
+    subtotal,
+    tax,
+    total,
+    quantity: cart.reduce((acc, item) => acc + item.quantity, 0), // Total quantity
+    productName: cart.map((item) => item.name).join(", "), // Combine product names
+    color: cart.map((item) => item.color).join(", "), // Combine colors
+    size: cart.map((item) => item.size).join(", "), // Combine sizes
+    imagePath: cart.map((item) => item.image_path).join(", "), // Combine image paths
+};
+console.log("Order Data:", orderData);
+    // Iterate over the cart to calculate totals and populate invoice items
+    cart.forEach((item) => {
+        const itemSubtotal = item.price * item.quantity;
+        const itemTax = (itemSubtotal * 15) / 100; // Assuming 15% VAT
+        subtotal += itemSubtotal;
+        tax += itemTax;
+
+        // Add item data to the orderData.items array
+        orderData1.items.push({
+            tax: tax,
+            productName: item.name,
+            quantity: item.quantity,
+            color: item.color,
+            size: item.size,
+            imagePath: item.image_path,
+            price: item.price,
+            itemSubtotal: itemSubtotal,
+        });
+
+
+        
+        // Add the item row to the invoice table
+        const row = `
+            <tr>
+                <td>${item.quantity}</td>
+                <td>
+                    ${item.name} <br>
+                    <small>${item.color} | ${item.size}</small>
+                </td>
+                <td style="text-align: right;">$${itemSubtotal.toFixed(2)}</td>
+            </tr>
+        `;
+        invoiceItemsContainer.innerHTML += row;
+    });
+
+    // Calculate the total (subtotal + tax - discount)
+    total = subtotal + tax - discountValue;
+
+    // Add totals to orderData
+    orderData.subtotal = subtotal;
+    orderData.tax = tax;
+    orderData.total = total;
+
+    // Log the order data to the console
+    console.log("Order Data:", orderData);
+
+    // Populate Modal Fields
+    document.getElementById("orderId").innerText = orderID;
+    document.getElementById("orderTime").innerText = `${orderDate} ${orderTime}`;
+    document.getElementById("invoiceSubtotal").innerText = `$${subtotal.toFixed(2)}`;
+    document.getElementById("invoiceTax").innerText = `$${tax.toFixed(2)}`;
+    document.getElementById("invoiceDiscount").innerText = `$${discountValue.toFixed(2)}`;
+    document.getElementById("invoiceTotal").innerText = `$${total.toFixed(2)}`;
+    document.getElementById("invoicePaymentType").innerText = paymentType;
+
+    // Show the Invoice Modal
+    const invoiceModal = new bootstrap.Modal(document.getElementById("invoiceModal"));
+    invoiceModal.show();
+
+    // Store the order data in the database
+    storeOrderInDatabase(orderData);
+});
+
+function storeOrderInDatabase(orderData) {
+    console.log("Order Data to be sent to backend:", orderData); // Log the data
+    fetch(`${API_ADMINGRAB_URL}/api/store-pos-data`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData), // Send order data to backend
+    })
+        .then((response) => response.json())
+        .then((result) => {
+            console.log("Data stored successfully:", result);
+            showSuccessMessage("Order has been successfully stored in the database!");
+        })
+        .catch((error) => {
+            console.error("Error storing data in the database:", error);
+            showErrorMessage("Failed to store the order in the database.");
+        });
+}
+
+document.getElementById("printInvoice").addEventListener("click", function () {
+    console.log("Print Invoice button clicked");
+    
+    const printContent = document.getElementById("invoiceContent").innerHTML;
+
+    if (!printContent) {
+        console.error("Invoice content is missing. Please ensure the invoice is generated before printing.");
+        showErrorMessage("No invoice content available to print.");
+        return;
+    }
+
+    try {
+        // Create a temporary container for the content to print
+        const printContainer = document.createElement("div");
+        printContainer.id = "print-container";
+        printContainer.style.position = "absolute";
+        printContainer.style.top = "0";
+        printContainer.style.left = "0";
+        printContainer.style.width = "100%";
+        printContainer.style.height = "100%";
+        printContainer.style.background = "#fff";
+        printContainer.style.zIndex = "9999";
+        printContainer.innerHTML = `
+            <style>
+                @media print {
+                    body * {
+                        visibility: hidden;
+                    }
+                    #print-container, #print-container * {
+                        visibility: visible;
+                    }
+                    #print-container {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        padding: 20px;
+                        box-sizing: border-box;
+                        margin: 0;
+                        overflow: hidden; /* Ensure content does not overflow */
+                    }
+                    .container {
+                        max-width: 800px; /* Restrict container width for better fit */
+                        margin: auto;
+                        text-align: center;
+                    }
+                    .table {
+                        width: 100%;
+                        margin: auto;
+                        border-collapse: collapse;
+                    }
+                    .table th, .table td {
+                        border: 1px solid #ddd; /* Add borders for clarity */
+                        padding: 8px;
+                        text-align: left;
+                    }
+                    .table th {
+                        background: #f5f5f5;
+                        font-weight: bold;
+                    }
+                    .table-borderless th, .table-borderless td {
+                        border: none; /* Remove borders for totals */
+                    }
+                }
+            </style>
+            <div class="container mt-4">
+                ${printContent}
+            </div>
+        `;
+
+        // Append the container to the body
+        document.body.appendChild(printContainer);
+
+        // Trigger the print dialog
+        window.print();
+          // Hide the modal after triggering the print dialog
+      
+       
+        // Remove the container after printing
+        document.body.removeChild(printContainer);
+       
+        console.log("Invoice printed successfully.");
+    } catch (error) {
+        console.error("An error occurred while attempting to print the invoice:", error);
+        showErrorMessage("An unexpected error occurred. Please try again.");
+    }
+});
+
+// // Function to generate the invoice dynamically
+// document.getElementById("placeOrder").addEventListener("click", function () {
+//     // Generate Order Details
+//     const orderID = `#${Math.floor(100000 + Math.random() * 900000)}`;
+//     const currentDate = new Date();
+//     const orderDate = currentDate.toLocaleDateString();
+//     const orderTime = currentDate.toLocaleTimeString();
+//     const customerType = document.getElementById("customerType").value || "Walking Customer";
+//     const paymentType = document.getElementById("paymentMethod").value || "Cash";
+//     const discountValue = parseFloat(document.getElementById("discountValue").value) || 0;
+
+//     // Calculation Logic
+//     let subtotal = 0;
+//     let tax = 0;
+//     let total = 0;
+
+//     const invoiceItemsContainer = document.getElementById("invoiceItems");
+//     invoiceItemsContainer.innerHTML = ""; // Clear existing items
+
+//     cart.forEach(item => {
+//         const itemSubtotal = item.price * item.quantity;
+//         const itemTax = (itemSubtotal * 15) / 100; // Assuming 15% VAT
+//         subtotal += itemSubtotal;
+//         tax += itemTax;
+
+//         // Add item to the invoice table
+//         const row = `
+//             <tr>
+//                 <td>${item.quantity}</td>
+//                 <td>
+//                     ${item.name} <br>
+//                     <small>Color: ${item.color} | Size: ${item.size}</small>
+//                 </td>
+//                 <td>$${itemSubtotal.toFixed(2)}</td>
+//             </tr>
+//         `;
+//         invoiceItemsContainer.innerHTML += row;
+//     });
+
+//     total = subtotal + tax - discountValue;
+
+//     // Populate Modal Fields
+//     document.getElementById("orderId").innerText = orderID;
+//     document.getElementById("orderDate").innerText = orderDate;
+//     document.getElementById("orderTime").innerText = orderTime;
+//     document.getElementById("invoiceSubtotal").innerText = `$${subtotal.toFixed(2)}`;
+//     document.getElementById("invoiceTax").innerText = `$${tax.toFixed(2)}`;
+//     document.getElementById("invoiceDiscount").innerText = `$${discountValue.toFixed(2)}`;
+//     document.getElementById("invoiceTotal").innerText = `$${total.toFixed(2)}`;
+//     document.getElementById("invoicePaymentType").innerText = paymentType;
+
+//     // Add Customer Type
+//     const customerTypeElement = document.createElement("p");
+//     customerTypeElement.innerHTML = `<strong>Customer Type:</strong> ${customerType}`;
+//     document.getElementById("invoiceContent").prepend(customerTypeElement);
+
+//     // Show the Modal
+//     const invoiceModal = new bootstrap.Modal(document.getElementById("invoiceModal"));
+//     invoiceModal.show();
+// });
+  
+
+document.addEventListener('DOMContentLoaded', populateCategoryOptions);
+
+async function populateCategoryOptions() {
+    const token = localStorage.getItem('token');
+    const apiUrl = `${API_ADMINGRAB_URL}/api/product-categories`;
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                Authorization: `${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('API Error:', errorData);
+            throw new Error(`Failed to fetch product categories: ${errorData.message || 'Unknown error'}`);
+        }
+
+        const categories = await response.json();
+        console.log('Fetched categories:', categories);
+
+        const categorySelect = document.getElementById('categorySelect');
+        categorySelect.innerHTML = '<option value="">Select a category</option>';
+
+        categories.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category.name;
+            option.textContent = category.name;
+            categorySelect.appendChild(option);
+        });
+
+        console.log('Category select options populated successfully');
+    } catch (error) {
+        console.error('Error populating category options:', error);
+        showErrorMessage(`Error loading categories: ${error.message}`);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', populateBrandOptions);
+
+async function populateBrandOptions() {
+    const token = localStorage.getItem('token');
+    const apiUrl = `${API_ADMINGRAB_URL}/api/product-brands`;
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                Authorization: `${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('API Error:', errorData);
+            throw new Error(`Failed to fetch product brands: ${errorData.message || 'Unknown error'}`);
+        }
+
+        const brands = await response.json();
+        console.log('Fetched brands:', brands);
+
+        const brandSelect = document.getElementById('brand');
+        brandSelect.innerHTML = '<option value="">Select a Brand</option>';
+
+        brands.forEach(brand => {
+            const option = document.createElement('option');
+            option.value = brand.name;
+            option.textContent = brand.name;
+            brandSelect.appendChild(option);
+        });
+
+        console.log('Brand select options populated successfully');
+    } catch (error) {
+        console.error('Error populating brand options:', error);
+        showErrorMessage(`Error loading brands: ${error.message}`);
+    }
+}
+  
+  </script>
+</body>
+
+</html>

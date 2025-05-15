@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/styles.min.css" />
+    <link rel="stylesheet" href="./assets/css/navbar.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="./popupMessages.js"></script>
+    <script>
+        //(function() {
+    //     let(function() {
+    //     let path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })(); path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })();
+
+
+        (function checkAuth() {
+          const token = localStorage.getItem('token');
+    
+          if (!token) {
+            window.location.replace('./login.html'); // Redirect to login page
+          }
+        })();
+      </script> 
+   
+  </head>
+  
+  <body>
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+      data-sidebar-position="fixed" data-header-position="fixed">
+      <!-- Sidebar Start -->
+      <aside class="left-sidebar">
+        <!-- Sidebar scroll-->
+        <div>
+          <div class="brand-logo d-flex align-items-center justify-content-between">
+            <a href="./index.html" class="text-nowrap logo-img">
+              <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+            </a>
+            <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+              <i class="ti ti-x fs-8"></i>
+            </div>
+          </div>
+          <!-- Sidebar navigation-->
+          <div class="sidebar" id="sidebar">
+            <a class="navbar-brand" href="#">
+                <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+            </a>
+            
+            <div class="section-title mt-9">HOME</div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="./index.html">
+                        <i class="ti ti-layout-dashboard"></i> Dashboard
+                    </a>
+                </li>
+            </ul>
+            <div class="section-title">PRODUCTS & STOCK</div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="./products.html">
+                        <i class="fas fa-box"></i> Products
+                    </a>
+                </li>
+                 <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="purchaseToggle">
+                <i class="fas fa-shopping-cart"></i> Purchases 
+              </a>
+              <ul class="nav-submenu" id="purchaseSubmenu">
+                <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
+                <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
+                <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
+              </ul>
+            </li>
+          </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="./damages.html">
+                        <i class="fas fa-exclamation-circle"></i> Damages
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./stock.html">
+                        <i class="fas fa-archive"></i> Stock
+                    </a>
+                </li>
+            </ul>
+            <div class="section-title">POS & ORDERS</div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="./pos.html">
+                        <i class="fas fa-cash-register"></i> POS
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./pos-orders.html">
+                        <i class="fas fa-receipt"></i> POS Orders
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./online-orders.html">
+                        <i class="fas fa-shopping-basket"></i> Online Orders
+                    </a>
+                </li>
+            </ul>
+
+            <div class="section-title">PROMO</div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="./coupons.html">
+                        <i class="fas fa-tags"></i> Coupons
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./promotions.html">
+                        <i class="fas fa-bullhorn"></i> Promotions
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./product-sections.html">
+                        <i class="fas fa-cube"></i>  Product Sections
+                    </a>
+                </li>
+            </ul>
+
+            <div class="section-title">COMMUNICATIONS</div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="./push-notifications.html">
+                        <i class="fas fa-bell"></i> Push Notifications
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./subscribers.html">
+                        <i class="fas fa-users"></i> Subscribers
+                    </a>
+                </li>
+            </ul>
+            <div class="section-title">USERS</div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="./admin.html">
+                        <i class="fas fa-user"></i> Administrators
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./customer.html">
+                        <i class="fas fa-users"></i> Customers
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./employee.html">
+                        <i class="fas fa-user-tie"></i> Employees
+                    </a>
+                </li>
+            </ul>
+        
+            <div class="section-title">ACCOUNTS</div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-exchange-alt"></i> Transactions
+                    </a>
+                </li>
+            </ul>
+        
+            <div class="section-title">REPORTS</div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="./sales-report.html">
+                        <i class="fas fa-chart-line"></i> Sales Report
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./products-report.html">
+                        <i class="fas fa-file-alt"></i> Products Report
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-credit-card"></i> Credit Balance Report
+                    </a>
+                </li>
+            </ul>
+        
+            <div class="section-title">SETUP</div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" id="settingsToggle" href="#">
+                        <i class="fas fa-cog"></i> Settings
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="submenu" id="settingsSubmenu">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./company.html">
+                            <i class="fas fa-building"></i> Company
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./site.html">
+                            <i class="fas fa-globe"></i> Site
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./mail.html">
+                            <i class="fas fa-envelope"></i> Mail
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./location-setup.html">
+                            <i class="fas fa-map-marker-alt"></i> Location Setup
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./shipping-setup.html">
+                            <i class="fas fa-truck"></i> Shipping Setup
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-lock"></i> OTP
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./notification.html">
+                            <i class="fas fa-bell"></i> Notification
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./notification-alert.html">
+                            <i class="fas fa-bell"></i> Notification alert
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./social-media.html">
+                            <i class="fas fa-share-alt"></i> Social Media
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./cookies.html">
+                            <i class="fas fa-cookie-bite"></i> Cookies
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./analytics.html">
+                            <i class="fas fa-chart-bar"></i> Analytics
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./theme.html">
+                            <i class="fas fa-paint-brush"></i> Theme
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./sliders.html">
+                            <i class="fas fa-sliders-h"></i> Sliders
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./currencies.html">
+                            <i class="fas fa-money-bill-wave"></i> Currencies
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./product-categories.html">
+                            <i class="fas fa-tags"></i> Product Categories
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./product-attributes.html">
+                            <i class="fas fa-cube"></i> Product Attributes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./product-brands.html">
+                            <i class="fas fa-tag"></i> Product Brands
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./supplier.html">
+                            <i class="fas fa-industry"></i> Suppliers
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./outlets.html">
+                            <i class="fas fa-store"></i> Outlets
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./benefits.html">
+                            <i class="fas fa-gift"></i> Benefits
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./units.html">
+                            <i class="fas fa-balance-scale"></i> Units
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./taxes.html">
+                            <i class="fas fa-percent"></i>  Taxes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./page.html">
+                            <i class="fas fa-file-alt"></i> Pages
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./role & permissions.html">
+                            <i class="fas fa-user-shield"></i> Role & Permissions
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./languages-list.html">
+                            <i class="fas fa-globe"></i> Languages
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./sms-gateway.html">
+                            <i class="fas fa-comments"></i> Sms Gateway
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./payment-gateway.html">
+                            <i class="fas fa-credit-card"></i> Payment Gateway
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./license.html">
+                            <i class="fas fa-file-contract"></i> License
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+          <!-- End Sidebar navigation -->
+        </div>
+        <!-- End Sidebar scroll-->
+      </aside>
+      
+      <!--  Sidebar End -->
+      <!--  Main wrapper -->
+      <div class="body-wrapper">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title fw-semibold mb-4">Dashboard / Product Sections / View </h5>
+              <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarButtons" aria-controls="navbarButtons" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarButtons">
+                    <form class="d-flex flex-column flex-md-row justify-content-start w-100">
+                      <button id="infoButton" class="btn bg-danger text-light me-2 mb-2 mb-md-0" type="button" onclick="showInfo()">Information</button>
+                      <button id="productsButton" class="btn text-dark bg-body me-2" type="button" onclick="showProducts()">Products</button>
+                    </form>
+                  </div>
+                </div>
+              </nav>
+              
+              <div class="container">
+                <div class="mt-3">
+                  <div id="infoSection" class="mt-5 container">
+                    <h5 class="text-center text-md-start">Information</h5>
+                    <div class="row">
+                      <div class="col-12 col-md-6 mb-3">
+                        <p><strong>Name:</strong> <span id="sectionName"></span></p>
+                      </div>
+                      <div class="col-12 col-md-6 mb-3">
+                        <p><strong>Status:</strong> <span id="sectionStatus"></span></p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div id="productsSection" class="mt-5" style="display: none;">
+                    <div class="d-flex justify-content-between"> 
+                      <h5>Products</h5>
+                      <button class="btn text-bg-danger me-2" id="addProductBtn" onclick="showOverlay()">+ Add Product</button>
+                    </div>
+                    
+                    <!-- Bootstrap Overlay Form (Initially Hidden) -->
+                     <div id="overlayForm" class="modal fade" tabindex="-1" aria-labelledby="overlayFormLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="overlayFormLabel">Add Product</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <form id="productForm" onsubmit="submitProduct(event)">
+                              <div class="mb-3">
+                                <label for="productSelect" class="form-label">Product Name:</label>
+                                <select id="productSelect" class="form-select" required>
+                                  <option value="">Select a product</option>
+                                </select>
+                              </div>
+                              <button type="submit" class="btn btn-primary">Save</button>
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="table-responsive mt-4">
+                      <table class="table table-bordered table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody id="productsTableBody" class="products-table-body">
+                          <!-- Dynamic rows will be added here -->
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <button onclick="window.history.back()" class="mt-5 btn">Back</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+            
+    <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/sidebarmenu.js"></script>
+    <script src="./assets/js/app.min.js"></script>
+    <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="./apiConfig/apiConfig.js"></script>
+
+    <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    const purchaseToggle = document.getElementById('purchaseToggle');
+    const purchaseSubmenu = document.getElementById('purchaseSubmenu');
+
+    purchaseToggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        purchaseSubmenu.style.display = (purchaseSubmenu.style.display === 'none' || purchaseSubmenu.style.display === '') ? 'block' : 'none';
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            const settingsToggle = document.getElementById('settingsToggle');
+            const settingsSubmenu = document.getElementById('settingsSubmenu');
+
+            // Handle submenu toggle
+            settingsToggle.addEventListener('click', function (event) {
+                event.preventDefault();
+                settingsSubmenu.style.display = (settingsSubmenu.style.display === 'block') ? 'none' : 'block';
+            });
+
+            // Handle active link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    // Remove active class from all links
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    // Add active class to the clicked link
+                    this.classList.add('active');
+                });
+            });
+        });
+
+    
+        // Function to show the Information section
+function showInfo() {
+    document.getElementById('infoSection').style.display = 'block';
+    document.getElementById('productsSection').style.display = 'none';
+    
+    // Change button styles
+    document.getElementById('infoButton').classList.add('bg-danger', 'text-light');
+    document.getElementById('infoButton').classList.remove('text-dark', 'bg-body');
+    document.getElementById('productsButton').classList.add('text-dark', 'bg-body');
+    document.getElementById('productsButton').classList.remove('bg-danger', 'text-light');
+}
+
+// Function to show the Products section
+function showProducts() {
+    document.getElementById('infoSection').style.display = 'none';
+    document.getElementById('productsSection').style.display = 'block';
+    
+    // Change button styles
+    document.getElementById('productsButton').classList.add('bg-danger', 'text-light');
+    document.getElementById('productsButton').classList.remove('text-dark', 'bg-body');
+    document.getElementById('infoButton').classList.add('text-dark', 'bg-body');
+    document.getElementById('infoButton').classList.remove('bg-danger', 'text-light');
+}
+
+// Initialize the view based on the URL parameter
+document.addEventListener('DOMContentLoaded', () => {
+    const currentView = getQueryParam('view');
+    if (currentView === 'products') {
+        showProducts();
+    } else {
+        showInfo();
+    }
+});
+
+// Function to get the query parameter by name
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+async function fetchProductSectionDetails() {
+    const token = localStorage.getItem('token');
+    const sectionId = getQueryParam('id'); // Get the product section ID from the URL
+
+    console.log('Section ID from URL:', sectionId);
+
+    if (!sectionId) {
+        showErrorMessage('No product section ID provided.');
+        return;
+    }
+
+    const apiUrl = `${API_ADMINGRAB_URL}/products-section/${sectionId}`;
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) throw new Error('Failed to fetch product section details');
+
+        const section = await response.json();
+
+        // Display the product section details on the page
+        document.getElementById('sectionName').textContent = section.name;
+        document.getElementById('sectionStatus').textContent = section.status;
+    } catch (error) {
+        console.error('Error fetching product section details:', error);
+        showErrorMessage('Error fetching product section details. Please try again.');
+    }
+}
+
+function showOverlay() {
+    const overlayForm = new bootstrap.Modal(document.getElementById('overlayForm'));
+    overlayForm.show();
+    fetchProducts(); // Load products when the overlay is shown
+}
+
+// Function to fetch product data from the API and populate the select dropdown
+async function fetchProducts() {
+    const token = localStorage.getItem('token');
+    const apiUrl = `${API_ADMINGRAB_URL}/api/products`;
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) throw new Error('Failed to fetch products');
+
+        const products = await response.json();
+
+        // Populate the select dropdown with product names
+        const productSelect = document.getElementById('productSelect');
+        productSelect.innerHTML = '<option value="">Select a product</option>'; // Reset options
+
+        products.forEach((product) => {
+            const option = document.createElement('option');
+            option.value = product.id; // Using the product ID as the value
+            option.textContent = product.name;
+            option.dataset.sellingPrice = product.selling_price;
+            productSelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        showErrorMessage('Error loading products. Please try again.');
+    }
+}
+
+// Function to handle form submission
+function submitProduct(event) {
+    event.preventDefault();
+
+    const productSelect = document.getElementById('productSelect');
+    const selectedOption = productSelect.options[productSelect.selectedIndex];
+
+    if (!selectedOption.value) {
+        showErrorMessage('Please select a product.');
+        return;
+    }
+
+    const productId = selectedOption.value;
+    const productName = selectedOption.textContent;
+    const sellingPrice = selectedOption.dataset.sellingPrice;
+
+    // Add the selected product to the table
+    addProductToTable(productName, sellingPrice);
+
+    // Hide the modal after submission
+    const overlayForm = bootstrap.Modal.getInstance(document.getElementById('overlayForm'));
+    overlayForm.hide();
+}
+
+function saveTableData() {
+    const sectionId = getQueryParam('id'); // Get the current section ID from the URL
+    if (!sectionId) return; // Exit if no section ID is found
+
+    const productsTableBody = document.getElementById('productsTableBody');
+    const tableData = [];
+
+    // Iterate through table rows and save the data
+    productsTableBody.querySelectorAll('tr').forEach((row) => {
+        const productName = row.children[0].textContent;
+        const sellingPrice = row.children[1].textContent;
+        tableData.push({ productName, sellingPrice });
+    });
+
+    // Save the table data to localStorage using the section ID as the key
+    localStorage.setItem(`tableData_${sectionId}`, JSON.stringify(tableData));
+}
+
+// Function to load table data for the current section ID
+function loadTableData() {
+    const sectionId = getQueryParam('id'); // Get the current section ID from the URL
+    if (!sectionId) return; // Exit if no section ID is found
+
+    const productsTableBody = document.getElementById('productsTableBody');
+    productsTableBody.innerHTML = ''; // Clear existing table rows
+
+    // Retrieve the table data from localStorage using the section ID as the key
+    const storedData = localStorage.getItem(`tableData_${sectionId}`);
+    if (!storedData) return; // Exit if no data is found
+
+    const tableData = JSON.parse(storedData);
+
+    // Populate the table with the stored data
+    tableData.forEach(({ productName, sellingPrice }) => {
+        addProductToTable(productName, sellingPrice);
+    });
+}
+
+// Function to add the selected product to the table
+function addProductToTable(name, price) {
+    const productsTableBody = document.getElementById('productsTableBody');
+
+    const row = document.createElement('tr'); 
+    row.innerHTML = `
+        <td>${name}</td>
+        <td>${price}</td>
+        <td>Active</td>
+        <td><button class="btn btn-danger btn-sm" onclick="removeProduct(this)">Remove</button></td>
+    `;
+
+    productsTableBody.appendChild(row);
+    saveTableData();
+
+}
+
+// Function to remove a product row from the table
+function removeProduct(button) {
+    const row = button.closest('tr');
+    row.remove();
+    saveTableData();
+
+}
+fetchProducts()
+
+// document.addEventListener('DOMContentLoaded', fetchProductSectionDetails);
+document.addEventListener('DOMContentLoaded', () => {
+    fetchProductSectionDetails();
+    loadTableData(); // Load the saved table data for the current section
+});
+
+   
+    </script>
+    
+    
+</body>
+</html>

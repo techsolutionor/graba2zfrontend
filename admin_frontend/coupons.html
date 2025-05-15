@@ -1,0 +1,1311 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="./assets/css/styles.min.css" />
+  <link rel="stylesheet" href="./assets/css/navbar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  
+
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<!-- Quill JS -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="./popupMessages.js"></script> 
+<script>
+    //(function() {
+    //     let(function() {
+    //     let path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })(); path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })();
+
+
+    (function checkAuth() {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        window.location.replace('./login.html'); // Redirect to login page
+      }
+    })();
+
+    window.onload = function() {
+    const token = localStorage.getItem('token');
+    const authContainer = document.getElementById('auth');
+    
+    if (token) {
+        // If token exists, user is logged in, show the logout button
+        authContainer.innerHTML = `
+            <a href="#" class="btn btn-outline-danger mx-3 mt-2 d-block" id="logoutButton">Logout</a>
+        `;
+
+        // Add event listener to logout button
+        document.getElementById('logoutButton').addEventListener('click', logout);
+    } else {
+        // If token doesn't exist, show the login button
+        authContainer.innerHTML = `
+            <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Login</a>
+        `;
+    }
+}
+
+// Logout function
+function logout() {
+    // Remove the token from localStorage
+    localStorage.removeItem('token');
+
+    // Redirect to login page after logout
+    window.location.href = './login.html';
+}
+  </script> 
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <div class="sidebar" id="sidebar">
+          <a class="navbar-brand" href="#">
+              <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          
+          <div class="section-title mt-9">HOME</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./index.html">
+                      <i class="ti ti-layout-dashboard"></i> Dashboard
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">PRODUCTS & STOCK</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./products.html">
+                      <i class="fas fa-box"></i> Products
+                  </a>
+              </li>
+               <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="purchaseToggle">
+                <i class="fas fa-shopping-cart"></i> Purchases 
+              </a>
+              <ul class="nav-submenu" id="purchaseSubmenu">
+                <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
+                <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
+                <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
+              </ul>
+            </li>
+          </ul>
+              <li class="nav-item">
+                  <a class="nav-link" href="./damages.html">
+                      <i class="fas fa-exclamation-circle"></i> Damages
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./stock.html">
+                      <i class="fas fa-archive"></i> Stock
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">POS & ORDERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos.html">
+                      <i class="fas fa-cash-register"></i> POS
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos-orders.html">
+                      <i class="fas fa-receipt"></i> POS Orders
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./online-orders.html">
+                      <i class="fas fa-shopping-basket"></i> Online Orders
+                  </a>
+              </li>
+          </ul>
+
+          <div class="section-title">PROMO</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./coupons.html">
+                      <i class="fas fa-tags"></i> Coupons
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./promotions.html">
+                      <i class="fas fa-bullhorn"></i> Promotions
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./product-sections.html">
+                      <i class="fas fa-cube"></i>  Product Sections
+                  </a>
+              </li>
+          </ul>
+
+          <div class="section-title">COMMUNICATIONS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./push-notifications.html">
+                      <i class="fas fa-bell"></i> Push Notifications
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./subscribers.html">
+                      <i class="fas fa-users"></i> Subscribers
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">USERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./admin.html">
+                      <i class="fas fa-user"></i> Administrators
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./customer.html">
+                      <i class="fas fa-users"></i> Customers
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./employee.html">
+                      <i class="fas fa-user-tie"></i> Employees
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">ACCOUNTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-exchange-alt"></i> Transactions
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">REPORTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./sales-report.html">
+                      <i class="fas fa-chart-line"></i> Sales Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./products-report.html">
+                      <i class="fas fa-file-alt"></i> Products Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-credit-card"></i> Credit Balance Report
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">SETUP</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" id="settingsToggle" href="#">
+                      <i class="fas fa-cog"></i> Settings
+                  </a>
+              </li>
+          </ul>
+          
+          <div class="submenu" id="settingsSubmenu">
+              <ul class="nav flex-column">
+                  <li class="nav-item">
+                      <a class="nav-link" href="./company.html">
+                          <i class="fas fa-building"></i> Company
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./site.html">
+                          <i class="fas fa-globe"></i> Site
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./mail.html">
+                          <i class="fas fa-envelope"></i> Mail
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./location-setup.html">
+                          <i class="fas fa-map-marker-alt"></i> Location Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./shipping-setup.html">
+                          <i class="fas fa-truck"></i> Shipping Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">
+                          <i class="fas fa-lock"></i> OTP
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification.html">
+                          <i class="fas fa-bell"></i> Notification
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification-alert.html">
+                          <i class="fas fa-bell"></i> Notification alert
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./social-media.html">
+                          <i class="fas fa-share-alt"></i> Social Media
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./cookies.html">
+                          <i class="fas fa-cookie-bite"></i> Cookies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./analytics.html">
+                          <i class="fas fa-chart-bar"></i> Analytics
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./theme.html">
+                          <i class="fas fa-paint-brush"></i> Theme
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sliders.html">
+                          <i class="fas fa-sliders-h"></i> Sliders
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./currencies.html">
+                          <i class="fas fa-money-bill-wave"></i> Currencies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-categories.html">
+                          <i class="fas fa-tags"></i> Product Categories
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-attributes.html">
+                          <i class="fas fa-cube"></i> Product Attributes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-brands.html">
+                          <i class="fas fa-tag"></i> Product Brands
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./supplier.html">
+                          <i class="fas fa-industry"></i> Suppliers
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./outlets.html">
+                          <i class="fas fa-store"></i> Outlets
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./benefits.html">
+                          <i class="fas fa-gift"></i> Benefits
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./units.html">
+                          <i class="fas fa-balance-scale"></i> Units
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./taxes.html">
+                          <i class="fas fa-percent"></i>  Taxes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./page.html">
+                          <i class="fas fa-file-alt"></i> Pages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./role & permissions.html">
+                          <i class="fas fa-user-shield"></i> Role & Permissions
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./languages-list.html">
+                          <i class="fas fa-globe"></i> Languages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sms-gateway.html">
+                          <i class="fas fa-comments"></i> Sms Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./payment-gateway.html">
+                          <i class="fas fa-credit-card"></i> Payment Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./license.html">
+                          <i class="fas fa-file-contract"></i> License
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+       <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                   <img src="./assets//images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <!-- <a href="http://127.0.0.1:5502/Office_Project/src/html/my-profile.html" class="d-flex align-items-center gap-2 dropdown-item"> -->
+                      <a href="./my-profile.html" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-3">My Profile</p>
+                    </a>
+                    <span id="auth">
+                      <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Logout</a>
+                    </span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>  
+
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Dashboard / Coupons</h5> 
+            <div class="container">
+              <h5>Coupons</h5>
+              <div class="actions-bar d-flex flex-column flex-md-row align-items-center align-items-lg-end justify-content-center justify-content-md-center justify-content-lg-end">
+                <div class="d-flex justify-content-center mb-2 mb-md-0 me-md-2 w-100" style="max-width: 105px;">
+                  <button class="filter-btn btn btn-primary w-100">Filter</button>
+                </div>
+                
+                <div id="dropdownSearch" class="dropdown-search d-none">
+                    <div class="dropdown-header bg-light p-2 border rounded">Search Coupons</div>
+                    <div class="dropdown-fields mt-2 p-2 border rounded bg-white">
+                        <div class="filter-row row">
+                            <div class="label-input col-12 col-lg-3 mb-2">
+                                <label for="searchName">Name</label>
+                                <input type="text" class="form-control filter-input" id="searchName" placeholder="Enter Name">
+                            </div>
+                            <div class="label-input col-12 col-lg-3 mb-2">
+                                <label for="searchCode">Code</label>
+                                <input type="text" class="form-control filter-input" id="searchCode" placeholder="Enter Code">
+                            </div>
+                            <div class="label-input col-12 col-lg-3 mb-2">
+                                <label for="searchDiscount">Discount</label>
+                                <input type="text" class="form-control filter-input" id="searchDiscount" placeholder="Enter Discount">
+                            </div>
+                            <div class="label-input col-12 col-lg-3 mb-2">
+                                <label for="searchDiscountType">Discount Type</label>
+                                <input type="text" class="form-control filter-input" id="searchDiscountType" placeholder="Enter Discount Type">
+                            </div>
+                        </div>
+                        <div class="filter-row row">
+                            <div class="label-input col-12 col-lg-6 mb-2">
+                                <label for="searchStartDate">Start Date</label>
+                                <input type="date" class="form-control filter-input" id="searchStartDate">
+                            </div>
+                            <div class="label-input col-12 col-lg-6 mb-2">
+                                <label for="searchEndDate">End Date</label>
+                                <input type="date" class="form-control filter-input" id="searchEndDate">
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between gap-2 mt-2">
+                            <button class="btn btn-success search-btn w-100" style="max-width: 200px;" onclick="filterTable()">Search</button>
+                            <button class="btn btn-secondary clear-btn w-100" style="max-width: 200px;" onclick="clearFilters()">Clear</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-flex justify-content-center mb-2 mb-md-0 me-md-2 w-100" style="max-width: 105px;">
+                    <!-- Dropdown for Export button -->
+                     <div class="dropdown w-100">
+                        <button class="export-btn btn btn-warning w-100" type="button"  data-bs-toggle="dropdown" aria-expanded="false">Export</button>
+                        <!-- Dropdown Menu -->
+                         <ul class="dropdown-menu mt-2" aria-labelledby="exportButton">
+                            <li>
+                                <a class="dropdown-item" href="#" id="exportButton"><i class="fas fa-file-excel"></i> XLS</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="d-flex justify-content-center w-100" style="max-width: 150px;">
+                    <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#couponModal">➕ Add Coupon</button>
+                </div>
+            </div>
+            
+            <div id="backgroundContent">
+
+            </div>
+            
+            <div class="modal fade" id="couponModal" tabindex="-1" aria-labelledby="couponModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="couponModalLabel">Add Coupon</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="couponForm">
+                      <!-- Form Rows -->
+                       <div class="row g-3">
+                        <!-- Coupon Name -->
+                         <div class="col-md-6">
+                          <label for="name" class="form-label">Name</label>
+                          <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <!-- Coupon Code -->
+                         <div class="col-md-6">
+                          <label for="code" class="form-label">Code</label>
+                          <input type="text" class="form-control" id="code" name="code" required>
+                        </div>
+                      </div>
+                      <div class="row g-3 mt-3">
+                        <!-- Discount -->
+                         <div class="col-md-6">
+                          <label for="discount" class="form-label">Discount</label>
+                          <input type="number" class="form-control" id="discount" name="discount" required>
+                        </div>
+                        <!-- Discount Type -->
+                         <div class="col-md-6">
+                          <label for="discount_type" class="form-label">Discount Type</label>
+                          <select class="form-select" id="discount_type" name="discount_type" required>
+                            <option value="" selected disabled>Select</option>
+                            <option value="Fixed">Fixed</option>
+                            <option value="Percentage">Percentage</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row g-3 mt-3">
+                        <!-- Start Date -->
+                         <div class="col-md-6">
+                          <label for="start_date" class="form-label">Start Date</label>
+                          <input type="datetime-local" class="form-control" id="start_date" name="start_date" required>
+                        </div>
+                        <!-- End Date -->
+                         <div class="col-md-6">
+                          <label for="end_date" class="form-label">End Date</label>
+                          <input type="datetime-local" class="form-control" id="end_date" name="end_date" required>
+                        </div>
+                      </div>
+                      <div class="row g-3 mt-3">
+                        <!-- Minimum Order Amount -->
+                         <div class="col-md-6">
+                          <label for="min_order_amount" class="form-label">Minimum Order Amount</label>
+                          <input type="number" class="form-control" id="min_order_amount" name="min_order_amount" required>
+                        </div>
+                        <!-- Maximum Discount -->
+                         <div class="col-md-6">
+                          <label for="max_discount" class="form-label">Maximum Discount</label>
+                          <input type="number" class="form-control" id="max_discount" name="max_discount" required>
+                        </div>
+                      </div>
+                      <div class="row g-3 mt-3">
+                        <!-- Limit Per User -->
+                         <div class="col-md-6">
+                          <label for="limit_per_user" class="form-label">Limit per User</label>
+                          <input type="number" class="form-control" id="limit_per_user" name="limit_per_user" required>
+                        </div>
+                        <!-- Upload Image -->
+                         <div class="col-md-6">
+                          <label for="image" class="form-label">Upload Image</label>
+                          <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                        </div>
+                      </div>
+                      <div class="row g-3 mt-3">
+                        <!-- Description -->
+                         <div class="col-12">
+                          <label for="description" class="form-label">Description</label>
+                          <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                        </div>
+                      </div>
+                      <div class="modal-footer mt-3">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Modal Container -->
+             <div class="modal fade" id="viewCouponModal" tabindex="-1" aria-labelledby="viewCouponModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                  <!-- Modal Header -->
+                   <div class="modal-header">
+                    <h5 class="modal-title" id="viewCouponModalLabel">Coupon Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <!-- Modal Body -->
+                   <div class="modal-body">
+                    <div class="row">
+                      <!-- Left Side: Coupon Image -->
+                       <div class="col-md-4 text-center">
+                        <img id="couponImage" src="default_image.jpg" alt="Coupon Image" class="img-fluid">
+                      </div>
+                      <!-- Right Side: Coupon Details -->
+                       <div class="col-md-8">
+                        <p><strong>Name:</strong> <span id="couponName"></span></p>
+                        <p><strong>Code:</strong> <span id="couponCode"></span></p>
+                        <p><strong>Discount:</strong> <span id="couponDiscount"></span></p>
+                        <p><strong>Discount Type:</strong> <span id="couponDiscountType"></span></p>
+                        <p><strong>Start Date:</strong> <span id="couponStartDate"></span></p>
+                        <p><strong>End Date:</strong> <span id="couponEndDate"></span></p>
+                        <p><strong>Minimum Order Amount:</strong> <span id="couponMinOrderAmount"></span></p>
+                        <p><strong>Maximum Discount:</strong> <span id="couponMaxDiscount"></span></p>
+                        <p><strong>Limit Per User:</strong> <span id="couponLimitPerUser"></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="modal fade" id="updateCouponModal" tabindex="-1" aria-labelledby="updateCouponModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="updateCouponModalLabel">Update Coupon</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+                        <form id="updateCouponForm">
+                            <!-- Hidden field for coupon ID -->
+                            <input type="hidden" id="updateCouponId" name="id">
+        
+                            <!-- Name and Code -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="updateName" class="form-label">Name</label>
+                                    <input type="text" id="updateName" name="name" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">  
+                                    <label for="updateCode" class="form-label">Code</label>
+                                    <input type="text" id="updateCode" name="code" class="form-control" required>
+                                </div>
+                            </div>
+        
+                            <!-- Discount and Discount Type -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="updateDiscount" class="form-label">Discount</label>
+                                    <input type="number" id="updateDiscount" name="discount" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="updateDiscountType" class="form-label">Discount Type</label>
+                                    <select id="updateDiscountType" name="discount_type" class="form-select" required>
+                                        <option value="">Select</option>
+                                        <option value="Fixed">Fixed</option>
+                                        <option value="Percentage">Percentage</option>
+                                    </select>
+                                </div>
+                            </div>
+        
+                            <!-- Start Date and End Date -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="updateStartDate" class="form-label">Start Date</label>
+                                    <input type="datetime-local" id="updateStartDate" name="start_date" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="updateEndDate" class="form-label">End Date</label>
+                                    <input type="datetime-local" id="updateEndDate" name="end_date" class="form-control" required>
+                                </div>
+                            </div>
+        
+                            <!-- Minimum Order and Maximum Discount -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="updateMinOrderAmount" class="form-label">Minimum Order Amount</label>
+                                    <input type="number" id="updateMinOrderAmount" name="min_order_amount" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="updateMaxDiscount" class="form-label">Maximum Discount</label>
+                                    <input type="number" id="updateMaxDiscount" name="max_discount" class="form-control" required>
+                                </div>
+                            </div>
+        
+                            <!-- Limit Per User and Image Upload -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="updateLimitPerUser" class="form-label">Limit per User</label>
+                                    <input type="number" id="updateLimitPerUser" name="limit_per_user" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="updateImage" class="form-label">Upload Image</label>
+                                    <input type="file" id="updateImage" name="image" accept="image/*" class="form-control">
+                                    <img id="updateImagePreview" src="" class="img-fluid mt-2 d-none" style="max-width: 200px;">
+                                </div>
+                            </div>
+        
+                            <!-- Description -->
+                            <div class="mb-3">
+                                <label for="updateDescription" class="form-label">Description</label>
+                                <textarea id="updateDescription" name="description" rows="3" class="form-control"></textarea>
+                            </div>
+        
+                            <!-- Action Buttons -->
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary me-2">Update</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="table-container mt-4">
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Code</th>
+                  <th>Discount</th>
+                  <th>Discount Type</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="couponsTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+          
+          
+  <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/sidebarmenu.js"></script>
+  <script src="./assets/js/app.min.js"></script>
+  <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="./apiConfig/apiConfig.js"></script>
+
+
+  <script> 
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const purchaseToggle = document.getElementById('purchaseToggle');
+    const purchaseSubmenu = document.getElementById('purchaseSubmenu');
+
+    purchaseToggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        purchaseSubmenu.style.display = (purchaseSubmenu.style.display === 'none' || purchaseSubmenu.style.display === '') ? 'block' : 'none';
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            const settingsToggle = document.getElementById('settingsToggle');
+            const settingsSubmenu = document.getElementById('settingsSubmenu');
+
+            // Handle submenu toggle
+            settingsToggle.addEventListener('click', function (event) {
+                event.preventDefault();
+                settingsSubmenu.style.display = (settingsSubmenu.style.display === 'block') ? 'none' : 'block';
+            });
+
+            // Handle active link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    // Remove active class from all links
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    // Add active class to the clicked link
+                    this.classList.add('active');
+                });
+            });
+        });
+
+    
+document.addEventListener('DOMContentLoaded', () => {
+    // Handle form submission
+    document.getElementById('couponForm').addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent default form submission
+
+        const formData = new FormData(event.target); // Collect form data
+
+        try {
+            const token = localStorage.getItem('token'); // Retrieve token for API
+            const response = await fetch(`${API_ADMINGRAB_URL}/api/coupons`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `${token}`, // Use Bearer format for token
+                },
+                body: formData, // Send form data directly
+            });
+
+            if (!response.ok) throw new Error('Failed to save coupon');
+
+            const result = await response.json();
+            console.log('Coupon saved:', result);
+
+            // Hide the modal after successful submission
+            const couponModal = bootstrap.Modal.getInstance(document.getElementById('couponModal'));
+            couponModal.hide();
+
+            // Refresh the coupons report (if applicable)
+            fetchCouponsReport();
+
+            // Show success message
+            showSuccessMessage('Coupon added successfully!');
+        } catch (error) {
+            console.error('Error saving coupon:', error);
+            showErrorMessage('Failed to save coupon. Please try again.');
+        }
+    });
+    
+    // Utility function for formatting dates
+function formatDateTime(dateString) {
+    const date = new Date(dateString);
+
+    // Format time with AM/PM
+    const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: true };
+    const time = new Intl.DateTimeFormat('en-US', timeOptions).format(date);
+
+    // Format date as DD-MM-YYYY
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${time}, ${day}-${month}-${year}`;
+}});
+
+async function fetchCouponsReport() {
+    const token = localStorage.getItem('token');
+
+    try {
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/coupons`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `${token}`, // Use Bearer token
+            },
+        });
+
+        if (!response.ok) throw new Error('Failed to fetch coupons report');
+
+        const coupons = await response.json();
+        console.log('Response Data:', coupons); // Debugging
+
+        const couponsTableBody = document.getElementById('couponsTableBody');
+        couponsTableBody.innerHTML = ''; // Clear previous entries
+
+        coupons.forEach((coupon) => {
+            const row = document.createElement('tr');
+            row.setAttribute('data-id', coupon.id);
+
+            const formattedStartDate = formatDateTime(coupon.start_date);
+            const formattedEndDate = formatDateTime(coupon.end_date);
+
+            row.innerHTML = `
+                <td>${coupon.name}</td>
+                <td>${coupon.code}</td>
+                <td>${coupon.discount}</td>
+                <td>${coupon.discount_type}</td>
+                <td>${formattedStartDate}</td>
+                <td>${formattedEndDate}</td>
+                <td class="action-buttons">
+                    <button class="btn btn-view" onclick="viewCouponDetails(${coupon.id})">👁</button>
+                    <button class="btn btn-edit" onclick="openUpdateForm(${coupon.id})">✏️</button>
+                    <button class="btn btn-delete" onclick="showDeleteFormModal(${coupon.id})">🗑</button>
+                </td>
+            `;
+            couponsTableBody.appendChild(row);
+        });
+    } catch (error) {
+        console.error('Error fetching coupons report:', error);
+    }
+}
+
+fetchCouponsReport();
+
+const apiUrl = `${API_ADMINGRAB_URL}/api/coupons`; // Adjust this to your actual API URL
+
+// Function to handle the deletion of a coupon
+async function deleteCoupon(id) {
+    const token = localStorage.getItem('token'); // Assuming the token is stored in local storage
+    const url = `${apiUrl}/${id}`; // Construct the URL with the coupon ID
+
+    try {
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': token,
+            },
+        });
+
+        if (!response.ok) throw new Error('Failed to delete coupon record');
+
+        // Remove the coupon row from the table immediately
+        const row = document.querySelector(`#coupon-row-${id}`);
+        if (row) {
+            row.remove(); // Remove the coupon row from the table
+        }
+
+        // Show success message
+        showDeleteMessage("Coupon record deleted successfully!");
+
+        console.log('Coupon Deleted:', id);
+    } catch (error) {
+        console.error('Error deleting coupon record:', error);
+        showDeleteMessage("Failed to delete the coupon record. Please try again.");
+    }
+}
+
+// Function to show a delete confirmation message (success or failure)
+function showDeleteMessage(message) {
+    const messageContainer = document.createElement('div');
+    messageContainer.style.position = 'fixed';
+    messageContainer.style.top = '20px';
+    messageContainer.style.right = '20px';
+    messageContainer.style.backgroundColor = 'red';
+    messageContainer.style.color = 'white';
+    messageContainer.style.padding = '10px 20px';
+    messageContainer.style.borderRadius = '5px';
+    messageContainer.style.zIndex = '1000';
+    messageContainer.textContent = message;
+
+    document.body.appendChild(messageContainer);
+
+    // Remove the message after 3 seconds
+    setTimeout(() => {
+        document.body.removeChild(messageContainer);
+    }, 3000);
+}
+
+// Function to show the delete confirmation modal
+function showDeleteFormModal(id) {
+    // Create the dialog overlay
+    const dialogOverlay = document.createElement('div');
+    dialogOverlay.style.position = 'fixed';
+    dialogOverlay.style.top = '0';
+    dialogOverlay.style.left = '0';
+    dialogOverlay.style.width = '100%';
+    dialogOverlay.style.height = '100%';
+    dialogOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    dialogOverlay.style.display = 'flex';
+    dialogOverlay.style.justifyContent = 'center';
+    dialogOverlay.style.alignItems = 'center';
+    dialogOverlay.style.zIndex = '1000';  // Set a high z-index to ensure it's on top of all elements
+    dialogOverlay.setAttribute('id', 'confirmDialog');
+
+    // Create the dialog box
+    const dialogBox = document.createElement('div');
+    dialogBox.style.backgroundColor = 'white';
+    dialogBox.style.padding = '60px';
+    dialogBox.style.borderRadius = '5px';
+    dialogBox.style.textAlign = 'center';
+    dialogBox.style.zIndex = '1001';  // Ensure the dialog box itself is also above everything else
+
+    // Create the warning icon
+    const warningIcon = document.createElement('div');
+    warningIcon.textContent = '!'; // Warning symbol
+    warningIcon.style.fontSize = '40px'; 
+    warningIcon.style.color = 'red';
+    warningIcon.style.marginBottom = '10px';
+    
+    // Add title and message
+    const title = document.createElement('h3');
+    title.textContent = 'Are you sure?';
+
+    const message = document.createElement('p');
+    message.textContent = 'You will not be able to recover the deleted coupon record!';
+
+    // Create the buttons
+    const confirmButton = document.createElement('button');
+    confirmButton.textContent = 'Yes, Delete it!';
+    confirmButton.style.marginRight = '10px';
+    confirmButton.style.backgroundColor = 'rgb(105, 108, 255)';
+    confirmButton.style.color = 'white';
+    confirmButton.style.border = 'none';
+    confirmButton.style.padding = '10px 20px';
+    confirmButton.style.cursor = 'pointer';
+
+    const cancelButton = document.createElement('button');
+    cancelButton.textContent = 'No, Cancel!';
+    cancelButton.style.backgroundColor = 'rgb(133, 146, 163)';
+    cancelButton.style.color = 'white';
+    cancelButton.style.border = 'none';
+    cancelButton.style.padding = '10px 20px';
+    cancelButton.style.cursor = 'pointer';
+
+    // Append all elements to the dialog box
+    dialogBox.appendChild(warningIcon);
+    dialogBox.appendChild(title);
+    dialogBox.appendChild(message);
+    dialogBox.appendChild(confirmButton);
+    dialogBox.appendChild(cancelButton);
+
+    // Append the dialog box to the overlay
+    dialogOverlay.appendChild(dialogBox);      
+
+
+    // Append the overlay to the body
+    document.body.appendChild(dialogOverlay);  
+
+    // Handle the confirm button click
+    confirmButton.addEventListener('click', async function () {
+        await deleteCoupon(id);  // Call the delete function and wait for completion
+        closeDeleteFormModal(); // Close the dialog after deletion
+    });
+
+    // Handle the cancel button click
+    cancelButton.addEventListener('click', closeDeleteFormModal);
+
+    // Close the confirmation dialog
+    function closeDeleteFormModal() {
+        document.body.removeChild(dialogOverlay); // Remove the overlay from the DOM   
+    }
+}
+
+// Export button
+document.getElementById('exportButton').addEventListener('click', async function () {
+    try {
+        // Get the auth token from local storage (or wherever you store it)
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+            showErrorMessage('User is not authenticated. Please log in.'); 
+            return;
+        }
+
+        // Fetch coupon data from the API with the Authorization header
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/coupons`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `${token}`, // Include the token for authentication
+                'Content-Type': 'application/json'
+            }
+        });
+ 
+        // Check if the response status is unauthorized
+        if (response.status === 401) {
+            showErrorMessage('Unauthorized request. Please log in again.');
+            // Optionally, redirect the user to the login page
+            window.location.href = '/authentication-login.html';
+            return;
+        }
+
+        // Check if the response is OK
+        if (!response.ok) {
+            throw new Error('Failed to fetch coupon data');
+        }
+
+        // Parse the JSON data
+        const data = await response.json(); 
+        // Prepare data for XLSX export
+        const exportData = [
+            ['ID', 'Name', 'Code', 'Discount', 'Discount Type', 'Start Date', 'End Date']
+        ];
+
+        // Map the fetched data to the export format
+        data.forEach((coupon) => {
+            exportData.push([
+                coupon.id,
+                coupon.name,
+                coupon.code,
+                coupon.discount,
+                coupon.discount_type,
+                coupon.start_date,
+                coupon.end_date
+            ]);
+        });
+
+        // Create a new workbook and worksheet
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.aoa_to_sheet(exportData);
+
+        // Append worksheet to workbook
+        XLSX.utils.book_append_sheet(wb, ws, 'Coupons');
+
+        // Export to XLSX file
+        XLSX.writeFile(wb, 'coupons.xlsx');
+    } catch (error) {
+        console.error('Error exporting file:', error.message);
+        showErrorMessage('Failed to export coupons data. Please try again.');
+    }
+});
+
+// View Coupon Details Function 
+async function viewCouponDetails(couponId) {  
+    console.log("couponId:", couponId);
+    const token = localStorage.getItem('token');
+
+    try {
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/coupons/${couponId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': token
+            }
+        });
+
+        if (!response.ok) throw new Error('Failed to fetch coupon details'); 
+
+        const coupon = await response.json();
+        console.log('Fetched Coupon:', coupon);
+
+        // Populate the modal with coupon details
+        document.getElementById('couponName').textContent = coupon.name || 'N/A';
+        document.getElementById('couponCode').textContent = coupon.code || 'N/A';
+        document.getElementById('couponDiscount').textContent = coupon.discount || 'N/A';
+        document.getElementById('couponDiscountType').textContent = coupon.discount_type || 'N/A';
+        document.getElementById('couponStartDate').textContent = formatDateTime(coupon.start_date);
+        document.getElementById('couponEndDate').textContent = formatDateTime(coupon.end_date);
+        document.getElementById('couponMinOrderAmount').textContent = coupon.min_order_amount || 'N/A';
+        document.getElementById('couponMaxDiscount').textContent = coupon.max_discount || 'N/A';
+        document.getElementById('couponLimitPerUser').textContent = coupon.limit_per_user || 'N/A';
+        document.getElementById('couponImage').src = coupon.image || 'default_image.jpg';
+
+        // Show the Bootstrap modal
+        const modal = new bootstrap.Modal(document.getElementById('viewCouponModal'));
+        modal.show();
+    } catch (error) {
+        console.error('Error fetching coupon details:', error);
+    }
+}
+
+function closeModal() {
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('modalContainer').style.display = 'none';
+}
+
+function formatDateTime(dateString) {
+    const date = new Date(dateString);
+
+    // Format time with AM/PM
+    const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: true };
+    const time = new Intl.DateTimeFormat('en-US', timeOptions).format(date);
+
+    // Format date as DD-MM-YYYY
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+    const year = date.getFullYear();
+
+    return `${time}, ${day}-${month}-${year}`;
+}
+
+// Function to open the update form modal and populate its fields
+async function openUpdateForm(couponId) {
+    const token = localStorage.getItem('token');
+
+    try {
+        // Fetch coupon data from the server
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/coupons/${couponId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': token,
+            },
+        });
+
+        if (!response.ok) throw new Error('Failed to fetch coupon details');  
+
+        const coupon = await response.json();
+
+        // Populate the form fields with the fetched coupon details
+        document.getElementById('updateCouponId').value = coupon.id;
+        document.getElementById('updateName').value = coupon.name;
+        document.getElementById('updateCode').value = coupon.code;
+        document.getElementById('updateDiscount').value = coupon.discount;
+        document.getElementById('updateDiscountType').value = coupon.discount_type;
+        document.getElementById('updateStartDate').value = coupon.start_date;
+        document.getElementById('updateEndDate').value = coupon.end_date;
+        document.getElementById('updateMinOrderAmount').value = coupon.min_order_amount;
+        document.getElementById('updateMaxDiscount').value = coupon.max_discount;
+        document.getElementById('updateLimitPerUser').value = coupon.limit_per_user;
+        document.getElementById('updateDescription').value = coupon.description;
+
+        // Preview image if it exists
+        const imagePreview = document.getElementById('updateImagePreview');
+        if (coupon.image) {
+            imagePreview.src = coupon.image;
+            imagePreview.classList.remove('d-none');
+        } else {
+            imagePreview.classList.add('d-none');
+        }
+
+        // Show the Bootstrap modal
+        const modal = new bootstrap.Modal(document.getElementById('updateCouponModal'));
+        modal.show();
+    } catch (error) {
+        console.error('Error fetching coupon details:', error);
+        showErrorMessage('Failed to fetch coupon details. Please try again.');
+    }
+}
+
+// Event listener for the form submission
+document.getElementById('updateCouponForm').addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const couponId = document.getElementById('updateCouponId').value;
+    const formData = new FormData(document.getElementById('updateCouponForm'));
+    const token = localStorage.getItem('token');
+
+    try {
+        // Send updated coupon data to the server
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/coupons/${couponId}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': token,
+            },
+            body: formData, // FormData includes all input fields and the uploaded file
+        });
+
+        if (!response.ok) throw new Error('Failed to update coupon');
+
+        const updatedCoupon = await response.json();
+        console.log('Updated Coupon:', updatedCoupon);
+
+        showSuccessMessage('Coupon updated successfully!');
+
+        // Close the modal after successful submission
+        const modal = bootstrap.Modal.getInstance(document.getElementById('updateCouponModal'));
+        modal.hide();
+
+        // Optionally, refresh the coupon list or update the UI
+       await fetchCouponsReport();
+    } catch (error) {
+        console.error('Error updating coupon:', error);
+        showErrorMessage('Failed to update the coupon. Please try again.');
+    }
+});
+
+// Function to close the update form (not strictly needed with Bootstrap's modal)
+function closeUpdateForm() {
+    const modal = bootstrap.Modal.getInstance(document.getElementById('updateCouponModal'));
+    if (modal) modal.hide();
+
+} 
+
+function filterTable() {
+    const name = document.getElementById('searchName').value.trim().toLowerCase();
+    const code = document.getElementById('searchCode').value.trim().toLowerCase();
+    const discount = document.getElementById('searchDiscount').value.trim().toLowerCase();
+    const discountType = document.getElementById('searchDiscountType').value.trim().toLowerCase();
+    const startDate = document.getElementById('searchStartDate').value ? new Date(document.getElementById('searchStartDate').value) : null;
+    const endDate = document.getElementById('searchEndDate').value ? new Date(document.getElementById('searchEndDate').value) : null;
+
+    const tableRows = document.querySelectorAll('#couponsTableBody tr');
+
+    tableRows.forEach(row => {
+        const rowName = row.cells[0]?.innerText.trim().toLowerCase() || '';
+        const rowCode = row.cells[1]?.innerText.trim().toLowerCase() || '';
+        const rowDiscount = row.cells[2]?.innerText.trim().toLowerCase() || '';
+        const rowDiscountType = row.cells[3]?.innerText.trim().toLowerCase() || '';
+        const rowStartDate = row.cells[4]?.innerText.trim() || ''; // Format: YYYY-MM-DD
+        const rowEndDate = row.cells[5]?.innerText.trim() || ''; // Format: YYYY-MM-DD
+
+        // Convert table dates into Date objects
+        const rowStartDateObj = rowStartDate ? new Date(rowStartDate) : null;
+        const rowEndDateObj = rowEndDate ? new Date(rowEndDate) : null;
+
+        // Check if row matches filter criteria
+        const matchesName = !name || rowName.includes(name);
+        const matchesCode = !code || rowCode.includes(code);
+        const matchesDiscount = !discount || rowDiscount.includes(discount);
+        const matchesDiscountType = !discountType || rowDiscountType.includes(discountType);
+
+        // Check date conditions
+        const matchesStartDate = !startDate || (rowStartDateObj && rowStartDateObj >= startDate);
+        const matchesEndDate = !endDate || (rowEndDateObj && rowEndDateObj <= endDate);
+
+        // Show or hide the row based on filter conditions
+        row.style.display = matchesName &&
+            matchesCode &&
+            matchesDiscount &&
+            matchesDiscountType &&
+            matchesStartDate &&
+            matchesEndDate
+            ? '' : 'none';
+    });
+}
+
+function clearFilters() {
+    document.getElementById('searchName').value = '';
+    document.getElementById('searchCode').value = '';
+    document.getElementById('searchDiscount').value = '';
+    document.getElementById('searchDiscountType').value = '';
+    document.getElementById('searchStartDate').value = '';
+    document.getElementById('searchEndDate').value = '';
+
+    const tableRows = document.querySelectorAll('#couponsTableBody tr');
+    tableRows.forEach(row => {
+        row.style.display = ''; // Show all rows
+    });
+
+    const dropdownSearch = document.getElementById('dropdownSearch');
+    dropdownSearch.classList.remove('d-none');
+}
+
+document.querySelector('.filter-btn').addEventListener('click', () => {
+    const dropdownSearch = document.getElementById('dropdownSearch');
+    dropdownSearch.classList.toggle('d-none');
+});
+
+
+
+
+  </script>
+</body>
+
+</html>

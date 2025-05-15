@@ -1,0 +1,1201 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="./assets/css/styles.min.css" />
+  <link rel="stylesheet" href="./assets/css/style2.css" />
+  <link rel="stylesheet" href="./assets/css/navbar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <script src="./popupMessages.js"></script>
+  <script>
+    ////(function() {
+    //     let(function() {
+    //     let path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })(); path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })();
+
+
+    (function checkAuth() {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        window.location.replace('./login.html'); // Redirect to login page
+      }
+    })();
+
+    window.onload = function() {
+    const token = localStorage.getItem('token');
+    const authContainer = document.getElementById('auth');
+    
+    if (token) {
+        // If token exists, user is logged in, show the logout button
+        authContainer.innerHTML = `
+            <a href="#" class="btn btn-outline-danger mx-3 mt-2 d-block" id="logoutButton">Logout</a>
+        `;
+
+        // Add event listener to logout button
+        document.getElementById('logoutButton').addEventListener('click', logout);
+    } else {
+        // If token doesn't exist, show the login button
+        authContainer.innerHTML = `
+            <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Login</a>
+        `;
+    }
+}
+
+// Logout function
+function logout() {
+    // Remove the token from localStorage
+    localStorage.removeItem('token');
+
+    // Redirect to login page after logout
+    window.location.href = './login.html';
+}
+  </script> 
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <div class="sidebar" id="sidebar">
+          <a class="navbar-brand" href="#">
+              <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          
+          <div class="section-title mt-9">HOME</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./index.html">
+                      <i class="ti ti-layout-dashboard"></i> Dashboard
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">PRODUCTS & STOCK</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./products.html">
+                      <i class="fas fa-box"></i> Products
+                  </a>
+              </li>
+               <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="purchaseToggle">
+                <i class="fas fa-shopping-cart"></i> Purchases 
+              </a>
+              <ul class="nav-submenu" id="purchaseSubmenu">
+                <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
+                <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
+                <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
+              </ul>
+            </li>
+          </ul>
+              <li class="nav-item">
+                  <a class="nav-link" href="./damages.html">
+                      <i class="fas fa-exclamation-circle"></i> Damages
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./stock.html">
+                      <i class="fas fa-archive"></i> Stock
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">POS & ORDERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos.html">
+                      <i class="fas fa-cash-register"></i> POS
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos-orders.html">
+                      <i class="fas fa-receipt"></i> POS Orders
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./online-orders.html">
+                      <i class="fas fa-shopping-basket"></i> Online Orders
+                  </a>
+              </li>
+          </ul>
+
+          <div class="section-title">PROMO</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./coupons.html">
+                      <i class="fas fa-tags"></i> Coupons
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./promotions.html">
+                      <i class="fas fa-bullhorn"></i> Promotions
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./product-sections.html">
+                      <i class="fas fa-cube"></i>  Product Sections
+                  </a>
+              </li>
+          </ul>
+
+          <div class="section-title">COMMUNICATIONS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./push-notifications.html">
+                      <i class="fas fa-bell"></i> Push Notifications
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./subscribers.html">
+                      <i class="fas fa-users"></i> Subscribers
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">USERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./admin.html">
+                      <i class="fas fa-user"></i> Administrators
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./customer.html">
+                      <i class="fas fa-users"></i> Customers
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./employee.html">
+                      <i class="fas fa-user-tie"></i> Employees
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">ACCOUNTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-exchange-alt"></i> Transactions
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">REPORTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./sales-report.html">
+                      <i class="fas fa-chart-line"></i> Sales Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./products-report.html">
+                      <i class="fas fa-file-alt"></i> Products Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-credit-card"></i> Credit Balance Report
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">SETUP</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" id="settingsToggle" href="#">
+                      <i class="fas fa-cog"></i> Settings
+                  </a>
+              </li>
+          </ul>
+          
+          <div class="submenu" id="settingsSubmenu">
+              <ul class="nav flex-column">
+                  <li class="nav-item">
+                      <a class="nav-link" href="./company.html">
+                          <i class="fas fa-building"></i> Company
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./site.html">
+                          <i class="fas fa-globe"></i> Site
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./mail.html">
+                          <i class="fas fa-envelope"></i> Mail
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./location-setup.html">
+                          <i class="fas fa-map-marker-alt"></i> Location Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./shipping-setup.html">
+                          <i class="fas fa-truck"></i> Shipping Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">
+                          <i class="fas fa-lock"></i> OTP
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification.html">
+                          <i class="fas fa-bell"></i> Notification
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification-alert.html">
+                          <i class="fas fa-bell"></i> Notification alert
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./social-media.html">
+                          <i class="fas fa-share-alt"></i> Social Media
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./cookies.html">
+                          <i class="fas fa-cookie-bite"></i> Cookies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./analytics.html">
+                          <i class="fas fa-chart-bar"></i> Analytics
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./theme.html">
+                          <i class="fas fa-paint-brush"></i> Theme
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sliders.html">
+                          <i class="fas fa-sliders-h"></i> Sliders
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./currencies.html">
+                          <i class="fas fa-money-bill-wave"></i> Currencies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-categories.html">
+                          <i class="fas fa-tags"></i> Product Categories
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-attributes.html">
+                          <i class="fas fa-cube"></i> Product Attributes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-brands.html">
+                          <i class="fas fa-tag"></i> Product Brands
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./supplier.html">
+                          <i class="fas fa-industry"></i> Suppliers
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./outlets.html">
+                          <i class="fas fa-store"></i> Outlets
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./benefits.html">
+                          <i class="fas fa-gift"></i> Benefits
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./units.html">
+                          <i class="fas fa-balance-scale"></i> Units
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./taxes.html">
+                          <i class="fas fa-percent"></i>  Taxes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./page.html">
+                          <i class="fas fa-file-alt"></i> Pages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./role & permissions.html">
+                          <i class="fas fa-user-shield"></i> Role & Permissions
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./languages-list.html">
+                          <i class="fas fa-globe"></i> Languages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sms-gateway.html">
+                          <i class="fas fa-comments"></i> Sms Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./payment-gateway.html">
+                          <i class="fas fa-credit-card"></i> Payment Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./license.html">
+                          <i class="fas fa-file-contract"></i> License
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                   <img src="./assets//images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <!-- <a href="http://127.0.0.1:5502/Office_Project/src/html/my-profile.html" class="d-flex align-items-center gap-2 dropdown-item"> -->
+                      <a href="./my-profile.html" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-3">My Profile</p>
+                    </a>
+                    <span id="auth">
+                      <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Logout</a>
+                    </span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>   
+
+      <!--  Header End -->
+      <div class="container-fluid">
+        <div class="card w-100 h-100 position-relative overflow-hidden">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Customers</h5>
+            <div class="actions-bar">
+             
+      
+              <div class="dropdown">
+                <button class="export-btn" aria-label="Export options">Export</button>
+                <div class="dropdown-content">
+                  <a href="#" role="menuitem" id="print-option"><i class="fas fa-print"></i> Print</a>
+                  <a href="#" role="menuitem" id="xls-option"><i class="fas fa-file-excel"></i> XLS</a>
+              
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary" style="color: black;" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                Add Customer
+              </button>
+              
+          
+            </div>
+            <!------table----->
+            <table id="customerTable" class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="customerTableBody"> <!-- Ensure this ID matches what you use in JS -->
+                <!-- Rows will be dynamically inserted here -->
+              </tbody>
+            </table>
+            
+
+
+          <div id="entriesInfo" class="mb-3">
+            Showing <span id="startEntry">1</span> to <span id="endEntry">6</span> of <span id="totalEntries">0</span> entries
+          </div>
+
+          <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-end" id="pagination">
+              <!-- Pagination dynamically populated -->
+            </ul>
+          </nav>
+          </div>
+          </div>
+
+        </div>
+        <div class="modal fade" id="userDetailsModal" tabindex="-1" aria-labelledby="userDetailsModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="userDetailsModalLabel">User Details</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body" id="profileSection">
+                      <!-- User details will be dynamically inserted here -->
+                  </div>
+              </div>
+          </div>
+      </div>
+  <!-- Add User Modal -->
+<div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="addUserModalLabel">Add User</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form id="addUserForm">
+                  <div class="row">
+                      <div class="col-md-6 mb-3">
+                          <label for="userName" class="form-label">Name</label>
+                          <input type="text" class="form-control" id="userName" required>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                          <label for="userEmail" class="form-label">Email</label>
+                          <input type="email" class="form-control" id="userEmail" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address. Example: zainab123@gmail.com">
+                      </div>
+                  </div>
+
+                
+
+                  <div class="row">
+                      <div class="col-md-6 mb-3">
+                          <label for="userPassword" class="form-label">Password</label>
+                          <input type="password" class="form-control" id="userPassword" required>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                          <label for="confirm_Password" class="form-label">Confirm Password</label>
+                          <input type="password" class="form-control" id="confirm_Password" required>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="userPhone" class="form-label">Phone</label>
+                        <div class="input-group">
+                            <select id="countryCode" class="form-select" required>
+                                <option value="" disabled selected>Select Country Code</option>
+                                <option value="+1">USA (+1)</option>
+                                <option value="+44">UK (+44)</option>
+                                <option value="+92">Pakistan (+92)</option>
+                                <option value="+91">India (+91)</option>
+                                <option value="+49">Germany (+49)</option>
+                                <!-- Add more country codes as needed -->
+                            </select>
+                            <input type="tel" class="form-control" id="userPhone" required placeholder="Your Phone Number">
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="country" class="form-label">Country</label>
+                      <select id="country" class="form-select" required>
+                          <option value="" disabled selected>Select Country</option>
+                          <option value="USA">USA</option>
+                          <option value="UK">UK</option>
+                          <option value="Pakistan">Pakistan</option>
+                          <option value="India">India</option>
+                          <option value="Germany">Germany</option>
+                          <!-- Add more countries as needed -->
+                      </select>
+                  </div>
+                </div>
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="address" class="form-label">Address</label>
+                      <input type="text" class="form-control" id="address" required>
+                  </div>
+                      <div class="col-md-6 mb-3">
+                          <label for="state" class="form-label">State</label>
+                          <input type="text" class="form-control" id="state" required>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-6 mb-3">
+                          <label for="city" class="form-label">City</label>
+                          <input type="text" class="form-control" id="city" required>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                          <label for="zipCode" class="form-label">Zip Code</label>
+                          <input type="text" class="form-control" id="zipCode" required pattern="\d{5}" title="Please enter a valid 5-digit zip code.">
+                      </div>
+                  </div>
+                  <div class="row">
+                  
+
+                    
+                  <div class="col-md-6 mb-3">
+                      <label for="userStatus" class="form-label">Status</label>
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="userStatus" id="statusActive" value="Active" required>
+                          <label class="form-check-label" for="statusActive">Active</label>
+                      </div>
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="userStatus" id="statusInactive" value="Inactive">
+                          <label class="form-check-label" for="statusInactive">Inactive</label>
+                      </div>
+                  </div>
+
+                </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="saveUserBtn">Save User</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<!-- Edit User Modal -->
+<div id="editUserModal" class="modal_">
+  <div class="modal_content_">
+      <div class="modal_header_">
+          <h2 class="modal_title_">Edit User Detail</h2>
+          <span class="modal_close_" onclick="closeEditModal()">&times;</span>
+      </div>
+      <form id="editUserForm" class="modal_form_" onsubmit="updateUser(event)">
+          <input type="hidden" id="editUserId" />
+
+          <label for="editUserName">Name:</label>
+          <input type="text" id="editUserName" required />
+
+          <label for="editEmail">Email:</label>
+          <input type="email" id="editEmail" required />
+
+          <label for="editPhone">Phone:</label>
+          <input type="tel" id="editPhone" required />
+
+        
+          <label for="editPassword">Password:</label>
+          <input type="password" id="editPassword" required />
+
+
+
+          <label for="editStatus">Status:</label>
+          <select id="editStatus" required>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+          </select>
+
+          <label for="editaddress">Address:</label>
+          <input type="text" id="editaddress" required />
+          
+          <label for="editCountry">Country:</label>
+          <input type="text" id="editCountry" required />
+          
+          <label for="editState">State:</label>
+          <input type="text" id="editState" required />
+          
+          <label for="editcity">City:</label>
+          <input type="text" id="editcity" required />
+          
+          <label for="editzipcode">Zip Code:</label>
+          <input type="text" id="editzipcode" required />
+          
+
+          <button type="submit">Update User</button>
+      </form>
+  </div>
+</div>
+
+
+
+      </div>
+    </div>
+  </div>
+  <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/sidebarmenu.js"></script>
+  <script src="./assets/js/app.min.js"></script>
+  <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="./apiConfig/apiConfig.js"></script>
+
+  <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    const purchaseToggle = document.getElementById('purchaseToggle');
+    const purchaseSubmenu = document.getElementById('purchaseSubmenu');
+
+    purchaseToggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        purchaseSubmenu.style.display = (purchaseSubmenu.style.display === 'none' || purchaseSubmenu.style.display === '') ? 'block' : 'none';
+    });
+});
+
+    document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            const settingsToggle = document.getElementById('settingsToggle');
+            const settingsSubmenu = document.getElementById('settingsSubmenu');
+
+            // Handle submenu toggle
+            settingsToggle.addEventListener('click', function (event) {
+                event.preventDefault();
+                settingsSubmenu.style.display = (settingsSubmenu.style.display === 'block') ? 'none' : 'block';
+            });
+
+            // Handle active link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    // Remove active class from all links
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    // Add active class to the clicked link
+                    this.classList.add('active');
+                });
+            });
+        });
+
+
+
+let customers = [];
+let totalEntries = 0;
+let currentPage = 1;
+const rowsPerPage = 10;
+
+async function fetchCustomers() {
+  try {
+   
+    const response = await fetch(`${API_ADMINGRAB_URL}/api/customers`); // Corrected endpoint URL
+
+
+    if (!response.ok) throw new Error('Network response was not ok');
+    customers = await response.json();  // Assuming the API returns customer data in JSON format
+    totalEntries = customers.length;
+
+    displayCustomers(currentPage);
+  } catch (error) {
+    console.error('Error fetching customers:', error);
+  }
+}
+
+function displayCustomers(page) {
+  const startIndex = (page - 1) * rowsPerPage;
+  const endIndex = Math.min(startIndex + rowsPerPage, totalEntries);
+  const currentCustomers = customers.slice(startIndex, endIndex);
+
+  const customerTableBody = document.getElementById("customerTableBody"); // Corrected ID for customers table
+  customerTableBody.innerHTML = ""; // Clear existing table rows
+
+  currentCustomers.forEach(customer => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${customer.name}</td>
+      <td>${customer.email}</td>
+      <td>${customer.phone}</td>
+      <td>${customer.status}</td>
+      <td>
+        <i class="fas fa-eye view-icon" data-id="${customer.id}" title="View"></i>
+        <i class="fas fa-edit edit-icon" data-id="${customer.id}" title="Edit"></i>
+      </td>
+    `;
+    customerTableBody.appendChild(row);
+  });
+
+  // Update entry count display
+  document.getElementById("startEntry").innerText = startIndex + 1;
+  document.getElementById("endEntry").innerText = endIndex;
+  document.getElementById("totalEntries").innerText = totalEntries;
+
+  updatePagination();
+
+  // Attach event listeners for viewing and editing functionality within the display function
+  document.querySelectorAll('.view-icon').forEach(icon => {
+    icon.addEventListener('click', async function () {
+      const customerId = this.getAttribute('data-id');
+      await fetchCustomerDetails(customerId); // Function to fetch and display customer details
+    });
+  });
+
+  document.querySelectorAll('.edit-icon').forEach(icon => {
+    icon.addEventListener('click', async function () {
+      const customerId = this.getAttribute('data-id');
+      await openEditModal(customerId); // Function to open modal for editing customer details
+    });
+  });
+}
+
+
+
+async function openEditModal(customerId) {
+    try {
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/customers/getUserById?id=${customerId}`);
+    
+        if (!response.ok) {
+            throw new Error('Failed to fetch user details.');
+        }
+
+        const userData = await response.json();
+        
+    // Display the user data in the modal
+    showUserDetailForEdit(userData);
+    
+    } catch (error) {
+        console.error('Error:', error);
+        showErrorMessage('Error fetching user details');
+    }
+}
+
+function showUserDetailForEdit(user) {
+    // Populate the form fields with user data
+    document.getElementById('editUserId').value = user.id; 
+    document.getElementById('editUserName').value = user.name;
+    document.getElementById('editEmail').value = user.email;
+    document.getElementById('editPhone').value = user.phone;
+
+    document.getElementById('editPassword').value = user.password; 
+    document.getElementById('editStatus').value = user.status;
+    document.getElementById('editaddress').value = user.address; // Added address
+    document.getElementById('editCountry').value = user.country; // Added country
+    document.getElementById('editState').value = user.state;     // Added state
+    document.getElementById('editcity').value = user.city;       // Added city
+    document.getElementById('editzipcode').value = user.zip_code; // Added zip code
+
+    // Show the edit modal
+    const modal = document.getElementById('editUserModal');
+    modal.style.display = "block";
+}
+
+
+function closeEditModal() {
+    const modal = document.getElementById('editUserModal');
+    modal.style.display = "none";
+}
+
+
+async function updateUser(event) {
+    event.preventDefault(); // Prevent the default form submission
+    const userId = document.getElementById('editUserId').value;
+
+    const updatedUser = {
+        name: document.getElementById('editUserName').value.trim(),
+        email: document.getElementById('editEmail').value.trim(),
+        phone: document.getElementById('editPhone').value.trim(),
+       
+        password: document.getElementById('editPassword').value.trim(), // Handle securely
+        status: document.getElementById('editStatus').value.trim(),
+        address: document.getElementById('editaddress').value.trim(), // Added address
+        country: document.getElementById('editCountry').value.trim(), // Added country
+        state: document.getElementById('editState').value.trim(), // Added state
+        city: document.getElementById('editcity').value.trim(), // Added city
+        zip_code: document.getElementById('editzipcode').value.trim() // Added zip code
+    };
+
+    // alert the updatedUser object as a string for debugging
+    // alert(JSON.stringify(updatedUser, null, 2));
+
+    try {
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/customers/updateUser/${userId}`, {
+            method: 'PUT', // Use PUT for updating
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedUser), // Send the updated data as JSON
+        });
+
+        if (response.ok) {
+            // Close the edit modal after successful update
+            closeEditModal();
+
+            // Show an alert with the updated user details
+            showSuccessMessage(`User Updated Successfully!
+                Name: ${updatedUser.name}
+                Email: ${updatedUser.email}
+                Phone: ${updatedUser.phone}
+        
+                Status: ${updatedUser.status}
+                Address: ${updatedUser.address}
+                Country: ${updatedUser.country}
+                State: ${updatedUser.state}
+                City: ${updatedUser.city}
+                Zip Code: ${updatedUser.zip_code}`);
+        } else {
+            const errorMsg = await response.json();
+            showErrorMessage(`Failed to update user: ${errorMsg.error}`);
+        }
+    } catch (error) {
+        // console.error('Error updating user:', error);
+        showErrorMessage('Error updating user. Please try again.');
+    }
+}
+
+
+// Add new user
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("saveUserBtn").addEventListener("click", async (event) => {
+        event.preventDefault();  // Prevent default form submission
+        const saveButton = document.getElementById("saveUserBtn");
+        saveButton.disabled = true; // Disable the button to prevent multiple submissions
+
+        // Gather form data
+        const userData = {
+            name: document.getElementById('userName').value.trim(),
+            email: document.getElementById('userEmail').value.trim(),
+            phone: document.getElementById('userPhone').value.trim(),
+            status: document.querySelector('input[name="userStatus"]:checked')?.value,
+            password: document.getElementById('userPassword').value.trim(),
+            confirm_password: document.getElementById('confirm_Password').value.trim(), // Get confirm password correctly
+         
+            country: document.getElementById('country').value.trim(), // New field
+            address: document.getElementById('address').value.trim(), // New field
+            state: document.getElementById('state').value.trim(), // New field
+            city: document.getElementById('city').value.trim(), // New field
+            zip_code: document.getElementById('zipCode').value.trim(), // New field
+            created_at: new Date().toISOString() // Current date-time for record creation
+        };
+
+        // alert userData for debugging
+        // alert(JSON.stringify(userData, null, 2)); // Format for readability
+
+        // Validate email format using a regex pattern
+        const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+        if (!emailPattern.test(userData.email)) {
+            showErrorMessage('Please enter a valid email address.');
+            saveButton.disabled = false; // Re-enable the button if email is invalid
+            return;
+        }
+
+        // Check if passwords match
+        if (userData.password !== userData.confirm_password) {
+            showErrorMessage('Passwords do not match!');
+            saveButton.disabled = false; // Re-enable the button if passwords do not match
+            return;
+        }
+
+        // Proceed to send the POST request if validations pass
+        try { 
+            // Include confirm_password in the request body
+            const response = await fetch( `${API_ADMINGRAB_URL}/api/customers`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData) // Send the complete userData object with confirm_password
+            });
+            const data = await response.json();
+
+            if (response.ok) {
+                showSuccessMessage('User saved successfully!');
+                document.getElementById('addUserForm').reset(); // Reset the form
+                const modal = bootstrap.Modal.getInstance(document.getElementById('addUserModal'));
+                modal.hide(); // Close the modal
+            } else {
+                showErrorMessage(`Error: ${data.message}`);
+            }
+        } catch (error) {
+            console.error('Error saving user:', error);
+          
+        } finally {
+            saveButton.disabled = false; // Re-enable the button once the request is completed
+        }
+    });
+});
+
+
+function updatePagination() {
+  const pagination = document.getElementById("pagination");
+  pagination.innerHTML = ""; // Clear existing pagination links
+  const pageCount = Math.ceil(totalEntries / rowsPerPage);
+
+  // Handle previous button (disable on first page)
+  const prevLi = document.createElement("li");
+  prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+  prevLi.innerHTML = `<a class="page-link" href="#" onclick="changePage(${currentPage - 1})">Previous</a>`;
+  pagination.appendChild(prevLi);
+
+  // Page number buttons
+  for (let i = 1; i <= pageCount; i++) {
+    const li = document.createElement("li");
+    li.className = "page-item" + (i === currentPage ? " active" : "");
+    li.innerHTML = `<a class="page-link" href="#" onclick="changePage(${i})">${i}</a>`;
+    pagination.appendChild(li);
+  }
+
+  // Handle next button (disable on last page)
+  const nextLi = document.createElement("li");
+  nextLi.className = `page-item ${currentPage === pageCount ? 'disabled' : ''}`;
+  nextLi.innerHTML = `<a class="page-link" href="#" onclick="changePage(${currentPage + 1})">Next</a>`;
+  pagination.appendChild(nextLi);
+}
+
+function changePage(page) {
+  const pageCount = Math.ceil(totalEntries / rowsPerPage);
+  if (page < 1 || page > pageCount) return; // Guard against out-of-range pages
+  currentPage = page;
+  displayAttributes(currentPage);
+}
+
+
+
+
+//for view
+// Function to fetch user details
+async function fetchCustomerDetails(userId) {
+    try {
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/customers/getUserById?id=${userId}`);
+        
+        if (!response.ok) {
+            throw new Error('Failed to fetch user details.');
+        }
+
+        const userData = await response.json();
+        
+        // Display the user data
+        showUserDetails(userData);
+       
+    } catch (error) {
+        console.error('Error:', error);
+        showErrorMessage('Error fetching user details');
+    }
+}
+
+function showUserDetails(user) {
+    const profileSection = document.getElementById('profileSection');
+
+    // Populate user profile data
+    profileSection.innerHTML = `
+        <div class="user-profile-header">
+            <div class="user-info">
+                <h3 class="user-name">${user.name}</h3>
+              
+            </div>
+        </div>
+
+        <div class="user-details-tabs mt-4">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="security-tab" data-bs-toggle="tab" href="#security" role="tab" aria-controls="security" aria-selected="false">Security</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="address-tab" data-bs-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="false">Address</a>
+                </li>
+            </ul>
+
+            <div class="tab-content p-4">
+                <!-- Profile Tab -->
+                <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <h5>Basic Information</h5>
+                    <table class="table">
+                        <tr>
+                            <th>Email</th>
+                            <td>${user.email}</td>
+                        </tr>
+                        <tr>
+                            <th>Phone</th>
+                            <td>${user.phone}</td>
+                        </tr>
+                        <tr>
+                            <th>Password</th>
+                            <td>${user.password}</td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td><span class="badge bg-${user.status === 'Active' ? 'success' : 'danger'}">${user.status}</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Security Tab -->
+                <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+                    <h5>Change Password</h5>
+                    <form id="changePasswordForm" class="needs-validation" onsubmit="return changePassword();" novalidate>
+                        <!-- Current Password -->
+                        <div class="mb-3">
+                            <label for="currentPassword" class="form-label">Current Password</label>
+                            <input type="password" class="form-control" id="currentPassword" placeholder="Enter current password" required>
+                            <div class="invalid-feedback">
+                                Please enter your current password.
+                            </div>
+                        </div>
+
+                        <!-- New Password -->
+                        <div class="mb-3">
+                            <label for="newPassword" class="form-label">New Password</label>
+                            <input type="password" class="form-control" id="newPassword" placeholder="Enter new password" required>
+                            <div class="invalid-feedback">
+                                Please enter a new password.
+                            </div>
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password" required>
+                            <div class="invalid-feedback">
+                                Password confirmation does not match.
+                            </div>
+                        </div>
+
+                        <!-- Change Password Button -->
+                        <button type="submit" class="btn btn-primary w-100" id="changePassword">Change Password</button>
+                    </form>
+                </div>
+
+                <!-- Address Tab with Scrollable Table -->
+                <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
+                    <h5>Address Information</h5>
+                    <div class="address-table-container" style="max-height: 300px; overflow-y: auto;">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                    <th>Country</th>
+                                    <th>State</th>
+                                    <th>City</th>
+                                    <th>ZIP Code</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>${user.email}</td>
+                                    <td>${user.phone}</td>
+                                    <td>${user.address}</td>
+                                    <td>${user.country}</td>
+                                    <td>${user.state}</td>
+                                    <td>${user.city}</td>
+                                    <td>${user.zip_code}</td>
+                                    <td>
+                                        <!-- Action buttons -->
+                                        <i class="fas fa-trash delete-icon" data-id="${user.id}" title="Delete"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Use event delegation for dynamically created delete icons
+    profileSection.addEventListener('click', async (e) => {
+        if (e.target.classList.contains('delete-icon')) {
+            const userId = e.target.getAttribute('data-id'); // Get the user ID from data attribute
+            if (confirm(`Are you sure you want to delete user ID: ${userId}?`)) {
+                try {
+                    const response = await fetch(`${API_ADMINGRAB_URL}/api/customers/${userId}`, { // Adjusted API endpoint for cutomers
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    });
+
+                    
+                    if (response.ok) {
+                        // Remove the user row from the table
+                        const row = e.target.closest('tr');
+                        row.remove();
+                        showSuccessMessage('User deleted successfully!');
+                        // Optionally, refresh the user list or handle pagination
+                        totalEntries--; // Update the total entries count
+                        displayCustomers(page); // Assuming you have a function to refresh the displayed cutomers
+                    } else {
+                        const errorData = await response.json();
+                        showErrorMessage(`Error: ${errorData.message}`);
+                    }
+                } catch (error) {
+                    console.error('Error deleting user:', error);
+                  
+                }
+            }
+        }
+    });
+
+    // Show the modal or section with user details
+    const userDetailsModal = new bootstrap.Modal(document.getElementById('userDetailsModal'));
+    userDetailsModal.show();
+}
+
+
+
+// Function to close modal (if using modal)
+function closeModal() {
+    const modal = document.getElementById('userDetailsModal');
+    const userDetailsModal = bootstrap.Modal.getInstance(modal);
+    userDetailsModal.hide();
+}
+
+// xls-option
+document.getElementById("xls-option").addEventListener("click", async (event) => {
+    event.preventDefault(); // Prevent the default anchor action
+
+    try { 
+        // Trigger the API call to download the XLS file
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/customers/exportXLS`);
+
+        // Check if the response is ok (status code in the 200-299 range)
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        // Convert the response to a Blob
+        const blob = await response.blob();
+
+        // Create a URL for the Blob and trigger a download
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'customers.xlsx'; // Set the filename for the download
+        document.body.appendChild(a);
+        a.click();
+        a.remove(); // Remove the anchor element after triggering the download
+    } catch (error) {
+        console.error('Error exporting XLS file:', error);
+    }
+});
+
+// Fetch cutomers on page load
+document.addEventListener("DOMContentLoaded", fetchCustomers);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notification Configuration</title>
+  <link rel="stylesheet" href="./assets/css/styles.min.css" />
+  <link rel="stylesheet" href="./assets/css/style2.css" />
+  <link rel="stylesheet" href="./assets/css/navbar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <!-- Quill CSS -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> 
+<!-- Quill JS -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>    
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+<script src="./popupMessages.js"></script>
+  
+  <style>
+    .form-container {
+      margin-right: 20px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .btn-group button {
+      flex: 1;
+    }
+
+    .form-card {
+      padding: 20px;
+    }
+
+    .form-section {
+      display: none; /* Hide all forms by default */
+    }
+
+    .form-section.active {
+      display: block; /* Show the active form */
+    }
+  </style>
+   <script>
+    //(function() {
+    //     let(function() {
+    //     let path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })(); path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })();
+
+
+    (function checkAuth() {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        window.location.replace('./login.html'); // Redirect to login page
+      }
+    })();
+  </script> 
+</head>
+<body>
+<!--  Body Wrapper -->
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+data-sidebar-position="fixed" data-header-position="fixed"> 
+<!-- Sidebar Start -->
+<aside class="left-sidebar">   
+  <!-- Sidebar scroll-->     
+  <div>   
+    <div class="brand-logo d-flex align-items-center justify-content-between">
+      <a href="./index.html" class="text-nowrap logo-img">
+        <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+      </a>
+      <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+        <i class="ti ti-x fs-8"></i>
+      </div>
+    </div>
+    <!-- Sidebar navigation-->
+    <div class="sidebar" id="sidebar">
+      <a class="navbar-brand" href="#">
+          <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+      </a>
+      
+      <div class="section-title mt-9">HOME</div>
+      <ul class="nav flex-column">
+          <li class="nav-item">
+              <a class="nav-link" href="./index.html">
+                  <i class="ti ti-layout-dashboard"></i> Dashboard
+              </a>
+          </li>
+      </ul>
+      <div class="section-title">PRODUCTS & STOCK</div>
+      <ul class="nav flex-column">
+          <li class="nav-item">
+              <a class="nav-link" href="./products.html">
+                  <i class="fas fa-box"></i> Products
+              </a>
+          </li>
+           <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="purchaseToggle">
+                <i class="fas fa-shopping-cart"></i> Purchases 
+              </a>
+              <ul class="nav-submenu" id="purchaseSubmenu">
+                <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
+                <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
+                <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
+              </ul>
+            </li>
+          </ul>
+          <li class="nav-item">
+              <a class="nav-link" href="./damages.html">
+                  <i class="fas fa-exclamation-circle"></i> Damages
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="./stock.html">
+                  <i class="fas fa-archive"></i> Stock
+              </a>
+          </li>
+      </ul>
+      <div class="section-title">POS & ORDERS</div>
+      <ul class="nav flex-column">
+          <li class="nav-item">
+              <a class="nav-link" href="./pos.html">
+                  <i class="fas fa-cash-register"></i> POS
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="./pos-orders.html">
+                  <i class="fas fa-receipt"></i> POS Orders
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="./online-orders.html">
+                  <i class="fas fa-shopping-basket"></i> Online Orders
+              </a>
+          </li>
+      </ul>
+
+      <div class="section-title">PROMO</div>
+      <ul class="nav flex-column">
+          <li class="nav-item">
+              <a class="nav-link" href="./coupons.html">
+                  <i class="fas fa-tags"></i> Coupons
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="./promotions.html">
+                  <i class="fas fa-bullhorn"></i> Promotions
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="./product-sections.html">
+                  <i class="fas fa-cube"></i>  Product Sections
+              </a>
+          </li>
+      </ul>
+
+      <div class="section-title">COMMUNICATIONS</div>
+      <ul class="nav flex-column">
+          <li class="nav-item">
+              <a class="nav-link" href="./push-notifications.html">
+                  <i class="fas fa-bell"></i> Push Notifications
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="./subscribers.html">
+                  <i class="fas fa-users"></i> Subscribers
+              </a>
+          </li>
+      </ul>
+      <div class="section-title">USERS</div>
+      <ul class="nav flex-column">
+          <li class="nav-item">
+              <a class="nav-link" href="./admin.html">
+                  <i class="fas fa-user"></i> Administrators
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="./customer.html">
+                  <i class="fas fa-users"></i> Customers
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="./employee.html">
+                  <i class="fas fa-user-tie"></i> Employees
+              </a>
+          </li>
+      </ul>
+  
+      <div class="section-title">ACCOUNTS</div>
+      <ul class="nav flex-column">
+          <li class="nav-item">
+              <a class="nav-link" href="#">
+                  <i class="fas fa-exchange-alt"></i> Transactions
+              </a>
+          </li>
+      </ul>
+  
+      <div class="section-title">REPORTS</div>
+      <ul class="nav flex-column">
+          <li class="nav-item">
+              <a class="nav-link" href="./sales-report.html">
+                  <i class="fas fa-chart-line"></i> Sales Report
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="./products-report.html">
+                  <i class="fas fa-file-alt"></i> Products Report
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="#">
+                  <i class="fas fa-credit-card"></i> Credit Balance Report
+              </a>
+          </li>
+      </ul>
+  
+      <div class="section-title">SETUP</div>
+      <ul class="nav flex-column">
+          <li class="nav-item">
+              <a class="nav-link" id="settingsToggle" href="#">
+                  <i class="fas fa-cog"></i> Settings
+              </a>
+          </li>
+      </ul>
+      
+      <!-- <div class="settings-submenu" id="settingsSubmenu"> -->
+        <div class="submenu" id="settingsSubmenu">
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./company.html">
+                      <i class="fas fa-building"></i> Company
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./site.html">
+                      <i class="fas fa-globe"></i> Site
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./mail.html">
+                      <i class="fas fa-envelope"></i> Mail
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./location-setup.html">
+                      <i class="fas fa-map-marker-alt"></i> Location Setup
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./shipping-setup.html">
+                      <i class="fas fa-truck"></i> Shipping Setup
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-lock"></i> OTP
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./notification.html">
+                      <i class="fas fa-bell"></i> Notification
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./notification-alert.html">
+                      <i class="fas fa-bell"></i> Notification alert
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./social-media.html">
+                      <i class="fas fa-share-alt"></i> Social Media
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./cookies.html">
+                      <i class="fas fa-cookie-bite"></i> Cookies
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./analytics.html">
+                      <i class="fas fa-chart-bar"></i> Analytics
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./theme.html">
+                      <i class="fas fa-paint-brush"></i> Theme
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./sliders.html">
+                      <i class="fas fa-sliders-h"></i> Sliders
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./currencies.html">
+                      <i class="fas fa-money-bill-wave"></i> Currencies
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./product-categories.html">
+                      <i class="fas fa-tags"></i> Product Categories
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./product-attributes.html">
+                      <i class="fas fa-cube"></i> Product Attributes
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./product-brands.html">
+                      <i class="fas fa-tag"></i> Product Brands
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./supplier.html">
+                      <i class="fas fa-industry"></i> Suppliers
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./outlets.html">
+                      <i class="fas fa-store"></i> Outlets
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./benefits.html">
+                      <i class="fas fa-gift"></i> Benefits
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./units.html">
+                      <i class="fas fa-balance-scale"></i> Units
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./taxes.html">
+                      <i class="fas fa-percent"></i>  Taxes
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./page.html">
+                      <i class="fas fa-file-alt"></i> Pages
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./role & permissions.html">
+                      <i class="fas fa-user-shield"></i> Role & Permissions
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./languages-list.html">
+                      <i class="fas fa-globe"></i> Languages
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./sms-gateway.html">
+                      <i class="fas fa-comments"></i> Sms Gateway
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./payment-gateway.html">
+                      <i class="fas fa-credit-card"></i> Payment Gateway
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./license.html">
+                      <i class="fas fa-file-contract"></i> License
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+    <!-- End Sidebar navigation -->
+  </div>
+  <!-- End Sidebar scroll-->
+</aside>
+<!--  Sidebar End -->
+<!--  Main wrapper -->
+<div class="body-wrapper">
+  <!--  Header Start -->
+  <header class="app-header">
+    <nav class="navbar navbar-expand-lg navbar-light">
+     
+      <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+        <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+          <li class="nav-item dropdown">
+            <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <img src="./assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+            </a>
+            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+              <div class="message-body">
+                <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                  <i class="ti ti-user fs-6"></i>
+                  <p class="mb-0 fs-3">My Profile</p>
+                </a>
+                <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                  <i class="ti ti-mail fs-6"></i>
+                  <p class="mb-0 fs-3">My Account</p>
+                </a>
+                <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                  <i class="ti ti-list-check fs-6"></i>
+                  <p class="mb-0 fs-3">My Task</p>
+                </a>
+                <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!--  Header End -->
+    <div class="container-fluid">
+        <div class="row">
+          <!-- Left Sidebar -->
+          <aside class="col-md-3  p-3">
+         
+          </aside>
+      
+          <!-- Right Form Container -->
+          <div class="col-md-9">
+            <div class="card mt-3">
+              <div class="card-body">
+                <h5 class="card-title fw-semibold mb-2">Notification Configuration</h5> 
+      
+                <!-- Button Options -->
+                <div class="btn-group mb-3" role="group">
+                  <button class="btn btn-primary" id="mailOption">Mail</button>
+                  <button class="btn btn-primary" id="smsOption">SMS</button>
+                  <button class="btn btn-primary" id="pushNotificationOption">Push Notification</button>
+                </div>
+                
+                <!-- Mail Form -->
+                <div id="mailForm" class="form-section">
+                  <div class="card-body">
+                    <h5 class="card-title fw-bold mb-4">Mail Notification Messages</h5>
+                    <div class="row g-3 align-items-center mb-3">
+                      <div class="col-md-6">
+                        <label class="form-label">Order Pending Message:</label>
+                        <input type="text" class="form-control" name="order_pending_message" value="Your order is successfully placed.">
+                      </div>
+                      <div class="col-md-6 d-flex align-items-center">
+                        <span class="me-2">ON</span>
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" name="order_pending_status" checked>
+                        </div>
+                      </div>
+                    </div>
+                
+                      
+                            <div class="row g-3 align-items-center mb-3">
+                              <!-- Order Confirmation Message -->
+                              <div class="col-md-6">
+                                <label class="form-label">Order Confirmation Message:</label>
+                                <input type="text" class="form-control" value="Your order is confirmed.">
+                              </div>
+                              <div class="col-md-6 d-flex align-items-center">
+                                <span class="me-2">ON</span>
+                                <div class="form-check form-switch">
+                                  <input class="form-check-input" type="checkbox" checked>
+                                </div>
+                              </div>
+                            </div>
+                      
+                            <div class="row g-3 align-items-center mb-3">
+                              <!-- Order On The Way Message -->
+                              <div class="col-md-6">
+                                <label class="form-label">Order On The Way Message:</label>
+                                <input type="text" class="form-control" value="Your order is on the way.">
+                              </div>
+                              <div class="col-md-6 d-flex align-items-center">
+                                <span class="me-2">ON</span>
+                                <div class="form-check form-switch">
+                                  <input class="form-check-input" type="checkbox" checked>
+                                </div>
+                              </div>
+                            </div>
+                      
+                            <div class="row g-3 align-items-center mb-3">
+                              <!-- Order Delivered Message -->
+                              <div class="col-md-6">
+                                <label class="form-label">Order Delivered Message:</label>
+                                <input type="text" class="form-control" value="Your order is successfully delivered.">
+                              </div>
+                              <div class="col-md-6 d-flex align-items-center">
+                                <span class="me-2">ON</span>
+                                <div class="form-check form-switch">
+                                  <input class="form-check-input" type="checkbox" checked>
+                                </div>
+                              </div>
+                            </div>
+                      
+                            <div class="row g-3 align-items-center mb-3">
+                              <!-- Order Canceled Message -->
+                              <div class="col-md-6">
+                                <label class="form-label">Order Canceled Message:</label>
+                                <input type="text" class="form-control" value="Your order is canceled.">
+                              </div>
+                              <div class="col-md-6 d-flex align-items-center">
+                                <span class="me-2">ON</span>
+                                <div class="form-check form-switch">
+                                  <input class="form-check-input" type="checkbox" checked>
+                                </div>
+                              </div>
+                            </div>
+                      
+                            <div class="row g-3 align-items-center mb-3">
+                              <!-- Order Rejected Message -->
+                              <div class="col-md-6">
+                                <label class="form-label">Order Rejected Message:</label>
+                                <input type="text" class="form-control" value="Your order is rejected.">
+                              </div>
+                              <div class="col-md-6 d-flex align-items-center">
+                                <span class="me-2">OFF</span>
+                                <div class="form-check form-switch">
+                                  <input class="form-check-input" type="checkbox">
+                                </div>
+                              </div>
+                            </div>
+                      
+                            <div class="row g-3 align-items-center mb-3">
+                              <!-- Admin And Manager New Order Message -->
+                              <div class="col-md-6">
+                                <label class="form-label">Admin And Manager New Order Message:</label>
+                                <input type="text" class="form-control" value="You have a new order.">
+                              </div>
+                              <div class="col-md-6 d-flex align-items-center">
+                                <span class="me-2">ON</span>
+                                <div class="form-check form-switch">
+                                  <input class="form-check-input" type="checkbox" checked>
+                                </div>
+                              </div>
+                            </div>
+                    <!-- Additional form inputs for mail (Order Confirmation, On The Way, Delivered, etc.) -->
+                    <div class="text-end">
+                      <button class="btn btn-primary" id="saveButton">Save</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- SMS Form (hidden initially) -->
+                <div id="smsForm" class="form-section">
+                  <!-- SMS form content -->
+                </div>
+
+                <!-- Push Notification Form (hidden initially) -->
+                <div id="pushNotificationForm" class="form-section">
+                  <!-- Push Notification form content -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="./apiConfig/apiConfig.js"></script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    const purchaseToggle = document.getElementById('purchaseToggle');
+    const purchaseSubmenu = document.getElementById('purchaseSubmenu');
+
+    purchaseToggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        purchaseSubmenu.style.display = (purchaseSubmenu.style.display === 'none' || purchaseSubmenu.style.display === '') ? 'block' : 'none';
+    });
+});
+
+  document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            const settingsToggle = document.getElementById('settingsToggle');
+            const settingsSubmenu = document.getElementById('settingsSubmenu');
+
+            // Handle submenu toggle
+            settingsToggle.addEventListener('click', function (event) {
+                event.preventDefault();
+                settingsSubmenu.style.display = (settingsSubmenu.style.display === 'block') ? 'none' : 'block';
+            });
+
+            // Handle active link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    // Remove active class from all links
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    // Add active class to the clicked link
+                    this.classList.add('active');
+                });
+            });
+        });
+
+  // Get references to buttons and forms
+  const mailButton = document.getElementById('mailOption');
+
+
+  const mailForm = document.getElementById('mailForm');
+
+
+  const forms = [mailForm, smsForm, pushNotificationForm];
+
+  // Function to show the selected form and hide others
+  function showForm(selectedForm) {
+    forms.forEach(form => form.classList.remove('active'));
+    selectedForm.classList.add('active');
+  }
+
+  // Add event listeners to buttons to switch between forms
+  mailButton.addEventListener('click', () => {
+    showForm(mailForm);
+    currentNotificationType = 'Mail';  // Set the current notification type
+  });
+ 
+
+  // Declare a variable to hold the current notification type
+  let currentNotificationType = 'Mail';  // Default to Mail
+
+  // Function to collect form data
+  function collectFormData() {
+    return {
+      notification_type: currentNotificationType, // Use dynamic notification type
+      order_pending_message: document.querySelector('input[name="order_pending_message"]').value,
+      order_confirmation_message: document.querySelector('input[name="order_confirmation_message"]').value,
+      order_on_the_way_message: document.querySelector('input[name="order_on_the_way_message"]').value,
+      order_delivered_message: document.querySelector('input[name="order_delivered_message"]').value,
+      order_canceled_message: document.querySelector('input[name="order_canceled_message"]').value,
+      order_rejected_message: document.querySelector('input[name="order_rejected_message"]').value,
+      admin_new_order_message: document.querySelector('input[name="admin_new_order_message"]').value,
+      order_pending_status: document.querySelector('input[name="order_pending_status"]').checked ? 1 : 0,
+      order_confirmation_status: document.querySelector('input[name="order_confirmation_status"]').checked ? 1 : 0,
+      order_on_the_way_status: document.querySelector('input[name="order_on_the_way_status"]').checked ? 1 : 0,
+      order_delivered_status: document.querySelector('input[name="order_delivered_status"]').checked ? 1 : 0,
+      order_canceled_status: document.querySelector('input[name="order_canceled_status"]').checked ? 1 : 0,
+      order_rejected_status: document.querySelector('input[name="order_rejected_status"]').checked ? 1 : 0,
+      admin_new_order_status: document.querySelector('input[name="admin_new_order_status"]').checked ? 1 : 0
+    };
+  }
+
+  // Handle save button click
+  const saveButton = document.getElementById('saveButton');
+  
+  saveButton.addEventListener('click', function() {
+    const formData = collectFormData();
+    // alert('Form Data: ' + JSON.stringify(formData, null, 2)); // Nicely formatted alert
+    // console.log("aaaaaaaaaaaaaa",JSON.stringify(formData, null, 2));
+    
+    // Send form data to the backend via AJAX
+    $.ajax({
+      url: `${API_ADMINGRAB_URL}/api/save-alerts`, // Backend API URL
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(formData),
+      success: function(response) {
+        showSuccessMessage(response.message); // Show success message
+      },
+      error: function(error) {
+        showErrorMessage('Error saving data');
+        console.error(error);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

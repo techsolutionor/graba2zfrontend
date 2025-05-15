@@ -1,0 +1,1571 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="./assets/css/styles.min.css" />
+  <link rel="stylesheet" href="./assets/css/navbar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="./popupMessages.js"></script>
+  <script>
+    //(function() {
+    //     let(function() {
+    //     let path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })(); path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })();
+
+
+    (function checkAuth() {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        window.location.replace('./login.html'); // Redirect to login page
+      }
+    })();
+
+    window.onload = function() {
+    const token = localStorage.getItem('token');
+    const authContainer = document.getElementById('auth');
+    
+    if (token) {
+        // If token exists, user is logged in, show the logout button
+        authContainer.innerHTML = `
+            <a href="#" class="btn btn-outline-danger mx-3 mt-2 d-block" id="logoutButton">Logout</a>
+        `;
+
+        // Add event listener to logout button
+        document.getElementById('logoutButton').addEventListener('click', logout);
+    } else {
+        // If token doesn't exist, show the login button
+        authContainer.innerHTML = `
+            <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Login</a>
+        `;
+    }
+}
+
+// Logout function
+function logout() {
+    // Remove the token from localStorage
+    localStorage.removeItem('token');
+
+    // Redirect to login page after logout
+    window.location.href = './login.html';
+}
+  </script> 
+
+</head>
+
+<body>
+  <!--  Body Wrapper --> 
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">                         
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        
+        <div class="sidebar" id="sidebar">
+          <a class="navbar-brand" href="#">
+              <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          
+          <div class="section-title mt-9">HOME</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./index.html">
+                      <i class="ti ti-layout-dashboard"></i> Dashboard
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">PRODUCTS & STOCK</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./products.html">
+                      <i class="fas fa-box"></i> Products
+                  </a>
+              </li>
+               <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="purchaseToggle">
+                <i class="fas fa-shopping-cart"></i> Purchases 
+              </a>
+              <ul class="nav-submenu" id="purchaseSubmenu">
+                <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
+                <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
+                <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
+              </ul>
+            </li>
+          </ul>
+              <li class="nav-item">
+                  <a class="nav-link" href="./damages.html">
+                      <i class="fas fa-exclamation-circle"></i> Damages
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./stock.html">
+                      <i class="fas fa-archive"></i> Stock
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">POS & ORDERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos.html">
+                      <i class="fas fa-cash-register"></i> POS
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos-orders.html">
+                      <i class="fas fa-receipt"></i> POS Orders
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./online-orders.html">
+                      <i class="fas fa-shopping-basket"></i> Online Orders
+                  </a>
+              </li>
+          </ul>
+
+          <div class="section-title">PROMO</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./coupons.html">
+                      <i class="fas fa-tags"></i> Coupons
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./promotions.html">
+                      <i class="fas fa-bullhorn"></i> Promotions
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./product-sections.html">
+                      <i class="fas fa-cube"></i>  Product Sections
+                  </a>
+              </li>
+          </ul>
+
+          <div class="section-title">COMMUNICATIONS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./push-notifications.html">
+                      <i class="fas fa-bell"></i> Push Notifications
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./subscribers.html">
+                      <i class="fas fa-users"></i> Subscribers
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">USERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./admin.html">
+                      <i class="fas fa-user"></i> Administrators
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./customer.html">
+                      <i class="fas fa-users"></i> Customers
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./employee.html">
+                      <i class="fas fa-user-tie"></i> Employees
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">ACCOUNTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-exchange-alt"></i> Transactions
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">REPORTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./sales-report.html">
+                      <i class="fas fa-chart-line"></i> Sales Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./products-report.html">
+                      <i class="fas fa-file-alt"></i> Products Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-credit-card"></i> Credit Balance Report
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">SETUP</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" id="settingsToggle" href="#">
+                      <i class="fas fa-cog"></i> Settings
+                  </a>
+              </li>
+          </ul>
+          
+          <div class="submenu" id="settingsSubmenu">
+              <ul class="nav flex-column">
+                  <li class="nav-item">
+                      <a class="nav-link" href="./company.html">
+                          <i class="fas fa-building"></i> Company
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./site.html">
+                          <i class="fas fa-globe"></i> Site
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./mail.html">
+                          <i class="fas fa-envelope"></i> Mail
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./location-setup.html">
+                          <i class="fas fa-map-marker-alt"></i> Location Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./shipping-setup.html">
+                          <i class="fas fa-truck"></i> Shipping Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">
+                          <i class="fas fa-lock"></i> OTP
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification.html">
+                          <i class="fas fa-bell"></i> Notification
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification-alert.html">
+                          <i class="fas fa-bell"></i> Notification alert
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./social-media.html">
+                          <i class="fas fa-share-alt"></i> Social Media
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./cookies.html">
+                          <i class="fas fa-cookie-bite"></i> Cookies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./analytics.html">
+                          <i class="fas fa-chart-bar"></i> Analytics
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./theme.html">
+                          <i class="fas fa-paint-brush"></i> Theme
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sliders.html">
+                          <i class="fas fa-sliders-h"></i> Sliders
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./currencies.html">
+                          <i class="fas fa-money-bill-wave"></i> Currencies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-categories.html">
+                          <i class="fas fa-tags"></i> Product Categories
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-attributes.html">
+                          <i class="fas fa-cube"></i> Product Attributes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-brands.html">
+                          <i class="fas fa-tag"></i> Product Brands
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./supplier.html">
+                          <i class="fas fa-industry"></i> Suppliers
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./outlets.html">
+                          <i class="fas fa-store"></i> Outlets
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./benefits.html">
+                          <i class="fas fa-gift"></i> Benefits
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./units.html">
+                          <i class="fas fa-balance-scale"></i> Units
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./taxes.html">
+                          <i class="fas fa-percent"></i>  Taxes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./page.html">
+                          <i class="fas fa-file-alt"></i> Pages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./role & permissions.html">
+                          <i class="fas fa-user-shield"></i> Role & Permissions
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./languages-list.html">
+                          <i class="fas fa-globe"></i> Languages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sms-gateway.html">
+                          <i class="fas fa-comments"></i> Sms Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./payment-gateway.html">
+                          <i class="fas fa-credit-card"></i> Payment Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./license.html">
+                          <i class="fas fa-file-contract"></i> License
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                   <img src="./assets//images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <!-- <a href="http://127.0.0.1:5502/Office_Project/src/html/my-profile.html" class="d-flex align-items-center gap-2 dropdown-item"> -->
+                      <a href="./my-profile.html" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-3">My Profile</p>
+                    </a>
+                    <span id="auth">
+                      <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Logout</a>
+                    </span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!--  Header End -->
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Dashboard / Purchase</h5> 
+            <div class="container">
+              <h5>Purchases</h5>
+              <div class="actions-bar d-flex flex-column flex-md-row align-items-center align-items-lg-end justify-content-center justify-content-md-center justify-content-lg-end">
+                <div class="d-flex justify-content-center mb-2 mb-md-0 me-md-2 w-100" style="max-width: 105px;">
+                  <button class="filter-btn btn btn-primary w-100">Filter</button>
+                </div>
+                <div id="dropdownSearch" class="dropdown-search d-none">
+                  <div class="dropdown-header bg-light p-2 border rounded">Search Purchases</div>
+                  <div class="dropdown-fields mt-2 p-2 border rounded bg-white">
+                    <div class="filter-row row">
+                      <div class="label-input col-12 col-lg-6 mb-2">
+                        <label for="searchSupplier">Supplier</label>
+                        <input type="text" class="form-control filter-input" id="searchSupplier" placeholder="Supplier">
+                      </div>
+                      <div class="label-input col-12 col-lg-6 mb-2">
+                        <label for="searchDate">Date</label>
+                        <input type="date" class="form-control filter-input" id="searchDate" placeholder="Date">
+                      </div>
+                    </div>
+                    <div class="filter-row row">
+                      <div class="label-input col-12 col-lg-6 mb-2">
+                        <label for="searchStatus">Status</label>
+                        <select class="form-control filter-input" id="searchStatus">
+                          <option value="">Select Status</option>
+                          <option value="Pending">Pending</option>
+                          <option value="Completed">Completed</option>
+                          <option value="Cancelled">Cancelled</option>
+                        </select>
+                      </div>
+                      <div class="label-input col-12 col-lg-6 mb-2">
+                        <label for="searchReferenceNo">Reference No</label>
+                        <input type="text" class="form-control filter-input" id="searchReferenceNo" placeholder="Reference No">
+                      </div>
+                    </div>
+                    <div class="filter-row row">
+                      <div class="label-input col-12 col-lg-6 mb-2">
+                        <label for="searchTotal">Total</label>
+                        <input type="number" class="form-control filter-input" id="searchTotal" placeholder="Total">
+                      </div>
+                      <div class="label-input col-12 col-lg-6 mb-2">
+                        <label for="searchPaymentStatus">Payment Status</label>
+                        <select class="form-control filter-input" id="searchPaymentStatus">
+                          <option value="">Select Payment Status</option>
+                          <option value="Paid">Paid</option>
+                          <option value="Unpaid">Unpaid</option>
+                          <option value="Partial">Partial</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-between gap-2">
+                      <button class="btn btn-success search-btn w-100" style="max-width: 200px;" onclick="filterTable()">Search</button>
+                      <button class="btn btn-secondary clear-btn w-100" style="max-width: 200px;" onclick="clearFilters()">Clear</button>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="d-flex justify-content-center mb-2 mb-md-0 me-md-2 w-100" style="max-width: 105px;">
+                  <!-- Dropdown for Export button -->
+                   <div class="dropdown w-100">
+                    <button class="export-btn btn btn-warning w-100" type="button"  data-bs-toggle="dropdown" aria-expanded="false">Export</button>
+                    <!-- Dropdown Menu -->
+                     <ul class="dropdown-menu mt-2" aria-labelledby="exportButton">
+                      <li>
+                        <a class="dropdown-item" href="#" id="exportButton"><i class="fas fa-file-excel"></i> XLS</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+            </div>
+            
+            <!-- Edit Form Modal -->
+            <div class="modal fade" id="editFormModal" tabindex="-1" aria-labelledby="editFormModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editFormModalLabel">Edit Purchase</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="editPurchaseForm">
+                               
+                                <div class="mb-3 row">
+                                    <div class="col-12 col-md-6">
+                                        <label for="editDate">Date</label>
+                                        <input type="date" id="editDate" name="date" class="form-control" required>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="editReferenceNo">Reference No</label>
+                                        <input type="text" id="editReferenceNo" name="reference_no" class="form-control" required>
+                                    </div>
+                                </div>
+                              
+                                <div class="mb-3 row">
+                                    <div class="col-12 col-md-6">
+                                        <label for="editStatus" class="form-label">Status</label>
+                                        <select id="editStatus" name="status" class="form-select" required>
+                                            <option value="Pending">Pending</option>
+                                            <option value="Completed">Completed</option>
+                                            <option value="Cancelled">Cancelled</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="editFile" class="form-label">Attachments</label>
+                                        <input type="file" id="editFile" name="file" class="form-control" accept=".csv,.pdf,.docx,.png,.jpg,.jpeg">
+                                    </div>
+                                </div>
+                           
+                                <div class="mb-3 row">
+                                    <div class="col-12 col-md-6">
+                                        <label for="editSupplier" class="form-label">Supplier</label>
+                                        <input type="text" id="editSupplier" name="supplier" class="form-control" required>
+                                    </div>
+                                </div>
+                            
+                                <div class="mb-3">
+                                    <label for="productSelect" class="form-label">Select Product</label>
+                                    <select id="productSelect" class="form-select">
+                                        <option value="">-- Select a product --</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <button type="button" id="addProductButton" class="btn btn-primary">Add Product</button>
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Quantity</th>
+                                            <th>Unit Cost</th>
+                                            <th>Taxes</th>
+                                            <th>Discount</th>
+                                            <th>Subtotal</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="productTableBody"></tbody>
+                                </table>
+                                                                <div class="mb-3">
+                                    <label for="totalAmount" class="form-label">Total Amount</label>
+                                    <input type="text" id="totalAmount" class="form-control" readonly>
+                                </div>
+                              
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">Description</label>
+                                    <div id="editor-container"></div>
+                                </div>
+                        
+                    
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success" form="editPurchaseForm">Submit Purchase</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success" form="editPurchaseForm">Submit Purchase</button>
+                        </div>  -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div
+            className="modal fade"
+            id="editFormModal"
+            tabIndex="-1"
+            aria-labelledby="editFormModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog modal-lg">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="editFormModalLabel">
+                    Edit Purchase
+                  </h5>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div className="modal-body">
+                  <form id="editPurchaseForm">
+                    <div className="mb-3">
+                      <label htmlFor="supplier" className="form-label">
+                        Supplier
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="supplier"
+                        name="supplier"
+                        required
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="date" className="form-label">
+                        Date
+                      </label>
+                      <input
+                        type="date"
+                        className="form-control"
+                        id="date"
+                        name="date"
+                        required
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="reference_no" className="form-label">
+                        Reference No
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="reference_no"
+                        name="reference_no"
+                        required
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="status" className="form-label">
+                        Status
+                      </label>
+                      <select
+                        className="form-select"
+                        id="status"
+                        name="status"
+                        required
+                      >
+                        <option value="Pending">Pending</option>
+                        <option value="Completed">Completed</option>
+                      </select>
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="description" className="form-label">
+                        Description
+                      </label>
+                      <textarea
+                        className="form-control"
+                        id="description"
+                        name="description"
+                      ></textarea>
+                    </div>
+                    <div className="table-responsive mb-3">
+                      <table className="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Discount</th>
+                            <th>Taxes</th>
+                            <th>Subtotal</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                         
+                        </tbody>
+                      </table>
+                    </div>
+                    <button
+                      type="button"
+                      className="btn btn-secondary mb-3"
+                      onClick="addProductRow()"
+                    >
+                      Add Product
+                    </button>
+                    <div className="d-flex justify-content-end">
+                      <button
+                        type="submit"
+                        className="btn btn-primary"
+                      >
+                        Save Changes
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div> -->
+            
+            <!-- Payments Table Modal -->
+             <div class="modal fade" id="paymentsModal" tabindex="-1" aria-labelledby="paymentsModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="paymentsModalLabel">Purchase Payments</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Reference No</th>
+                                            <th>Amount</th>
+                                            <th>Payment Method</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="paymentsTableBody">
+                                        <!-- Dynamic rows will be inserted here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="table-responsive mt-4">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Supplier</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Reference No</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Payment Status</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="purchasesTableBody" class="purchases-table-body">
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="formContainer"></div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/sidebarmenu.js"></script>
+  <script src="./assets/js/app.min.js"></script>
+  <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="./apiConfig/apiConfig.js"></script>
+
+  
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    const purchaseToggle = document.getElementById('purchaseToggle');
+    const purchaseSubmenu = document.getElementById('purchaseSubmenu');
+
+    purchaseToggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        purchaseSubmenu.style.display = (purchaseSubmenu.style.display === 'none' || purchaseSubmenu.style.display === '') ? 'block' : 'none';
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            const settingsToggle = document.getElementById('settingsToggle');
+            const settingsSubmenu = document.getElementById('settingsSubmenu');
+
+            // Handle submenu toggle
+            settingsToggle.addEventListener('click', function (event) {
+                event.preventDefault();
+                settingsSubmenu.style.display = (settingsSubmenu.style.display === 'block') ? 'none' : 'block';
+            });
+
+            // Handle active link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    // Remove active class from all links
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    // Add active class to the clicked link
+                    this.classList.add('active');
+                });
+            });
+        });
+
+
+    
+document.getElementById('exportButton').addEventListener('click', function () {
+        // Sample data from your table, replace with dynamic data
+        const data = [
+            ['Supplier', 'Date', 'Reference No', 'Status', 'Total', 'Payment Status'],
+            ['Supplier 3', '2024-10-09', '3427', 'Pending', '1000.00', 'Unpaid'],
+            ['Supplier 2', '2024-10-01', '99', 'Cancelled', '1246.00', 'Paid'],
+            ['Supplier 1', '2024-10-23', '345678', 'Pending', '4568.00', 'Unpaid'],
+            ['Supplier 2', '2024-10-02', '123458', 'Completed', '100.00', 'Paid'],
+        ];
+
+        // Create a new workbook
+        const wb = XLSX.utils.book_new();
+
+        // Convert data to a worksheet
+        const ws = XLSX.utils.aoa_to_sheet(data);
+
+        // Append worksheet to workbook
+        XLSX.utils.book_append_sheet(wb, ws, "Purchases");
+
+        // Export to XLSX format
+        XLSX.writeFile(wb, "purchases.xlsx");
+    });
+
+
+
+  const apiUrl = `${API_ADMINGRAB_URL}/api/purchases`;
+
+  
+// Toggle dropdown visibility
+document.querySelector('.filter-btn').addEventListener('click', () => {
+    const dropdown = document.getElementById('dropdownSearch');
+    dropdown.classList.toggle('d-none');
+});
+
+// Function to filter the table
+function filterTable() {
+    const supplier = document.getElementById('searchSupplier').value.toLowerCase();
+    const date = document.getElementById('searchDate').value;
+    const status = document.getElementById('searchStatus').value;
+    const referenceNo = document.getElementById('searchReferenceNo').value.toLowerCase();
+    const total = document.getElementById('searchTotal').value;
+    const paymentStatus = document.getElementById('searchPaymentStatus').value;
+
+    const rows = document.querySelectorAll('#purchasesTableBody tr');
+
+    rows.forEach(row => {
+        const rowSupplier = row.querySelector('td:nth-child(1)').textContent.toLowerCase();
+        const rowDate = row.querySelector('td:nth-child(2)').textContent;
+        const rowReferenceNo = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+        const rowStatus = row.querySelector('td:nth-child(4)').textContent;
+        const rowTotal = row.querySelector('td:nth-child(5)').textContent;
+        const rowPaymentStatus = row.querySelector('td:nth-child(6)').textContent;
+
+        let isVisible = true;
+
+        if (supplier && !rowSupplier.includes(supplier)) isVisible = false;
+        if (date && rowDate !== date) isVisible = false;
+        if (status && rowStatus !== status) isVisible = false;
+        if (referenceNo && !rowReferenceNo.includes(referenceNo)) isVisible = false;
+        if (total && rowTotal !== total) isVisible = false;
+        if (paymentStatus && rowPaymentStatus !== paymentStatus) isVisible = false;
+
+        row.style.display = isVisible ? '' : 'none';
+    });
+}
+
+// Function to clear all filters
+function clearFilters() {
+    document.querySelectorAll('.filter-input').forEach(input => input.value = '');
+    const rows = document.querySelectorAll('#purchasesTableBody tr');
+    rows.forEach(row => row.style.display = '');
+}
+
+async function fetchPurchases() {
+    const token = localStorage.getItem('token'); // Assuming the token is stored in local storage
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Authorization': token, 
+            },
+        });
+
+        if (!response.ok) {
+            console.error('Response Error:', await response.text()); // Log detailed server error
+            throw new Error('Failed to fetch purchases');
+        }
+
+        const purchases = await response.json();
+        const purchasesTableBody = document.getElementById('purchasesTableBody');
+        purchasesTableBody.innerHTML = ''; // Clear existing rows
+
+        // Loop through purchases and create table rows
+        purchases.forEach(purchase => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${purchase.supplier}</td>
+                <td>${purchase.date}</td>
+                <td>${purchase.reference_no}</td>
+                <td>${purchase.status}</td>
+                <td>${purchase.total}</td>
+                <td>${purchase.status}</td>
+                <td class="action-buttons d-flex py-4">
+                    <button class="btn btn-view" onclick="showViewForm(${purchase.id})">👁</button>
+                    <button class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#editFormModal"  onclick="showEditForm(${purchase.id})">✏️</button>
+                    <button class="btn btn-delete" onclick="showConfirmDialog(${purchase.id})">🗑</button>
+                    <button class="btn btn-add-payment" onclick="showPaymentForm()">📄</button>
+                    <button class="btn btn-details" data-bs-toggle="modal" data-bs-target="#paymentsModal" onclick="showPaymentsTable()">☰</button>
+                </td>
+            `;
+            purchasesTableBody.appendChild(row);
+        });
+
+    } catch (error) {
+        console.error('Error fetching purchases:', error); // Log JavaScript error
+    }
+}
+ 
+// async function populateProductDropdown() {
+//     const token = localStorage.getItem('token'); // Assuming the token is stored in local storage
+//     const apiUrl = `${API_ADMINGRAB_URL}/api/products`; // Replace with your API endpoint for fetching products
+
+//     try {
+//         const response = await fetch(apiUrl, {
+//             method: 'GET',
+//             headers: {
+//                 'Authorization': token,
+//             },
+//         });
+
+//         if (!response.ok) {
+//             console.error('Error fetching products:', await response.text());
+//             return alert('Failed to fetch products.');
+//         }
+
+//         const products = await response.json();
+//         const productSelect = document.getElementById('productSelect');
+//         productSelect.innerHTML = '<option value="">-- Select a product --</option>'; // Reset options
+
+//         products.forEach((product) => {
+//             const option = document.createElement('option');
+//             option.value = product.id; // Use product ID as value
+//             option.textContent = product.name; // Display product name
+//             productSelect.appendChild(option);
+//         });
+//     } catch (error) {
+//         console.error('Error:', error);
+//         alert('An error occurred while fetching products.');
+//     }
+// }
+
+// // Call this function when the page loads or the modal opens
+// document.getElementById('editFormModal').addEventListener('show.bs.modal', populateProductDropdown);
+
+//   Edit Form     
+
+// function showEditForm(purchase) {
+//   // Populate the form fields dynamically
+//   document.getElementById("editDate").value = purchase.date || "";
+//   document.getElementById("editReferenceNo").value = purchase.reference_no || "";
+//   document.getElementById("editStatus").value = purchase.status || "Pending";
+//   document.getElementById("editSupplier").value = purchase.supplier || "";
+// }
+
+// // Handle form submission
+// document.getElementById("editPurchaseForm").addEventListener("submit", async function (event) {
+//   event.preventDefault();
+
+//   const formData = new FormData(this);
+//   try {
+//     const response = await fetch(`${API_ADMINGRAB_URL}/api/purchases/edit`, {
+//       method: "PUT",
+//       body: formData,
+//       headers: { Authorization: localStorage.getItem("token") },
+//     });
+
+//     if (!response.ok) throw new Error(await response.text());
+//     alert("Purchase updated successfully!");
+
+//     // Reset the form and close the modal
+//     this.reset();
+//     const modal = bootstrap.Modal.getInstance(document.getElementById("editFormModal"));
+//     modal.hide();
+//   } catch (err) {
+//     console.error("Error updating purchase:", err);
+//     alert("Failed to update the purchase.");
+//   }
+// });
+
+// async function showEditForm(purchaseId) {
+//     const token = localStorage.getItem('token'); // Assuming the token is stored in local storage
+//     const apiUrl = `${API_ADMINGRAB_URL}/api/purchases/${purchaseId}`; // GET API for fetching purchase details
+
+//     try {
+//         const response = await fetch(apiUrl, {
+//             method: 'GET',
+//             headers: {
+//                 'Authorization': token,
+//             },
+//         });
+
+//         if (!response.ok) {
+//             console.error('Error fetching purchase:', await response.text());
+//             return alert('Failed to fetch purchase details.');
+//         }
+
+//         const purchase = await response.json();
+
+//         // Prefill form fields
+//         document.getElementById('editDate').value = purchase.date;
+//         document.getElementById('editReferenceNo').value = purchase.reference_no;
+//         document.getElementById('editStatus').value = purchase.status;
+//         document.getElementById('editSupplier').value = purchase.supplier;
+//         document.getElementById('description').innerHTML = purchase.description || '';
+
+//         // Populate product table
+//         const productTableBody = document.getElementById('productTableBody');
+//         productTableBody.innerHTML = ''; // Clear existing rows
+
+//         purchase.items.forEach((item) => {
+//             const row = document.createElement('tr');
+//             row.innerHTML = `
+//                 <td>${item.product}</td>
+//                 <td><input type="number" class="form-control quantity" value="${item.quantity}" data-id="${item.id}" /></td>
+//                 <td>${item.subtotal}</td>
+//                 <td>${item.taxes}</td>
+//                 <td>${item.discount}</td>
+//                 <td>${item.subtotal + item.taxes - item.discount}</td>
+//                 <td>
+//                     <button class="btn btn-danger btn-sm" onclick="removeProductRow(this)">Remove</button>
+//                 </td>
+//             `;
+//             productTableBody.appendChild(row);
+//         });
+
+//         // Update total amount
+//         const totalAmount = purchase.total || 0;
+//         document.getElementById('totalAmount').value = totalAmount.toFixed(2);
+//     } catch (error) {
+//         console.error('Error:', error);
+//         alert('An error occurred while fetching purchase details.');
+//     }
+// }
+
+
+// document.getElementById('editPurchaseForm').addEventListener('submit', async (e) => {
+//     e.preventDefault();
+
+//     const token = localStorage.getItem('token'); // Assuming the token is stored in local storage
+//     const purchaseId = document.getElementById('editPurchaseForm').dataset.purchaseId; // Pass purchase ID dynamically
+//     const apiUrl = `${API_ADMINGRAB_URL}/api/purchases/${purchaseId}`; // PUT API for updating purchase
+
+//     // Collect form data
+//     const formData = new FormData();
+//     formData.append('date', document.getElementById('editDate').value);
+//     formData.append('reference_no', document.getElementById('editReferenceNo').value);
+//     formData.append('status', document.getElementById('editStatus').value);
+//     formData.append('supplier', document.getElementById('editSupplier').value);
+//     formData.append('description', document.getElementById('description').innerHTML);
+
+//     // Collect product table data
+//     const items = [];
+//     document.querySelectorAll('#productTableBody tr').forEach((row) => {
+//         const product = row.cells[0].textContent;
+//         const quantity = row.querySelector('.quantity').value;
+//         const discount = row.cells[4].textContent;
+//         const taxes = row.cells[3].textContent;
+//         const subtotal = row.cells[2].textContent;
+
+//         items.push({
+//             product,
+//             quantity: parseInt(quantity, 10),
+//             discount: parseFloat(discount),
+//             taxes: parseFloat(taxes),
+//             subtotal: parseFloat(subtotal),
+//         });
+//     });
+
+//     formData.append('items', JSON.stringify(items));
+
+//     // Add file if provided
+//     const fileInput = document.getElementById('editFile');
+//     if (fileInput.files.length > 0) {
+//         formData.append('file', fileInput.files[0]);
+//     }
+
+//     try {
+//         const response = await fetch(apiUrl, {
+//             method: 'PUT',
+//             headers: {
+//                 'Authorization': token,
+//             },
+//             body: formData,
+//         });
+
+//         if (!response.ok) {
+//             console.error('Error updating purchase:', await response.text());
+//             return alert('Failed to update purchase.');
+//         }
+
+//         alert('Purchase updated successfully!');
+//         location.reload(); // Refresh the page or re-fetch the purchase list
+//     } catch (error) {
+//         console.error('Error:', error);
+//         alert('An error occurred while updating the purchase.');
+//     }
+// });
+
+// Populate product dropdown and pre-select products for editing
+async function populateProductDropdown(purchaseItems = []) {
+    const token = localStorage.getItem('token'); // Assuming the token is stored in local storage
+    const apiUrl = `${API_ADMINGRAB_URL}/api/products`; // Replace with your API endpoint for fetching products
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Authorization': token,
+            },
+        });
+
+        if (!response.ok) {
+            console.error('Error fetching products:', await response.text());
+            return showErrorMessage('Failed to fetch products.');
+        }
+
+        const products = await response.json();
+        const productSelect = document.getElementById('productSelect');
+        productSelect.innerHTML = '<option value="">-- Select a product --</option>'; // Reset options
+
+        products.forEach((product) => {
+            const isSelected = purchaseItems.some((item) => item.product_id === product.id);
+            const option = document.createElement('option');
+            option.value = product.id;
+            option.textContent = product.name;
+            if (isSelected) option.selected = true; // Pre-select products in the purchase
+            productSelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error:', error);
+        showErrorMessage('An error occurred while fetching products.');
+    }
+}
+
+// Show edit form and prefill data
+async function showEditForm(purchaseId) {
+    const token = localStorage.getItem('token');
+    const apiUrl = `${API_ADMINGRAB_URL}/api/purchases/${purchaseId}`;
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Authorization': token,
+            },
+        });
+
+        if (!response.ok) {
+            console.error('Error fetching purchase:', await response.text());
+            return showErrorMessage('Failed to fetch purchase details.');
+        }
+
+        const purchase = await response.json();
+
+        // Prefill form fields
+        document.getElementById('editDate').value = purchase.date;
+        document.getElementById('editReferenceNo').value = purchase.reference_no;
+        document.getElementById('editStatus').value = purchase.status;
+        document.getElementById('editSupplier').value = purchase.supplier;
+        document.getElementById('description').value = purchase.description || '';
+
+        // Clear and populate product table
+        const productTableBody = document.getElementById('productTableBody');
+        productTableBody.innerHTML = '';
+
+        purchase.items.forEach((item) => {
+            const row = document.createElement('tr');
+            row.dataset.productId = item.product_id; // Store product ID in row
+            row.innerHTML = `
+                <td>${item.product_name}</td>
+                <td><input type="number" class="form-control quantity" value="${item.quantity}" min="1" /></td>
+                <td><input type="number" class="form-control unit-cost" value="${item.unit_cost}" min="0.00" step="0.01" /></td>
+                <td><input type="number" class="form-control taxes" value="${item.taxes}" min="0.00" step="0.01" /></td>
+                <td><input type="number" class="form-control discount" value="${item.discount}" min="0.00" step="0.01" /></td>
+                <td class="subtotal">${(item.subtotal).toFixed(2)}</td>
+                <td>
+                    <button class="btn btn-danger btn-sm" onclick="removeProductRow(this)">Remove</button>
+                </td>
+            `;
+            productTableBody.appendChild(row);
+        });
+
+        // Populate product dropdown with pre-selected items
+        await populateProductDropdown(purchase.items);
+
+        // Update total amount
+        updateTotalAmount();
+    } catch (error) {
+        console.error('Error:', error);
+        showErrorMessage('An error occurred while fetching purchase details.');
+    }
+}
+
+// Update total amount dynamically
+function updateTotalAmount() {
+    const rows = document.querySelectorAll('#productTableBody tr');
+    let total = 0;
+
+    rows.forEach((row) => {
+        const quantity = parseFloat(row.querySelector('.quantity').value) || 0;
+        const unitCost = parseFloat(row.querySelector('.unit-cost').value) || 0;
+        const taxes = parseFloat(row.querySelector('.taxes').value) || 0;
+        const discount = parseFloat(row.querySelector('.discount').value) || 0;
+
+        const subtotal = (quantity * unitCost) + taxes - discount;
+        row.querySelector('.subtotal').textContent = subtotal.toFixed(2);
+
+        total += subtotal;
+    });
+
+    document.getElementById('totalAmount').value = total.toFixed(2);
+}
+
+// Remove product row from the table
+function removeProductRow(button) {
+    const row = button.closest('tr');
+    row.remove();
+    updateTotalAmount();
+}
+
+// Handle form submission for updating purchase
+document.getElementById('editPurchaseForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const token = localStorage.getItem('token');
+    const purchaseId = document.getElementById('editPurchaseForm').dataset.purchaseId;
+    const apiUrl = `${API_ADMINGRAB_URL}/api/purchases/${purchaseId}`;
+
+    const formData = new FormData();
+    formData.append('date', document.getElementById('editDate').value);
+    formData.append('reference_no', document.getElementById('editReferenceNo').value);
+    formData.append('status', document.getElementById('editStatus').value);
+    formData.append('supplier', document.getElementById('editSupplier').value);
+    formData.append('description', document.getElementById('description').value);
+
+    // Collect product data from table
+    const items = [];
+    document.querySelectorAll('#productTableBody tr').forEach((row) => {
+        items.push({
+            product_id: parseInt(row.dataset.productId, 10),
+            quantity: parseFloat(row.querySelector('.quantity').value),
+            unit_cost: parseFloat(row.querySelector('.unit-cost').value),
+            taxes: parseFloat(row.querySelector('.taxes').value),
+            discount: parseFloat(row.querySelector('.discount').value),
+            subtotal: parseFloat(row.querySelector('.subtotal').textContent),
+        });
+    });
+
+    formData.append('items', JSON.stringify(items));
+
+    // Add file if selected
+    const fileInput = document.getElementById('editFile');
+    if (fileInput.files.length > 0) {
+        formData.append('file', fileInput.files[0]);
+    }
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'PUT',
+            headers: {
+                'Authorization': token,
+            },
+            body: formData,
+        });
+
+        if (!response.ok) {
+            console.error('Error updating purchase:', await response.text());
+            return showErrorMessage('Failed to update purchase.');
+        }
+
+        showSuccessMessage('Purchase updated successfully!');
+        location.reload(); // Refresh the page or re-fetch the purchase list
+    } catch (error) {
+        console.error('Error:', error);
+        showErrorMessage('An error occurred while updating the purchase.');
+    }
+});
+
+// Recalculate totals when input fields change
+document.getElementById('productTableBody').addEventListener('input', updateTotalAmount);
+
+
+// Function to delete a purchase
+function showConfirmDialog(id) {
+    // Create the dialog overlay
+    const dialogOverlay = document.createElement('div');
+    dialogOverlay.style.position = 'fixed';
+    dialogOverlay.style.top = '0';
+    dialogOverlay.style.left = '0';
+    dialogOverlay.style.width = '100%';
+    dialogOverlay.style.height = '100%';
+    dialogOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    dialogOverlay.style.display = 'flex';
+    dialogOverlay.style.justifyContent = 'center';
+    dialogOverlay.style.alignItems = 'center';
+    dialogOverlay.style.zIndex = '1000';
+    dialogOverlay.setAttribute('id', 'confirmDialog');
+
+    // Create the dialog box
+    const dialogBox = document.createElement('div');
+    dialogBox.style.backgroundColor = 'white';
+    dialogBox.style.padding = '60px';
+    dialogBox.style.borderRadius = '5px';
+    dialogBox.style.textAlign = 'center';
+    dialogBox.style.zIndex = '1001';
+
+    // Create the warning icon
+    const warningIcon = document.createElement('div');
+    warningIcon.textContent = '!';
+    warningIcon.style.fontSize = '40px';
+    warningIcon.style.color = 'red';
+    warningIcon.style.marginBottom = '10px';
+
+    // Add title and message
+    const title = document.createElement('h3');
+    title.textContent = 'Are you sure?';
+
+    const message = document.createElement('p');
+    message.textContent = 'You will not be able to recover the deleted purchase!';
+
+    // Create the buttons
+    const confirmButton = document.createElement('button');
+    confirmButton.textContent = 'Yes, Delete it!';
+    confirmButton.style.marginRight = '10px';
+    confirmButton.style.backgroundColor = 'rgb(105, 108, 255)';
+    confirmButton.style.color = 'white';
+    confirmButton.style.border = 'none';
+    confirmButton.style.padding = '10px 20px';
+    confirmButton.style.cursor = 'pointer';
+
+    const cancelButton = document.createElement('button');
+    cancelButton.textContent = 'No, Cancel!';
+    cancelButton.style.backgroundColor = 'rgb(133, 146, 163)';
+    cancelButton.style.color = 'white';
+    cancelButton.style.border = 'none';
+    cancelButton.style.padding = '10px 20px';
+    cancelButton.style.cursor = 'pointer';
+
+    // Append elements to the dialog box
+    dialogBox.appendChild(warningIcon);
+    dialogBox.appendChild(title);
+    dialogBox.appendChild(message);
+    dialogBox.appendChild(confirmButton);
+    dialogBox.appendChild(cancelButton);
+
+    // Append the dialog box to the overlay
+    dialogOverlay.appendChild(dialogBox);
+
+    // Append the overlay to the body
+    document.body.appendChild(dialogOverlay);
+
+    // Confirm button click handler
+    confirmButton.addEventListener('click', function () {
+        deletePurchase(id); // Call the delete function for the purchase
+        closeConfirmDialog();
+        showDeleteMessage("Purchase deleted successfully!");
+    });
+
+    // Cancel button click handler
+    cancelButton.addEventListener('click', closeConfirmDialog);
+
+    // Close the confirmation dialog
+    function closeConfirmDialog() {
+        document.body.removeChild(dialogOverlay);
+    }
+}
+
+// Show delete success message
+function showDeleteMessage(message) {
+    const messageContainer = document.createElement('div');
+    messageContainer.style.position = 'fixed';
+    messageContainer.style.top = '20px';
+    messageContainer.style.right = '20px';
+    messageContainer.style.backgroundColor = 'red';
+    messageContainer.style.color = 'white';
+    messageContainer.style.padding = '10px 20px';
+    messageContainer.style.borderRadius = '5px';
+    messageContainer.style.zIndex = '1000';
+    messageContainer.textContent = message;
+
+    document.body.appendChild(messageContainer);
+
+    // Remove the message after 3 seconds
+    setTimeout(() => {
+        document.body.removeChild(messageContainer);
+    }, 3000);
+}
+
+// Function to delete a purchase
+async function deletePurchase(id) {
+    const token = localStorage.getItem('token');
+
+    try {
+        const response = await fetch(`${apiUrl}/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': token,
+            },
+        });
+
+        if (!response.ok) throw new Error('Failed to delete purchase');
+
+        console.log('Purchase Deleted:', id);
+        fetchPurchases(); // Refresh the purchases list
+    } catch (error) {
+        console.error('Error deleting purchase:', error);
+    }
+}
+
+// Initialize paymentData from localStorage if available
+let paymentData = JSON.parse(localStorage.getItem('paymentData')) || [];
+
+// Function to display the payments table
+function showPaymentsTable() {
+    const tableBody = document.getElementById('paymentsTableBody');
+    tableBody.innerHTML = ''; // Clear existing rows
+
+    paymentData.forEach((payment, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${payment.date}</td>
+            <td>${payment.referenceNo}</td>
+            <td>${payment.amount.toFixed(2)}</td>
+            <td>${payment.paymentMethod}</td>
+            <td>
+                <button class="btn btn-sm btn-danger" onclick="deletePayment(${index})">Delete</button>
+            </td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// Function to add a new payment
+function addPayment(payment) {
+    paymentData.push(payment);
+    localStorage.setItem('paymentData', JSON.stringify(paymentData)); // Save to localStorage
+    showPaymentsTable();
+    showSuccessMessage("add payment successfully");
+}
+
+// Function to delete a payment
+function deletePayment(index) {
+    paymentData.splice(index, 1);
+    localStorage.setItem('paymentData', JSON.stringify(paymentData)); // Save to localStorage
+    showPaymentsTable();
+}
+
+// Function to show the payment form
+function showPaymentForm() {
+    const formOverlay = document.createElement('div');
+    formOverlay.style.position = 'fixed';
+    formOverlay.style.top = '0';
+    formOverlay.style.left = '0';
+    formOverlay.style.width = '100%';
+    formOverlay.style.height = '100%';
+    formOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    formOverlay.style.display = 'flex';
+    formOverlay.style.justifyContent = 'center';
+    formOverlay.style.alignItems = 'center';
+    formOverlay.style.zIndex = '1000';
+
+    const formContainer = document.createElement('div');
+    formContainer.classList.add('card', 'p-4');
+    formContainer.style.maxWidth = '600px';
+    formContainer.style.borderRadius = '10px';
+    formContainer.style.backgroundColor = 'white';
+
+    const formHeader = document.createElement('h4');
+    formHeader.textContent = 'Add Payment Details';
+    formContainer.appendChild(formHeader);
+
+    const form = document.createElement('form');
+    form.enctype = "multipart/form-data"; // Enable file upload
+
+    form.innerHTML = `
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label for="date" class="form-label">Date</label>
+                <input type="date" class="form-control" id="date" required>
+            </div>
+            <div class="col-md-6">
+                <label for="referenceNo" class="form-label">Reference No</label>
+                <input type="text" class="form-control" id="referenceNo" required>
+            </div>
+            <div class="col-md-6">
+                <label for="amount" class="form-label">Amount</label>
+                <input type="number" class="form-control" id="amount" required>
+            </div>
+            <div class="col-md-6">
+                <label for="paymentMethod" class="form-label">Payment Method</label>
+                <select id="paymentMethod" class="form-select" required>
+                    <option value="Cash">Cash</option>
+                    <option value="Cheque">Cheque</option>
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+            <div class="col-12">
+                <label for="file" class="form-label">File (Image Upload)</label>
+                <input type="file" class="form-control" id="file" accept="image/*">
+            </div>
+        </div>
+        <div class="d-flex justify-content-end mt-3">
+            <button type="button" class="btn btn-secondary me-2" id="cancelButton">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    `;
+
+    // Add event listener for the Cancel button
+    const cancelButton = form.querySelector('#cancelButton');
+    cancelButton.addEventListener('click', () => {
+        document.body.removeChild(formOverlay); // Close the form
+    });
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const date = document.getElementById('date').value;
+        const referenceNo = document.getElementById('referenceNo').value;
+        const amount = parseFloat(document.getElementById('amount').value);
+        const paymentMethod = document.getElementById('paymentMethod').value;
+
+        // Get the file input (if any)
+        const fileInput = document.getElementById('file');
+        const file = fileInput.files[0]; // Get the first file selected
+
+        // Add the new payment to the array and save to localStorage
+        addPayment({ date, referenceNo, amount, paymentMethod, file });
+
+        // Close the form
+        document.body.removeChild(formOverlay);
+    });
+
+    formContainer.appendChild(form);
+    formOverlay.appendChild(formContainer);
+    document.body.appendChild(formOverlay);
+}
+
+
+// Call fetchPurchases to load data when the page is ready
+document.addEventListener('DOMContentLoaded', fetchPurchases);
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
+
+

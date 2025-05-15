@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="./assets/css/styles.min.css" />
+  <link rel="stylesheet" href="./assets/css/navbar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="./popupMessages.js"></script>
+  <script>
+    //(function() {
+    //     let(function() {
+    //     let path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })(); path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })();
+
+
+    (function checkAuth() {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        window.location.replace('./login.html'); // Redirect to login page
+      }
+    })();
+
+    window.onload = function() {
+    const token = localStorage.getItem('token');
+    const authContainer = document.getElementById('auth');
+    
+    if (token) {
+        // If token exists, user is logged in, show the logout button
+        authContainer.innerHTML = `
+            <a href="#" class="btn btn-outline-danger mx-3 mt-2 d-block" id="logoutButton">Logout</a>
+        `;
+
+        // Add event listener to logout button
+        document.getElementById('logoutButton').addEventListener('click', logout);
+    } else {
+        // If token doesn't exist, show the login button
+        authContainer.innerHTML = `
+            <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Login</a>
+        `;
+    }
+}
+
+// Logout function
+function logout() {
+    // Remove the token from localStorage
+    localStorage.removeItem('token');
+
+    // Redirect to login page after logout
+    window.location.href = './login.html';
+}
+  </script> 
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <div class="sidebar" id="sidebar">
+          <a class="navbar-brand" href="#">
+              <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          
+          <div class="section-title mt-9">HOME</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./index.html">
+                      <i class="ti ti-layout-dashboard"></i> Dashboard
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">PRODUCTS & STOCK</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./products.html">
+                      <i class="fas fa-box"></i> Products
+                  </a>
+              </li>
+               <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="purchaseToggle">
+                <i class="fas fa-shopping-cart"></i> Purchases 
+              </a>
+              <ul class="nav-submenu" id="purchaseSubmenu">
+                <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
+                <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
+                <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
+              </ul>
+            </li>
+          </ul>
+              <li class="nav-item">
+                  <a class="nav-link" href="./damages.html">
+                      <i class="fas fa-exclamation-circle"></i> Damages
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./stock.html">
+                      <i class="fas fa-archive"></i> Stock
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">POS & ORDERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos.html">
+                      <i class="fas fa-cash-register"></i> POS
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos-orders.html">
+                      <i class="fas fa-receipt"></i> POS Orders
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./online-orders.html">
+                      <i class="fas fa-shopping-basket"></i> Online Orders
+                  </a>
+              </li>
+          </ul>
+    
+          <div class="section-title">PROMO</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./coupons.html">
+                      <i class="fas fa-tags"></i> Coupons
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./promotions.html">
+                      <i class="fas fa-bullhorn"></i> Promotions
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./product-sections.html">
+                      <i class="fas fa-cube"></i>  Product Sections
+                  </a>
+              </li>
+          </ul>
+    
+          <div class="section-title">COMMUNICATIONS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./push-notifications.html">
+                      <i class="fas fa-bell"></i> Push Notifications
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./subscribers.html">
+                      <i class="fas fa-users"></i> Subscribers
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">USERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./admin.html">
+                      <i class="fas fa-user"></i> Administrators
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./customer.html">
+                      <i class="fas fa-users"></i> Customers
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./employee.html">
+                      <i class="fas fa-user-tie"></i> Employees
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">ACCOUNTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-exchange-alt"></i> Transactions
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">REPORTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./sales-report.html">
+                      <i class="fas fa-chart-line"></i> Sales Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./products-report.html">
+                      <i class="fas fa-file-alt"></i> Products Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-credit-card"></i> Credit Balance Report
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">SETUP</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" id="settingsToggle" href="#">
+                      <i class="fas fa-cog"></i> Settings
+                  </a>
+              </li>
+          </ul>
+          
+          <!-- <div class="settings-submenu" id="settingsSubmenu"> -->
+            <div class="submenu" id="settingsSubmenu">
+              <ul class="nav flex-column">
+                  <li class="nav-item">
+                      <a class="nav-link" href="./company.html">
+                          <i class="fas fa-building"></i> Company
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./site.html">
+                          <i class="fas fa-globe"></i> Site
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./mail.html">
+                          <i class="fas fa-envelope"></i> Mail
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./location-setup.html">
+                          <i class="fas fa-map-marker-alt"></i> Location Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./shipping-setup.html">
+                          <i class="fas fa-truck"></i> Shipping Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">
+                          <i class="fas fa-lock"></i> OTP
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification.html">
+                          <i class="fas fa-bell"></i> Notification
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification-alert.html">
+                          <i class="fas fa-bell"></i> Notification alert
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./social-media.html">
+                          <i class="fas fa-share-alt"></i> Social Media
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./cookies.html">
+                          <i class="fas fa-cookie-bite"></i> Cookies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./analytics.html">
+                          <i class="fas fa-chart-bar"></i> Analytics
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./theme.html">
+                          <i class="fas fa-paint-brush"></i> Theme
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sliders.html">
+                          <i class="fas fa-sliders-h"></i> Sliders
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./currencies.html">
+                          <i class="fas fa-money-bill-wave"></i> Currencies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-categories.html">
+                          <i class="fas fa-tags"></i> Product Categories
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-attributes.html">
+                          <i class="fas fa-cube"></i> Product Attributes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-brands.html">
+                          <i class="fas fa-tag"></i> Product Brands
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./supplier.html">
+                          <i class="fas fa-industry"></i> Suppliers
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./outlets.html">
+                          <i class="fas fa-store"></i> Outlets
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./benefits.html">
+                          <i class="fas fa-gift"></i> Benefits
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./units.html">
+                          <i class="fas fa-balance-scale"></i> Units
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./taxes.html">
+                          <i class="fas fa-percent"></i>  Taxes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./page.html">
+                          <i class="fas fa-file-alt"></i> Pages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./role & permissions.html">
+                          <i class="fas fa-user-shield"></i> Role & Permissions
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./languages-list.html">
+                          <i class="fas fa-globe"></i> Languages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sms-gateway.html">
+                          <i class="fas fa-comments"></i> Sms Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./payment-gateway.html">
+                          <i class="fas fa-credit-card"></i> Payment Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./license.html">
+                          <i class="fas fa-file-contract"></i> License
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+        <header class="app-header">
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+                <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                       <img src="./assets//images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                      <div class="message-body">
+                        <!-- <a href="http://127.0.0.1:5502/Office_Project/src/html/my-profile.html" class="d-flex align-items-center gap-2 dropdown-item"> -->
+                          <a href="./my-profile.html" class="d-flex align-items-center gap-2 dropdown-item">
+                          <i class="ti ti-user fs-6"></i>
+                          <p class="mb-0 fs-3">My Profile</p>
+                        </a>
+                        <span id="auth">
+                          <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Logout</a>
+                        </span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </header>
+      <div class="container-fluid">
+        
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title fw-semibold mb-4">Dashboard / POS Orders
+
+              </h5>
+              <div class="container">
+                <h5>POS Orders</h5>
+            
+                
+
+
+            <div class="actions-bar d-flex flex-column flex-md-row align-items-center align-items-lg-end justify-content-center justify-content-md-center justify-content-lg-end gap-2">
+             
+              <div class="d-flex justify-content-center w-100" style="max-width: 105px;">
+                <button class="filter-btn btn btn-primary w-100">Filter</button>
+              </div>
+            
+    
+              <div class="d-flex justify-content-center w-100" style="max-width: 105px;">
+                
+                <div class="dropdown w-100">
+                    <button class="export-btn btn btn-warning w-100" type="button"  data-bs-toggle="dropdown" aria-expanded="false">
+                        Export
+                    </button>
+                    
+                    <ul class="dropdown-menu mt-2" aria-labelledby="exportButton">
+                        <li><a class="dropdown-item" href="#" id="exportButton"><i class="fas fa-file-excel"></i> XLS</a></li>
+                    </ul>
+                </div>
+            </div>
+          
+        
+          </div>
+          
+            
+            
+    
+        
+    
+               
+            <div class="table-responsive mt-4">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="productsTableBody" class="products-table-body">
+                  <!-- Dynamic rows will be added here -->
+                </tbody>
+              </table>
+            </div>
+            
+            <div class="modal fade" id="viewOrderModal" tabindex="-1" aria-labelledby="viewOrderModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="viewOrderModalLabel">Order Details</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="mb-3 d-flex justify-content-between align-items-center">
+                          <div>
+                              <h6>Order ID: <span id="modalOrderId"></span> | <span id="modalOrderStatus"></span></h6>
+                              <p class="text-muted mb-1" id="modalOrderDateTime"></p>
+                              <p class="text-muted mb-1">Payment Type: <span id="modalPaymentType"></span></p>
+                              <p class="text-muted mb-1">Order Type: <span id="modalOrderType"></span></p>
+                          </div>
+                          <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                Options
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><button class="dropdown-item" id="btnConfirm">Confirmed</button></li>
+                                <li><button class="dropdown-item" id="btnDeliver">Delivered</button></li>
+                            </ul>
+                        </div>
+                        
+                        
+                        
+                      </div>
+          
+                          <hr>
+          
+                          <h6 class="mb-3">Order Details</h6>
+                          <div id="modalOrderDetails"></div>
+          
+                          <hr>
+          
+                          <h6 class="mb-3">Summary</h6>
+                          <div class="row">
+                              <div class="col-6">
+                                  <p>Subtotal:</p>
+                                  <p>Tax Fee:</p>
+                                  <p>Discount:</p>
+                                  <p><strong>Total:</strong></p>
+                              </div>
+                              <div class="col-6 text-end">
+                                  <p id="modalSubtotal"></p>
+                                  <p id="modalTaxFee"></p>
+                                  <p id="modalDiscount"></p>
+                                  <p><strong id="modalTotal"></strong></p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                  </div>
+              </div>
+          </div>
+          
+            
+  
+
+<!-- Invoice Modal -->
+<div class="modal fade" id="invoiceSection" tabindex="-1" aria-labelledby="invoiceModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" id="printInvoice" onclick="printInvoice()">Print Invoice</button>
+      </div>
+      <div class="modal-body" id="invoiceContent" style="font-family: Arial, sans-serif; font-size: 14px;">
+        <div class="text-center">
+          <h5 style="font-weight: bold;">ShopKing - eCommerce App with Laravel Website & Admin Panel with POS | Inventory Management</h5>
+          <p>
+            House: 25, Road No: 2, Block A, Mirpur-1, Dhaka 1216 <br>
+            Tel: +880 13333846282
+          </p>
+        </div>
+        <hr>
+        <p>
+          <strong>Order ID:</strong> <span id="orderId"></span> <span style="float: right;" id="orderTime"></span>
+        </p>
+        <hr>
+        <table class="table">
+          <thead>
+            <tr>
+              <th style="text-align: left;">Qty</th>
+              <th style="text-align: left;">Product Description</th>
+              <th style="text-align: right;">Price</th>
+            </tr>
+          </thead>
+          <tbody id="invoiceItems">
+            <!-- Items will be dynamically added here -->
+          </tbody>
+        </table>
+        <hr>
+        <table class="table table-borderless">
+          <tr>
+            <td>SUBTOTAL:</td>
+            <td id="invoiceSubtotal" style="text-align: right;">$0.00</td>
+          </tr>
+          <tr>
+            <td>TAX FEE (15%):</td>
+            <td id="invoiceTax" style="text-align: right;">$0.00</td>
+          </tr>
+          <tr>
+            <td>DISCOUNT:</td>
+            <td id="invoiceDiscount" style="text-align: right;">$0.00</td>
+          </tr>
+          <tr>
+            <td><strong>TOTAL:</strong></td>
+            <td id="invoiceTotal" style="text-align: right; font-weight: bold;">$0.00</td>
+          </tr>
+        </table>
+        <p><strong>Payment Type:</strong> <span id="invoicePaymentType">Cash</span></p>
+        <hr>
+        <p class="text-center">Thank You <br> Please Come Again</p>
+        <p class="text-center" style="font-size: 12px;">
+          Powered by ShopKing - eCommerce App with Laravel Website & Admin Panel with POS | Inventory Management
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+              </div>
+            </div>
+          </div>
+  
+          
+  <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/sidebarmenu.js"></script>
+  <script src="./assets/js/app.min.js"></script>
+  <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="./apiConfig/apiConfig.js"></script>
+
+  <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    const purchaseToggle = document.getElementById('purchaseToggle');
+    const purchaseSubmenu = document.getElementById('purchaseSubmenu');
+
+    purchaseToggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        purchaseSubmenu.style.display = (purchaseSubmenu.style.display === 'none' || purchaseSubmenu.style.display === '') ? 'block' : 'none';
+    });
+});
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const settingsToggle = document.getElementById('settingsToggle');
+        const settingsSubmenu = document.getElementById('settingsSubmenu');
+
+        settingsToggle.addEventListener('click', function(event) {
+            event.preventDefault();
+            settingsSubmenu.style.display = (settingsSubmenu.style.display === 'block') ? 'none' : 'block';
+        });
+
+    });
+
+
+function showInvoiceModal(orderId) {
+    console.log(`Fetching order data for Order ID: ${orderId}`);  // Log the order ID being processed
+
+    // Fetch the order data using the order ID
+    fetch(`${API_ADMINGRAB_URL}/api/orders/${orderId}`)
+        .then(response => {
+            console.log(`Response received for Order ID: ${orderId}`);  // Log when the response is received
+            return response.json();
+        })
+        .then(data => {
+            console.log(`Fetched order data:`, data);  // Log the fetched data
+
+            // Check if items exist and is an array
+            if (Array.isArray(data.items)) {
+                let itemSubtotal;
+                // Populate the invoice content with the fetched data
+                document.getElementById("orderId").innerText = `#${data.orderID}`;
+                document.getElementById("orderTime").innerText = `${data.orderDate} ${data.orderTime}`;
+                document.getElementById("invoiceItems").innerHTML = data.items.map(item => {
+                    itemSubtotal = item.quantity * item.price;
+                    return `
+                        <tr>
+                            <td>${item.quantity}</td>
+                            <td>
+                                ${item.name} <br>
+                                <small>${item.color} | ${item.size}</small>
+                            </td>
+                            <td style="text-align: right;">$${itemSubtotal.toFixed(2)}</td>
+                        </tr>`;
+                }).join("");
+
+                document.getElementById("invoiceSubtotal").innerText = `$${data.subtotal || '0.00'}`;
+                document.getElementById("invoiceTax").innerText = `$${data.tax || '0.00'}`;
+                document.getElementById("invoiceDiscount").innerText = `$${data.discount || '0.00'}`;
+                document.getElementById("invoiceTotal").innerText = `$${data.total || '0.00'}`;
+                document.getElementById("invoicePaymentType").innerText = data.paymentType || "Cash";
+            } else {
+                // If no items or invalid data, display a fallback message
+                console.error("Items data is missing or not an array:", data.items);
+                document.getElementById("invoiceItems").innerHTML = "<tr><td colspan='3'>No items available</td></tr>";
+            }
+
+            // Show the modal with the invoice content
+            const invoiceModal = new bootstrap.Modal(document.getElementById("invoiceSection"));
+            invoiceModal.show();
+
+            // After showing the modal, trigger the print dialog
+            setTimeout(() => {
+                window.print();
+            }, 500);  // Allow some time for the modal to appear before printing
+        })
+        .catch(error => {
+            console.error(`Error fetching order data for Order ID: ${orderId}:`, error);  // Log specific error
+        });
+}
+// Function to print the invoice
+function printInvoice() {
+    // Get the content of the modal
+    var printContents = document.getElementById("invoiceContent").innerHTML;
+    var originalContents = document.body.innerHTML;
+
+    // Replace the body with the invoice content
+    document.body.innerHTML = printContents;
+
+    // Trigger the print dialog
+    window.print();
+
+ 
+        // Remove the container after printing
+        document.body.removeChild(printContainer);
+}
+
+document.getElementById('btnDeliver').addEventListener('click', function() {
+   document.getElementById('dropdownMenuButton').textContent = 'Delivered';
+});
+                        
+document.getElementById('btnConfirm').addEventListener('click', function() {
+ document.getElementById('dropdownMenuButton').textContent = 'Confirmed';
+});
+    // Function to fetch POS orders
+    async function fetchPOSOrders() {
+        try {
+            const response = await fetch(`${API_ADMINGRAB_URL}/api/get-pos-orders`); // Adjust API URL
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const orders = await response.json(); // Parse the JSON response
+            console.log("Fetched orders:", orders); // Debug fetched data
+            populateTable(orders); // Populate the table with fetched data
+        } catch (error) {
+            console.error("Error fetching POS orders:", error);
+            showErrorMessage("Failed to fetch POS orders.");
+        }
+    }
+    
+    
+    async function deleteOrder(id) {
+    // Log the id of the order to be deleted
+    console.log("Attempting to delete order with ID:", id);
+
+    if (!confirm("Are you sure you want to delete this order?")) {
+        console.log("Deletion canceled by user.");
+        return; // Exit if the user cancels the confirmation dialog
+    }
+
+    try {
+        // Log the fetch request before it's made
+        console.log(`Sending DELETE request to: ${API_ADMINGRAB_URL}/api/delete-pos-order/${id}`);
+
+        // Make the DELETE API call
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/delete-pos-order/${id}`, {
+            method: "DELETE",
+        });
+
+        // Log the response status
+        console.log("Response status:", response.status);
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log("Delete successful:", result); // Log the result
+            showSuccessMessage(result.message); // Display the success message
+            fetchPOSOrders(); // Refresh the table to remove the deleted row
+        } else {
+            const contentType = response.headers.get("content-type");
+            console.log("Response content-type:", contentType); // Log the content type of the response
+
+            if (contentType && contentType.indexOf("application/json") !== -1) {
+                const errorData = await response.json();
+                console.error("Error in JSON response:", errorData); // Log the error data
+                showErrorMessage(`Error: ${errorData.message}`);
+            } else {
+                const errorText = await response.text();
+                console.error("Error in text response:", errorText); // Log the error text
+                showErrorMessage(`Error: ${errorText}`);
+            }
+        }
+    } catch (error) {
+        console.error("Error occurred during DELETE operation:", error); // Log the caught error
+        showErrorMessage("Failed to delete the order. Please try again.");
+    }
+}
+
+    // Function to populate the table with fetched data
+    function populateTable(orders) {
+        const tableBody = document.getElementById("productsTableBody");
+        tableBody.innerHTML = ""; // Clear existing rows
+
+        orders.forEach(order => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${order.orderID}</td>
+                <td>${order.customer}</td>
+                <td>$${parseFloat(order.amount).toFixed(2)}</td>
+                <td>${order.date}</td>
+                <td>
+                    <span class="badge ${getStatusBadgeClass(order.status || "Pending")}">${order.status || "Pending"}</span>
+                </td>
+          <td class="action-buttons">
+    <button 
+        class="btn btn-light btn-sm text-danger border-danger" 
+        onclick="showViewForm(${order.id})" 
+        title="View"
+        style="border-radius: 12px; padding: 5px 12px;">
+        View
+    </button>
+
+     <button 
+                                class="btn btn-light btn-sm text-danger border-danger" 
+                                onclick="deleteOrder('${order.id}')"
+                                title="Delete"
+                                style="border-radius: 12px; padding: 5px 12px;">
+                                Delete
+                            </button>
+                            <button 
+    class="btn btn-light btn-sm text-danger border-danger" 
+    onclick="showInvoiceModal('${order.id}')"
+    title="Print Invoice"
+    style="border-radius: 12px; padding: 5px 12px;">
+    Print 
+</button>
+</td>
+
+
+       
+
+            `;
+
+            tableBody.appendChild(row);
+        });
+    }
+
+
+function showViewForm(orderId) {
+    fetch(`${API_ADMINGRAB_URL}/api/orders/${orderId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Order not found");
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Fetched order data:", data); // Log the fetched data for debugging
+
+            // Populate Order Header
+            document.getElementById("modalOrderId").innerText = `#${data.orderID}`;
+            document.getElementById("modalOrderStatus").innerHTML = `
+                <span class="badge bg-danger">${data.status}</span>
+                <span class="badge bg-success">${data.orderType}</span>
+            `;
+            document.getElementById("modalOrderDateTime").innerText = `${data.orderTime}, ${data.orderDate}`;
+            document.getElementById("modalPaymentType").innerText = data.paymentType;
+            document.getElementById("modalOrderType").innerText = data.orderType;
+
+            const imageUrl = data.image_path
+                ? `${API_ADMINGRAB_URL}/${data.image_path}`
+                : 'https://via.placeholder.com/200x200';
+            
+            // Populate Order Details with an updated image container for proper sizing
+            document.getElementById("modalOrderDetails").innerHTML = `
+                <div class="d-flex align-items-center mb-3">
+                    <img src="${imageUrl}" alt="Product Image" class="img-fluid me-3" style="max-width: 50px; height: auto;">
+                    <div>
+                        <p class="mb-0">${data.productName || "No product name"}</p>
+                        <p class="text-muted mb-0"><strong>${data.total ? `AED${data.total}` : "No total price"}</strong></p>
+                    </div>
+                </div>
+            `;
+
+            // Populate Summary Section
+            document.getElementById("modalSubtotal").innerText = `AED${data.subtotal || "0.00"}`;
+            document.getElementById("modalTaxFee").innerText = `AED${data.tax || "0.00"}`;
+            document.getElementById("modalDiscount").innerText = `AED${data.discountValue || "0.00"}`;
+            document.getElementById("modalTotal").innerText = `AED${data.total || "0.00"}`;
+
+            // Show the Bootstrap Modal
+            const viewOrderModal = new bootstrap.Modal(document.getElementById("viewOrderModal"));
+            viewOrderModal.show();
+        })
+        .catch(error => console.error("Error fetching order details:", error));
+}
+
+
+    // Function to assign badge classes based on the status
+    function getStatusBadgeClass(status) {
+        switch (status.toLowerCase()) {
+            case "confirmed":
+                return "bg-primary text-white";
+            case "delivered":
+                return "bg-success text-white";
+            case "pending":
+                return "bg-warning text-dark";
+            default:
+                return "bg-secondary text-white";
+        }
+    }
+
+    // Fetch and display orders on page load
+    document.addEventListener("DOMContentLoaded", fetchPOSOrders);
+</script>
+
+
+</body>
+
+</html>

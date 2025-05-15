@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h1 {
+            color: #28a745;
+            font-size: 24px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .order-id {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .checkmark-container {
+            background-color: #28a745;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+        }
+
+        .checkmark {
+            font-size: 30px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="checkmark-container">
+            <span class="checkmark">✔</span>
+        </div>
+        <h1>Order Confirmed!</h1>
+        <p>Your order ID: <span id="orderId" class="order-id"></span></p>
+        <p>Thank you for your purchase!</p>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        document.getElementById('orderId').textContent = urlParams.get('order_id');
+    </script>
+
+</body>
+
+</html>

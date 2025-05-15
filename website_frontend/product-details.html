@@ -1,0 +1,2621 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title -->
+    <title> Graba2z- E-commerce website</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/logo/favicon.png">
+
+    <link rel="stylesheet" href="assets/css/footer.css" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- select 2 -->
+    <link rel="stylesheet" href="assets/css/select2.min.css">
+    <!-- Slick -->
+    <link rel="stylesheet" href="assets/css/slick.css">
+
+
+
+    <!-- Jquery Ui -->
+    <link rel="stylesheet" href="assets/css/jquery-ui.css">
+    <!-- animate -->
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="assets/css/aos.css">
+    <!-- Main css -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link href="https://unpkg.com/phosphor-icons@1.4.2/src/css/ph.min.css" rel="stylesheet">
+
+
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <style>
+       /* Hide sidebar by default */
+    .sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: auto;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  transition: 0.3s ease;
+  padding-top: 60px;
+  z-index: 999;
+}
+
+/* Sidebar content scrollable */
+.sidebar-inner {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.sidebar a {
+  display: block;
+  padding: 12px 20px;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  background: #fff4f4;
+  color: rgb(49, 136, 49);
+}
+
+/* Menu button */
+.menu-btn {
+  display: none;
+  position:absolute;
+  top: 41px;
+  right: 31px;
+  font-size: 24px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  z-index: 1000;
+  border-radius: 5px;
+  text-align: left;
+}
+
+ /* Show on mobile and tablet only */
+@media (max-width: 1024px) {
+  .menu-btn {
+    display: block;
+  }
+
+  .sidebar {
+    display: block;
+  }
+}
+
+ /* Hide on larger screens  */
+@media (min-width: 1025px) {
+  .sidebar {
+    display: none !important;
+  }
+
+  .menu-btn {
+    display: none !important;
+  }
+} 
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 17px; /* small arrow icon */
+    
+    color: rgb(255, 255, 255);
+    border-radius: 50%;
+  }
+  .qty-box {
+    border: 1px solid #ffc107;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .qty-btn {
+    background-color: #fff3cd;
+    border: none;
+    color: #856404;
+    padding: 4px 14px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 40px;
+    text-align: center;
+  }
+
+  .qty-input {
+    width: 45px;
+    text-align: center;
+    border: none;
+    background-color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .qty-input:focus {
+    outline: none;
+  }
+
+  .qty-btn:hover {
+    background-color: #ffe8a1;
+  }
+  /* custom hover */
+  #hover:hover {
+   color: #86c232 !important;
+}
+.dropdown-item:hover {
+    color: #86c232 !important;
+}
+
+  .badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 4px;
+  }
+
+  .badge-blue {
+    background-color:#FDD835;
+    color: white;
+  }
+
+  .badge-green {
+    background-color: #90C309;
+    color: white;
+  }
+
+   /* first dropdown */
+      /* Custom Dropdown Styles */
+      .magnifier-lens {
+  position: absolute;
+  border: 2px solid #000;
+  width: 150px;
+  height: 150px;
+  
+  pointer-events: none;
+  visibility: hidden;
+  background-repeat: no-repeat;
+  background-size: 200% 200%;
+  z-index: 999;
+}
+
+
+    
+
+.cross-button:hover {
+  filter: invert(17%) sepia(97%) saturate(7472%) hue-rotate(357deg) brightness(98%) contrast(115%);
+}
+.cross-button {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath d='M2.293 2.293a1 1 0 011.414 0L8 6.586l4.293-4.293a1 1 0 011.414 1.414L9.414 8l4.293 4.293a1 1 0 01-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 01-1.414-1.414L6.586 8 2.293 3.707a1 1 0 010-1.414z'/%3E%3C/svg%3E");
+  background-color: #000;
+}
+
+.magnifier-lens {
+  position: absolute;
+  border: 2px solid #000;
+  width: 200px; /* Increased from 120px */
+  height: 200px;
+  border-radius: 50%;
+  pointer-events: none;
+  visibility: hidden;
+  background-repeat: no-repeat;
+  background-size: 300% 300%; /* Adjust as needed */
+  z-index: 999;
+}
+
+
+      
+</style>
+</head>
+<body>
+    <div id="top-header"></div>
+    <!-- ======================= Middle Header Start ========================= -->
+    <header class="header-middle bg-white border-bottom border-gray-100">
+        <div class="container container-lg">
+            <nav class="header-inner flex-between">
+                <!-- Logo Start -->
+                <div class="logo">
+                    <a href="index.html" class="link">
+                        <img src="assets/images/logo/logo1.svg" style="width: 170px; height: 70px;" alt="Logo">
+                    </a>
+                </div>
+                <!-- Logo End  -->
+
+                <!-- form location Start -->
+                <form id="search-form" class="flex-align flex-wrap form-location-wrapper">
+                    <div
+                        class="search-category d-flex h-48 select-border-end-0 radius-end-0 search-form d-sm-flex d-none">
+                        <div class="search-form__wrapper position-relative">
+                            <input type="text" id="search-input"
+                                class="search-form__input common-input py-13 ps-16 pe-18 rounded-pill pe-44"
+                                placeholder="Search for a product or brand">
+                            <button type="submit"
+                                class="w-32 h-32 rounded-circle flex-center text-xl text-white position-absolute top-50 translate-middle-y inset-inline-end-0 me-8"
+                                style="background-color: #a3d02c;">
+                                <i class="ph ph-magnifying-glass"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <!-- form location start -->
+
+                <!-- Header Middle Right start -->
+                <div class="header-right flex-align d-lg-block d-none">
+                    <div class="flex-align flex-wrap gap-12">
+                        <button type="button" class="search-icon flex-align d-lg-none d-flex gap-4 item-hover">
+                            <span class="text-2xl text-gray-700 d-flex position-relative item-hover__text">
+                                <i class="ph ph-magnifying-glass"></i>
+                            </span>
+                        </button>
+                        <a href="cart.html" class="flex-align gap-4 item-hover">
+                            <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
+                                <i class="ph ph-heart"></i>
+                                <span
+                                    class="w-16 h-16 flex-center rounded-circle text-white text-xs position-absolute top-n6 end-n4"
+                                    style="background-color: #a3d02c;">0</span>
+                            </span>
+                            <span class="text-md text-gray-500 item-hover__text d-none d-lg-flex">Wishlist</span>
+                        </a>
+                        <a href="cart.html" class="flex-align gap-4 item-hover">
+                            <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
+                                <i class="ph ph-shopping-cart-simple"></i>
+                                <span
+                                    class="w-16 h-16 flex-center rounded-circle text-white text-xs position-absolute top-n6 end-n4 cart-item-count"
+                                    style="background-color: #a3d02c;">0</span>
+                            </span>
+                            <span class="text-md text-gray-500 item-hover__text d-none d-lg-flex">Cart</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Header Middle Right End  -->
+            </nav>
+        </div>
+        <!-- Menu Button for Mobile/Tablet Only start-->
+<div class="menu-btn" onclick="toggleSidebar()">☰</div>
+
+<!-- Sidebar Only For Mobile/Tablet -->
+<div id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+    <ul>
+    
+      <a href="shop.html?category=Desktops&brand=Lenovo">Lenovo Desktops </a>
+  </li>
+  <li>
+      <a href="shop.html?category=Desktops&brand=Dell"> Dell Desktops</a>
+  </li>
+  <li>
+      <a href="shop.html?category=Desktops&brand=Asus"> Asus Desktops</a>
+  </li>
+  <li>
+      <a href="shop.html?category=Desktops&brand=Acer"> Acer Desktops </a>
+  </li>
+  <li>
+      <a href="shop.html?category=Desktops&brand=HP"> HP Desktops</a>
+  </li>
+  <li>
+    <a href="shop.html?category=Monitors&brand=Lenovo"> Lenovo Monitors</a>
+</li>
+<li>
+    <a href="shop.html?category=Monitors&brand=MSI"> MSI Monitors</a>
+</li>
+<li>
+    <a href="shop.html?category=Monitors&brand=HP"> HP Monitors</a>
+</li>
+<li>
+    <a href="shop.html?category=Monitors&brand=Dell"> Dell Monitors</a>
+</li>
+<li>
+    <a href="shop.html?category=Monitors&brand=Asus"> Asus Monitors</a>
+</li>
+<li>
+    <a href="shop.html?category=Monitors&brand=Acer"> Acer Monitors</a>
+</li>
+<li>
+    <a href="shop.html?category=Monitors&brand=Samsung"> Samsung
+        Monitors</a>
+</li>
+<li>
+    <a href="shop.html?category=Monitors&brand=AOC"> AOC Monitors</a>
+</li>
+<li>
+    <a href="shop.html?category=Monitors&brand=Viewsonic"> Viewsonic
+        Monitors</a>
+</li>
+<li>
+    <a href="shop.html?category=Monitors&brand=LG"> LG Monitors</a>
+</li>
+<li>
+  <a href="shop.html?category=Laptops&brand=Lenovo"> Lenovo Laptops</a>
+</li>
+<li>
+  <a href="shop.html?category=Laptops&brand=MSI"> MSI Laptops</a>
+</li>
+<li>
+  <a href="shop.html?category=Laptops&brand=HP"> HP Laptops</a>
+</li>
+<li>
+  <a href="shop.html?category=Laptops&brand=Dell"> Dell Laptops</a>
+</li>
+<li>
+  <a href="shop.html?category=Laptops&brand=Asus"> Asus Laptops</a>
+</li>
+<li>
+  <a href="shop.html?category=Laptops&brand=Acer"> Acer Laptops</a>
+</li>
+<li>
+  <a href="shop.html?category=Laptops&brand=MI"> MI Laptops</a>
+</li>
+<li>
+  <a href="shop.html?category=Laptops&brand=Apple"> Apple Laptops</a>
+</li>
+<li>
+  <a href="shop.html?category=Laptops&brand=Microsoft"> Microsoft
+      Laptops</a>
+</li>
+<li>
+  <a href="shop.html?category=Printers%20&%20Copier&brand=HR"> HR Printer
+      & Copier </a>
+</li>
+<li>
+  <a href="shop.html?category=Printers%20&%20Copier&brand=Canon"> Canon
+      Printer & Copier</a>
+
+<li>
+  <a href="shop.html?category=Printers%20&%20Copier&brand=Brother">
+      Brother Printer & Copier</a>
+</li>
+<li>
+  <a href="shop.html?category=Printers%20&%20Copier&brand=Ricoh"> Ricoh
+      Printer & Copier</a>
+</li>
+<li>
+  <a href="shop.html?category=Printers%20&%20Copier&brand=Epson"> Epson
+      Printer & Copier</a>
+</li>
+<li>
+  <a href="shop.html?category=Printers%20&%20Copier&brand=Xerox"> Xerox
+      Printer & Copier</a>
+</li>
+<li>
+  <a href="shop.html?category=Routers&brand=TP%20Link"> TP Link Routers
+  </a>
+</li>
+<li>
+  <a href="shop.html?category=Projectors&brand=Optoma"> Optoma</a>
+</li>
+<li>
+  <a href="shop.html?category=Projectors&brand=BENQ"> BENQ</a>
+</li>
+<li>
+  <a href="shop.html?category=Projectors&brand=LG"> LG </a>
+</li>
+<li>
+  <a href="shop.html?category=Bags"> Bags</a>
+</li>
+<li>
+  <a href="shop.html?category=RAM"> RAMs</a>
+</li>
+<li>
+  <a href="shop.html?category=Mouse"> Mouse </a>
+</li>
+<li>
+  <a href="shop.html?category=Keyboard"> keyboard </a>
+</li>
+<li>
+  <a href="shop.html?category=Hard%20Drives"> Hard Drives</a>
+</li>
+<li>
+  <a href="shop.html?category=Headphones"> headphones </a>
+</li>
+<li>
+  <a href="shop.html?category=Storage%20Devices"> storage devices </a>
+</li>
+<li>
+  <a href="shop.html?category=Graphic%20Cards"> Graphic Cards </a>
+</li>
+<li>
+  <a href="shop.html?categoryMotherboard"> Motherboard </a>
+</li>
+<li>
+  <a href="shop.html?category=Power%20Supply"> Power Supply </a>
+</li>
+<li>
+  <a href="shop.html?category=Cables"> cables</a>
+</li>
+<li>
+  <a href="shop.html?category=HDMI"> HDMI</a>
+</li>
+<li>
+  <a href="shop.html?category=Adapter"> Adapters </a>
+</li>
+<li>
+  <a href="shop.html?category=USB"> USB C HUB </a>
+</li>
+<li>
+  <a href="shop.html?category=Connectors"> Connectors </a>
+</li>
+<li>
+  <a href="shop.html?category=Display%20Port"> Display Port </a>
+</li>
+<li>
+  <a href="shop.html?category=USB%20Dongles"> USB Dongles </a>
+</li>
+<li>
+  <a href="shop.html?category=Wifi%20Dongles"> Wifi Dongles </a>
+</li>
+</ul>
+
+
+  
+  </div>
+</div>
+<!-- Menu Button for Mobile/Tablet Only end-->
+    </header>
+    <!-- ======================= Middle Header End ========================= -->
+
+    <!-- ==================== Header Start Here ==================== -->
+    <header class="header bg-white border-bottom border-gray-100">
+        <div class="container container-lg">
+            <nav class="header-inner d-flex justify-content-between gap-8">
+                <div class="flex-align menu-category-wrapper">
+                    <!-- Category Dropdown Start -->
+                    <div class="category on-hover-item">
+                        <div
+                            class="responsive-dropdown on-hover-dropdown common-dropdown nav-submenu p-0 submenus-submenu-wrapper">
+                            <button type="button"
+                                class="close-responsive-dropdown rounded-circle text-xl position-absolute inset-inline-end-0 inset-block-start-0 mt-4 me-8 d-lg-none d-flex">
+                                <i class="ph ph-x"></i> </button>
+                            <!-- Logo Start -->
+                            <div class="logo px-16 d-lg-none d-block">
+                                <a href="index.html" class="link">
+                                    <img src="assets/images/logo/logo.png" alt="Logo">
+                                </a>
+                            </div>
+                            <!-- Logo End -->
+                            <ul class="scroll-sm p-0 py-8 w-300 max-h-400 overflow-y-auto">
+                                <li class="has-submenus-submenu">
+                                    <a href="javascript:void(0)"
+                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                        <span class="text-xl d-flex"><i class="ph ph-carrot"></i></span>
+                                        <span> All in One</span>
+                                        <span class="icon text-md d-flex ms-auto"><i
+                                                class="ph ph-caret-right"></i></span>
+                                    </a>
+                                    <div class="submenus-submenu py-16">
+                                        <h6 class="text-lg px-16 submenus-submenu__title">All In One</h6>
+                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                            <li>
+                                                <a href="shop.html">Asus All in One</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html">Acer All in One</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html">Lenovo all In One </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html">HP All In One</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html">Dell All in One</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html">Apple iMac</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="has-submenus-submenu">
+                                    <a href="javascript:void(0)"
+                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                                        <span>Desktop</span>
+                                        <span class="icon text-md d-flex ms-auto"><i
+                                                class="ph ph-caret-right"></i></span>
+                                    </a>
+                                    <div class="submenus-submenu py-16">
+                                        <h6 class="text-lg px-16 submenus-submenu__title">Desktop</h6>
+                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                            <li>
+                                                <a href="shop.html">Lenovo Desktops </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Dell Desktops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Asus Desktops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Acer Desktop </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> HP Desktop</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="has-submenus-submenu">
+                                    <a href="javascript:void(0)"
+                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                                        <span>Monitors</span>
+                                        <span class="icon text-md d-flex ms-auto"><i
+                                                class="ph ph-caret-right"></i></span>
+                                    </a>
+                                    <div class="submenus-submenu py-16">
+                                        <h6 class="text-lg px-16 submenus-submenu__title">Monitors</h6>
+                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                            <li>
+                                                <a href="shop.html"> Lenovo Monitors</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> MSI Monitors</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> HP Monitors</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Dell Monitors</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Asus Monitors</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Acer Monitors</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> samsung Monitors</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> AOC Monitors</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Viewsonic Monitors</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> LG Monitors</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="has-submenus-submenu">
+                                    <a href="javascript:void(0)"
+                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                                        <span>Mobiles</span>
+                                        <span class="icon text-md d-flex ms-auto"><i
+                                                class="ph ph-caret-right"></i></span>
+                                    </a>
+                                    <div class="submenus-submenu py-16">
+                                        <h6 class="text-lg px-16 submenus-submenu__title">Mobiles</h6>
+                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                            <li>
+                                                <a href="shop.html"> Apple</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="has-submenus-submenu">
+                                    <a href="javascript:void(0)"
+                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                                        <span>Laptops</span>
+                                        <span class="icon text-md d-flex ms-auto"><i
+                                                class="ph ph-caret-right"></i></span>
+                                    </a>
+                                    <div class="submenus-submenu py-16">
+                                        <h6 class="text-lg px-16 submenus-submenu__title">Laptops</h6>
+                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                            <li>
+                                                <a href="shop.html"> Lenovo Laptops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> MSI Laptops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> HP Laptops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Dell Laptops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Asus Laptops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Acer Laptops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> MI Laptops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Apple Laptops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Microsofts Laptops</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="has-submenus-submenu">
+                                    <a href="javascript:void(0)"
+                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                                        <span>printer & Copier</span>
+                                        <span class="icon text-md d-flex ms-auto"><i
+                                                class="ph ph-caret-right"></i></span>
+                                    </a>
+                                    <div class="submenus-submenu py-16">
+                                        <h6 class="text-lg px-16 submenus-submenu__title">printer & Copier</h6>
+                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                            <li>
+                                                <a href="shop.html"> HR printer & Copier </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Canon printer & Copier</a>
+
+                                            <li>
+                                                <a href="shop.html"> Brother Printer & Copier</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Ricoh printer & Copier</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Epson printer & Copier</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Xerox printer & Copier</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="has-submenus-submenu">
+                                    <a href="javascript:void(0)"
+                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                                        <span>Routers</span>
+                                        <span class="icon text-md d-flex ms-auto"><i
+                                                class="ph ph-caret-right"></i></span>
+                                    </a>
+                                    <div class="submenus-submenu py-16">
+                                        <h6 class="text-lg px-16 submenus-submenu__title">Routers</h6>
+                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                            <li>
+                                                <a href="shop.html"> TP Link Routers </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="has-submenus-submenu">
+                                    <a href="javascript:void(0)"
+                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                                        <span>projector</span>
+                                        <span class="icon text-md d-flex ms-auto"><i
+                                                class="ph ph-caret-right"></i></span>
+                                    </a>
+                                    <div class="submenus-submenu py-16">
+                                        <h6 class="text-lg px-16 submenus-submenu__title">projector</h6>
+                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                            <li>
+                                                <a href="shop.html"> Optoma</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> BENQ</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> LG </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="has-submenus-submenu">
+                                    <a href="javascript:void(0)"
+                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                                        <span>Accessories</span>
+                                        <span class="icon text-md d-flex ms-auto"><i
+                                                class="ph ph-caret-right"></i></span>
+                                    </a>
+                                    <div class="submenus-submenu py-16">
+                                        <h6 class="text-lg px-16 submenus-submenu__title">Accessories</h6>
+                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                            <li>
+                                                <a href="shop.html"> Bags</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> RAMs</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Mouse </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> keyboard </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Hard Drives</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> headphones </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> storage devices </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Graphics Card </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Motherboard </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Power Supply </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li class="has-submenus-submenu">
+                                    <a href="javascript:void(0)"
+                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                                        <span>Networking</span>
+                                        <span class="icon text-md d-flex ms-auto"><i
+                                                class="ph ph-caret-right"></i></span>
+                                    </a>
+                                    <div class="submenus-submenu py-16">
+                                        <h6 class="text-lg px-16 submenus-submenu__title">Networking</h6>
+                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                            <li>
+                                                <a href="shop.html"> cables</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> HDMI</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Adopters </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> USB C HUB </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Connectors </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Display Port </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> USB Dongles </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html"> Wifi Dongles </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Category Dropdown End  -->
+
+                    <!-- Menu Start  -->
+                    <div class="header-menu d-lg-block d-none">
+                        <!-- Nav Menu Start -->
+                        <ul class="nav-menu flex-align ">
+                            <li class="on-hover-item nav-menu__item has-submenu activePage">
+                                <a href="javascript:void(0)" class="nav-menu__link">All In One</a>
+                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                                    <li class="common-dropdown__item nav-submenu__item activePage">
+                                        <a href="shop.html?brand=Apple"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Apple
+                                            All in One</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?brand=Asus"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Asus
+                                            All In One</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?brand=Acer"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Acer
+                                            All In One</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?brand=Lenovo"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Lenovo
+                                            All In One</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?brand=HP"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Hp All
+                                            In One</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?brand=Dell"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Dell
+                                            All In One</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="on-hover-item nav-menu__item has-submenu">
+                                <a href="javascript:void(0)" class="nav-menu__link">Desktop</a>
+                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Desktops&brand=Lenovo"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Lenovo
+                                            Desktops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Desktops&brand=Dell"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Dell
+                                            Desktops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Desktops&brand=Asus"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Asus
+                                            Desktops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Desktops&brand=Acer"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Acer
+                                            Desktops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Desktops&brand=HP"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Hp
+                                            Desktops</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="on-hover-item nav-menu__item has-submenu">
+                                <a href="javascript:void(0)" class="nav-menu__link">Monitors</a>
+                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Monitors&brand=Lenovo"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Lenovo
+                                            Monitors</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Monitors&brand=MSI"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">MSI
+                                            Monitors</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Monitors&brand=HP"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Hp
+                                            Monitors</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Monitors&brand=Dell"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Dell
+                                            Monitors</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Monitors&brand=Asus"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Asus
+                                            Monitors</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Monitors&brand=Acer"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Acer
+                                            Monitors</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Monitors&brand=Samsung"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Samsung
+                                            Monitors</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Monitors&brand=AOC"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">AOC
+                                            Monitors</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Monitors&brand=Viewsonic"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Viewsonic
+                                            Monitors</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Monitors&brand=LG"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">LG
+                                            Monitors</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="on-hover-item nav-menu__item has-submenu">
+                                <a href="javascript:void(0)" class="nav-menu__link">Mobiles</a>
+                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Mobiles&brand=Apple"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Apple</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="on-hover-item nav-menu__item has-submenu">
+                                <a href="javascript:void(0)" class="nav-menu__link">Laptops</a>
+                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Laptops&brand=Lenovo"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Lenovo
+                                            Laptops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Laptops&brand=MSI"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">MSI
+                                            Laptops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Laptops&brand=HP"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Hp
+                                            Laptops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Laptops&brand=Dell"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Dell
+                                            Laptops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Laptops&brand=Asus"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Asus
+                                            Laptops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Laptops&brand=Acer"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Acer
+                                            Laptops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Laptops&brand=MI"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">MI
+                                            Laptops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Macbooks&brand=Apple"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Apple
+                                            Macbook</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Laptops&brand=Microsoft"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Microsoft
+                                            Surface</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="on-hover-item nav-menu__item has-submenu">
+                                <a href="javascript:void(0)" class="nav-menu__link">Printers & Copier</a>
+                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Printers%20&%20Copier&brand=HP"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Hp
+                                            Printers & Copier</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Printers%20&%20Copier&brand=Canon"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Canon
+                                            Printers & Copier</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Printers%20&%20Copier&brand=Brother"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Brother
+                                            Printers & Copier</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Printers%20&%20Copier&brandRicoh"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Ricoh
+                                            Printers & Copier</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Printers%20&%20Copier&brand=Epson"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Epson
+                                            Printers & Copier</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Printers%20&%20Copier&brand=Xerox"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Xerox
+                                            Printers & Copier</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="on-hover-item nav-menu__item has-submenu">
+                                <a href="javascript:void(0)" class="nav-menu__link">Routers</a>
+                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Routers&brand=Tp%20Link"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Tp Link
+                                            Routers</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="on-hover-item nav-menu__item has-submenu">
+                                <a href="javascript:void(0)" class="nav-menu__link">Projector</a>
+                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Projectors&brand=Optoma"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Optoma</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Projectors&brand=BENQ"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">BENQ</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Projectors&brand=LG"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">LG</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="on-hover-item nav-menu__item has-submenu">
+                                <a href="javascript:void(0)" class="nav-menu__link">Accessories</a>
+                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Bags"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Bags</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=RAM"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">RAMs</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Mouse"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Mouse</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Keyboard"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Keyboard</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Hard%20Drives"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Hard
+                                            Drives</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Headphones"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Headphones</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Storage%20Devices"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Storage
+                                            Devices</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Graphic%20Cards"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Graphic
+                                            Cards</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Motherboard"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Motherboard</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Power%20Supply"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Power
+                                            Supply</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="on-hover-item nav-menu__item has-submenu">
+                                <a href="javascript:void(0)" class="nav-menu__link">Networking</a>
+                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Cables"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">cables</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=HDMI"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">HDMI</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Adopters"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Adopters</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=USB"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">USB C
+                                            HUB</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Connectors"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Connectors</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Display%20Port"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Display
+                                            Port</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=USB%20Dongles"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">USB
+                                            Dongles</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Wifi%20Dongles"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Wifi
+                                            Dongles</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-menu__item">
+                                <a href="contact.html" class="nav-menu__link">Contact Us</a>
+                            </li>
+                        </ul>
+                        <!-- Nav Menu End -->
+                    </div>
+                    <!-- Menu End  -->
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- ==================== Header End Here ==================== -->
+
+    <!-- ========================= Breadcrumb Start =============================== -->
+    <div class="breadcrumb py-26" style="background-color: #cdf19b;">
+        <div class="container container-lg">
+            <div class="breadcrumb-wrapper flex-between flex-wrap gap-16">
+                <h6 class="mb-0 " style="color:black !important ;">Shop Details</h6>
+                <ul class="flex-align gap-8 flex-wrap">
+                    <li class="text-sm">
+                        <a href="index.html" class="text-main-600 flex-align gap-8">
+                            <i class="ph ph-house"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="flex-align text-gray-500">
+                        <i class="ph ph-caret-right"></i>
+                    </li>
+                    <li class="text-sm">
+                        <a href="shop.html" class="text-main-600 flex-align gap-8">
+                            Shop
+                        </a>
+                    </li>
+                    <li class="flex-align text-gray-500">
+                        <i class="ph ph-caret-right"></i>
+                    </li>
+                    
+                    </li>
+                    <li class="text-sm text-neutral-600" style="color:rgb(63, 102, 63) !important;">
+                        Product Details
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- ========================= Breadcrumb End =============================== -->
+
+    <section class="product-details py-10">
+        <div class="container container-lg">
+            <div class="row gy-4">
+                <div class="col-lg-9">
+                    <div class="row gy-4">
+                        <div class="col-xl-5">
+                            <div class="product-details__left">
+
+                               
+<!-- <div class="product-details__thumb flex-center h-100">
+  <img id="specific-product-image" class="py-10"  style="cursor: zoom-in;" />
+</div> -->
+<div class="product-details__thumb flex-center h-100">
+  <img id="specific-product-image" class="py-10" data-bs-toggle="modal" data-bs-target="#imageModal" style="cursor: pointer;"  style="cursor: zoom-in;">
+</div>
+<!-- <div class="product-details__thumb flex-center h-100">
+  <img id="specific-product-image" src="your-image.jpg" class="py-10" style="cursor: zoom-in;" />
+</div> -->
+
+
+
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content bg-transparent border-0">
+      
+      <!-- Relative wrapper for positioning the button on the image -->
+      <div class="position-relative d-inline-block mx-auto">
+        
+        <!-- The image -->
+        <img id="modal-product-image" src="" alt="Enlarged Product Image"
+             class="img-fluid rounded-3"
+             style="max-height: 80vh; width: auto;">
+        
+        <!-- Close button OVER the image, inside top-right corner -->
+        <button type="button"
+        class="btn-close cross-button position-absolute"
+        style="top: 10px; right: 10px; z-index: 10; filter: invert(1);"
+        data-bs-dismiss="modal"
+        aria-label="Close">
+</button>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+                             
+
+                               
+                                <div style="padding-bottom:20px;">
+                                <div class="swiper mySwiper" style="width: 100%; max-width: 520px;">
+                                    <div class="swiper-wrapper" id="product-thumbnails">
+                                      
+                                    </div>
+                                  
+                                    
+                                    <div class="swiper-button-next" style="background-color: #0c0c0b; height: 60px;width: 22px; border-radius: 5%;"></div>
+                                    <div class="swiper-button-prev" style="background-color: #0c0c0b; height: 60px;width: 22px; border-radius: 5%;"></div>
+                                  </div>
+                                </div>
+                                  
+                               
+                                
+                                  
+                                  
+                                
+                          
+                            </div>
+                        </div>
+                        <div class="col-xl-7 p-6">
+                            <!-- foe my self -->
+                            <div class="flex-align gap-8">
+                               
+                              
+                                <span id="product-off" class="badge badge-blue" style="display: none;">0% Off</span>
+                                <span id="product-off-label" class="badge badge-green" style="display: none;">On Sale</span>
+                              </div>
+                              
+                              
+                              
+                            <div class="product-details__content">
+                                <!-- <h5 class="mb-12">Lay's Potato Chips Onion Flavored</h5> -->
+                                <h6 id="product-name" class="mb-12" style="color: #000 !important;">Loading...</h6>
+                                <div class="flex-align flex-wrap gap-12">
+
+                                </div>
+                           
+                                <!-- <p class="text-gray-700">Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada tincidunt. Class aptent taciti sociosqu ad litora torquent</p> -->
+                                <div class="flex-align flex-wrap gap-32">
+                                    <div class="flex-align gap-8">
+                                        <!-- <h4 class="mb-0">$25.00</h4> -->
+                                        <h6 id="product-price" class="mb-0" style="color: #000 !important;">$0.00</h6>
+                                        <span id="product-discount" class="text-md text-danger" style="text-decoration: line-through;"></span>
+                                        <!-- <span class="text-md text-gray-500">$38.00</span> -->
+                                        <!-- <span class="text-md text-gray-500">Inclusive VAT</span> -->
+                                        <span id="product-tax" class="text-md text-gray-500">Inclusive VAT</span>
+                                    </div>
+                                </div>
+                                <div class=" gap-16  rounded-8 py-16 px-24">
+                                    <div class="flex-align gap-16">
+                                        <span style="font-size: 17px; font-weight: bold; color:  #000000;">Available in
+                                            Stock</span>
+                                    </div>
+
+                                    <div class="product-details mt-4 text-dark">
+                                        <div class="product-detail-line">
+                                            <!-- <strong>SKU:</strong> <span id="product-sku">123456</span> -->
+                                            <strong>SKU:</strong> <span id="product-sku">Loading...</span>
+                                        </div>
+                                        <div class="product-detail-line">
+                                            <!-- <strong>Categories:</strong> <span id="product-categories">Electronics, Gadgets</span> -->
+                                            <strong>Categories:</strong> <span id="product-categories">Loading...</span>
+                                        </div>
+                                        <div class="product-detail-line">
+                                            <!-- <strong>Brand:</strong> <span id="product-brand">BrandName</span> -->
+                                            <strong>Brand:</strong> <span id="product-brand">Loading...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <span class="text-gray-900 d-block mb-8">Quantity:</span> -->
+                                <div class="flex-between gap-16 flex-wrap mt-3">
+                                    <div class="flex-align flex-wrap gap-16" id="addToCart">
+
+                                    </div>
+                                    <div class="flex-align gap-12" style="margin-top: 10px !;">
+                                        <div id="favourite">
+
+                                        </div>
+                                        <a href="#"
+                                            class="w-52 h-52 bg-main-50 text-main-600 text-xl hover-bg-main-600 hover-text-white flex-center rounded-circle">
+                                            <i class="ph ph-shuffle"></i>
+                                        </a>
+                                        <a href="#"
+                                            class="w-52 h-52 bg-main-50 text-main-600 text-xl hover-bg-main-600 hover-text-white flex-center rounded-circle">
+                                            <i class="ph ph-share-network"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                           
+                                <div class="mt-32 flex-align flex-wrap gap-32">
+
+                                    <!-- <div style="display: flex; flex-direction: row; gap: 10px;">
+                                    <a href="#" class="btn btn-main  rounded-pill">Order on What'sApp</a>
+                                    <a href="#" class="btn btn-main rounded-pill">Request a callback</a>
+                                    <a href="#" class="btn btn-main rounded-pill">Request Bulk Purchase</a>
+                                </div> -->
+                                  
+                                    <div style="display: flex; flex-direction: row; gap: 10px;">
+                                        <!-- Chat With Specialist -->
+                                        <a href="#" class="btn d-flex align-items-center rounded"
+                                            style="border: 1px solid black; padding: 10px 15px; text-decoration: none;"
+                                            onmouseover="this.children[0].style.color='#34A853'; this.children[1].src='https://img.icons8.com/ios-filled/20/34A853/whatsapp.png';"
+                                            onmouseout="this.children[0].style.color='black'; this.children[1].src='https://img.icons8.com/ios-filled/20/000000/whatsapp.png';"
+                                            onmousedown="this.children[0].style.color='#34A853'; this.children[1].src='https://img.icons8.com/ios-filled/20/34A853/whatsapp.png';"
+                                            onmouseup="this.children[0].style.color='black'; this.children[1].src='https://img.icons8.com/ios-filled/20/000000/whatsapp.png';">
+                                            <span style="color: black;">Chat With Specialist</span>
+                                            <img src="https://img.icons8.com/ios-filled/20/000000/whatsapp.png"
+                                                style="margin-left: 5px;">
+                                        </a>
+
+                                        <!-- Request a Callback -->
+                                        <a href="#" class="btn d-flex align-items-center rounded"
+                                            style="border: 1px solid black; padding: 10px 15px; text-decoration: none;"
+                                            onmouseover="this.children[0].style.color='#34A853'; this.children[1].src='https://img.icons8.com/ios-filled/20/34A853/phone.png';"
+                                            onmouseout="this.children[0].style.color='black'; this.children[1].src='https://img.icons8.com/ios-filled/20/000000/phone.png';"
+                                            onmousedown="this.children[0].style.color='#34A853'; this.children[1].src='https://img.icons8.com/ios-filled/20/34A853/phone.png';"
+                                            onmouseup="this.children[0].style.color='black'; this.children[1].src='https://img.icons8.com/ios-filled/20/000000/phone.png';">
+                                            <span style="color: black;">Request a Callback</span>
+                                            <img src="https://img.icons8.com/ios-filled/20/000000/phone.png"
+                                                style="margin-left: 5px;">
+                                        </a>
+
+                                        <!-- Request Bulk Purchase -->
+                                        <a href="#" class="btn d-flex align-items-center rounded"
+                                            style="border: 1px solid black; padding: 10px 15px; text-decoration: none;"
+                                            onmouseover="this.children[0].style.color='#34A853'; this.children[1].src='https://img.icons8.com/ios-filled/20/34A853/stack-of-paper.png';"
+                                            onmouseout="this.children[0].style.color='black'; this.children[1].src='https://img.icons8.com/ios-filled/20/000000/stack-of-paper.png';"
+                                            onmousedown="this.children[0].style.color='#34A853'; this.children[1].src='https://img.icons8.com/ios-filled/20/34A853/stack-of-paper.png';"
+                                            onmouseup="this.children[0].style.color='black'; this.children[1].src='https://img.icons8.com/ios-filled/20/000000/stack-of-paper.png';">
+                                            <span style="color: black;">Request Bulk Purchase</span>
+                                            <img src="https://img.icons8.com/ios-filled/20/000000/stack-of-paper.png"
+                                                style="margin-left: 5px;">
+                                        </a>
+                                    </div>
+                                
+
+
+
+                                </div>
+                                <div class="mb-24">
+                                    <div class="mt-32 flex-align gap-12 mb-16">
+                                        <span
+                                            class="w-32 h-32 bg-white flex-center rounded-circle text-main-600 box-shadow-xl"><i
+                                                class="ph-fill ph-lightning" style="color: #90C309 !important;"></i></span>
+                                        <h6 class="text-md mb-0 fw-bold text-gray-900">Products are almost sold out</h6>
+                                    </div>
+                                    <div class="progress w-100 bg-gray-100 rounded-pill h-8" role="progressbar"
+                                        aria-label="Basic example" aria-valuenow="32" aria-valuemin="0"
+                                        aria-valuemax="100">
+                                        <div class="progress-bar  rounded-pill" style="width: 32%; background-color: #FFC107 !important;"></div>
+                                    </div>
+                                </div>
+                  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            
+
+                <div class="col-lg-3" style="padding-right: 40px !important;">
+                    <div class="product-details__sidebar overflow-hidden">
+                        <!-- Refund notice -->
+                        <div class="p-3 border rounded mb-3 m-5" style="background-color: #fff;">
+                            <p class="mb-0 fw-semibold text-dark mb-5" style="font-size: 13px;">
+                                This item can be change or replaced or refund within 15 days of the purchase day for Free 
+                                <a href="./refund-and-return.html" style="text-decoration: underline; color: #000;">Read More</a>
+                            </p>
+                        </div>
+                
+                        <!-- Other Country Notice -->
+                        <div class="p-3 border rounded d-flex align-items-center m-5 p-5" style="background-color: #dff9ec;">
+                            <i class="bi bi-truck me-2" style="font-size: 18px; color: #000;"></i>
+                            <p class="mb-0 fw-semibold text-dark" style="font-size: 14px;">
+                                Other Country our agent will contact for delivery Estimation.
+                            </p>
+                        </div>
+                
+                        <!-- Payment Icons -->
+                        <div class="text-center mb-3">
+                            <img src="./assets/images/thumbs/1.svg" alt="Payments" style="max-width: 100%; height: auto ; margin: 12px;">
+                        </div>
+                
+                        <!-- Coupon Button -->
+                        <div class="text-center mb-3 m-5">
+                            <button class="btn w-100 fw-bold" style="background-color: #fdd835; color: #000; font-size: 14px;">
+                                <i class="bi bi-tag me-1"></i> Get My Coupon
+                            </button>
+                        </div>
+                
+                        <!-- Trusted Shipping -->
+                        <div class="p-5 mt-5">
+                            <h6 class="fw-bold mb-1" style="font-size: 13px; color: #000;">TRUSTED SHIPPING</h6>
+                            <p class="mb-0 text-dark px-10" style="font-size: 15px;">
+                                Free shipping when you spend AED500 & above. Userfriendly atmosphere to Grab your AtoZ technology products.
+                            </p>
+                        </div>
+                
+                        <!-- Delivery Info -->
+                        <div class="border rounded p-10 mb-3 m-5">
+                            <h6 class="fw-bold mb-1" style="font-size: 15px; color: #000;">Express delivery Within All Mobile Cities In UAE</h6>
+                            <p class="mb-5 text-dark px-10" style="font-size: 15px; " >
+                                Grabatoz offers express delivery for all our customers to grab your orders in quick time without any further delay.
+                            </p>
+                            <h6 class="fw-bold mb-1" style="font-size: 15px; color: #000;">Delivery in remote areas</h6>
+                            <p class="mb-0 text-dark mt-5 px-10" style="font-size: 15px;">
+                                Delivery in remote areas will be considered as normal delivery which takes place within 3 working days. 
+                                <a href="terms-conditions.html" data-bs-toggle="modal" data-bs-target="#remoteDeliveryModal" style="color: #000; text-decoration: underline;">
+                                    Click for more details
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+              
+
+                <div class="modal fade" id="remoteDeliveryModal" tabindex="-1"
+                    aria-labelledby="remoteDeliveryModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content p-4">
+                            <div class="modal-header border-0">
+                                <h5 class="modal-title text-center w-100 mb-0 pb-0" id="remoteDeliveryModalLabel">
+                                    <span class="fw-bold" style="font-size: 22px; color: #86c232;">GRABATOZ</span>
+                                    <span class="fw-bold" style="font-size: 22px;">REMOTE DELIVERY</span>
+                                    <p class="mb-0 pb-2 fw-bold" style="font-size: 14px; color: black;">
+                                        Please check the Delivery time if you are from remote areas of the following
+                                        cities
+                                    </p>
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <!-- <p class="mb-0 pb-2" style="font-size: 14px; color: #333;">
+                                Please check the Delivery time if you are from remote areas of the following cities
+                            </p> -->
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <button class="btn w-100 d-flex justify-content-between align-items-center p-3"
+                                            style="border-radius: 25px; background-color: #f8f9fa; border: 1px solid #ddd; height: 35px;"
+                                            data-bs-toggle="collapse" data-bs-target="#abuDhabi" aria-expanded="false"
+                                            aria-controls="abuDhabi" onclick="toggleIcon(this)">
+                                            <span class="fw-bold text-black ms-20">ABU DHABI FAR AREA</span>
+                                            <i class="bi bi-plus icon-toggle text-black me-20"></i>
+                                        </button>
+                                        <div class="collapse mt-2" id="abuDhabi">
+                                            <div class="card card-body border-0">
+                                                <div class="row g-2">
+                                                    <div class="col-6 border p-2">GAYATHI</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">BEDA ZAYED</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">RUWAIS</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">HAMEEM, Liwa</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">AL DHAFRA</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">SILA</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">SWEIHAN OUTSIDE</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button class="btn w-100 d-flex justify-content-between align-items-center p-3"
+                                            style="border-radius: 25px; background-color: #f8f9fa; border: 1px solid #ddd; height: 35px;"
+                                            data-bs-toggle="collapse" data-bs-target="#sharjah" aria-expanded="false"
+                                            aria-controls="sharjah" onclick="toggleIcon(this)">
+                                            <span class="fw-bold text-black ms-20">SHARJAH FAR AREA</span>
+                                            <i class="bi bi-plus icon-toggle text-black me-20"></i>
+                                        </button>
+                                        <div class="collapse mt-2" id="sharjah">
+                                            <div class="card card-body border-0">
+                                                <div class="row g-2">
+                                                    <div class="col-6 border p-2">7TH INTERCHANGE (SCOUT CAMP)</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">ZUBAIR</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <button
+                                            class="btn w-100 d-flex justify-content-between align-items-center p-3 mt-16"
+                                            style="border-radius: 25px; background-color: #f8f9fa; border: 1px solid #ddd; height: 35px;"
+                                            data-bs-toggle="collapse" data-bs-target="#alAin" aria-expanded="false"
+                                            aria-controls="alAin" onclick="toggleIcon(this)">
+                                            <span class="fw-bold text-black ms-20">AL AIN FAR AREA</span>
+                                            <i class="bi bi-plus icon-toggle text-black me-20"></i>
+                                        </button>
+                                        <div class="collapse mt-2" id="alAin">
+                                            <div class="card card-body border-0">
+                                                <div class="row g-2">
+                                                    <div class="col-6 border p-2">NAHIL</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">SWEIHAN INSIDE</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">AL HAYER</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">SHUWAIB</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">AL JABEEB</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">AL QUA</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">AL WAGAN MAIN ST.</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">AJ DAH'RA</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">AL AIN TO ABU DHABI TRUCK ROAD</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">AL KHAZNA</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">REMAH MAIN ST.</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">ABU SAMRA</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">AL SAAD</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button
+                                            class="btn w-100 d-flex justify-content-between align-items-center p-3 mt-16"
+                                            style="border-radius: 25px; background-color: #f8f9fa; border: 1px solid #ddd; height: 35px;"
+                                            data-bs-toggle="collapse" data-bs-target="#fujairah" aria-expanded="false"
+                                            aria-controls="fujairah" onclick="toggleIcon(this)">
+                                            <span class="fw-bold text-black ms-20">FUJAIRAH FAR AREAS</span>
+                                            <i class="bi bi-plus icon-toggle text-black me-20"></i>
+                                        </button>
+                                        <div class="collapse mt-2" id="fujairah">
+                                            <div class="card card-body border-0">
+                                                <div class="row g-2">
+                                                    <div class="col-6 border p-2">RAMLAH</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">AL QOUA</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">WADI AL ABADILA</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">AL HALA</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">TAWEEN FUJ</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">RIYAMAH</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <button class="btn w-100 d-flex justify-content-between align-items-center p-3"
+                                            style="border-radius: 25px; background-color: #f8f9fa; border: 1px solid #ddd; height: 35px;"
+                                            data-bs-toggle="collapse" data-bs-target="#dubai" aria-expanded="false"
+                                            aria-controls="dubai" onclick="toggleIcon(this)">
+                                            <span class="fw-bold ms-20 text-black">DUBAI FAR AREA</span>
+                                            <i class="bi bi-plus icon-toggle text-black me-20"></i>
+                                        </button>
+                                        <div class="collapse mt-2" id="dubai">
+                                            <div class="card card-body border-0">
+                                                <div class="row g-2">
+                                                    <div class="col-6 border p-2">DUBAI OUTER BYPASS</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">BAB AL SHAMS</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <button class="btn w-100 d-flex justify-content-between align-items-center p-3"
+                                            style="border-radius: 25px; background-color: #f8f9fa; border: 1px solid #ddd; height: 35px;"
+                                            data-bs-toggle="collapse" data-bs-target="#rak" aria-expanded="false"
+                                            aria-controls="rak" onclick="toggleIcon(this)">
+                                            <span class="fw-bold text-black ms-20">RAS AL KHAIMAH FAR AREA</span>
+                                            <i class="bi bi-plus icon-toggle text-black me-20"></i>
+                                        </button>
+                                        <div class="collapse mt-2" id="rak">
+                                            <div class="card card-body border-0">
+                                                <div class="row g-2">
+                                                    <div class="col-6 border p-2">GHALILA</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">AL GAIL</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">MARITIME CITY</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">WADI SHAMS</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">WADI KOOB</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">WADI SHAEM</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">HAMRANIYA</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">AL SAADI</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">THOWEEN</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">SAJI QADRA RAK</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">FALYAIN</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                    <div class="col-6 border p-2">KHATT</div>
+                                                    <div class="col-6 border p-2 text-muted">within 3 Days</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pt-80">
+                <div class="product-dContent border rounded-24">
+                    <div class="product-dContent__header border-bottom border-gray-100 flex-between flex-wrap gap-16">
+                        <ul class="nav common-tab nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="pills-description-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-description" type="button" role="tab"
+                                    aria-controls="pills-description" aria-selected="true">Description</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-reviews-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-reviews" type="button" role="tab"
+                                    aria-controls="pills-reviews" aria-selected="false">Reviews</button>
+                            </li>
+                        </ul>
+                        <!-- <a href="#"
+                            class="btn bg-color-one rounded-16 flex-align gap-8 text-main-600 hover-bg-main-600 hover-text-white">
+                            <img src="assets/images/icon/satisfaction-icon.png" alt="">
+                            100% Satisfaction Guaranteed
+                        </a> -->
+                    </div>
+                    <div class="product-dContent__box text-dark">
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-description" role="tabpanel"
+                                aria-labelledby="pills-description-tab" tabindex="0">
+                                <div id="product-description" class="mb-40" >
+                                    <h6 class="mb-24" >Product Description</h6>
+                                    <!-- <p>Wherever celebrations and good times happen, the LAY'S brand will be there just as it has been for more than 75 years. With flavors almost as rich as our history, we have a chip or crisp flavor guaranteed to bring a smile on your face. </p>
+                                <p>Morbi ut sapien vitae odio accumsan gravida. Morbi vitae erat auctor, eleifend nunc a, lobortis neque. Praesent aliquam dignissim viverra. Maecenas lacus odio, feugiat eu nunc sit amet, maximus sagittis dolor. Vivamus nisi sapien, elementum sit amet eros sit amet, ultricies cursus ipsum. Sed consequat luctus ligula. Curabitur laoreet rhoncus blandit. Aenean vel diam ut arcu pharetra dignissim ut sed leo. Vivamus faucibus, ipsum in vestibulum vulputate, lorem orci convallis quam, sit amet consequat nulla felis pharetra lacus. Duis semper erat mauris, sed egestas purus commodo vel.</p>     -->
+                                    <p>
+                                        Loading description...
+                                    </p>
+                                  
+                                </div>
+                                <div class="mb-40">
+                                    <h6 class="mb-24">Product Specifications</h6>
+                                    <table class="mt-32" style="width: 40%; border-collapse: collapse;">
+                                        <thead>
+                                            <tr style="background-color: #f2f2f2; text-align: left;">
+                                                <th style="padding: 12px; border: 1px solid #ddd;">Specification</th>
+                                                <th style="padding: 12px; border: 1px solid #ddd;">Details</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="specifications-table-body">
+                                            <!-- Rows will be dynamically populated here by JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-reviews" role="tabpanel"
+                                aria-labelledby="pills-reviews-tab" tabindex="0">
+                                <div class="row g-4">
+                                    <div class="col-lg-6">
+                                        <!-- <h6 class="mb-24">Product Description</h6>
+                                        <div
+                                            class="d-flex align-items-start gap-24 pb-44 border-bottom border-gray-100 mb-44">
+                                            <img src="assets/images/thumbs/comment-img1.png" alt=""
+                                                class="w-52 h-52 object-fit-cover rounded-circle flex-shrink-0">
+                                            <div class="flex-grow-1">
+                                                <div class="flex-between align-items-start gap-8 ">
+                                                    <div class="">
+                                                        <h6 class="mb-12 text-md">Nicolas cage</h6>
+                                                        <div class="flex-align gap-8">
+                                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-15 fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                        </div>
+                                                    </div>
+                                                    <span class="text-gray-800 text-xs">3 Days ago</span>
+                                                </div>
+                                                <h6 class="mb-14 text-md mt-24">Greate Product</h6>
+                                                <p class="text-gray-700">There are many variations of passages of Lorem
+                                                    Ipsum available, but the majority have suffered alteration in some
+                                                    form, by injected humour</p>
+
+                                                <div class="flex-align gap-20 mt-44">
+                                                    <button class="flex-align gap-12 text-gray-700 hover-text-main-600">
+                                                        <i class="ph-bold ph-thumbs-up"></i>
+                                                        Like
+                                                    </button>
+                                                    <a href="#comment-form"
+                                                        class="flex-align gap-12 text-gray-700 hover-text-main-600">
+                                                        <i class="ph-bold ph-arrow-bend-up-left"></i>
+                                                        Replay
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <div class="mt-56">
+                                            <div class="">
+                                                <h6 class="mb-24">Write a Review</h6>
+                                                <span class="text-heading mb-8">What is it like to Product?</span>
+                                                <div class="flex-align gap-8">
+                                                    <span class="text-15 fw-medium text-warning-600 d-flex"><i
+                                                            class="ph-fill ph-star"></i></span>
+                                                    <span class="text-15 fw-medium text-warning-600 d-flex"><i
+                                                            class="ph-fill ph-star"></i></span>
+                                                    <span class="text-15 fw-medium text-warning-600 d-flex"><i
+                                                            class="ph-fill ph-star"></i></span>
+                                                    <span class="text-15 fw-medium text-warning-600 d-flex"><i
+                                                            class="ph-fill ph-star"></i></span>
+                                                    <span class="text-15 fw-medium text-warning-600 d-flex"><i
+                                                            class="ph-fill ph-star"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="mt-32">
+                                                <form action="#">
+                                                    <div class="mb-32">
+                                                        <label for="title" class="text-neutral-600 mb-8">Review
+                                                            Title</label>
+                                                        <input type="text" class="common-input rounded-8" id="title"
+                                                            placeholder="Great Products">
+                                                    </div>
+                                                    <div class="mb-32">
+                                                        <label for="desc" class="text-neutral-600 mb-8">Review
+                                                            Content</label>
+                                                        <textarea class="common-input rounded-8"
+                                                            id="desc"></textarea>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-main rounded-pill mt-48" style="background-color: #90C309 !important;">Submit
+                                                        Review</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--=========  reviews pages are sleeping start ======= -->
+                                    <!-- <div class="col-lg-6">
+                                        <div class="ms-xxl-5">
+                                            <h6 class="mb-24">Customers Feedback</h6>
+                                            <div class="d-flex flex-wrap gap-44">
+                                                <div
+                                                    class="border border-gray-100 rounded-8 px-40 py-52 flex-center flex-column flex-shrink-0 text-center">
+                                                    <h2 class="mb-6 text-main-600" style="color: #90C309 !important;">4.8</h2>
+                                                    <div class="flex-center gap-8">
+                                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i
+                                                                class="ph-fill ph-star"></i></span>
+                                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i
+                                                                class="ph-fill ph-star"></i></span>
+                                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i
+                                                                class="ph-fill ph-star"></i></span>
+                                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i
+                                                                class="ph-fill ph-star"></i></span>
+                                                        <span class="text-15 fw-medium text-warning-600 d-flex"><i
+                                                                class="ph-fill ph-star"></i></span>
+                                                    </div>
+                                                    <span class="mt-16 text-gray-500">Average Product Rating</span>
+                                                </div>
+                                                <div class="border border-gray-100 rounded-8 px-24 py-40 flex-grow-1">
+                                                    <div class="flex-align gap-8 mb-20">
+                                                        <span class="text-gray-900 flex-shrink-0">5</span>
+                                                        <div class="progress w-100 bg-gray-100 rounded-pill h-8"
+                                                            role="progressbar" aria-label="Basic example"
+                                                            aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="progress-bar bg-main-600 rounded-pill"
+                                                                style="width: 70%"></div>
+                                                        </div>
+                                                        <div class="flex-align gap-4">
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                        </div>
+                                                        <span class="text-gray-900 flex-shrink-0">124</span>
+                                                    </div>
+                                                    <div class="flex-align gap-8 mb-20">
+                                                        <span class="text-gray-900 flex-shrink-0">4</span>
+                                                        <div class="progress w-100 bg-gray-100 rounded-pill h-8"
+                                                            role="progressbar" aria-label="Basic example"
+                                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="progress-bar bg-main-600 rounded-pill"
+                                                                style="width: 50%"></div>
+                                                        </div>
+                                                        <div class="flex-align gap-4">
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                        </div>
+                                                        <span class="text-gray-900 flex-shrink-0">52</span>
+                                                    </div>
+                                                    <div class="flex-align gap-8 mb-20">
+                                                        <span class="text-gray-900 flex-shrink-0">3</span>
+                                                        <div class="progress w-100 bg-gray-100 rounded-pill h-8"
+                                                            role="progressbar" aria-label="Basic example"
+                                                            aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="progress-bar bg-main-600 rounded-pill"
+                                                                style="width: 35%"></div>
+                                                        </div>
+                                                        <div class="flex-align gap-4">
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                        </div>
+                                                        <span class="text-gray-900 flex-shrink-0">12</span>
+                                                    </div>
+                                                    <div class="flex-align gap-8 mb-20">
+                                                        <span class="text-gray-900 flex-shrink-0">2</span>
+                                                        <div class="progress w-100 bg-gray-100 rounded-pill h-8"
+                                                            role="progressbar" aria-label="Basic example"
+                                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="progress-bar bg-main-600 rounded-pill"
+                                                                style="width: 20%"></div>
+                                                        </div>
+                                                        <div class="flex-align gap-4">
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                        </div>
+                                                        <span class="text-gray-900 flex-shrink-0">5</span>
+                                                    </div>
+                                                    <div class="flex-align gap-8 mb-0">
+                                                        <span class="text-gray-900 flex-shrink-0">1</span>
+                                                        <div class="progress w-100 bg-gray-100 rounded-pill h-8"
+                                                            role="progressbar" aria-label="Basic example"
+                                                            aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">
+                                                            <div class="progress-bar bg-main-600 rounded-pill"
+                                                                style="width: 5%"></div>
+                                                        </div>
+                                                        <div class="flex-align gap-4">
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                            <span class="text-xs fw-medium text-warning-600 d-flex"><i
+                                                                    class="ph-fill ph-star"></i></span>
+                                                        </div>
+                                                        <span class="text-gray-900 flex-shrink-0">2</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                    <!--=========  reviews pages are sleeping start ======= -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================== Similar Product Start ============================= -->
+    <section class="new-arrival pb-80">
+        <div class="container container-lg">
+            <div class="section-heading">
+                <div class="flex-between flex-wrap gap-8">
+                    <h5 class="mb-0 text-dark">Related Products</h5>
+                    <div class="flex-align gap-16">
+                        <a href="shop.html"
+                            class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">All
+                            Products</a>
+                        <div class="flex-align gap-8">
+                            <button type="button" id="new-arrival-prev"
+                                class="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1">
+                                <i class="ph ph-caret-left"></i>
+                            </button>
+                            <button type="button" id="new-arrival-next"
+                                class="slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1">
+                                <i class="ph ph-caret-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="relatedProducts" class=" row">
+                <div class="new-arrival__slider arrow-style-two">
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================== Similar Product End ============================= -->
+
+    <!-- ========================== Shipping Section Start ============================ -->
+    <section class="shipping mb-24" id="shipping">
+        <div class="container container-lg">
+            <div class="row gy-4">
+                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="400">
+                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
+                        <span
+                            class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0" style="background-color: #ffffff !important;"><i
+                                class="ph-fill ph-car-profile" style="color: #90C309 !important;"></i></span>
+                        <div class="">
+                            <h6 class="mb-0 text-black">Free Shipping</h6>
+                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over the US</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="600">
+                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
+                        <span
+                            class="w-56 h-56 flex-center rounded-circle text-white text-32 flex-shrink-0" style="background-color: #ffffff !important;"><i
+                                class="ph-fill ph-hand-heart" style="color: #90C309 !important;"></i></span>
+                        <div class="">
+                            <h6 class="mb-0 text-black"> 100% Satisfaction</h6>
+                            <span class="text-sm text-heading text-black" style="color: #000 !important;">Free shipping all over the US</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="800">
+                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
+                        <span
+                            class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0" style="background-color: #ffffff !important;"><i
+                                class="ph-fill ph-credit-card" style="color: #90C309 !important;"></i></span>
+                        <div class="">
+                            <h6 class="mb-0 text-black"> Secure Payments</h6>
+                            <span class="text-sm text-heading text-black" style="color: #000 !important;">Free shipping all over the US</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1000">
+                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
+                        <span
+                            class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0" style="background-color: #ffffff !important;"><i
+                                class="ph-fill ph-chats" style="color: #90C309 !important;"></i></span>
+                        <div class="">
+                            <h6 class="mb-0 text-black"> 24/7 Support</h6>
+                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over the US</span>
+                        </div>                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================== Shipping Section End ============================ -->
+
+
+    <div id="footer"></div>
+
+    <script>
+        // Fetch the footer dynamically
+        fetch('./assets/includes/footer.html') // Go one level up and access includes/
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error));
+    </script>
+    <!-- Jquery js -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap Bundle Js -->
+    <script src="assets/js/boostrap.bundle.min.js"></script>
+    <!-- Bootstrap Bundle Js -->
+    <script src="assets/js/phosphor-icon.js"></script>
+    <!-- Select 2 -->
+    <script src="assets/js/select2.min.js"></script>
+    <!-- Slick js -->
+    <script src="assets/js/slick.min.js"></script>
+    <!-- Slick js -->
+    <script src="assets/js/count-down.js"></script>
+    <!-- jquery UI js -->
+    <script src="assets/js/jquery-ui.js"></script>
+    <!-- wow js -->
+    <script src="assets/js/wow.min.js"></script>
+    <!-- AOS Animation -->
+    <script src="assets/js/aos.js"></script>
+    <!-- marque -->
+    <script src="assets/js/marque.min.js"></script>
+    <!-- marque -->
+    <script src="assets/js/vanilla-tilt.min.js"></script>
+       <script src="./apiConfig/apiConfig.js"></script>
+       
+    <!-- main js -->
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Extract product ID from the URL
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get('slug');
+
+        if (productId) {
+            console.log('Product ID:', productId);
+            // Call the API to fetch product details using the product ID
+            fetchProductDetails(productId);
+        } else {
+            console.error('Product ID not found in the URL');
+        }
+        async function fetchProductDetails(productId) {
+            try {
+                const response = await fetch(`${API_CUSTOMER_URL}/api/products/${productId}`);
+                if (!response.ok) throw new Error('Failed to fetch product details');
+
+                const product = await response.json();
+                console.log('Product Details:', product);
+
+                // Basic Info
+                //add for me self
+                document.getElementById('product-price').textContent = `$${product.offer_price ?? product.selling_price ?? 0.00}`;
+                const originalPrice = product.selling_price || 0.00;
+const offerPrice = product.offer_price ?? originalPrice;
+const discountPercentage = product.discount || null;
+
+document.getElementById('product-price').textContent = `$${offerPrice}`;
+
+if (offerPrice < originalPrice) {
+  document.getElementById('product-discount').textContent = `$${originalPrice}`;
+} else {
+  document.getElementById('product-discount').textContent = '';
+}
+
+// Show blue discount badge
+const discountBadge = document.getElementById('product-off');
+if (discountPercentage && discountPercentage > 0) {
+  discountBadge.textContent = `${discountPercentage}% Off`;
+  discountBadge.style.display = 'inline-block';
+} else {
+  discountBadge.style.display = 'none';
+}
+
+// Show green "On Sale" badge if there is an offer price
+const saleBadge = document.getElementById('product-off-label');
+if (offerPrice < originalPrice) {
+  saleBadge.textContent = 'On Sale';
+  saleBadge.style.display = 'inline-block';
+} else {
+  saleBadge.style.display = 'none';
+}
+
+
+//for my self end
+
+
+                document.getElementById('product-name').textContent = product.name || 'N/A';
+                document.getElementById('product-price').textContent = `$${product.offer_price ?? product.selling_price ?? 0.00}`;
+                document.getElementById('product-tax').textContent = product.tax || 'Inclusive VAT';
+                document.getElementById('product-sku').textContent = product.sku || 'N/A';
+                document.getElementById('product-categories').textContent = product.category || 'N/A';
+                document.getElementById('product-brand').textContent = product.brand || 'N/A';
+                document.getElementById('product-description').innerHTML = `
+            <h6 class="mb-24">Product Description</h6>
+            <p>${product.description || 'No description available.'}</p>
+        `;
+
+                // Parse image_paths safely
+                let imagePaths = [];
+                try {
+                    imagePaths = JSON.parse(product.image_paths || '[]').map(path => path.replace(/\\/g, '/'));
+                } catch (e) {
+                    console.error('Invalid image_paths JSON:', e);
+                }
+
+                // Fallback to image_path if image_paths is empty
+                const fallbackImage = product.image_path ? `${API_ADMINGRAB_URL}/${product.image_path.replace(/\\/g, '/')}` : 'assets/images/thumbs/product-details-thumb1.png';
+                const cartImage = imagePaths[0] ? `${API_ADMINGRAB_URL}/${imagePaths[0]}` : fallbackImage;
+                document.getElementById('addToCart').innerHTML = `
+    <a href="javascript:void(0)" onclick='handleAddToCart({ 
+        id: ${product.id},
+        slug: "${product.slug?.replace(/"/g, '\\"')}",
+        name: "${product.name?.replace(/"/g, '\\"')}",
+        selling_price: ${product.offer_price ?? product.selling_price},
+        image_path: "${cartImage}"
+    })' <div class="product-toolbar d-flex flex-wrap align-items-center gap-14 mt-3">
+  <div class="qty-box d-flex align-items-center">
+  <button class="qty-btn" onclick="changeQty(-1)">−</button>
+  <input type="text" id="qty" class="qty-input" value="1" readonly>
+  <button class="qty-btn" onclick="changeQty(1)">+</button>
+</div>
+
+  <!-- Button 1: Add to Cart -->
+  <button class="btn btn-warning d-inline-flex align-items-center gap-4 px-8" style="background-color: #90c309;">
+    <i class="ph ph-shopping-cart"></i> Add To Cart
+  </button>
+
+  <!-- Button 2: Buy Now -->
+  <button class="btn btn-warning d-inline-flex align-items-center gap-4 px-8" style="background-color: #ffc107; color: black;">
+    <i class="ph ph-credit-card"></i> Buy Now
+  </button>
+
+  
+</div>
+
+
+    </a>`;
+
+                // Wishlist
+                document.getElementById('favourite').innerHTML = `
+    <a href="javascript:void(0)" id="wishlist-btn" onclick='toggleWishlist({ 
+        id: ${product.id},
+        slug: "${product.slug?.replace(/"/g, '\\"')}",
+        name: "${product.name?.replace(/"/g, '\\"')}",
+        selling_price: ${product.selling_price},
+        image_path: "${cartImage}"
+    })' class="w-52 h-52 bg-main-50 text-main-600 text-xl hover-bg-main-600 hover-text-white flex-center rounded-circle">
+        <i class="ph ph-heart" id="heart-icon"></i>
+    </a>`;
+
+                // Main display image
+                const mainImage = document.getElementById('specific-product-image');
+                mainImage.src = cartImage;
+                mainImage.alt = 'Main Product Image';
+
+           
+            const thumbnailsContainer = document.getElementById('product-thumbnails');
+thumbnailsContainer.innerHTML = ''; 
+
+imagePaths.forEach((imgPath, index) => {
+  const fullPath = `${API_ADMINGRAB_URL}/${imgPath}`;
+  const slide = document.createElement('div');
+  slide.className = 'swiper-slide';
+  slide.innerHTML = `
+    <div class="border border-gray-200 rounded p-2" style="width: 120px; height: 120px; cursor: pointer;">
+      <img src="${fullPath}" alt="image" style="width: 80%; height: 80%; object-fit: cover;" />
+    </div>
+  `;
+const modalImage = document.getElementById('modal-product-image');
+
+// Initial load
+mainImage.src = cartImage;
+mainImage.alt = 'Main Product Image';
+modalImage.src = cartImage;
+
+// On thumbnail click, update modal too
+imagePaths.forEach((imgPath, index) => {
+  const fullPath = `${API_ADMINGRAB_URL}/${imgPath}`;
+  const slide = document.createElement('div');
+  slide.className = 'swiper-slide';
+  slide.innerHTML = `
+    <div class="border border-gray-200 rounded p-2" style="width: 120px; height: 120px; cursor: pointer;">
+      <img src="${fullPath}" alt="image" style="width: 100%; height: 100%; object-fit: cover;" />
+    </div>
+  `;
+
+  slide.querySelector('img').addEventListener('click', () => {
+    mainImage.src = fullPath;
+    mainImage.alt = `Product Image ${index + 1}`;
+    modalImage.src = fullPath;
+  });
+
+  thumbnailsContainer.appendChild(slide);
+});
+
+
+ 
+  slide.querySelector('img').addEventListener('click', () => {
+    mainImage.src = fullPath;
+    mainImage.alt = `Product Image ${index + 1}`;
+  });
+
+  thumbnailsContainer.appendChild(slide);
+});
+
+// Init Swiper
+const swiper = new Swiper('.mySwiper', {
+  slidesPerView: 3,
+  spaceBetween: 13,
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev'
+  },
+  breakpoints: {
+    0: {
+      slidesPerView: 2
+    },
+    640: {
+      slidesPerView: 3
+    },
+    1024: {
+      slidesPerView: 3
+    }
+  }
+});
+
+
+
+                // === ✅ Product Specifications Table ===
+                const specifications = JSON.parse(product.specifications || "[]");
+                const details = JSON.parse(product.details || "[]");
+                const tableBody = document.getElementById('specifications-table-body');
+                tableBody.innerHTML = '';
+
+                if (specifications.length && details.length) {
+                    for (let i = 0; i < specifications.length; i++) {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                    <td style="padding: 12px; border: 1px solid #ddd; text-dark;">${specifications[i]}</td>
+                    <td style="padding: 12px; border: 1px solid #ddd; text-dark">${details[i]}</td>
+                `;
+                        tableBody.appendChild(row);
+                    }
+                }
+
+                // Related products
+                if (product.category) {
+                    await fetchRelatedProducts(product.category, productId);
+                }
+
+            } catch (error) {
+                console.error('Error fetching product details:', error);
+                document.querySelector('.product-details__content').innerHTML = `
+            <p style="color: #000 ;">Failed to load product details. Please try again later.</p>
+        `;
+            }
+        }
+
+        async function fetchRelatedProducts(category, excludeProductId) {
+            try {
+                // Fetch products of the same category excluding the current product
+                const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=${encodeURIComponent(category)}&exclude=${excludeProductId}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch related products');
+                }
+
+                const data = await response.json();
+                console.log('Related Products API Response:', data);
+
+                // Extract the array of products
+                const relatedProducts = data.products;
+
+                // Ensure the extracted products are an array
+                if (!Array.isArray(relatedProducts)) {
+                    console.error('Error: Expected an array of related products but received:', relatedProducts);
+                    return;
+                }
+
+
+                // Populate the related products section
+                const relatedProductsContainer = document.getElementById('relatedProducts');
+                relatedProductsContainer.innerHTML = ''; // Clear existing content
+
+                // const rowDiv = document.createElement('div');
+                // rowDiv.classList.add('row');
+
+                if (relatedProducts.length === 0) {
+                    relatedProductsContainer.innerHTML = '<p >No related products found.</p>';
+                    return;
+                }
+
+
+                relatedProducts.forEach(product => {
+                    const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
+
+                    const productCard = `
+            <div class="col-md-4">
+                <div class="product-card h-100 p-8 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                    <a href="product-details.html?slug=${product.slug}" class="product-card__thumb flex-center">
+                        <img src="${API_ADMINGRAB_URL}/${sanitizedImagePath}" alt="${product.name}">
+                    </a>
+                    <div class="product-card__content p-sm-2">
+                        <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                            <a href="product-details.html?slug=${product.slug}" class="link text-line-2">${product.name}</a>
+                        </h6>
+                        <div class="flex-align gap-4">
+                            <span class="text-main-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
+                            <span class="text-gray-500 text-xs">By ${product.brand || 'Unknown'}</span>
+                        </div>
+                        <div class="product-card__content mt-12">
+                            <div class="product-card__price mb-8">
+                                <span class="text-heading text-md fw-semibold ">$${product.offer_price || product.selling_price || 0.00} <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                                ${product.offer_price ? `<span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $${product.selling_price}</span>` : ''}
+                            </div>
+                            <div class="flex-align gap-6">
+                                <span class="text-xs fw-bold text-gray-600">4.8</span>
+                                <span class="text-15 fw-bold text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-bold text-gray-600">(17k)</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+                    relatedProductsContainer.insertAdjacentHTML('beforeend', productCard);
+                });
+
+            } catch (error) {
+                console.error('Error fetching related products:', error);
+                document.getElementById('relatedProducts').innerHTML = `
+            <p>Failed to load related products. Please try again later.</p>
+        `;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartIcon(); // Update the cart icon with the correct count
+        });
+
+        // index.html - Update the cart icon count based on localStorage
+        function updateCartIcon() {
+            const cartItemCount = localStorage.getItem('cartItemCount') || 0; // Get the cart count from localStorage
+            const cartCountElement = document.querySelector('.cart-item-count'); // Get the element that holds the cart count
+
+            // Update the cart count in the UI
+            cartCountElement.innerText = cartItemCount; // Set the count to the number of items in the cart
+        }
+
+        document.getElementById('search-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const searchQuery = document.getElementById('search-input').value.trim();
+            window.location.href = `shop.html?search=${encodeURIComponent(searchQuery)}`;
+            // await fetchFilteredProducts(searchQuery);
+        });
+
+        function addToCart(product) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingProduct = cart.find(item => item.id === product.id);
+
+            if (existingProduct) {
+                existingProduct.quantity += 1; // Increment quantity if already in cart
+            } else {
+                cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Update the cart item count in localStorage
+            updateCartCount();
+
+            showSuccessMessage(`${product.name} added to cart.`);
+        }
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, product) => total + product.quantity, 0); // Calculate total quantity
+
+            // Update the cart count in localStorage
+            localStorage.setItem('cartItemCount', totalItems);
+        }
+        function showSuccessMessage(message) {
+            const messageContainer = document.createElement('div');
+            messageContainer.style.position = 'fixed';
+            messageContainer.style.top = '20px';
+            messageContainer.style.right = '20px';
+            messageContainer.style.backgroundColor = 'green';
+            messageContainer.style.color = 'white';
+            messageContainer.style.padding = '10px 20px';
+            messageContainer.style.borderRadius = '5px';
+            messageContainer.style.zIndex = '1000';
+            messageContainer.textContent = message;
+
+            document.body.appendChild(messageContainer);
+
+            // Remove the message after 3 seconds
+            setTimeout(() => {
+                document.body.removeChild(messageContainer);
+            }, 3000);
+        }
+
+        function handleAddToCart(product) {
+            addToCart(product); // Add product to cart
+            // window.location.href = 'cart.html'; // Navigate to cart.html
+            window.location.href = `product-details.html?slug=${product.slug}`; // Navigate to cart.html
+            
+        }
+
+
+        // Function to toggle wishlist status
+        function toggleWishlist(product) {
+            // Get heart icon and current wishlist from localStorage
+            const heartIcon = document.getElementById('heart-icon');
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+            // Check if product already exists in wishlist
+            const productIndex = wishlist.findIndex(item => item.id === product.id);
+
+            if (productIndex === -1) {
+                // Product not in wishlist, add it and change icon color to red
+                wishlist.push(product);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Save to localStorage
+                heartIcon.style.color = 'red'; // Change heart color to red
+                showSuccessMessage('Product added to wishlist!');
+            } else {
+                // Product already in wishlist, remove it and reset icon color
+                wishlist.splice(productIndex, 1);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Remove from localStorage
+                heartIcon.style.color = ''; // Reset heart color
+                showSuccessMessage('Product removed from wishlist!');
+            }
+        }
+
+        function updateWishlistBadge() {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const wishlistBadge = document.getElementById('numberWishlist');
+
+            // Update the badge count
+            if (wishlistBadge) {
+                wishlistBadge.textContent = wishlist.length;
+            }
+        }
+
+        // Call this function on page load to ensure the badge is updated dynamically 
+        window.onload = updateWishlistBadge;
+
+
+        function toggleIcon(button) {
+            let icon = button.querySelector(".icon-toggle");
+            if (icon.classList.contains("bi-plus")) {
+                icon.classList.remove("bi-plus");
+                icon.classList.add("bi-dash");
+            } else {
+                icon.classList.remove("bi-dash");
+                icon.classList.add("bi-plus");
+            }
+        }
+// Toggle sidebar function  for mobile/tablet
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const menuBtn = document.querySelector('.menu-btn');
+
+  if (sidebar.style.width === '250px') {
+    sidebar.style.width = '0';
+    menuBtn.style.display = 'block'; // Show button when sidebar closes
+  } else {
+    sidebar.style.width = '250px';
+    menuBtn.style.display = 'none'; // Hide button when sidebar opens
+  }
+}
+function changeQty(change) {
+    const qtyInput = document.getElementById("qty");
+    let qty = parseInt(qtyInput.value);
+    qty = isNaN(qty) ? 1 : qty + change;
+    if (qty < 1) qty = 1;
+    qtyInput.value = qty;
+  }
+
+
+
+
+
+    </script>
+    <script>
+        // Optional: This JavaScript ensures the dropdown stays open when hovering over it
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdown = document.querySelector('.dropdown');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            
+            dropdown.addEventListener('mouseenter', function() {
+                const bsDropdown = bootstrap.Dropdown.getInstance(this);
+                if (!bsDropdown) {
+                    new bootstrap.Dropdown(this).show();
+                } else {
+                    bsDropdown.show();
+                }
+            });
+            
+            // Keep dropdown open when hovering over the menu
+            dropdownMenu.addEventListener('mouseleave', function() {
+                const bsDropdown = bootstrap.Dropdown.getInstance(dropdown);
+                bsDropdown.hide();
+            });
+        });
+    </script>
+    <script>
+        fetch('./topHeader.html')
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById('top-header').innerHTML = data;
+          })
+          .catch(error => console.error('Error loading header:', error));
+      </script>
+
+
+
+
+      <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const img = document.getElementById("specific-product-image");
+
+  // Create magnifier lens
+  const lens = document.createElement("div");
+  lens.className = "magnifier-lens";
+  document.body.appendChild(lens);
+
+  img.addEventListener("mouseenter", function (e) {
+    lens.style.visibility = "visible";
+    lens.style.backgroundImage = `url('${img.src}')`;
+  });
+
+  img.addEventListener("mousemove", function (e) {
+    moveLens(e);
+  });
+
+  img.addEventListener("mouseleave", function () {
+    lens.style.visibility = "hidden";
+  });
+
+  function moveLens(e) {
+    const rect = img.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const lensSize = lens.offsetWidth / 2;
+
+    let posX = e.pageX - lensSize;
+    let posY = e.pageY - lensSize;
+
+    lens.style.left = `${posX}px`;
+    lens.style.top = `${posY}px`;
+
+    const bgX = (x / img.width) * 100;
+    const bgY = (y / img.height) * 100;
+
+    lens.style.backgroundSize = `${img.width * 1.5}px ${img.height * 1.5}px`;
+    lens.style.backgroundPosition = `${bgX}% ${bgY}%`;
+  }
+});
+</script>
+
+   
+
+</body>
+

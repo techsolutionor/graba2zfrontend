@@ -1,0 +1,984 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="./assets/css/styles.min.css" />
+  <link rel="stylesheet" href="./assets/css/style2.css" />
+  <link rel="stylesheet" href="./assets/css/navbar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+  <script src="./popupMessages.js"></script>
+  <script>
+    //(function() {
+    //     let(function() {
+    //     let path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })(); path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })();
+
+
+    (function checkAuth() {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        window.location.replace('./login.html'); // Redirect to login page
+      }
+    })();
+  </script> 
+  
+</head>
+
+<body>
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <aside class="left-sidebar">
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="./assets/images/logos/dark-logo.svg" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <div class="sidebar" id="sidebar">
+          <a class="navbar-brand" href="#">
+              <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          
+          <div class="section-title mt-9">HOME</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./index.html">
+                      <i class="ti ti-layout-dashboard"></i> Dashboard
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">PRODUCTS & STOCK</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./products.html">
+                      <i class="fas fa-box"></i> Products
+                  </a>
+              </li>
+               <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="purchaseToggle">
+                <i class="fas fa-shopping-cart"></i> Purchases 
+              </a>
+              <ul class="nav-submenu" id="purchaseSubmenu">
+                <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
+                <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
+                <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
+              </ul>
+            </li>
+          </ul>
+              <li class="nav-item">
+                  <a class="nav-link" href="./damages.html">
+                      <i class="fas fa-exclamation-circle"></i> Damages
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./stock.html">
+                      <i class="fas fa-archive"></i> Stock
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">POS & ORDERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos.html">
+                      <i class="fas fa-cash-register"></i> POS
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos-orders.html">
+                      <i class="fas fa-receipt"></i> POS Orders
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./online-orders.html">
+                      <i class="fas fa-shopping-basket"></i> Online Orders
+                  </a>
+              </li>
+          </ul>
+    
+          <div class="section-title">PROMO</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./coupons.html">
+                      <i class="fas fa-tags"></i> Coupons
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./promotions.html">
+                      <i class="fas fa-bullhorn"></i> Promotions
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./product-sections.html">
+                      <i class="fas fa-cube"></i>  Product Sections
+                  </a>
+              </li>
+          </ul>
+    
+          <div class="section-title">COMMUNICATIONS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./push-notifications.html">
+                      <i class="fas fa-bell"></i> Push Notifications
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./subscribers.html">
+                      <i class="fas fa-users"></i> Subscribers
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">USERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./admin.html">
+                      <i class="fas fa-user"></i> Administrators
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./customer.html">
+                      <i class="fas fa-users"></i> Customers
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./employee.html">
+                      <i class="fas fa-user-tie"></i> Employees
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">ACCOUNTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-exchange-alt"></i> Transactions
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">REPORTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./sales-report.html">
+                      <i class="fas fa-chart-line"></i> Sales Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./products-report.html">
+                      <i class="fas fa-file-alt"></i> Products Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-credit-card"></i> Credit Balance Report
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">SETUP</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" id="settingsToggle" href="#">
+                      <i class="fas fa-cog"></i> Settings
+                  </a>
+              </li>
+          </ul>
+          
+          <!-- <div class="settings-submenu" id="settingsSubmenu"> -->
+            <div class="submenu" id="settingsSubmenu">
+              <ul class="nav flex-column">
+                  <li class="nav-item">
+                      <a class="nav-link" href="./company.html">
+                          <i class="fas fa-building"></i> Company
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./site.html">
+                          <i class="fas fa-globe"></i> Site
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./mail.html">
+                          <i class="fas fa-envelope"></i> Mail
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./location-setup.html">
+                          <i class="fas fa-map-marker-alt"></i> Location Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./shipping-setup.html">
+                          <i class="fas fa-truck"></i> Shipping Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">
+                          <i class="fas fa-lock"></i> OTP
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification.html">
+                          <i class="fas fa-bell"></i> Notification
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification-alert.html">
+                          <i class="fas fa-bell"></i> Notification alert
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./social-media.html">
+                          <i class="fas fa-share-alt"></i> Social Media
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./cookies.html">
+                          <i class="fas fa-cookie-bite"></i> Cookies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./analytics.html">
+                          <i class="fas fa-chart-bar"></i> Analytics
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./theme.html">
+                          <i class="fas fa-paint-brush"></i> Theme
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sliders.html">
+                          <i class="fas fa-sliders-h"></i> Sliders
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./currencies.html">
+                          <i class="fas fa-money-bill-wave"></i> Currencies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-categories.html">
+                          <i class="fas fa-tags"></i> Product Categories
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-attributes.html">
+                          <i class="fas fa-cube"></i> Product Attributes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-brands.html">
+                          <i class="fas fa-tag"></i> Product Brands
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./supplier.html">
+                          <i class="fas fa-industry"></i> Suppliers
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./outlets.html">
+                          <i class="fas fa-store"></i> Outlets
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./benefits.html">
+                          <i class="fas fa-gift"></i> Benefits
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./units.html">
+                          <i class="fas fa-balance-scale"></i> Units
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./taxes.html">
+                          <i class="fas fa-percent"></i>  Taxes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./page.html">
+                          <i class="fas fa-file-alt"></i> Pages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./role & permissions.html">
+                          <i class="fas fa-user-shield"></i> Role & Permissions
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./languages-list.html">
+                          <i class="fas fa-globe"></i> Languages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sms-gateway.html">
+                          <i class="fas fa-comments"></i> Sms Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./payment-gateway.html">
+                          <i class="fas fa-credit-card"></i> Payment Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./license.html">
+                          <i class="fas fa-file-contract"></i> License
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      </div>
+    </aside>
+    
+    <div class="body-wrapper">
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <ul class="navbar-nav">
+            <li class="nav-item d-block d-xl-none">
+              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                <i class="ti ti-menu-2"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+                <i class="ti ti-bell-ringing"></i>
+                <div class="notification bg-primary rounded-circle"></div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Pages</h5>
+            <div class="actions-bar">
+              <button type="button" class="btn btn-primary" style="color: black;" data-bs-toggle="modal" data-bs-target="#addPageModal">
+                Add Pages
+              </button>
+            </div>
+          <!-- Table for displaying fetched data -->
+<table id="attributeTable" class="table">
+  <thead>
+      <tr>
+          <th>Title</th>
+          <th>Status</th>
+          <th>Actions</th>
+      </tr>
+  </thead>
+  <tbody id="attributeTableBody">
+      <!-- Rows will be dynamically inserted here -->
+  </tbody>
+</table>
+            
+            <div id="entriesInfo" class="mb-3">
+              Showing <span id="startEntry">1</span> to <span id="endEntry">6</span> of <span id="totalEntries">0</span> entries
+            </div>
+             
+            <nav aria-label="Page navigation">
+              <ul class="pagination justify-content-end" id="pagination">
+                <!-- Pagination dynamically populated -->
+              </ul>
+            </nav>
+          </div>
+        </div>
+      
+    
+        <div class="modal fade" id="addPageModal" tabindex="-1" aria-labelledby="addPageModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" style="max-width: 600px;">
+              <div class="modal-content" style="padding: 15px;">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="addPageModalLabel">Add Page</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <form id="addPageForm" enctype="multipart/form-data">
+                          <div class="row mb-3">
+                              <!-- Title Field -->
+                              <div class="col-md-8">
+                                  <label for="pageTitleInput" class="form-label">Title *</label>
+                                  <input type="text" class="form-control" id="pageTitleInput" name="title" required>
+                              </div>
+      
+                              <!-- Status Field -->
+                              <div class="col-md-4">
+                                  <label class="form-label">Status *</label>
+                                  <div class="d-flex align-items-center mt-2">
+                                      <label class="me-3">
+                                          <input type="radio" name="status" value="Active" required> Active
+                                      </label>
+                                      <label>
+                                          <input type="radio" name="status" value="Inactive" required> Inactive
+                                      </label>
+                                  </div>
+                              </div>
+                          </div>
+      
+                          <!-- Menu Section Field -->
+                          <div class="mb-3">
+                              <label for="menuSectionInput" class="form-label">Menu Section</label>
+                              <select class="form-control" id="menuSectionInput" name="menu_section" required>
+                                  <option value="">Select a section</option>
+                                  <option value="Legal Section">Legal Section</option>
+                                  <option value="Support Section">Support Section</option>
+                                  <option value="About Section">About Section</option>
+                                  <option value="Footer Section">Footer Section</option>
+                              </select>
+                          </div>
+      
+                          <!-- Menu Template Field -->
+                          <div class="mb-3">
+                              <label for="menuTemplateInput" class="form-label">Menu Template</label>
+                              <select class="form-control" id="menuTemplateInput" name="menu_template" required>
+                                  <option value="">Select a template</option>
+                                  <option value="Contact Us">Contact Us</option>
+                                  <option value="Privacy Policy">Privacy Policy</option>
+                                  <option value="Terms of Service">Terms of Service</option>
+                                  <option value="Help">Help</option>
+                              </select>
+                          </div>
+      
+                          <!-- Image Field -->
+                          <div class="mb-3">
+                              <label for="pageImageInput" class="form-label">Image</label>
+                              <input type="file" class="form-control" id="pageImageInput" name="image" accept="image/*" required>
+                          </div>
+      
+                          <!-- Description Field -->
+                          <div class="mb-3">
+                              <label for="pageDescriptionEditor" class="form-label">Description</label>
+                              <textarea class="form-control" id="pageDescriptionEditor" rows="3" required></textarea>
+                          </div>
+                      </form>
+                  </div>
+                  <div class="modal-footer" style="padding: 10px;">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" id="savePageBtn">Save Page</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+<!-- Edit Page Modal -->
+<div class="modal fade" id="editPageModal" tabindex="-1" aria-labelledby="editPageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" style="max-width: 600px;">
+      <div class="modal-content" style="padding: 15px;">
+          <div class="modal-header">
+              <h5 class="modal-title" id="editPageModalLabel">Edit Page</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form id="editPageForm" enctype="multipart/form-data">
+                  <input type="hidden" id="editPageId" /> <!-- Hidden ID for the page -->
+                  <div class="row mb-3">
+                      <!-- Title Field -->
+                      <div class="col-md-8">
+                          <label for="editPageTitle" class="form-label">Title *</label>
+                          <input type="text" class="form-control" id="editPageTitle" required>
+                      </div>
+                      
+                      <!-- Status Field -->
+                      <div class="col-md-4">
+                        <label class="form-label">Status *</label>
+                        <div class="d-flex align-items-center mt-2">
+                            <label class="me-3">
+                                <input type="radio" id="editPageStatusActive" name="editPageStatus" value="Active" required> Active
+                            </label>
+                            <label>
+                                <input type="radio" id="editPageStatusInactive" name="editPageStatus" value="Inactive" required> Inactive
+                            </label>
+                        </div>
+                    </div>
+                    
+                  </div>
+                  
+                  <div class="row">
+                      <!-- Menu Section Field -->
+                      <div class="col-md-12 mb-3">
+                          <label for="editMenuSection" class="form-label">Menu Section</label>
+                          <select class="form-control" id="editMenuSection" required>
+                              <option value="">Select a section</option>
+                              <option value="Legal Section">Legal Section</option>
+                              <option value="Support Section">Support Section</option>
+                              <option value="About Section">About Section</option>
+                              <option value="Footer Section">Footer Section</option>
+                          </select>
+                      </div>
+                      
+                      <!-- Menu Template Field -->
+                      <div class="col-md-12 mb-3">
+                          <label for="editMenuTemplate" class="form-label">Menu Template</label>
+                          <select class="form-control" id="editMenuTemplate" required>
+                              <option value="">Select a template</option>
+                              <option value="Contact Us">Contact Us</option>
+                              <option value="Privacy Policy">Privacy Policy</option>
+                              <option value="Terms of Service">Terms of Service</option>
+                              <option value="Help">Help</option>
+                          </select>
+                      </div>
+                      
+                      <!-- Image Field -->
+                      <div class="col-md-12 mb-3">
+                          <label for="editPageImage" class="form-label">Image</label>
+                          <input type="file" class="form-control" id="editPageImage" accept="image/*">
+                      </div>
+                      
+                      <!-- Description Field -->
+                      <div class="col-md-12 mb-3">
+                          <label for="editPageDescription" class="form-label">Description</label>
+                          <textarea class="form-control" id="editPageDescription" rows="3" required></textarea>
+                      </div>
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer" style="padding: 10px;">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="saveEditBtn">Save Changes</button>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Modal for displaying page details -->
+<div class="modal fade" id="pageDetailsModal" tabindex="-1" aria-labelledby="pageDetailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="pageDetailsModalLabel">Page Details</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="profileSection">
+              <!-- Page details will be dynamically inserted here -->
+          </div>
+      </div>
+  </div>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+
+  <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/sidebarmenu.js"></script>
+  <script src="./assets/js/app.min.js"></script>
+  <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="./apiConfig/apiConfig.js"></script>
+  
+  <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    const purchaseToggle = document.getElementById('purchaseToggle');
+    const purchaseSubmenu = document.getElementById('purchaseSubmenu');
+
+    purchaseToggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        purchaseSubmenu.style.display = (purchaseSubmenu.style.display === 'none' || purchaseSubmenu.style.display === '') ? 'block' : 'none';
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            const settingsToggle = document.getElementById('settingsToggle');
+            const settingsSubmenu = document.getElementById('settingsSubmenu');
+
+            // Handle submenu toggle
+            settingsToggle.addEventListener('click', function (event) {
+                event.preventDefault();
+                settingsSubmenu.style.display = (settingsSubmenu.style.display === 'block') ? 'none' : 'block';
+            });
+
+            // Handle active link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    // Remove active class from all links
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    // Add active class to the clicked link
+                    this.classList.add('active');
+                });
+            });
+        });
+
+
+let attributes = [];
+let totalEntries = 0;
+let currentPage = 1;
+const rowsPerPage = 5;
+
+
+
+
+async function fetchAttributes() {
+        try {
+            const response = await fetch(`${API_ADMINGRAB_URL}/api/pages`);
+            console.log('Fetching attributes from server...');
+            if (!response.ok) {
+                console.error('Error: Network response was not ok');
+                throw new Error('Network response was not ok');
+            }
+            attributes = await response.json(); // Assuming the API returns attribute data in JSON format
+            console.log('Fetched attributes:', attributes);  // Log the fetched data
+
+            totalEntries = attributes.length;
+            displayAttributes(currentPage);  // Call display function to show data
+        } catch (error) {
+            console.error('Error fetching attributes:', error);
+        }
+    }
+
+    function displayAttributes(page) {
+        const startIndex = (page - 1) * rowsPerPage;
+        const endIndex = Math.min(startIndex + rowsPerPage, totalEntries);
+        const currentAttributes = attributes.slice(startIndex, endIndex);
+
+        const attributeTableBody = document.getElementById("attributeTableBody");
+        attributeTableBody.innerHTML = ""; // Clear existing table rows
+
+        currentAttributes.forEach(attribute => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${attribute.title}</td>
+                <td>
+                    <span class="status-badge">${attribute.status}</span>
+                </td>
+                <td>
+                    <div class="action-buttons">
+                        <button class="btn view-btn" data-id="${attribute.id}">
+                            <i class="fas fa-eye" title="View"></i> View
+                        </button>
+                        <button class="btn edit-btn">
+                            <i class="fas fa-edit" data-id="${attribute.id}" title="Edit"></i> Edit
+                        </button>
+                        <button class="btn delete-btn">
+                            <i class="fas fa-trash" data-id="${attribute.id}" title="Delete"></i> Delete
+                        </button>
+                    </div>
+                </td>
+            `;
+            attributeTableBody.appendChild(row);
+        });
+
+        // Update entry count display
+        document.getElementById("startEntry").innerText = startIndex + 1;
+        document.getElementById("endEntry").innerText = endIndex;
+        document.getElementById("totalEntries").innerText = totalEntries;
+
+        updatePagination();
+
+        // Attach event listeners for editing functionality
+        document.querySelectorAll('.edit-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const attributeId = this.querySelector('i').getAttribute('data-id');
+                openEditModal(attributeId); // Open the modal with data to edit
+            });
+        });
+
+      // Add event listeners to each .view-btn button
+document.querySelectorAll('.view-btn').forEach(button => {
+    button.addEventListener('click', async function () {
+        const attributeId = this.getAttribute('data-id');
+        await fetchPageDetails1(attributeId); // Fetch and display page details
+    });
+});
+
+async function fetchPageDetails1(attributeId) {
+    try {
+        console.log(`Fetching details for page ID: ${attributeId}`);
+        
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/pages/getPageById?id=${attributeId}`);
+        
+        if (!response.ok) {
+            console.error('Error fetching page details:', response.statusText);
+            throw new Error('Error fetching page details');
+        }
+        
+        const pageDetails = await response.json();
+        console.log('Fetched page details:', pageDetails);
+
+        // Populate the modal with page details
+        const profileSection = document.getElementById("profileSection");
+        profileSection.innerHTML = `
+            <h4>Title: ${pageDetails.title}</h4>
+            <p><strong>Status:</strong> ${pageDetails.status}</p>
+            <p><strong>Menu Section:</strong> ${pageDetails.menu_section}</p>
+            <p><strong>Menu Template:</strong> ${pageDetails.menu_template}</p>
+            <p><strong>Description:</strong> ${pageDetails.description}</p>
+            <p><strong>Created At:</strong> ${new Date(pageDetails.created_at).toLocaleString()}</p>
+        `;
+
+        // Show the modal
+        const modal = new bootstrap.Modal(document.getElementById('pageDetailsModal'));
+        modal.show();
+
+    } catch (error) {
+        console.error('Error fetching page details:', error);
+    }
+}
+
+        // Attach event listeners for delete functionality
+        const deleteButtons = attributeTableBody.querySelectorAll('.delete-btn');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', async (e) => {
+                const icon = button.querySelector('.fas.fa-trash');
+                const attributeId = icon.getAttribute('data-id');
+
+                if (confirm(`Are you sure you want to delete page ID: ${attributeId}?`)) {
+                    try {
+                        const response = await fetch(`${API_ADMINGRAB_URL}/api/pages/${attributeId}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                        });
+
+                        if (response.ok) {
+                            const row = button.closest('tr');
+                            row.remove();
+                            showSuccessMessage('Page deleted successfully!');
+                            totalEntries--;
+                            displayAttributes(page); // Refresh the displayed attributes
+                        } else {
+                            const errorData = await response.json();
+                            showErrorMessage(`Error: ${errorData.message}`);
+                        }
+                    } catch (error) {
+                        console.error('Error deleting attribute:', error);
+                        showErrorMessage('Failed to delete the attribute. Please try again later.');
+                    }
+                }
+            });
+        });
+    }
+
+    function updatePagination() {
+        // Logic for updating pagination controls
+        const totalPages = Math.ceil(totalEntries / rowsPerPage);
+        const pagination = document.getElementById("pagination");
+
+        pagination.innerHTML = "";
+        for (let i = 1; i <= totalPages; i++) {
+            const pageButton = document.createElement("button");
+            pageButton.innerText = i;
+            pageButton.addEventListener('click', () => {
+                currentPage = i;
+                displayAttributes(currentPage);
+            });
+            pagination.appendChild(pageButton);
+        }
+    }
+
+    // Call the fetch function to load attributes when the page is ready
+    fetchAttributes();
+// Function to fetch page details from the API
+async function fetchPageDetails(pageId) {
+    try {
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/pages/getPageById?id=${pageId}`);
+        
+        if (!response.ok) {
+            console.error(`Error: ${response.status} - ${response.statusText}`);
+            throw new Error('Failed to fetch page details.');
+        }
+        
+        const pageData = await response.json();
+        showPageDetails(pageData);
+       
+    } catch (error) {
+        console.error('Error:', error);
+        showErrorMessage('Error fetching page details');
+    }
+}
+
+// Function to display the fetched details in the modal
+function showPageDetails(page) {
+    const profileSection = document.getElementById('profileSection');
+
+    // Populate page profile data
+    profileSection.innerHTML = `
+        <div class="card p-4 mb-4" style="background-color: #e9ecef;">
+            <div class="page-info-header d-flex align-items-center">
+                <div class="page-info">
+                    <h3 class="page-title mb-0">${page.title}</h3>
+                    <span class="badge ${page.status === 'Active' ? 'bg-success' : 'bg-danger'} text-light">${page.status}</span>
+                </div>
+            </div>
+        </div>
+        <div class="card p-4">
+            <h5 class="mb-3 basic-info-heading">Page Description</h5>
+            <p>${page.description}</p>
+        </div>
+    `;
+
+    // Show the modal with page details
+    const pageDetailsModal = new bootstrap.Modal(document.getElementById('pageDetailsModal'));
+    pageDetailsModal.show();
+}
+
+
+
+//edit
+async function openEditModal(brandId) {
+    try {
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/pages/getPageById?id=${brandId}`);
+        
+        if (!response.ok) {
+            throw new Error('Failed to fetch brand details.');
+        }
+        
+        const brandData = await response.json();
+        console.log('Fetched brand data:', brandData);
+        showBrandDetailForEdit(brandData); // Display brand data in the modal
+    } catch (error) {
+        console.error('Error:', error);
+        showErrorMessage('Error fetching brand details');
+    }
+}
+// Function to populate the "Edit Page" modal with existing brand data
+function showBrandDetailForEdit(brand) {
+    // Set title
+    document.getElementById('editPageId').value = brand.id;
+    document.getElementById('editPageTitle').value = brand.title || '';
+
+    // Set menu section
+    const menuSectionDropdown = document.getElementById('editMenuSection');
+    menuSectionDropdown.value = brand.menu_section || '';
+
+    // Set menu template
+    const menuTemplateDropdown = document.getElementById('editMenuTemplate');
+    menuTemplateDropdown.value = brand.menu_template || '';
+
+    // Set description
+    document.getElementById('editPageDescription').value = brand.description || '';
+
+    // Set status radio buttons
+    document.getElementById(`editPageStatus${brand.status === 'active' ? 'Active' : 'Inactive'}`).checked = true;
+
+    // Show modal
+    const modal = new bootstrap.Modal(document.getElementById('editPageModal'));
+    modal.show();
+}
+
+
+function updatePagination() {
+  const pagination = document.getElementById("pagination");
+  pagination.innerHTML = ""; // Clear existing pagination links
+  const pageCount = Math.ceil(totalEntries / rowsPerPage);
+
+  // Handle previous button (disable on first page)
+  const prevLi = document.createElement("li");
+  prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+  prevLi.innerHTML = `<a class="page-link" href="#" onclick="changePage(${currentPage - 1})">Previous</a>`;
+  pagination.appendChild(prevLi);
+
+  // Page number buttons
+  for (let i = 1; i <= pageCount; i++) {
+    const li = document.createElement("li");
+    li.className = "page-item" + (i === currentPage ? " active" : "");
+    li.innerHTML = `<a class="page-link" href="#" onclick="changePage(${i})">${i}</a>`;
+    pagination.appendChild(li);
+  }
+
+  // Handle next button (disable on last page)
+  const nextLi = document.createElement("li");
+  nextLi.className = `page-item ${currentPage === pageCount ? 'disabled' : ''}`;
+  nextLi.innerHTML = `<a class="page-link" href="#" onclick="changePage(${currentPage + 1})">Next</a>`;
+  pagination.appendChild(nextLi);
+}
+
+function changePage(page) {
+  const pageCount = Math.ceil(totalEntries / rowsPerPage);
+  if (page < 1 || page > pageCount) return; // Guard against out-of-range pages
+  currentPage = page;
+  displayAttributes(currentPage);
+}
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    let editor; // Store the CKEditor instance
+
+    ClassicEditor
+        .create(document.querySelector('#pageDescriptionEditor'))
+        .then(ckeditor => {
+            editor = ckeditor;
+        })
+        .catch(error => {
+            console.error('Error initializing CKEditor:', error);
+        });
+
+    document.getElementById("savePageBtn").addEventListener("click", async (event) => {
+        event.preventDefault();
+        const saveButton = document.getElementById("savePageBtn");
+        saveButton.disabled = true;
+
+        try {
+            const form = document.getElementById('addPageForm');
+            const formData = new FormData(form);
+
+            // Append the rich-text editor content to FormData
+            const description = editor.getData(); 
+            formData.append("description", description);
+
+            // Append other required fields
+            const createdAt = new Date().toISOString();
+            formData.append("created_at", createdAt);
+
+            // Image field (already part of form data due to formData)
+            const imageFile = document.getElementById('pageImageInput').files[0];
+            formData.append("image", imageFile);
+
+            // Send the POST request to the server
+            const response = await fetch(`${API_ADMINGRAB_URL}/api/pages`, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Failed to save the page');
+            }
+
+            const data = await response.json();
+            showSuccessMessage(data.message || 'Page saved successfully!');
+
+            form.reset(); // Reset form after success
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addPageModal'));
+            modal.hide();
+
+        } catch (error) {
+            console.error('Error saving page:', error);
+            showErrorMessage(`Error: ${error.message}`);
+        } finally {
+            saveButton.disabled = false;
+        }
+    });
+});
+
+    window.onload = fetchAttributes; // Fetch attributes on page load
+  </script>
+</body>
+
+</html>

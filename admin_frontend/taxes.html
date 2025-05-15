@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="./assets/css/styles.min.css" />
+  <link rel="stylesheet" href="./assets/css/navbar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<!-- Quill JS -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+<script src="./popupMessages.js"></script>
+<script>
+    //(function() {
+    //     let(function() {
+    //     let path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })(); path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })();
+
+
+    (function checkAuth() {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        window.location.replace('./login.html'); // Redirect to login page
+      }
+    })();
+
+    window.onload = function() {
+    const token = localStorage.getItem('token');
+    const authContainer = document.getElementById('auth');
+    
+    if (token) {
+        // If token exists, user is logged in, show the logout button
+        authContainer.innerHTML = `
+            <a href="#" class="btn btn-outline-danger mx-3 mt-2 d-block" id="logoutButton">Logout</a>
+        `;
+
+        // Add event listener to logout button
+        document.getElementById('logoutButton').addEventListener('click', logout);
+    } else {
+        // If token doesn't exist, show the login button
+        authContainer.innerHTML = `
+            <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Login</a>
+        `;
+    }
+}
+
+// Logout function
+function logout() {
+    // Remove the token from localStorage
+    localStorage.removeItem('token');
+
+    // Redirect to login page after logout
+    window.location.href = './login.html';
+}
+  </script> 
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <div class="sidebar" id="sidebar">
+          <a class="navbar-brand" href="#">
+              <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          
+          <div class="section-title mt-9">HOME</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./index.html">
+                      <i class="ti ti-layout-dashboard"></i> Dashboard
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">PRODUCTS & STOCK</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./products.html">
+                      <i class="fas fa-box"></i> Products
+                  </a>
+              </li>
+               <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="purchaseToggle">
+                <i class="fas fa-shopping-cart"></i> Purchases 
+              </a>
+              <ul class="nav-submenu" id="purchaseSubmenu">
+                <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
+                <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
+                <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
+              </ul>
+            </li>
+          </ul>
+              <li class="nav-item">
+                  <a class="nav-link" href="./damages.html">
+                      <i class="fas fa-exclamation-circle"></i> Damages
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./stock.html">
+                      <i class="fas fa-archive"></i> Stock
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">POS & ORDERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos.html">
+                      <i class="fas fa-cash-register"></i> POS
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos-orders.html">
+                      <i class="fas fa-receipt"></i> POS Orders
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./online-orders.html">
+                      <i class="fas fa-shopping-basket"></i> Online Orders
+                  </a>
+              </li>
+          </ul>
+
+          <div class="section-title">PROMO</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./coupons.html">
+                      <i class="fas fa-tags"></i> Coupons
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./promotions.html">
+                      <i class="fas fa-bullhorn"></i> Promotions
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./product-sections.html">
+                      <i class="fas fa-cube"></i>  Product Sections
+                  </a>
+              </li>
+          </ul>
+
+          <div class="section-title">COMMUNICATIONS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./push-notifications.html">
+                      <i class="fas fa-bell"></i> Push Notifications
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./subscribers.html">
+                      <i class="fas fa-users"></i> Subscribers
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">USERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./admin.html">
+                      <i class="fas fa-user"></i> Administrators
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./customer.html">
+                      <i class="fas fa-users"></i> Customers
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./employee.html">
+                      <i class="fas fa-user-tie"></i> Employees
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">ACCOUNTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-exchange-alt"></i> Transactions
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">REPORTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./sales-report.html">
+                      <i class="fas fa-chart-line"></i> Sales Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./products-report.html">
+                      <i class="fas fa-file-alt"></i> Products Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-credit-card"></i> Credit Balance Report
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">SETUP</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" id="settingsToggle" href="#">
+                      <i class="fas fa-cog"></i> Settings
+                  </a>
+              </li>
+          </ul>
+          
+          <div class="submenu" id="settingsSubmenu">
+              <ul class="nav flex-column">
+                  <li class="nav-item">
+                      <a class="nav-link" href="./company.html">
+                          <i class="fas fa-building"></i> Company
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./site.html">
+                          <i class="fas fa-globe"></i> Site
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./mail.html">
+                          <i class="fas fa-envelope"></i> Mail
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./location-setup.html">
+                          <i class="fas fa-map-marker-alt"></i> Location Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./shipping-setup.html">
+                          <i class="fas fa-truck"></i> Shipping Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">
+                          <i class="fas fa-lock"></i> OTP
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification.html">
+                          <i class="fas fa-bell"></i> Notification
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification-alert.html">
+                          <i class="fas fa-bell"></i> Notification alert
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./social-media.html">
+                          <i class="fas fa-share-alt"></i> Social Media
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./cookies.html">
+                          <i class="fas fa-cookie-bite"></i> Cookies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./analytics.html">
+                          <i class="fas fa-chart-bar"></i> Analytics
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./theme.html">
+                          <i class="fas fa-paint-brush"></i> Theme
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sliders.html">
+                          <i class="fas fa-sliders-h"></i> Sliders
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./currencies.html">
+                          <i class="fas fa-money-bill-wave"></i> Currencies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-categories.html">
+                          <i class="fas fa-tags"></i> Product Categories
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-attributes.html">
+                          <i class="fas fa-cube"></i> Product Attributes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-brands.html">
+                          <i class="fas fa-tag"></i> Product Brands
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./supplier.html">
+                          <i class="fas fa-industry"></i> Suppliers
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./outlets.html">
+                          <i class="fas fa-store"></i> Outlets
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./benefits.html">
+                          <i class="fas fa-gift"></i> Benefits
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./units.html">
+                          <i class="fas fa-balance-scale"></i> Units
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./taxes.html">
+                          <i class="fas fa-percent"></i>  Taxes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./page.html">
+                          <i class="fas fa-file-alt"></i> Pages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./role & permissions.html">
+                          <i class="fas fa-user-shield"></i> Role & Permissions
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./languages-list.html">
+                          <i class="fas fa-globe"></i> Languages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sms-gateway.html">
+                          <i class="fas fa-comments"></i> Sms Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./payment-gateway.html">
+                          <i class="fas fa-credit-card"></i> Payment Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./license.html">
+                          <i class="fas fa-file-contract"></i> License
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+       <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                   <img src="./assets//images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <!-- <a href="http://127.0.0.1:5502/Office_Project/src/html/my-profile.html" class="d-flex align-items-center gap-2 dropdown-item"> -->
+                      <a href="./my-profile.html" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-3">My Profile</p>
+                    </a>
+                    <span id="auth">
+                      <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Logout</a>
+                    </span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>  
+
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Dashboard / Settings / Taxes</h5> 
+            <div class="container">
+              <h5>Taxes</h5>
+              <div class="container-fluid d-flex flex-column h-100">
+                <div class="d-flex justify-content-end mt-auto mb-4">
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#taxModal">➕ Add Tax</button>
+                </div>
+              </div>
+              
+              <!-- Modal -->
+               <div class="modal fade" id="taxModal" tabindex="-1" aria-labelledby="taxModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg"> <!-- Center the modal and make it larger for better layout -->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="taxModalLabel">Add New Tax</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="taxForm">
+                        <div class="row">
+                          <!-- Name Field -->
+                           <div class="col-md-6 col-12 mb-3">
+                            <label for="taxName" class="form-label">Name</label>
+                            <input type="text" id="taxName" name="name" class="form-control" required>
+                          </div>
+                          <!-- Status Field -->
+                           <div class="col-md-6 col-12 mb-3">
+                            <label class="form-label">Status</label>
+                            <div class="d-flex flex-wrap gap-2"> <!-- Flex for better alignment -->
+                              <div class="form-check">
+                                <input type="radio" id="statusActive" name="status" value="Active" class="form-check-input" required>
+                                <label for="statusActive" class="form-check-label">Active</label>
+                              </div>
+                              <div class="form-check">
+                                <input type="radio" id="statusInactive" name="status" value="Inactive" class="form-check-input">
+                                <label for="statusInactive" class="form-check-label">Inactive</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <!-- Code Field -->
+                           <div class="col-md-6 col-12 mb-3">
+                            <label for="taxCode" class="form-label">Code</label>
+                            <input type="text" id="taxCode" name="code" class="form-control" required>
+                          </div>
+                          <!-- Tax Rate Field -->
+                           <div class="col-md-6 col-12 mb-3">
+                            <label for="taxRate" class="form-label">Tax Rate (%)</label>
+                            <input type="number" id="taxRate" name="tax_rate" class="form-control" step="0.01" required>
+                          </div>
+                        </div>
+                        <!-- Submit Button -->
+                         <div class="d-flex justify-content-end">
+                          <button type="submit" class="btn btn-success">Save</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="modal fade" id="updateTaxModal" tabindex="-1" aria-labelledby="updateTaxModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg"> <!-- Center the modal and make it larger for better layout -->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="updateTaxModalLabel">Update Tax</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="updateTaxForm">
+                        <div class="row">
+                          <!-- Name Field -->
+                           <div class="col-md-6 col-12 mb-3">
+                            <label for="updateTaxName" class="form-label">Name</label>
+                            <input type="text" id="updateTaxName" name="name" class="form-control" required>
+                          </div>
+                          <!-- Status Field -->
+                           <div class="col-md-6 col-12 mb-3">
+                            <label class="form-label">Status</label>
+                            <div class="d-flex flex-wrap gap-2"> <!-- Flex for better alignment -->
+                              <div class="form-check">
+                                <input type="radio" id="updateStatusActive" name="status" value="Active" class="form-check-input" required>
+                                <label for="updateStatusActive" class="form-check-label">Active</label>
+                              </div>
+                              <div class="form-check">
+                                <input type="radio" id="updateStatusInactive" name="status" value="Inactive" class="form-check-input">
+                                <label for="updateStatusInactive" class="form-check-label">Inactive</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <!-- Code Field -->
+                           <div class="col-md-6 col-12 mb-3">
+                            <label for="updateTaxCode" class="form-label">Code</label>
+                            <input type="text" id="updateTaxCode" name="code" class="form-control" required>
+                          </div>
+                          <!-- Tax Rate Field -->
+                           <div class="col-md-6 col-12 mb-3">
+                            <label for="updateTaxRate" class="form-label">Tax Rate (%)</label>
+                            <input type="number" id="updateTaxRate" name="tax_rate" class="form-control" step="0.01" required>
+                          </div>
+                        </div>
+                        <!-- Submit Button -->
+                         <div class="d-flex justify-content-end">
+                          <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="table-container">
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Code</th>
+                        <th>Tax Rate</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="taxesTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+              
+              
+  <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/sidebarmenu.js"></script>
+  <script src="./assets/js/app.min.js"></script>
+  <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <!-- Bootstrap JS Bundle (Includes Popper) -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="./apiConfig/apiConfig.js"></script>
+
+
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    const purchaseToggle = document.getElementById('purchaseToggle');
+    const purchaseSubmenu = document.getElementById('purchaseSubmenu');
+
+    purchaseToggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        purchaseSubmenu.style.display = (purchaseSubmenu.style.display === 'none' || purchaseSubmenu.style.display === '') ? 'block' : 'none';
+    });
+});
+
+  document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            const settingsToggle = document.getElementById('settingsToggle');
+            const settingsSubmenu = document.getElementById('settingsSubmenu');
+
+            // Handle submenu toggle
+            settingsToggle.addEventListener('click', function (event) {
+                event.preventDefault();
+                settingsSubmenu.style.display = (settingsSubmenu.style.display === 'block') ? 'none' : 'block';
+            });
+
+            // Handle active link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    // Remove active class from all links
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    // Add active class to the clicked link
+                    this.classList.add('active');
+                });
+            });
+        });
+
+
+    document.getElementById('taxForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('taxName').value;
+    const code = document.getElementById('taxCode').value;
+    const status = document.querySelector('input[name="status"]:checked').value;
+    const taxRate = document.getElementById('taxRate').value;
+
+    // Validate required fields
+    if (!name || !code || !status || !taxRate) {
+        showErrorMessage("Name, Status, Code, and Tax Rate are required fields.");
+        return;
+    }
+
+    const taxData = {
+        name,
+        code,
+        status,
+        tax_rate: taxRate
+    };
+
+    try {
+        // Send POST request to the API with JSON body
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/taxes`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', // Ensure content-type is JSON
+                'Authorization': localStorage.getItem('token') // Include token if required
+            },
+            body: JSON.stringify(taxData) // Send JSON data
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            showSuccessMessage('Tax added successfully!');
+            // new bootstrap.Modal(document.getElementById('taxModal')).hide(); 
+            const taxModal = bootstrap.Modal.getInstance(document.getElementById('taxModal'));
+            taxModal.hide();
+            
+            fetchTaxes();
+            document.getElementById('taxForm').reset();
+            
+        } else {
+            showErrorMessage(`Error: ${data.message}`);
+        }
+    } catch (error) {
+        console.error('Error saving tax:', error);
+        showErrorMessage('An error occurred while saving the tax. Please try again.');  
+    }
+});
+
+$('#taxModal').on('hidden.bs.modal', function () {
+    document.body.classList.remove('modal-open'); // Remove Bootstrap's modal-open class
+    const backdrop = document.querySelector('.modal-backdrop');
+    if (backdrop) backdrop.remove(); // Remove any remaining backdrop
+});
+
+async function fetchTaxes() {
+    try {
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/taxes`, {
+            method: 'GET',
+            headers: {
+                'Authorization': localStorage.getItem('token'), // Include token if needed
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            // Handle success: Update the table with the fetched taxes data
+            const tableBody = document.getElementById('taxesTableBody');
+            tableBody.innerHTML = ''; // Clear existing rows
+
+            data.forEach((tax) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${tax.name}</td>
+                    <td>${tax.code}</td>
+                    <td>${tax.tax_rate}</td>
+                    <td>${tax.status}</td>
+                    <td>  
+                        <button class="btn btn-warning btn-sm" onclick="editTax(${tax.id})">✏️ Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="showDeleteTaxModal(${tax.id})">🗑 Delete</button>
+                        </div>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        } else {
+            showErrorMessage(`Error: ${data.message}`);
+        }
+    } catch (error) {
+        console.error('Error fetching taxes:', error);
+        showErrorMessage('An error occurred while fetching the taxes data.');
+    }
+}
+
+const apiUrl = `${API_ADMINGRAB_URL}/api/taxes`; // Tax API URL
+
+async function deleteTax(id) {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        showDeleteMessage("Token is missing. Please log in.");
+        return; // Exit if no token is found
+    }
+
+    const url = `${apiUrl}/${id}`; // Corrected URL format for deleting tax
+
+    try {
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': token,
+            },
+        });
+
+        // Log status for debugging
+        console.log(response.status);
+
+        if (!response.ok) {
+            throw new Error('Failed to delete tax record');
+        }
+
+        // Optionally, log the response data to see more details
+        const responseData = await response.json();
+        console.log(responseData);
+
+        // Fetch updated taxes after deletion
+        fetchTaxes(); // Function to re-fetch taxes after deletion
+
+        // Remove the tax row from the table immediately
+        const row = document.querySelector(`#tax-row-${id}`);
+        if (row) {
+            row.remove(); // Remove the tax row from the table
+        }
+
+        // Show success message  
+        showDeleteMessage("Tax record deleted successfully!");
+
+        console.log('Tax Deleted:', id);
+    } catch (error) {
+        console.error('Error deleting tax record:', error);
+        showDeleteMessage("Failed to delete the tax record. Please try again.");
+    }
+}
+
+// Function to display the confirmation modal for deleting tax
+function showDeleteTaxModal(id) {
+    // Create the dialog overlay
+    const dialogOverlay = document.createElement('div');
+    dialogOverlay.style.position = 'fixed';
+    dialogOverlay.style.top = '0';
+    dialogOverlay.style.left = '0';
+    dialogOverlay.style.width = '100%';
+    dialogOverlay.style.height = '100%';
+    dialogOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    dialogOverlay.style.display = 'flex';
+    dialogOverlay.style.justifyContent = 'center';
+    dialogOverlay.style.alignItems = 'center';
+    dialogOverlay.style.zIndex = '1000';  // Set a high z-index to ensure it's on top of all elements
+    dialogOverlay.setAttribute('id', 'confirmDialog');
+
+    // Create the dialog box
+    const dialogBox = document.createElement('div');
+    dialogBox.style.backgroundColor = 'white';
+    dialogBox.style.padding = '60px';
+    dialogBox.style.borderRadius = '5px';
+    dialogBox.style.textAlign = 'center';
+    dialogBox.style.zIndex = '1001';  // Ensure the dialog box itself is also above everything else
+    
+    // Create the warning icon
+    const warningIcon = document.createElement('div');
+    warningIcon.textContent = '!'; // Warning icon
+    warningIcon.style.fontSize = '40px'; 
+    warningIcon.style.color = 'red';
+    warningIcon.style.marginBottom = '10px';
+    
+    // Add title and message
+    const title = document.createElement('h3');
+    title.textContent = 'Are you sure?';
+
+    const message = document.createElement('p');
+    message.textContent = 'You will not be able to recover the deleted tax!';
+
+    // Create the buttons
+    const confirmButton = document.createElement('button');
+    confirmButton.textContent = 'Yes, Delete it!';
+    confirmButton.style.marginRight = '10px';
+    confirmButton.style.backgroundColor = 'rgb(105, 108, 255)';
+    confirmButton.style.color = 'white';
+    confirmButton.style.border = 'none';
+    confirmButton.style.padding = '10px 20px';
+    confirmButton.style.cursor = 'pointer';
+
+    const cancelButton = document.createElement('button');
+    cancelButton.textContent = 'No, Cancel!';
+    cancelButton.style.backgroundColor = 'rgb(133, 146, 163)';
+    cancelButton.style.color = 'white';
+    cancelButton.style.border = 'none';
+    cancelButton.style.padding = '10px 20px';
+    cancelButton.style.cursor = 'pointer';
+
+    // Append all elements to the dialog box
+    dialogBox.appendChild(warningIcon);
+    dialogBox.appendChild(title);
+    dialogBox.appendChild(message);
+    dialogBox.appendChild(confirmButton);
+    dialogBox.appendChild(cancelButton);
+
+    // Append the dialog box to the overlay
+    dialogOverlay.appendChild(dialogBox);      
+
+    // Append the overlay to the body
+    document.body.appendChild(dialogOverlay);  
+
+    // Handle the confirm button click
+    confirmButton.addEventListener('click', async function () {
+        await deleteTax(id);  // Call the delete function and wait for completion
+        closeDeleteTaxModal(); // Close the dialog after deletion
+    });
+
+    // Handle the cancel button click
+    cancelButton.addEventListener('click', closeDeleteTaxModal);
+
+    // Close the confirmation dialog
+    function closeDeleteTaxModal() {
+        document.body.removeChild(dialogOverlay); // Remove the overlay from the DOM
+    }
+}
+
+function showDeleteMessage(message) {
+    const messageContainer = document.createElement('div');
+    messageContainer.style.position = 'fixed'; 
+    messageContainer.style.top = '20px';
+    messageContainer.style.right = '20px';
+    messageContainer.style.backgroundColor = 'red';
+    messageContainer.style.color = 'white';
+    messageContainer.style.padding = '10px 20px';
+    messageContainer.style.borderRadius = '5px';
+    messageContainer.style.zIndex = '1000';
+    messageContainer.textContent = message;
+
+    document.body.appendChild(messageContainer);
+
+    // Remove the message after 3 seconds
+    setTimeout(() => {
+        document.body.removeChild(messageContainer);
+    }, 3000);
+}
+
+// Function to fetch and prefill tax data into the update modal
+async function editTax(taxId) {
+  const token = localStorage.getItem('token');
+    try {
+        // Fetch the tax data from the server
+        
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/taxes/${taxId}`, {  
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization' : token,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch tax data');
+        }
+
+        const tax = await response.json();
+        console.log('Fetched Tax:', tax);
+
+        // Prefill the form fields with fetched data
+        document.getElementById('updateTaxName').value = tax.name;
+        document.getElementById('updateTaxCode').value = tax.code;
+        document.getElementById('updateTaxRate').value = tax.tax_rate;
+
+        // Set the status radio button
+        if (tax.status === 'Active') {
+            document.getElementById('updateStatusActive').checked = true;
+        } else {
+            document.getElementById('updateStatusInactive').checked = true;
+        }
+
+        // Save the tax ID for the update
+        document.getElementById('updateTaxForm').dataset.taxId = taxId;
+
+        // Open the modal
+        const updateModal = new bootstrap.Modal(document.getElementById('updateTaxModal'));
+        updateModal.show();
+    } catch (error) {
+        console.error('Error fetching tax data:', error);
+    }
+}
+
+// Handle the update form submission
+document.getElementById('updateTaxForm').addEventListener('submit', async function (event) {
+    event.preventDefault(); // Prevent default form submission
+
+    const taxId = this.dataset.taxId; // Retrieve the tax ID stored in the form
+    const name = document.getElementById('updateTaxName').value;
+    const status = document.querySelector('input[name="status"]:checked').value;
+    const code = document.getElementById('updateTaxCode').value;
+    const tax_rate = parseFloat(document.getElementById('updateTaxRate').value);
+
+    try {
+        // Call the API to update the tax
+        await updateTax(taxId, { name, status, code, tax_rate });
+
+        console.log('Tax updated successfully!');
+        const updateModal = bootstrap.Modal.getInstance(document.getElementById('updateTaxModal'));
+        updateModal.hide(); // Close the modal
+        location.reload(); // Refresh the page to reflect updated data
+    } catch (error) {
+        console.error('Error updating tax:', error);
+    }
+});
+
+// Function to update tax details via API
+async function updateTax(id, updatedData) {
+  const token = localStorage.getItem('token');
+    try {
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/taxes/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${token}`
+            },
+            body: JSON.stringify(updatedData),
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to update tax data');
+        }
+
+        const data = await response.json();
+        console.log('API Response:', data);
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
+
+
+fetchTaxes();
+</script>
+
+ 
+</body>
+
+</html>

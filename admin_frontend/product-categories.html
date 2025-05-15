@@ -1,0 +1,1340 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="./assets/css/styles.min.css" />
+  <link rel="stylesheet" href="./assets/css/navbar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="./popupMessages.js"></script>
+  <script>
+    ////(function() {
+    //     let(function() {
+    //     let path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })(); path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })();
+
+
+    (function checkAuth() {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        window.location.replace('./login.html'); // Redirect to login page
+      }
+    })();
+  </script>
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <div class="sidebar" id="sidebar">
+          <a class="navbar-brand" href="#">
+            <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+
+          <div class="section-title mt-9">HOME</div>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html">
+                <i class="ti ti-layout-dashboard"></i> Dashboard
+              </a>
+            </li>
+          </ul>
+          <div class="section-title">PRODUCTS & STOCK</div>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="./products.html">
+                <i class="fas fa-box"></i> Products
+              </a>
+            </li>
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="purchaseToggle">
+                  <i class="fas fa-shopping-cart"></i> Purchases
+                </a>
+                <ul class="nav-submenu" id="purchaseSubmenu">
+                  <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
+                  <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
+                  <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
+                </ul>
+              </li>
+            </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="./damages.html">
+                <i class="fas fa-exclamation-circle"></i> Damages
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./stock.html">
+                <i class="fas fa-archive"></i> Stock
+              </a>
+            </li>
+          </ul>
+          <div class="section-title">POS & ORDERS</div>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="./pos.html">
+                <i class="fas fa-cash-register"></i> POS
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./pos-orders.html">
+                <i class="fas fa-receipt"></i> POS Orders
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./online-orders.html">
+                <i class="fas fa-shopping-basket"></i> Online Orders
+              </a>
+            </li>
+          </ul>
+
+          <div class="section-title">PROMO</div>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="./coupons.html">
+                <i class="fas fa-tags"></i> Coupons
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./promotions.html">
+                <i class="fas fa-bullhorn"></i> Promotions
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./product-sections.html">
+                <i class="fas fa-cube"></i> Product Sections
+              </a>
+            </li>
+          </ul>
+
+          <div class="section-title">COMMUNICATIONS</div>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="./push-notifications.html">
+                <i class="fas fa-bell"></i> Push Notifications
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./subscribers.html">
+                <i class="fas fa-users"></i> Subscribers
+              </a>
+            </li>
+          </ul>
+          <div class="section-title">USERS</div>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="./admin.html">
+                <i class="fas fa-user"></i> Administrators
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./customer.html">
+                <i class="fas fa-users"></i> Customers
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./employee.html">
+                <i class="fas fa-user-tie"></i> Employees
+              </a>
+            </li>
+          </ul>
+
+          <div class="section-title">ACCOUNTS</div>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <i class="fas fa-exchange-alt"></i> Transactions
+              </a>
+            </li>
+          </ul>
+
+          <div class="section-title">REPORTS</div>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="./sales-report.html">
+                <i class="fas fa-chart-line"></i> Sales Report
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./products-report.html">
+                <i class="fas fa-file-alt"></i> Products Report
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <i class="fas fa-credit-card"></i> Credit Balance Report
+              </a>
+            </li>
+          </ul>
+
+          <div class="section-title">SETUP</div>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" id="settingsToggle" href="#">
+                <i class="fas fa-cog"></i> Settings
+              </a>
+            </li>
+          </ul>
+
+          <div class="submenu" id="settingsSubmenu">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="./company.html">
+                  <i class="fas fa-building"></i> Company
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./site.html">
+                  <i class="fas fa-globe"></i> Site
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./mail.html">
+                  <i class="fas fa-envelope"></i> Mail
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./location-setup.html">
+                  <i class="fas fa-map-marker-alt"></i> Location Setup
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./shipping-setup.html">
+                  <i class="fas fa-truck"></i> Shipping Setup
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-lock"></i> OTP
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./notification.html">
+                  <i class="fas fa-bell"></i> Notification
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./notification-alert.html">
+                  <i class="fas fa-bell"></i> Notification alert
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./social-media.html">
+                  <i class="fas fa-share-alt"></i> Social Media
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./cookies.html">
+                  <i class="fas fa-cookie-bite"></i> Cookies
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./analytics.html">
+                  <i class="fas fa-chart-bar"></i> Analytics
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./theme.html">
+                  <i class="fas fa-paint-brush"></i> Theme
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./sliders.html">
+                  <i class="fas fa-sliders-h"></i> Sliders
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./currencies.html">
+                  <i class="fas fa-money-bill-wave"></i> Currencies
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./product-categories.html">
+                  <i class="fas fa-tags"></i> Product Categories
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./product-attributes.html">
+                  <i class="fas fa-cube"></i> Product Attributes
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./product-brands.html">
+                  <i class="fas fa-tag"></i> Product Brands
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./supplier.html">
+                  <i class="fas fa-industry"></i> Suppliers
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./outlets.html">
+                  <i class="fas fa-store"></i> Outlets
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./benefits.html">
+                  <i class="fas fa-gift"></i> Benefits
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./units.html">
+                  <i class="fas fa-balance-scale"></i> Units
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./taxes.html">
+                  <i class="fas fa-percent"></i> Taxes
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./page.html">
+                  <i class="fas fa-file-alt"></i> Pages
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./role & permissions.html">
+                  <i class="fas fa-user-shield"></i> Role & Permissions
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./languages-list.html">
+                  <i class="fas fa-globe"></i> Languages
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./sms-gateway.html">
+                  <i class="fas fa-comments"></i> Sms Gateway
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./payment-gateway.html">
+                  <i class="fas fa-credit-card"></i> Payment Gateway
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./license.html">
+                  <i class="fas fa-file-contract"></i> License
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Dashboard / Product Category</h5>
+            <div class="container">
+              <h5>Product Category</h5>
+              <div
+                class="actions-bar d-flex flex-column flex-md-row align-items-center align-items-lg-end justify-content-center justify-content-md-center justify-content-lg-end">
+                <div class="d-flex justify-content-center w-100" style="max-width: 207px;">
+                  <button class="btn-add-attribute btn btn-info w-100" data-bs-toggle="modal"
+                    data-bs-target="#add-brand-overlay">➕ Add Product Category</button>
+                </div>
+              </div>
+
+              <!-- Modal for Adding Product Brand -->
+              <div class="modal fade" id="add-brand-overlay" tabindex="-1" aria-labelledby="addBrandModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="addBrandModalLabel">Create New Product Category</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="createProductBrandForm" enctype="multipart/form-data">
+                        <div class="mb-3">
+                          <label for="name" class="form-label">Category Name</label>
+                          <input type="text" id="name" name="name" class="form-control"
+                            placeholder="Enter category name" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="parentCategory" class="form-label">Parent Category</label>
+                          <select id="parentCategory" name="parent_category" class="form-control">
+
+                            <!-- Dynamically populate this from the backend -->
+                          </select>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label">Status:</label>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="statusActive" value="Active"
+                              checked>
+                            <label class="form-check-label" for="statusActive">Active</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="statusInactive"
+                              value="Inactive">
+                            <label class="form-check-label" for="statusInactive">Inactive</label>
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label for="image" class="form-label">Upload Image</label>
+                          <input type="file" id="image" name="image" class="form-control" accept="image/*">
+                        </div>
+                        <div class="mb-3">
+                          <label for="description" class="form-label">Description</label>
+                          <textarea id="description" name="description" class="form-control"
+                            placeholder="Enter a brief description" rows="4"></textarea>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label">Category Specs</label>
+                          <div id="categorySpecsContainer">
+                            <div class="input-group mb-2">
+                              <input type="text" name="categorySpecs[]" class="form-control" placeholder="Enter spec">
+                              <button type="button" class="btn btn-success" onclick="addSpecField()">+</button>
+                            </div>
+                          </div>
+                        </div>
+                        <button type="button" class="btn btn-primary w-100"
+                          onclick="submitProductBrandForm()">Submit</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Modal for Editing a Product Category -->
+              <div class="modal fade" id="edit-brand-overlay" tabindex="-1" aria-labelledby="editBrandModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="editBrandModalLabel">Edit Product Category</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="editProductBrandForm" enctype="multipart/form-data">
+                        <!-- Brand Name Input -->
+                        <div class="mb-3">
+                          <label for="editName" class="form-label">Category Name</label>
+                          <input type="text" id="editName" name="name" class="form-control"
+                            placeholder="Enter category name" required>
+                        </div>
+
+                        <!-- Parent Category Dropdown -->
+                        <div class="mb-3">
+                          <label for="editParentCategory" class="form-label">Parent Category</label>
+                          <select id="editParentCategory" name="parent_category" class="form-select">
+                            <option value="">None (Top-level Category)</option>
+                            <!-- Options will be populated dynamically -->
+                          </select>
+                        </div>
+
+                        <!-- Status Radio Buttons -->
+                        <div class="mb-3">
+                          <label class="form-label">Status:</label>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="editstatus" id="editStatusActive"
+                              value="Active" checked>
+                            <label class="form-check-label" for="editStatusActive">Active</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="editstatus" id="editStatusInactive"
+                              value="Inactive">
+                            <label class="form-check-label" for="editStatusInactive">Inactive</label>
+                          </div>
+                        </div>
+
+                        <!-- Image Upload Input -->
+                        <div class="mb-3">
+                          <label for="editImage" class="form-label">Upload Image</label>
+                          <input type="file" id="editImage" name="image" class="form-control" accept="image/*">
+                        </div>
+
+                        <!-- Description Input -->
+                        <div class="mb-3">
+                          <label for="editDescription" class="form-label">Description</label>
+                          <textarea id="editDescription" name="description" class="form-control"
+                            placeholder="Enter a brief description" rows="4"></textarea>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="button" class="btn btn-primary w-100"
+                          onclick="submitEditProductBrandForm()">Submit</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- View Product Brand Modal -->
+              <div class="modal fade" id="viewProductBrandModal" tabindex="-1"
+                aria-labelledby="viewProductBrandModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="viewProductBrandModalLabel">Product Category Details</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+                      <div class="row">
+                        <!-- Left Side: Brand Image -->
+                        <div class="col-md-4 text-center">
+                          <img id="productBrandImage" src="default_image.jpg" alt="Product Brand Image"
+                            class="img-fluid">
+                        </div>
+                        <!-- Right Side: Brand Details -->
+                        <div class="col-md-8">
+                          <p><strong>Category Name:</strong> <span id="productBrandName"></span></p>
+                          <p><strong>Parent Category:</strong> <span id="productParentBrandName"></span></p>
+                          <p><strong>Status:</strong> <span id="productBrandStatus"></span></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="table-responsive mt-4">
+                <table class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Parent Category</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="brandsTableBody">
+                    <!-- Dynamic rows will be added here -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+        <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="./assets/js/sidebarmenu.js"></script>
+        <script src="./assets/js/app.min.js"></script>
+        <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+        <script src="./apiConfig/apiConfig.js"></script>
+
+
+        <script>
+
+          document.addEventListener('DOMContentLoaded', () => {
+            const purchaseToggle = document.getElementById('purchaseToggle');
+            const purchaseSubmenu = document.getElementById('purchaseSubmenu');
+
+            purchaseToggle.addEventListener('click', (event) => {
+              event.preventDefault();
+              purchaseSubmenu.style.display = (purchaseSubmenu.style.display === 'none' || purchaseSubmenu.style.display === '') ? 'block' : 'none';
+            });
+          });
+
+          document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            const settingsToggle = document.getElementById('settingsToggle');
+            const settingsSubmenu = document.getElementById('settingsSubmenu');
+
+            // Handle submenu toggle
+            settingsToggle.addEventListener('click', function (event) {
+              event.preventDefault();
+              settingsSubmenu.style.display = (settingsSubmenu.style.display === 'block') ? 'none' : 'block';
+            });
+
+            // Handle active link
+            navLinks.forEach(link => {
+              link.addEventListener('click', function () {
+                // Remove active class from all links
+                navLinks.forEach(nav => nav.classList.remove('active'));
+                // Add active class to the clicked link
+                this.classList.add('active');
+              });
+            });
+          });
+
+
+          function addSpecField() {
+            const container = document.getElementById('categorySpecsContainer');
+            const div = document.createElement('div');
+            div.classList.add('input-group', 'mb-2');
+
+            div.innerHTML = `
+        <input type="text" name="categorySpecs[]" class="form-control category-specs-input" placeholder="Enter spec">
+        <button type="button" class="btn btn-danger" onclick="removeSpecField(this)">-</button>
+    `;
+            container.appendChild(div);
+          }
+
+          function removeSpecField(button) {
+            button.parentElement.remove();
+          }
+
+          // async function submitProductBrandForm() {
+          //     const form = document.getElementById('createProductBrandForm');
+          //     const formData = new FormData(form);
+
+          //     // Get all category specs as an array (ensure no duplicates)
+          //     const categorySpecsInputs = document.querySelectorAll('.category-specs-input');
+          //     let categorySpecs = [];
+
+          //     categorySpecsInputs.forEach(input => {
+          //         const value = input.value.trim();
+          //         if (value) {
+          //             // Split by commas to handle multiple values entered in a single input
+          //             const specs = value.split(',').map(spec => spec.trim()).filter(Boolean); // Split and trim each value
+          //             categorySpecs.push(...specs); // Add the individual specs to the array
+          //         }
+          //     });
+
+          //     // Remove duplicates (again) after collecting all specs
+          //     const uniqueCategorySpecs = [...new Set(categorySpecs)];
+
+          //     // Clean up any combined data (specs should be separated)
+          //     const finalCategorySpecs = uniqueCategorySpecs.filter(spec => !spec.includes(','));
+
+          //     // Ensure that we're only sending an array of unique specs
+          //     formData.set('categorySpecs', finalCategorySpecs);
+
+          //     console.log('Cleaned Category Specs:', finalCategorySpecs); // Debugging output
+
+          //     try {
+          //         const response = await fetch(`https://grabatoz-production.up.railway.app/api/product-categories`, {
+          //             method: 'POST',
+          //             body: formData,
+          //             headers: {
+          //                 'Authorization': `${localStorage.getItem('token')}`,
+          //             },
+          //         });
+
+          //         const data = await response.json();
+
+          //         if (response.ok) {
+          //             alert('Product category added successfully!');
+          //             hideOverlay();
+          //             form.reset(); // Reset the form to avoid submitting the same data again
+          //             fetchProductBrands(); // Fetch updated data
+          //         } else {
+          //             alert(`Error: ${data.message}`);
+          //         }
+          //     } catch (error) {
+          //         console.error('Error submitting form:', error);
+          //         alert('Failed to add product brand. Please try again.');
+          //     }
+          // }
+
+
+          // async function submitProductBrandForm() {
+          //     const form = document.getElementById('createProductBrandForm');
+          //     const formData = new FormData(form);
+
+          //     // Get all category specs as an array (ensure no duplicates)
+          //     const categorySpecsInputs = document.querySelectorAll('.category-specs-input');
+          //     let categorySpecs = [];
+
+          //     categorySpecsInputs.forEach(input => {
+          //         const value = input.value.trim();
+          //         if (value) {
+          //             const specs = value.split(',').map(spec => spec.trim()).filter(Boolean);
+          //             categorySpecs.push(...specs);
+          //         }
+          //     });
+
+          //     // Remove duplicates
+          //     const uniqueCategorySpecs = [...new Set(categorySpecs)];
+          //     formData.set('categorySpecs', uniqueCategorySpecs);
+
+          //     console.log('Cleaned Category Specs:', uniqueCategorySpecs);
+
+          //     try {
+          //         const response = await fetch(`https://grabatoz-production.up.railway.app/api/product-categories`, {
+          //             method: 'POST',
+          //             body: formData,
+          //             headers: {
+          //                 'Authorization': `${localStorage.getItem('token')}`,
+          //             },
+          //         });
+
+          //         const data = await response.json();
+
+          //         if (response.ok) {
+          //             alert('Product category added successfully!');
+          //             hideOverlay();
+          //             form.reset();
+          //             fetchCategories(); // Fetch updated categories after adding a new one
+          //         } else {
+          //             alert(`Error: ${data.message}`);
+          //         }
+          //     } catch (error) {
+          //         console.error('Error submitting form:', error);
+          //         alert('Failed to add product category. Please try again.');
+          //     }
+          // }
+
+          // Fetch and update the category dropdown dynamically
+          async function fetchCategories() {
+            try {
+              const response = await fetch(`https://grabatoz-production.up.railway.app/api/product-categories`, {
+                method: 'GET',
+                headers: {
+                  'Authorization': `${localStorage.getItem('token')}`,
+                  'Content-Type': 'application/json',
+                },
+              });
+
+              const categories = await response.json();
+
+              if (response.ok) {
+                const parentCategoryDropdown = document.getElementById('parentCategory');
+                parentCategoryDropdown.innerHTML = '<option value="">Select Parent Category</option>';
+
+                categories.forEach(category => {
+                  const option = document.createElement('option');
+                  option.value = category.id;
+                  option.textContent = category.name;
+                  parentCategoryDropdown.appendChild(option);
+                });
+              } else {
+                console.error('Failed to fetch categories:', categories.message);
+              }
+            } catch (error) {
+              console.error('Error fetching categories:', error);
+            }
+          }
+
+          // Call fetchCategories on page load
+          document.addEventListener('DOMContentLoaded', fetchCategories);
+
+
+          // Function to fetch and display the list of product brands
+          // async function fetchProductBrands() {
+          //     const token = localStorage.getItem('token');
+          //     const apiUrl = `https://grabatoz-production.up.railway.app/api/product-categories`;
+
+          //     try {
+          //         const response = await fetch(apiUrl, {
+          //             method: 'GET',
+          //             headers: {
+          //                 'Authorization': `${token}`,
+          //                 'Content-Type': 'application/json',
+          //             },
+          //         });
+
+          //         if (!response.ok) {
+          //             const errorData = await response.json();
+          //             console.error('API Error:', errorData);
+          //             throw new Error(`Failed to fetch product brands: ${errorData.message || 'Unknown error'}`);
+          //         }
+
+          //         const brands = await response.json();   
+          //         console.log('Fetched brands:', brands);
+
+          //         const brandsTableBody = document.getElementById('brandsTableBody');
+          //         brandsTableBody.innerHTML = '';
+
+          //         brands.forEach(brand => {  
+          //             const row = document.createElement('tr');
+          //             row.innerHTML = `
+          //                 <td>${brand.name}</td>
+          //                 <td>${parent.category}</td>
+          //                 <td>${brand.status}</td>
+          //                 <td class="action-buttons">
+          //                     <button class="btn btn-view" onclick="navigateToShowInfo('${brand.id}')">👁</button>
+          //                     <button class="btn btn-edit" onclick="openUpdateForm(${brand.id})">✏️</button>
+          //                     <button class="btn btn-delete" onclick="showConfirmDialog(${brand.id})">🗑</button>
+          //                 </td>
+          //             `;
+          //             brandsTableBody.appendChild(row);  
+          //         });
+
+          //         console.log('Product categories fetched successfully');
+          //     } catch (error) {
+          //         console.error('Error fetching product categories:', error);
+          //         alert(`Error fetching product categories: ${error.message}`);
+          //     }
+          // }
+
+          async function fetchProductBrands() {
+            const token = localStorage.getItem('token');
+            const apiUrl = `https://grabatoz-production.up.railway.app/api/product-categories`;
+
+            try {
+              const response = await fetch(apiUrl, {
+                method: 'GET',
+                headers: {
+                  'Authorization': `${token}`,
+                  'Content-Type': 'application/json',
+                },
+              });
+
+              if (!response.ok) {
+                const errorData = await response.json();
+                console.error('API Error:', errorData);
+                throw new Error(`Failed to fetch product brands: ${errorData.message || 'Unknown error'}`);
+              }
+
+              const brands = await response.json();
+              console.log('Fetched brands:', brands); // Debugging Line
+
+              const brandsTableBody = document.getElementById('brandsTableBody');
+              brandsTableBody.innerHTML = '';
+
+              brands.forEach(brand => {
+                const parentCategoryName = brand.parent_category_name || 'No Parent'; // Fix: Use backend response
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                <td>${brand.name}</td>
+                <td>${parentCategoryName}</td>
+                <td>${brand.status}</td>
+                <td class="action-buttons">
+                    <button class="btn btn-view" onclick="navigateToShowInfo('${brand.id}')">👁</button>
+                    <button class="btn btn-edit" onclick="openUpdateForm(${brand.id})">✏️</button>
+                    <button class="btn btn-delete" onclick="showConfirmDialog(${brand.id})">🗑</button>
+                </td>
+            `;
+                brandsTableBody.appendChild(row);
+              });
+
+              console.log('Product categories fetched successfully');
+            } catch (error) {
+              console.error('Error fetching product categories:', error);
+              showErrorMessage(`Error fetching product categories: ${error.message}`);
+            }
+          }
+
+
+          // Function to hide the overlay (close the modal)
+          function hideOverlay() {
+            const overlay = document.getElementById('add-brand-overlay');  // modal element
+            if (overlay) {
+              const modal = bootstrap.Modal.getInstance(overlay);  // Bootstrap modal instance
+              modal.hide();  // Hide the modal
+            }
+          }
+
+          // Function to show the overlay (open the modal) 
+          function showOverlay() {
+            const overlay = document.getElementById('add-brand-overlay');  // modal element
+            if (overlay) {
+              const modal = new bootstrap.Modal(overlay);  // Create a new Bootstrap modal instance
+              modal.show();  // Show the modal
+            }
+          }
+
+
+          // async function submitProductBrandForm() {
+          //     const form = document.getElementById('createProductBrandForm');
+          //     const formData = new FormData(form);
+
+          //     // Get selected parent category
+          //     const parentCategory = document.getElementById('parentCategory').value || null;
+          //     formData.append('parent_category', parentCategory);
+
+          //     console.log('Submitting Form Data:', Object.fromEntries(formData)); // Debugging
+
+          //     try {
+          //         const response = await fetch(`https://grabatoz-production.up.railway.app/api/product-categories`, {
+          //             method: 'POST',
+          //             body: formData,
+          //             headers: {
+          //                 'Authorization': `${localStorage.getItem('token')}`,
+          //             },
+          //         });
+
+          //         const data = await response.json();
+
+          //         if (response.ok) {
+          //             showSuccessMessage('Product category added successfully!');
+          //             hideOverlay();
+          //             form.reset();
+          //             fetchProductBrands(); // Fetch updated categories
+          //         } else {
+          //             showErrorMessage(`Error: ${data.message}`);
+          //         }
+          //     } catch (error) {
+          //         console.error('Error submitting form:', error);
+          //         showErrorMessage('Failed to add product category. Please try again.');
+          //     }
+
+
+          // }
+
+          // async function submitProductBrandForm() {
+          //   const form = document.getElementById('createProductBrandForm');
+          //   const formData = new FormData(form);
+
+          //   // Collect all spec inputs
+          //   const specs = [];
+          //   document.querySelectorAll('input[name="categorySpecs[]"]').forEach(input => {
+          //     if (input.value.trim() !== "") {
+          //       specs.push(input.value.trim());
+          //     }
+          //   });
+          //   if (specs.length === 0) {
+          //     showErrorMessage('Please add at least one category specification.');
+          //     return;
+          //   }
+          //   // Remove any previous specs entry from FormData (in case duplicate)
+          //   formData.delete('categorySpecs[]');
+          //   formData.append('categorySpecs', JSON.stringify(specs)); // Add as JSON string
+
+          //   // Append parent category as null if empty
+          //   const parentCategory = document.getElementById('parentCategory').value || null;
+          //   formData.set('parent_category', parentCategory);
+
+          //   try {
+          //     const response = await fetch(`https://grabatoz-production.up.railway.app/api/product-categories`, {
+          //       method: 'POST',
+          //       body: formData,
+          //       headers: {
+          //         'Authorization': `${localStorage.getItem('token')}`,
+          //       },
+          //     });
+
+          //     const data = await response.json();
+
+          //     if (response.ok) {
+          //       showSuccessMessage('Product category added successfully!');
+          //       hideOverlay();
+          //       form.reset();
+          //       fetchProductBrands();
+          //     } else {
+          //       showErrorMessage(`Error: ${data.message}`);
+          //     }
+          //   } catch (error) {
+          //     console.error('Error submitting form:', error);
+          //     showErrorMessage('Failed to add product category. Please try again.');
+          //   }
+          // }
+
+          async function submitProductBrandForm() {
+  const form = document.getElementById('createProductBrandForm');
+  const formData = new FormData(form);
+
+  // Collect all spec inputs
+  const specs = [];
+  document.querySelectorAll('input[name="categorySpecs[]"]').forEach(input => {
+    if (input.value.trim() !== "") {
+      specs.push(input.value.trim());
+    }
+  });
+
+  if (specs.length === 0) {
+    showErrorMessage('Please add at least one category specification.');
+    return;
+  }
+
+  // Remove any previous specs entry from FormData
+  formData.delete('categorySpecs[]');
+  formData.append('categorySpecs', JSON.stringify(specs));
+
+  // Get parent category and ensure it's null if empty
+  const parentCategory = document.getElementById('parentCategory').value;
+  formData.set('parent_category', parentCategory !== "" ? parentCategory : "");
+
+  try {
+    const response = await fetch(`https://grabatoz-production.up.railway.app/api/product-categories`, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Authorization': `${localStorage.getItem('token')}`,
+      },
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      showSuccessMessage('Product category added successfully!');
+      hideOverlay();
+      form.reset();
+      fetchProductBrands();
+    } else {
+      showErrorMessage(`Error: ${data.message}`);
+    }
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    showErrorMessage('Failed to add product category. Please try again.');
+  }
+}
+
+          async function openUpdateForm(categoryId) {
+            // Show the modal
+            const modal = new bootstrap.Modal(document.getElementById('edit-brand-overlay'));
+            modal.show();
+
+            try {
+              // Fetch the current category details
+              const categoryResponse = await fetch(`https://grabatoz-production.up.railway.app/api/product-categories/${categoryId}`, {
+                method: 'GET',
+                headers: {
+                  'Authorization': `${localStorage.getItem('token')}`
+                },
+              });
+              const categoryData = await categoryResponse.json();
+
+              // Fetch all categories for the parent dropdown
+              const allCategoriesResponse = await fetch(`https://grabatoz-production.up.railway.app/api/product-categories`, {
+                method: 'GET',
+                headers: {
+                  'Authorization': `${localStorage.getItem('token')}`
+                },
+              });
+              const allCategories = await allCategoriesResponse.json();
+
+              // Populate the parent category dropdown, excluding the current category
+              const parentDropdown = document.getElementById('editParentCategory');
+              parentDropdown.innerHTML = '<option value="">None (Top-level Category)</option>';
+
+              allCategories.forEach(category => {
+                if (category.id !== categoryId) { // Exclude current category from being its own parent
+                  const option = document.createElement('option');
+                  option.value = category.id;
+                  option.textContent = category.name;
+                  parentDropdown.appendChild(option);
+                }
+              });
+
+              // Pre-populate the form fields
+              document.getElementById('editName').value = categoryData.name;
+
+              // Set the selected parent category
+              if (categoryData.parent_category) {
+                parentDropdown.value = categoryData.parent_category;
+              } else {
+                parentDropdown.value = '';
+              }
+
+              document.getElementById('editStatusActive').checked = categoryData.status === 'Active';
+              document.getElementById('editStatusInactive').checked = categoryData.status === 'Inactive';
+              document.getElementById('editDescription').value = categoryData.description || '';
+
+              // Set the category ID on the modal for later use
+              document.getElementById('edit-brand-overlay').setAttribute('data-brand-id', categoryData.id);
+            } catch (err) {
+              console.error('Error:', err);
+              showErrorMessage('Failed to load category data');
+            }
+          }
+
+          // This function is triggered when the form is submitted.
+          // function submitEditProductBrandForm() {
+          //   const categoryId = document.getElementById('edit-brand-overlay').getAttribute('data-brand-id');
+          //   const name = document.getElementById('editName').value;
+          //   const editParent = document.getElementById('editParentName').value;
+
+          //   const status = document.querySelector('input[name="editstatus"]:checked').value; // Get the selected status value
+          //   const description = document.getElementById('editDescription').value;
+          //   const image = document.getElementById('editImage').files[0]; // Image file if uploaded
+
+          //   // Log the selected status to check if it's being correctly captured
+          //   console.log("Selected Status:", status);
+
+          //   // Validate required fields
+          //   if (!name || !status || !description) {
+          //     showErrorMessage('Please fill in all required fields');   
+          //     return;
+          //   }
+
+          //   // Prepare form data
+          //   const formData = new FormData();
+          //   formData.append('name', name);
+          //   formData.append('editParentName', editParent);
+
+          //   formData.append('status', status); // Append the selected status value
+          //   formData.append('description', description);
+          //   if (image) {
+          //     formData.append('image', image); // Only append image if uploaded
+          //   }
+
+          //   // Send PUT request to update the product brand
+          //   fetch(`https://grabatoz-production.up.railway.app/api/product-categories/${categoryId}`, {
+          //     method: 'PUT',
+          //     headers: {
+          //       'Authorization': `${localStorage.getItem('token')}`, // Pass token for authentication
+          //     },
+          //     body: formData, // Send form data (including image) in the request body
+          //   })
+          //   .then(response => response.json())
+          //   .then(data => {
+          //     console.log('Product category updated successfully:', data);
+          //     showSuccessMessage('Product category updated successfully');
+
+          //     fetchProductBrands(); // Refresh the list of brands after the update
+          //     // Close the modal after successful update
+          //     const modal = bootstrap.Modal.getInstance(document.getElementById('edit-brand-overlay'));
+          //     modal.hide();
+          //   })
+          //   .catch(err => {
+          //     console.error('Error updating product category:', err);
+          //     showErrorMessage('Error updating product category');
+          //   });
+          // }
+
+          function submitEditProductBrandForm() {
+            const categoryId = document.getElementById('edit-brand-overlay').getAttribute('data-brand-id');
+            const name = document.getElementById('editName').value;
+            const editParent = document.getElementById('editParentCategory').value; // ✅ Fixed ID
+
+            const status = document.querySelector('input[name="editstatus"]:checked').value;
+            const description = document.getElementById('editDescription').value;
+            const image = document.getElementById('editImage').files[0];
+
+            if (!name || !status || !description) {
+              showErrorMessage('Please fill in all required fields');
+              return;
+            }
+
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('parent_category', editParent);
+            formData.append('status', status);
+            formData.append('description', description);
+            if (image) {
+              formData.append('image', image);
+            }
+
+            fetch(`https://grabatoz-production.up.railway.app/api/product-categories/${categoryId}`, {
+              method: 'PUT',
+              headers: {
+                'Authorization': `${localStorage.getItem('token')}`,
+              },
+              body: formData,
+            })
+              .then(response => response.json())
+              .then(data => {
+                console.log('Product category updated successfully:', data);
+                showSuccessMessage('Product category updated successfully');
+                fetchProductBrands();
+
+                const modal = bootstrap.Modal.getInstance(document.getElementById('edit-brand-overlay'));
+                modal.hide();
+              })
+              .catch(err => {
+                console.error('Error updating product category:', err);
+                showErrorMessage('Error updating product category');
+              });
+          }
+
+          // Function to display the confirmation dialog 
+          function showConfirmDialog(id) {
+            // Create the dialog overlay
+            const dialogOverlay = document.createElement('div');
+            dialogOverlay.style.position = 'fixed';
+            dialogOverlay.style.top = '0';
+            dialogOverlay.style.left = '0';
+            dialogOverlay.style.width = '100%';
+            dialogOverlay.style.height = '100%';
+            dialogOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+            dialogOverlay.style.display = 'flex';
+            dialogOverlay.style.justifyContent = 'center';
+            dialogOverlay.style.alignItems = 'center';
+            dialogOverlay.style.zIndex = '1000';
+            dialogOverlay.setAttribute('id', 'confirmDialog');
+
+            // Create the dialog box
+            const dialogBox = document.createElement('div');
+            dialogBox.style.backgroundColor = 'white';
+            dialogBox.style.padding = '40px';
+            dialogBox.style.borderRadius = '8px';
+            dialogBox.style.textAlign = 'center';
+            dialogBox.style.zIndex = '1001';
+
+            // Add warning icon, title, and message
+            const warningIcon = document.createElement('div');
+            warningIcon.textContent = '⚠️';
+            warningIcon.style.fontSize = '30px';
+            warningIcon.style.color = 'red';
+            warningIcon.style.marginBottom = '15px';
+
+            const title = document.createElement('h3');
+            title.textContent = 'Are you sure?';
+
+            const message = document.createElement('p');
+            message.textContent = 'This action cannot be undone. Do you want to delete this record?';
+
+            // Create confirm and cancel buttons
+            const confirmButton = document.createElement('button');
+            confirmButton.textContent = 'Yes, Delete it!';
+            confirmButton.style.marginRight = '10px';
+            confirmButton.style.backgroundColor = '#dc3545';
+            confirmButton.style.color = '#fff';
+            confirmButton.style.border = 'none';
+            confirmButton.style.padding = '10px 20px';
+            confirmButton.style.cursor = 'pointer';
+            confirmButton.style.borderRadius = '5px';
+
+            const cancelButton = document.createElement('button');
+            cancelButton.textContent = 'No, Cancel!';
+            cancelButton.style.backgroundColor = '#6c757d';
+            cancelButton.style.color = '#fff';
+            cancelButton.style.border = 'none';
+            cancelButton.style.padding = '10px 20px';
+            cancelButton.style.cursor = 'pointer';
+            cancelButton.style.borderRadius = '5px';
+
+            // Append elements to the dialog box 
+            dialogBox.appendChild(warningIcon);
+            dialogBox.appendChild(title);
+            dialogBox.appendChild(message);
+            dialogBox.appendChild(confirmButton);
+            dialogBox.appendChild(cancelButton);
+
+            // Append the dialog box to the overlay
+            dialogOverlay.appendChild(dialogBox);
+
+            // Append the overlay to the body
+            document.body.appendChild(dialogOverlay);
+
+            // Confirm button click handler
+            confirmButton.addEventListener('click', async () => {
+              await deleteProductBrand(id);
+              closeConfirmDialog();
+            });
+
+            // Cancel button click handler
+            cancelButton.addEventListener('click', closeConfirmDialog);
+
+            // Function to close the confirmation dialog
+            function closeConfirmDialog() {
+              document.body.removeChild(dialogOverlay);
+            }
+          }
+
+          // Function to display a delete success message
+          function showDeleteMessage(message) {
+            const messageContainer = document.createElement('div');
+            messageContainer.style.position = 'fixed';
+            messageContainer.style.top = '20px';
+            messageContainer.style.right = '20px';
+            messageContainer.style.backgroundColor = '#28a745';
+            messageContainer.style.color = '#fff';
+            messageContainer.style.padding = '10px 20px';
+            messageContainer.style.borderRadius = '5px';
+            messageContainer.style.zIndex = '1000';
+            messageContainer.textContent = message;
+
+            document.body.appendChild(messageContainer);
+
+            // Remove the message after 3 seconds
+            setTimeout(() => {
+              document.body.removeChild(messageContainer);
+            }, 3000);
+          }
+
+          // Function to delete a product brand
+          async function deleteProductBrand(id) {
+            const token = localStorage.getItem('token');
+
+            try {
+              const response = await fetch(`https://grabatoz-production.up.railway.app/api/product-categories/${id}`, {
+                method: 'DELETE',
+                headers: {
+                  'Authorization': token,
+                  'Content-Type': 'application/json',
+                },
+              });
+
+              if (!response.ok) throw new Error('Failed to delete the product brand');
+
+              console.log('Product Brand Deleted:', id);
+              fetchProductBrands(); // Refresh the product brands list
+
+              // Remove the row from the table without refreshing
+              const rowElement = document.querySelector(`tr[data-id='${id}']`);
+              if (rowElement) {
+                rowElement.remove();
+                showDeleteMessage('Product category deleted successfully!');
+              }
+            } catch (error) {
+              console.error('Error deleting product category:', error);
+              showErrorMessage('Failed to delete the product category. Please try again.');
+            }
+          }
+
+          // Function to open the product brand view modal and populate the data
+          function navigateToShowInfo(categoryId) {
+            // Show the modal
+            const modal = new bootstrap.Modal(document.getElementById('viewProductBrandModal'));
+            modal.show();
+
+            // Fetch the product brand details from the API
+            fetch(`https://grabatoz-production.up.railway.app/api/product-categories/${categoryId}`, {
+              method: 'GET',
+              headers: {
+                'Authorization': `${localStorage.getItem('token')}` // Assuming you're using authentication
+              }
+            })
+              .then(response => response.json())
+              .then(data => {
+                const imagePath = data.image_path
+                  ? `https://grabatoz-production.up.railway.app/${data.image_path}`
+                  : '/path/to/placeholder-image.jpg';
+                // Populate the modal fields with the fetched data
+                document.getElementById('productBrandName').textContent = data.name;
+                document.getElementById('productParentBrandName').textContent = data.parent_category;
+
+                document.getElementById('productBrandStatus').textContent = data.status;
+                document.getElementById('productBrandImage').src = imagePath || '';
+
+
+              })
+              .catch(err => {
+                console.error('Error fetching product brand data:', err);
+                showErrorMessage('Failed to load product brand data');
+              });
+          }
+
+
+
+
+          fetchProductBrands();
+
+
+        </script>
+</body>
+
+</html>
+
+
+
+
+
+<!-- <td>${brand.description || 'N/A'}</td> -->

@@ -1,0 +1,2 @@
+[[redirects]] from = "/product-details.html?slug=:slug" to = "/product-details/:slug" status = 301  
+# Use 301 for permanent redirect (recommended for SEO) force = true #Ensure the redirect happens

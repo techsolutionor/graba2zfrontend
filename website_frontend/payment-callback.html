@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Processing</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+</head>
+<body>
+  <div class="container py-5 text-center">
+    <h1 class="mb-4">Processing Your Payment</h1>
+    <div class="spinner-border text-primary" role="status"></div>
+    <p class="mt-3">Please wait while we verify your payment...</p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const orderId = params.get('orderId');
+    const paymentRef = params.get('ref');
+
+    const pendingData = JSON.parse(sessionStorage.getItem('pendingPaymentOrder') || '{}');
+
+    $.ajax({
+      url: `${API_CUSTOMER_URL}/api/payments/verify`,
+      method: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({ orderId, paymentRef }),
+      success: function (response) {
+        if (response.success) {
+          localStorage.removeItem('cart');
+          sessionStorage.removeItem('pendingPaymentOrder');
+          window.location.href = `./order-confirmation.html?order_id=${orderId}`;
+        } else {
+          window.location.href = `./order-details.html?order_id=${orderId}&payment_error=1`;
+        }
+      },
+      error: function (err) {
+        console.error("VERIFY ERROR:", err);
+        window.location.href = `./order-details.html?order_id=${orderId}&payment_error=1`;
+      }
+    });
+  </script>
+  <script src="./apiConfig/apiConfig.js"></script>zz
+</body>
+</html>

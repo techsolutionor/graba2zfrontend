@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Orders</title>
+    <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+    <link rel="stylesheet" href="./assets/css/styles.min.css" />
+    <link rel="stylesheet" href="./assets/css/navbar.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/order.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <!-- Quill JS -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./popupMessages.js"></script>
+    <style>
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <script>
+        (function checkAuth() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.replace('./login.html');
+            }
+        })();
+
+        window.onload = function () {
+            const token = localStorage.getItem('token');
+            const authContainer = document.getElementById('auth');
+
+            if (token) {
+                authContainer.innerHTML = `
+                    <a href="#" class="btn btn-outline-danger mx-3 mt-2 d-block" id="logoutButton">Logout</a>
+                `;
+                document.getElementById('logoutButton').addEventListener('click', logout);
+            } else {
+                authContainer.innerHTML = `
+                    <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Login</a>
+                `;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            window.location.href = './login.html';
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Loader -->
+    <div id="loader" class="loader-container">
+        <div class="loader"></div>
+    </div>
+
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+        <!-- Sidebar Start -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div>
+                <div class="brand-logo d-flex align-items-center justify-content-between">
+                    <a href="./index.html" class="text-nowrap logo-img">
+                        <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+                    </a>
+                    <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+                        <i class="ti ti-x fs-8"></i>
+                    </div>
+                </div>
+                <!-- Sidebar navigation-->
+                <div class="sidebar" id="sidebar">
+                    <a class="navbar-brand" href="#">
+                        <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+                    </a>
+
+                    <div class="section-title mt-9">HOME</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html">
+                                <i class="ti ti-layout-dashboard"></i> Dashboard
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="section-title">PRODUCTS & STOCK</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./products.html">
+                                <i class="fas fa-box"></i> Products
+                            </a>
+                        </li>
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" id="purchaseToggle">
+                                    <i class="fas fa-shopping-cart"></i> Purchases
+                                </a>
+                                <ul class="nav-submenu" id="purchaseSubmenu">
+                                    <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
+                                    <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
+                                    <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./damages.html">
+                                <i class="fas fa-exclamation-circle"></i> Damages
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./stock.html">
+                                <i class="fas fa-archive"></i> Stock
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="section-title">POS & ORDERS</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./pos.html">
+                                <i class="fas fa-cash-register"></i> POS
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./pos-orders.html">
+                                <i class="fas fa-receipt"></i> POS Orders
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./online-orders.html">
+                                <i class="fas fa-shopping-basket"></i> Online Orders
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="section-title">PROMO</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./coupons.html">
+                                <i class="fas fa-tags"></i> Coupons
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./promotions.html">
+                                <i class="fas fa-bullhorn"></i> Promotions
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./product-sections.html">
+                                <i class="fas fa-cube"></i> Product Sections
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="section-title">COMMUNICATIONS</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./push-notifications.html">
+                                <i class="fas fa-bell"></i> Push Notifications
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./subscribers.html">
+                                <i class="fas fa-users"></i> Subscribers
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="section-title">USERS</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./admin.html">
+                                <i class="fas fa-user"></i> Administrators
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./customer.html">
+                                <i class="fas fa-users"></i> Customers
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./employee.html">
+                                <i class="fas fa-user-tie"></i> Employees
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="section-title">ACCOUNTS</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-exchange-alt"></i> Transactions
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="section-title">REPORTS</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./sales-report.html">
+                                <i class="fas fa-chart-line"></i> Sales Report
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./products-report.html">
+                                <i class="fas fa-file-alt"></i> Products Report
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-credit-card"></i> Credit Balance Report
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="section-title">SETUP</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" id="settingsToggle" href="#">
+                                <i class="fas fa-cog"></i> Settings
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="submenu" id="settingsSubmenu">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="./company.html">
+                                    <i class="fas fa-building"></i> Company
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./site.html">
+                                    <i class="fas fa-globe"></i> Site
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./mail.html">
+                                    <i class="fas fa-envelope"></i> Mail
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./location-setup.html">
+                                    <i class="fas fa-map-marker-alt"></i> Location Setup
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./shipping-setup.html">
+                                    <i class="fas fa-truck"></i> Shipping Setup
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="fas fa-lock"></i> OTP
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./notification.html">
+                                    <i class="fas fa-bell"></i> Notification
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./notification-alert.html">
+                                    <i class="fas fa-bell"></i> Notification alert
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./social-media.html">
+                                    <i class="fas fa-share-alt"></i> Social Media
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./cookies.html">
+                                    <i class="fas fa-cookie-bite"></i> Cookies
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./analytics.html">
+                                    <i class="fas fa-chart-bar"></i> Analytics
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./theme.html">
+                                    <i class="fas fa-paint-brush"></i> Theme
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./sliders.html">
+                                    <i class="fas fa-sliders-h"></i> Sliders
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./currencies.html">
+                                    <i class="fas fa-money-bill-wave"></i> Currencies
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./product-categories.html">
+                                    <i class="fas fa-tags"></i> Product Categories
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./product-attributes.html">
+                                    <i class="fas fa-cube"></i> Product Attributes
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./product-brands.html">
+                                    <i class="fas fa-tag"></i> Product Brands
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./supplier.html">
+                                    <i class="fas fa-industry"></i> Suppliers
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./outlets.html">
+                                    <i class="fas fa-store"></i> Outlets
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./benefits.html">
+                                    <i class="fas fa-gift"></i> Benefits
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./units.html">
+                                    <i class="fas fa-balance-scale"></i> Units
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./taxes.html">
+                                    <i class="fas fa-percent"></i> Taxes
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./page.html">
+                                    <i class="fas fa-file-alt"></i> Pages
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./role & permissions.html">
+                                    <i class="fas fa-user-shield"></i> Role & Permissions
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./languages-list.html">
+                                    <i class="fas fa-globe"></i> Languages
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./sms-gateway.html">
+                                    <i class="fas fa-comments"></i> Sms Gateway
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./payment-gateway.html">
+                                    <i class="fas fa-credit-card"></i> Payment Gateway
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./license.html">
+                                    <i class="fas fa-file-contract"></i> License
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!--  Sidebar End -->
+        <!--  Main wrapper -->
+        <div class="body-wrapper">
+            <!--  Header Start -->
+            <header class="app-header">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+                        <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="./assets//images/profile/user-1.jpg" alt="" width="35" height="35"
+                                        class="rounded-circle">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
+                                    aria-labelledby="drop2">
+                                    <div class="message-body">
+                                        <a href="./my-profile.html"
+                                            class="d-flex align-items-center gap-2 dropdown-item">
+                                            <i class="ti ti-user fs-6"></i>
+                                            <p class="mb-0 fs-3">My Profile</p>
+                                        </a>
+                                        <span id="auth">
+                                            <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block"
+                                                id="loginButton">Logout</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title fw-semibold mb-4">Dashboard / Online Orders</h5>
+                        <div class="container">
+                            <h5>Online Orders</h5>
+
+                            <div
+                                class="actions-bar d-flex flex-column flex-md-row align-items-center align-items-lg-end justify-content-center justify-content-md-center justify-content-lg-end">
+                                <div class="d-flex justify-content-center mb-2 mb-md-0 me-md-2 w-100"
+                                    style="max-width: 105px;">
+                                    <button class="filter-btn btn btn-primary w-100">Filter</button>
+                                </div>
+
+                                <div id="dropdownSearch" class="dropdown-search d-none">
+                                    <div class="dropdown-header bg-light p-2 border rounded">Search Orders</div>
+                                    <div class="dropdown-fields mt-2 p-2 border rounded bg-white">
+                                        <div class="filter-row row">
+                                            <div class="label-input col-12 col-lg-6 mb-2">
+                                                <label for="searchOrderId">Order ID</label>
+                                                <input type="text" class="form-control filter-input" id="searchOrderId"
+                                                    placeholder="Enter Order ID">
+                                            </div>
+                                            <div class="label-input col-12 col-lg-6 mb-2">
+                                                <label for="searchCustomer">Customer</label>
+                                                <input type="text" class="form-control filter-input" id="searchCustomer"
+                                                    placeholder="Enter Customer Name">
+                                            </div>
+                                        </div>
+                                        <div class="filter-row row">
+                                            <div class="label-input col-12 col-lg-6 mb-2">
+                                                <label for="searchDate">Date</label>
+                                                <input type="date" class="form-control filter-input" id="searchDate">
+                                            </div>
+                                            <div class="label-input col-12 col-lg-6 mb-2">
+                                                <label for="searchStatus">Status</label>
+                                                <input type="text" class="form-control filter-input" id="searchStatus"
+                                                    placeholder="Enter Status">
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between gap-2">
+                                            <button class="btn btn-success search-btn w-100" style="max-width: 200px;"
+                                                onclick="filterTable()">Search</button>
+                                            <button class="btn btn-secondary clear-btn w-100" style="max-width: 200px;"
+                                                onclick="clearFilters()">Clear</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="d-flex justify-content-center mb-2 mb-md-0 me-md-2 w-100"
+                                    style="max-width: 105px;">
+                                    <!-- Dropdown for Export button -->
+                                    <div class="dropdown w-100">
+                                        <button class="export-btn btn btn-warning w-100" type="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            Export
+                                        </button>
+                                        <!-- Dropdown Menu -->
+                                        <ul class="dropdown-menu mt-2" aria-labelledby="exportButton">
+                                            <li><a class="dropdown-item" href="#" id="exportButton"><i
+                                                        class="fas fa-file-excel"></i> XLS</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="orderViewOverlay" class="overlay">
+                                <div class="overlay-content">
+                                    <span class="close-btn" onclick="closeOverlay()">&times;</span>
+
+                                    <div class="mb-4">
+                                        <h3>Dashboard / Online Orders / View</h3>
+                                    </div>
+
+                                    <div class="box">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p><strong>Order ID:</strong> <span id="orderId"></span></p>
+                                                <p><strong>Status:</strong> <span id="orderStatus"></span></p>
+                                                <p><strong>Created At:</strong> <span id="createdAt"></span></p>
+                                                <p><strong>Order Type:</strong> Delivery</p>
+                                                <p><strong>Payment Type:</strong> <span id="paymentType"></span></p>
+                                            </div>
+                                            <!-- <div class="col-md-6 text-end">
+                                                <button id="acceptBtn" class="btn btn-success me-2"
+                                                    onclick="updateOrderStatus('Confirmed')">Accept</button>
+                                                <button id="rejectBtn" class="btn btn-danger"
+                                                    onclick="updateOrderStatus('Cancelled')">Reject</button>
+
+                                                <div id="additionalActions" style="display: none;">
+                                                    <button class="btn btn-primary me-2">Print Invoice</button>
+                                                    <button id="acceptBtn" class="btn btn-success me-2"
+                                                        onclick="updateOrderStatus('Confirmed')">Accept</button>
+                                                    <button id="rejectBtn" class="btn btn-danger"
+                                                        onclick="updateOrderStatus('Cancelled')">Reject</button>
+                                                    <select id="statusSelect" class="form-select w-auto d-inline-block">
+                                                        <option value="Confirmed">Confirmed</option>
+                                                        <option value="On the Way">On the Way</option>
+                                                        <option value="Delivered">Delivered</option>
+                                                    </select>
+                                                </div>
+                                            </div> -->
+                                            <div class="col-md-6 text-end">
+                                                <button class="btn btn-primary"
+                                                    onclick="printProductDetails()">Print</button>
+
+                                                <button id="acceptBtn" class="btn btn-success me-2">Accept</button>
+                                                <button id="rejectBtn" class="btn btn-danger">Reject</button>
+
+                                                <div id="statusDropdownContainer" style="display:none;">
+                                                    <select id="statusSelect" class="form-select w-auto d-inline-block">
+                                                        <option value="Received Order">Received Order</option>
+                                                        <option value="Inprogress Order">Inprogress Order</option>
+                                                        <option value="Ready for Shipment">Ready for Shipment</option>
+                                                        <option value="On the Way">On the Way</option>
+                                                        <option value="Delevered">Delevered</option>
+                                                        <option value="On Hold">On Hold</option>
+                                                        <option value="Rejected">Rejected</option>
+                                                    </select>
+                                                    <button id="updateStatusBtn"
+                                                        class="btn btn-primary ms-2">Update</button>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 box">
+                                            <h5>Order Items</h5>
+                                            <ul id="orderItemsList"></ul>
+                                        </div>
+
+                                        <div class="col-md-6 box">
+                                            <h5>Total Amount</h5>
+                                            <p id="totalAmount"></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="box">
+                                        <h5>Shipping Address</h5>
+                                        <p id="shippingAddress"></p>
+                                    </div>
+
+                                    <div class="box">
+                                        <h5>Billing Address</h5>
+                                        <p id="billingAddress"></p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div id="backgroundContent"></div>
+
+                            <div class="table-container mt-4">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Order ID</th>
+                                                <!-- <th>Guest/Customer ID</th> -->
+                                                <th>Customer Name</th>
+                                                <th>Customer Contact</th>
+                                                <th>Order Status</th>
+                                                <th>Payment Type</th>
+                                                <th>Order Date</th>
+                                                <th>Total Amount</th>
+                                                <th>Items</th>
+                                                <th>Shipping Address</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="purchaseReturnsTableBody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="formContainer"></div>
+                <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+                <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+                <script src="./assets/js/sidebarmenu.js"></script>
+                <script src="./assets/js/app.min.js"></script>
+                <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+                <script src="./apiConfig/apiConfig.js"></script>
+                <script>
+                    // Show loader immediately when page starts loading
+                    document.addEventListener('DOMContentLoaded', function () {
+                        // Start fetching data immediately
+                        fetchDamagesReport();
+
+                        // Set up periodic refresh (every 5 minutes)
+                        setInterval(fetchDamagesReport, 300000);
+                    });
+                    // Cache for orders data
+                    let ordersCache = null;
+                    let lastFetchTime = 0;
+                    const CACHE_EXPIRY = 300000; // 5 minutes in milliseconds
+
+                    function showLoader() {
+                        document.getElementById('loader').style.display = 'flex';
+                    }
+
+                    function hideLoader() {
+                        document.getElementById('loader').style.display = 'none';
+                    }
+
+                    async function fetchDamagesReport() {
+                        const token = localStorage.getItem('token');
+                        const currentTime = new Date().getTime();
+
+                        // Show loader while fetching data
+                        showLoader();
+
+                        // Use cached data if available and not expired
+                        if (ordersCache && (currentTime - lastFetchTime) < CACHE_EXPIRY) {
+                            populateTable(ordersCache);
+                            hideLoader();
+                            return;
+                        }
+
+                        try {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders`, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': token,
+                                },
+                            });
+
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status}`);
+                            }
+
+                            const orders = await response.json();
+                            console.log("✅ Fetched Orders:", orders);
+
+                            // Cache the data
+                            ordersCache = orders;
+                            lastFetchTime = currentTime;
+
+                            populateTable(orders);
+                        } catch (error) {
+                            console.error('❌ Error fetching orders:', error);
+                            showErrorMessage('Failed to fetch orders. Please try again.');
+
+                            // Show empty state if no cached data
+                            if (!ordersCache) {
+                                const ordersTableBody = document.getElementById('purchaseReturnsTableBody');
+                                ordersTableBody.innerHTML = `
+                    <tr>
+                        <td colspan="8" class="text-center text-danger">
+                            Failed to load data. Please check your connection and try again.
+                        </td>
+                    </tr>
+                `;
+                            }
+                        } finally {
+                            hideLoader();
+                        }
+                    }
+
+                    function populateTable(orders) {
+                        const ordersTableBody = document.getElementById('purchaseReturnsTableBody');
+
+                        // Clear existing rows
+                        ordersTableBody.innerHTML = '';
+
+                        if (!orders || orders.length === 0) {
+                            ordersTableBody.innerHTML = `
+                <tr>
+                    <td colspan="8" class="text-center">No orders found</td>
+                </tr>
+            `;
+                            return;
+                        }
+
+                        const formatDateTime = (dateString) => {
+                            try {
+                                const date = new Date(dateString);
+                                const time = date.toLocaleTimeString([], {
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                    hour12: true
+                                });
+                                const formattedDate = date.toLocaleDateString('en-GB');
+                                return `${time}, ${formattedDate}`;
+                            } catch (e) {
+                                console.error('Invalid date format:', dateString);
+                                return 'Invalid Date';
+                            }
+                        };
+
+                        orders.forEach(order => {
+                            const row = document.createElement('tr');
+                            row.setAttribute('data-id', order.order_id);
+
+                            const formattedDate = formatDateTime(order.created_at);
+
+                            const type = order.customer_id ? 'Customer' : 'Guest';
+                            const displayId = order.customer_id || order.guest_id || '—';
+                            const badgeColor = type === 'Customer' ? 'success' : 'primary';
+
+                            row.innerHTML = `
+                <td>${order.order_id}</td>
+                <td>${order.customer_name || '—'}</td>
+                <td> ${(order.shippingInfo && JSON.parse(order.shippingInfo)?.contact)
+                                    ? JSON.parse(order.shippingInfo).contact
+                                    : '—'
+                                }</td>
+                <td>${order.order_status || '—'}</td>
+                <td>${order.payment_type || '—'}</td>
+                <td>${formattedDate}</td>
+                <td>${parseFloat(order.total_amount || 0).toFixed(2)}</td>
+                <td> ${(order.card_info && JSON.parse(order.card_info)[0]?.quantity)
+                                    ? JSON.parse(order.card_info)[0].quantity
+                                    : '—'
+                                }</td>
+                <td>${order.shipping_address || '—'}</td>
+                <td class="action-buttons">
+                    <button class="btn btn-view" onclick="viewOrder('${String(order.order_id)}')">👁</button>
+                </td>
+                
+            `;
+
+                            ordersTableBody.appendChild(row);
+                        });
+                    }
+
+                    function viewOrder(orderId) {
+                        showLoader();
+
+                        // Find the order in cache
+                        const order = ordersCache?.find(o => o.order_id == orderId);
+                        if (order) {
+                            populateOrderDetails(order);
+                            hideLoader();
+                        } else {
+                            // If not found in cache, fetch it individually
+                            fetchOrderDetails(orderId);
+                        }
+                    }
+
+                    async function fetchOrderDetails(orderId) {
+                        const token = localStorage.getItem('token');
+                        try {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders/${orderId}`, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': token,
+                                },
+                            });
+
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status}`);
+                            }
+
+                            const order = await response.json();
+                            populateOrderDetails(order);
+                        } catch (error) {
+                            console.error('❌ Error fetching order details:', error);
+                            showErrorMessage('Failed to fetch order details. Please try again.');
+                        } finally {
+                            hideLoader();
+                        }
+                    }
+                    // Add this inside your existing populateOrderDetails(order)
+                    function populateOrderDetails(order) {
+                        document.getElementById('orderId').textContent = order.order_id || '—';
+                        document.getElementById('orderStatus').textContent = order.order_status || 'Received Order';
+                        document.getElementById('createdAt').textContent = order.created_at ? new Date(order.created_at).toLocaleString() : '—';
+                        document.getElementById('paymentType').textContent = order.payment_type || '—';
+
+                        // Populate order items
+                        const itemsList = document.getElementById('orderItemsList');
+                        itemsList.innerHTML = '';
+                        if (order.card_info) {
+                            const items = JSON.parse(order.card_info);
+                            items.forEach(item => {
+                                const li = document.createElement('li');
+                                li.textContent = `${item.name || 'Unknown Product'} - Qty: ${item.quantity || 0} - Price: ${item.selling_price || 0}`;
+                                itemsList.appendChild(li);
+                            });
+                        } else {
+                            itemsList.innerHTML = '<li>No items found</li>';
+                        }
+
+                        document.getElementById('totalAmount').textContent = parseFloat(order.total_amount || 0).toFixed(2);
+                        document.getElementById('shippingAddress').textContent = order.shipping_address || 'No shipping address provided';
+                        document.getElementById('billingAddress').textContent = order.billing_address || order.shipping_address || 'No billing address provided';
+
+                        const acceptBtn = document.getElementById('acceptBtn');
+                        const rejectBtn = document.getElementById('rejectBtn');
+                        const statusDropdownContainer = document.getElementById('statusDropdownContainer');
+                        const statusSelect = document.getElementById('statusSelect');
+
+                        if (order.order_status === 'Received Order') {
+                            acceptBtn.style.display = 'inline-block';
+                            rejectBtn.style.display = 'inline-block';
+                            statusDropdownContainer.style.display = 'none';
+                        } else if (order.order_status === 'Rejected') {
+                            acceptBtn.style.display = 'none';
+                            rejectBtn.style.display = 'none';
+                            statusDropdownContainer.style.display = 'none';
+                        } else {
+                            acceptBtn.style.display = 'none';
+                            rejectBtn.style.display = 'none';
+                            statusDropdownContainer.style.display = 'inline-block';
+                            statusSelect.value = order.order_status;
+                        }
+
+                        acceptBtn.onclick = () => updateOrderStatus(order.order_id, 'Inprogress Order');
+                        rejectBtn.onclick = () => updateOrderStatus(order.order_id, 'Rejected');
+                        document.getElementById('updateStatusBtn').onclick = () => {
+                            const newStatus = statusSelect.value;
+                            updateOrderStatus(order.order_id, newStatus);
+                        };
+
+                        document.getElementById('orderViewOverlay').style.display = 'block';
+                    }
+
+                    async function updateOrderStatus(orderId, newStatus) {
+                        const token = localStorage.getItem('token');
+                        showLoader();
+
+                        try {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders/${orderId}/status`, {
+                                method: 'PUT',
+                                headers: {
+                                    'Authorization': token,
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ order_status: newStatus }),
+                            });
+
+                            const result = await response.json();
+
+                            if (!response.ok) {
+                                throw new Error(result.message || 'Failed to update status');
+                            }
+
+                            document.getElementById('orderStatus').textContent = newStatus;
+
+                            // Update local cache
+                            const cachedOrder = ordersCache.find(o => o.order_id == orderId);
+                            if (cachedOrder) cachedOrder.order_status = newStatus;
+
+                            populateOrderDetails(cachedOrder);
+
+                            showSuccessMessage(result.message);
+                        } catch (error) {
+                            console.error('❌ Error updating order status:', error);
+                            showErrorMessage(error.message);
+                        } finally {
+                            hideLoader();
+                        }
+                    }
+
+                    function closeOverlay() {
+                        document.getElementById('orderViewOverlay').style.display = 'none';
+                    }
+
+
+                    // function populateOrderDetails(order) {
+                    //     document.getElementById('orderId').textContent = order.order_id || '—';
+                    //     document.getElementById('orderStatus').textContent = order.status || 'Pending';
+
+                    //     try {
+                    //         document.getElementById('createdAt').textContent =
+                    //             order.created_at ? new Date(order.created_at).toLocaleString() : '—';
+                    //     } catch (e) {
+                    //         document.getElementById('createdAt').textContent = 'Invalid Date';
+                    //     }
+
+                    //     document.getElementById('paymentType').textContent = order.payment_type || '—';
+
+                    //     // Populate order items
+                    //     const itemsList = document.getElementById('orderItemsList');
+                    //     itemsList.innerHTML = '';
+                    //     if (order.items && order.items.length > 0) {
+                    //         order.items.forEach(item => {
+                    //             const li = document.createElement('li');
+                    //             li.textContent = `${item.product_name || 'Unknown Product'} - Qty: ${item.quantity || 0} - Price: ${item.price || 0}`;
+                    //             itemsList.appendChild(li);
+                    //         });
+                    //     } else {
+                    //         itemsList.innerHTML = '<li>No items found</li>';
+                    //     }
+
+                    //     document.getElementById('totalAmount').textContent =
+                    //         parseFloat(order.total_amount || 0).toFixed(2);
+                    //     document.getElementById('shippingAddress').textContent =
+                    //         order.shipping_address || 'No shipping address provided';
+                    //     document.getElementById('billingAddress').textContent =
+                    //         order.billing_address || order.shipping_address || 'No billing address provided';
+
+                    //     // Show/hide buttons based on status
+                    //     const acceptBtn = document.getElementById('acceptBtn');
+                    //     const rejectBtn = document.getElementById('rejectBtn');
+                    //     const additionalActions = document.getElementById('additionalActions');
+
+                    //     if (order.status === 'Pending') {
+                    //         acceptBtn.style.display = 'inline-block';
+                    //         rejectBtn.style.display = 'inline-block';
+                    //         additionalActions.style.display = 'none';
+                    //     } else {
+                    //         acceptBtn.style.display = 'none';
+                    //         rejectBtn.style.display = 'none';
+                    //         additionalActions.style.display = 'block';
+
+                    //         // Set the current status in the dropdown
+                    //         const statusSelect = document.getElementById('statusSelect');
+                    //         if (statusSelect) {
+                    //             statusSelect.value = order.status || 'Confirmed';
+                    //         }
+                    //     }
+
+                    //     // Show the overlay
+                    //     document.getElementById('orderViewOverlay').style.display = 'block';
+                    // }
+
+                    // function closeOverlay() {
+                    //     document.getElementById('orderViewOverlay').style.display = 'none';
+                    // }
+
+                    // async function updateOrderStatus(newStatus) {
+                    //     const orderId = document.getElementById('orderId').textContent;
+                    //     const token = localStorage.getItem('token');
+
+                    //     if (!orderId || orderId === '—') {
+                    //         showErrorMessage('Invalid order ID');
+                    //         return;
+                    //     }
+
+                    //     showLoader();
+
+                    //     try {
+                    //         const response = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders/${orderId}/status`, {
+                    //             method: 'PUT',
+                    //             headers: {
+                    //                 'Authorization': token,
+                    //                 'Content-Type': 'application/json',
+                    //             },
+                    //             body: JSON.stringify({ status: newStatus }),
+                    //         });
+
+                    //         if (!response.ok) {
+                    //             throw new Error(`HTTP error! status: ${response.status}`);
+                    //         }
+
+                    //         // Update the cache
+                    //         if (ordersCache) {
+                    //             const updatedOrder = ordersCache.find(o => o.order_id == orderId);
+                    //             if (updatedOrder) {
+                    //                 updatedOrder.status = newStatus;
+                    //             }
+                    //         }
+
+                    //         // Update the UI
+                    //         document.getElementById('orderStatus').textContent = newStatus;
+
+                    //         if (newStatus === 'Confirmed') {
+                    //             document.getElementById('acceptBtn').style.display = 'none';
+                    //             document.getElementById('rejectBtn').style.display = 'none';
+                    //             document.getElementById('additionalActions').style.display = 'block';
+                    //         } else if (newStatus === 'Cancelled') {
+                    //             closeOverlay();
+                    //         }
+
+                    //         showSuccessMessage('Order status updated successfully!');
+                    //     } catch (error) {
+                    //         console.error('❌ Error updating order status:', error);
+                    //         showErrorMessage('Failed to update order status. Please try again.');
+                    //     } finally {
+                    //         hideLoader();
+                    //     }
+                    // }
+
+                    // Debounce the filter function
+                    let filterTimeout;
+                    function filterTable() {
+                        clearTimeout(filterTimeout);
+                        filterTimeout = setTimeout(() => {
+                            const orderIdFilter = document.getElementById('searchOrderId').value.toLowerCase();
+                            const customerFilter = document.getElementById('searchCustomer').value.toLowerCase();
+                            const dateFilter = document.getElementById('searchDate').value;
+                            const statusFilter = document.getElementById('searchStatus').value.toLowerCase();
+
+                            const rows = document.querySelectorAll('#purchaseReturnsTableBody tr');
+
+                            rows.forEach(row => {
+                                if (row.cells.length < 7) return; // Skip if not a valid row
+
+                                const rowOrderId = row.cells[0].textContent.toLowerCase();
+                                const rowCustomer = row.cells[2].textContent.toLowerCase();
+                                const rowDate = row.cells[4].textContent;
+                                const rowStatus = row.getAttribute('data-status') || ''; // Add data-status attribute to your rows if needed
+
+                                const matchesOrderId = !orderIdFilter || rowOrderId.includes(orderIdFilter);
+                                const matchesCustomer = !customerFilter || rowCustomer.includes(customerFilter);
+                                const matchesDate = !dateFilter || rowDate.includes(dateFilter);
+                                const matchesStatus = !statusFilter || rowStatus.toLowerCase().includes(statusFilter);
+
+                                row.style.display = matchesOrderId && matchesCustomer && matchesDate && matchesStatus ? '' : 'none';
+                            });
+                        }, 300);
+                    }
+
+                    function clearFilters() {
+                        document.getElementById('searchOrderId').value = '';
+                        document.getElementById('searchCustomer').value = '';
+                        document.getElementById('searchDate').value = '';
+                        document.getElementById('searchStatus').value = '';
+                        filterTable();
+                    }
+
+                    function showSuccessMessage(message) {
+                        // Implement your success message display logic here
+                        alert(message); // Replace with your preferred notification system
+                    }
+
+                    function showErrorMessage(message) {
+                        // Implement your error message display logic here
+                        alert(message); // Replace with your preferred notification system
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

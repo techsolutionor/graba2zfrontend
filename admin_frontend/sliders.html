@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="./assets/css/style-products.css" />
+  <link rel="stylesheet" href="./assets/css/styles.min.css" />
+  <link rel="stylesheet" href="./assets/css/navbar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="./popupMessages.js"></script>
+
+  <script>
+    //(function() {
+    //     let(function() {
+    //     let path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })(); path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })();
+
+
+    (function checkAuth() {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        window.location.replace('./login.html'); // Redirect to login page
+      }
+    })();
+  </script> 
+
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <div class="sidebar" id="sidebar">
+          <a class="navbar-brand" href="#">
+              <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          
+          <div class="section-title mt-9">HOME</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./index.html">
+                      <i class="ti ti-layout-dashboard"></i> Dashboard
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">PRODUCTS & STOCK</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./products.html">
+                      <i class="fas fa-box"></i> Products
+                  </a>
+              </li>
+               <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="purchaseToggle">
+                <i class="fas fa-shopping-cart"></i> Purchases 
+              </a>
+              <ul class="nav-submenu" id="purchaseSubmenu">
+                <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
+                <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
+                <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
+              </ul>
+            </li>
+          </ul>
+              <li class="nav-item">
+                  <a class="nav-link" href="./damages.html">
+                      <i class="fas fa-exclamation-circle"></i> Damages
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./stock.html">
+                      <i class="fas fa-archive"></i> Stock
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">POS & ORDERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos.html">
+                      <i class="fas fa-cash-register"></i> POS
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos-orders.html">
+                      <i class="fas fa-receipt"></i> POS Orders
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./online-orders.html">
+                      <i class="fas fa-shopping-basket"></i> Online Orders
+                  </a>
+              </li>
+          </ul>
+    
+          <div class="section-title">PROMO</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./coupons.html">
+                      <i class="fas fa-tags"></i> Coupons
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./promotions.html">
+                      <i class="fas fa-bullhorn"></i> Promotions
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./product-sections.html">
+                      <i class="fas fa-cube"></i>  Product Sections
+                  </a>
+              </li>
+          </ul>
+    
+          <div class="section-title">COMMUNICATIONS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./push-notifications.html">
+                      <i class="fas fa-bell"></i> Push Notifications
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./subscribers.html">
+                      <i class="fas fa-users"></i> Subscribers
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">USERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./admin.html">
+                      <i class="fas fa-user"></i> Administrators
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./customer.html">
+                      <i class="fas fa-users"></i> Customers
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./employee.html">
+                      <i class="fas fa-user-tie"></i> Employees
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">ACCOUNTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-exchange-alt"></i> Transactions
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">REPORTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./sales-report.html">
+                      <i class="fas fa-chart-line"></i> Sales Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./products-report.html">
+                      <i class="fas fa-file-alt"></i> Products Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-credit-card"></i> Credit Balance Report
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">SETUP</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" id="settingsToggle" href="#">
+                      <i class="fas fa-cog"></i> Settings
+                  </a>
+              </li>
+          </ul>
+          
+          <!-- <div class="settings-submenu" id="settingsSubmenu"> -->
+            <div class="submenu" id="settingsSubmenu">
+              <ul class="nav flex-column">
+                  <li class="nav-item">
+                      <a class="nav-link" href="./company.html">
+                          <i class="fas fa-building"></i> Company
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./site.html">
+                          <i class="fas fa-globe"></i> Site
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./mail.html">
+                          <i class="fas fa-envelope"></i> Mail
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./location-setup.html">
+                          <i class="fas fa-map-marker-alt"></i> Location Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./shipping-setup.html">
+                          <i class="fas fa-truck"></i> Shipping Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">
+                          <i class="fas fa-lock"></i> OTP
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification.html">
+                          <i class="fas fa-bell"></i> Notification
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification-alert.html">
+                          <i class="fas fa-bell"></i> Notification alert
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./social-media.html">
+                          <i class="fas fa-share-alt"></i> Social Media
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./cookies.html">
+                          <i class="fas fa-cookie-bite"></i> Cookies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./analytics.html">
+                          <i class="fas fa-chart-bar"></i> Analytics
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./theme.html">
+                          <i class="fas fa-paint-brush"></i> Theme
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sliders.html">
+                          <i class="fas fa-sliders-h"></i> Sliders
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./currencies.html">
+                          <i class="fas fa-money-bill-wave"></i> Currencies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-categories.html">
+                          <i class="fas fa-tags"></i> Product Categories
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-attributes.html">
+                          <i class="fas fa-cube"></i> Product Attributes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-brands.html">
+                          <i class="fas fa-tag"></i> Product Brands
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./supplier.html">
+                          <i class="fas fa-industry"></i> Suppliers
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./outlets.html">
+                          <i class="fas fa-store"></i> Outlets
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./benefits.html">
+                          <i class="fas fa-gift"></i> Benefits
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./units.html">
+                          <i class="fas fa-balance-scale"></i> Units
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./taxes.html">
+                          <i class="fas fa-percent"></i>  Taxes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./page.html">
+                          <i class="fas fa-file-alt"></i> Pages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./role & permissions.html">
+                          <i class="fas fa-user-shield"></i> Role & Permissions
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./languages-list.html">
+                          <i class="fas fa-globe"></i> Languages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sms-gateway.html">
+                          <i class="fas fa-comments"></i> Sms Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./payment-gateway.html">
+                          <i class="fas fa-credit-card"></i> Payment Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./license.html">
+                          <i class="fas fa-file-contract"></i> License
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+   
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <div class="container-fluid">
+        
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title fw-semibold mb-4">Dashboard / Setting / Sliders</h5>
+              <div class="container">
+                <h5>Sliders</h5>
+            
+             <!-- Add Sliders Button -->
+<div class="actions-bar">
+    <button class=" btn-black-text"  data-bs-toggle="modal" data-bs-target="#sliderModal">+ Add Sliders</button>
+  </div>
+  
+  <!-- Modal for Add Sliders -->
+  <div class="modal fade" id="sliderModal" tabindex="-1" aria-labelledby="sliderModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="sliderModalLabel">Sliders</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="sliderForm">
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="title" class="form-label">Title <span style="color: red;">*</span></label>
+              <input type="text" id="title" name="title" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="link" class="form-label">Link</label>
+              <input type="url" id="link" name="link" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="image" class="form-label">Image (1126px, 400px) <span style="color: red;">*</span></label>
+              <input type="file" id="image" name="image" class="form-control" accept="image/*" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Status <span style="color: red;">*</span></label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="status" id="active" value="active" required>
+                  <label class="form-check-label" for="active">Active</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="status" id="inactive" value="inactive">
+                  <label class="form-check-label" for="inactive">Inactive</label>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea id="description" name="description" class="form-control"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+          
+            <button type="submit" class="btn btn-danger">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+    <!-- edit Confirmation Modal -->
+  <div class="modal fade" id="editSliderModal" tabindex="-1" aria-labelledby="editSliderModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editSliderModalLabel">Edit Slider</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="editSliderForm">
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="editTitle" class="form-label">Title <span style="color: red;">*</span></label>
+              <input type="text" id="editTitle" name="title" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="editLink" class="form-label">Link</label>
+              <input type="url" id="editLink" name="link" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Status <span style="color: red;">*</span></label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="status" id="editActive" value="active" required>
+                  <label class="form-check-label" for="editActive">Active</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="status" id="editInactive" value="inactive">
+                  <label class="form-check-label" for="editInactive">Inactive</label>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="editDescription" class="form-label">Description</label>
+              <textarea id="editDescription" name="description" class="form-control"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+        <!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <div class="mb-3">
+            <i class="bi bi-exclamation-circle text-warning" style="font-size: 48px;"></i>
+          </div>
+          <h5 class="modal-title" id="deleteModalLabel">Are you sure?</h5>
+          <p>You will not be able to recover the deleted record!</p>
+          <div class="d-flex justify-content-center gap-2">
+            <button type="button" class="btn btn-primary" id="confirmDeleteBtn">Yes, Delet!</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Cancel!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<!-- View Slider Modal -->
+<div class="modal fade" id="viewSliderModal" tabindex="-1" aria-labelledby="viewSliderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="row align-items-center">
+            <!-- Slider Image -->
+            <div class="col-md-3 text-center">
+              <img id="viewSliderImage" src="" alt="Slider Image" class="img-fluid rounded" style="max-width: 100%; height: auto;" />
+            </div>
+            <!-- Slider Details -->
+            <div class="col-md-9">
+              <h5 id="viewSliderTitle" class="mb-1"></h5>
+              <a id="viewSliderLink" href="#" target="_blank" class="d-block text-muted mb-2"></a>
+              <span id="viewSliderStatus" class="badge"></span>
+              <p id="viewSliderDescription" class="mt-2"></p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+                <table class="table"> 
+                  <thead> 
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead> 
+                  <tbody id="brandsTableBody">  
+                    
+                  </tbody>
+                </table> 
+            </div>
+              
+              
+              </div>
+            </div>
+          </div>
+  
+          
+  <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/sidebarmenu.js"></script>
+  <script src="./assets/js/app.min.js"></script>
+  <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="./apiConfig/apiConfig.js"></script>
+
+
+
+  <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    const purchaseToggle = document.getElementById('purchaseToggle');
+    const purchaseSubmenu = document.getElementById('purchaseSubmenu');
+
+    purchaseToggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        purchaseSubmenu.style.display = (purchaseSubmenu.style.display === 'none' || purchaseSubmenu.style.display === '') ? 'block' : 'none';
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            const settingsToggle = document.getElementById('settingsToggle');
+            const settingsSubmenu = document.getElementById('settingsSubmenu');
+
+            // Handle submenu toggle
+            settingsToggle.addEventListener('click', function (event) {
+                event.preventDefault();
+                settingsSubmenu.style.display = (settingsSubmenu.style.display === 'block') ? 'none' : 'block';
+            });
+
+            // Handle active link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    // Remove active class from all links
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    // Add active class to the clicked link
+                    this.classList.add('active');
+                });
+            });
+        });
+
+
+//fetch
+
+// Fetch sliders from the backend and populate the table
+function fetchSliders() {
+  fetch(`${API_ADMINGRAB_URL}/api/sliders`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch sliders');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const tableBody = document.getElementById('brandsTableBody');
+      tableBody.innerHTML = ''; // Clear existing rows
+
+      // Populate the table with data
+      data.forEach((slider) => {
+        const row = document.createElement('tr');
+
+        // Name column
+        const nameCell = document.createElement('td');
+        nameCell.textContent = slider.title;
+        row.appendChild(nameCell);
+
+        // Status column
+        const statusCell = document.createElement('td');
+        statusCell.textContent = slider.status.charAt(0).toUpperCase() + slider.status.slice(1);
+        row.appendChild(statusCell);
+
+        // Action column
+        const actionCell = document.createElement('td');
+        actionCell.innerHTML = `
+  <div class="d-flex gap-2">
+      <button class="btn btn-primary btn-sm d-flex align-items-center" onclick="openViewModal(${slider.id})">
+      <i class="bi bi-eye me-2"></i> View
+    </button>
+ <button class="btn btn-primary btn-sm d-flex align-items-center" onclick="editSlider(${slider.id})">
+  <i class="bi bi-pencil me-2"></i> Edit
+</button>
+
+    <button class="btn btn-danger btn-sm d-flex align-items-center" onclick="openDeleteModal(${slider.id})">
+      <i class="bi bi-trash me-2"></i> Delete
+    </button>
+
+   
+  </div>
+`;
+
+        row.appendChild(actionCell);
+
+        tableBody.appendChild(row);
+      });
+    })
+    .catch((error) => {
+      console.error('Error fetching sliders:', error);
+    });
+}
+
+// Call fetchSliders on page load
+fetchSliders();
+
+function editSlider(id) {
+  // Fetch slider data from the backend
+  fetch(`${API_ADMINGRAB_URL}/api/slider/${id}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch slider data');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // Populate the modal fields with fetched data
+      document.getElementById('editTitle').value = data.title || '';
+      document.getElementById('editLink').value = data.link || '';
+      document.getElementById('editDescription').value = data.description || '';
+
+      if (data.status === 'active') {
+        document.getElementById('editActive').checked = true;
+      } else if (data.status === 'inactive') {
+        document.getElementById('editInactive').checked = true;
+      }
+
+      // Add the slider ID to the form's dataset for use during update
+      document.getElementById('editSliderForm').dataset.sliderId = id;
+
+      // Show the modal
+      const editModal = new bootstrap.Modal(document.getElementById('editSliderModal'));
+      editModal.show();
+    })
+    .catch((error) => {
+      showErrorMessage('Error fetching slider data');
+      console.error(error);
+    });
+}
+
+
+document.getElementById('editSliderForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  // Get the slider ID (pass it dynamically when the modal is opened)
+  const id = document.getElementById('editSliderForm').dataset.sliderId;
+
+  // Collect form data
+  const formData = new FormData(this);
+
+  // Send data to the backend via AJAX
+  fetch(`${API_ADMINGRAB_URL}/api/slider/${id}`, {
+    method: 'PUT',
+    body: formData,
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to update slider');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      showSuccessMessage('Slider updated successfully');
+      console.log('Response:', data);
+
+      // Close the modal and refresh the slider list
+      const editModal = bootstrap.Modal.getInstance(document.getElementById('editSliderModal'));
+      editModal.hide();
+      fetchSliders(); // Refresh the table to show updated data
+    })
+    .catch((error) => {
+      showErrorMessage('Error updating slider');
+      console.error(error);
+    });
+});
+
+let sliderToDelete = null; // Variable to store the slider ID
+function openDeleteModal(sliderId) {
+  sliderToDelete = sliderId; // Store the slider ID in a global variable
+
+  // Show the delete modal
+  const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+  deleteModal.show();
+}
+
+// Handle delete confirmation
+document.getElementById('confirmDeleteBtn').addEventListener('click', function () {
+  if (!sliderToDelete) return;
+
+  // Send DELETE request to the backend
+  fetch(`${API_ADMINGRAB_URL}/api/slider/${sliderToDelete}`, {
+    method: 'DELETE',
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to delete slider');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      showSuccessMessage('Slider deleted successfully!');
+      console.log('Deleted:', data);
+
+      // Refresh the table to reflect changes
+      fetchSliders();
+
+      // Close the modal
+      const deleteModal = bootstrap.Modal.getInstance(document.getElementById('deleteModal'));
+      deleteModal.hide();
+    })
+    .catch((error) => {
+      showErrorMessage('Error deleting slider');
+      console.error(error);
+    });
+});
+
+function openViewModal(sliderId) {
+  // Fetch slider data from the backend
+  fetch(`${API_ADMINGRAB_URL}/api/slider/${sliderId}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch slider data');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // Populate modal fields with the fetched data
+      document.getElementById('viewSliderImage').src = `${API_ADMINGRAB_URL}/uploads/${data.image}`;
+      document.getElementById('viewSliderTitle').textContent = data.title || 'No Title';
+      document.getElementById('viewSliderLink').textContent = data.link || 'No Link';
+      document.getElementById('viewSliderLink').href = data.link || '#';
+      document.getElementById('viewSliderStatus').textContent = data.status ? data.status.toUpperCase() : 'No Status';
+      document.getElementById('viewSliderStatus').className = `badge ${
+        data.status === 'active' ? 'bg-success' : 'bg-danger'
+      }`;
+      document.getElementById('viewSliderDescription').textContent = data.description || 'No Description';
+
+      // Show the modal
+      const viewModal = new bootstrap.Modal(document.getElementById('viewSliderModal'));
+      viewModal.show();
+    })
+    .catch((error) => {
+      showErrorMessage('Error fetching slider data');
+      console.error(error);
+    });
+}
+
+// document.getElementById('sliderForm').addEventListener('submit', function (e) {
+//   e.preventDefault();
+//   // Collect form data
+//   const formData = new FormData(this);
+
+//   // Send data to the backend via AJAX
+//   fetch(`${API_ADMINGRAB_URL}/api/slider`, {
+//     method: 'POST',
+//     body: formData,
+//   })
+//     .then((response) => {
+//       if (!response.ok) {
+//         throw new Error('Failed to save slider');
+//       }
+//       return response.json();
+//     })
+//     .then((data) => {
+//       alert('Slider saved successfully');
+//       console.log('Response:', data);
+//     })
+//     .catch((error) => {
+//       alert('Error saving slider');
+//       console.error(error);
+//     });
+// });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const sliderForm = document.getElementById('sliderForm');
+    const sliderModal = new bootstrap.Modal(document.getElementById('sliderModal')); // Initialize the modal
+
+    // Handle form submission
+    sliderForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Prevent default form submission
+
+        const formData = new FormData(sliderForm); // Collect form data
+
+        try {
+            // Send the form data to the API
+            const response = await fetch(`${API_ADMINGRAB_URL}/api/slider`, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Authorization': `${localStorage.getItem('token')}` // Add token if required
+                }
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+              showSuccessMessage(data.message || 'Slider saved successfully');   
+                sliderForm.reset(); // Reset the form
+                sliderModal.hide(); // Hide the modal
+                document.body.classList.remove('modal-open'); // Remove the modal overlay
+                document.querySelector('.modal-backdrop').remove(); // Remove the backdrop
+            } else {
+              showErrorMessage(data.message || 'Failed to save slider');
+            }
+        } catch (err) {
+            console.error('Error submitting the slider form:', err);
+            showErrorMessage('An error occurred. Please try again.');
+        }
+    });
+});
+
+
+
+
+
+  </script>
+  
+</body>
+
+</html>

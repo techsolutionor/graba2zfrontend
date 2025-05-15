@@ -1,0 +1,1172 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Modernize Free</title>
+    <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+    <link rel="stylesheet" href="./assets/css/styles.min.css" />
+    <link rel="stylesheet" href="./assets/css/style2.css" />
+    <link rel="stylesheet" href="./assets/css/navbar.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="./popupMessages.js"></script>
+    <script>
+        //(function() {
+        //     let(function() {
+        //     let path = window.location.pathname;
+        //     if (path.endsWith(".html")) {
+        //         let newPath = path.replace(".html", "");
+        //         window.history.replaceState({}, document.title, newPath);
+        //     }
+        // })(); path = window.location.pathname;
+        //     if (path.endsWith(".html")) {
+        //         let newPath = path.replace(".html", "");
+        //         window.history.replaceState({}, document.title, newPath);
+        //     }
+        // })();
+
+
+        (function checkAuth() {
+            const token = localStorage.getItem('token');
+
+            if (!token) {
+                window.location.replace('./login.html'); // Redirect to login page
+            }
+        })();
+    </script>
+
+
+</head>
+
+<body>
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+        <!-- Sidebar Start -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div>
+                <div class="brand-logo d-flex align-items-center justify-content-between">
+                    <a href="./index.html" class="text-nowrap logo-img">
+                        <img src="./assets/images/logos/dark-logo.svg" width="180" alt="" />
+                    </a>
+                    <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+                        <i class="ti ti-x fs-8"></i>
+                    </div>
+                </div>
+                <!-- Sidebar navigation-->
+                <div class="sidebar" id="sidebar">
+                    <a class="navbar-brand" href="#">
+                        <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+                    </a>
+
+                    <div class="section-title mt-9">HOME</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html">
+                                <i class="ti ti-layout-dashboard"></i> Dashboard
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="section-title">PRODUCTS & STOCK</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./products.html">
+                                <i class="fas fa-box"></i> Products
+                            </a>
+                        </li>
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" id="purchaseToggle">
+                                    <i class="fas fa-shopping-cart"></i> Purchases
+                                </a>
+                                <ul class="nav-submenu" id="purchaseSubmenu">
+                                    <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
+                                    <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
+                                    <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./damages.html">
+                                <i class="fas fa-exclamation-circle"></i> Damages
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./stock.html">
+                                <i class="fas fa-archive"></i> Stock
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="section-title">POS & ORDERS</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./pos.html">
+                                <i class="fas fa-cash-register"></i> POS
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./pos-orders.html">
+                                <i class="fas fa-receipt"></i> POS Orders
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./online-orders.html">
+                                <i class="fas fa-shopping-basket"></i> Online Orders
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="section-title">PROMO</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./coupons.html">
+                                <i class="fas fa-tags"></i> Coupons
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./promotions.html">
+                                <i class="fas fa-bullhorn"></i> Promotions
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./product-sections.html">
+                                <i class="fas fa-cube"></i> Product Sections
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="section-title">COMMUNICATIONS</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./push-notifications.html">
+                                <i class="fas fa-bell"></i> Push Notifications
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./subscribers.html">
+                                <i class="fas fa-users"></i> Subscribers
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="section-title">USERS</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./admin.html">
+                                <i class="fas fa-user"></i> Administrators
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./customer.html">
+                                <i class="fas fa-users"></i> Customers
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./employee.html">
+                                <i class="fas fa-user-tie"></i> Employees
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="section-title">ACCOUNTS</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-exchange-alt"></i> Transactions
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="section-title">REPORTS</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./sales-report.html">
+                                <i class="fas fa-chart-line"></i> Sales Report
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./products-report.html">
+                                <i class="fas fa-file-alt"></i> Products Report
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-credit-card"></i> Credit Balance Report
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="section-title">SETUP</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" id="settingsToggle" href="#">
+                                <i class="fas fa-cog"></i> Settings
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- <div class="settings-submenu" id="settingsSubmenu"> -->
+                    <div class="submenu" id="settingsSubmenu">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="./company.html">
+                                    <i class="fas fa-building"></i> Company
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./site.html">
+                                    <i class="fas fa-globe"></i> Site
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./mail.html">
+                                    <i class="fas fa-envelope"></i> Mail
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./location-setup.html">
+                                    <i class="fas fa-map-marker-alt"></i> Location Setup
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./shipping-setup.html">
+                                    <i class="fas fa-truck"></i> Shipping Setup
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="fas fa-lock"></i> OTP
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./notification.html">
+                                    <i class="fas fa-bell"></i> Notification
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./notification-alert.html">
+                                    <i class="fas fa-bell"></i> Notification alert
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./social-media.html">
+                                    <i class="fas fa-share-alt"></i> Social Media
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./cookies.html">
+                                    <i class="fas fa-cookie-bite"></i> Cookies
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./analytics.html">
+                                    <i class="fas fa-chart-bar"></i> Analytics
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./theme.html">
+                                    <i class="fas fa-paint-brush"></i> Theme
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./sliders.html">
+                                    <i class="fas fa-sliders-h"></i> Sliders
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./currencies.html">
+                                    <i class="fas fa-money-bill-wave"></i> Currencies
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./product-categories.html">
+                                    <i class="fas fa-tags"></i> Product Categories
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./product-attributes.html">
+                                    <i class="fas fa-cube"></i> Product Attributes
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./product-brands.html">
+                                    <i class="fas fa-tag"></i> Product Brands
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./supplier.html">
+                                    <i class="fas fa-industry"></i> Suppliers
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./outlets.html">
+                                    <i class="fas fa-store"></i> Outlets
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./benefits.html">
+                                    <i class="fas fa-gift"></i> Benefits
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./units.html">
+                                    <i class="fas fa-balance-scale"></i> Units
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./taxes.html">
+                                    <i class="fas fa-percent"></i> Taxes
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./page.html">
+                                    <i class="fas fa-file-alt"></i> Pages
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./role & permissions.html">
+                                    <i class="fas fa-user-shield"></i> Role & Permissions
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./languages-list.html">
+                                    <i class="fas fa-globe"></i> Languages
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./sms-gateway.html">
+                                    <i class="fas fa-comments"></i> Sms Gateway
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./payment-gateway.html">
+                                    <i class="fas fa-credit-card"></i> Payment Gateway
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./license.html">
+                                    <i class="fas fa-file-contract"></i> License
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!--  Sidebar End -->
+        <!--  Main wrapper -->
+        <div class="body-wrapper">
+            <!--  Header Start -->
+            <header class="app-header">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <ul class="navbar-nav">
+                        <li class="nav-item d-block d-xl-none">
+                            <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse"
+                                href="javascript:void(0)">
+                                <i class="ti ti-menu-2"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+                        <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="./assets/images/profile/user-1.jpg" alt="" width="35" height="35"
+                                        class="rounded-circle">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
+                                    aria-labelledby="drop2">
+                                    <div class="message-body">
+                                        <a href="javascript:void(0)"
+                                            class="d-flex align-items-center gap-2 dropdown-item">
+                                            <i class="ti ti-user fs-6"></i>
+                                            <p class="mb-0 fs-3">My Profile</p>
+                                        </a>
+                                        <a href="javascript:void(0)"
+                                            class="d-flex align-items-center gap-2 dropdown-item">
+                                            <i class="ti ti-mail fs-6"></i>
+                                            <p class="mb-0 fs-3">My Account</p>
+                                        </a>
+                                        <a href="javascript:void(0)"
+                                            class="d-flex align-items-center gap-2 dropdown-item">
+                                            <i class="ti ti-list-check fs-6"></i>
+                                            <p class="mb-0 fs-3">My Task</p>
+                                        </a>
+                                        <a href="./authentication-login.html"
+                                            class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <!--  Header End -->
+
+            <div class="container-fluid">
+                <div class="card w-100 h-100 position-relative overflow-hidden">
+                    <div class="card-body">
+                        <h5 class="card-title fw-semibold mb-4">Suppliers</h5>
+
+                        <div class="actions-bar">
+                            <div class="dropdown">
+                                <button class="export-btn" aria-label="Export options">Export</button>
+                                <div class="dropdown-content">
+                                    <a href="#" role="menuitem" id="print-option"><i class="fas fa-print"></i> Print</a>
+                                    <a href="#" role="menuitem" id="xls-option"><i class="fas fa-file-excel"></i>
+                                        XLS</a>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary" style="color: black;" data-bs-toggle="modal"
+                                data-bs-target="#addUserModal">
+                                Add Supplier
+                            </button>
+                        </div>
+
+                        <!-- Table for displaying suppliers -->
+                        <table id="supplierTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Company</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="supplierTableBody">
+
+                            </tbody>
+                        </table>
+
+
+                        <!-- Pagination Info -->
+                        <div id="entriesInfo" class="mb-3">
+                            Showing <span id="startEntry">1</span> to <span id="endEntry">6</span> of <span
+                                id="totalEntries">0</span> entries
+                        </div>
+
+                        <!-- Pagination -->
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-end" id="pagination">
+                                <!-- Pagination dynamically populated -->
+                            </ul>
+                        </nav>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal fade" id="supplierDetailsModal" tabindex="-1" aria-labelledby="userDetailsModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="userDetailsModalLabel">User Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="profileSection">
+                            <!-- User details will be dynamically inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="supplierDetailsModal" tabindex="-1" aria-labelledby="supplierDetailsModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="supplierDetailsModalLabel">Supplier Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="ProfileSection">
+                            <!-- Supplier details will be dynamically inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add User Modal -->
+            <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addUserModalLabel">Suppliers</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="addSupplierForm">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="supplierCompany" class="form-label">Company</label>
+                                        <input type="text" class="form-control" id="supplierCompany" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="supplierName" class="form-label">Name</label>
+                                        <input type="text" class="form-control" id="supplierName" required>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="supplierEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="supplierEmail">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="supplierPhone" class="form-label">Phone</label>
+                                        <input type="tel" class="form-control" id="supplierPhone" placeholder="+880"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="supplierCountry" class="form-label">Country</label>
+                                        <select id="supplierCountry" class="form-select" required>
+                                            <option value="" disabled selected>Select Country</option>
+
+                                            <option value="USA">USA</option>
+                                            <option value="UK">UK</option>
+                                            <option value="Pakistan">Pakistan</option>
+                                            <option value="India">India</option>
+                                            <option value="Germany">Germany</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="supplierState" class="form-label">State</label>
+                                        <input type="text" class="form-control" id="supplierState">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="supplierCity" class="form-label">City</label>
+                                        <input type="text" class="form-control" id="supplierCity">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="supplierZipCode" class="form-label">Zip Code</label>
+                                        <input type="text" class="form-control" id="supplierZipCode">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <label for="supplierImage" class="form-label">Image</label>
+                                        <input type="file" class="form-control" id="supplierImage">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <label for="supplierAddress" class="form-label">Address</label>
+                                        <textarea class="form-control" id="supplierAddress" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="saveSupplierBtn">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit Supplier Modal -->
+            <div id="editSupplierModal" class="modal_" style="opacity: 1;">
+                <div class="modal_content_">
+                    <div class="modal_header_">
+                        <h2 class="modal_title_">Edit Supplier Detail</h2>
+                        <span class="modal_close_" onclick="closeEditModal()">&times;</span>
+                    </div>
+                    <form id="editSupplierForm" class="modal_form_" onsubmit="updateSupplier(event)">
+                        <input type="hidden" id="editSupplierId" />
+
+                        <label for="editSupplierCompany">Company:</label>
+                        <input type="text" id="editSupplierCompany" required />
+                        <label for="editSupplierName">Supplier Name:</label>
+                        <input type="text" id="editSupplierName" required />
+
+                        <label for="editSupplierEmail">Email:</label>
+                        <input type="email" id="editSupplierEmail" required />
+
+                        <label for="editSupplierPhone">Phone:</label>
+                        <input type="tel" id="editSupplierPhone" required />
+
+
+                        <label for="editSupplierAddress">Address:</label>
+                        <input type="text" id="editSupplierAddress" required />
+
+                        <label for="editSupplierCountry">Country:</label>
+                        <input type="text" id="editSupplierCountry" required />
+
+                        <label for="editSupplierState">State:</label>
+                        <input type="text" id="editSupplierState" required />
+
+                        <label for="editSupplierCity">City:</label>
+                        <input type="text" id="editSupplierCity" required />
+
+                        <label for="editSupplierZipcode">Zip Code:</label>
+                        <input type="text" id="editSupplierZipcode" required />
+
+                        <button type="submit">Update Supplier</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/sidebarmenu.js"></script>
+    <script src="./assets/js/app.min.js"></script>
+    <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+    <script src="./apiConfig/apiConfig.js"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const purchaseToggle = document.getElementById('purchaseToggle');
+            const purchaseSubmenu = document.getElementById('purchaseSubmenu');
+
+            purchaseToggle.addEventListener('click', (event) => {
+                event.preventDefault();
+                purchaseSubmenu.style.display = (purchaseSubmenu.style.display === 'none' || purchaseSubmenu.style.display === '') ? 'block' : 'none';
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            const settingsToggle = document.getElementById('settingsToggle');
+            const settingsSubmenu = document.getElementById('settingsSubmenu');
+
+            // Handle submenu toggle
+            settingsToggle.addEventListener('click', function (event) {
+                event.preventDefault();
+                settingsSubmenu.style.display = (settingsSubmenu.style.display === 'block') ? 'none' : 'block';
+            });
+
+            // Handle active link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    // Remove active class from all links
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    // Add active class to the clicked link
+                    this.classList.add('active');
+                });
+            });
+        });
+
+
+
+
+        let suppliers = [];
+        let totalEntries = 0;
+        let currentPage = 1;
+        const rowsPerPage = 6;
+
+
+        // Fetch suppliers from the backend API
+        async function fetchSuppliers() {
+            try {
+                const response = await fetch(`${API_ADMINGRAB_URL}/api/suppliers`);
+                if (!response.ok) throw new Error('Network response was not ok');
+                suppliers = await response.json(); // Assuming the API returns supplier data in JSON format
+                totalEntries = suppliers.length;
+                displaySupplier(currentPage);
+            } catch (error) {
+                console.error('Error fetching suppliers:', error);
+            }
+        }
+
+        // Function to display suppliers on the page
+        function displaySupplier(page) {
+            const startIndex = (page - 1) * rowsPerPage;
+            const endIndex = Math.min(startIndex + rowsPerPage, totalEntries);
+            const currentSuppliers = suppliers.slice(startIndex, endIndex);
+
+            const supplierTableBody = document.getElementById("supplierTableBody");
+            supplierTableBody.innerHTML = ""; // Clear existing table rows
+
+            currentSuppliers.forEach(supplier => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+          <td>${supplier.company}</td>
+          <td>${supplier.name}</td>
+          <td>${supplier.email}</td>
+          <td>${supplier.phone}</td>
+          <td>
+            <i class="fas fa-eye view-icon" data-id="${supplier.id}" title="View"></i>
+            <i class="fas fa-edit edit-icon" data-id="${supplier.id}" title="Edit"></i>
+            <i class="fas fa-trash delete-icon" data-id="${supplier.id}" title="Delete"></i>
+          </td>
+        `;
+                supplierTableBody.appendChild(row);
+            });
+
+            // Update entries info
+            document.getElementById("startEntry").innerText = startIndex + 1;
+            document.getElementById("endEntry").innerText = endIndex;
+            document.getElementById("totalEntries").innerText = totalEntries;
+
+            updatePagination();
+
+            // Attach event listeners for viewing and editing functionality within the display function
+            document.querySelectorAll('.view-icon').forEach(icon => {
+                icon.addEventListener('click', async function () {
+                    const supplierId = this.getAttribute('data-id');
+                    await fetchSupplierDetails(supplierId); // Function to fetch and display supplier details
+                });
+            });
+
+
+            document.querySelectorAll('.edit-icon').forEach(icon => {
+                icon.addEventListener('click', async function () {
+                    const supplierId = this.getAttribute('data-id');
+                    await openEditModal(supplierId); // Function to open modal for editing customer details
+                });
+            });
+            // Attach event listeners for delete functionality
+            // const deleteIcons = supplierTableBody.querySelectorAll('.delete-icon');
+            // deleteIcons.forEach(icon => {
+            //     icon.addEventListener('click', async (e) => {
+            //         const supplierId = icon.getAttribute('data-id');
+            //         if (confirm(`Are you sure you want to delete supplier ID: ${supplierId}?`)) {
+            //             try {
+            //                 const response = await fetch(`${API_ADMINGRAB_URL}/api/suppliers/${supplierId}`, {
+            //                     method: 'DELETE',
+            //                     headers: {
+            //                         'Content-Type': 'application/json',
+            //                     },
+            //                 });
+
+            //                 if (response.ok) {
+            //                     // Remove the supplier row from the table
+            //                     fetchSuppliers();
+            //                     const row = icon.closest('tr');
+            //                     row.remove();
+            //                     showSuccessMessage('Supplier deleted successfully!');
+
+            //                     // Optionally, refresh the supplier list or handle pagination
+            //                     totalEntries--; // Update the total entries count
+            //                     displaySupplier(page); // Refresh the displayed suppliers
+            //                 } else {
+            //                     const errorData = await response.json();
+            //                     showErrorMessage(`Error: ${errorData.error}`);
+            //                 }
+            //             } catch (error) {
+            //                 console.error('Error deleting supplier:', error);
+            //                 showErrorMessage('Failed to delete the supplier. Please try again later.');
+            //             }
+            //         }
+            //     });
+            // });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+    // Attach event listener dynamically to handle delete icons for suppliers
+    document.body.addEventListener("click", function (event) {
+        if (event.target.classList.contains("delete-icon")) {
+            const supplierId = event.target.getAttribute("data-id");
+            showConfirmDialog(supplierId);
+        }
+    });
+});
+
+// Function to show delete confirmation dialog
+function showConfirmDialog(supplierId) {
+    // Create the dialog overlay
+    const dialogOverlay = document.createElement("div");
+    dialogOverlay.style.position = "fixed";
+    dialogOverlay.style.top = "0";
+    dialogOverlay.style.left = "0";
+    dialogOverlay.style.width = "100%";
+    dialogOverlay.style.height = "100%";
+    dialogOverlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    dialogOverlay.style.display = "flex";
+    dialogOverlay.style.justifyContent = "center";
+    dialogOverlay.style.alignItems = "center";
+    dialogOverlay.style.zIndex = "1000";
+    dialogOverlay.setAttribute("id", "confirmDialog");
+
+    // Create the dialog box
+    const dialogBox = document.createElement("div");
+    dialogBox.style.backgroundColor = "white";
+    dialogBox.style.padding = "40px";
+    dialogBox.style.borderRadius = "5px";
+    dialogBox.style.textAlign = "center";
+    dialogBox.style.zIndex = "1001";
+
+    // Create the warning icon
+    const warningIcon = document.createElement("div");
+    warningIcon.textContent = "!";
+    warningIcon.style.fontSize = "40px";
+    warningIcon.style.color = "red";
+    warningIcon.style.marginBottom = "10px";
+
+    // Add title and message
+    const title = document.createElement("h3");
+    title.textContent = "Are you sure?";
+
+    const message = document.createElement("p");
+    message.textContent = "You will not be able to recover the deleted supplier record!";
+
+    // Create the buttons
+    const confirmButton = document.createElement("button");
+    confirmButton.textContent = "Yes, Delete it!";
+    confirmButton.style.marginRight = "10px";
+    confirmButton.style.backgroundColor = "rgb(105, 108, 255)";
+    confirmButton.style.color = "white";
+    confirmButton.style.border = "none";
+    confirmButton.style.padding = "10px 20px";
+    confirmButton.style.cursor = "pointer";
+
+    const cancelButton = document.createElement("button");
+    cancelButton.textContent = "No, Cancel!";
+    cancelButton.style.backgroundColor = "rgb(133, 146, 163)";
+    cancelButton.style.color = "white";
+    cancelButton.style.border = "none";
+    cancelButton.style.padding = "10px 20px";
+    cancelButton.style.cursor = "pointer";
+
+    // Append all elements to the dialog box
+    dialogBox.appendChild(warningIcon);
+    dialogBox.appendChild(title);
+    dialogBox.appendChild(message);
+    dialogBox.appendChild(confirmButton);
+    dialogBox.appendChild(cancelButton);
+
+    // Append the dialog box to the overlay
+    dialogOverlay.appendChild(dialogBox);
+
+    // Append the overlay to the body
+    document.body.appendChild(dialogOverlay);
+
+    // Handle the confirm button click
+    confirmButton.addEventListener("click", async () => {
+        await deleteSupplier(supplierId);
+        closeConfirmDialog();
+    });
+
+    // Handle the cancel button click
+    cancelButton.addEventListener("click", closeConfirmDialog);
+
+    // Function to close the confirmation dialog
+    function closeConfirmDialog() {
+        document.body.removeChild(dialogOverlay);
+    }
+}
+
+
+// Function to delete a supplier
+async function deleteSupplier(supplierId) {
+    const token = localStorage.getItem("token");
+
+    try {
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/suppliers/${supplierId}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: token,
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (!response.ok) throw new Error("Failed to delete the supplier");
+
+        showSuccessMessage("Supplier Deleted Successfully")
+        fetchSuppliers(); // Refresh the supplier list
+
+        // Remove the corresponding row from the table
+        const rowElement = document.querySelector(`tr[data-id='${supplierId}']`);
+        if (rowElement) {
+            rowElement.remove();
+            showDeleteMessage("Supplier deleted successfully!");
+        }
+    } catch (error) {
+        console.error("Error deleting supplier:", error);
+        showErrorMessage("Failed to delete the supplier. Please try again.");
+    }
+}
+
+
+        async function fetchSupplierDetails(supplierId) {
+            try {
+                const response = await fetch(`${API_ADMINGRAB_URL}/api/suppliers/getSupplierById?id=${supplierId}`);
+
+                // Handle errors
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch supplier details: ${response.statusText}`);
+                }
+
+                // Parse JSON data
+                const supplierData = await response.json();
+
+                // Display the supplier data
+                showSupplierDetails(supplierData);
+            } catch (error) {
+                console.error('Error fetching supplier details:', error);
+                showErrorMessage('Error fetching supplier details');
+            }
+        }
+        function showSupplierDetails(supplier) {
+            const profileSection = document.getElementById('profileSection');
+
+            // Populate supplier profile data
+            profileSection.innerHTML = `
+        <!-- Profile Header Section -->
+        <div class="card p-4 mb-4" style="background-color: #e9ecef;"> <!-- Darker background color -->
+            <div class="supplier-profile-header d-flex align-items-center">
+             <div class="supplier-image me-3">
+             <img src="./assets/images/products/s56.png" alt="${supplier.name}" style="width:130px;height:140px;">
+             </div>
+
+
+                <div class="supplier-info">
+                    <h3 class="supplier-name mb-0">${supplier.name}</h3>
+                    <span class="badge bg-warning text-dark">Supplier</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Information Section -->
+        <div class="card p-4">
+          <h5 class="mb-3 basic-info-heading">Basic Information</h5>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Company:</strong> <span class="ms-2">${supplier.company}</span></p>
+                    <p><strong>Phone:</strong> <span class="ms-2">${supplier.phone}</span></p>
+                    <p><strong>State:</strong> <span class="ms-2">${supplier.state}</span></p>
+                    <p><strong>Address:</strong> <span class="ms-2">${supplier.address}</span></p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Email:</strong> <span class="ms-2">${supplier.email}</span></p>
+                    <p><strong>City:</strong> <span class="ms-2">${supplier.city}</span></p>
+                    <p><strong>Zip Code:</strong> <span class="ms-2">${supplier.zip_code}</span></p>
+                </div>
+            </div>
+        </div>
+    `;
+
+            // Show the modal or section with supplier details
+            const supplierDetailsModal = new bootstrap.Modal(document.getElementById('supplierDetailsModal'));
+            supplierDetailsModal.show();
+        }
+
+        // Update pagination buttons
+        function updatePagination() {
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = ""; // Clear existing pagination
+
+            const totalPages = Math.ceil(totalEntries / rowsPerPage);
+
+            const prevButton = document.createElement("li");
+            prevButton.className = "page-item" + (currentPage === 1 ? " disabled" : "");
+            prevButton.innerHTML = `<a class="page-link" href="#" aria-label="Previous">&laquo;</a>`;
+            prevButton.onclick = () => { if (currentPage > 1) changePage(currentPage - 1); };
+            pagination.appendChild(prevButton);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageItem = document.createElement("li");
+                pageItem.className = "page-item" + (currentPage === i ? " active" : "");
+                pageItem.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+                pageItem.onclick = (e) => {
+                    e.preventDefault();
+                    changePage(i);
+                };
+                pagination.appendChild(pageItem);
+            }
+
+            const nextButton = document.createElement("li");
+            nextButton.className = "page-item" + (currentPage === totalPages ? " disabled" : "");
+            nextButton.innerHTML = `<a class="page-link" href="#" aria-label="Next">&raquo;</a>`;
+            nextButton.onclick = () => { if (currentPage < totalPages) changePage(currentPage + 1); };
+            pagination.appendChild(nextButton);
+        }
+
+        function changePage(page) {
+            currentPage = page;
+            displaySupplier(currentPage);
+        }
+
+
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('supplierImagePreview');
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result; // Set the preview source to the uploaded image
+                    preview.style.display = 'block'; // Show the image
+                };
+                reader.readAsDataURL(file); // Read the file as a data URL
+            } else {
+                preview.src = ''; // Clear the preview if no file is selected
+                preview.style.display = 'none'; // Hide the image
+            }
+        }
+
+
+
+
+
+        //edit
+        async function openEditModal(supplierId) {
+            try {
+                const response = await fetch(`${API_ADMINGRAB_URL}/api/suppliers/getSupplierById?id=${supplierId}`);
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch supplier details.');
+                }
+
+                const supplierData = await response.json();
+
+                // Display the supplier data in the modal
+                showSupplierDetailForEdit(supplierData);
+
+
+            } catch (error) {
+                console.error('Error:', error);
+                showErrorMessage('Error fetching supplier details');
+            }
+        }
+
+        function showSupplierDetailForEdit(supplier) {
+            // Populate the form fields with supplier data
+            document.getElementById('editSupplierId').value = supplier.id;
+            document.getElementById('editSupplierName').value = supplier.name;
+            document.getElementById('editSupplierEmail').value = supplier.email;
+            document.getElementById('editSupplierPhone').value = supplier.phone;
+            document.getElementById('editSupplierCompany').value = supplier.company;
+
+            document.getElementById('editSupplierAddress').value = supplier.address;
+            document.getElementById('editSupplierCountry').value = supplier.country;
+            document.getElementById('editSupplierState').value = supplier.state;
+            document.getElementById('editSupplierCity').value = supplier.city;
+            document.getElementById('editSupplierZipcode').value = supplier.zip_code;
+
+            // Show the edit modal
+            const modal = document.getElementById('editSupplierModal');
+            modal.style.display = "block";
+        }
+
+        function closeEditModal() {
+            const modal = document.getElementById('editSupplierModal');
+            modal.style.display = "none";
+        }
+
+        async function updateSupplier(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const supplierId = document.getElementById('editSupplierId').value;
+
+            const updatedSupplier = {
+                name: document.getElementById('editSupplierName').value.trim(),
+                email: document.getElementById('editSupplierEmail').value.trim(),
+                phone: document.getElementById('editSupplierPhone').value.trim(),
+                company: document.getElementById('editSupplierCompany').value.trim(),
+                address: document.getElementById('editSupplierAddress').value.trim(),
+                country: document.getElementById('editSupplierCountry').value.trim(),
+                state: document.getElementById('editSupplierState').value.trim(),
+                city: document.getElementById('editSupplierCity').value.trim(),
+                zip_code: document.getElementById('editSupplierZipcode').value.trim()
+            };
+
+            // Debugging alerts (remove or comment out in production)
+            // alert(JSON.stringify(updatedSupplier, null, 2));
+
+            try {
+                const response = await fetch(`${API_ADMINGRAB_URL}/api/suppliers/updateSupplier/${supplierId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json', // Make sure it's JSON if not using formData
+                    },
+                    body: JSON.stringify(updatedSupplier), // Send JSON-encoded data
+                });
+
+                if (response.ok) {
+                    // Close the edit modal after successful update
+                    closeEditModal();
+                    fetchSuppliers();
+                    // Show an alert with the updated supplier details
+                    showSuccessMessage(`Supplier Updated Successfully!`);
+                } else {
+                    // const errorMsg = await response.json();
+                    showErrorMessage(`Failed to update supplier`);
+                }
+            } catch (error) {
+                console.error('Error updating supplier:', error);
+                showErrorMessage('Error updating supplier. Please try again.');
+            }
+        }
+
+
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("saveSupplierBtn").addEventListener("click", async (event) => {
+                event.preventDefault();  // Prevent default form submission
+                const saveButton = document.getElementById("saveSupplierBtn");
+                saveButton.disabled = true; // Disable the button to prevent multiple submissions
+
+                // Get form fields
+                const supplierData = new FormData();
+                supplierData.append('company', document.getElementById('supplierCompany').value.trim());
+                supplierData.append('name', document.getElementById('supplierName').value.trim());
+                supplierData.append('email', document.getElementById('supplierEmail').value.trim());
+                supplierData.append('phone', document.getElementById('supplierPhone').value.trim());
+                supplierData.append('country', document.getElementById('supplierCountry').value.trim());
+                supplierData.append('state', document.getElementById('supplierState').value.trim());
+                supplierData.append('city', document.getElementById('supplierCity').value.trim());
+                supplierData.append('zip_code', document.getElementById('supplierZipCode').value.trim());
+                supplierData.append('address', document.getElementById('supplierAddress').value.trim());
+
+                // Append image file
+                const imageFile = document.getElementById('supplierImage').files[0];
+                if (imageFile) {
+                    supplierData.append('image', imageFile); // Add image file to the form data
+                } else {
+                    showErrorMessage('Please upload an image.');
+                    saveButton.disabled = false;
+                    return;
+                }
+
+                try {
+                    // Send POST request with FormData (including image)
+                    const response = await fetch(`${API_ADMINGRAB_URL}/api/suppliers`, {
+                        method: 'POST',
+                        body: supplierData // FormData object automatically sets the correct headers
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        showSuccessMessage('Supplier saved successfully!');
+                        document.getElementById('addSupplierForm').reset(); // Reset the form
+                        const modal = bootstrap.Modal.getInstance(document.getElementById('addUserModal'));
+                        modal.hide(); // Close the modal
+                    } else {
+                        showErrorMessage(`Error: ${data.message}`);
+                    }
+                } catch (error) {
+                    console.error('Error saving supplier:', error);
+                } finally {
+                    saveButton.disabled = false; // Re-enable the button once the request is completed
+                }
+            });
+        });
+
+        // Fetch suppliers on page load
+        document.addEventListener("DOMContentLoaded", fetchSuppliers);
+    </script>
+</body>
+
+</html>

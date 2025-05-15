@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/style-report.css" />
+    <link rel="stylesheet" href="./assets/css/styles.min.css" />
+    <link rel="stylesheet" href="./assets/css/style1.css" />
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      //(function() {
+    //     let(function() {
+    //     let path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })(); path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })();
+
+
+      (function checkAuth() {
+        const token = localStorage.getItem('token');
+  
+        if (!token) {
+          window.location.replace('./login.html'); // Redirect to login page
+        }
+      })();
+    </script> 
+</head>
+<body>
+<!--  Body Wrapper -->
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+data-sidebar-position="fixed" data-header-position="fixed"> 
+<!-- Sidebar Start -->
+<aside class="left-sidebar">   
+  <!-- Sidebar scroll-->
+  <div>
+    <div class="brand-logo d-flex align-items-center justify-content-between">
+      <a href="./index.html" class="text-nowrap logo-img">
+        <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+      </a>
+      <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+        <i class="ti ti-x fs-8"></i>
+      </div>
+    </div>
+    <!-- Sidebar navigation-->
+    <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+      <ul id="sidebarnav">
+        <li class="nav-small-cap">
+          <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+          <span class="hide-menu">Home</span>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./index.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-layout-dashboard"></i>
+            </span>
+            <span class="hide-menu">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-small-cap">
+          <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+          <span class="hide-menu">PRODUCT & STOCK</span>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./products.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-article"></i>
+            </span>
+            <span class="hide-menu">Products</span>
+          </a>
+        </li>
+         <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="purchaseToggle">
+                <i class="fas fa-shopping-cart"></i> Purchases 
+              </a>
+              <ul class="nav-submenu" id="purchaseSubmenu">
+                <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
+                <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
+                <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
+              </ul>
+            </li>
+          </ul>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./damages.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-cards"></i>
+            </span>
+            <span class="hide-menu">Damages</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./stock.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-file-description"></i>
+            </span>
+            <span class="hide-menu">Stock</span>
+          </a>
+        </li>
+        <li class="nav-small-cap">
+          <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+          <span class="hide-menu">ORDERS</span>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./online-orders.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-login"></i>
+            </span>
+            <span class="hide-menu">Online Orders</span>
+          </a>
+        </li>
+        <!-- <li class="sidebar-item">
+          <a class="sidebar-link" href="./return-orders.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-user-plus"></i>
+            </span>
+            <span class="hide-menu">Return Orders</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
+            <span>
+              
+            </span>
+            <span class="hide-menu">Return And Refunds</span>
+          </a>
+        </li> -->
+        <!-- <li class="nav-small-cap">
+          <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+          <span class="hide-menu">Reports</span>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./purchase-report.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-article"></i>
+            </span>
+            <span class="hide-menu">Purchase Payment Report</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./sell-payment-report.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-article"></i>
+            </span>
+            <span class="hide-menu">Sell Payment Report</span>
+          </a>
+        </li> -->
+        <li class="nav-small-cap">
+          <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+          <span class="hide-menu">PROMO</span>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./coupons.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-mood-happy"></i>
+            </span>
+            <span class="hide-menu">Coupons</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./promotions.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-aperture"></i>
+            </span>
+            <span class="hide-menu">Promotions</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./product-sections.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-aperture"></i>
+            </span>
+            <span class="hide-menu">Product Sections</span>
+          </a>
+        </li>
+        <li class="nav-small-cap">
+          <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+          <span class="hide-menu">COMMUNICATIONS</span>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./push-notifications.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-login"></i>
+            </span>
+            <span class="hide-menu">Push Notifications</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-login"></i>
+            </span>
+            <span class="hide-menu">Subscribers</span>
+          </a>
+        </li>
+        <li class="nav-small-cap">
+          <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+          <span class="hide-menu">Users</span>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-login"></i>
+            </span>
+            <span class="hide-menu">Administrators</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-login"></i>
+            </span>
+            <span class="hide-menu">Customers</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-login"></i>
+            </span>
+            <span class="hide-menu">Employees</span>
+          </a>
+        </li>
+        <li class="nav-small-cap">
+          <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+          <span class="hide-menu">ACCOUNTS</span>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-login"></i>
+            </span>
+            <span class="hide-menu">Transactions</span>
+          </a>
+        </li>
+        <li class="nav-small-cap">
+          <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+          <span class="hide-menu">REPORTS</span>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./sales-report.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-login"></i>
+            </span>
+            <span class="hide-menu">Sales Report</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./products-report.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-login"></i>
+            </span>
+            <span class="hide-menu">Products Report</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-login"></i>
+            </span>
+            <span class="hide-menu">Credit Balance Report</span>
+          </a>
+        </li>
+        <li class="nav-small-cap">
+          <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+          <span class="hide-menu">SETUP</span>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+            <span>
+              <i class="ti ti-login"></i>
+            </span>
+            <span class="hide-menu">Settings</span>
+          </a>
+        </li>
+      </ul>
+      <!--<div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
+        <div class="d-flex">
+          <div class="unlimited-access-title me-3">
+            <h6 class="fw-semibold fs-4 mb-6 text-dark w-85">Upgrade to pro</h6>
+            <a href="https://adminmart.com/product/modernize-bootstrap-5-admin-template/" target="_blank" class="btn btn-primary fs-2 fw-semibold lh-sm">Buy Pro</a>
+          </div>
+          <div class="unlimited-access-img">
+            <img src="./assets/images/backgrounds/rocket.png" alt="" class="img-fluid">
+          </div>
+        </div>
+      </div>-->
+    </nav>
+    <!-- End Sidebar navigation -->
+  </div>
+  <!-- End Sidebar scroll-->
+</aside>
+<!--  Sidebar End -->
+<!--  Main wrapper -->
+<div class="body-wrapper">
+  <!--  Header Start -->
+  <header class="app-header">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <!-- <ul class="navbar-nav">
+        <li class="nav-item d-block d-xl-none">
+          <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+            <i class="ti ti-menu-2"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+            <i class="ti ti-bell-ringing"></i>
+            <div class="notification bg-primary rounded-circle"></div>
+          </a>
+        </li>
+      </ul> -->
+      <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+        <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+          <!-- <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank" class="btn btn-primary">Download Free</a> -->
+          <li class="nav-item dropdown">
+            <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <img src="./assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+            </a>
+            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+              <div class="message-body">
+                <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                  <i class="ti ti-user fs-6"></i>
+                  <p class="mb-0 fs-3">My Profile</p>
+                </a>
+                <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                  <i class="ti ti-mail fs-6"></i>
+                  <p class="mb-0 fs-3">My Account</p>
+                </a>
+                <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                  <i class="ti ti-list-check fs-6"></i>
+                  <p class="mb-0 fs-3">My Task</p>
+                </a>
+                <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!--  Header End -->
+
+  <div class="container-fluid">
+    
+
+    <div class="card">
+        <div class="card-body">
+          <h5 class="card-title fw-semibold mb-4">Dashboard / Purchase Payment Report</h5> 
+          <div class="container">
+            <h5>Purchase Payment Report</h5> 
+        
+            <div class="actions-bar">
+                <select>
+                    <option value="10">10</option>
+                    <option value="20">25</option>
+                    <option value="50">50</option>
+                    <option value="50">100</option>
+                    <option value="50">500</option>
+                    <option value="50">1000</option>
+                </select>
+               
+                
+                <button class="filter-btn">Filter</button>
+                <div id="dropdownSearch" class="dropdown-search">
+                  <div class="dropdown-header">Search Payment Purchase Report</div>
+                  <div class="dropdown-fields">
+                      <label>Supplier</label>
+                      <input type="text" id="searchSupplier" placeholder="Search by Supplier">
+              
+                      <label>Date</label>
+                      <input type="date" id="searchDate">
+              
+                      <label>Reference No</label>
+                      <input type="text" id="searchReferenceNo" placeholder="Reference No">
+              
+                      
+              
+                     
+                      <button class="search-btn" onclick="filterTable()">Search</button>
+                      <button class="clear-btn" onclick="clearFilters()">Clear</button>
+                  </div>
+              </div>
+              <div class="dropdown">
+                <button class="export-btn">Export</button>
+                <div class="dropdown-content">
+              
+              
+                    <a href="#" id="exportButton"><i class="fas fa-file-excel"></i> XLS</a>
+                </div>
+              </div>
+            </div>
+                <!-- style="width: 100%; padding: 12px;" -->
+              </div>
+            </div>
+          </div>
+
+    <div class="table-container">  
+        <table>
+          <thead>
+            <tr>
+              <th>Reference No</th>
+              <th>Paid on</th>
+              <th>Amount</th>
+              <th>Supplier</th>
+              <th>Payment Method</th>
+              <th>Purchase</th>
+              <th>Action</th>
+            </tr> 
+            
+          </thead>
+        
+          <tbody id="purchaseReturnsTableBody" class="purchase-returns-table-body"></tbody>
+        </table>
+      </div>
+    
+      <div id="formContainer"></div>
+
+      <!-- Invoice Modal -->
+<div id="invoiceModal" class="modal" style="display: none;">
+  <div class="modal-content">
+      <h2 id="invoiceTitle">View Report (Reference No: <span id="referenceNumber"></span>)</h2>
+      <p><strong>Supplier:</strong> <span id="supplierName"></span></p>
+      <p><strong>Amount:</strong> <span id="invoiceAmount"></span></p>
+      <p><strong>Reference No:</strong> <span id="referenceNo"></span></p>
+      <p><strong>Paid On:</strong> <span id="paidOn"></span></p>
+      <p><strong>Payment Method:</strong> <span id="paymentMethod"></span></p>
+      <p><strong>Purchase:</strong> <span id="purchaseDetails"></span></p>
+      
+      <!-- Buttons -->
+      <div class="modal-buttons">
+          <button onclick="printInvoice()">Print</button>
+          <button onclick="closeInvoice()">Close</button>
+      </div>
+  </div>
+</div>
+
+          </div>
+        </div>
+    </div>
+</div>
+    </div>
+  </div>
+    
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>  
+  <script src="./assets/js/sidebarmenu.js"></script>
+  <script src="./assets/js/app.min.js"></script>
+  <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="./apiConfig/apiConfig.js"></script>
+
+  <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    const purchaseToggle = document.getElementById('purchaseToggle');
+    const purchaseSubmenu = document.getElementById('purchaseSubmenu');
+
+    purchaseToggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        purchaseSubmenu.style.display = (purchaseSubmenu.style.display === 'none' || purchaseSubmenu.style.display === '') ? 'block' : 'none';
+    });
+});
+document.getElementById('exportButton').addEventListener('click', function () {
+        // Sample data from your table, replace with dynamic data
+        const data = [
+            ['Supplier', 'Date', 'Reference No', 'Reason', 'Total', 'Payment Status'],
+            ['Supplier D', '2024-10-09', '3427', 'Pending', '1000.00', 'Unpaid'],
+            ['Supplier E', '2024-10-01', '99', 'Cancelled', '1246.00', 'Paid'],
+            ['Supplier F', '2024-10-23', '345678', 'Pending', '4568.00', 'Unpaid'],
+            ['Supplier G', '2024-10-02', '123458', 'Completed', '100.00', 'Paid'],
+           
+        ];
+
+        // Create a new workbook
+        const wb = XLSX.utils.book_new();
+
+        // Convert data to a worksheet
+        const ws = XLSX.utils.aoa_to_sheet(data);
+
+        // Append worksheet to workbook
+        XLSX.utils.book_append_sheet(wb, ws, "Purchases"); 
+
+        // Export to XLSX format
+        XLSX.writeFile(wb, "purchases.xlsx"); 
+    });
+
+    document.querySelector('.filter-btn').addEventListener('click', function() {
+    const dropdown = document.getElementById('dropdownSearch'); 
+    dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+});
+
+function filterTable() {
+    // Retrieve filter values 
+    const supplier = document.getElementById('searchSupplier').value.toLowerCase();
+    const date = document.getElementById('searchDate').value;
+    const referenceNo = document.getElementById('searchReferenceNo').value.toLowerCase();
+  
+    const tableRows = document.querySelectorAll('#purchaseReturnsTableBody tr');
+    console.log("Filtering on tableRows: ", tableRows);
+
+    // Iterate over each row and apply the filters
+    tableRows.forEach(row => {
+        const rowSupplier = row.children[3].innerText.toLowerCase(); 
+        const rowDate = row.children[1].innerText;
+        const rowReferenceNo = row.children[0].innerText.toLowerCase();
+        
+
+        // Display comparison values for debugging
+        console.log(`Comparing row data: Supplier=${rowSupplier}, Date=${rowDate}, Ref=${rowReferenceNo}`);
+
+        const isMatch = (!supplier || rowSupplier.includes(supplier)) &&
+                        (!date || rowDate.includes(date)) &&
+                        (!referenceNo || rowReferenceNo.includes(referenceNo)) 
+                        
+
+        row.style.display = isMatch ? '' : 'none';  // Show or hide based on filter
+    });
+  }
+
+  function clearFilters() {
+    document.getElementById('searchSupplier').value = '';
+    document.getElementById('searchDate').value = '';
+    document.getElementById('searchReferenceNo').value = '';
+
+    filterTable();  // Reset table display to show all rows
+}
+
+
+const apiUrlReport = `${API_ADMINGRAB_URL}/api/purchase-report`;
+
+function showInvoiceModal(purchase) {
+    // Fill modal with data
+    document.getElementById('referenceNumber').textContent = purchase.reference_no;
+    document.getElementById('supplierName').textContent = purchase.supplier;
+    document.getElementById('invoiceAmount').textContent = purchase.amount;
+    document.getElementById('referenceNo').textContent = purchase.reference_no;
+    document.getElementById('paidOn').textContent = purchase.paid_on;
+    document.getElementById('paymentMethod').textContent = purchase.payment_method;
+    document.getElementById('purchaseDetails').textContent = purchase.purchase || '';
+
+    // Show modal
+    document.getElementById('invoiceModal').style.display = 'flex';
+}
+
+// Function to close the invoice modal
+function closeInvoice() {
+    document.getElementById('invoiceModal').style.display = 'none';
+}
+
+// Function to print the invoice
+// function printInvoice() {
+//     const printContent = document.querySelector('.modal-content').innerHTML;
+//     const originalContent = document.body.innerHTML;
+
+//     document.body.innerHTML = printContent;
+//     window.print();
+//     document.body.innerHTML = originalContent;
+//     closeInvoice();
+// }
+function printInvoice() {
+    // Hide the Print and Close buttons
+    const buttons = document.querySelector('.modal-buttons');
+    buttons.style.display = 'none';
+
+    const printContent = document.querySelector('.modal-content').innerHTML;
+    const originalContent = document.body.innerHTML;
+
+    // Print the modal content
+    document.body.innerHTML = printContent;
+    window.print();
+
+    // Restore original content and show the buttons again
+    document.body.innerHTML = originalContent;
+    closeInvoice();
+}
+
+async function fetchPurchaseReport() {
+    const token = localStorage.getItem('token');
+
+    try {
+        const response = await fetch(apiUrlReport, {
+            method: 'GET',
+            headers: {
+                'Authorization': token,   
+            },
+        });
+
+        if (!response.ok) throw new Error('Failed to fetch purchase report');
+
+        const data = await response.json();
+        console.log("Response Data:", data); // For debugging, view structure of returned data
+
+        const purchases = data.data; // Access the 'data' key in response JSON
+        const purchaseReturnsTableBody = document.getElementById('purchaseReturnsTableBody');
+        purchaseReturnsTableBody.innerHTML = ''; 
+
+        purchases.forEach(purchase => {
+            const row = document.createElement('tr');
+            row.setAttribute('data-id', purchase.id);
+            row.innerHTML = `
+                <td>${purchase.reference_no}</td>
+                <td>${purchase.paid_on}</td>
+                <td>${purchase.amount}</td>
+                <td>${purchase.supplier}</td>
+                <td>${purchase.payment_method}</td>
+                <td>${purchase.purchase || ''}</td> <!-- Optional purchase text --> 
+                <td class="action-buttons">
+                  <button class="btn btn-edit" onclick='showInvoiceModal(${JSON.stringify(purchase)})'>👁</button>
+                </td> 
+            `;
+            purchaseReturnsTableBody.appendChild(row); 
+        });
+    } catch (error) {
+        console.error('Error fetching purchase report:', error); 
+    }
+}
+
+// Call fetch function on load or when needed 
+fetchPurchaseReport(); 
+
+
+
+
+
+  </script>
+</body>
+</html>

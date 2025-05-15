@@ -1,0 +1,940 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="./assets/css/styles.min.css" />
+  <link rel="stylesheet" href="./assets/css/navbar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<!-- Quill JS -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="./popupMessages.js"></script> 
+ <script>
+    //(function() {
+    //     let(function() {
+    //     let path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })(); path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })();
+
+
+    (function checkAuth() {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        window.location.replace('./login.html'); // Redirect to login page
+      }
+    })();
+  </script> 
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <div class="sidebar" id="sidebar">
+          <a class="navbar-brand" href="#">
+              <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          
+          <div class="section-title mt-9">HOME</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./index.html">
+                      <i class="ti ti-layout-dashboard"></i> Dashboard
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">PRODUCTS & STOCK</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./products.html">
+                      <i class="fas fa-box"></i> Products
+                  </a>
+              </li>
+               <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="purchaseToggle">
+                <i class="fas fa-shopping-cart"></i> Purchases 
+              </a>
+              <ul class="nav-submenu" id="purchaseSubmenu">
+                <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
+                <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
+                <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
+              </ul>
+            </li>
+          </ul>
+              <li class="nav-item">
+                  <a class="nav-link" href="./damages.html">
+                      <i class="fas fa-exclamation-circle"></i> Damages
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./stock.html">
+                      <i class="fas fa-archive"></i> Stock
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">POS & ORDERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos.html">
+                      <i class="fas fa-cash-register"></i> POS
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos-orders.html">
+                      <i class="fas fa-receipt"></i> POS Orders
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./online-orders.html">
+                      <i class="fas fa-shopping-basket"></i> Online Orders
+                  </a>
+              </li>
+          </ul>
+
+          <div class="section-title">PROMO</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./coupons.html">
+                      <i class="fas fa-tags"></i> Coupons
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./promotions.html">
+                      <i class="fas fa-bullhorn"></i> Promotions
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./product-sections.html">
+                      <i class="fas fa-cube"></i>  Product Sections
+                  </a>
+              </li>
+          </ul>
+
+          <div class="section-title">COMMUNICATIONS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./push-notifications.html">
+                      <i class="fas fa-bell"></i> Push Notifications
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./subscribers.html">
+                      <i class="fas fa-users"></i> Subscribers
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">USERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./admin.html">
+                      <i class="fas fa-user"></i> Administrators
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./customer.html">
+                      <i class="fas fa-users"></i> Customers
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./employee.html">
+                      <i class="fas fa-user-tie"></i> Employees
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">ACCOUNTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-exchange-alt"></i> Transactions
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">REPORTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./sales-report.html">
+                      <i class="fas fa-chart-line"></i> Sales Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./products-report.html">
+                      <i class="fas fa-file-alt"></i> Products Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-credit-card"></i> Credit Balance Report
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">SETUP</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" id="settingsToggle" href="#">
+                      <i class="fas fa-cog"></i> Settings
+                  </a>
+              </li>
+          </ul>
+          
+          <div class="submenu" id="settingsSubmenu">
+              <ul class="nav flex-column">
+                  <li class="nav-item">
+                      <a class="nav-link" href="./company.html">
+                          <i class="fas fa-building"></i> Company
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./site.html">
+                          <i class="fas fa-globe"></i> Site
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./mail.html">
+                          <i class="fas fa-envelope"></i> Mail
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./location-setup.html">
+                          <i class="fas fa-map-marker-alt"></i> Location Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./shipping-setup.html">
+                          <i class="fas fa-truck"></i> Shipping Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">
+                          <i class="fas fa-lock"></i> OTP
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification.html">
+                          <i class="fas fa-bell"></i> Notification
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification-alert.html">
+                          <i class="fas fa-bell"></i> Notification alert
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./social-media.html">
+                          <i class="fas fa-share-alt"></i> Social Media
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./cookies.html">
+                          <i class="fas fa-cookie-bite"></i> Cookies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./analytics.html">
+                          <i class="fas fa-chart-bar"></i> Analytics
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./theme.html">
+                          <i class="fas fa-paint-brush"></i> Theme
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sliders.html">
+                          <i class="fas fa-sliders-h"></i> Sliders
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./currencies.html">
+                          <i class="fas fa-money-bill-wave"></i> Currencies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-categories.html">
+                          <i class="fas fa-tags"></i> Product Categories
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-attributes.html">
+                          <i class="fas fa-cube"></i> Product Attributes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-brands.html">
+                          <i class="fas fa-tag"></i> Product Brands
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./supplier.html">
+                          <i class="fas fa-industry"></i> Suppliers
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./outlets.html">
+                          <i class="fas fa-store"></i> Outlets
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./benefits.html">
+                          <i class="fas fa-gift"></i> Benefits
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./units.html">
+                          <i class="fas fa-balance-scale"></i> Units
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./taxes.html">
+                          <i class="fas fa-percent"></i>  Taxes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./page.html">
+                          <i class="fas fa-file-alt"></i> Pages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./role & permissions.html">
+                          <i class="fas fa-user-shield"></i> Role & Permissions
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./languages-list.html">
+                          <i class="fas fa-globe"></i> Languages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sms-gateway.html">
+                          <i class="fas fa-comments"></i> Sms Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./payment-gateway.html">
+                          <i class="fas fa-credit-card"></i> Payment Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./license.html">
+                          <i class="fas fa-file-contract"></i> License
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <!-- <ul class="navbar-nav">
+            <li class="nav-item d-block d-xl-none">
+              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                <i class="ti ti-menu-2"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+                <i class="ti ti-bell-ringing"></i>
+                <div class="notification bg-primary rounded-circle"></div>
+              </a>
+            </li>
+          </ul> -->
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="./assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-3">My Profile</p>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-mail fs-6"></i>
+                      <p class="mb-0 fs-3">My Account</p>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-list-check fs-6"></i>
+                      <p class="mb-0 fs-3">My Task</p>
+                    </a>
+                    <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>   
+
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Dashboard / Settings / Units</h5> 
+            <div class="container">
+              <h5>Units</h5>
+              <div class="container-fluid d-flex flex-column h-100">
+                <div class="d-flex justify-content-end mt-auto mb-4">
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#unitModal">➕ Add Unit</button>
+                </div>
+              </div>
+              
+              <div class="modal fade" id="unitModal" tabindex="-1" aria-labelledby="unitModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="unitModalLabel">Add Unit</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="unitForm" class="needs-validation" novalidate>
+                        <!-- First Row: Name and Code -->
+                         <div class="row g-3">
+                          <!-- Name -->
+                           <div class="col-md-6">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                            <div class="invalid-feedback">Please enter the unit name.</div>
+                          </div>
+                          <!-- Code -->
+                           <div class="col-md-6">
+                            <label for="code" class="form-label">Code</label>
+                            <input type="text" id="code" name="code" class="form-control" required>
+                            <div class="invalid-feedback">Please enter the unit code.</div>
+                          </div>
+                        </div>
+                        <!-- Second Row: Status -->
+                         <div class="row g-3 mt-3">
+                          <div class="col-12">
+                            <label class="form-label">Status</label>
+                            <div class="d-flex">
+                              <div class="form-check me-3">
+                                <input type="radio" id="statusActive" name="status" class="form-check-input" value="Active" required>
+                                <label for="statusActive" class="form-check-label">Active</label>
+                              </div>
+                              <div class="form-check">
+                                <input type="radio" id="statusInactive" name="status" class="form-check-input" value="Inactive">
+                                <label for="statusInactive" class="form-check-label">Inactive</label>
+                              </div>
+                            </div>
+                            <div class="invalid-feedback">Please select the status.</div>
+                          </div>
+                        </div>
+                        <!-- Submit and Cancel Buttons -->
+                         <div class="d-flex justify-content-between mt-4">
+                          <button type="submit" class="btn btn-primary w-50 me-2">Save</button>
+                          <button type="button" class="btn btn-secondary w-50" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Edit Unit Modal -->
+               
+              <div class="modal fade" id="editUnitModal" tabindex="-1" aria-labelledby="editUnitModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="editUnitModalLabel">Edit Unit</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="editUnitForm" class="needs-validation" novalidate>
+                        <!-- Hidden Input for Unit ID -->
+                         <input type="hidden" id="editUnitId" name="id">
+                         <!-- Input for Name -->
+                          <div class="mb-3">
+                            <label for="editName" class="form-label">Name</label>
+                            <input type="text" id="editName" name="name" class="form-control" required>
+                            <div class="invalid-feedback">Please enter the unit name.</div>
+                          </div>
+                          <!-- Input for Code -->
+                           <div class="mb-3">
+                            <label for="editCode" class="form-label">Code</label>
+                            <input type="text" id="editCode" name="code" class="form-control" required>
+                            <div class="invalid-feedback">Please enter the unit code.</div>
+                          </div>
+                          <!-- Radio Buttons for Status -->
+                           <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <div class="d-flex">
+                              <div class="form-check me-3">
+                                <input type="radio" id="editStatusActive" name="status" class="form-check-input" value="Active" required>
+                                <label for="editStatusActive" class="form-check-label">Active</label>
+                              </div>
+                              <div class="form-check">
+                                <input type="radio" id="editStatusInactive" name="status" class="form-check-input" value="Inactive">
+                                <label for="editStatusInactive" class="form-check-label">Inactive</label>
+                              </div>
+                            </div>
+                            <div class="invalid-feedback">Please select the status.</div>
+                          </div>
+                          <!-- Save and Cancel Buttons -->
+                           <div class="d-flex justify-content-between mt-4">
+                            <button type="submit" class="btn btn-primary w-50 me-2">Save</button>
+                            <button type="button" class="btn btn-secondary w-50" data-bs-dismiss="modal">Cancel</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="table-container">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Code</th>
+                          <th>Status</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody id="unitsTableBody"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+              
+              
+              
+  <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/sidebarmenu.js"></script>
+  <script src="./assets/js/app.min.js"></script>
+  <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <!-- Bootstrap JS Bundle (Includes Popper) -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="./apiConfig/apiConfig.js"></script>
+
+
+
+  <script> 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const purchaseToggle = document.getElementById('purchaseToggle');
+    const purchaseSubmenu = document.getElementById('purchaseSubmenu');
+
+    purchaseToggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        purchaseSubmenu.style.display = (purchaseSubmenu.style.display === 'none' || purchaseSubmenu.style.display === '') ? 'block' : 'none';
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            const settingsToggle = document.getElementById('settingsToggle');
+            const settingsSubmenu = document.getElementById('settingsSubmenu');
+
+            // Handle submenu toggle
+            settingsToggle.addEventListener('click', function (event) {
+                event.preventDefault();
+                settingsSubmenu.style.display = (settingsSubmenu.style.display === 'block') ? 'none' : 'block';
+            });
+
+            // Handle active link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    // Remove active class from all links
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    // Add active class to the clicked link
+                    this.classList.add('active');
+                });
+            });
+        });
+
+
+document.getElementById('unitForm').addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const code = document.getElementById('code').value;
+    const status = document.querySelector('input[name="status"]:checked').value;
+
+    const data = { name, code, status };
+
+    try {
+        const token = localStorage.getItem('token'); // Assuming you store the token in localStorage
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/units`, {
+            method: 'POST',
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            showSuccessMessage('Unit added successfully!');
+            console.log('Added Unit:', result);
+
+            document.getElementById('unitForm').reset();
+
+// Hide the modal programmatically
+const modal = bootstrap.Modal.getInstance(document.getElementById('unitModal'));
+modal.hide();
+
+// Refresh the table data
+fetchUnits();
+            
+        } else {
+            const error = await response.json();
+            showErrorMessage(`Error: ${error.message}`);
+        }
+    } catch (error) {
+        console.error('Error submitting form:', error);
+        showErrorMessage('An unexpected error occurred.');
+    }
+});
+
+$('#unitModal').on('hidden.bs.modal', function () {
+    document.body.classList.remove('modal-open'); // Remove Bootstrap's modal-open class
+    const backdrop = document.querySelector('.modal-backdrop');
+    if (backdrop) backdrop.remove(); // Remove any remaining backdrop
+}); 
+
+
+// Fetch units from the API and populate the table
+async function fetchUnits() {
+    try {
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/units`, {
+            method: 'GET',
+            headers: {
+                'Authorization': localStorage.getItem('token'), // Include token if required
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) throw new Error('Failed to fetch units');
+
+        const units = await response.json();
+
+        const tableBody = document.getElementById('unitsTableBody');
+        tableBody.innerHTML = ''; // Clear previous rows
+
+        units.forEach(unit => {
+            const row = document.createElement('tr');
+
+            // Name column
+            const nameCell = document.createElement('td');
+            nameCell.textContent = unit.name;
+            row.appendChild(nameCell);
+
+            // Code column
+            const codeCell = document.createElement('td');
+            codeCell.textContent = unit.code;
+            row.appendChild(codeCell);
+
+            // Status column
+            const statusCell = document.createElement('td');
+            statusCell.textContent = unit.status;
+            row.appendChild(statusCell);
+
+            // Action column
+            const actionCell = document.createElement('td');
+            actionCell.innerHTML = `
+                <button class="btn btn-sm btn-warning me-2" onclick="editUnit(${unit.id})">✏️ Edit</button>
+                <button class="btn btn-sm btn-danger" onclick="showDeleteFormModal(${unit.id}, event)">🗑 Delete</button>
+                `;
+            row.appendChild(actionCell);
+
+            tableBody.appendChild(row);
+        });
+    } catch (error) {
+        console.error('Error fetching units:', error);
+    }
+}
+
+const apiUrl = `${API_ADMINGRAB_URL}/api/units`; // Replace with your actual API URL
+
+// Function to delete unit record
+async function deleteUnit(id) {
+    const token = localStorage.getItem('token'); // Assuming the token is stored in local storage
+    const url = `${apiUrl}/${id}`; // Construct the URL with the unit ID
+
+    try {
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': token,
+            },
+        });
+
+        if (!response.ok) throw new Error('Failed to delete unit record');
+
+        // Remove the unit row from the table immediately
+        fetchUnits();
+        const row = document.querySelector(`#unit-row-${id}`);
+        if (row) {
+            row.remove(); // Remove the unit row from the table
+        }
+
+        // Show success message  
+        showDeleteMessage("Unit record deleted successfully!");
+
+        console.log('Unit Deleted:', id);
+    } catch (error) {
+        console.error('Error deleting unit record:', error);
+        showDeleteMessage("Failed to delete the unit record. Please try again.");
+    }
+}
+
+// Function to show delete success/failure message
+function showDeleteMessage(message) {
+    const messageContainer = document.createElement('div');
+    messageContainer.style.position = 'fixed'; 
+    messageContainer.style.top = '20px';
+    messageContainer.style.right = '20px';
+    messageContainer.style.backgroundColor = 'green'; // Green for success
+    messageContainer.style.color = 'white';
+    messageContainer.style.padding = '10px 20px';
+    messageContainer.style.borderRadius = '5px';
+    messageContainer.style.zIndex = '1000';
+    messageContainer.textContent = message;
+
+    document.body.appendChild(messageContainer);
+
+    // Remove the message after 3 seconds
+    setTimeout(() => {
+        document.body.removeChild(messageContainer);  
+    }, 3000);
+}
+
+// Function to show the delete confirmation dialog 
+function showDeleteFormModal(id, event) {
+    event.preventDefault(); // Prevent the page from refreshing
+    
+    // Create the dialog overlay
+    const dialogOverlay = document.createElement('div');
+    dialogOverlay.style.position = 'fixed';
+    dialogOverlay.style.top = '0';
+    dialogOverlay.style.left = '0';
+    dialogOverlay.style.width = '100%';
+    dialogOverlay.style.height = '100%';
+    dialogOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    dialogOverlay.style.display = 'flex';
+    dialogOverlay.style.justifyContent = 'center';
+    dialogOverlay.style.alignItems = 'center';
+    dialogOverlay.style.zIndex = '1000';  // Set a high z-index to ensure it's on top of all elements
+    dialogOverlay.setAttribute('id', 'confirmDialog');
+
+    // Create the dialog box
+    const dialogBox = document.createElement('div');
+    dialogBox.style.backgroundColor = 'white';
+    dialogBox.style.padding = '60px';
+    dialogBox.style.borderRadius = '5px';
+    dialogBox.style.textAlign = 'center';
+    dialogBox.style.zIndex = '1001';  // Ensure the dialog box itself is also above everything else
+    // Create the warning icon
+    const warningIcon = document.createElement('div');
+    warningIcon.textContent = '!';  // You can add a custom icon or emoji here
+    warningIcon.style.fontSize = '40px'; 
+    warningIcon.style.color = 'red';
+    warningIcon.style.marginBottom = '10px';
+    
+    // Add title and message
+    const title = document.createElement('h3');
+    title.textContent = 'Are you sure?';
+
+    const message = document.createElement('p');
+    message.textContent = 'You will not be able to recover the deleted record!';
+
+    // Create the buttons
+    const confirmButton = document.createElement('button');
+    confirmButton.textContent = 'Yes, Delete it!';
+    confirmButton.style.marginRight = '10px';
+    confirmButton.style.backgroundColor = 'rgb(105, 108, 255)';
+    confirmButton.style.color = 'white';
+    confirmButton.style.border = 'none';
+    confirmButton.style.padding = '10px 20px';
+    confirmButton.style.cursor = 'pointer';
+
+    const cancelButton = document.createElement('button');
+    cancelButton.textContent = 'No, Cancel!';
+    cancelButton.style.backgroundColor = 'rgb(133, 146, 163)';
+    cancelButton.style.color = 'white';
+    cancelButton.style.border = 'none';
+    cancelButton.style.padding = '10px 20px';
+    cancelButton.style.cursor = 'pointer';
+
+    // Append all elements to the dialog box
+    dialogBox.appendChild(warningIcon);
+    dialogBox.appendChild(title);
+    dialogBox.appendChild(message);
+    dialogBox.appendChild(confirmButton);
+    dialogBox.appendChild(cancelButton);
+
+    // Append the dialog box to the overlay
+    dialogOverlay.appendChild(dialogBox);      
+
+    // Append the overlay to the body
+    document.body.appendChild(dialogOverlay);  
+
+    // Handle the confirm button click
+    confirmButton.addEventListener('click', async function () {
+        await deleteUnit(id);  // Call the delete function and wait for completion
+        closeDeleteFormModal(); // Close the dialog after deletion
+    });
+
+    // Handle the cancel button click
+    cancelButton.addEventListener('click', closeDeleteFormModal);
+
+    // Close the confirmation dialog
+    function closeDeleteFormModal() {
+        document.body.removeChild(dialogOverlay); // Remove the overlay from the DOM
+    }
+}
+
+// Function to fetch unit data and pre-fill the form
+function editUnit(unitId) {
+    const token = localStorage.getItem('token');  // Get token from localStorage if authentication is required
+
+    // Fetch the unit data by unitId
+    fetch(`${API_ADMINGRAB_URL}/api/units/${unitId}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': token,  // Pass the token for authentication if required
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(unitData => {
+        console.log('Fetched Unit Data:', unitData); // Log the unit data to the console
+
+        // Ensure the unitData is not undefined or null
+        if (!unitData || !unitData.id) {
+            console.error('Invalid unit data:', unitData);
+            showErrorMessage('Failed to load unit data.');
+            return;
+        }
+
+        // Set the unit id in the hidden input field
+        document.getElementById('editUnitId').value = unitData.id;
+
+        // Pre-fill the form with the fetched unit data
+        document.getElementById('editName').value = unitData.name || '';  // If undefined, set to empty string
+        document.getElementById('editCode').value = unitData.code || '';  // If undefined, set to empty string
+
+        // Handle the status radio buttons
+        if (unitData.status === 'Active') {
+            document.getElementById('editStatusActive').checked = true;
+        } else if (unitData.status === 'Inactive') {
+            document.getElementById('editStatusInactive').checked = true;
+        }
+
+        // Open the modal with pre-filled values
+        const modal = new bootstrap.Modal(document.getElementById('editUnitModal'));
+        modal.show();
+    })
+    .catch(error => {
+        console.error('Error fetching unit data:', error);
+        showErrorMessage('Failed to load unit data. Please try again.');
+    });
+}
+
+document.getElementById('editUnitForm').addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    // Collect form data
+    const formData = new FormData(document.getElementById('editUnitForm'));
+    const unitData = {
+        id: formData.get('id'),  // Ensure the unit ID is included in the data
+        name: formData.get('name'),
+        code: formData.get('code'),
+        status: formData.get('status'),  // Active or Inactive
+    };
+
+    const token = localStorage.getItem('token');  // Authentication token if needed
+
+    try {
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/units/${unitData.id}`, {
+            method: 'PUT',  // Use PUT to update the record
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token,  // Include authorization if required
+            },
+            body: JSON.stringify(unitData),  // Send the updated unit data
+        });
+
+        if (!response.ok) throw new Error('Failed to update unit data');
+
+        showSuccessMessage('Unit data updated successfully!');
+        fetchUnits();
+        
+        const modal = bootstrap.Modal.getInstance(document.getElementById('editUnitModal'));
+        modal.hide();  // Close the modal after successful submission
+        document.getElementById('editUnitForm').reset();  // Reset the form
+    } catch (error) {
+        console.error('Error updating unit data:', error);
+        showErrorMessage('Failed to update unit data. Please try again.');
+    }
+});
+
+// Call fetchUnits on page load
+fetchUnits();
+
+
+  </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

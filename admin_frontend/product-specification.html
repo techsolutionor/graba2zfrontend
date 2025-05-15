@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="./assets/css/styles.min.css" />
+  <script src="./popupMessages.js"></script>
+  <script>
+    //(function() {
+    //     let(function() {
+    //     let path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })(); path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })();
+
+
+    (function checkAuth() {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        window.location.replace('./login.html'); // Redirect to login page
+      }
+    })();
+  </script> 
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Home</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./index.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">PRODUCT & STOCK</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./products.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-article"></i>
+                </span>
+                <span class="hide-menu">Products</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./product-brands.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-article"></i>
+                </span>
+                <span class="hide-menu">Product Brands</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./product-attributes.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-article"></i>
+                </span>
+                <span class="hide-menu">Product Attributes</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-typography"></i>
+                </span>
+                <span class="hide-menu">Product Category</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./purchase.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-alert-circle"></i>
+                </span>
+                <span class="hide-menu">Purchase</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./damages.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-cards"></i>
+                </span>
+                <span class="hide-menu">Damages</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./stock.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-file-description"></i>
+                </span>
+                <span class="hide-menu">Stock</span>
+              </a>
+            </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">ORDERS</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./online-orders.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-login"></i>
+                </span>
+                <span class="hide-menu">Online Orders</span>
+              </a>
+            </li>
+            <!-- <li class="sidebar-item">
+              <a class="sidebar-link" href="./return-orders.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-user-plus"></i>
+                </span>
+                <span class="hide-menu">Return Orders</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
+                <span>
+                 
+                </span>
+                <span class="hide-menu">Return And Refunds</span>
+              </a>
+            </li> -->
+            <!-- <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Reports</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./purchase-report.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-article"></i>
+                </span>
+                <span class="hide-menu">Purchase Payment Report</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./sell-payment-report.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-article"></i>
+                </span>
+                <span class="hide-menu">Sell Payment Report</span>
+              </a>
+            </li> -->
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">PROMO</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./coupons.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-mood-happy"></i>
+                </span>
+                <span class="hide-menu">Coupons</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./promotions.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Promotions</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./product-sections.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Product Sections</span>
+              </a>
+            </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">COMMUNICATIONS</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./push-notifications.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-login"></i>
+                </span>
+                <span class="hide-menu">Push Notifications</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-login"></i>
+                </span>
+                <span class="hide-menu">Subscribers</span>
+              </a>
+            </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Users</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-login"></i>
+                </span>
+                <span class="hide-menu">Administrators</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-login"></i>
+                </span>
+                <span class="hide-menu">Customers</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-login"></i>
+                </span>
+                <span class="hide-menu">Employees</span>
+              </a>
+            </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">ACCOUNTS</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-login"></i>
+                </span>
+                <span class="hide-menu">Transactions</span>
+              </a>
+            </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">REPORTS</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./sales-report.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-login"></i>
+                </span>
+                <span class="hide-menu">Sales Report</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./products-report.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-login"></i>
+                </span>
+                <span class="hide-menu">Products Report</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-login"></i>
+                </span>
+                <span class="hide-menu">Credit Balance Report</span>
+              </a>
+            </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">SETUP</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-login"></i>
+                </span>
+                <span class="hide-menu">Settings</span>
+              </a>
+            </li>
+          </ul>
+          </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Dashboard / Product Specification</h5>
+            <div class="container">
+              <h5>Product Specification</h5>
+              <div class="actions-bar d-flex flex-column flex-md-row align-items-center align-items-lg-end justify-content-center justify-content-md-center justify-content-lg-end gap-2">
+                <!-- Add Product Button -->
+                 <!-- <div class="d-flex justify-content-center w-100" style="max-width: 150px;">
+                  <button class="btn-add-product btn btn-info w-100" data-bs-toggle="modal" data-bs-target="#createProductModal">➕Product Specification</button>
+                </div> -->
+              </div>
+              <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="createProductModalLabel">Add Product Specification</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="productSpecificationForm">
+                        <div id="specificationContainer">
+                          <div class="input-group mb-3 specification-group">
+                            <input type="text" class="form-control specification-input" name="Specification[]" placeholder="Enter Specification" required>
+                            <button type="button" class="btn btn-success add-specification-btn">+</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary" form="productSpecificationForm" onclick="submitProductSpecificationForm(event)">Save Specifications</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Displaying List of Product Specifications -->
+               <div id="productSpecificationsList">
+
+               </div>
+               
+               <div class="table-responsive mt-4">
+                <table class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">Specification</th>
+                      <th scope="col">
+                        Category
+                        <select id="categoryFilter" class="form-select form-select-sm mt-1">
+                          <option value="">All Categories</option>
+                        </select>
+                      </th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="productsTableBody" class="products-table-body">
+                    <!-- Dynamic rows will be added here -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+  
+  <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/sidebarmenu.js"></script>
+  <script src="./assets/js/app.min.js"></script>
+  <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="./apiConfig/apiConfig.js"></script>
+
+
+  <script>
+
+const apiUrl = `${API_ADMINGRAB_URL}/api/product-specifications`;
+
+async function populateCategoryOptionsForFilter() {
+    const token = localStorage.getItem('token');
+    const apiUrl = `${API_ADMINGRAB_URL}/api/product-categories`; // API endpoint for categories
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                Authorization: `${token}`, // Authorization token
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('API Error:', errorData);
+            throw new Error(`Failed to fetch product categories: ${errorData.message || 'Unknown error'}`);
+        }
+
+        const categories = await response.json();
+
+        // Populate filter dropdown
+        const categoryFilter = document.getElementById('categoryFilter');
+        categoryFilter.innerHTML = '<option value="">All Categories</option>';
+
+        categories.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category.name; // Assuming category has a 'name' field
+            option.textContent = category.name; // Display the name of the category
+            categoryFilter.appendChild(option);
+        });
+
+        console.log('Category filter options populated successfully');
+    } catch (error) {
+        console.error('Error populating category filter options:', error);
+        showErrorMessage(`Error loading categories: ${error.message}`);
+    }
+}
+
+function applyCategoryFilter() {
+    const selectedCategory = document.getElementById('categoryFilter').value.toLowerCase();
+    const tableRows = document.querySelectorAll('#productsTableBody tr');
+
+    tableRows.forEach(row => {
+        const categoryCell = row.querySelector('td:nth-child(2)'); // Assuming category is the 2nd column
+        if (!selectedCategory || categoryCell.textContent.trim().toLowerCase() === selectedCategory) {
+            row.style.display = ''; // Show matching rows
+        } else {
+            row.style.display = 'none'; // Hide non-matching rows
+        }
+    });
+}
+
+document.getElementById('categoryFilter').addEventListener('change', applyCategoryFilter);
+
+document.addEventListener('DOMContentLoaded', () => {
+    populateCategoryOptionsForFilter(); // Populate filter dropdown on page load
+   
+});
+
+// Add new specification input field when + button is clicked
+
+document.querySelector('#specificationContainer').addEventListener('click', function (e) {
+    if (e.target.classList.contains('add-specification-btn')) {
+        let newSpecGroup = document.createElement('div');
+        newSpecGroup.classList.add('input-group', 'mb-3', 'specification-group');
+        newSpecGroup.innerHTML = `
+            <input type="text" class="form-control specification-input" name="Specification[]" placeholder="Enter Specification" required>
+            <button type="button" class="btn btn-danger remove-specification-btn">-</button>
+        `;
+        // Append the new specification field to the container
+        document.querySelector('#specificationContainer').appendChild(newSpecGroup);
+    }
+});
+
+// Remove specification input field when - button is clicked
+document.querySelector('#specificationContainer').addEventListener('click', function (e) {
+    if (e.target.classList.contains('remove-specification-btn')) {
+        e.target.closest('.specification-group').remove();
+    }
+});
+
+
+async function submitProductSpecificationForm(event) {
+    event.preventDefault();  // Prevent the form from submitting normally
+    
+    const form = document.getElementById('productSpecificationForm');
+    const formData = new FormData(form);
+
+    // Get all specification values from dynamically added input fields
+    const specifications = formData.getAll('Specification[]');  // Get all specifications as an array
+
+    // Prepare the data object to send to the server
+    const data = {
+        specifications: specifications  // Only send the specifications array
+    };
+
+    // Check if any required field is missing
+    if (specifications.length === 0) {
+      showErrorMessage('Please fill in at least one specification.');
+        return;
+    }
+
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      showErrorMessage('Missing authorization token. Please log in.');
+        return;
+    }
+
+    try {
+        // Send a POST request with the data as JSON
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/product-specifications`, {
+            method: 'POST',
+            body: JSON.stringify(data),  // Send data as JSON
+            headers: {
+                'Authorization': `${token}`,  // Include the Authorization token in the header
+                'Content-Type': 'application/json',  // Specify that the content type is JSON
+            },
+        });
+
+        const responseData = await response.json();
+
+        if (response.ok) {
+          showSuccessMessage('Product specification added successfully!');
+            $('#createProductModal').modal('hide');  // Close the modal after successful submission
+            form.reset();  // Reset the form fields
+            fetchProductSpecifications();  // Refresh the list of product specifications
+        } else {
+            console.log('Error Response:', responseData);  // Log the error for debugging
+            showErrorMessage(`Error: ${responseData.message || 'Unknown error'}`);
+        }
+    } catch (error) {
+        console.error('Error submitting form:', error);
+        showErrorMessage('Failed to add product specification. Please try again.');
+    }
+}
+
+function displayProductSpecifications(specifications) {
+    const tableBody = document.getElementById('productsTableBody');  // Get the table body element
+    tableBody.innerHTML = '';  // Clear any existing rows before adding new ones
+
+    // Check if there is any data
+    if (!specifications || specifications.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="3">No product specifications found.</td></tr>';
+        return;
+    }
+
+    specifications.forEach(spec => {
+        console.log('Specification:', spec.specification);  // Log the specification value to check if it's populated
+
+        const row = document.createElement('tr');
+
+        // Create and append the specification cell
+        const specCell = document.createElement('td');
+        specCell.textContent = spec.specification || 'No Specification';  // Handle empty or undefined values
+        row.appendChild(specCell);
+
+        // Create and append the category cell
+        const categoryCell = document.createElement('td');
+        categoryCell.textContent = spec.category || 'No Category';  // Handle empty values
+        row.appendChild(categoryCell);
+
+        // Create the delete button
+        const deleteCell = document.createElement('td');
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.classList.add('btn', 'btn-danger', 'btn-sm');  // Add some bootstrap classes for styling
+        deleteButton.setAttribute('data-id', spec.id);  // Store the ID of the specification in the button
+        deleteCell.appendChild(deleteButton);
+        row.appendChild(deleteCell);
+
+        // Append the row to the table body
+        tableBody.appendChild(row);
+
+        // Add click event listener to the delete button
+        deleteButton.addEventListener('click', async (event) => {
+            const specId = event.target.getAttribute('data-id');  // Get the ID of the specification
+            console.log('Deleting specification with ID:', specId);  // Debugging log to check the ID value
+            if (specId) {
+                await deleteProductSpecification(specId, row);  // Call delete function
+            } else {
+                console.error('Specification ID is missing');
+                showErrorMessage('Error: Specification ID is missing');
+            }
+        });
+    });
+}
+
+
+async function deleteProductSpecification(specId, row) {
+    const token = localStorage.getItem('token');  // Get the token from localStorage
+
+    if (!token) {
+      showErrorMessage('Missing authorization token. Please log in.');
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/product-specifications/${specId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `${token}`,  // Include the Authorization token in the header
+                'Content-Type': 'application/json',  // Specify that the content type is JSON
+            },
+        });
+
+        const responseData = await response.json();
+
+        if (response.ok) {
+          showSuccessMessage('Product specification deleted successfully!');
+            row.remove();  // Remove the row from the table after successful deletion
+        } else {
+            console.log('Error Response:', responseData);  // Log the error for debugging
+            showErrorMessage(`Error deleting product specification: ${responseData.message || 'Unknown error'}`);
+        }
+    } catch (error) {
+        console.error('Error deleting product specification:', error);
+        showErrorMessage('Failed to delete product specification. Please try again.');
+    }
+}
+
+async function fetchProductSpecifications() {
+    const token = localStorage.getItem('token');  // Get the token from localStorage
+
+    if (!token) {
+      showErrorMessage('Missing authorization token. Please log in.');
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/product-specifications`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `${token}`,  // Include the Authorization token in the header
+                'Content-Type': 'application/json',  // Specify that the content type is JSON
+            },
+        });
+
+        const responseData = await response.json();
+
+        console.log('API Response:', responseData); // Log the API response
+
+        if (response.ok) {
+            // Display the product specifications if the request is successful
+            displayProductSpecifications(responseData.product_specifications);
+        } else {
+            console.log('Error Response:', responseData);  // Log the error for debugging
+            showErrorMessage(`Error fetching product specifications: ${responseData.message || 'Unknown error'}`);
+        }
+    } catch (error) {
+        console.error('Error fetching product specifications:', error);
+        showErrorMessage('Failed to fetch product specifications. Please try again.');
+    }
+}
+
+// Call the fetch function to load product specifications when the page is ready
+fetchProductSpecifications();
+
+
+
+  </script>
+</body>
+
+</html>

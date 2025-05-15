@@ -1,0 +1,879 @@
+.container {
+    width: 90%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: left;
+}
+
+.actions-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.actions-bar select,
+.actions-bar button {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.actions-bar button {
+    margin-left: 10px;
+}
+.add-product-btn {
+    background-color: #ff5722;
+    color: black;
+    font-weight: bold;
+}
+.filter-btn {
+    background-color: #007bff;
+    color: black;
+}
+.export-btn {
+    background-color: #28a745;
+    color: black;
+}
+.import-btn {
+    background-color: #ffc107;
+    color: black;
+}
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.product-table th, .product-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.product-table th {
+    background-color: #f7f7f7;
+}
+
+.status-active {
+    color: white;
+    background-color: #28a745;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.actions button {
+    padding: 5px 8px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+}
+
+.view-btn {
+    background-color: #007bff;
+}
+
+.edit-btn {
+    background-color: #ffc107;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+}
+
+.hidden {
+    display: none;
+}
+.filter-form {
+    margin-top: 20px;
+}
+.filter-form label {
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.filter-form button {
+    margin-top: 30px;
+}
+.form-control {
+    padding: 0.4rem;
+}
+.subcategories {
+    display: none;
+    margin-top: 10px;
+}
+
+/* Styling for the button */
+.import-btn {
+    background-color: #ff4c4c; /* Example color */
+    border: none;
+    color: rgb(8, 6, 6);
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1;
+    white-space: nowrap;
+}
+
+/* Links in the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+/* Add space between icon and text */
+.dropdown-content a i {
+    margin-right: 10px;
+}
+
+/* Change color on hover */
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show the dropdown on button click */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Styling for the Import and Export buttons */
+.import-btn, .export-btn {
+    background-color: #ff4c4c; /* Default color */
+    border: none;
+    color: rgb(7, 5, 5);
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px; /* Space between buttons */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+/* Change background color to blue on hover */
+.import-btn:hover, .export-btn:hover {
+    background-color: #007bff;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1;
+    white-space: nowrap;
+}
+
+/* Links in the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+/* Add space between icon and text */
+.dropdown-content a i {
+    margin-right: 10px;
+}
+
+/* Change color on hover for dropdown items */
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show the dropdown on button hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+/* General styles for the table icons */
+.table-responsive {
+    text-align: center; /* Center-aligns the icons in the action column */
+}
+
+/* Icon styling */
+.view-icon,
+.edit-icon,
+.delete-icon {
+    cursor: pointer; /* Changes the cursor to pointer for interactivity */
+    margin: 0 10px; /* Spacing between icons */
+    font-size: 1.5em; /* Increase size for better visibility */
+    transition: color 0.3s; /* Smooth color transition on hover */
+}
+
+/* Color for each icon */
+.view-icon {
+    color: #007bff; /* Blue for view icon */
+}
+
+.edit-icon {
+    color: #28a745; /* Green for edit icon */
+}
+
+.delete-icon {
+    color: #dc3545; /* Red for delete icon */
+}
+
+/* Hover effects */
+.view-icon:hover {
+    color: #0056b3; /* Darker blue on hover */
+}
+
+.edit-icon:hover {
+    color: #218838; /* Darker green on hover */
+}
+
+.delete-icon:hover {
+    color: #c82333; /* Darker red on hover */
+}
+
+
+
+
+/* css for edit */
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.modal_ {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal_content_ {
+    background-color: #fefefe;
+    margin: 15% 0; /* Center vertically, 15% from the top */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%; /* Width of the modal */
+    position: absolute; /* Positioning */
+    right: 0; /* Align to the right */
+    top: 15%; /* Start at 15% from the top */
+    border-radius: 5px; /* Optional: for rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add some shadow for depth */
+}
+
+.modal_header_ {
+    display: flex; /* Flexbox for header */
+    justify-content: space-between; /* Space between title and close button */
+    align-items: center; /* Center items vertically */
+}
+
+.modal_title_ {
+    font-size: 24px; /* Title font size */
+    margin: 0; /* Remove margin */
+}
+
+.modal_close_ {
+    color: #aaa; /* Close button color */
+    font-size: 28px; /* Close button size */
+    font-weight: bold; /* Bold text */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.modal_close_:hover,
+.modal_close_:focus {
+    color: black; /* Color change on hover */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Form styles */
+.modal_form_ {
+    display: flex; /* Use flexbox for form layout */
+    flex-direction: column; /* Stack form elements */
+}
+
+.modal_form_ label {
+    margin-top: 10px; /* Space above labels */
+    font-weight: bold; /* Make labels bold */
+}
+
+.modal_form_ input,
+.modal_form_ select,
+.modal_form_ textarea {
+    padding: 10px; /* Padding for inputs */
+    margin-top: 5px; /* Space between label and input */
+    border: 1px solid #ccc; /* Border for inputs */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 16px; /* Input font size */
+}
+
+.modal_form_ button {
+    margin-top: 20px; /* Space above button */
+    padding: 10px; /* Button padding */
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.modal_form_ button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+
+
+
+.modal-content__ {
+    background-color: #fefefe;
+    margin: 15% auto; /* Center vertically */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%; /* Width of the modal */
+    position: absolute; /* Positioning */
+    right: 0; /* Align to the right */
+    top: 15%; /* Start at 15% from the top */
+    border-radius: 5px; /* Optional: for rounded corners */
+}
+.close__ {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close__:hover,
+.close__:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* New styles for the table */
+table {
+    width: 100%; /* Full width */
+    border-collapse: collapse; /* Merge borders */
+}
+
+th, td {
+    text-align: left; /* Align text to the left */
+    padding: 8px; /* Add padding */
+}
+
+th {
+    background-color: #f2f2f2; /* Light gray background for headers */
+    border-bottom: 1px solid #ddd; /* Bottom border for headers */
+}
+
+td {
+    border-bottom: 1px solid #ddd; /* Bottom border for data cells */
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Style the form and the button */
+#changePasswordForm {
+    max-width: 500px;
+    margin: auto;
+}
+
+#changePasswordBtn {
+    margin-top: 20px;
+}
+
+#passwordStrength .strength-text {
+    font-weight: bold;
+    color: #dc3545; /* Default to weak password (red) */
+}
+
+/* Colors for password strength */
+.strong-password {
+    color: #28a745; /* Green for strong */
+}
+
+.moderate-password {
+    color: #ffc107; /* Yellow for moderate */
+}
+
+.weak-password {
+    color: #dc3545; /* Red for weak */
+}
+
+
+
+.user-info {
+    text-align: center; /* Center align the content */
+    margin-top: 20px; /* Optional: add some spacing */
+}
+
+.user-name {
+    font-family: 'Arial Black', sans-serif; /* Change to Arial Black */
+    font-size: 30px; /* Increase the font size */
+    font-style: italic; /* Italic text */
+    font-weight: bold; /* Bold text */
+    text-decoration: underline; /* Underline the name */
+    margin-bottom: 10px; /* Add space below the name */
+    text-align: center; /* Center align the text */
+}
+
+.user-role {
+    font-size: 16px; /* Adjust the size of the role badge */
+    background-color: #ffc107; /* Keep the warning color */
+    padding: 5px 10px; /* Add some padding to the badge */
+    border-radius: 12px; /* Rounded badge style */
+    display: inline-block; /* Keep the role inline */
+    margin-top: 5px; /* Add space above the role */
+}
+
+
+/* Modal styling */
+.confirmation-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+  }
+  
+  .icon-warning {
+    display: block;
+    font-size: 40px;
+    color: #f39c12;
+    margin-bottom: 15px;
+  }
+  
+  .modal-title {
+    font-size: 22px;
+    margin: 0 0 10px;
+  }
+  
+  .modal-message {
+    color: #555;
+  }
+  
+  .btn-confirm {
+    background-color: #6c63ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .btn-cancel {
+    background-color: #777;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  /* Hover effects */
+  .btn-confirm:hover {
+    background-color: #5754e7;
+  }
+  
+  .btn-cancel:hover {
+    background-color: #555;
+  }
+  
+
+  .basic-info-heading {
+    font-weight: bold; /* Makes it bold */
+    font-size: 1.2rem; /* Optional: Increase font size if needed */
+}
+
+
+.table {
+    border-collapse: collapse; /* Merges border lines for a cleaner look */
+    width: 100%; /* Makes the table take full width */
+  }
+  
+  .table th, .table td {
+    border: 2px solid lightgray; /* Solid border with a light color */
+    padding: 10px; /* Adds space around text */
+    text-align: left; /* Aligns text to the left */
+  }
+  
+  .table th {
+    background-color: #f2f2f2; /* Light background for headers */
+  }
+  
+  .table tr:hover {
+    background-color: #f9f9f9; /* Light gray highlight on row hover */
+  }
+  
+
+  /* General button styling */
+.action-buttons .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid; /* Set border thickness */
+    text-align: center;
+    margin-right: 10px;
+    background-color: transparent; /* Keep background transparent */
+    transition: background-color 0.3s ease;
+}
+
+/* View button styling */
+.view-btn {
+    color: #f78e6e; /* Orange for View */
+    border-color: #f59071; /* Orange border */
+}
+
+.view-btn:hover {
+    background-color: #ffe5d4; /* Light orange on hover */
+}
+
+/* Edit button styling */
+.edit-btn {
+    color: #81be83; /* Green for Edit */
+    border-color: #79c27b; /* Green border */
+}
+
+.edit-btn:hover {
+    background-color: #e6f5e6; /* Light green on hover */
+}
+
+/* Delete button styling */
+.delete-btn {
+    color: #f0958f; /* Red for Delete */
+    border-color: #df8d87; /* Red border */
+}
+
+.delete-btn:hover {
+    background-color: #fde5e5; /* Light red on hover */
+}
+
+/* Optional: styling the icons */
+.btn i {
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+
+/* CSS to increase modal width */
+.large-modal {
+    max-width: 40%; /* Adjust percentage as needed for desired width */
+    
+}
+
+@media (max-width: 768px) {
+    .large-modal {
+        max-width: 100%; /* Full width for smaller screens */
+    }
+}
+
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 12px; /* Rounded corners */
+    background-color: #e0f7e9; /* Light green background for "Active" */
+    color: #28a745; /* Green text for "Active" */
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* Optional: You can add more styles based on different statuses */
+.status-badge.inactive {
+    background-color: #f7e0e0; /* Light red background for "Inactive" */
+    color: #dc3545; /* Red text for "Inactive" */
+}
+
+
+form.add-company-form {
+    max-width: 800px;
+    margin: auto;
+    
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input, .form-group textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+  }
+  
+  textarea {
+    resize: none;
+    height: 100px;
+  }
+  
+  .form-row.full-width .form-group {
+    grid-column: span 2;
+  }
+  
+  .text-center {
+    display: flex;
+    justify-content: center;
+  }
+  
+  button.btn_01 {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button.btn_01:hover {
+    background-color: #45a049;
+  }
+  
+
+/* Custom styles for larger form fields */
+.site-form select, .site-form input, .site-form textarea {
+    height: 45px; /* Ensure all fields have the same height */
+    font-size: 16px; /* Increase the font size for better readability */
+    padding: 10px; /* Add padding for a more spacious appearance */
+    border-radius: 8px; /* Round the corners */
+    border: 1px solid #ccc; /* Light grey border */
+}
+
+/* Custom styles for textarea to maintain consistent height */
+.site-form textarea {
+    height: 45px; /* Make the textarea height the same as other fields */
+}
+
+/* Submit button style */
+.site-form .btn-submit {
+    background-color: #4CAF50; /* Green color */
+    color: white; /* White text */
+    padding: 10px 20px; /* Add some padding */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Round corners */
+    cursor: pointer; /* Add a pointer cursor on hover */
+}
+
+.site-form .btn-submit:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+/* Custom styles for the entire site form */
+.site-form select, .site-form input, .site-form textarea {
+    height: 45px; /* Ensure all fields have the same height */
+    font-size: 16px; /* Larger text for better readability */
+    padding: 10px; /* Added padding for spacious appearance */
+    border-radius: 8px; /* Rounded corners */
+    border: 1px solid #ccc; /* Light grey border */
+}
+
+/* Radio Button group layout */
+.site-form .radio-group {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between radio options */
+}
+
+.site-form .radio-group label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    gap: 5px; /* Space between radio button and label */
+}
+
+/* Radio button size adjustment */
+.site-form input[type="radio"] {
+    transform: scale(1.2); /* Increase size for better visibility */
+}
+
+/* Submit button style */
+.site-form .btn-submit {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding for the button */
+    border: none; /* Remove the border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.site-form .btn-submit:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+/* Adjustments for form rows and form groups */
+.site-form .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between form groups */
+    margin-bottom: 15px;
+}
+
+.site-form .form-group {
+    flex: 1;
+    min-width: 250px; /* Minimum width for each form group */
+    max-width: 400px; /* Maximum width for each form group */
+}
+
+.site-form .form-group label {
+    font-size: 16px;
+    margin-bottom: 5px; /* Space between label and input */
+}
+
+.site-form .form-row.full-width {
+    flex-direction: column; /* Full-width layout for address or textareas */
+}
+
+/* Ensure the address field takes full width of the form */
+.site-form .form-row.full-width {
+  
+  
+    width: 1900px; /* Ensure the row takes full width */
+}
+
+
+.site-form textarea {
+    width: 100%; /* Full width for the textarea */
+    height: 80px; /* Adjust the height for better spacing */
+    font-size: 16px; /* Ensure text size is readable */
+    padding: 10px; /* Padding for input fields */
+    border-radius: 8px; /* Rounded corners for uniformity */
+    border: 1px solid #ccc; /* Border styling */
+    resize: vertical; /* Allow vertical resizing only */
+}
+
+/*ship[ping setup] */
+.card {
+    border: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .card-title {
+    color: #333;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .container h5 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+  }
+  
+  .form-check-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .form-check-input {
+    margin-right: 10px;
+  }
+  
+  .form-check {
+    margin-bottom: 10px;
+  }
+  
+  .form-check-input:checked {
+    background-color: #ff5733; /* Custom color for the selected radio */
+    border-color: #ff5733;
+  }
+  
+  .form-check-input[type="radio"] {
+    width: 20px;
+    height: 20px;
+  }
+  
+  

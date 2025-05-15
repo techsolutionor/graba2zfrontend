@@ -1,0 +1,2945 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title -->
+    <title> Graba2z- E-commerce website</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/logo/favicon.png">
+
+    <link rel="stylesheet" href="assets/css/footer.css" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- select 2 -->
+    <link rel="stylesheet" href="assets/css/select2.min.css">
+    <!-- Slick -->
+    <link rel="stylesheet" href="assets/css/slick.css">
+
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <!-- Slick CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css" />
+
+
+    <!-- Jquery Ui -->
+    <link rel="stylesheet" href="assets/css/jquery-ui.css">
+    <!-- animate -->
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="assets/css/aos.css">
+    <!-- Main css -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <style>
+        @media (min-width: 768px) {
+            #banner-prev {
+                margin-top: 80px;
+                /* Replace with your value */
+            }
+        }
+
+        @media (min-width: 768px) {
+            #banner-next {
+                margin-top: 80px;
+                /* Replace with your value */
+            }
+        }
+
+        /* Custom dropdown styling */
+        .dropdown-menu {
+            min-width: 220px;
+            border: 1px solid rgba(0, 0, 0, .15);
+        }
+
+        .dropdown-item {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .border-right-item {
+                border-right: none !important;
+            }
+
+            .dropdown-menu {
+                position: fixed !important;
+                top: auto !important;
+                left: 50% !important;
+                transform: translateX(-50%);
+                width: 90%;
+                max-width: 300px;
+            }
+
+            .nav-link {
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        .nav-menu__link,
+        .common-dropdown__link {
+            pointer-events: auto !important;
+        }
+
+        .feature-item-wrapper {
+            display: flex !important;
+            /* Ensures items align in a row */
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            overflow: hidden;
+            /* Prevents overflow issues */
+        }
+
+        .feature-item {
+            text-align: center;
+            flex: 0 0 auto;
+            width: auto;
+        }
+         /* mobile res start */
+        /* Hide sidebar by default */
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: auto;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  transition: 0.3s ease;
+  padding-top: 60px;
+  z-index: 999;
+}
+
+/* Sidebar content scrollable */
+.sidebar-inner {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.sidebar a {
+  display: block;
+  padding: 12px 20px;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  background: #fff4f4;
+  color: rgb(49, 136, 49);
+}
+
+/* Menu button */
+.menu-btn {
+  display: none;
+  position:absolute;
+  top: 41px;
+  right: 31px;
+  font-size: 24px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  z-index: 1000;
+  border-radius: 5px;
+  text-align: left;
+}
+
+/* Show on mobile and tablet only */
+@media (max-width: 1024px) {
+  .menu-btn {
+    display: block;
+  }
+
+  .sidebar {
+    display: block;
+  }
+}
+
+/* Hide on larger screens */
+@media (min-width: 1025px) {
+  .sidebar {
+    display: none !important;
+  }
+
+  .menu-btn {
+    display: none !important;
+  }
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+ 
+
+    </style>
+    
+</head>
+
+<body>
+
+    <div id="top-header"></div>
+
+
+    <!-- ======================= Middle Header Start ========================= -->
+    <header class="header-middle bg-white border-bottom border-gray-100">
+        <div class="container container-lg">
+            <nav class="header-inner flex-between">
+                <!-- Logo Start -->
+                <div class="logo">
+                    <a href="index.html" class="link">
+                        <img src="assets/images/logo/logo1.svg" style="width: 170px; height: 70px;" alt="Logo">
+                    </a>
+                </div>
+                <!-- Logo End  -->
+
+                <!-- form location Start -->
+                <form id="search-form" class="flex-align flex-wrap form-location-wrapper">
+                    <div
+                        class="search-category d-flex h-48 select-border-end-0 radius-end-0 search-form d-sm-flex d-none">
+                        <div class="search-form__wrapper position-relative">
+                            <input type="text" id="search-input"
+                                class="search-form__input common-input py-13 ps-16 pe-18 rounded-pill pe-44"
+                                placeholder="Search for a product or brand">
+                            <button type="submit"
+                                class="w-32 h-32 rounded-circle flex-center text-xl text-white position-absolute top-50 translate-middle-y inset-inline-end-0 me-8"
+                                style="background-color: #a3d02c;">
+                                <i class="ph ph-magnifying-glass"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+
+                <!-- form location start -->
+
+                <!-- Header Middle Right Start -->
+                <div class="header-right flex-align d-lg-block d-none">
+                    <div class="flex-align flex-wrap gap-12">
+                        <!-- Search Icon (Mobile) -->
+                        <button type="button" class="search-icon flex-align d-lg-none d-flex gap-4 item-hover">
+                            <span class="text-2xl text-gray-700 d-flex position-relative item-hover__text">
+                                <i class="ph ph-magnifying-glass"></i>
+                            </span>
+                        </button>
+
+
+                        <!-- Wishlist Button -->
+                        <a href="wishlist.html" class="flex-align gap-4 item-hover">
+                            <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
+                                <i class="ph ph-heart"></i>
+                                <span
+                                    class="w-16 h-16 flex-center rounded-circle text-white text-xs position-absolute top-n6 end-n4"
+                                    id="numberWishlist" style="background-color: #a3d02c;">0</span>
+                            </span>
+                            <span class="text-md text-black item-hover__text d-none d-lg-flex"
+                                id="wishlistText">Wishlist</span>
+                        </a>
+
+                        <!-- Cart Button -->
+                        <a href="cart.html" class="flex-align gap-4 item-hover">
+                            <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
+                                <i class="ph ph-shopping-cart-simple"></i>
+                                <span id="cart-count"
+                                    class="w-16 h-16 d-flex align-items-center justify-content-center rounded-circle text-white text-xs position-absolute top-n6 end-n4"
+                                    style="background-color: #a3d02c; display: none;">0</span>
+                            </span>
+                            <span class="text-md text-black item-hover__text d-none d-lg-flex">Cart</span>
+                        </a>
+
+                    </div>
+                </div>
+                <!-- Header Middle Right End -->
+            </nav>
+        </div>
+        <!-- Menu Button for Mobile/Tablet Only start-->
+<div class="menu-btn" onclick="toggleSidebar()">☰</div>
+
+<!-- Sidebar Only For Mobile/Tablet -->
+<div id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+    <ul>
+    
+      <a href="shop.html?category=Desktops&brand=Lenovo">Lenovo Desktops </a>
+  </li>
+  <li>
+      <a href="shop.html?category=Desktops&brand=Dell"> Dell Desktops</a>
+  </li>
+  <li>
+      <a href="shop.html?category=Desktops&brand=Asus"> Asus Desktops</a>
+  </li>
+  <li>
+      <a href="shop.html?category=Desktops&brand=Acer"> Acer Desktops </a>
+  </li>
+  <li>
+      <a href="shop.html?category=Desktops&brand=HP"> HP Desktops</a>
+  </li>
+  <li>
+    <a href="shop.html?category=Monitors&brand=Lenovo"> Lenovo Monitors</a>
+</li>
+<li>
+    <a href="shop.html?category=Monitors&brand=MSI"> MSI Monitors</a>
+</li>
+<li>
+    <a href="shop.html?category=Monitors&brand=HP"> HP Monitors</a>
+</li>
+<li>
+    <a href="shop.html?category=Monitors&brand=Dell"> Dell Monitors</a>
+</li>
+<li>
+    <a href="shop.html?category=Monitors&brand=Asus"> Asus Monitors</a>
+</li>
+<li>
+    <a href="shop.html?category=Monitors&brand=Acer"> Acer Monitors</a>
+</li>
+<li>
+    <a href="shop.html?category=Monitors&brand=Samsung"> Samsung
+        Monitors</a>
+</li>
+<li>
+    <a href="shop.html?category=Monitors&brand=AOC"> AOC Monitors</a>
+</li>
+<li>
+    <a href="shop.html?category=Monitors&brand=Viewsonic"> Viewsonic
+        Monitors</a>
+</li>
+<li>
+    <a href="shop.html?category=Monitors&brand=LG"> LG Monitors</a>
+</li>
+<li>
+  <a href="shop.html?category=Laptops&brand=Lenovo"> Lenovo Laptops</a>
+</li>
+<li>
+  <a href="shop.html?category=Laptops&brand=MSI"> MSI Laptops</a>
+</li>
+<li>
+  <a href="shop.html?category=Laptops&brand=HP"> HP Laptops</a>
+</li>
+<li>
+  <a href="shop.html?category=Laptops&brand=Dell"> Dell Laptops</a>
+</li>
+<li>
+  <a href="shop.html?category=Laptops&brand=Asus"> Asus Laptops</a>
+</li>
+<li>
+  <a href="shop.html?category=Laptops&brand=Acer"> Acer Laptops</a>
+</li>
+<li>
+  <a href="shop.html?category=Laptops&brand=MI"> MI Laptops</a>
+</li>
+<li>
+  <a href="shop.html?category=Laptops&brand=Apple"> Apple Laptops</a>
+</li>
+<li>
+  <a href="shop.html?category=Laptops&brand=Microsoft"> Microsoft
+      Laptops</a>
+</li>
+<li>
+  <a href="shop.html?category=Printers%20&%20Copier&brand=HR"> HR Printer
+      & Copier </a>
+</li>
+<li>
+  <a href="shop.html?category=Printers%20&%20Copier&brand=Canon"> Canon
+      Printer & Copier</a>
+
+<li>
+  <a href="shop.html?category=Printers%20&%20Copier&brand=Brother">
+      Brother Printer & Copier</a>
+</li>
+<li>
+  <a href="shop.html?category=Printers%20&%20Copier&brand=Ricoh"> Ricoh
+      Printer & Copier</a>
+</li>
+<li>
+  <a href="shop.html?category=Printers%20&%20Copier&brand=Epson"> Epson
+      Printer & Copier</a>
+</li>
+<li>
+  <a href="shop.html?category=Printers%20&%20Copier&brand=Xerox"> Xerox
+      Printer & Copier</a>
+</li>
+<li>
+  <a href="shop.html?category=Routers&brand=TP%20Link"> TP Link Routers
+  </a>
+</li>
+<li>
+  <a href="shop.html?category=Projectors&brand=Optoma"> Optoma</a>
+</li>
+<li>
+  <a href="shop.html?category=Projectors&brand=BENQ"> BENQ</a>
+</li>
+<li>
+  <a href="shop.html?category=Projectors&brand=LG"> LG </a>
+</li>
+<li>
+  <a href="shop.html?category=Bags"> Bags</a>
+</li>
+<li>
+  <a href="shop.html?category=RAM"> RAMs</a>
+</li>
+<li>
+  <a href="shop.html?category=Mouse"> Mouse </a>
+</li>
+<li>
+  <a href="shop.html?category=Keyboard"> keyboard </a>
+</li>
+<li>
+  <a href="shop.html?category=Hard%20Drives"> Hard Drives</a>
+</li>
+<li>
+  <a href="shop.html?category=Headphones"> headphones </a>
+</li>
+<li>
+  <a href="shop.html?category=Storage%20Devices"> storage devices </a>
+</li>
+<li>
+  <a href="shop.html?category=Graphic%20Cards"> Graphic Cards </a>
+</li>
+<li>
+  <a href="shop.html?categoryMotherboard"> Motherboard </a>
+</li>
+<li>
+  <a href="shop.html?category=Power%20Supply"> Power Supply </a>
+</li>
+<li>
+  <a href="shop.html?category=Cables"> cables</a>
+</li>
+<li>
+  <a href="shop.html?category=HDMI"> HDMI</a>
+</li>
+<li>
+  <a href="shop.html?category=Adapter"> Adapters </a>
+</li>
+<li>
+  <a href="shop.html?category=USB"> USB C HUB </a>
+</li>
+<li>
+  <a href="shop.html?category=Connectors"> Connectors </a>
+</li>
+<li>
+  <a href="shop.html?category=Display%20Port"> Display Port </a>
+</li>
+<li>
+  <a href="shop.html?category=USB%20Dongles"> USB Dongles </a>
+</li>
+<li>
+  <a href="shop.html?category=Wifi%20Dongles"> Wifi Dongles </a>
+</li>
+</ul>
+
+
+  
+  </div>
+</div>
+<!-- Menu Button for Mobile/Tablet Only end-->
+    </header>
+    <!-- ======================= Middle Header End ========================= -->
+
+    <!-- ==================== Header Start Here ==================== -->
+    <header class="header bg-white border-bottom border-gray-100">
+        <div class="container container-lg">
+            <nav class="header-inner d-flex justify-content-between gap-8">
+                <div class="flex-align menu-category-wrapper">
+
+                    <!-- Category Dropdown Start -->
+                    <div class="category on-hover-item">
+
+
+                        <div
+                            class="responsive-dropdown on-hover-dropdown common-dropdown nav-submenu p-0 submenus-submenu-wrapper">
+
+                            <button type="button"
+                                class="close-responsive-dropdown rounded-circle text-xl position-absolute inset-inline-end-0 inset-block-start-0 mt-4 me-8 d-lg-none d-flex">
+                                <i class="ph ph-x"></i> </button>
+
+                            <!-- Logo Start -->
+                            <div class="logo px-16 d-lg-none d-block">
+                                <a href="index.html" class="link">
+                                    <img src="assets/images/logo/logo.png" alt="Logo">
+                                </a>
+                            </div>
+                            <!-- Logo End -->
+
+                            <ul class="scroll-sm p-0 py-8 w-300 max-h-400 overflow-y-auto">
+                                <li class="has-submenus-submenu">
+                                    <a href="javascript:void(0)"
+                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                        <span class="text-xl d-flex"><i class="ph ph-carrot"></i></span>
+                                        <span>All in One</span>
+                                        <span class="icon text-md d-flex ms-auto"><i
+                                                class="ph ph-caret-right"></i></span>
+                                    </a>
+
+                                    <div class="submenus-submenu py-16">
+                                        <h6 class="text-lg px-16 submenus-submenu__title">All In One</h6>
+                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                            <li>
+                                                <a href="shop.html?brand=Asus">Asus All in One</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?brand=Acer">Acer All in One</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?brand=Lenovo">Lenovo all In One </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?brand=HP">HP All In One</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?brand=Dell">Dell All in One</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?brand=Apple">Apple All in One</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </li>
+                                <li class="has-submenus-submenu">
+                                    <a href="javascript:void(0)"
+                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                                        <span>Desktop</span>
+                                        <span class="icon text-md d-flex ms-auto"><i
+                                                class="ph ph-caret-right"></i></span>
+                                    </a>
+                                    <div class="submenus-submenu py-16">
+                                        <h6 class="text-lg px-16 submenus-submenu__title">Desktop</h6>
+                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                            <li>
+                                                <a href="shop.html?category=Desktops&brand=Lenovo">Lenovo Desktops </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Desktops&brand=Dell"> Dell Desktops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Desktops&brand=Asus"> Asus Desktops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Desktops&brand=Acer"> Acer Desktops </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Desktops&brand=HP"> HP Desktops</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="has-submenus-submenu">
+                                    <a href="javascript:void(0)"
+                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                                        <span>Monitors</span>
+                                        <span class="icon text-md d-flex ms-auto"><i
+                                                class="ph ph-caret-right"></i></span>
+                                    </a>
+                                    <div class="submenus-submenu py-16">
+                                        <h6 class="text-lg px-16 submenus-submenu__title">Monitors</h6>
+                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                            <li>
+                                                <a href="shop.html?category=Monitors&brand=Lenovo"> Lenovo Monitors</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Monitors&brand=MSI"> MSI Monitors</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Monitors&brand=HP"> HP Monitors</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Monitors&brand=Dell"> Dell Monitors</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Monitors&brand=Asus"> Asus Monitors</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Monitors&brand=Acer"> Acer Monitors</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Monitors&brand=Samsung"> Samsung
+                                                    Monitors</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Monitors&brand=AOC"> AOC Monitors</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Monitors&brand=Viewsonic"> Viewsonic
+                                                    Monitors</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Monitors&brand=LG"> LG Monitors</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="has-submenus-submenu">
+                                    <a href="javascript:void(0)"
+                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                                        <span>Mobiles</span>
+                                        <span class="icon text-md d-flex ms-auto"><i
+                                                class="ph ph-caret-right"></i></span>
+                                    </a>
+                                    <div class="submenus-submenu py-16">
+                                        <h6 class="text-lg px-16 submenus-submenu__title">Mobiles</h6>
+                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                            <li>
+                                                <a href="shop.html?category=Mobiles&brand=Apple"> Apple</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="has-submenus-submenu">
+                                    <a href="javascript:void(0)"
+                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                                        <span>Laptops</span>
+                                        <span class="icon text-md d-flex ms-auto"><i
+                                                class="ph ph-caret-right"></i></span>
+                                    </a>
+                                    <div class="submenus-submenu py-16">
+                                        <h6 class="text-lg px-16 submenus-submenu__title">Laptops</h6>
+                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                            <li>
+                                                <a href="shop.html?category=Laptops&brand=Lenovo"> Lenovo Laptops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Laptops&brand=MSI"> MSI Laptops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Laptops&brand=HP"> HP Laptops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Laptops&brand=Dell"> Dell Laptops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Laptops&brand=Asus"> Asus Laptops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Laptops&brand=Acer"> Acer Laptops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Laptops&brand=MI"> MI Laptops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Laptops&brand=Apple"> Apple Laptops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Laptops&brand=Microsoft"> Microsoft
+                                                    Laptops</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="has-submenus-submenu">
+                                    <a href="javascript:void(0)"
+                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                                        <span>Printer & Copier</span>
+                                        <span class="icon text-md d-flex ms-auto"><i
+                                                class="ph ph-caret-right"></i></span>
+                                    </a>
+                                    <div class="submenus-submenu py-16">
+                                        <h6 class="text-lg px-16 submenus-submenu__title">printer & Copier</h6>
+                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                            <li>
+                                                <a href="shop.html?category=Printers%20&%20Copier&brand=HR"> HR Printer
+                                                    & Copier </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Printers%20&%20Copier&brand=Canon"> Canon
+                                                    Printer & Copier</a>
+
+                                            <li>
+                                                <a href="shop.html?category=Printers%20&%20Copier&brand=Brother">
+                                                    Brother Printer & Copier</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Printers%20&%20Copier&brand=Ricoh"> Ricoh
+                                                    Printer & Copier</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Printers%20&%20Copier&brand=Epson"> Epson
+                                                    Printer & Copier</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Printers%20&%20Copier&brand=Xerox"> Xerox
+                                                    Printer & Copier</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="has-submenus-submenu">
+                                    <a href="javascript:void(0)"
+                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                                        <span>Routers</span>
+                                        <span class="icon text-md d-flex ms-auto"><i
+                                                class="ph ph-caret-right"></i></span>
+                                    </a>
+                                    <div class="submenus-submenu py-16">
+                                        <h6 class="text-lg px-16 submenus-submenu__title">Routers</h6>
+                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                            <li>
+                                                <a href="shop.html?category=Routers&brand=TP%20Link"> TP Link Routers
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="has-submenus-submenu">
+                                    <a href="javascript:void(0)"
+                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                                        <span>projector</span>
+                                        <span class="icon text-md d-flex ms-auto"><i
+                                                class="ph ph-caret-right"></i></span>
+                                    </a>
+                                    <div class="submenus-submenu py-16">
+                                        <h6 class="text-lg px-16 submenus-submenu__title">Projectors</h6>
+                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                            <li>
+                                                <a href="shop.html?category=Projectors&brand=Optoma"> Optoma</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Projectors&brand=BENQ"> BENQ</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Projectors&brand=LG"> LG </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+
+
+                                <li class="has-submenus-submenu">
+                                    <a href="javascript:void(0)"
+                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                                        <span>Accessories</span>
+                                        <span class="icon text-md d-flex ms-auto"><i
+                                                class="ph ph-caret-right"></i></span>
+                                    </a>
+                                    <div class="submenus-submenu py-16">
+                                        <h6 class="text-lg px-16 submenus-submenu__title">Accessories</h6>
+                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                            <li>
+                                                <a href="shop.html?category=Bags"> Bags</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=RAM"> RAMs</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Mouse"> Mouse </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Keyboard"> keyboard </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Hard%20Drives"> Hard Drives</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Headphones"> headphones </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Storage%20Devices"> storage devices </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Graphic%20Cards"> Graphic Cards </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?categoryMotherboard"> Motherboard </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Power%20Supply"> Power Supply </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li class="has-submenus-submenu">
+                                    <a href="javascript:void(0)"
+                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                                        <span>Networking</span>
+                                        <span class="icon text-md d-flex ms-auto"><i
+                                                class="ph ph-caret-right"></i></span>
+                                    </a>
+                                    <div class="submenus-submenu py-16">
+                                        <h6 class="text-lg px-16 submenus-submenu__title">Networking</h6>
+                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                            <li>
+                                                <a href="shop.html?category=Cables"> cables</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=HDMI"> HDMI</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Adapter"> Adapters </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=USB"> USB C HUB </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Connectors"> Connectors </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Display%20Port"> Display Port </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=USB%20Dongles"> USB Dongles </a>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html?category=Wifi%20Dongles"> Wifi Dongles </a>
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Category Dropdown End  -->
+
+                    <!-- Menu Start  -->
+                    <div class="header-menu d-lg-block d-none" style="padding-left: 60px;">
+                        <!-- Nav Menu Start -->
+                        <ul class="nav-menu flex-align ">
+                            <li class="on-hover-item nav-menu__item has-submenu activePage">
+                                <a href="shop.html?category=Monitors" class="nav-menu__link" style="color:black;"
+                                    style="color:black;">All In One</a>
+                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                                    <li class="common-dropdown__item nav-submenu__item activePage">
+                                        <a href="shop.html?brand=Apple"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Apple All in One</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?brand=Asus"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Asus All In One</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?brand=Acer"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Acer All In One</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?brand=Lenovo"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Lenovo All In One</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?brand=HP"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Hp All In One</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?brand=Dell"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Dell All In One</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="on-hover-item nav-menu__item has-submenu">
+                                <a href="shop.html?category=Desktops" class="nav-menu__link"
+                                    style="color:black;">Desktop</a>
+                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Desktops&brand=Lenovo"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Lenovo Desktops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Desktops&brand=Dell"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Dell Desktops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Desktops&brand=Asus"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Asus Desktops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Desktops&brand=Acer"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Acer Desktops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Desktops&brand=HP"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Hp Desktops</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="on-hover-item nav-menu__item has-submenu">
+                                <a href="shop.html?category=Monitors" class="nav-menu__link"
+                                    style="color:black;">Monitors</a>
+                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Monitors&brand=Lenovo"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Lenovo Monitors</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Monitors&brand=MSI"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">MSI Monitors</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Monitors&brand=HP"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Hp Monitors</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Monitors&brand=Dell"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Dell Monitors</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Monitors&brand=Asus"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Asus Monitors</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Monitors&brand=Acer"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Acer Monitors</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Monitors&brand=Samsung"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Samsung Monitors</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Monitors&brand=AOC"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">AOC Monitors</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Monitors&brand=Viewsonic"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Viewsonic Monitors</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Monitors&brand=LG"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">LG Monitors</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="on-hover-item nav-menu__item has-submenu">
+                                <a href="shop.html?category=Mobiles" class="nav-menu__link"
+                                    style="color:black;">Mobiles</a>
+                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Mobiles&brand=Apple"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Apple</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="on-hover-item nav-menu__item has-submenu">
+                                <a href="shop.html?category=Laptops" class="nav-menu__link"
+                                    style="color:black;">Laptops</a>
+                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Laptops&brand=Lenovo"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Lenovo Laptops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Laptops&brand=MSI"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">MSI Laptops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Laptops&brand=HP"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Hp Laptops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Laptops&brand=Dell"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Dell Laptops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Laptops&brand=Asus"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Asus Laptops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Laptops&brand=Acer"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Acer Laptops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Laptops&brand=MI"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">MI Laptops</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Macbooks&brand=Apple"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Apple Macbook</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Laptops&brand=Microsoft"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Microsoft Surface</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="on-hover-item nav-menu__item has-submenu">
+                                <a href="shop.html?category=Printers & Copier" class="nav-menu__link"
+                                    style="color:black;">Printers & Copier</a>
+                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Printers%20&%20Copier&brand=HP"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Hp Printers & Copier</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Printers%20&%20Copier&brand=Canon"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Canon Printers & Copier</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Printers%20&%20Copier&brand=Brother"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Brother Printers & Copier</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Printers%20&%20Copier&brandRicoh"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Ricoh Printers & Copier</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Printers%20&%20Copier&brand=Epson"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Epson Printers & Copier</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Printers%20&%20Copier&brand=Xerox"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Xerox Printers & Copier</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="on-hover-item nav-menu__item has-submenu">
+                                <a href="shop.html?category=Routers" class="nav-menu__link"
+                                    style="color:black;">Routers</a>
+                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Routers&brand=Tp%20Link"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Tp Link Routers</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="on-hover-item nav-menu__item has-submenu">
+                                <a href="shop.html?category=Projectors" class="nav-menu__link"
+                                    style="color:black;">Projector</a>
+                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Projectors&brand=Optoma"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Optoma</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Projectors&brand=BENQ"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">BENQ</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Projectors&brand=LG"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">LG</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="on-hover-item nav-menu__item has-submenu">
+                                <a href="shop.html?category=Accessories" class="nav-menu__link"
+                                    style="color:black;">Accessories</a>
+                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Bags"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Bags</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=RAM"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">RAMs</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Mouse"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Mouse</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Keyboard"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Keyboard</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Hard%20Drives"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Hard Drives</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Headphones"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Headphones</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Storage%20Devices"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Storage Devices</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Graphic%20Cards"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Graphic Cards</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Motherboard"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Motherboard</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Power%20Supply"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Power Supply</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="on-hover-item nav-menu__item has-submenu">
+                                <a href="shop.html?category=Networking" class="nav-menu__link"
+                                    style="color:black;">Networking</a>
+                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Cables"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">cables</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=HDMI"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">HDMI</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Adopters"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Adopters</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=USB"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">USB C HUB</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Connectors"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Connectors</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Display%20Port"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Display Port</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=USB%20Dongles"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">USB Dongles</a>
+                                    </li>
+                                    <li class="common-dropdown__item nav-submenu__item">
+                                        <a href="shop.html?category=Wifi%20Dongles"
+                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                                            style="color:black; font-size: 14px;">Wifi Dongles</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!--<li class="nav-menu__item">-->
+                            <!--    <a href="contact.html" class="nav-menu__link" style="color:black;">Contact Us</a>-->
+                            <!--</li>-->
+                        </ul>
+                        <!-- Nav Menu End -->
+                    </div>
+                    <!-- Menu End  -->
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- ==================== Header End Here ==================== -->
+
+
+    <!-- ============================ Banner Section start =============================== -->
+
+
+    <div class="banner">
+
+        <div class="container container-lg">
+            <div class=" position-relative arrow-center">
+                <a href="#featureSection" class="">
+                    <!-- <span class="icon line-height-0"><i class="ph ph-caret-double-down"></i></span>  -->
+                </a>
+                <img id="banner-bg" src="" alt="Banner Image"
+                    class="banner-img position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-md-100 z-n1 object-fit-cover rounded-24">
+
+                <!-- <div id="banner-title" class="position-absolute text-center w-100 text-white" style="top: 20px; z-index: 1;"> -->
+
+            </div>
+
+            <div class="flex-align justify-content-between">
+                <button type="button" id="banner-prev"
+                    class="slick-prev slick-arrow flex-center rounded-circle bg-white text-xl hover-bg-main-600 hover-text-white transition-1">
+                    <i class="ph ph-caret-left"></i>
+                </button>
+                <button type="button" id="banner-next"
+                    class="slick-next slick-arrow flex-center rounded-circle bg-white text-xl hover-bg-main-600 hover-text-white transition-1">
+                    <i class="ph ph-caret-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- ============================ Banner Section End =============================== -->
+
+    <!-- ============================ Feature Section start =============================== -->
+    <div class="feature" id="featureSection">
+        <div class="container container-lg">
+            <div class="position-relative arrow-center">
+                <button type="button" id="feature-item-wrapper-prev"
+                    class="slick-prev slick-arrow flex-center rounded-circle bg-white text-xl hover-bg-main-600 hover-text-white transition-1">
+                    <i class="ph ph-caret-left"></i>
+                </button>
+                <div class="feature-item-wrapper slider">
+                    <!-- Categories will be dynamically added here -->
+                </div>
+                <button type="button" id="feature-item-wrapper-next"
+                    class="slick-next slick-arrow flex-center rounded-circle bg-white text-xl hover-bg-main-600 hover-text-white transition-1">
+                    <i class="ph ph-caret-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <section class="promotional-banner pt-80">
+        <div class="container container-lg">
+            <div class="row gy-4 justify-content-center">
+                <div class="col-12 col-sm-6 col-md-4 col-xl-4 wow bounceIn" data-aos="fade-up" data-aos-duration="400">
+                    <div class="promotional-banner-item position-relative rounded-24 overflow-hidden z-1"
+                        style="margin: 0 18px; height: 300px;">
+                        <img src="assets/images/thumbs/pro_banner1.png" alt=""
+                            class="position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 object-fit-cover z-n1">
+                        <div
+                            class="promotional-banner-item__content d-flex flex-column justify-content-between h-100 p-3">
+                            <!-- Other Content (if any) -->
+                            <a href="shop.html?category=Lenovo%20Laptops"
+                                class="grab-now-btn d-inline-flex align-items-center justify-content-center">
+                                Shop Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-4 col-xl-4 wow bounceIn" data-aos="fade-up" data-aos-duration="600">
+                    <div class="promotional-banner-item position-relative rounded-24 overflow-hidden z-1"
+                        style="margin: 0 15px; height: 300px;">
+                        <img src="assets/images/thumbs/pro_banner2.png" alt=""
+                            class="position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 object-fit-cover z-n1">
+                        <div
+                            class="promotional-banner-item__content d-flex flex-column justify-content-between h-100 p-3">
+                            <!-- Other Content (if any) -->
+                            <a href="shop.html?category=Gaming%20Laptops"
+                                class="grab-now-btn d-inline-flex align-items-center justify-content-center">
+                                Shop Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-4 col-xl-4 wow bounceIn" data-aos="fade-up" data-aos-duration="800">
+                    <div class="promotional-banner-item position-relative rounded-24 overflow-hidden z-1"
+                        style="margin: 0 15px; height: 300px;">
+                        <img src="assets/images/thumbs/pro_banner3.png" alt=""
+                            class="position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 object-fit-cover z-n1">
+                        <div
+                            class="promotional-banner-item__content d-flex flex-column justify-content-between h-100 p-3">
+                            <!-- Other Content (if any) -->
+                            <a href="shop.html?category=Business%20Laptops"
+                                class="grab-now-btn d-inline-flex align-items-center justify-content-center">
+                                Shop Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br><br>
+    <!-- ======================== promotional banner End ============================== -->
+
+    <!-- ========================= Offer ================================ -->
+    <section style="background-color: #FFCC00; padding: 40px 0;">
+        <div style="max-width: 1300px; margin: auto; display: flex; align-items: center; overflow: hidden;">
+
+            <!-- Big Sale Banner with Countdown -->
+            <div
+                style="flex-shrink: 0; width: 280px; background-color: #FFD700; padding: 20px; border-radius: 10px; text-align: center;">
+                <h3 style="color: #d60000; font-size: 28px; font-weight: bold;">BIG SALE</h3>
+                <p style="color: #d60000; font-size: 18px; font-weight: bold;">50% OFF</p>
+                <p style="font-size: 14px; font-weight: bold; color: #333;">GRABIANS OFFER</p>
+
+                <!-- Countdown Timer -->
+                <div id="countdown" style="font-size: 16px; font-weight: bold; color: #222; margin-top: 10px;"></div>
+
+                <a href="shop.html"
+                    style="margin-top: 10px; background-color: #d60000; color: #fff; font-size: 14px; padding: 8px 14px; border: none; border-radius: 6px; cursor: pointer;">
+                    SHOP NOW
+                </a>
+            </div>
+
+            <!-- Slider for Product Cards -->
+            <div style="flex-grow: 1; margin-left: 20px; overflow: hidden; position: relative;">
+                <div id="saleContainer"
+                    style="display: flex; gap: 20px; overflow-x: auto; padding: 10px; scroll-behavior: smooth;"></div>
+
+                <!-- Slider Controls -->
+                <button onclick="scrollHorizontal(-1)"
+                    style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); background-color: #FFF; border: none; cursor: pointer; padding: 10px; border-radius: 50%;">
+                    <i class="fa fa-chevron-left" style="font-size: 18px; color: #333;"></i>
+                </button>
+                <button onclick="scrollHorizontal(1)"
+                    style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background-color: #FFF; border: none; cursor: pointer; padding: 10px; border-radius: 50%;">
+                    <i class="fa fa-chevron-right" style="font-size: 18px; color: #333;"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Include FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
+    <!-- ========================= hot-deals End ================================ -->
+
+    <!-- ========================= Computing devices Start ================================ -->
+    <section class="flash-sales pt-80 overflow-hidden">
+        <div class="container container-lg">
+            <div class="section-heading">
+                <div class="flex-between flex-wrap gap-8">
+                    <h5 class="mb-0 wow bounceInLeft">Computing Devices</h5>
+                    <div class="flex-align gap-16 wow bounceInRight">
+                        <a href="shop.html"
+                            class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View
+                            All Deals</a>
+                        <div class="flex-align gap-8">
+                            <button type="button" id="flash-prev"
+                                class="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1">
+                                <i class="ph ph-caret-left"></i>
+                            </button>
+                            <button type="button" id="flash-next"
+                                class="slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1">
+                                <i class="ph ph-caret-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container container-lg">
+                <div class="row gy-4 justify-content-center">
+                    <div class="col-sm-12">
+                        <img src="assets/images//thumbs/hye1.png" alt="Accessories"
+                            class="accessories-img w-100 h-auto rounded-16">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="product mt-24">
+        <div class="container container-lg">
+            <!-- Add a unique ID or class to the row container -->
+            <div id="computing-devices-container" class="row gy-4 g-12">
+                <!-- Dynamic product cards will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-------------------------------Networking Devices strt----------------------->
+    <section class="flash-sales pt-80 overflow-hidden">
+        <div class="container container-lg">
+            <div class="section-heading">
+                <div class="flex-between flex-wrap gap-8">
+                    <h5 class="mb-0 wow bounceInLeft">Networking Devices</h5>
+                    <div class="flex-align gap-16 wow bounceInRight">
+                        <a href="shop.html"
+                            class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View
+                            All Deals</a>
+                        <div class="flex-align gap-8">
+                            <button type="button" id="flash-prev"
+                                class="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1">
+                                <i class="ph ph-caret-left"></i>
+                            </button>
+                            <button type="button" id="flash-next"
+                                class="slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1">
+                                <i class="ph ph-caret-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container container-lg">
+                <div class="row gy-4 justify-content-center">
+                    <div class="col-sm-12">
+                        <a href="shop.html?category=Networking%20Devices">
+                            <img src="assets/images//thumbs/networking.jpg" alt="Accessories"
+                                class="accessories-img w-100 h-auto rounded-16">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="product mt-24">
+        <div class="container container-lg">
+            <!-- Add a unique ID or class to the row container -->
+            <div id="networking-devices-container" class="row gy-4 g-12">
+                <!-- Dynamic product cards will be injected here -->
+            </div>
+        </div>
+    </div>
+    <!-----------------------------Lenvo--------------------->
+
+    <section class="flash-sales pt-80 overflow-hidden">
+        <div class="container container-lg">
+            <div class="section-heading">
+                <div class="flex-between flex-wrap gap-8">
+                    <h5 class="mb-0 wow bounceInLeft">lenovo Devices</h5>
+                    <div class="flex-align gap-16 wow bounceInRight">
+                        <a href="shop.html"
+                            class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View
+                            All Deals</a>
+                        <div class="flex-align gap-8">
+                            <button type="button" id="flash-prev"
+                                class="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1">
+                                <i class="ph ph-caret-left"></i>
+                            </button>
+                            <button type="button" id="flash-next"
+                                class="slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1">
+                                <i class="ph ph-caret-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container container-lg">
+                <div class="row gy-4 justify-content-center">
+                    <div class="col-sm-12">
+                        <a href="shop.html?category=Lenovo%20Devices">
+                            <img src="assets/images//thumbs/lenvo.jpg" alt="Accessories"
+                                class="accessories-img w-100 h-auto rounded-16">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="product mt-24">
+        <div class="container container-lg">
+            <!-- Add a unique ID or class to the row container -->
+            <div id="lenovo-devices-container" class="row gy-4 g-12">
+                <!-- Dynamic product cards will be injected here -->
+            </div>
+        </div>
+    </div>
+    <!------------------------app sumsung------------------->
+
+    <section class="flash-sales pt-80 overflow-hidden">
+        <div class="container container-lg">
+            <div class="section-heading">
+                <div class="flex-between flex-wrap gap-8">
+                    <h5 class="mb-0 wow bounceInLeft">Samsung Devices</h5>
+                    <div class="flex-align gap-16 wow bounceInRight">
+                        <a href="shop.html"
+                            class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View
+                            All Deals</a>
+                        <div class="flex-align gap-8">
+                            <button type="button" id="flash-prev"
+                                class="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1">
+                                <i class="ph ph-caret-left"></i>
+                            </button>
+                            <button type="button" id="flash-next"
+                                class="slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1">
+                                <i class="ph ph-caret-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container container-lg">
+                <div class="row gy-4 justify-content-center">
+                    <div class="col-sm-12">
+                        <a href="shop.html?category=Samsung%20Devices">
+                            <img src="assets/images//thumbs/svmsung.png" alt="Accessories"
+                                class="accessories-img w-100 h-auto rounded-16">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="product mt-24">
+        <div class="container container-lg">
+            <!-- Add a unique ID or class to the row container -->
+            <div id="samsung-devices-container" class="row gy-4 g-12">
+                <!-- Dynamic product cards will be injected here -->
+            </div>
+        </div>
+    </div>
+    <!-- =========================== Offer Section Start =============================== -->
+    <section class="offer pt-80 pb-80">
+        <div class="section-heading">
+            <div class="flex-between flex-wrap gap-8">
+                <h5 class="mb-0 wow bounceInLeft">Accessories</h5>
+                <div class="flex-align gap-16 wow bounceInRight">
+                    <a href="shop.html"
+                        class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View
+                        All Deals</a>
+                    <div class="flex-align gap-8">
+                        <button type="button" id="flash-prev"
+                            class="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1">
+                            <i class="ph ph-caret-left"></i>
+                        </button>
+                        <button type="button" id="flash-next"
+                            class="slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1">
+                            <i class="ph ph-caret-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container container-lg">
+            <div class="row gy-4 justify-content-center">
+                <div class="col-sm-12">
+                    <a href="shop.html?category=Accessories">
+                        <img src="assets/images//thumbs/accessories.jpg" alt="Accessories"
+                            class="accessories-img w-100 h-auto rounded-16">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="product mt-24">
+        <div class="container container-lg">
+            <!-- Add a unique ID or class to the row container -->
+            <div id="accessories-container" class="row gy-4 g-12">
+                <!-- Dynamic product cards will be injected here -->
+            </div>
+        </div>
+    </div>
+    <!-- =========================== Offer Section End =============================== -->
+
+    <!----------------ACER--------------------------->
+    <section class="offer pt-80 pb-80">
+        <div class="section-heading">
+            <div class="flex-between flex-wrap gap-8">
+                <h5 class="mb-0 wow bounceInLeft">Shop Acer</h5>
+                <div class="flex-align gap-16 wow bounceInRight">
+                    <a href="shop.html"
+                        class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View
+                        All Deals</a>
+                    <div class="flex-align gap-8">
+                        <button type="button" id="flash-prev"
+                            class="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1">
+                            <i class="ph ph-caret-left"></i>
+                        </button>
+                        <button type="button" id="flash-next"
+                            class="slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1">
+                            <i class="ph ph-caret-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container container-lg">
+            <div class="row gy-4 justify-content-center">
+                <div class="col-sm-12">
+                    <a href="shop.html?category=Acer">
+                        <img src="assets/images//thumbs/acer.png" alt="Accessories"
+                            class="accessories-img w-100 h-auto rounded-16">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <div class="product mt-24">
+        <div class="container container-lg">
+            <!-- Add a unique ID or class to the row container -->
+            <div id="acer-devices-container" class="row gy-4 g-12">
+                <!-- Dynamic product cards will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-----brand section strt------>
+    <div class="brand py-80 overflow-hidden">
+        <div class="container container-lg">
+            <div class="brand-inner bg-color-one p-24 rounded-16">
+                <div class="section-heading">
+                    <div class="flex-between flex-wrap gap-8">
+                        <h5 class="mb-0 wow bounceInLeft">Featured Brands</h5>
+                        <div class="flex-align gap-16 wow bounceInRight">
+                            <a href="shop.html"
+                                class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">View
+                                All Deals</a>
+                            <div class="flex-align gap-8">
+                                <button type="button" id="brand-prev"
+                                    class="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1">
+                                    <i class="ph ph-caret-left"></i>
+                                </button>
+                                <button type="button" id="brand-next"
+                                    class="slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1">
+                                    <i class="ph ph-caret-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="brandSlider" class="brand-slider arrow-style-two">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-5">
+        <div class="text-center mb-4">
+            <h6 class="text-uppercase fw-bold mb-32">Core Service Aspects</h6>
+        </div>
+
+        <div class="row text-center g-4">
+            <!-- Secure Payment Method -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="d-flex flex-column align-items-center">
+                    <div class="mb-2"> <!-- Adjusted spacing -->
+                        <i class="fa-regular fa-credit-card fs-2 mb-12" style="color: #86c232;"></i>
+                    </div>
+                    <h6 class="fw-bold small mb-2">Secure Payment Method</h6>
+                    <p class="mb-0 small">Available Different secure Payment</p>
+                    <p class="small">Methods</p>
+                </div>
+            </div>
+
+            <!-- Extreme Fast Delivery -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="d-flex flex-column align-items-center">
+                    <div class="mb-2"> <!-- Adjusted spacing -->
+                        <i class="fa-solid fa-truck fs-2 mb-12" style="color: #86c232;"></i>
+                    </div>
+                    <h6 class="fw-bold small mb-2">Extreme Fast Delivery</h6>
+                    <p class="mb-0 small">Fast and convenient From door to door</p>
+                    <p class="small">delivery</p>
+                </div>
+            </div>
+
+            <!-- Quality & Savings -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="d-flex flex-column align-items-center">
+                    <div class="mb-2"> <!-- Adjusted spacing -->
+                        <i class="fa-regular fa-heart fs-2 mb-12" style="color: #86c232;"></i>
+                    </div>
+                    <h6 class="fw-bold small mb-2">Quality & Savings</h6>
+                    <p class="mb-0 small">Comprehensive quality control and</p>
+                    <p class="small">affordable price</p>
+                </div>
+            </div>
+
+            <!-- Professional Support -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="d-flex flex-column align-items-center">
+                    <div class="mb-2"> <!-- Adjusted spacing -->
+                        <i class="fa-regular fa-handshake fs-2 mb-12" style="color: #86c232;"></i>
+                    </div>
+                    <h6 class="fw-bold small mb-2">Professional Support</h6>
+                    <p class="mb-0 small">Efficient customer support from</p>
+                    <p class="small">passionate team</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <br><br>
+
+
+
+    <div id="footer"></div>
+
+    <script>
+        // Fetch the footer dynamically
+        fetch('./assets/includes/footer.html') // Go one level up and access includes/
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error));
+    </script>
+
+    <!-- <script>
+    // Fetch the header dynamically
+    fetch('../includes/header.html') // Go one level up and access includes/
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading header:', error));
+</script> -->
+
+
+    <!-- ==================== Footer End Here ==================== -->
+
+
+
+    <!-- Jquery js -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap Bundle Js -->
+    <script src="assets/js/boostrap.bundle.min.js"></script>
+    <!-- Bootstrap Bundle Js -->
+    <script src="assets/js/phosphor-icon.js"></script>
+    <!-- Select 2 -->
+    <script src="assets/js/select2.min.js"></script>
+    <!-- Slick js -->
+    <script src="assets/js/slick.min.js"></script>
+    <!-- jQuery (Required for Slick) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Slick Slider CSS & JS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css" />
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
+
+
+    <!-- Slick js -->
+    <script src="assets/js/count-down.js"></script>
+    <!-- jquery UI js -->
+    <script src="assets/js/jquery-ui.js"></script>
+    <!-- wow js -->
+    <script src="assets/js/wow.min.js"></script>
+    <!-- AOS Animation -->
+    <script src="assets/js/aos.js"></script>
+    <!-- marque -->
+    <script src="assets/js/marque.min.js"></script>
+    <!-- marque -->
+    <script src="assets/js/vanilla-tilt.min.js"></script>
+    <!-- main js -->
+    <script src="assets/js/main.js"></script>
+
+    <script>
+
+        // Initialize variables
+        let currentImageIndex = 0;
+        let bannerData = []; // Array to store fetched banner data
+
+        // References to the HTML elements
+        const bannerImg = document.getElementById('banner-bg');
+        // const bannerTitle = document.getElementById('banner-title');
+        const nextButton = document.getElementById('banner-next');
+        const prevButton = document.getElementById('banner-prev');
+
+        // Function to update the banner image and title 
+        function updateBanner(index) {
+            if (index >= 0 && index < bannerData.length) {
+                const currentBanner = bannerData[index + 1];
+                // Replace backslashes with forward slashes
+                const sanitizedPath = currentBanner.image.replace(/\\/g, '/');
+                const imageUrl = `${API_CUSTOMER_URL}/${sanitizedPath}`; // Construct the image URL
+                console.log('Sanitized Image URL:', imageUrl); // Debugging
+                bannerImg.src = imageUrl; // Set the full image URL
+                bannerImg.onerror = function () {
+                    bannerImg.src = 'assets/images/bg/banner-img3.png'; // Fallback image
+                };
+                // bannerTitle.textContent = currentBanner.title; // Set the title
+            }
+        }
+
+        // Fetch banner data from the API 
+        async function fetchBannerData() {
+            try {
+                const response = await fetch(`${API_CUSTOMER_URL}/api/slider`);
+                if (!response.ok) {
+                    throw new Error(`Error fetching data: ${response.statusText}`);
+                }
+                bannerData = await response.json();
+                console.log('Fetched Banner Data:', bannerData);
+                if (bannerData.length > 0) {
+                    // Initialize with the first banner
+                    updateBanner(currentImageIndex);
+                } else {
+                    console.error('No banners found.');
+                }
+            } catch (error) {
+                console.error('Error fetching banner data:', error);
+            }
+        }
+
+        // Event listeners for navigation buttons 
+        nextButton.addEventListener('click', function () {
+            currentImageIndex = (currentImageIndex + 1) % bannerData.length; // Loop to the first after the last
+            updateBanner(currentImageIndex);
+        });
+
+        prevButton.addEventListener('click', function () {
+            currentImageIndex = (currentImageIndex - 1 + bannerData.length) % bannerData.length; // Loop to the last after the first
+            updateBanner(currentImageIndex);
+        });
+
+        // Fetch and initialize the banner data
+        fetchBannerData();
+
+        document.getElementById('search-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const searchQuery = document.getElementById('search-input').value.trim();
+            window.location.href = `shop.html?search=${encodeURIComponent(searchQuery)}`;
+            // await fetchFilteredProducts(searchQuery);
+        });
+
+        async function fetchComputingDevices() {
+            try {
+                // Fetch products for category 'Computing Devices'
+                const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=Computing%20Devices`);
+                const data = await response.json();
+
+                console.log('API Response:', data);
+
+                // Select the container by its unique ID
+                const container = document.getElementById('computing-devices-container');
+                container.innerHTML = ''; // Clear existing products
+
+                if (data.products.length === 0) {
+                    container.innerHTML = '<p>No products available in Computing Devices.</p>';
+                    return;
+                }
+
+                data.products.forEach(product => {
+                    const sanitizedImagePath = product.image_path.replace(/\\/g, '/'); // Replace backslashes with forward slashes
+
+                    const productCard = `
+    <div style="width: 18%; min-width: 200px; border: 1px solid #ddd; border-radius: 12px; background: #fff; padding: 16px; position: relative; text-align: left; transition: box-shadow 0.3s ease-in-out; display: inline-block; margin: 10px;">
+        
+        <!-- Wishlist Button -->
+        <a href="wishlist.html" class="flex-align item-hover" onclick="toggleWishlist({ id: productId, name: 'Product Name', selling_price: 100, image_path: 'image.jpg' })">
+            <span class="position-absolute" style=" top:11px; right: 10px; background: none; border: none; cursor: pointer; color: #ccc; font-size: 18px;">
+                <i class="far fa-heart" id="header-wishlist-icon" style="color: #ff6600;"></i>
+            </span>
+        </a> 
+
+        <!-- Product Image -->
+        <a href="product-details.html?id=${product.id}" style="display: flex; justify-content: center;">
+            <img src="${API_CUSTOMER_URL}/${sanitizedImagePath}" alt="${product.name}" style="width: 100%; height: 150px; object-fit: contain;">
+        </a>
+
+        <!-- Product Info -->
+        <div style="margin-top: 10px;">
+            
+            <!-- Color Info -->
+            <div style="font-size: 12px; color: #666; margin-bottom: 5px;">1 Color</div>
+
+            <!-- Stock and Discount Badges -->
+            <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+                <span style="background: #0077ff; color: #fff; font-size: 10px; font-weight: bold; padding: 3px 6px; border-radius: 4px;">In stock</span>
+                <span style="background: #ffcc00; color: #000; font-size: 10px; font-weight: bold; padding: 3px 6px; border-radius: 4px;">${product.discount}% Off</span>
+            </div>
+
+            <!-- Product Name -->
+            <h6 style="font-size: 14px; font-weight: bold; color: #222; margin-bottom: 5px; line-height: 1.3;">
+                <a href="product-details.html?id=${product.id}" style="text-decoration: none; color: inherit;">${product.name}</a>
+            </h6>
+
+            <!-- VAT Info -->
+            <span style="font-size: 11px; color: #666; display: block; margin-bottom: 5px;">Inclusive VAT</span>
+
+            <!-- Price Section -->
+            <div>
+                <span style="color: #d60000; font-size: 16px; font-weight: bold;">${product.selling_price} AED</span>
+                <span style="color: #999; font-size: 12px; text-decoration: line-through; margin-left: 8px;">${product.original_price} AED</span>
+            </div>
+        </div>
+    </div>
+`;
+
+
+                    container.insertAdjacentHTML('beforeend', productCard);
+                });
+
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+
+        // Call the function to load products
+        fetchComputingDevices();
+
+        async function fetchNetworkingDevices() {
+            try {
+                // Fetch products for category 'Networking Devices'
+                const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=Networking%20Devices`);
+                const data = await response.json();
+
+                console.log('API Response:', data);
+
+                // Select the container by its unique ID
+                const container = document.getElementById('networking-devices-container');
+                container.innerHTML = ''; // Clear existing products
+
+                if (data.products.length === 0) {
+                    container.innerHTML = '<p>No products available in Networking Devices.</p>';
+                    return;
+                }
+
+                data.products.forEach(product => {
+                    const sanitizedImagePath = product.image_path.replace(/\\/g, '/'); // Replace backslashes with forward slashes
+
+                    const productCard = `
+    <div style="width: 18%; min-width: 200px; border: 1px solid #ddd; border-radius: 12px; background: #fff; padding: 16px; position: relative; text-align: left; transition: box-shadow 0.3s ease-in-out; display: inline-block; margin: 10px;">
+        
+        <!-- Wishlist Button -->
+        <a href="wishlist.html" class="flex-align item-hover" onclick="toggleWishlist({ id: '1', name: 'Product Name' })">
+            <span class="position-absolute" style=" top:10px; right: 10px; background: none; border: none; cursor: pointer; color: #ccc; font-size: 18px;">
+                <i class="far fa-heart heart-icon" id="header-wishlist-icon" style="color: #ff6600;"></i> 
+            </span> 
+        </a>
+
+        <!-- Product Image -->
+        <a href="product-details.html?id=${product.id}" style="display: flex; justify-content: center;">
+            <img src="${API_CUSTOMER_URL}/${sanitizedImagePath}" alt="${product.name}" style="width: 100%; height: 150px; object-fit: contain;">
+        </a>
+
+        <!-- Product Info -->
+        <div style="margin-top: 10px;">
+            
+            <!-- Color Info -->
+            <div style="font-size: 12px; color: #666; margin-bottom: 5px;">1 Color</div>
+
+            <!-- Stock and Discount Badges -->
+            <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+                <span style="background: #0077ff; color: #fff; font-size: 10px; font-weight: bold; padding: 3px 6px; border-radius: 4px;">In stock</span>
+                <span style="background: #ffcc00; color: #000; font-size: 10px; font-weight: bold; padding: 3px 6px; border-radius: 4px;">${product.discount}% Off</span>
+            </div>
+
+            <!-- Product Name -->
+            <h6 style="font-size: 14px; font-weight: bold; color: #222; margin-bottom: 5px; line-height: 1.3;">
+                <a href="product-details.html?id=${product.id}" style="text-decoration: none; color: inherit;">${product.name}</a>
+            </h6>
+
+            <!-- VAT Info -->
+            <span style="font-size: 11px; color: #666; display: block; margin-bottom: 5px;">Inclusive VAT</span>
+
+            <!-- Price Section -->
+            <div>
+                <span style="color: #d60000; font-size: 16px; font-weight: bold;">${product.selling_price} AED</span>
+                <span style="color: #999; font-size: 12px; text-decoration: line-through; margin-left: 8px;">${product.original_price} AED</span>
+            </div>
+        </div>
+    </div>
+`;
+
+
+                    container.insertAdjacentHTML('beforeend', productCard);
+                });
+
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+
+        // Call the function to load products
+        fetchNetworkingDevices();
+
+
+
+        async function fetchLenovoDevices() {
+            try {
+                // Fetch products for category 'Lenovo Devices'
+                const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=Lenovo%20Devices`);
+                const data = await response.json();
+
+                console.log('API Response:', data);
+
+                // Select the container by its unique ID
+                const container = document.getElementById('lenovo-devices-container');
+                container.innerHTML = ''; // Clear existing products
+
+                if (data.products.length === 0) {
+                    container.innerHTML = '<p>No products available in Lenovo Devices.</p>';
+                    return;
+                }
+
+                data.products.forEach(product => {
+                    const sanitizedImagePath = product.image_path.replace(/\\/g, '/'); // Replace backslashes with forward slashes
+
+                    const productCard = `
+    <div style="width: 18%; min-width: 200px; display: inline-block; border: 1px solid #ddd; border-radius: 12px; background: #fff; padding: 16px; position: relative; text-align: left; transition: box-shadow 0.3s ease-in-out; margin: 10px;">
+
+        <!-- Wishlist Button -->
+        <a href="wishlist.html" class="flex-align item-hover" onclick="toggleWishlist({ id: '1', name: 'Product Name' })">
+            <span class="position-absolute" style=" top:10px; right: 10px; background: none; border: none; cursor: pointer; color: #ccc; font-size: 18px;">
+                <i class="far fa-heart" id="header-wishlist-icon" style="color: #ff6600;"></i>
+            </span>
+        </a>
+
+        <!-- Product Image -->
+        <a href="product-details.html?id=${product.id}" style="display: flex; justify-content: center;">
+            <img src="${API_CUSTOMER_URL}/${sanitizedImagePath}" alt="${product.name}" style="width: 100%; height: 150px; object-fit: contain;">
+        </a>
+
+        <!-- Product Info -->
+        <div style="margin-top: 10px;">
+            
+            <!-- Color Info -->
+            <div style="font-size: 12px; color: #666; margin-bottom: 5px;">1 Color</div>
+
+            <!-- Stock and Discount Badges -->
+            <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+                <span style="background: #0077ff; color: #fff; font-size: 10px; font-weight: bold; padding: 3px 6px; border-radius: 4px;">In stock</span>
+                <span style="background: #ffcc00; color: #000; font-size: 10px; font-weight: bold; padding: 3px 6px; border-radius: 4px;">${product.discount}% Off</span>
+            </div>
+
+            <!-- Product Name -->
+            <h6 style="font-size: 14px; font-weight: bold; color: #222; margin-bottom: 5px; line-height: 1.3;">
+                <a href="product-details.html?id=${product.id}" style="text-decoration: none; color: inherit;">${product.name}</a>
+            </h6>
+
+            <!-- VAT Info -->
+            <span style="font-size: 11px; color: #666; display: block; margin-bottom: 5px;">Inclusive VAT</span>
+
+            <!-- Price Section -->
+            <div>
+                <span style="color: #d60000; font-size: 16px; font-weight: bold;">${product.selling_price} AED</span>
+                <span style="color: #999; font-size: 12px; text-decoration: line-through; margin-left: 8px;">${product.original_price} AED</span>
+            </div>
+        </div>
+    </div>
+`;
+
+                    container.insertAdjacentHTML('beforeend', productCard);
+                });
+
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+
+        // Call the function to load products
+        fetchLenovoDevices();
+
+        async function fetchSamsungDevices() {
+            try {
+                // Fetch products for category 'Samsung Devices'
+                const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=Samsung%20Devices`);
+                const data = await response.json();
+
+                console.log('API Response:', data);
+
+                // Select the container by its unique ID
+                const container = document.getElementById('samsung-devices-container');
+                container.innerHTML = ''; // Clear existing products
+
+                if (data.products.length === 0) {
+                    container.innerHTML = '<p>No products available in Samsung Devices.</p>';
+                    return;
+                }
+
+                // onclick="addToCart(event, ${JSON.stringify(product)})"
+
+                data.products.forEach(product => {
+                    const sanitizedImagePath = product.image_path.replace(/\\/g, '/'); // Replace backslashes with forward slashes
+
+                    const productCard = `
+    <div style="width: 18%; min-width: 200px; display: inline-block; border: 1px solid #ddd; border-radius: 12px; background: #fff; padding: 16px; position: relative; text-align: left; transition: box-shadow 0.3s ease-in-out; margin: 10px;">
+        
+        <!-- Wishlist Button -->
+        <a href="wishlist.html" class="flex-align item-hover" onclick="toggleWishlist({ id: '1', name: 'Product Name' })">
+            <span class="position-absolute" style=" top:10px; right: 10px; background: none; border: none; cursor: pointer; color: #ccc; font-size: 18px;">
+                <i class="far fa-heart" id="header-wishlist-icon" style="color: #ff6600;"></i>
+            </span>
+        </a>
+
+        <!-- Product Image -->
+        <a href="product-details.html?id=${product.id}" style="display: flex; justify-content: center;">
+            <img src="${API_CUSTOMER_URL}/${sanitizedImagePath}" alt="${product.name}" style="width: 100%; height: 150px; object-fit: contain;">
+        </a>
+
+        <!-- Product Info -->
+        <div style="margin-top: 10px;">
+            
+            <!-- Color Info -->
+            <div style="font-size: 12px; color: #666; margin-bottom: 5px;">1 Color</div>
+
+            <!-- Stock and Discount Badges -->
+            <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+                <span style="background: #0077ff; color: #fff; font-size: 10px; font-weight: bold; padding: 3px 6px; border-radius: 4px;">In stock</span>
+                <span style="background: #ffcc00; color: #000; font-size: 10px; font-weight: bold; padding: 3px 6px; border-radius: 4px;">${product.discount}% Off</span>
+            </div>
+
+            <!-- Product Name -->
+            <h6 style="font-size: 14px; font-weight: bold; color: #222; margin-bottom: 5px; line-height: 1.3;">
+                <a href="product-details.html?id=${product.id}" style="text-decoration: none; color: inherit;">${product.name}</a>
+            </h6>
+
+            <!-- VAT Info -->
+            <span style="font-size: 11px; color: #666; display: block; margin-bottom: 5px;">Inclusive VAT</span>
+
+            <!-- Price Section -->
+            <div>
+                <span style="color: #d60000; font-size: 16px; font-weight: bold;">${product.selling_price} AED</span>
+                <span style="color: #999; font-size: 12px; text-decoration: line-through; margin-left: 8px;">${product.original_price} AED</span>
+            </div>
+        </div>
+    </div>
+`;
+
+                    container.insertAdjacentHTML('beforeend', productCard);
+                });
+
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+
+        // Call the function to load products
+        fetchSamsungDevices();
+
+        async function fetchAccessories() {
+            try {
+                // Fetch products for category 'Accessories'
+                const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=Accessories`);
+                const data = await response.json();
+
+                console.log('API Response:', data);
+
+                // Select the container by its unique ID
+                const container = document.getElementById('accessories-container');
+                container.innerHTML = ''; // Clear existing products
+
+                if (data.products.length === 0) {
+                    container.innerHTML = '<p>No products available in Accessories.</p>';
+                    return;
+                }
+
+                data.products.forEach(product => {
+                    const sanitizedImagePath = product.image_path.replace(/\\/g, '/'); // Replace backslashes with forward slashes
+
+                    const productCard = `
+    <div style="width: 18%; min-width: 200px; display: inline-block; border: 1px solid #ddd; border-radius: 12px; background: #fff; padding: 16px; position: relative; text-align: left; transition: box-shadow 0.3s ease-in-out; margin: 10px;">
+        
+        <!-- Wishlist Button -->
+        <a href="wishlist.html" class="flex-align item-hover" onclick="toggleWishlist({ id: '1', name: 'Product Name' })">
+            <span class="position-absolute" style=" top:10px; right: 10px; background: none; border: none; cursor: pointer; color: #ccc; font-size: 18px;">
+                <i class="far fa-heart" id="header-wishlist-icon" style="color: #ff6600;"></i>
+            </span>
+        </a>
+
+        <!-- Product Image -->
+        <a href="product-details.html?id=${product.id}" style="display: flex; justify-content: center;">
+            <img src="${API_CUSTOMER_URL}/${sanitizedImagePath}" alt="${product.name}" style="width: 100%; height: 150px; object-fit: contain;">
+        </a>
+
+        <!-- Product Info -->
+        <div style="margin-top: 10px;">
+            
+            <!-- Color Info -->
+            <div style="font-size: 12px; color: #666; margin-bottom: 5px;">1 Color</div>
+
+            <!-- Stock and Discount Badges -->
+            <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+                <span style="background: #0077ff; color: #fff; font-size: 10px; font-weight: bold; padding: 3px 6px; border-radius: 4px;">In stock</span>
+                <span style="background: #ffcc00; color: #000; font-size: 10px; font-weight: bold; padding: 3px 6px; border-radius: 4px;">${product.discount}% Off</span>
+            </div>
+
+            <!-- Product Name -->
+            <h6 style="font-size: 14px; font-weight: bold; color: #222; margin-bottom: 5px; line-height: 1.3;">
+                <a href="product-details.html?id=${product.id}" style="text-decoration: none; color: inherit;">${product.name}</a>
+            </h6>
+
+            <!-- VAT Info -->
+            <span style="font-size: 11px; color: #666; display: block; margin-bottom: 5px;">Inclusive VAT</span>
+
+            <!-- Price Section -->
+            <div>
+                <span style="color: #d60000; font-size: 16px; font-weight: bold;">${product.selling_price} AED</span>
+                <span style="color: #999; font-size: 12px; text-decoration: line-through; margin-left: 8px;">${product.original_price} AED</span>
+            </div>
+        </div>
+    </div>
+`;
+
+                    container.insertAdjacentHTML('beforeend', productCard);
+                });
+
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+
+        // Call the function to load products
+        fetchAccessories();
+
+        async function fetchAcerProducts() {
+            try {
+                // Fetch products for category 'Acer'
+                const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=Acer`);
+                const data = await response.json();
+
+                console.log('API Response:', data);
+
+                // Select the container by its unique ID
+                const container = document.getElementById('acer-devices-container');
+                container.innerHTML = ''; // Clear existing products
+
+                if (data.products.length === 0) {
+                    container.innerHTML = '<p>No products available in Acer.</p>';
+                    return;
+                }
+
+                data.products.forEach(product => {
+                    const sanitizedImagePath = product.image_path.replace(/\\/g, '/'); // Replace backslashes with forward slashes
+
+                    const productCard = `
+    <div style="width: 18%; min-width: 200px; display: inline-block; border: 1px solid #ddd; border-radius: 12px; background: #fff; padding: 16px; position: relative; text-align: left; transition: box-shadow 0.3s ease-in-out; margin: 10px;">
+        
+        <!-- Wishlist Button -->
+        <a href="wishlist.html" class="flex-align item-hover" onclick="toggleWishlist({ id: '1', name: 'Product Name' })">
+            <span class="position-absolute" style=" top:10px; right: 10px; background: none; border: none; cursor: pointer; color: #ccc; font-size: 18px;">
+                <i class="far fa-heart" id="header-wishlist-icon" style="color: #ff6600;"></i>
+            </span>
+        </a>
+
+        <!-- Product Image -->
+        <a href="product-details.html?id=${product.id}" style="display: flex; justify-content: center;">
+            <img src="${API_CUSTOMER_URL}/${sanitizedImagePath}" alt="${product.name}" style="width: 100%; height: 150px; object-fit: contain;">
+        </a>
+
+        <!-- Product Info -->
+        <div style="margin-top: 10px;">
+            
+            <!-- Color Info -->
+            <div style="font-size: 12px; color: #666; margin-bottom: 5px;">1 Color</div>
+
+            <!-- Stock and Discount Badges -->
+            <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+                <span style="background: #0077ff; color: #fff; font-size: 10px; font-weight: bold; padding: 3px 6px; border-radius: 4px;">In stock</span>
+                <span style="background: #ffcc00; color: #000; font-size: 10px; font-weight: bold; padding: 3px 6px; border-radius: 4px;">${product.discount}% Off</span>
+            </div>
+
+            <!-- Product Name -->
+            <h6 style="font-size: 14px; font-weight: bold; color: #222; margin-bottom: 5px; line-height: 1.3;">
+                <a href="product-details.html?id=${product.id}" style="text-decoration: none; color: inherit;">${product.name}</a>
+            </h6>
+
+            <!-- VAT Info -->
+            <span style="font-size: 11px; color: #666; display: block; margin-bottom: 5px;">Inclusive VAT</span>
+
+            <!-- Price Section -->
+            <div>
+                <span style="color: #d60000; font-size: 16px; font-weight: bold;">${product.selling_price} AED</span>
+                <span style="color: #999; font-size: 12px; text-decoration: line-through; margin-left: 8px;">${product.original_price} AED</span>
+            </div>
+        </div>
+    </div>
+`;
+
+                    container.insertAdjacentHTML('beforeend', productCard);
+                });
+
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+
+        // Call the function to load products
+        fetchAcerProducts();
+
+        // Function to load categories dynamically and initialize the slider
+        async function loadCategories() {
+            try {
+                // Fetch category counts from API
+                const response = await fetch(`${API_CUSTOMER_URL}/api/product-counts`);
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch product counts');
+                }
+
+                const data = await response.json();
+                const categoryCounts = data.categoryCounts;
+
+                const categories = [
+                    { name: 'Networking', image: 'img 9.png' },
+                    { name: 'All In One', image: 'img 1.png' },
+                    { name: 'Desktops', image: 'img 2.png' },
+                    { name: 'Monitors', image: 'img 3.png' },
+                    { name: 'Laptops', image: 'img 4.png' },
+                    { name: 'Printers & Copier', image: 'img 5.png' },
+                    { name: 'Routers', image: 'img 6.png' },
+                    { name: 'Projectors', image: 'img 7.png' },
+                    { name: 'Accessories', image: 'img 8.png' }
+                ];
+
+                const featureItemWrapper = document.querySelector('.feature-item-wrapper');
+                featureItemWrapper.innerHTML = ''; // Clear the existing content
+
+                // Loop through categories and add them dynamically
+                categories.forEach((category) => {
+                    // Find the category count from fetched data
+                    const categoryCount = categoryCounts.find(item => item.category === category.name);
+                    const productCount = categoryCount ? categoryCount.product_count : 0;
+
+                    // Create HTML for category item
+                    const featureItemHTML = `
+    <div class="feature-item text-center">
+        <div class="feature-item__thumb rounded-circle">
+            <a href="shop.html?category=${category.name}" class="w-100 h-100 flex-center">
+                <img src="./assets/images/thumbs/${category.image}" alt="${category.name}" 
+                     onerror="this.onerror=null; this.src='./assets/images/default.png';">
+            </a>
+        </div>
+        <div class="feature-item__content mt-16">
+            <h6 class="text-lg mb-8">
+                <a href="shop.html?category=${category.name}" class="text-inherit">${category.name}</a>
+            </h6>
+            <span class="text-sm text-gray-400">${productCount}+ Products</span>
+        </div>
+    </div>
+`;
+
+
+                    // Append to the wrapper
+                    featureItemWrapper.innerHTML += featureItemHTML;
+                });
+
+                // Ensure Slick Slider initializes after adding categories
+                initSlickSlider();
+            } catch (error) {
+                console.error('❌ Error fetching category counts:', error);
+            }
+        }
+
+        // Function to initialize the Slick slider
+        function initSlickSlider() {
+            $('.feature-item-wrapper').slick({
+                slidesToShow: 5, // Show 5 items at a time
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                infinite: true,
+                arrows: true,
+                prevArrow: $('#feature-item-wrapper-prev'),
+                nextArrow: $('#feature-item-wrapper-next'),
+                cssEase: 'linear', // Ensures smooth transition
+                adaptiveHeight: false, // Prevents height misalignment
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 4
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 3
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    }
+                ]
+            });
+
+            console.log('✅ Slick Initialized'); // Debugging log
+        }
+
+
+        // Ensure script runs only after document is ready
+        $(document).ready(function () {
+            loadCategories();
+        });
+
+
+
+        async function fetchBrands() {
+            try {
+                const response = await fetch(`${API_CUSTOMER_URL}/api/product-brands`);
+                const brands = await response.json();
+                console.log('API Response:', brands);
+
+                const brandSlider = document.getElementById('brandSlider'); // Ensure this ID exists in your HTML
+
+                // Clear existing items if any
+                brandSlider.innerHTML = '';
+
+                // Loop through brands and create HTML elements
+                brands.forEach((brand, index) => {
+                    // Sanitize the image_path
+                    const sanitizedImagePath = brand.image_path.replace(/\\/g, '/');
+
+                    // Create the brand item
+                    const brandItem = document.createElement('div');
+                    brandItem.className = 'brand-item mx-10';
+                    brandItem.setAttribute('data-aos', 'zoom-in');
+                    brandItem.setAttribute('data-aos-duration', `${200 * (index + 1)}`); // Increment animation duration
+
+                    brandItem.innerHTML = `
+            <div class= "d-flex flex-column">
+                <img src="${API_CUSTOMER_URL}/${sanitizedImagePath}" alt="${brand.name}">
+                <div class="shop-${brand.name.toLowerCase().replace(/[^a-z0-9-]/g, '')} text-center">Shop ${brand.name}</div>
+                </div>
+            `;
+
+                    // Add a link to the brand item
+                    const link = document.createElement('a');
+                    link.href = `shop.html?brand=${encodeURIComponent(brand.name)}`;
+                    link.appendChild(brandItem);
+
+                    // Append the link to the slider
+                    brandSlider.appendChild(link);
+                });
+
+                // Reinitialize AOS animations
+                // AOS.refresh();
+            } catch (error) {
+                console.error('Error fetching brands:', error);
+            }
+        }
+
+        // Call the fetchBrands function when the page loads
+        document.addEventListener('DOMContentLoaded', fetchBrands);
+
+        // Fetch Sale Products & Add to Slider
+        async function fetchSaleProducts() {
+            try {
+                const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=Sale%20Offer`);
+                const data = await response.json();
+
+                console.log('API Response:', data);
+
+                const container = document.getElementById('saleContainer');
+                container.innerHTML = '';
+
+                if (data.products.length === 0) {
+                    container.innerHTML = '<p style="color: #d60000; font-weight: bold;">No products available in Sale.</p>';
+                    return;
+                }
+
+                // Generate Product Cards
+                data.products.forEach(product => {
+                    const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
+
+                    const productCard = `
+            <div style="min-width: 250px; background: #fff; border-radius: 10px; border: 1px solid #ddd; padding: 12px; position: relative; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); white-space: normal;">
+                
+                <!-- Wishlist Button -->
+                <button style="position: absolute; top: 10px; right: 10px; background: none; border: none; cursor: pointer; color: #ccc; font-size: 16px;">
+                    <i class="fa fa-heart" style="color: #ff6600;"></i>
+                </button>
+
+                <!-- Product Image -->
+                <a href="product-details.html?id=${product.id}" style="display: flex; justify-content: center;">
+                    <img src="${API_CUSTOMER_URL}/${sanitizedImagePath}" alt="${product.name}" style="width: 100%; height: 130px; object-fit: contain;">
+                </a>
+
+                <!-- Product Info -->
+                <div style="margin-top: 10px; text-align: left;">
+                    
+                    <!-- Stock & Discount Badges -->
+                    <div style="display: flex; align-items: center; gap: 5px; margin-bottom: 6px;">
+                        <span style="background: #0077ff; color: #fff; font-size: 10px; font-weight: bold; padding: 3px 6px; border-radius: 4px;">In stock</span>
+                        <span style="background: #ffcc00; color: #000; font-size: 10px; font-weight: bold; padding: 3px 6px; border-radius: 4px;">${product.discount || 'NA'}% Off</span>
+                    </div>
+
+                    <!-- Product Name -->
+                    <h6 style="font-size: 13px; font-weight: bold; color: #222; margin-bottom: 5px; line-height: 1.3;">
+                        <a href="product-details.html?id=${product.id}" style="text-decoration: none; color: inherit;">${product.name}</a>
+                    </h6>
+
+                    <!-- VAT Info -->
+                    <span style="font-size: 11px; color: #666; display: block; margin-bottom: 5px;">Inclusive VAT</span>
+
+                    <!-- Price Section -->
+                    <div>
+                        <span style="color: #d60000; font-size: 14px; font-weight: bold;">${product.offer_price} AED</span>
+                        <span style="color: #999; font-size: 11px; text-decoration: line-through; margin-left: 6px;">${product.selling_price} AED</span>
+                    </div>
+
+                    <!-- Rating -->
+                    <div style="display: flex; align-items: center; gap: 4px; margin-top: 5px;">
+                        <i class="fa fa-star" style="color: #ffa500;"></i>
+                        <span style="color: #333; font-size: 12px; font-weight: bold;">(4.8)</span>
+                    </div>
+                </div>
+            </div>
+            `;
+
+                    container.insertAdjacentHTML('beforeend', productCard);
+                });
+
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+
+        // Smooth Scrolling for Slider
+        function scrollHorizontal(direction) {
+            const container = document.getElementById('saleContainer');
+            const scrollAmount = 300;
+            container.scrollLeft += scrollAmount * direction;
+        }
+
+        // Countdown Timer Logic
+        function startCountdown() {
+            const endTime = new Date().getTime() + (5 * 24 * 60 * 60 * 1000); // 5 days from now
+            setInterval(() => {
+                let now = new Date().getTime();
+                let timeLeft = endTime - now;
+
+                let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }, 1000);
+        }
+
+        // Initialize
+        fetchSaleProducts();
+        startCountdown();
+
+        // function updateWishlistBadge() {
+        //     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        //     const wishlistBadge = document.getElementById('numberWishlist');
+
+        //     // Update the badge count
+        //     if (wishlistBadge) {
+        //         wishlistBadge.textContent = wishlist.length;
+        //     }
+        // }
+
+        // // Call this function on page load to ensure the badge is updated dynamically
+        // window.onload = updateWishlistBadge;
+
+        function scrollHorizontal(direction) {
+            const container = document.getElementById('saleContainer');
+            const scrollAmount = 300; // Adjust as needed for your layout
+            const currentScroll = container.scrollLeft;
+            const newScroll = currentScroll + (scrollAmount * direction);
+            container.scrollLeft = newScroll;
+        }
+
+        function updateWishlistBadge() {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const wishlistBadge = document.getElementById('numberWishlist');
+
+            // Update the badge count
+            if (wishlistBadge) {
+                wishlistBadge.textContent = wishlist.length;
+            }
+        }
+
+        // Call this function on page load to ensure the badge is updated dynamically
+        window.onload = updateWishlistBadge;
+
+
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartIcon(); // Update the cart icon with the correct count
+        });
+
+        // index.html - Update the cart icon count based on localStorage
+        function updateCartIcon() {
+            const cartItemCount = localStorage.getItem('cartItemCount') || 0; // Get the cart count from localStorage
+            const cartCountElement = document.querySelector('.cart-item-count'); // Get the element that holds the cart count
+
+            // Update the cart count in the UI
+            cartCountElement.innerText = cartItemCount; // Set the count to the number of items in the cart
+        }
+
+        document.getElementById('search-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const searchQuery = document.getElementById('search-input').value.trim();
+            window.location.href = `shop.html?search=${encodeURIComponent(searchQuery)}`;
+            // await fetchFilteredProducts(searchQuery);
+        });
+
+        function addToCart(product) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingProduct = cart.find(item => item.id === product.id);
+
+            if (existingProduct) {
+                existingProduct.quantity += 1; // Increment quantity if already in cart
+            } else {
+                cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Update the cart item count in localStorage
+            updateCartCount();
+
+            showSuccessMessage(`${product.name} added to cart.`);
+        }
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
+
+            const cartCountElement = document.querySelector('.cart-item-count'); // Select the cart icon
+            if (cartCountElement) {
+                cartCountElement.textContent = totalItems; // Update count
+                cartCountElement.style.display = totalItems > 0 ? 'inline-block' : 'none'; // Hide if empty
+            }
+        }
+
+        // Ensure cart count updates when the page loads
+        document.addEventListener("DOMContentLoaded", updateCartCount);
+
+        function showSuccessMessage(message) {
+            const messageContainer = document.createElement('div');
+            messageContainer.style.position = 'fixed';
+            messageContainer.style.top = '20px';
+            messageContainer.style.right = '20px';
+            messageContainer.style.backgroundColor = 'green';
+            messageContainer.style.color = 'white';
+            messageContainer.style.padding = '10px 20px';
+            messageContainer.style.borderRadius = '5px';
+            messageContainer.style.zIndex = '1000';
+            messageContainer.textContent = message;
+
+            document.body.appendChild(messageContainer);
+
+            // Remove the message after 3 seconds
+            setTimeout(() => {
+                document.body.removeChild(messageContainer);
+            }, 3000);
+        }
+
+        function handleAddToCart(product) {
+            addToCart(product); // Add product to cart
+            window.location.href = 'cart.html'; // Navigate to cart.html
+        }
+
+        // Function to update cart count dynamically
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCountElement = document.getElementById('cart-count');
+
+            if (cartCountElement) {
+                let totalItems = cart.reduce((total, product) => total + product.quantity, 0);
+                cartCountElement.textContent = totalItems;
+                cartCountElement.style.display = totalItems > 0 ? 'inline-block' : 'none';
+            }
+        }
+
+        // Ensure badge & count updates instantly
+        document.addEventListener("DOMContentLoaded", () => {
+
+            updateCartCount();
+        });
+
+        function addToCart(product) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingProduct = cart.find(item => item.id === product.id);
+
+            if (existingProduct) {
+                existingProduct.quantity += 1; // Increase quantity
+            } else {
+                cart.push({ ...product, quantity: 1 }); // Add new product
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart
+            updateCartCount(); // Update cart count in real-time
+            showSuccessMessage(`${product.name} added to cart.`);
+        }
+
+        function toggleIcon(button) {
+            let icon = button.querySelector(".icon-toggle");
+            if (icon.classList.contains("bi-plus")) {
+                icon.classList.remove("bi-plus");
+                icon.classList.add("bi-dash");
+            } else {
+                icon.classList.remove("bi-dash");
+                icon.classList.add("bi-plus");
+            }
+        }
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            updateCartCount(); // Ensure cart count is correct
+        });
+
+
+        function toggleWishlist(product) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const headerWishlistIcon = document.getElementById('header-wishlist-icon');
+
+            // Check if the product already exists in the wishlist
+            const productIndex = wishlist.findIndex(item => item.id === product.id);
+
+            if (productIndex === -1) {
+                // Add product to wishlist
+                wishlist.push(product);
+                headerWishlistIcon.style.color = "red"; // Change heart icon color to red
+                showSuccessMessage(`${product.name} added to wishlist!`);
+            } else {
+                // Remove product from wishlist
+                wishlist.splice(productIndex, 1);
+                headerWishlistIcon.style.color = ""; // Reset heart icon color
+                showSuccessMessage(`${product.name} removed from wishlist!`);
+            }
+
+            // Save updated wishlist to localStorage
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        }
+
+        // function toggleWishlist(product) {
+        //     let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        //     const heartIcon = document.getElementById('heart-icon');
+        //     const headerWishlistIcon = document.getElementById('header-wishlist-icon');
+        //     const wishlistCountElement = document.getElementById('wishlist-count');
+
+        //     // Check if product already exists in wishlist
+        //     const productIndex = wishlist.findIndex(item => item.id === product.id);
+
+        //     if (productIndex === -1) {
+        //         // Add product to wishlist
+        //         wishlist.push(product);
+        //         heartIcon.style.color = "black";
+        //         headerWishlistIcon.style.color = "black"; // Change header wishlist icon color
+        //         showSuccessMessage(`${product.name} added to wishlist!`);
+        //     } else {
+        //         // Remove product from wishlist
+        //         wishlist.splice(productIndex, 1);
+        //         heartIcon.style.color = "";
+        //         headerWishlistIcon.style.color = ""; // Reset header wishlist icon color
+        //         showSuccessMessage(`${product.name} removed from wishlist!`);
+        //     }
+
+        //     // Save updated wishlist to localStorage
+        //     localStorage.setItem('wishlist', JSON.stringify(wishlist));
+
+        //     // Update wishlist count in real-time
+        //     wishlistCountElement.textContent = wishlist.length;
+        //     wishlistCountElement.style.display = wishlist.length > 0 ? 'inline-block' : 'none';
+        // }
+
+        // Ensure heart icon color updates on page load
+        document.addEventListener("DOMContentLoaded", function () {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const headerWishlistIcon = document.getElementById('header-wishlist-icon');
+
+            if (wishlist.length > 0) {
+                headerWishlistIcon.style.color = "red"; // Set color red if items exist
+            } else {
+                headerWishlistIcon.style.color = ""; // Reset color if empty
+            }
+        });
+
+// Toggle sidebar function  for mobile/tablet
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const menuBtn = document.querySelector('.menu-btn');
+
+  if (sidebar.style.width === '250px') {
+    sidebar.style.width = '0';
+    menuBtn.style.display = 'block'; // Show button when sidebar closes
+  } else {
+    sidebar.style.width = '250px';
+    menuBtn.style.display = 'none'; // Hide button when sidebar opens
+  }
+}
+
+
+    </script>
+    <!-- cart add section -->
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+           updateCartIcon(); // Update the cart icon with the correct count
+       });
+
+       // index.html - Update the cart icon count based on localStorage
+       function updateCartIcon() {
+           const cartItemCount = localStorage.getItem('cartItemCount') || 0; // Get the cart count from localStorage
+           const cartCountElement = document.querySelector('.cart-item-count'); // Get the element that holds the cart count
+
+           // Update the cart count in the UI
+           cartCountElement.innerText = cartItemCount; // Set the count to the number of items in the cart
+       }
+
+       document.getElementById('search-form').addEventListener('submit', (event) => {
+           event.preventDefault();
+           const searchQuery = document.getElementById('search-input').value.trim();
+           window.location.href = `shop.html?search=${encodeURIComponent(searchQuery)}`;
+           // await fetchFilteredProducts(searchQuery);
+       });
+
+       function addToCart(product) {
+           const cart = JSON.parse(localStorage.getItem('cart')) || [];
+           const existingProduct = cart.find(item => item.id === product.id);
+
+           if (existingProduct) {
+               existingProduct.quantity += 1; // Increment quantity if already in cart
+           } else {
+               cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
+           }
+
+           localStorage.setItem('cart', JSON.stringify(cart));
+
+           // Update the cart item count in localStorage
+           updateCartCount();
+
+           showSuccessMessage(`${product.name} added to cart.`);
+       }
+
+       function updateCartCount() {
+           const cart = JSON.parse(localStorage.getItem('cart')) || [];
+           const totalItems = cart.reduce((total, product) => total + product.quantity, 0); // Calculate total quantity
+
+           // Update the cart count in localStorage
+           localStorage.setItem('cartItemCount', totalItems);
+       }
+       function showSuccessMessage(message) {
+           const messageContainer = document.createElement('div');
+           messageContainer.style.position = 'fixed';
+           messageContainer.style.top = '20px';
+           messageContainer.style.right = '20px';
+           messageContainer.style.backgroundColor = 'green';
+           messageContainer.style.color = 'white';
+           messageContainer.style.padding = '10px 20px';
+           messageContainer.style.borderRadius = '5px';
+           messageContainer.style.zIndex = '1000';
+           messageContainer.textContent = message;
+
+           document.body.appendChild(messageContainer);
+
+           // Remove the message after 3 seconds
+           setTimeout(() => {
+               document.body.removeChild(messageContainer);
+           }, 3000);
+       }
+
+       function handleAddToCart(product) {
+           addToCart(product); // Add product to cart
+           window.location.href = 'cart.html'; // Navigate to cart.html
+       }
+
+
+       // Function to toggle wishlist status
+       function toggleWishlist(product) {
+           // Get heart icon and current wishlist from localStorage
+           const heartIcon = document.getElementById('heart-icon');
+           let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+           // Check if product already exists in wishlist
+           const productIndex = wishlist.findIndex(item => item.id === product.id);
+
+           if (productIndex === -1) {
+               // Product not in wishlist, add it and change icon color to red
+               wishlist.push(product);
+               localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Save to localStorage
+               heartIcon.style.color = 'red'; // Change heart color to red
+               showSuccessMessage('Product added to wishlist!');
+           } else {
+               // Product already in wishlist, remove it and reset icon color
+               wishlist.splice(productIndex, 1);
+               localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Remove from localStorage
+               heartIcon.style.color = ''; // Reset heart color
+               showSuccessMessage('Product removed from wishlist!');
+           }
+       }
+
+       function updateWishlistBadge() {
+           const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+           const wishlistBadge = document.getElementById('numberWishlist');
+
+           // Update the badge count
+           if (wishlistBadge) {
+               wishlistBadge.textContent = wishlist.length;
+           }
+       }
+
+       // Call this function on page load to ensure the badge is updated dynamically 
+       window.onload = updateWishlistBadge;
+
+
+       function toggleIcon(button) {
+           let icon = button.querySelector(".icon-toggle");
+           if (icon.classList.contains("bi-plus")) {
+               icon.classList.remove("bi-plus");
+               icon.classList.add("bi-dash");
+           } else {
+               icon.classList.remove("bi-dash");
+               icon.classList.add("bi-plus");
+           }
+       }
+   </script>
+   <script>
+    fetch('./topHeader.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('top-header').innerHTML = data;
+      })
+      .catch(error => console.error('Error loading header:', error));
+  </script>
+<script src="./apiConfig/apiConfig.js"></script>
+
+
+</body>
+
+</html>

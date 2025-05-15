@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="./assets/css/styles.min.css" />
+  <link rel="stylesheet" href="./assets/css/navbar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<!-- Quill JS -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="./popupMessages.js"></script>
+<script>
+    //(function() {
+    //     let(function() {
+    //     let path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })(); path = window.location.pathname;
+    //     if (path.endsWith(".html")) {
+    //         let newPath = path.replace(".html", "");
+    //         window.history.replaceState({}, document.title, newPath);
+    //     }
+    // })();
+
+
+    (function checkAuth() {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        window.location.replace('./login.html'); // Redirect to login page
+      }
+    })();
+
+    window.onload = function() {
+    const token = localStorage.getItem('token');
+    const authContainer = document.getElementById('auth');
+    
+    if (token) {
+        // If token exists, user is logged in, show the logout button
+        authContainer.innerHTML = `
+            <a href="#" class="btn btn-outline-danger mx-3 mt-2 d-block" id="logoutButton">Logout</a>
+        `;
+
+        // Add event listener to logout button
+        document.getElementById('logoutButton').addEventListener('click', logout);
+    } else {
+        // If token doesn't exist, show the login button
+        authContainer.innerHTML = `
+            <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Login</a>
+        `;
+    }
+}
+
+// Logout function
+function logout() {
+    // Remove the token from localStorage
+    localStorage.removeItem('token');
+
+    // Redirect to login page after logout
+    window.location.href = './login.html';
+}
+  </script>  
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <div class="sidebar" id="sidebar">
+          <a class="navbar-brand" href="#">
+              <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+          </a>
+          
+          <div class="section-title mt-9">HOME</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./index.html">
+                      <i class="ti ti-layout-dashboard"></i> Dashboard
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">PRODUCTS & STOCK</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./products.html">
+                      <i class="fas fa-box"></i> Products
+                  </a>
+              </li>
+               <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="purchaseToggle">
+                <i class="fas fa-shopping-cart"></i> Purchases 
+              </a>
+              <ul class="nav-submenu" id="purchaseSubmenu">
+                <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
+                <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
+                <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
+              </ul>
+            </li>
+          </ul>
+              <li class="nav-item">
+                  <a class="nav-link" href="./damages.html">
+                      <i class="fas fa-exclamation-circle"></i> Damages
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./stock.html">
+                      <i class="fas fa-archive"></i> Stock
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">POS & ORDERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos.html">
+                      <i class="fas fa-cash-register"></i> POS
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./pos-orders.html">
+                      <i class="fas fa-receipt"></i> POS Orders
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./online-orders.html">
+                      <i class="fas fa-shopping-basket"></i> Online Orders
+                  </a>
+              </li>
+          </ul>
+
+          <div class="section-title">PROMO</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./coupons.html">
+                      <i class="fas fa-tags"></i> Coupons
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./promotions.html">
+                      <i class="fas fa-bullhorn"></i> Promotions
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./product-sections.html">
+                      <i class="fas fa-cube"></i>  Product Sections
+                  </a>
+              </li>
+          </ul>
+
+          <div class="section-title">COMMUNICATIONS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./push-notifications.html">
+                      <i class="fas fa-bell"></i> Push Notifications
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./subscribers.html">
+                      <i class="fas fa-users"></i> Subscribers
+                  </a>
+              </li>
+          </ul>
+          <div class="section-title">USERS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./admin.html">
+                      <i class="fas fa-user"></i> Administrators
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./customer.html">
+                      <i class="fas fa-users"></i> Customers
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./employee.html">
+                      <i class="fas fa-user-tie"></i> Employees
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">ACCOUNTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-exchange-alt"></i> Transactions
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">REPORTS</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" href="./sales-report.html">
+                      <i class="fas fa-chart-line"></i> Sales Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./products-report.html">
+                      <i class="fas fa-file-alt"></i> Products Report
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">
+                      <i class="fas fa-credit-card"></i> Credit Balance Report
+                  </a>
+              </li>
+          </ul>
+      
+          <div class="section-title">SETUP</div>
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                  <a class="nav-link" id="settingsToggle" href="#">
+                      <i class="fas fa-cog"></i> Settings
+                  </a>
+              </li>
+          </ul>
+          
+          <div class="submenu" id="settingsSubmenu">
+              <ul class="nav flex-column">
+                  <li class="nav-item">
+                      <a class="nav-link" href="./company.html">
+                          <i class="fas fa-building"></i> Company
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./site.html">
+                          <i class="fas fa-globe"></i> Site
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./mail.html">
+                          <i class="fas fa-envelope"></i> Mail
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./location-setup.html">
+                          <i class="fas fa-map-marker-alt"></i> Location Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./shipping-setup.html">
+                          <i class="fas fa-truck"></i> Shipping Setup
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">
+                          <i class="fas fa-lock"></i> OTP
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification.html">
+                          <i class="fas fa-bell"></i> Notification
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./notification-alert.html">
+                          <i class="fas fa-bell"></i> Notification alert
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./social-media.html">
+                          <i class="fas fa-share-alt"></i> Social Media
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./cookies.html">
+                          <i class="fas fa-cookie-bite"></i> Cookies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./analytics.html">
+                          <i class="fas fa-chart-bar"></i> Analytics
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./theme.html">
+                          <i class="fas fa-paint-brush"></i> Theme
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sliders.html">
+                          <i class="fas fa-sliders-h"></i> Sliders
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./currencies.html">
+                          <i class="fas fa-money-bill-wave"></i> Currencies
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-categories.html">
+                          <i class="fas fa-tags"></i> Product Categories
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-attributes.html">
+                          <i class="fas fa-cube"></i> Product Attributes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./product-brands.html">
+                          <i class="fas fa-tag"></i> Product Brands
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./supplier.html">
+                          <i class="fas fa-industry"></i> Suppliers
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./outlets.html">
+                          <i class="fas fa-store"></i> Outlets
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./benefits.html">
+                          <i class="fas fa-gift"></i> Benefits
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./units.html">
+                          <i class="fas fa-balance-scale"></i> Units
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./taxes.html">
+                          <i class="fas fa-percent"></i>  Taxes
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./page.html">
+                          <i class="fas fa-file-alt"></i> Pages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./role & permissions.html">
+                          <i class="fas fa-user-shield"></i> Role & Permissions
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./languages-list.html">
+                          <i class="fas fa-globe"></i> Languages
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./sms-gateway.html">
+                          <i class="fas fa-comments"></i> Sms Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./payment-gateway.html">
+                          <i class="fas fa-credit-card"></i> Payment Gateway
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="./license.html">
+                          <i class="fas fa-file-contract"></i> License
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+       <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                   <img src="./assets//images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <!-- <a href="http://127.0.0.1:5502/Office_Project/src/html/my-profile.html" class="d-flex align-items-center gap-2 dropdown-item"> -->
+                      <a href="./my-profile.html" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-3">My Profile</p>
+                    </a>
+                    <span id="auth">
+                      <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Logout</a>
+                    </span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>  
+
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Dashboard / Settings / Currencies</h5> 
+            <div class="container">
+              <h5>Currencies</h5>
+              <div class="container-fluid d-flex flex-column h-100">
+                <div class="d-flex justify-content-end mt-auto mb-4">
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#currencyModal">➕ Add Currency</button>
+                </div>
+                
+                <div class="modal fade" id="currencyModal" tabindex="-1" aria-labelledby="currencyModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="currencyModalLabel">Add New Currency</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form id="createCurrencyForm">
+                          <!-- Row 1 -->
+                          <div class="row mb-3">
+                            <div class="col-md-6">
+                              <label for="name" class="form-label">Name</label>
+                              <input type="text" id="name" name="name" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="symbol" class="form-label">Symbol</label>
+                              <input type="text" id="symbol" name="symbol" class="form-control" required>
+                            </div>
+                          </div>
+                          <!-- Row 2 -->
+                          <div class="row mb-3">
+                            <div class="col-md-6">
+                              <label for="code" class="form-label">Code</label>
+                              <input type="text" id="code" name="code" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="exchangeRate" class="form-label">Exchange Rate</label>
+                              <input type="number" step="0.0001" id="exchangeRate" name="exchangeRate" class="form-control" required>
+                            </div>
+                          </div>
+                          <!-- Cryptocurrency Options -->
+                          <div class="mb-3">
+                            <label class="form-label">Is Cryptocurrency:</label>
+                            <div class="d-flex gap-3">
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="isCryptocurrency" id="cryptoYes" value="Yes" checked>
+                                <label class="form-check-label" for="cryptoYes">Yes</label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="isCryptocurrency" id="cryptoNo" value="No">
+                                <label class="form-check-label" for="cryptoNo">No</label>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- Submit Button -->
+                          <button type="button" class="btn btn-primary w-100" onclick="submitCurrencyForm()">Submit</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="modal fade" id="updateCurrencyModal" tabindex="-1" aria-labelledby="updateCurrencyModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="updateCurrencyModalLabel">Update Currency</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="updateCurrencyForm">
+                              <div class="row mb-3">
+                                <div class="col-md-6">
+                                  <label for="update-name" class="form-label">Name</label>
+                                  <input type="text" id="update-name" name="name" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="update-symbol" class="form-label">Symbol</label>
+                                  <input type="text" id="update-symbol" name="symbol" class="form-control" required>
+                                </div>
+                              </div>
+                              <div class="row mb-3">
+                                <div class="col-md-6">
+                                  <label for="update-code" class="form-label">Code</label>
+                                  <input type="text" id="update-code" name="code" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="update-exchangeRate" class="form-label">Exchange Rate</label>
+                                    <input type="number" step="0.0001" id="update-exchangeRate" name="exchangeRate" class="form-control" required>
+                                </div>
+                              </div>
+                              <div class="mb-3">
+                                    <label class="form-label">Is Cryptocurrency:</label>
+                                    <div class="d-flex gap-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="isCryptocurrency" id="update-cryptoYes" value="Yes">
+                                            <label class="form-check-label" for="update-cryptoYes">Yes</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="isCryptocurrency" id="update-cryptoNo" value="No">
+                                            <label class="form-check-label" for="update-cryptoNo">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Update Currency</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="table-container">
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Symbol</th>
+                      <th>Code</th>
+                      <th>Is Cryptocurrency</th>
+                      <th>Exchange Rate</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="currencyTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+              
+              
+  <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/sidebarmenu.js"></script>
+  <script src="./assets/js/app.min.js"></script>
+  <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <!-- Bootstrap JS Bundle (Includes Popper) -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="./apiConfig/apiConfig.js"></script>
+
+
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    const purchaseToggle = document.getElementById('purchaseToggle');
+    const purchaseSubmenu = document.getElementById('purchaseSubmenu');
+
+    purchaseToggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        purchaseSubmenu.style.display = (purchaseSubmenu.style.display === 'none' || purchaseSubmenu.style.display === '') ? 'block' : 'none';
+    });
+});
+
+  document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            const settingsToggle = document.getElementById('settingsToggle');
+            const settingsSubmenu = document.getElementById('settingsSubmenu');
+
+            // Handle submenu toggle
+            settingsToggle.addEventListener('click', function (event) {
+                event.preventDefault();
+                settingsSubmenu.style.display = (settingsSubmenu.style.display === 'block') ? 'none' : 'block';
+            });
+
+            // Handle active link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    // Remove active class from all links
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    // Add active class to the clicked link
+                    this.classList.add('active');
+                });
+            });
+        });
+
+
+// Function to submit the currency form
+async function submitCurrencyForm() {
+    const formData = {
+        name: document.getElementById('name').value.trim(),
+        symbol: document.getElementById('symbol').value.trim(),
+        code: document.getElementById('code').value.trim(),
+        isCryptocurrency: document.querySelector('input[name="isCryptocurrency"]:checked').value, // "Yes" or "No"
+        exchangeRate: parseFloat(document.getElementById('exchangeRate').value.trim()),
+    };
+
+    console.log('Form Data:', formData); // Debugging: Log form data for verification
+
+    // Validate form fields
+    if (
+        !formData.name ||
+        !formData.symbol ||
+        !formData.code ||
+        !formData.isCryptocurrency ||
+        isNaN(formData.exchangeRate)
+    ) {
+        showErrorMessage('Please fill all required fields correctly.');
+        // console.error('Validation failed. Check form data:', formData);
+        return;
+    }
+
+    // Get the token from localStorage
+    const token = localStorage.getItem('token');
+    if (!token) {
+        showErrorMessage('Please log in to submit the form.');
+        return;
+    }
+
+    try {
+        // Make a POST request to add the new currency
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/currencies`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token,
+            },
+            body: JSON.stringify(formData),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            showSuccessMessage('Currency added successfully!');
+            fetchCurrencies(); // Refresh the table
+            document.getElementById('createCurrencyForm').reset(); // Reset the form
+            const modalElement = document.getElementById('currencyModal');
+            const modalInstance = bootstrap.Modal.getInstance(modalElement);
+            modalInstance.hide(); // Hide the modal
+        } else {
+            showErrorMessage(result.message || 'Failed to add currency.');
+            console.error('Server Error:', result);
+        }
+    } catch (error) {
+        console.error('Error submitting currency form:', error);
+    }
+}
+
+// Function to fetch and display the list of currencies
+async function fetchCurrencies() {
+    const token = localStorage.getItem('token');
+    const apiUrl = `${API_ADMINGRAB_URL}/api/currencies`;
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('API Error:', errorData);
+            throw new Error(`Failed to fetch currencies: ${errorData.message || 'Unknown error'}`);
+        }
+
+        const currencies = await response.json();
+        console.log('Fetched currencies:', currencies);
+
+        // Populate the table with fetched currencies
+        const tableBody = document.getElementById('currencyTableBody');
+        tableBody.innerHTML = '';
+
+        currencies.forEach(currency => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${currency.name}</td>
+                <td>${currency.symbol}</td>
+                <td>${currency.code}</td>
+                <td>${currency.is_cryptocurrency}</td>
+                <td>${currency.exchange_rate}</td>
+                <td class="action-buttons">
+                    <button class="btn btn-edit" onclick="openUpdateForm(${currency.id})">✏️</button>
+
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+        console.log('Currencies rendered successfully');
+    } catch (error) {
+        console.error('Error fetching currencies:', error);
+        showErrorMessage(`Error fetching currencies: ${error.message}`);
+    }
+}
+
+// Helper function to hide modal (not overlay-based anymore)
+function hideModal() {
+    const modalElement = document.getElementById('currencyModal');
+    const modalInstance = bootstrap.Modal.getInstance(modalElement);
+    modalInstance.hide();
+}
+
+// Helper function to show modal (not overlay-based anymore)
+function showModal() {
+    const modalElement = document.getElementById('currencyModal');
+    const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
+    modalInstance.show();
+}
+
+async function openUpdateForm(currencyId) {
+    console.log('Currency ID passed to openUpdateForm:', currencyId); // Log to check the value
+
+    try {
+        const token = localStorage.getItem('token');  // Get token from localStorage
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/currencies/${currencyId}`, {
+            headers: {
+                'Authorization': `${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            console.error("Error response from server:", response);
+            throw new Error('Failed to fetch currency data');
+        }
+
+        const currency = await response.json();
+        console.log('Fetched currency data:', currency);
+
+        // Prefill the form fields with fetched data
+        if (currency) {
+            document.getElementById('update-name').value = currency.name || '';
+            document.getElementById('update-symbol').value = currency.symbol || '';
+            document.getElementById('update-code').value = currency.code || '';
+            document.getElementById('update-exchangeRate').value = currency.exchange_rate || '';
+
+            // Set radio buttons for "Is Cryptocurrency"
+            if (currency.is_cryptocurrency === 'Yes') {
+                document.getElementById('update-cryptoYes').checked = true;
+            } else {
+                document.getElementById('update-cryptoNo').checked = true;
+            }
+
+            // Set the currency ID in the modal
+            document.getElementById('updateCurrencyModal').setAttribute('data-currency-id', currency.id);
+
+            // Show the modal
+            const updateModal = new bootstrap.Modal(document.getElementById('updateCurrencyModal'));
+            updateModal.show();
+        }
+    } catch (error) {
+        console.error('Error fetching currency data:', error);
+        showErrorMessage('Failed to load currency data. Please try again.');
+    }
+}
+
+
+// Function to handle the form submission for updating the currency
+
+async function handleUpdateFormSubmit(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Get the ID of the currency being updated from the modal
+    const currencyId = document.getElementById('updateCurrencyModal').getAttribute('data-currency-id');
+    console.log('Currency ID from modal:', currencyId);  // Log to check the value
+
+    // Check if currencyId is null or undefined
+    if (!currencyId) {
+        console.error("Currency ID is not set correctly.");
+        showErrorMessage('Error: Currency ID is missing.');
+        return;
+    }
+
+    // Get updated form data
+    const name = document.getElementById('update-name').value;
+    const symbol = document.getElementById('update-symbol').value;
+    const code = document.getElementById('update-code').value;
+    const exchangeRate = document.getElementById('update-exchangeRate').value;
+    const isCryptocurrency = document.querySelector('input[name="isCryptocurrency"]:checked').value;
+
+    // Validate form fields
+    if (!name || !symbol || !code || !exchangeRate || !isCryptocurrency) {
+        showErrorMessage('Please fill all the fields!');
+        return;
+    }
+
+    // Create the updated currency object
+    const updatedCurrency = {
+        name,
+        symbol,
+        code,
+        exchangeRate,
+        isCryptocurrency,
+    };
+
+    try {
+        // Send updated data to the backend via PUT request
+        const token = localStorage.getItem('token'); // Retrieve token from localStorage
+        const response = await fetch(`${API_ADMINGRAB_URL}/api/currencies/${currencyId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token,
+            },
+            body: JSON.stringify(updatedCurrency),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('Error response:', errorData);
+            throw new Error('Failed to update currency.');
+        }
+
+        const result = await response.json();
+        console.log('Currency updated successfully:', result);
+
+        // Close the update modal
+        $('#updateCurrencyModal').modal('hide');
+
+        // Optionally, refresh the currency list or update the UI
+        fetchCurrencies(); // Assume there's a function to reload the currencies table
+    } catch (error) {
+        console.error('Error updating currency:', error);
+        showErrorMessage('An error occurred while updating the currency. Please try again.');
+    }
+}
+
+
+// Attach the update form submit handler
+document.getElementById('updateCurrencyForm').addEventListener('submit', handleUpdateFormSubmit);
+
+// Initialize the page by fetching the list of currencies
+fetchCurrencies();
+
+</script>
+
+</body>
+</html>
