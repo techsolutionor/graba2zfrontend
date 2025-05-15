@@ -979,9 +979,6 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="nav-menu__item">
-                                <a href="contact.html" class="nav-menu__link">Contact Us</a>
-                            </li>
                         </ul>
                         <!-- Nav Menu End -->
                     </div>
@@ -2082,7 +2079,7 @@
                 const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
                 const productCardHTML = `
             <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                <div class="card h-100 border border-gray-100  rounded-16 position-relative w-150 h-400">
+                <div style="min-width: 100% !important;" class="card h-100 border border-gray-100  rounded-16 position-relative w-150 h-400">
                     <a href="product-details.html?slug=${product.slug}" class="product-card__thumb d-block position-relative">
                         <img src="${API_CUSTOMER_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
                     </a>
@@ -2139,7 +2136,7 @@
                 const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
                 const productCardHTML = `
             <div class="product-card col-6 col-md-6 col-lg-4 col-xl-3 ">
-                <div class="card h-100 border border-gray-100  rounded-16 position-relative" >
+                <div style="min-width: 100% !important;" class="card h-100 border border-gray-100  rounded-16 position-relative" >
                      <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
                     <a href="product-details.html?slug=${product.slug}" class="product-card__thumb d-block position-relative">
                         <img src="${API_ADMINGRAB_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
@@ -2204,7 +2201,7 @@
             const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
             const productCardHTML = `
          <div class="product-card col-6 col-md-6 col-lg-4 col-xl-3 ">
-                <div class="card h-100 border border-gray-100  rounded-16 position-relative" >
+                <div style="min-width: 100% !important;" class="card h-100 border border-gray-100  rounded-16 position-relative" >
                     <a href="product-details.html?slug=${product.slug}" class="product-card__thumb d-block position-relative">
                         <img src="${API_ADMINGRAB_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
                     </a>

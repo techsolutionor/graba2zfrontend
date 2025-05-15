@@ -32,199 +32,224 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <!-- Swiper CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-<link href="https://unpkg.com/phosphor-icons@1.4.2/src/css/ph.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://unpkg.com/phosphor-icons@1.4.2/src/css/ph.min.css" rel="stylesheet">
 
 
 
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <style>
-       /* Hide sidebar by default */
-    .sidebar {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: auto;
-  background-color: #ffffff;
-  overflow-x: hidden;
-  transition: 0.3s ease;
-  padding-top: 60px;
-  z-index: 999;
-}
+        /* this media query for table */
+        @media (max-width: 768px) {
+            .table-responsive {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
 
-/* Sidebar content scrollable */
-.sidebar-inner {
-  max-height: 100%;
-  overflow-y: auto;
-}
+            table {
+                width: 100%;
+                font-size: 14px;
+            }
 
-.sidebar a {
-  display: block;
-  padding: 12px 20px;
-  color: rgb(0, 0, 0);
-  text-decoration: none;
-}
+            th,
+            td {
+                white-space: nowrap;
+            }
+        }
 
-.sidebar a:hover {
-  background: #fff4f4;
-  color: rgb(49, 136, 49);
-}
+        /* Hide sidebar by default */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: auto;
+            background-color: #ffffff;
+            overflow-x: hidden;
+            transition: 0.3s ease;
+            padding-top: 60px;
+            z-index: 999;
+        }
 
-/* Menu button */
-.menu-btn {
-  display: none;
-  position:absolute;
-  top: 41px;
-  right: 31px;
-  font-size: 24px;
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
-  padding: 10px;
-  z-index: 1000;
-  border-radius: 5px;
-  text-align: left;
-}
+        /* Sidebar content scrollable */
+        .sidebar-inner {
+            max-height: 100%;
+            overflow-y: auto;
+        }
 
- /* Show on mobile and tablet only */
-@media (max-width: 1024px) {
-  .menu-btn {
-    display: block;
-  }
+        .sidebar a {
+            display: block;
+            padding: 12px 20px;
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+        }
 
-  .sidebar {
-    display: block;
-  }
-}
+        .sidebar a:hover {
+            background: #fff4f4;
+            color: rgb(49, 136, 49);
+        }
 
- /* Hide on larger screens  */
-@media (min-width: 1025px) {
-  .sidebar {
-    display: none !important;
-  }
+        /* Menu button */
+        .menu-btn {
+            display: none;
+            position: absolute;
+            top: 41px;
+            right: 31px;
+            font-size: 24px;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            padding: 10px;
+            z-index: 1000;
+            border-radius: 5px;
+            text-align: left;
+        }
 
-  .menu-btn {
-    display: none !important;
-  }
-} 
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-.swiper-button-prev::after,
-  .swiper-button-next::after {
-    font-size: 17px; /* small arrow icon */
-    
-    color: rgb(255, 255, 255);
-    border-radius: 50%;
-  }
-  .qty-box {
-    border: 1px solid #ffc107;
-    border-radius: 6px;
-    overflow: hidden;
-  }
+        /* Show on mobile and tablet only */
+        @media (max-width: 1024px) {
+            .menu-btn {
+                display: block;
+            }
 
-  .qty-btn {
-    background-color: #fff3cd;
-    border: none;
-    color: #856404;
-    padding: 4px 14px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    width: 40px;
-    text-align: center;
-  }
+            .sidebar {
+                display: block;
+            }
+        }
 
-  .qty-input {
-    width: 45px;
-    text-align: center;
-    border: none;
-    background-color: #fff;
-    font-weight: bold;
-    font-size: 18px;
-  }
+        /* Hide on larger screens  */
+        @media (min-width: 1025px) {
+            .sidebar {
+                display: none !important;
+            }
 
-  .qty-input:focus {
-    outline: none;
-  }
+            .menu-btn {
+                display: none !important;
+            }
+        }
 
-  .qty-btn:hover {
-    background-color: #ffe8a1;
-  }
-  /* custom hover */
-  #hover:hover {
-   color: #86c232 !important;
-}
-.dropdown-item:hover {
-    color: #86c232 !important;
-}
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
 
-  .badge {
-    display: inline-block;
-    padding: 4px 10px;
-    font-size: 13px;
-    font-weight: bold;
-    border-radius: 4px;
-  }
+        .swiper-button-prev::after,
+        .swiper-button-next::after {
+            font-size: 17px;
+            /* small arrow icon */
 
-  .badge-blue {
-    background-color:#FDD835;
-    color: white;
-  }
+            color: rgb(255, 255, 255);
+            border-radius: 50%;
+        }
 
-  .badge-green {
-    background-color: #90C309;
-    color: white;
-  }
+        .qty-box {
+            border: 1px solid #ffc107;
+            border-radius: 6px;
+            overflow: hidden;
+        }
 
-   /* first dropdown */
-      /* Custom Dropdown Styles */
-      .magnifier-lens {
-  position: absolute;
-  border: 2px solid #000;
-  width: 150px;
-  height: 150px;
-  
-  pointer-events: none;
-  visibility: hidden;
-  background-repeat: no-repeat;
-  background-size: 200% 200%;
-  z-index: 999;
-}
+        .qty-btn {
+            background-color: #fff3cd;
+            border: none;
+            color: #856404;
+            padding: 4px 14px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 40px;
+            text-align: center;
+        }
+
+        .qty-input {
+            width: 45px;
+            text-align: center;
+            border: none;
+            background-color: #fff;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .qty-input:focus {
+            outline: none;
+        }
+
+        .qty-btn:hover {
+            background-color: #ffe8a1;
+        }
+
+        /* custom hover */
+        #hover:hover {
+            color: #86c232 !important;
+        }
+
+        .dropdown-item:hover {
+            color: #86c232 !important;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            font-size: 13px;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .badge-blue {
+            background-color: #FDD835;
+            color: white;
+        }
+
+        .badge-green {
+            background-color: #90C309;
+            color: white;
+        }
+
+        /* first dropdown */
+        /* Custom Dropdown Styles */
+        .magnifier-lens {
+            position: absolute;
+            border: 2px solid #000;
+            width: 150px;
+            height: 150px;
+
+            pointer-events: none;
+            visibility: hidden;
+            background-repeat: no-repeat;
+            background-size: 200% 200%;
+            z-index: 999;
+        }
 
 
-    
-
-.cross-button:hover {
-  filter: invert(17%) sepia(97%) saturate(7472%) hue-rotate(357deg) brightness(98%) contrast(115%);
-}
-.cross-button {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath d='M2.293 2.293a1 1 0 011.414 0L8 6.586l4.293-4.293a1 1 0 011.414 1.414L9.414 8l4.293 4.293a1 1 0 01-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 01-1.414-1.414L6.586 8 2.293 3.707a1 1 0 010-1.414z'/%3E%3C/svg%3E");
-  background-color: #000;
-}
-
-.magnifier-lens {
-  position: absolute;
-  border: 2px solid #000;
-  width: 200px; /* Increased from 120px */
-  height: 200px;
-  border-radius: 50%;
-  pointer-events: none;
-  visibility: hidden;
-  background-repeat: no-repeat;
-  background-size: 300% 300%; /* Adjust as needed */
-  z-index: 999;
-}
 
 
-      
-</style>
+        .cross-button:hover {
+            filter: invert(17%) sepia(97%) saturate(7472%) hue-rotate(357deg) brightness(98%) contrast(115%);
+        }
+
+        .cross-button {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath d='M2.293 2.293a1 1 0 011.414 0L8 6.586l4.293-4.293a1 1 0 011.414 1.414L9.414 8l4.293 4.293a1 1 0 01-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 01-1.414-1.414L6.586 8 2.293 3.707a1 1 0 010-1.414z'/%3E%3C/svg%3E");
+            background-color: #000;
+        }
+
+        .magnifier-lens {
+            position: absolute;
+            border: 2px solid #000;
+            width: 200px;
+            /* Increased from 120px */
+            height: 200px;
+            border-radius: 50%;
+            pointer-events: none;
+            visibility: hidden;
+            background-repeat: no-repeat;
+            background-size: 300% 300%;
+            /* Adjust as needed */
+            z-index: 999;
+        }
+    </style>
 </head>
+
 <body>
     <div id="top-header"></div>
     <!-- ======================= Middle Header Start ========================= -->
@@ -289,185 +314,185 @@ ul {
             </nav>
         </div>
         <!-- Menu Button for Mobile/Tablet Only start-->
-<div class="menu-btn" onclick="toggleSidebar()">☰</div>
+        <div class="menu-btn" onclick="toggleSidebar()">☰</div>
 
-<!-- Sidebar Only For Mobile/Tablet -->
-<div id="sidebar" class="sidebar">
-  <div class="sidebar-inner">
-    <ul>
-    
-      <a href="shop.html?category=Desktops&brand=Lenovo">Lenovo Desktops </a>
-  </li>
-  <li>
-      <a href="shop.html?category=Desktops&brand=Dell"> Dell Desktops</a>
-  </li>
-  <li>
-      <a href="shop.html?category=Desktops&brand=Asus"> Asus Desktops</a>
-  </li>
-  <li>
-      <a href="shop.html?category=Desktops&brand=Acer"> Acer Desktops </a>
-  </li>
-  <li>
-      <a href="shop.html?category=Desktops&brand=HP"> HP Desktops</a>
-  </li>
-  <li>
-    <a href="shop.html?category=Monitors&brand=Lenovo"> Lenovo Monitors</a>
-</li>
-<li>
-    <a href="shop.html?category=Monitors&brand=MSI"> MSI Monitors</a>
-</li>
-<li>
-    <a href="shop.html?category=Monitors&brand=HP"> HP Monitors</a>
-</li>
-<li>
-    <a href="shop.html?category=Monitors&brand=Dell"> Dell Monitors</a>
-</li>
-<li>
-    <a href="shop.html?category=Monitors&brand=Asus"> Asus Monitors</a>
-</li>
-<li>
-    <a href="shop.html?category=Monitors&brand=Acer"> Acer Monitors</a>
-</li>
-<li>
-    <a href="shop.html?category=Monitors&brand=Samsung"> Samsung
-        Monitors</a>
-</li>
-<li>
-    <a href="shop.html?category=Monitors&brand=AOC"> AOC Monitors</a>
-</li>
-<li>
-    <a href="shop.html?category=Monitors&brand=Viewsonic"> Viewsonic
-        Monitors</a>
-</li>
-<li>
-    <a href="shop.html?category=Monitors&brand=LG"> LG Monitors</a>
-</li>
-<li>
-  <a href="shop.html?category=Laptops&brand=Lenovo"> Lenovo Laptops</a>
-</li>
-<li>
-  <a href="shop.html?category=Laptops&brand=MSI"> MSI Laptops</a>
-</li>
-<li>
-  <a href="shop.html?category=Laptops&brand=HP"> HP Laptops</a>
-</li>
-<li>
-  <a href="shop.html?category=Laptops&brand=Dell"> Dell Laptops</a>
-</li>
-<li>
-  <a href="shop.html?category=Laptops&brand=Asus"> Asus Laptops</a>
-</li>
-<li>
-  <a href="shop.html?category=Laptops&brand=Acer"> Acer Laptops</a>
-</li>
-<li>
-  <a href="shop.html?category=Laptops&brand=MI"> MI Laptops</a>
-</li>
-<li>
-  <a href="shop.html?category=Laptops&brand=Apple"> Apple Laptops</a>
-</li>
-<li>
-  <a href="shop.html?category=Laptops&brand=Microsoft"> Microsoft
-      Laptops</a>
-</li>
-<li>
-  <a href="shop.html?category=Printers%20&%20Copier&brand=HR"> HR Printer
-      & Copier </a>
-</li>
-<li>
-  <a href="shop.html?category=Printers%20&%20Copier&brand=Canon"> Canon
-      Printer & Copier</a>
+        <!-- Sidebar Only For Mobile/Tablet -->
+        <div id="sidebar" class="sidebar">
+            <div class="sidebar-inner">
+                <ul>
 
-<li>
-  <a href="shop.html?category=Printers%20&%20Copier&brand=Brother">
-      Brother Printer & Copier</a>
-</li>
-<li>
-  <a href="shop.html?category=Printers%20&%20Copier&brand=Ricoh"> Ricoh
-      Printer & Copier</a>
-</li>
-<li>
-  <a href="shop.html?category=Printers%20&%20Copier&brand=Epson"> Epson
-      Printer & Copier</a>
-</li>
-<li>
-  <a href="shop.html?category=Printers%20&%20Copier&brand=Xerox"> Xerox
-      Printer & Copier</a>
-</li>
-<li>
-  <a href="shop.html?category=Routers&brand=TP%20Link"> TP Link Routers
-  </a>
-</li>
-<li>
-  <a href="shop.html?category=Projectors&brand=Optoma"> Optoma</a>
-</li>
-<li>
-  <a href="shop.html?category=Projectors&brand=BENQ"> BENQ</a>
-</li>
-<li>
-  <a href="shop.html?category=Projectors&brand=LG"> LG </a>
-</li>
-<li>
-  <a href="shop.html?category=Bags"> Bags</a>
-</li>
-<li>
-  <a href="shop.html?category=RAM"> RAMs</a>
-</li>
-<li>
-  <a href="shop.html?category=Mouse"> Mouse </a>
-</li>
-<li>
-  <a href="shop.html?category=Keyboard"> keyboard </a>
-</li>
-<li>
-  <a href="shop.html?category=Hard%20Drives"> Hard Drives</a>
-</li>
-<li>
-  <a href="shop.html?category=Headphones"> headphones </a>
-</li>
-<li>
-  <a href="shop.html?category=Storage%20Devices"> storage devices </a>
-</li>
-<li>
-  <a href="shop.html?category=Graphic%20Cards"> Graphic Cards </a>
-</li>
-<li>
-  <a href="shop.html?categoryMotherboard"> Motherboard </a>
-</li>
-<li>
-  <a href="shop.html?category=Power%20Supply"> Power Supply </a>
-</li>
-<li>
-  <a href="shop.html?category=Cables"> cables</a>
-</li>
-<li>
-  <a href="shop.html?category=HDMI"> HDMI</a>
-</li>
-<li>
-  <a href="shop.html?category=Adapter"> Adapters </a>
-</li>
-<li>
-  <a href="shop.html?category=USB"> USB C HUB </a>
-</li>
-<li>
-  <a href="shop.html?category=Connectors"> Connectors </a>
-</li>
-<li>
-  <a href="shop.html?category=Display%20Port"> Display Port </a>
-</li>
-<li>
-  <a href="shop.html?category=USB%20Dongles"> USB Dongles </a>
-</li>
-<li>
-  <a href="shop.html?category=Wifi%20Dongles"> Wifi Dongles </a>
-</li>
-</ul>
+                    <a href="shop.html?category=Desktops&brand=Lenovo">Lenovo Desktops </a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Desktops&brand=Dell"> Dell Desktops</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Desktops&brand=Asus"> Asus Desktops</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Desktops&brand=Acer"> Acer Desktops </a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Desktops&brand=HP"> HP Desktops</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Monitors&brand=Lenovo"> Lenovo Monitors</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Monitors&brand=MSI"> MSI Monitors</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Monitors&brand=HP"> HP Monitors</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Monitors&brand=Dell"> Dell Monitors</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Monitors&brand=Asus"> Asus Monitors</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Monitors&brand=Acer"> Acer Monitors</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Monitors&brand=Samsung"> Samsung
+                            Monitors</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Monitors&brand=AOC"> AOC Monitors</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Monitors&brand=Viewsonic"> Viewsonic
+                            Monitors</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Monitors&brand=LG"> LG Monitors</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Laptops&brand=Lenovo"> Lenovo Laptops</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Laptops&brand=MSI"> MSI Laptops</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Laptops&brand=HP"> HP Laptops</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Laptops&brand=Dell"> Dell Laptops</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Laptops&brand=Asus"> Asus Laptops</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Laptops&brand=Acer"> Acer Laptops</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Laptops&brand=MI"> MI Laptops</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Laptops&brand=Apple"> Apple Laptops</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Laptops&brand=Microsoft"> Microsoft
+                            Laptops</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Printers%20&%20Copier&brand=HR"> HR Printer
+                            & Copier </a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Printers%20&%20Copier&brand=Canon"> Canon
+                            Printer & Copier</a>
+
+                    <li>
+                        <a href="shop.html?category=Printers%20&%20Copier&brand=Brother">
+                            Brother Printer & Copier</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Printers%20&%20Copier&brand=Ricoh"> Ricoh
+                            Printer & Copier</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Printers%20&%20Copier&brand=Epson"> Epson
+                            Printer & Copier</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Printers%20&%20Copier&brand=Xerox"> Xerox
+                            Printer & Copier</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Routers&brand=TP%20Link"> TP Link Routers
+                        </a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Projectors&brand=Optoma"> Optoma</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Projectors&brand=BENQ"> BENQ</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Projectors&brand=LG"> LG </a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Bags"> Bags</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=RAM"> RAMs</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Mouse"> Mouse </a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Keyboard"> keyboard </a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Hard%20Drives"> Hard Drives</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Headphones"> headphones </a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Storage%20Devices"> storage devices </a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Graphic%20Cards"> Graphic Cards </a>
+                    </li>
+                    <li>
+                        <a href="shop.html?categoryMotherboard"> Motherboard </a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Power%20Supply"> Power Supply </a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Cables"> cables</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=HDMI"> HDMI</a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Adapter"> Adapters </a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=USB"> USB C HUB </a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Connectors"> Connectors </a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Display%20Port"> Display Port </a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=USB%20Dongles"> USB Dongles </a>
+                    </li>
+                    <li>
+                        <a href="shop.html?category=Wifi%20Dongles"> Wifi Dongles </a>
+                    </li>
+                </ul>
 
 
-  
-  </div>
-</div>
-<!-- Menu Button for Mobile/Tablet Only end-->
+
+            </div>
+        </div>
+        <!-- Menu Button for Mobile/Tablet Only end-->
     </header>
     <!-- ======================= Middle Header End ========================= -->
 
@@ -1150,9 +1175,6 @@ ul {
                                     </li>
                                 </ul>
                             </li>
-                            <li class="nav-menu__item">
-                                <a href="contact.html" class="nav-menu__link">Contact Us</a>
-                            </li>
                         </ul>
                         <!-- Nav Menu End -->
                     </div>
@@ -1186,7 +1208,7 @@ ul {
                     <li class="flex-align text-gray-500">
                         <i class="ph ph-caret-right"></i>
                     </li>
-                    
+
                     </li>
                     <li class="text-sm text-neutral-600" style="color:rgb(63, 102, 63) !important;">
                         Product Details
@@ -1205,95 +1227,100 @@ ul {
                         <div class="col-xl-5">
                             <div class="product-details__left">
 
-                               
-<!-- <div class="product-details__thumb flex-center h-100">
+
+                                <!-- <div class="product-details__thumb flex-center h-100">
   <img id="specific-product-image" class="py-10"  style="cursor: zoom-in;" />
 </div> -->
-<div class="product-details__thumb flex-center h-100">
-  <img id="specific-product-image" class="py-10" data-bs-toggle="modal" data-bs-target="#imageModal" style="cursor: pointer;"  style="cursor: zoom-in;">
-</div>
-<!-- <div class="product-details__thumb flex-center h-100">
+                                <div class="product-details__thumb flex-center h-100">
+                                    <img id="specific-product-image" class="py-10" data-bs-toggle="modal"
+                                        data-bs-target="#imageModal" style="cursor: pointer;" style="cursor: zoom-in;">
+                                </div>
+                                <!-- <div class="product-details__thumb flex-center h-100">
   <img id="specific-product-image" src="your-image.jpg" class="py-10" style="cursor: zoom-in;" />
 </div> -->
 
 
 
-<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content bg-transparent border-0">
-      
-      <!-- Relative wrapper for positioning the button on the image -->
-      <div class="position-relative d-inline-block mx-auto">
-        
-        <!-- The image -->
-        <img id="modal-product-image" src="" alt="Enlarged Product Image"
-             class="img-fluid rounded-3"
-             style="max-height: 80vh; width: auto;">
-        
-        <!-- Close button OVER the image, inside top-right corner -->
-        <button type="button"
-        class="btn-close cross-button position-absolute"
-        style="top: 10px; right: 10px; z-index: 10; filter: invert(1);"
-        data-bs-dismiss="modal"
-        aria-label="Close">
-</button>
+                                <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                        <div class="modal-content bg-transparent border-0">
+
+                                            <!-- Relative wrapper for positioning the button on the image -->
+                                            <div class="position-relative d-inline-block mx-auto">
+
+                                                <!-- The image -->
+                                                <img id="modal-product-image" src="" alt="Enlarged Product Image"
+                                                    class="img-fluid rounded-3" style="max-height: 80vh; width: auto;">
+
+                                                <!-- Close button OVER the image, inside top-right corner -->
+                                                <button type="button" class="btn-close cross-button position-absolute"
+                                                    style="top: 10px; right: 10px; z-index: 10; filter: invert(1);"
+                                                    data-bs-dismiss="modal" aria-label="Close">
+                                                </button>
 
 
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-                             
-
-                               
-                                <div style="padding-bottom:20px;">
-                                <div class="swiper mySwiper" style="width: 100%; max-width: 520px;">
-                                    <div class="swiper-wrapper" id="product-thumbnails">
-                                      
+                                            </div>
+                                        </div>
                                     </div>
-                                  
-                                    
-                                    <div class="swiper-button-next" style="background-color: #0c0c0b; height: 60px;width: 22px; border-radius: 5%;"></div>
-                                    <div class="swiper-button-prev" style="background-color: #0c0c0b; height: 60px;width: 22px; border-radius: 5%;"></div>
-                                  </div>
                                 </div>
-                                  
-                               
-                                
-                                  
-                                  
-                                
-                          
+
+
+
+
+
+
+
+                                <div style="padding-bottom:20px;">
+                                    <div class="swiper mySwiper" style="width: 100%; max-width: 520px;">
+                                        <div class="swiper-wrapper" id="product-thumbnails">
+
+                                        </div>
+
+
+                                        <div class="swiper-button-next"
+                                            style="background-color: #0c0c0b; height: 60px;width: 22px; border-radius: 5%;">
+                                        </div>
+                                        <div class="swiper-button-prev"
+                                            style="background-color: #0c0c0b; height: 60px;width: 22px; border-radius: 5%;">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
                             </div>
                         </div>
                         <div class="col-xl-7 p-6">
                             <!-- foe my self -->
                             <div class="flex-align gap-8">
-                               
-                              
+
+
                                 <span id="product-off" class="badge badge-blue" style="display: none;">0% Off</span>
-                                <span id="product-off-label" class="badge badge-green" style="display: none;">On Sale</span>
-                              </div>
-                              
-                              
-                              
+                                <span id="product-off-label" class="badge badge-green" style="display: none;">On
+                                    Sale</span>
+                            </div>
+
+
+
                             <div class="product-details__content">
                                 <!-- <h5 class="mb-12">Lay's Potato Chips Onion Flavored</h5> -->
                                 <h6 id="product-name" class="mb-12" style="color: #000 !important;">Loading...</h6>
                                 <div class="flex-align flex-wrap gap-12">
 
                                 </div>
-                           
+
                                 <!-- <p class="text-gray-700">Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada tincidunt. Class aptent taciti sociosqu ad litora torquent</p> -->
                                 <div class="flex-align flex-wrap gap-32">
                                     <div class="flex-align gap-8">
                                         <!-- <h4 class="mb-0">$25.00</h4> -->
                                         <h6 id="product-price" class="mb-0" style="color: #000 !important;">$0.00</h6>
-                                        <span id="product-discount" class="text-md text-danger" style="text-decoration: line-through;"></span>
+                                        <span id="product-discount" class="text-md text-danger"
+                                            style="text-decoration: line-through;"></span>
                                         <!-- <span class="text-md text-gray-500">$38.00</span> -->
                                         <!-- <span class="text-md text-gray-500">Inclusive VAT</span> -->
                                         <span id="product-tax" class="text-md text-gray-500">Inclusive VAT</span>
@@ -1339,7 +1366,7 @@ ul {
                                         </a>
                                     </div>
                                 </div>
-                           
+
                                 <div class="mt-32 flex-align flex-wrap gap-32">
 
                                     <!-- <div style="display: flex; flex-direction: row; gap: 10px;">
@@ -1347,7 +1374,7 @@ ul {
                                     <a href="#" class="btn btn-main rounded-pill">Request a callback</a>
                                     <a href="#" class="btn btn-main rounded-pill">Request Bulk Purchase</a>
                                 </div> -->
-                                  
+
                                     <div style="display: flex; flex-direction: row; gap: 10px;">
                                         <!-- Chat With Specialist -->
                                         <a href="#" class="btn d-flex align-items-center rounded"
@@ -1385,7 +1412,7 @@ ul {
                                                 style="margin-left: 5px;">
                                         </a>
                                     </div>
-                                
+
 
 
 
@@ -1394,79 +1421,92 @@ ul {
                                     <div class="mt-32 flex-align gap-12 mb-16">
                                         <span
                                             class="w-32 h-32 bg-white flex-center rounded-circle text-main-600 box-shadow-xl"><i
-                                                class="ph-fill ph-lightning" style="color: #90C309 !important;"></i></span>
+                                                class="ph-fill ph-lightning"
+                                                style="color: #90C309 !important;"></i></span>
                                         <h6 class="text-md mb-0 fw-bold text-gray-900">Products are almost sold out</h6>
                                     </div>
                                     <div class="progress w-100 bg-gray-100 rounded-pill h-8" role="progressbar"
                                         aria-label="Basic example" aria-valuenow="32" aria-valuemin="0"
                                         aria-valuemax="100">
-                                        <div class="progress-bar  rounded-pill" style="width: 32%; background-color: #FFC107 !important;"></div>
+                                        <div class="progress-bar  rounded-pill"
+                                            style="width: 32%; background-color: #FFC107 !important;"></div>
                                     </div>
                                 </div>
-                  
+
                             </div>
                         </div>
                     </div>
                 </div>
 
-            
+
 
                 <div class="col-lg-3" style="padding-right: 40px !important;">
                     <div class="product-details__sidebar overflow-hidden">
                         <!-- Refund notice -->
                         <div class="p-3 border rounded mb-3 m-5" style="background-color: #fff;">
                             <p class="mb-0 fw-semibold text-dark mb-5" style="font-size: 13px;">
-                                This item can be change or replaced or refund within 15 days of the purchase day for Free 
-                                <a href="./refund-and-return.html" style="text-decoration: underline; color: #000;">Read More</a>
+                                This item can be change or replaced or refund within 15 days of the purchase day for
+                                Free
+                                <a href="./refund-and-return.html" style="text-decoration: underline; color: #000;">Read
+                                    More</a>
                             </p>
                         </div>
-                
+
                         <!-- Other Country Notice -->
-                        <div class="p-3 border rounded d-flex align-items-center m-5 p-5" style="background-color: #dff9ec;">
+                        <div class="p-3 border rounded d-flex align-items-center m-5 p-5"
+                            style="background-color: #dff9ec;">
                             <i class="bi bi-truck me-2" style="font-size: 18px; color: #000;"></i>
                             <p class="mb-0 fw-semibold text-dark" style="font-size: 14px;">
                                 Other Country our agent will contact for delivery Estimation.
                             </p>
                         </div>
-                
+
                         <!-- Payment Icons -->
                         <div class="text-center mb-3">
-                            <img src="./assets/images/thumbs/1.svg" alt="Payments" style="max-width: 100%; height: auto ; margin: 12px;">
+                            <img src="./assets/images/thumbs/1.svg" alt="Payments"
+                                style="max-width: 100%; height: auto ; margin: 12px;">
                         </div>
-                
+
                         <!-- Coupon Button -->
                         <div class="text-center mb-3 m-5">
-                            <button class="btn w-100 fw-bold" style="background-color: #fdd835; color: #000; font-size: 14px;">
+                            <button class="btn w-100 fw-bold"
+                                style="background-color: #fdd835; color: #000; font-size: 14px;">
                                 <i class="bi bi-tag me-1"></i> Get My Coupon
                             </button>
                         </div>
-                
+
                         <!-- Trusted Shipping -->
                         <div class="p-5 mt-5">
                             <h6 class="fw-bold mb-1" style="font-size: 13px; color: #000;">TRUSTED SHIPPING</h6>
                             <p class="mb-0 text-dark px-10" style="font-size: 15px;">
-                                Free shipping when you spend AED500 & above. Userfriendly atmosphere to Grab your AtoZ technology products.
+                                Free shipping when you spend AED500 & above. Userfriendly atmosphere to Grab your AtoZ
+                                technology products.
                             </p>
                         </div>
-                
+
                         <!-- Delivery Info -->
                         <div class="border rounded p-10 mb-3 m-5">
-                            <h6 class="fw-bold mb-1" style="font-size: 15px; color: #000;">Express delivery Within All Mobile Cities In UAE</h6>
-                            <p class="mb-5 text-dark px-10" style="font-size: 15px; " >
-                                Grabatoz offers express delivery for all our customers to grab your orders in quick time without any further delay.
+                            <h6 class="fw-bold mb-1" style="font-size: 15px; color: #000;">Express delivery Within All
+                                Mobile Cities In UAE</h6>
+                            <p class="mb-5 text-dark px-10" style="font-size: 15px; ">
+                                Grabatoz offers express delivery for all our customers to grab your orders in quick time
+                                without any further delay.
                             </p>
                             <h6 class="fw-bold mb-1" style="font-size: 15px; color: #000;">Delivery in remote areas</h6>
                             <p class="mb-0 text-dark mt-5 px-10" style="font-size: 15px;">
-                                Delivery in remote areas will be considered as normal delivery which takes place within 3 working days. 
-                                <a href="terms-conditions.html" data-bs-toggle="modal" data-bs-target="#remoteDeliveryModal" style="color: #000; text-decoration: underline;">
+                                Delivery in remote areas will be considered as normal delivery which takes place within
+                                3 working days.
+                                <a href="terms-conditions.html" data-bs-toggle="modal"
+                                    data-bs-target="#remoteDeliveryModal"
+                                    style="color: #000; text-decoration: underline;">
                                     Click for more details
                                 </a>
                             </p>
                         </div>
                     </div>
                 </div>
-                
-              
+
+
 
                 <div class="modal fade" id="remoteDeliveryModal" tabindex="-1"
                     aria-labelledby="remoteDeliveryModalLabel" aria-hidden="true">
@@ -1705,28 +1745,32 @@ ul {
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-description" role="tabpanel"
                                 aria-labelledby="pills-description-tab" tabindex="0">
-                                <div id="product-description" class="mb-40" >
-                                    <h6 class="mb-24" >Product Description</h6>
+                                <div id="product-description" class="mb-40">
+                                    <h6 class="mb-24">Product Description</h6>
                                     <!-- <p>Wherever celebrations and good times happen, the LAY'S brand will be there just as it has been for more than 75 years. With flavors almost as rich as our history, we have a chip or crisp flavor guaranteed to bring a smile on your face. </p>
                                 <p>Morbi ut sapien vitae odio accumsan gravida. Morbi vitae erat auctor, eleifend nunc a, lobortis neque. Praesent aliquam dignissim viverra. Maecenas lacus odio, feugiat eu nunc sit amet, maximus sagittis dolor. Vivamus nisi sapien, elementum sit amet eros sit amet, ultricies cursus ipsum. Sed consequat luctus ligula. Curabitur laoreet rhoncus blandit. Aenean vel diam ut arcu pharetra dignissim ut sed leo. Vivamus faucibus, ipsum in vestibulum vulputate, lorem orci convallis quam, sit amet consequat nulla felis pharetra lacus. Duis semper erat mauris, sed egestas purus commodo vel.</p>     -->
                                     <p>
                                         Loading description...
                                     </p>
-                                  
+
                                 </div>
                                 <div class="mb-40">
                                     <h6 class="mb-24">Product Specifications</h6>
-                                    <table class="mt-32" style="width: 40%; border-collapse: collapse;">
-                                        <thead>
-                                            <tr style="background-color: #f2f2f2; text-align: left;">
-                                                <th style="padding: 12px; border: 1px solid #ddd;">Specification</th>
-                                                <th style="padding: 12px; border: 1px solid #ddd;">Details</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="specifications-table-body">
-                                            <!-- Rows will be dynamically populated here by JavaScript -->
-                                        </tbody>
-                                    </table>
+                                    <div class="table-responsive" style="overflow-x: auto; width: 100%;">
+                                        <table class="mt-32"
+                                            style="width: 100%; max-width: 600px; border-collapse: collapse; margin: auto;">
+                                            <thead>
+                                                <tr style="background-color: #f2f2f2; text-align: left;">
+                                                    <th style="padding: 12px; border: 1px solid #ddd;">Specification
+                                                    </th>
+                                                    <th style="padding: 12px; border: 1px solid #ddd;">Details</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="specifications-table-body">
+                                                <!-- Rows will be dynamically populated here by JavaScript -->
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="pills-reviews" role="tabpanel"
@@ -1803,10 +1847,10 @@ ul {
                                                     <div class="mb-32">
                                                         <label for="desc" class="text-neutral-600 mb-8">Review
                                                             Content</label>
-                                                        <textarea class="common-input rounded-8"
-                                                            id="desc"></textarea>
+                                                        <textarea class="common-input rounded-8" id="desc"></textarea>
                                                     </div>
-                                                    <button type="submit" class="btn btn-main rounded-pill mt-48" style="background-color: #90C309 !important;">Submit
+                                                    <button type="submit" class="btn btn-main rounded-pill mt-48"
+                                                        style="background-color: #90C309 !important;">Submit
                                                         Review</button>
                                                 </form>
                                             </div>
@@ -1948,14 +1992,14 @@ ul {
                                                 </div>
                                             </div>
                                         </div> -->
-                    <!--=========  reviews pages are sleeping start ======= -->
-                                    </div>
+                                    <!--=========  reviews pages are sleeping start ======= -->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 
@@ -1999,46 +2043,51 @@ ul {
             <div class="row gy-4">
                 <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="400">
                     <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                        <span
-                            class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0" style="background-color: #ffffff !important;"><i
-                                class="ph-fill ph-car-profile" style="color: #90C309 !important;"></i></span>
+                        <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
+                            style="background-color: #ffffff !important;"><i class="ph-fill ph-car-profile"
+                                style="color: #90C309 !important;"></i></span>
                         <div class="">
                             <h6 class="mb-0 text-black">Free Shipping</h6>
-                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over the US</span>
+                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over
+                                the US</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="600">
                     <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                        <span
-                            class="w-56 h-56 flex-center rounded-circle text-white text-32 flex-shrink-0" style="background-color: #ffffff !important;"><i
-                                class="ph-fill ph-hand-heart" style="color: #90C309 !important;"></i></span>
+                        <span class="w-56 h-56 flex-center rounded-circle text-white text-32 flex-shrink-0"
+                            style="background-color: #ffffff !important;"><i class="ph-fill ph-hand-heart"
+                                style="color: #90C309 !important;"></i></span>
                         <div class="">
                             <h6 class="mb-0 text-black"> 100% Satisfaction</h6>
-                            <span class="text-sm text-heading text-black" style="color: #000 !important;">Free shipping all over the US</span>
+                            <span class="text-sm text-heading text-black" style="color: #000 !important;">Free shipping
+                                all over the US</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="800">
                     <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                        <span
-                            class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0" style="background-color: #ffffff !important;"><i
-                                class="ph-fill ph-credit-card" style="color: #90C309 !important;"></i></span>
+                        <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
+                            style="background-color: #ffffff !important;"><i class="ph-fill ph-credit-card"
+                                style="color: #90C309 !important;"></i></span>
                         <div class="">
                             <h6 class="mb-0 text-black"> Secure Payments</h6>
-                            <span class="text-sm text-heading text-black" style="color: #000 !important;">Free shipping all over the US</span>
+                            <span class="text-sm text-heading text-black" style="color: #000 !important;">Free shipping
+                                all over the US</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1000">
                     <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                        <span
-                            class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0" style="background-color: #ffffff !important;"><i
-                                class="ph-fill ph-chats" style="color: #90C309 !important;"></i></span>
+                        <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
+                            style="background-color: #ffffff !important;"><i class="ph-fill ph-chats"
+                                style="color: #90C309 !important;"></i></span>
                         <div class="">
                             <h6 class="mb-0 text-black"> 24/7 Support</h6>
-                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over the US</span>
-                        </div>                </div>
+                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over
+                                the US</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2079,8 +2128,8 @@ ul {
     <script src="assets/js/marque.min.js"></script>
     <!-- marque -->
     <script src="assets/js/vanilla-tilt.min.js"></script>
-       <script src="./apiConfig/apiConfig.js"></script>
-       
+    <script src="./apiConfig/apiConfig.js"></script>
+
     <!-- main js -->
     <script src="assets/js/main.js"></script>
     <script>
@@ -2107,37 +2156,37 @@ ul {
                 //add for me self
                 document.getElementById('product-price').textContent = `$${product.offer_price ?? product.selling_price ?? 0.00}`;
                 const originalPrice = product.selling_price || 0.00;
-const offerPrice = product.offer_price ?? originalPrice;
-const discountPercentage = product.discount || null;
+                const offerPrice = product.offer_price ?? originalPrice;
+                const discountPercentage = product.discount || null;
 
-document.getElementById('product-price').textContent = `$${offerPrice}`;
+                document.getElementById('product-price').textContent = `$${offerPrice}`;
 
-if (offerPrice < originalPrice) {
-  document.getElementById('product-discount').textContent = `$${originalPrice}`;
-} else {
-  document.getElementById('product-discount').textContent = '';
-}
+                if (offerPrice < originalPrice) {
+                    document.getElementById('product-discount').textContent = `$${originalPrice}`;
+                } else {
+                    document.getElementById('product-discount').textContent = '';
+                }
 
-// Show blue discount badge
-const discountBadge = document.getElementById('product-off');
-if (discountPercentage && discountPercentage > 0) {
-  discountBadge.textContent = `${discountPercentage}% Off`;
-  discountBadge.style.display = 'inline-block';
-} else {
-  discountBadge.style.display = 'none';
-}
+                // Show blue discount badge
+                const discountBadge = document.getElementById('product-off');
+                if (discountPercentage && discountPercentage > 0) {
+                    discountBadge.textContent = `${discountPercentage}% Off`;
+                    discountBadge.style.display = 'inline-block';
+                } else {
+                    discountBadge.style.display = 'none';
+                }
 
-// Show green "On Sale" badge if there is an offer price
-const saleBadge = document.getElementById('product-off-label');
-if (offerPrice < originalPrice) {
-  saleBadge.textContent = 'On Sale';
-  saleBadge.style.display = 'inline-block';
-} else {
-  saleBadge.style.display = 'none';
-}
+                // Show green "On Sale" badge if there is an offer price
+                const saleBadge = document.getElementById('product-off-label');
+                if (offerPrice < originalPrice) {
+                    saleBadge.textContent = 'On Sale';
+                    saleBadge.style.display = 'inline-block';
+                } else {
+                    saleBadge.style.display = 'none';
+                }
 
 
-//for my self end
+                //for my self end
 
 
                 document.getElementById('product-name').textContent = product.name || 'N/A';
@@ -2209,76 +2258,76 @@ if (offerPrice < originalPrice) {
                 mainImage.src = cartImage;
                 mainImage.alt = 'Main Product Image';
 
-           
-            const thumbnailsContainer = document.getElementById('product-thumbnails');
-thumbnailsContainer.innerHTML = ''; 
 
-imagePaths.forEach((imgPath, index) => {
-  const fullPath = `${API_ADMINGRAB_URL}/${imgPath}`;
-  const slide = document.createElement('div');
-  slide.className = 'swiper-slide';
-  slide.innerHTML = `
+                const thumbnailsContainer = document.getElementById('product-thumbnails');
+                thumbnailsContainer.innerHTML = '';
+
+                imagePaths.forEach((imgPath, index) => {
+                    const fullPath = `${API_ADMINGRAB_URL}/${imgPath}`;
+                    const slide = document.createElement('div');
+                    slide.className = 'swiper-slide';
+                    slide.innerHTML = `
     <div class="border border-gray-200 rounded p-2" style="width: 120px; height: 120px; cursor: pointer;">
       <img src="${fullPath}" alt="image" style="width: 80%; height: 80%; object-fit: cover;" />
     </div>
   `;
-const modalImage = document.getElementById('modal-product-image');
+                    const modalImage = document.getElementById('modal-product-image');
 
-// Initial load
-mainImage.src = cartImage;
-mainImage.alt = 'Main Product Image';
-modalImage.src = cartImage;
+                    // Initial load
+                    mainImage.src = cartImage;
+                    mainImage.alt = 'Main Product Image';
+                    modalImage.src = cartImage;
 
-// On thumbnail click, update modal too
-imagePaths.forEach((imgPath, index) => {
-  const fullPath = `${API_ADMINGRAB_URL}/${imgPath}`;
-  const slide = document.createElement('div');
-  slide.className = 'swiper-slide';
-  slide.innerHTML = `
+                    // On thumbnail click, update modal too
+                    imagePaths.forEach((imgPath, index) => {
+                        const fullPath = `${API_ADMINGRAB_URL}/${imgPath}`;
+                        const slide = document.createElement('div');
+                        slide.className = 'swiper-slide';
+                        slide.innerHTML = `
     <div class="border border-gray-200 rounded p-2" style="width: 120px; height: 120px; cursor: pointer;">
       <img src="${fullPath}" alt="image" style="width: 100%; height: 100%; object-fit: cover;" />
     </div>
   `;
 
-  slide.querySelector('img').addEventListener('click', () => {
-    mainImage.src = fullPath;
-    mainImage.alt = `Product Image ${index + 1}`;
-    modalImage.src = fullPath;
-  });
+                        slide.querySelector('img').addEventListener('click', () => {
+                            mainImage.src = fullPath;
+                            mainImage.alt = `Product Image ${index + 1}`;
+                            modalImage.src = fullPath;
+                        });
 
-  thumbnailsContainer.appendChild(slide);
-});
+                        thumbnailsContainer.appendChild(slide);
+                    });
 
 
- 
-  slide.querySelector('img').addEventListener('click', () => {
-    mainImage.src = fullPath;
-    mainImage.alt = `Product Image ${index + 1}`;
-  });
 
-  thumbnailsContainer.appendChild(slide);
-});
+                    slide.querySelector('img').addEventListener('click', () => {
+                        mainImage.src = fullPath;
+                        mainImage.alt = `Product Image ${index + 1}`;
+                    });
 
-// Init Swiper
-const swiper = new Swiper('.mySwiper', {
-  slidesPerView: 3,
-  spaceBetween: 13,
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev'
-  },
-  breakpoints: {
-    0: {
-      slidesPerView: 2
-    },
-    640: {
-      slidesPerView: 3
-    },
-    1024: {
-      slidesPerView: 3
-    }
-  }
-});
+                    thumbnailsContainer.appendChild(slide);
+                });
+
+                // Init Swiper
+                const swiper = new Swiper('.mySwiper', {
+                    slidesPerView: 3,
+                    spaceBetween: 13,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev'
+                    },
+                    breakpoints: {
+                        0: {
+                            slidesPerView: 2
+                        },
+                        640: {
+                            slidesPerView: 3
+                        },
+                        1024: {
+                            slidesPerView: 3
+                        }
+                    }
+                });
 
 
 
@@ -2459,7 +2508,7 @@ const swiper = new Swiper('.mySwiper', {
             addToCart(product); // Add product to cart
             // window.location.href = 'cart.html'; // Navigate to cart.html
             window.location.href = `product-details.html?slug=${product.slug}`; // Navigate to cart.html
-            
+
         }
 
 
@@ -2511,26 +2560,26 @@ const swiper = new Swiper('.mySwiper', {
                 icon.classList.add("bi-plus");
             }
         }
-// Toggle sidebar function  for mobile/tablet
-function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  const menuBtn = document.querySelector('.menu-btn');
+        // Toggle sidebar function  for mobile/tablet
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const menuBtn = document.querySelector('.menu-btn');
 
-  if (sidebar.style.width === '250px') {
-    sidebar.style.width = '0';
-    menuBtn.style.display = 'block'; // Show button when sidebar closes
-  } else {
-    sidebar.style.width = '250px';
-    menuBtn.style.display = 'none'; // Hide button when sidebar opens
-  }
-}
-function changeQty(change) {
-    const qtyInput = document.getElementById("qty");
-    let qty = parseInt(qtyInput.value);
-    qty = isNaN(qty) ? 1 : qty + change;
-    if (qty < 1) qty = 1;
-    qtyInput.value = qty;
-  }
+            if (sidebar.style.width === '250px') {
+                sidebar.style.width = '0';
+                menuBtn.style.display = 'block'; // Show button when sidebar closes
+            } else {
+                sidebar.style.width = '250px';
+                menuBtn.style.display = 'none'; // Hide button when sidebar opens
+            }
+        }
+        function changeQty(change) {
+            const qtyInput = document.getElementById("qty");
+            let qty = parseInt(qtyInput.value);
+            qty = isNaN(qty) ? 1 : qty + change;
+            if (qty < 1) qty = 1;
+            qtyInput.value = qty;
+        }
 
 
 
@@ -2539,11 +2588,11 @@ function changeQty(change) {
     </script>
     <script>
         // Optional: This JavaScript ensures the dropdown stays open when hovering over it
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const dropdown = document.querySelector('.dropdown');
             const dropdownMenu = document.querySelector('.dropdown-menu');
-            
-            dropdown.addEventListener('mouseenter', function() {
+
+            dropdown.addEventListener('mouseenter', function () {
                 const bsDropdown = bootstrap.Dropdown.getInstance(this);
                 if (!bsDropdown) {
                     new bootstrap.Dropdown(this).show();
@@ -2551,9 +2600,9 @@ function changeQty(change) {
                     bsDropdown.show();
                 }
             });
-            
+
             // Keep dropdown open when hovering over the menu
-            dropdownMenu.addEventListener('mouseleave', function() {
+            dropdownMenu.addEventListener('mouseleave', function () {
                 const bsDropdown = bootstrap.Dropdown.getInstance(dropdown);
                 bsDropdown.hide();
             });
@@ -2561,61 +2610,60 @@ function changeQty(change) {
     </script>
     <script>
         fetch('./topHeader.html')
-          .then(response => response.text())
-          .then(data => {
-            document.getElementById('top-header').innerHTML = data;
-          })
-          .catch(error => console.error('Error loading header:', error));
-      </script>
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('top-header').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
 
 
 
 
-      <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const img = document.getElementById("specific-product-image");
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const img = document.getElementById("specific-product-image");
 
-  // Create magnifier lens
-  const lens = document.createElement("div");
-  lens.className = "magnifier-lens";
-  document.body.appendChild(lens);
+            // Create magnifier lens
+            const lens = document.createElement("div");
+            lens.className = "magnifier-lens";
+            document.body.appendChild(lens);
 
-  img.addEventListener("mouseenter", function (e) {
-    lens.style.visibility = "visible";
-    lens.style.backgroundImage = `url('${img.src}')`;
-  });
+            img.addEventListener("mouseenter", function (e) {
+                lens.style.visibility = "visible";
+                lens.style.backgroundImage = `url('${img.src}')`;
+            });
 
-  img.addEventListener("mousemove", function (e) {
-    moveLens(e);
-  });
+            img.addEventListener("mousemove", function (e) {
+                moveLens(e);
+            });
 
-  img.addEventListener("mouseleave", function () {
-    lens.style.visibility = "hidden";
-  });
+            img.addEventListener("mouseleave", function () {
+                lens.style.visibility = "hidden";
+            });
 
-  function moveLens(e) {
-    const rect = img.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+            function moveLens(e) {
+                const rect = img.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
 
-    const lensSize = lens.offsetWidth / 2;
+                const lensSize = lens.offsetWidth / 2;
 
-    let posX = e.pageX - lensSize;
-    let posY = e.pageY - lensSize;
+                let posX = e.pageX - lensSize;
+                let posY = e.pageY - lensSize;
 
-    lens.style.left = `${posX}px`;
-    lens.style.top = `${posY}px`;
+                lens.style.left = `${posX}px`;
+                lens.style.top = `${posY}px`;
 
-    const bgX = (x / img.width) * 100;
-    const bgY = (y / img.height) * 100;
+                const bgX = (x / img.width) * 100;
+                const bgY = (y / img.height) * 100;
 
-    lens.style.backgroundSize = `${img.width * 1.5}px ${img.height * 1.5}px`;
-    lens.style.backgroundPosition = `${bgX}% ${bgY}%`;
-  }
-});
-</script>
+                lens.style.backgroundSize = `${img.width * 1.5}px ${img.height * 1.5}px`;
+                lens.style.backgroundPosition = `${bgX}% ${bgY}%`;
+            }
+        });
+    </script>
 
-   
+
 
 </body>
-
