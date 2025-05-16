@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" class="">
 
@@ -1231,7 +1232,7 @@
                                 <!-- <div class="product-details__thumb flex-center h-100">
   <img id="specific-product-image" class="py-10"  style="cursor: zoom-in;" />
 </div> -->
-                                <div class="product-details__thumb flex-center h-100">
+                                <div class="product-details__thumb flex-center h-100 border rounded-8 mb-10" style="min-width: 100% !important;">
                                     <img id="specific-product-image" class="py-10" data-bs-toggle="modal"
                                         data-bs-target="#imageModal" style="cursor: pointer;" style="cursor: zoom-in;">
                                 </div>
@@ -2212,7 +2213,7 @@
                 const fallbackImage = product.image_path ? `${API_ADMINGRAB_URL}/${product.image_path.replace(/\\/g, '/')}` : 'assets/images/thumbs/product-details-thumb1.png';
                 const cartImage = imagePaths[0] ? `${API_ADMINGRAB_URL}/${imagePaths[0]}` : fallbackImage;
                 document.getElementById('addToCart').innerHTML = `
-    <a href="javascript:void(0)" onclick='handleAddToCart({ 
+    <a href="javascript:void(0) " onclick=' handleAddToCart({ 
         id: ${product.id},
         slug: "${product.slug?.replace(/"/g, '\\"')}",
         name: "${product.name?.replace(/"/g, '\\"')}",

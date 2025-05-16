@@ -221,9 +221,9 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-menu__item">
+                    <!-- <li class="nav-menu__item">
                         <a href="contact.html" class="nav-menu__link">Contact Us</a>
-                    </li>
+                    </li> -->
                 </ul>
                 <!-- Nav Menu End -->
             </div>
@@ -2078,22 +2078,30 @@
             products.forEach((product) => {
                 const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
                 const productCardHTML = `
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                <div style="min-width: 100% !important;" class="card h-100 border border-gray-100  rounded-16 position-relative w-150 h-400">
+           <div class="product-card col-6 col-md-6 col-lg-4 col-xl-3 ">
+                <div style="min-width: 100% !important;" class="card h-100 border border-gray-100  rounded-16 position-relative w-200 h-400">
                     <a href="product-details.html?slug=${product.slug}" class="product-card__thumb d-block position-relative">
                         <img src="${API_CUSTOMER_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
                     </a>
                     <div class="card-body">
-                        <h6 class="card-title text-lg fw-semibold mt-3">
-                            <a href="product-details.html?slug=${product.slug}" class="link text-line-2">${product.name}</a>
-                        </h6>
-                        <div class="card-price my-3">
-                            <span class="text-heading">$${product.selling_price} <span class="text-gray-500">/Qty</span></span>
+                            <div class="mb-2 d-flex justify-content-between">
+                            <span class="badge bg-success">In stock</span>
+                            <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+                            </div>
+                            <h6 class="card-title" style="font-size: 14px; color:black;">${product.name}
+                            <p
+                            <h4 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</p>
+                            <del class="text-muted">${product.selling_price} AED</del>
+                            </h6>
                         </div>
-                        <a href="javascript:void(0)" onclick="handleAddToCart({ id: ${product.id},slug: ${product.slug}, name: '${product.name}', selling_price: ${product.selling_price}, image_path:'${sanitizedImagePath}' })" class="btn btn-block  btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">Add To Cart</a>
-                    </div>
-                </div>
+         <div class="card-body">
+           <div class="mb-2 d-flex justify-content-between">
+              </div>
+                  <a href="javascript:void(0)" onclick="handleAddToCart({ id: ${product.id}, name: '${product.name}', selling_price: ${product.selling_price}, image_path:'${sanitizedImagePath}' })" class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">Add To Cart</a>
             </div>
+             </div>
+              </div>
+        
         `;
                 productGrid.innerHTML += productCardHTML;
             });
@@ -2200,35 +2208,30 @@
         products.forEach(product => {
             const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
             const productCardHTML = `
-         <div class="product-card col-6 col-md-6 col-lg-4 col-xl-3 ">
+        <div class="product-card col-6 col-md-6 col-lg-4 col-xl-3 ">
                 <div style="min-width: 100% !important;" class="card h-100 border border-gray-100  rounded-16 position-relative" >
+                     <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
                     <a href="product-details.html?slug=${product.slug}" class="product-card__thumb d-block position-relative">
                         <img src="${API_ADMINGRAB_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
                     </a>
-                    
-
-                             <div class="card-body">
-        <div class="mb-2 d-flex justify-content-between">
-          <span class="badge bg-success">In stock</span>
-          <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
-        </div>
-        <h6 class="card-title" style="font-size: 14px; color:black;">${product.name}
-        <p
-        <h4 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</p>
-        <del class="text-muted">${product.selling_price} AED</del>
-        </h6>
-      </div>
-                           
-                        
-                        
-                       <div class="card-body">
-        <div class="mb-2 d-flex justify-content-between">
-                            
+                      <div class="card-body">
+                            <div class="mb-2 d-flex justify-content-between">
+                            <span class="badge bg-success">In stock</span>
+                            <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+                            </div>
+                            <h6 class="card-title" style="font-size: 14px; color:black;">${product.name}
+                            <p
+                            <h4 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</p>
+                            <del class="text-muted">${product.selling_price} AED</del>
+                            </h6>
                         </div>
-                        <a href="javascript:void(0)" onclick="handleAddToCart({ id: ${product.id}, name: '${product.name}', selling_price: ${product.selling_price}, image_path:'${sanitizedImagePath}' })" class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">Add To Cart</a>
-                    </div>
-                </div>
+         <div class="card-body">
+           <div class="mb-2 d-flex justify-content-between">
+              </div>
+                  <a href="javascript:void(0)" onclick="handleAddToCart({ id: ${product.id}, name: '${product.name}', selling_price: ${product.selling_price}, image_path:'${sanitizedImagePath}' })" class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">Add To Cart</a>
             </div>
+             </div>
+              </div>
     `;
             // Append the product card HTML to the container
             container.insertAdjacentHTML('beforeend', productCardHTML);
@@ -2383,35 +2386,30 @@
         products.forEach(product => {
             // Re-use the product card HTML generation from earlier
             const productCardHTML = `
-         <div class="product-card col-6 col-md-6 col-lg-4 col-xl-3 ">
-                <div class="card h-100 border border-gray-100  rounded-16 position-relative" >
+        <div class="product-card col-6 col-md-6 col-lg-4 col-xl-3 ">
+                <div style="min-width: 100% !important;" class="card h-100 border border-gray-100  rounded-16 position-relative" >
+                     <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
                     <a href="product-details.html?slug=${product.slug}" class="product-card__thumb d-block position-relative">
                         <img src="${API_ADMINGRAB_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
                     </a>
-                    
-
-                             <div class="card-body">
-        <div class="mb-2 d-flex justify-content-between">
-          <span class="badge bg-success">In stock</span>
-          <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
-        </div>
-        <h6 class="card-title" style="font-size: 14px; color:black;">${product.name}
-        <p
-        <h4 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</p>
-        <del class="text-muted">${product.selling_price} AED</del>
-        </h6>
-      </div>
-                           
-                        
-                        
-                       <div class="card-body">
-        <div class="mb-2 d-flex justify-content-between">
-                            
+                      <div class="card-body">
+                            <div class="mb-2 d-flex justify-content-between">
+                            <span class="badge bg-success">In stock</span>
+                            <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+                            </div>
+                            <h6 class="card-title" style="font-size: 14px; color:black;">${product.name}
+                            <p
+                            <h4 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</p>
+                            <del class="text-muted">${product.selling_price} AED</del>
+                            </h6>
                         </div>
-                        <a href="javascript:void(0)" onclick="handleAddToCart({ id: ${product.id}, name: '${product.name}', selling_price: ${product.selling_price}, image_path:'${sanitizedImagePath}' })" class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">Add To Cart</a>
-                    </div>
-                </div>
+         <div class="card-body">
+           <div class="mb-2 d-flex justify-content-between">
+              </div>
+                  <a href="javascript:void(0)" onclick="handleAddToCart({ id: ${product.id}, name: '${product.name}', selling_price: ${product.selling_price}, image_path:'${sanitizedImagePath}' })" class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">Add To Cart</a>
             </div>
+             </div>
+              </div>
     `;
             document.getElementById('product-grid').innerHTML += productCardHTML;
         });
@@ -2448,22 +2446,30 @@
                 products.forEach((product) => {
                     const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
                     const productCardHTML = `
-                <div class="product-card col-12 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card h-100 border border-gray-100 hover-border-main-600 rounded-16 position-relative">
-                        <a href="product-details.html?slug=${product.slug}" class="product-card__thumb d-block position-relative">
-                            <img src="${API_CUSTOMER_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
-                        </a>
-                        <div class="card-body">
-                            <h6 class="card-title text-lg fw-semibold mt-3">
-                                <a href="product-details.html?slug=${product.slug}" class="link text-line-2">${product.name}</a>
-                            </h6>
-                            <div class="card-price my-3">
-                                <span class="text-heading">$${product.selling_price} <span class="text-gray-500">/Qty</span></span>
+               <div class="product-card col-6 col-md-6 col-lg-4 col-xl-3 ">
+                <div style="min-width: 100% !important;" class="card h-100 border border-gray-100  rounded-16 position-relative" >
+                     <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
+                    <a href="product-details.html?slug=${product.slug}" class="product-card__thumb d-block position-relative">
+                        <img src="${API_ADMINGRAB_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
+                    </a>
+                      <div class="card-body">
+                            <div class="mb-2 d-flex justify-content-between">
+                            <span class="badge bg-success">In stock</span>
+                            <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
                             </div>
-                            <a href="javascript:void(0)" onclick="handleAddToCart({ id: ${product.id}, name: '${product.name}', selling_price: ${product.selling_price}, image_path:'${sanitizedImagePath}' })" class="btn btn-block btn-primary btn-outline-primary fw-medium py-2">Add To Cart</a>
+                            <h6 class="card-title" style="font-size: 14px; color:black;">${product.name}
+                            <p
+                            <h4 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</p>
+                            <del class="text-muted">${product.selling_price} AED</del>
+                            </h6>
                         </div>
-                    </div>
-                </div>
+         <div class="card-body">
+           <div class="mb-2 d-flex justify-content-between">
+              </div>
+                  <a href="javascript:void(0)" onclick="handleAddToCart({ id: ${product.id}, name: '${product.name}', selling_price: ${product.selling_price}, image_path:'${sanitizedImagePath}' })" class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">Add To Cart</a>
+            </div>
+             </div>
+              </div>
             `;
                     productGrid.innerHTML += productCardHTML;
                 });
