@@ -181,6 +181,44 @@ ul {
     padding: 0;
     margin: 0;
 }
+ /* cart circle css start  */
+       .cart-item-count {
+        min-width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 12px;
+        color: #fff;
+        background-color: #A3D02C;
+        position: absolute;
+        top: -12px;
+        right: -11px;
+        padding: 0 6px; /* Extra space for 2-3 digit numbers */
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+    /* whislist circle css start  */
+    .wishlist-item-count {
+        min-width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 12px;
+        color: #fff;
+        background-color: #A3D02C;
+        position: absolute;
+        top: -12px;
+        right: -11px;
+        padding: 0 6px;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
 
 
  
@@ -227,37 +265,26 @@ ul {
                 <!-- form location start -->
 
                 <!-- Header Middle Right Start -->
-                <div class="header-right flex-align d-lg-block d-none">
+               <div class="header-right flex-align d-lg-block d-none">
                     <div class="flex-align flex-wrap gap-12">
-                        <!-- Search Icon (Mobile) -->
                         <button type="button" class="search-icon flex-align d-lg-none d-flex gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative item-hover__text">
                                 <i class="ph ph-magnifying-glass"></i>
                             </span>
                         </button>
-
-
-                        <!-- Wishlist Button -->
-                        <a href="wishlist.html" class="flex-align gap-4 item-hover">
+                      <a href="wishlist.html" class="flex-align gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
                                 <i class="ph ph-heart"></i>
-                                <span
-                                    class="w-16 h-16 flex-center rounded-circle text-white text-xs position-absolute top-n6 end-n4"
-                                    id="numberWishlist" style="background-color: #a3d02c;">0</span>
+                                <span class="wishlist-item-count">0</span>
                             </span>
-                            <span class="text-md text-black item-hover__text d-none d-lg-flex"
-                                id="wishlistText">Wishlist</span>
+                            <span class="text-md text-gray-500 item-hover__text d-none d-lg-flex">Wishlist</span>
                         </a>
-
-                        <!-- Cart Button -->
-                        <a href="cart.html" class="flex-align gap-4 item-hover">
+                       <a href="cart.html" class="flex-align gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
                                 <i class="ph ph-shopping-cart-simple"></i>
-                                <span id="cart-count"
-                                    class="w-16 h-16 d-flex align-items-center justify-content-center rounded-circle text-white text-xs position-absolute top-n6 end-n4"
-                                    style="background-color: #a3d02c; display: none;">0</span>
+                                <span class="cart-item-count">0</span>
                             </span>
-                            <span class="text-md text-black item-hover__text d-none d-lg-flex">Cart</span>
+                            <span class="text-md text-gray-500 item-hover__text d-none d-lg-flex">Cart</span>
                         </a>
 
                     </div>
