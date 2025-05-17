@@ -543,6 +543,12 @@
 
                                                 <button id="acceptBtn" class="btn btn-success me-2">Accept</button>
                                                 <button id="rejectBtn" class="btn btn-danger">Reject</button>
+                                                <div id="rejectionCommentContainer" class="mt-2" style="display:none;">
+                                                    <textarea id="rejectionComment" class="form-control" rows="3"
+                                                        placeholder="Enter rejection reason..."></textarea>
+                                                    <button id="confirmRejectionBtn" class="btn btn-danger mt-2">Confirm
+                                                        Rejection</button>
+                                                </div>
 
                                                 <div id="statusDropdownContainer" style="display:none;">
                                                     <select id="statusSelect" class="form-select w-auto d-inline-block">
@@ -848,7 +854,19 @@
                         }
 
                         acceptBtn.onclick = () => updateOrderStatus(order.order_id, 'Inprogress Order');
-                        rejectBtn.onclick = () => updateOrderStatus(order.order_id, 'Rejected');
+                        // rejectBtn.onclick = () => updateOrderStatus(order.order_id, 'Rejected');
+                        rejectBtn.onclick = () => {
+                            document.getElementById('rejectionCommentContainer').style.display = 'block';
+                            document.getElementById('confirmRejectionBtn').onclick = () => {
+                                const comment = document.getElementById('rejectionComment').value.trim();
+                                if (!comment) {
+                                    alert("Please provide a rejection reason.");
+                                    return;
+                                }
+                                updateOrderStatus(order.order_id, 'Rejected', comment);
+                            };
+                        };
+
                         document.getElementById('updateStatusBtn').onclick = () => {
                             const newStatus = statusSelect.value;
                             updateOrderStatus(order.order_id, newStatus);
@@ -857,7 +875,8 @@
                         document.getElementById('orderViewOverlay').style.display = 'block';
                     }
 
-                    async function updateOrderStatus(orderId, newStatus) {
+                    // async function updateOrderStatus(orderId, newStatus) {
+                    async function updateOrderStatus(orderId, newStatus, rejectionComment = null) {
                         const token = localStorage.getItem('token');
                         showLoader();
 
@@ -868,7 +887,12 @@
                                     'Authorization': token,
                                     'Content-Type': 'application/json',
                                 },
-                                body: JSON.stringify({ order_status: newStatus }),
+                                // body: JSON.stringify({ order_status: newStatus }),
+                                body: JSON.stringify({
+                                    order_status: newStatus,
+                                    ...(newStatus === 'Rejected' && rejectionComment ? { rejection_comment: rejectionComment } : {})
+                                }),
+
                             });
 
                             const result = await response.json();
@@ -878,7 +902,9 @@
                             }
 
                             document.getElementById('orderStatus').textContent = newStatus;
-
+                            // ✅ ✅ ✅ PLACE THIS HERE
+                            document.getElementById('rejectionCommentContainer').style.display = 'none';
+                            document.getElementById('rejectionComment').value = '';
                             // Update local cache
                             const cachedOrder = ordersCache.find(o => o.order_id == orderId);
                             if (cachedOrder) cachedOrder.order_status = newStatus;
