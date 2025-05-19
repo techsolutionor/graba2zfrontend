@@ -69,158 +69,112 @@
         /* third scroller start */
 
 
-        .section-sale {
-            background-color: #FFCC00;
-            padding: 25px;
-
-            /* height: 450px; */
-        }
-
-        .sale-container {
-            max-width: 1300px;
-            margin: auto;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .sale-box {
-            flex-shrink: 0;
-            width: 300px;
-            background-color: #FFD700;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .product-slider-container {
-            flex-grow: 1;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-slider {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            /* padding: 10px; */
-            scroll-behavior: smooth;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        .product-slider::-webkit-scrollbar {
-            display: none;
-        }
-
-        .product-card {
-            background: #fff;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .slider-button {
-            display: flex;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(255, 255, 255, 0.8);
-            border: none;
-            cursor: pointer;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .slider-button.left {
-            left: 0px;
-        }
-
-        .slider-button.right {
-            right: 0px;
-        }
-  @media (max-width: 1025px) {
-    .section-sale {
-                display: none;
-            }
+         .section-sale {
+    background-color: #FFCC00;
+    padding: 25px;
   }
-        /* Mobile (phones) */
-        @media (max-width: 767px) {
-            .section-sale {
-                height: auto !important;
-                padding: 20px 10px;
-                display: none;
-            }
 
-            .sale-container {
-                flex-direction: column;
-                align-items: stretch;
+  .sale-container {
+    max-width: 1300px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
 
-            }
+  .sale-box {
+    flex-shrink: 0;
+    width: 300px;
+    background-color: #FFD700;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
 
-            .sale-box {
-                width: 100% !important;
-                margin-bottom: 20px;
+  .product-slider-container {
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+  }
 
-            }
+  .product-slider {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
 
-            .product-slider-container {
-                margin-left: 0 !important;
-                width: 100%;
+  .product-slider::-webkit-scrollbar {
+    display: none;
+  }
 
-            }
+  .product-card {
+    width: 240px;
+    height: 420px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    padding: 10px;
+  }
 
-            .product-slider {
-                gap: 10px !important;
-                padding: 10px 0 !important;
+  .product-card img {
+    height: 200px;
+    object-fit: contain;
+    width: 100%;
+  }
 
-            }
+  .product-card .info-section {
+    height: 120px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
-            .product-card {
-                width: 50% !important;
-                margin: 0 auto;
+  .slider-button {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
 
-            }
+  .slider-button.left {
+    left: 0px;
+  }
 
+  .slider-button.right {
+    right: 0px;
+  }
 
-        }
+  @media (max-width: 767px) {
+    .product-card {
+      width: 160px;
+      height: 310px;
+    }
 
-        /* Tablet (768px to 1024px) */
-        @media (min-width: 768px) and (max-width: 1024px) {
-            .sale-container {
-                flex-direction: column;
-                align-items: stretch;
-                display: none;
-            }
+    .product-card img {
+      height: 180px;
+    }
 
-            .sale-box {
-                width: 100% !important;
-                display: none;
-                margin-bottom: 20px;
-            }
-
-            .product-slider-container {
-                margin-left: 0 !important;
-                width: 100%;
-                display: none;
-            }
-
-            .product-card {
-                width: 45% !important;
-                display: none;
-            }
-
-            .slider-button {
-                width: 35px;
-                height: 35px;
-            }
-        }
+    .product-card .info-section {
+      height: 130px;
+    }
+  }
 
         /* third scroller end */
         /* second  swiper scrollor */
@@ -2399,47 +2353,32 @@
 
     <!-- ===================== BIG SALE Section Start ==============================  -->
     <section class="section-sale">
-        <div class="sale-container">
-            <div class="sale-box">
-                <h3 style="color: #d60000; font-size: 28px; font-weight: bold;">BIG SALE</h3>
-                <p style="color: #d60000; font-size: 18px; font-weight: bold;"> Upto50% OFF</p>
-                <p style="font-size: 14px; font-weight: bold; color: #333;">GRABIANS OFFER</p>
+  <div class="sale-container">
+    <div class="sale-box">
+      <h3 style="color: #d60000; font-size: 28px; font-weight: bold;">BIG SALE</h3>
+      <p style="color: #d60000; font-size: 18px; font-weight: bold;"> Upto50% OFF</p>
+      <p style="font-size: 14px; font-weight: bold; color: #333;">GRABIANS OFFER</p>
+      <a href="shop.html" style="margin-top: 10px; background-color: #d60000; color: #fff; font-size: 14px; padding: 8px 14px; border: none; border-radius: 6px; cursor: pointer;">SHOP NOW</a>
+      <div style="margin-top: 20px; display: flex; justify-content: center; gap: 6px;">
+        <div style="width: 10px; height: 10px; background-color: #fff; border-radius: 50%;"></div>
+        <div style="width: 10px; height: 10px; background-color: #fff; border-radius: 50%;"></div>
+        <div style="width: 10px; height: 10px; background-color: #fff; border-radius: 50%;"></div>
+        <div style="width: 10px; height: 10px; background-color: #fff; border-radius: 50%;"></div>
+      </div>
+    </div>
 
-                <a href="shop.html"
-                    style="margin-top: 10px; background-color: #d60000; color: #fff; font-size: 14px; padding: 8px 14px; border: none; border-radius: 6px; cursor: pointer;">
-                    SHOP NOW
-                </a>
-                <div style="margin-top: 20px; display: flex; justify-content: center; gap: 6px;">
-                    <div style="width: 10px; height: 10px; background-color: #fff; border-radius: 50%;"></div>
-                    <div style="width: 10px; height: 10px; background-color: #fff; border-radius: 50%;"></div>
-                    <div style="width: 10px; height: 10px; background-color: #fff; border-radius: 50%;"></div>
-                    <div style="width: 10px; height: 10px; background-color: #fff; border-radius: 50%;"></div>
+    <div class="product-slider-container">
+      <div id="saleContainer" class="product-slider"></div>
 
-                </div>
-            </div>
-
-            <div class="product-slider-container">
-                <div id="saleContainer" class="product-slider">
-                    <div class="product-card">
-                        <button onclick="addToWishlist(this)" title="Add to wishlist"
-                            style="position: absolute; top: 10px; right: 10px; font-size: 20px; color: #dc3545; background: none; border: none; cursor: pointer;">♡</button>
-
-                    </div>
-                </div>
-
-                <button class="slider-button left" onclick="scrollHorizontal(-1)">
-                    <i class="fas fa-chevron-left" style="font-size: 18px; color: #333;"></i>
-                </button>
-
-                <button class="slider-button right" onclick="scrollHorizontal(1)">
-                    <i class="fas fa-chevron-right" style="font-size: 18px; color: #333;"></i>
-                </button>
-            </div>
-            <div>
-
-            </div>
-        </div>
-    </section>
+      <button class="slider-button left" onclick="scrollHorizontal(-1)">
+        <i class="fas fa-chevron-left" style="font-size: 18px; color: #333;"></i>
+      </button>
+      <button class="slider-button right" onclick="scrollHorizontal(1)">
+        <i class="fas fa-chevron-right" style="font-size: 18px; color: #333;"></i>
+      </button>
+    </div>
+  </div>
+</section>
     <!-- ===================== BIG SALE Section End ==============================  -->
 
      <!-- ===================== Accer Section Start  1 ==============================  -->
@@ -2645,7 +2584,8 @@
         function scrollHorizontal(direction) {
             const container = document.getElementById('saleContainer');
             const card = container.querySelector('.product-card');
-            const scrollAmount = card.offsetWidth + 20; // card width + gap
+            const scrollAmount = card.offsetWidth + 15
+            ; // card width + gap
 
             container.scrollBy({
                 left: direction * scrollAmount,
@@ -2959,8 +2899,8 @@
                                                         <span class="badge bg-warning text-dark">${product.discount || '0%'} Off</span>
                                                     </div>
                                                     <p class="my-2 text-dark text-xl py-3">${displayName}</p>
-                                                    <p class="text-danger fw-bold my-1">${product.offer_price} AED</p>
-                                                    <p class="text-decoration-line-through text-dark">${product.selling_price} AED</p>
+                                                    <p class="text-danger fw-bold my-1 fs-6">${product.offer_price} AED</p>
+                                                    <p class="text-decoration-line-through  fs-6 text-dark">${product.selling_price} AED</p>
                                                     
                                                 </div>
                                             </div>
