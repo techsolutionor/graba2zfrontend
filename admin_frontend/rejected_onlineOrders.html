@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./apiConfig/apiConfig.js"></script>
+</head>
+
+<body>
+
+    <script>
+
+        async function fetchOrders() {
+            try {
+                const response = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders/rejected`,
+                    {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `${localStorage.getItem('token')}`,
+                            'Content-Type': 'application/json',
+                        },
+                    });
+                const orders = await response.json();
+                console.log(orders, "status rejected");
+
+            } catch (error) {
+                console.error('Error fetching orders:', error);
+            }
+
+        }
+        fetchOrders();
+    </script>
+</body>
+
+</html>
