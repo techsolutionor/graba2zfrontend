@@ -1388,6 +1388,10 @@
     <script src="assets/js/main.js"></script>
 
     <script>
+        function limitWords(text, wordLimit) {
+    const words = text.trim().split(/\s+/);
+    return words.slice(0, wordLimit).join(" ") + (words.length > wordLimit ? "..." : "");
+}
         // document.addEventListener('DOMContentLoaded', loadCart);
         document.getElementById('search-form').addEventListener('submit', (event) => {
             event.preventDefault();
@@ -1421,8 +1425,9 @@
                 <td>
                     <div class="table-product d-flex align-items-center gap-24">
                         <img src="${API_ADMINGRAB_URL}/${product.image_path}" alt="${product.name}" class="table-product__thumb border border-gray-100 rounded-8 flex-center" style="width: 100px;">
-                        <div class="table-product__content text-start">
-                            <h6 class="title text-lg fw-semibold">${product.name}</h6>
+                        <div class="table-product__content text-start fs-6">
+                           <p class="title text-lg fw-semibold fs-6 ">${limitWords(product.name, 3)}</p>
+
                         </div>
                     </div>
                 </td>

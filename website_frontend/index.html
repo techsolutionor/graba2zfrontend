@@ -1147,12 +1147,6 @@
     }
 }
 
-@media (max-width: 768px) {
-    .swiper-button-next,
-    .swiper-button-prev {
-        display: none;
-    }
-}
 
 /* company logo end */
 
@@ -2565,10 +2559,7 @@
     <div class="swiper brand-swiper">
         <div class="swiper-wrapper" id="brandLogo">
             <!-- Brand slides will be inserted here -->
-        </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-    </div>
+       
 </div>
 
 <!-- Swiper JS -->
@@ -3059,325 +3050,355 @@ document.addEventListener('DOMContentLoaded', fetchNetworkingDevices);
 
 
         // --------------HP Deveices Category product  Start----------------------
-       async function fetchHPDevices() {
+     async function fetchHPDevices() {
     function limitWords(text, wordLimit) {
-        const words = text.trim().split(/\s+/);
-        if (words.length <= wordLimit) return text;
-        return words.slice(0, wordLimit).join(' ') + '...';
+      const words = text.trim().split(/\s+/);
+      if (words.length <= wordLimit) return text;
+      return words.slice(0, wordLimit).join(' ') + '...';
+    }
+
+    function getDisplayLimit() {
+      const screenWidth = window.innerWidth;
+      return screenWidth < 768 ? 6 : 12; // Correct breakpoint for mobile
     }
 
     try {
-        const response = await fetch(`${API_CUSTOMER_URL}/api/products?brand=HP`);
-        const data = await response.json();
+      const response = await fetch(`${API_CUSTOMER_URL}/api/products?brand=HP`);
+      const data = await response.json();
 
-        const container = document.getElementById('hp-products');
-        container.innerHTML = ''; // Clear existing
+      const container = document.getElementById('hp-products');
+      container.innerHTML = ''; // Clear previous cards
 
-        const products = Array.isArray(data) ? data : data.products;
+      const products = Array.isArray(data) ? data : data.products;
 
-        if (!products || products.length === 0) {
-            container.innerHTML = '<p class="text-center w-100">No products available in HP brand.</p>';
-            return;
-        }
+      if (!products || products.length === 0) {
+        container.innerHTML = '<p class="text-center w-100">No products available in HP brand.</p>';
+        return;
+      }
 
-        // Limit to first 6 products
-        const limitedProducts = products.slice(0, 6);
+      const displayLimit = getDisplayLimit();
+      const limitedProducts = products.slice(0, displayLimit);
 
-        limitedProducts.forEach(product => {
-            const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
+      limitedProducts.forEach(product => {
+        const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
 
-            const card = `
+        const card = `
 <div class="col-6 col-sm-4 col-md-3 col-lg-2">
   <div class="card h-100 border border-gray-100 rounded-16 position-relative" style="height: 400px; overflow: hidden;">
     <a href="product-details.html?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
-      <!-- Image section -->
       <div class="position-relative" style="height: 200px;">
         <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
         <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
       </div>
-
-      <!-- Description section -->
-      <div class="px-10 d-flex flex-column justify-content-between" style="height: 200px;">
+      <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px;">
         <div class="d-flex justify-content-between mb-1">
           <span class="badge bg-success">In stock</span>
           <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
         </div>
         <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
-          ${limitWords(product.name, 27)}
+          ${limitWords(product.name, 13)}
         </h6>
-        <div class="mt-auto">
-          <p class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</p>
-          <del class="text-muted">${product.selling_price} AED</del>
+        <div class="mt-0">
+          <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>
+          <del class="text-muted fs-6">${product.selling_price} AED</del>
         </div>
       </div>
     </a>
   </div>
 </div>
-            `;
-            container.insertAdjacentHTML('beforeend', card);
-        });
+        `;
+        container.insertAdjacentHTML('beforeend', card);
+      });
 
     } catch (error) {
-        console.error('Error fetching products:', error);
-        document.getElementById('hp-products').innerHTML = '<p class="text-danger text-center">Error loading HP products.</p>';
+      console.error('Error fetching products:', error);
+      document.getElementById('hp-products').innerHTML = '<p class="text-danger text-center">Error loading HP products.</p>';
     }
-}
+  }
 
-document.addEventListener('DOMContentLoaded', fetchHPDevices);
+  document.addEventListener('DOMContentLoaded', () => {
+    fetchHPDevices();
+    window.addEventListener('resize', () => {
+      fetchHPDevices(); // Reload cards on screen resize
+    });
+  });
+
         // --------------HP Deveices Category product  End----------------------
 
         // --------------Dell Deveices Category product  Start----------------------
        async function fetchDellDevices() {
     function limitWords(text, wordLimit) {
-        const words = text.trim().split(/\s+/);
-        if (words.length <= wordLimit) return text;
-        return words.slice(0, wordLimit).join(' ') + '...';
+      const words = text.trim().split(/\s+/);
+      if (words.length <= wordLimit) return text;
+      return words.slice(0, wordLimit).join(' ') + '...';
+    }
+
+    function getDisplayLimit() {
+      const screenWidth = window.innerWidth;
+      return screenWidth < 768 ? 6 : 12; // Mobile vs Desktop limit
     }
 
     try {
-        const response = await fetch(`${API_CUSTOMER_URL}/api/products?brand=DELL`);
-        const data = await response.json();
+      const response = await fetch(`${API_CUSTOMER_URL}/api/products?brand=DELL`);
+      const data = await response.json();
 
-        const container = document.getElementById('dell-products');
-        container.innerHTML = ''; // Clear existing
+      const container = document.getElementById('dell-products');
+      container.innerHTML = '';
 
-        const products = Array.isArray(data) ? data : data.products;
+      const products = Array.isArray(data) ? data : data.products;
 
-        if (!products || products.length === 0) {
-            container.innerHTML = '<p class="text-center w-100">No products available in Dell brand.</p>';
-            return;
-        }
+      if (!products || products.length === 0) {
+        container.innerHTML = '<p class="text-center w-100">No products available in Dell brand.</p>';
+        return;
+      }
 
-        // Limit to first 6 products
-        const limitedProducts = products.slice(0, 6);
+      const displayLimit = getDisplayLimit();
+      const limitedProducts = products.slice(0, displayLimit);
 
-        limitedProducts.forEach(product => {
-            const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
+      limitedProducts.forEach(product => {
+        const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
 
-            const card = `
+        const card = `
 <div class="col-6 col-sm-4 col-md-3 col-lg-2">
   <div class="card h-100 border border-gray-100 rounded-16 position-relative" style="height: 400px; overflow: hidden;">
     <a href="product-details.html?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
-      <!-- Image section -->
       <div class="position-relative" style="height: 200px;">
         <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
         <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
       </div>
-
-      <!-- Description section -->
-      <div class="px-10 d-flex flex-column justify-content-between" style="height: 200px;">
+      <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px;">
         <div class="d-flex justify-content-between mb-1">
           <span class="badge bg-success">In stock</span>
           <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
         </div>
         <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
-          ${limitWords(product.name, 27)}
+          ${limitWords(product.name, 13)}
         </h6>
-        <div class="mt-auto">
-          <p class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</p>
-          <del class="text-muted">${product.selling_price} AED</del>
+        <div class="mt-0">
+          <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>
+          <del class="text-muted fs-6">${product.selling_price} AED</del>
         </div>
       </div>
     </a>
   </div>
 </div>
-            `;
-
-            container.insertAdjacentHTML('beforeend', card);
-        });
+        `;
+        container.insertAdjacentHTML('beforeend', card);
+      });
 
     } catch (error) {
-        console.error('Error fetching products:', error);
-        document.getElementById('dell-products').innerHTML = '<p class="text-danger text-center">Error loading Dell products.</p>';
+      console.error('Error fetching products:', error);
+      document.getElementById('dell-products').innerHTML = '<p class="text-danger text-center">Error loading Dell products.</p>';
     }
-}
+  }
 
-document.addEventListener('DOMContentLoaded', fetchDellDevices);
+  document.addEventListener('DOMContentLoaded', () => {
+    fetchDellDevices();
+    window.addEventListener('resize', () => {
+      fetchDellDevices(); // Reload cards on screen resize
+    });
+  });
 
         // --------------Dell Deveices Category product  End----------------------
 
         // --------------accessories Category product  Start----------------------
-       async function fetchAccessories() {
+        async function fetchAccessories() {
     function limitWords(text, wordLimit) {
-        const words = text.trim().split(/\s+/);
-        if (words.length <= wordLimit) return text;
-        return words.slice(0, wordLimit).join(' ') + '...';
+      const words = text.trim().split(/\s+/);
+      if (words.length <= wordLimit) return text;
+      return words.slice(0, wordLimit).join(' ') + '...';
+    }
+
+    function getDisplayLimit() {
+      const screenWidth = window.innerWidth;
+      return screenWidth < 768 ? 6 : 12; // Mobile vs Desktop limit
     }
 
     try {
-        const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=Accessories`);
-        const data = await response.json();
+      const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=Accessories`);
+      const data = await response.json();
 
-        const container = document.getElementById('accessories-container');
-        container.innerHTML = ''; // Clear existing
+      const container = document.getElementById('accessories-container');
+      container.innerHTML = '';
 
-        const products = Array.isArray(data) ? data : data.products;
+      const products = Array.isArray(data) ? data : data.products;
 
-        if (!products || products.length === 0) {
-            container.innerHTML = '<p class="text-center w-100">No products available in Accessories.</p>';
-            return;
-        }
+      if (!products || products.length === 0) {
+        container.innerHTML = '<p class="text-center w-100">No products available in Accessories.</p>';
+        return;
+      }
 
-        // Limit to first 6 products
-        const limitedProducts = products.slice(0, 6);
+      const displayLimit = getDisplayLimit();
+      const limitedProducts = products.slice(0, displayLimit);
 
-        limitedProducts.forEach(product => {
-            const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
+      limitedProducts.forEach(product => {
+        const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
 
-            const card = `
+        const card = `
 <div class="col-6 col-sm-4 col-md-3 col-lg-2">
   <div class="card h-100 border border-gray-100 rounded-16 position-relative" style="height: 400px; overflow: hidden;">
     <a href="product-details.html?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
-      <!-- Image section -->
       <div class="position-relative" style="height: 200px;">
         <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
         <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
       </div>
-
-      <!-- Description section -->
-      <div class="px-10 d-flex flex-column justify-content-between" style="height: 200px;">
+      <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px;">
         <div class="d-flex justify-content-between mb-1">
           <span class="badge bg-success">In stock</span>
           <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
         </div>
         <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
-          ${limitWords(product.name, 27)}
+          ${limitWords(product.name, 13)}
         </h6>
-        <div class="mt-auto">
-          <p class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</p>
-          <del class="text-muted">${product.selling_price} AED</del>
+        <div class="mt-0">
+          <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>
+          <del class="text-muted fs-6">${product.selling_price} AED</del>
         </div>
       </div>
     </a>
   </div>
 </div>
-            `;
-
-            container.insertAdjacentHTML('beforeend', card);
-        });
+        `;
+        container.insertAdjacentHTML('beforeend', card);
+      });
 
     } catch (error) {
-        console.error('Error fetching products:', error);
-        container.innerHTML = '<p class="text-danger text-center">Error loading accessories.</p>';
+      console.error('Error fetching products:', error);
+      document.getElementById('accessories-container').innerHTML = '<p class="text-danger text-center">Error loading accessories.</p>';
     }
-}
+  }
 
-document.addEventListener('DOMContentLoaded', fetchAccessories);
+  document.addEventListener('DOMContentLoaded', () => {
+    fetchAccessories();
+    window.addEventListener('resize', () => {
+      fetchAccessories(); // Reload cards on screen resize
+    });
+  });
+
         // --------------accessories Category product  End----------------------
 
         // --------------accer Category product  Start----------------------
- async function fetchAccer() {
+  async function fetchAccer() {
     function limitWords(text, wordLimit) {
-        const words = text.trim().split(/\s+/);
-        if (words.length <= wordLimit) return text;
-        return words.slice(0, wordLimit).join(' ') + '...';
+      const words = text.trim().split(/\s+/);
+      if (words.length <= wordLimit) return text;
+      return words.slice(0, wordLimit).join(' ') + '...';
+    }
+
+    function getDisplayLimit() {
+      const screenWidth = window.innerWidth;
+      return screenWidth < 768 ? 6 : 12; // Mobile vs Desktop
     }
 
     try {
-        const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=Accer`);
-        const data = await response.json();
+      const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=Accer`);
+      const data = await response.json();
 
-        const container = document.getElementById('accer-container');
-        container.innerHTML = ''; // Clear existing
+      const container = document.getElementById('accer-container');
+      container.innerHTML = ''; // Clear existing
 
-        const products = Array.isArray(data) ? data : data.products;
+      const products = Array.isArray(data) ? data : data.products;
 
-        if (!products || products.length === 0) {
-            container.innerHTML = '<p class="text-center w-100">No products available in Accer.</p>';
-            return;
-        }
+      if (!products || products.length === 0) {
+        container.innerHTML = '<p class="text-center w-100">No products available in Accer.</p>';
+        return;
+      }
 
-        // Limit to first 6 products
-        const limitedProducts = products.slice(0, 6);
+      const displayLimit = getDisplayLimit();
+      const limitedProducts = products.slice(0, displayLimit);
 
-        limitedProducts.forEach(product => {
-            const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
+      limitedProducts.forEach(product => {
+        const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
 
-            const card = `
+        const card = `
 <div class="col-6 col-sm-4 col-md-3 col-lg-2">
   <div class="card h-100 border border-gray-100 rounded-16 position-relative" style="height: 400px; overflow: hidden;">
     <a href="product-details.html?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
-      <!-- Image section -->
       <div class="position-relative" style="height: 200px;">
         <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
         <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
       </div>
-
-      <!-- Description section -->
-      <div class="px-10 d-flex flex-column justify-content-between" style="height: 200px;">
+      <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px;">
         <div class="d-flex justify-content-between mb-1">
           <span class="badge bg-success">In stock</span>
           <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
         </div>
         <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
-          ${limitWords(product.name, 27)}
+          ${limitWords(product.name, 13)}
         </h6>
-        <div class="mt-auto">
-          <p class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</p>
-          <del class="text-muted">${product.selling_price} AED</del>
+        <div class="mt-0">
+          <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>
+          <del class="text-muted fs-6">${product.selling_price} AED</del>
         </div>
       </div>
     </a>
   </div>
 </div>
-            `;
-
-            container.insertAdjacentHTML('beforeend', card);
-        });
+        `;
+        container.insertAdjacentHTML('beforeend', card);
+      });
 
     } catch (error) {
-        console.error('Error fetching products:', error);
-        container.innerHTML = '<p class="text-danger text-center">Error loading Accer products.</p>';
+      console.error('Error fetching products:', error);
+      document.getElementById('accer-container').innerHTML = '<p class="text-danger text-center">Error loading Accer products.</p>';
     }
-}
+  }
 
-document.addEventListener('DOMContentLoaded', fetchAccer);
+  document.addEventListener('DOMContentLoaded', () => {
+    fetchAccer();
+    window.addEventListener('resize', () => {
+      fetchAccer(); // Reload cards on screen resize
+    });
+  });
 
 
         // --------------accer Category product  End----------------------
 
         // --------------AllInOne Category product  Start----------------------
    
-async function fetchAllInOne() {
+
+  async function fetchAllInOne() {
     function limitWords(text, wordLimit) {
-        const words = text.trim().split(/\s+/);
-        if (words.length <= wordLimit) return text;
-        return words.slice(0, wordLimit).join(' ') + '...';
+      const words = text.trim().split(/\s+/);
+      if (words.length <= wordLimit) return text;
+      return words.slice(0, wordLimit).join(' ') + '...';
+    }
+
+    function getDisplayLimit() {
+      const screenWidth = window.innerWidth;
+      return screenWidth < 768 ? 6 : 12;
     }
 
     try {
-        const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=All in One`);
-        const data = await response.json();
+      const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=All in One`);
+      const data = await response.json();
 
-        const container = document.getElementById('allInOne-devices');
-        container.innerHTML = ''; // Clear existing
+      const container = document.getElementById('allInOne-devices');
+      container.innerHTML = ''; // Clear existing
 
-        const products = Array.isArray(data) ? data : data.products;
+      const products = Array.isArray(data) ? data : data.products;
 
-        if (!products || products.length === 0) {
-            container.innerHTML = '<p class="text-center w-100">No products available in All in One.</p>';
-            return;
-        }
+      if (!products || products.length === 0) {
+        container.innerHTML = '<p class="text-center w-100">No products available in All in One.</p>';
+        return;
+      }
 
-        // Limit to first 6 products
-        const limitedProducts = products.slice(0, 6);
+      const displayLimit = getDisplayLimit();
+      const limitedProducts = products.slice(0, displayLimit);
 
-        limitedProducts.forEach(product => {
-            const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
-            const displayName = limitWords(product.name, 27);
+      limitedProducts.forEach(product => {
+        const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
+        const displayName = limitWords(product.name, 13);
 
-            const card = `
+        const card = `
 <div class="col-6 col-sm-4 col-md-3 col-lg-2">
   <div class="card h-100 border border-gray-100 rounded-16 position-relative" style="height: 400px; overflow: hidden;">
     <a href="product-details.html?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
-      <!-- Image section -->
       <div class="position-relative" style="height: 200px;">
         <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
         <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
       </div>
-
-      <!-- Description section -->
-      <div class="px-10 d-flex flex-column justify-content-between" style="height: 200px;">
+      <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px;">
         <div class="d-flex justify-content-between mb-1">
           <span class="badge bg-success">In stock</span>
           <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
@@ -3385,53 +3406,72 @@ async function fetchAllInOne() {
         <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
           ${displayName}
         </h6>
-        <div class="mt-auto">
-          <p class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</p>
-          <del class="text-muted">${product.selling_price} AED</del>
+        <div class="mt-0">
+          <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>
+          <del class="text-muted fs-6">${product.selling_price} AED</del>
         </div>
       </div>
     </a>
   </div>
 </div>
-            `;
-
-            container.insertAdjacentHTML('beforeend', card);
-        });
+        `;
+        container.insertAdjacentHTML('beforeend', card);
+      });
 
     } catch (error) {
-        console.error('Error fetching products:', error);
-        container.innerHTML = '<p class="text-danger text-center">Error loading All in One products.</p>';
+      console.error('Error fetching products:', error);
+      document.getElementById('allInOne-devices').innerHTML = '<p class="text-danger text-center">Error loading All in One products.</p>';
     }
-}
+  }
 
-document.addEventListener('DOMContentLoaded', fetchAllInOne);
+  document.addEventListener('DOMContentLoaded', () => {
+    fetchAllInOne();
+    window.addEventListener('resize', fetchAllInOne);
+  });
+
+
 
 
         // --------------AllInOne Category product  End----------------------
 
         // --------------lenovo Category product  Start----------------------
-        async function fetchLenovo() {
-            try {
-                const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=lenovo Devices`);
-                const data = await response.json();
+       async function fetchLenovo() {
+    function limitWords(text, wordLimit) {
+      const words = text.trim().split(/\s+/);
+      if (words.length <= wordLimit) return text;
+      return words.slice(0, wordLimit).join(' ') + '...';
+    }
 
-                const container = document.getElementById('lenovo-devices');
-                container.innerHTML = ''; // Clear existing
+    function getDisplayLimit() {
+      const screenWidth = window.innerWidth;
+      return screenWidth < 768 ? 6 : 12;
+    }
 
-                const products = Array.isArray(data) ? data : data.products;
+    try {
+      const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=lenovo Devices`);
+      const data = await response.json();
 
-                if (!products || products.length === 0) {
-                    container.innerHTML = '<p class="text-center w-100">No products available in Accessories.</p>';
-                    return;
-                }
+      const container = document.getElementById('lenovo-devices');
+      container.innerHTML = ''; // Clear existing
 
-                products.forEach(product => {
-                    const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
+      const products = Array.isArray(data) ? data : data.products;
 
-                    const card = `
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+      if (!products || products.length === 0) {
+        container.innerHTML = '<p class="text-center w-100">No products available in Lenovo Devices.</p>';
+        return;
+      }
+
+      const displayLimit = getDisplayLimit();
+      const limitedProducts = products.slice(0, displayLimit);
+
+      limitedProducts.forEach(product => {
+        const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
+        const displayName = limitWords(product.name, 13);
+
+        const card = `
+<div class="col-6 col-sm-4 col-md-3 col-lg-2">
   <div class="card position-relative border rounded h-100">
-    <a href="product-details.html?slug=${product.slug}">
+    <a href="product-details.html?slug=${product.slug}" class="text-decoration-none">
       <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
       <img src="${API_ADMINGRAB_URL}/${image}" class="card-img-top" alt="${product.name}" style="height: 150px; object-fit: contain;">
       <div class="card-body">
@@ -3439,93 +3479,101 @@ document.addEventListener('DOMContentLoaded', fetchAllInOne);
           <span class="badge bg-success">In stock</span>
           <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
         </div>
-        <h6 class="card-title" style="font-size: 14px; color: black; ">${product.name}</h6>
+        <h6 class="card-title" style="font-size: 14px; color: black;">${displayName}</h6>
         <p class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</p>
         <del class="text-muted">${product.selling_price} AED</del>
       </div>
     </a>
   </div>
 </div>
-      `;
+        `;
+        container.insertAdjacentHTML('beforeend', card);
+      });
 
-                    container.insertAdjacentHTML('beforeend', card);
-                });
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      document.getElementById('lenovo-devices').innerHTML = '<p class="text-danger text-center">Error loading Lenovo devices.</p>';
+    }
+  }
 
-            } catch (error) {
-                console.error('Error fetching products:', error);
-                document.getElementById('accessories-container').innerHTML = '<p class="text-danger text-center">Error loading accessories.</p>';
-            }
-        }
-        document.addEventListener('DOMContentLoaded', fetchLenovo);
+  document.addEventListener('DOMContentLoaded', () => {
+    fetchLenovo();
+    window.addEventListener('resize', fetchLenovo);
+  });
         // --------------lenovo Category product  End----------------------
 
         // --------------Samsung Category product  Start----------------------
-       async function fetchSamsung() {
+        async function fetchSamsung() {
     function limitWords(text, wordLimit) {
-        const words = text.trim().split(/\s+/);
-        if (words.length <= wordLimit) return text;
-        return words.slice(0, wordLimit).join(' ') + '...';
+      const words = text.trim().split(/\s+/);
+      if (words.length <= wordLimit) return text;
+      return words.slice(0, wordLimit).join(' ') + '...';
+    }
+
+    function getDisplayLimit() {
+      const screenWidth = window.innerWidth;
+      return screenWidth < 768 ? 6 : 12;
     }
 
     try {
-        const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=Samsung Devices`);
-        const data = await response.json();
+      const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=Samsung Devices`);
+      const data = await response.json();
 
-        const container = document.getElementById('Samsung-devices');
-        container.innerHTML = ''; // Clear existing
+      const container = document.getElementById('Samsung-devices');
+      container.innerHTML = ''; // Clear existing
 
-        const products = Array.isArray(data) ? data : data.products;
+      const products = Array.isArray(data) ? data : data.products;
 
-        if (!products || products.length === 0) {
-            container.innerHTML = '<p class="text-center w-100">No products available in Samsung Devices.</p>';
-            return;
-        }
+      if (!products || products.length === 0) {
+        container.innerHTML = '<p class="text-center w-100">No products available in Samsung Devices.</p>';
+        return;
+      }
 
-        // Limit to first 6 products
-        const limitedProducts = products.slice(0, 6);
+      const displayLimit = getDisplayLimit();
+      const limitedProducts = products.slice(0, displayLimit);
 
-        limitedProducts.forEach(product => {
-            const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
+      limitedProducts.forEach(product => {
+        const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
 
-            const card = `
+        const card = `
 <div class="col-6 col-sm-4 col-md-3 col-lg-2">
   <div class="card h-100 border border-gray-100 rounded-16 position-relative" style="height: 400px; overflow: hidden;">
     <a href="product-details.html?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
-      <!-- Image section -->
       <div class="position-relative" style="height: 200px;">
         <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
         <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
       </div>
-
-      <!-- Description section -->
-      <div class="px-10 d-flex flex-column justify-content-between" style="height: 200px;">
+      <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px;">
         <div class="d-flex justify-content-between mb-1">
           <span class="badge bg-success">In stock</span>
           <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
         </div>
         <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
-          ${limitWords(product.name, 27)}
+          ${limitWords(product.name, 13)}
         </h6>
-        <div class="mt-auto">
-          <p class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</p>
-          <del class="text-muted">${product.selling_price} AED</del>
+        <div class="mt-0">
+          <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>
+          <del class="text-muted fs-6">${product.selling_price} AED</del>
         </div>
       </div>
     </a>
   </div>
 </div>
-            `;
+        `;
 
-            container.insertAdjacentHTML('beforeend', card);
-        });
+        container.insertAdjacentHTML('beforeend', card);
+      });
 
     } catch (error) {
-        console.error('Error fetching products:', error);
-        container.innerHTML = '<p class="text-danger text-center">Error loading Samsung devices.</p>';
+      console.error('Error fetching products:', error);
+      document.getElementById('Samsung-devices').innerHTML = '<p class="text-danger text-center">Error loading Samsung devices.</p>';
     }
-}
+  }
 
-document.addEventListener('DOMContentLoaded', fetchSamsung);
+  document.addEventListener('DOMContentLoaded', () => {
+    fetchSamsung();
+    window.addEventListener('resize', fetchSamsung);
+  });
         // --------------Samsung Category product  End----------------------
 
         // --------------Brands  Start----------------------
