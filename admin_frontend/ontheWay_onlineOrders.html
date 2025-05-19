@@ -2,36 +2,170 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Management</title>
     <script src="./apiConfig/apiConfig.js"></script>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            font-family: Arial;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        select,
+        button {
+            padding: 4px;
+        }
+    </style>
 </head>
 
 <body>
+    <div style="margin-bottom: 15px;">
+        <label for="statusDropdown">Change Status:</label>
+        <select id="statusDropdown">
+            <option value="">-- Select Status --</option>
+        </select>
+        <button onclick="updateSelectedOrderStatus()">Update Status</button>
+        <div class="table-container mt-4">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer Name</th>
+                            <th>Customer Contact</th>
+                            <th>Order Status</th>
+                            <th>Payment Type</th>
+                            <th>Order Date</th>
+                            <th>Total Amount</th>
+                            <th>Items</th>
+                            <th>Shipping Address</th>
+                        </tr>
+                    </thead>
+                    <tbody id="purchaseReturnsTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+        <script>
+            const allowedStatuses = [
+                "Received Order", "Inprogress Order", "Ready for Shipment",
+                "On the Way", "Delevered", "On Hold"
+            ];
 
-    <script>
+            const statusDropdown = document.getElementById("statusDropdown");
 
-        async function fetchOrders() {
-            try {
-                const response = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders/ready-for-shipment`,
-                    {
+            // Populate the top dropdown
+            allowedStatuses.forEach(status => {
+                const opt = document.createElement("option");
+                opt.value = status;
+                opt.textContent = status;
+                statusDropdown.appendChild(opt);
+            });
+
+            async function fetchOrders() {
+                try {
+                    const response = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders/on-the-way`, {
                         method: 'GET',
                         headers: {
                             'Authorization': `${localStorage.getItem('token')}`,
                             'Content-Type': 'application/json',
                         },
                     });
-                const orders = await response.json();
-                console.log(orders, "status On The Way");
 
-            } catch (error) {
-                console.error('Error fetching orders:', error);
+                    const orders = await response.json();
+                    console.log(orders, "✅ status received");
+
+                    const tbody = document.getElementById("purchaseReturnsTableBody");
+                    tbody.innerHTML = "";
+
+                    orders.forEach(order => {
+                        const row = document.createElement("tr");
+
+                        let customerContact = 'N/A';
+                        try {
+                            const info = JSON.parse(order.shippingInfo);
+                            customerContact = info.contact || 'N/A';
+                        } catch (e) { }
+
+                        let itemsCount = 'N/A';
+                        try {
+                            const cardItems = JSON.parse(order.card_info);
+                            itemsCount = cardItems.reduce((sum, item) => sum + (item.quantity || 0), 0);
+                        } catch (e) { }
+
+                        const orderDate = order.created_at
+                            ? new Date(order.created_at).toLocaleString()
+                            : 'N/A';
+
+                        row.innerHTML = `
+                            <td>${order.order_id}</td>
+                            <td>${order.customer_name || 'N/A'}</td>
+                            <td>${customerContact}</td>
+                            <td>${order.order_status}</td>
+                            <td>${order.payment_type}</td>
+                            <td>${orderDate}</td>
+                            <td>${order.total_amount}</td>
+                            <td>${itemsCount}</td>
+                            <td>${order.shipping_address || 'N/A'}</td>
+                        `;
+
+                        tbody.appendChild(row);
+                    });
+
+                } catch (error) {
+                    console.error("❌ Fetch error:", error);
+                }
             }
 
-        }
-        fetchOrders();
-    </script>
+            async function updateSelectedOrderStatus() {
+                const token = localStorage.getItem('token');
+                const newStatus = statusDropdown.value;
+
+                if (!newStatus) {
+                    alert("Please select a status to update all 'Received Order' entries.");
+                    return;
+                }
+
+                const rejection_comment = newStatus === 'Rejected'
+                    ? prompt("Enter rejection comment:") || "Rejected without comment"
+                    : null;
+
+                try {
+                    const res = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders/update-on-the-way-status`, {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `${localStorage.getItem('token')}`,
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            new_status: newStatus,
+                            rejection_comment: rejection_comment
+                        })
+                    });
+
+                    const result = await res.json();
+                    alert(result.message || "Status updated.");
+                    fetchOrders();
+
+                } catch (err) {
+                    console.error("❌ Status update error:", err);
+                }
+            }
+
+            fetchOrders();
+        </script>
+
 </body>
 
 </html>
