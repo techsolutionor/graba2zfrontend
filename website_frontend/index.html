@@ -69,112 +69,124 @@
         /* third scroller start */
 
 
-         .section-sale {
-    background-color: #FFCC00;
-    padding: 25px;
-  }
+        .section-sale {
+  background-color: #FFCC00;
+  padding: 25px;
+}
 
-  .sale-container {
-    max-width: 1300px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
+.sale-container {
+  max-width: 1300px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
 
-  .sale-box {
-    flex-shrink: 0;
-    width: 300px;
-    background-color: #FFD700;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-  }
+.sale-box {
+  flex-shrink: 0;
+  width: 300px;
+  background-color: #FFD700;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
 
-  .product-slider-container {
-    flex-grow: 1;
-    position: relative;
-    overflow: hidden;
-  }
+.product-slider-container {
+  flex-grow: 1;
+  position: relative;
+  overflow: hidden;
+}
 
-  .product-slider {
-    display: flex;
-    gap: 12px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-  }
+.product-slider {
+  display: flex;
+  gap: 5px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
 
-  .product-slider::-webkit-scrollbar {
-    display: none;
-  }
+.product-slider::-webkit-scrollbar {
+  display: none;
+}
 
+/* Default: Mobile-first fallback */
+.product-card {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  padding: 10px;
+}
+
+.product-card img {
+  height: 200px;
+  object-fit: contain;
+  width: 100%;
+}
+
+.product-card .info-section {
+  height: 120px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.slider-button {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(241, 230, 230, 0.8);
+  border: none;
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.slider-button.left {
+  left: 0px;
+}
+
+.slider-button.right {
+  right: 1px;
+}
+
+/* Tablets and above */
+@media (min-width: 768px) {
   .product-card {
-    width: 240px;
+    width: 235px;
     height: 420px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-    flex: 0 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    padding: 10px;
+  }
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 767px) {
+  .product-card {
+    width: 160px;
+    height: 310px;
   }
 
   .product-card img {
-    height: 200px;
-    object-fit: contain;
-    width: 100%;
+    height: 180px;
   }
 
   .product-card .info-section {
-    height: 120px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    height: 130px;
   }
+}
 
-  .slider-button {
-    display: flex;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.8);
-    border: none;
-    cursor: pointer;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  }
-
-  .slider-button.left {
-    left: 0px;
-  }
-
-  .slider-button.right {
-    right: 0px;
-  }
-
-  @media (max-width: 767px) {
-    .product-card {
-      width: 160px;
-      height: 310px;
-    }
-
-    .product-card img {
-      height: 180px;
-    }
-
-    .product-card .info-section {
-      height: 130px;
-    }
-  }
 
         /* third scroller end */
         /* second  swiper scrollor */
@@ -2584,7 +2596,7 @@
         function scrollHorizontal(direction) {
             const container = document.getElementById('saleContainer');
             const card = container.querySelector('.product-card');
-            const scrollAmount = card.offsetWidth + 15
+            const scrollAmount = card.offsetWidth + 5
             ; // card width + gap
 
             container.scrollBy({
@@ -2892,7 +2904,7 @@
                                                 <button onclick="addToWishlist(this)" class="btn position-absolute top-0 end-0">
                                                     ♡
                                                 </button>
-                                                <img src="${imageUrl}" alt="${product.name}" style="height: 200px; width: 100%; object-fit: contain;">
+                                                <img src="${imageUrl}" alt="${product.name}"">
                                                 <div class="px-10">
                                                     <div class="d-flex justify-content-between">
                                                         <span class="badge bg-success">In stock</span>
@@ -2960,16 +2972,16 @@ async function fetchNetworkingDevices() {
       </div>
 
       <!-- Description section -->
-      <div class="px-10 d-flex flex-column justify-content-between" style="height: 200px;">
+      <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px;">
         <div class="d-flex justify-content-between mb-1">
           <span class="badge bg-success">In stock</span>
           <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
         </div>
        <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
-                            ${limitWords(product.name, 27)}
+                            ${limitWords(product.name, 13)}
                         </h6>
         <div class="mt-auto">
-          <p class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</p>
+          <p class="card-price text-danger  fs-6 fw-bold mb-0">${product.offer_price} AED</p>
           <del class="text-muted">${product.selling_price} AED</del>
         </div>
       </div>
