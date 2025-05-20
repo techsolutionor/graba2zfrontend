@@ -53,19 +53,28 @@
             display: none;
         }
 
-        .swiper-button-next:after,
-        .swiper-rtl .swiper-button-prev:after {
-            font-size: 25px;
-            color: #fff;
-        }
+      /* Default for desktop  big slider button responsive start*/
+.swiper-button-next:after,
+.swiper-rtl .swiper-button-prev:after,
+.swiper-button-prev:after,
+.swiper-rtl .swiper-button-next:after {
+    font-size: 25px;
+    color: #fff;
+}
 
-        .swiper-button-prev:after,
-        .swiper-rtl .swiper-button-next:after {
-            font-size: 25px;
-            color: #fff;
-        }
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+    .swiper-button-next:after,
+    .swiper-rtl .swiper-button-prev:after,
+    .swiper-button-prev:after,
+    .swiper-rtl .swiper-button-next:after {
+        font-size: 13px !important; /* smaller size for mobile */
+    }
+}
+/* Default for desktop  big slider button responsive end*/
 
-        /* Default (already handled) - Flex row for desktop/laptop */
+
+    
         /* third scroller start */
 
 
@@ -112,7 +121,7 @@
 .product-card {
   width: 100%;
   max-width: 100%;
-  height: 100%;
+  height: 80%;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
@@ -131,7 +140,7 @@
 }
 
 .product-card .info-section {
-  height: 120px;
+  height: 90px !important;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -163,29 +172,14 @@
   right: 1px;
 }
 
-/* Tablets and above */
-@media (min-width: 768px) {
-  .product-card {
-    width: 235px;
-    height: 420px;
+@media (max-width: 1024px) {
+  .section-sale {
+    display: none !important;
   }
 }
 
-/* Mobile-specific adjustments */
-@media (max-width: 767px) {
-  .product-card {
-    width: 160px;
-    height: 310px;
-  }
 
-  .product-card img {
-    height: 180px;
-  }
 
-  .product-card .info-section {
-    height: 130px;
-  }
-}
 
 
         /* third scroller end */
@@ -235,12 +229,12 @@
 
         .galleria-next,
         .galleria-prev {
-            color: #000;
-            background-color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            color: #000 !important;
+           font-weight: 500 !important;
+            width: 30px !important;
+            height: 30px!important;
+            border-radius: 50% !important;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
             display: none;
             align-items: center;
             justify-content: center;
@@ -248,9 +242,10 @@
 
         .galleria-next::after,
         .galleria-prev::after {
-            font-size: 14px;
-            font-weight: bold;
+            font-size: 14px !important;
+            font-weight: 500 !important;
             color: black !important;
+             /* font-weight: 500 !important; */
         }
 
         .carousel-hall:hover .galleria-next,
@@ -1072,7 +1067,7 @@
          /* company logo */
 /* Company logo */
 .company-logo {
-    padding: 20px;
+    /* padding: 20px; */
     text-align: center;
 }
 
@@ -1134,7 +1129,7 @@
         .section-title h2 {
             text-transform: uppercase;
             font-weight: 700;
-            font-size: 18px;
+            font-size: 29px;
             color: #000000;
             margin: 0;
         }
@@ -2368,7 +2363,7 @@
   <div class="sale-container">
     <div class="sale-box">
       <h3 style="color: #d60000; font-size: 28px; font-weight: bold;">BIG SALE</h3>
-      <p style="color: #d60000; font-size: 18px; font-weight: bold;"> Upto50% OFF</p>
+      <p style="color: #d60000; font-size: 18px; font-weight: bold;"> Upto 50% OFF</p>
       <p style="font-size: 14px; font-weight: bold; color: #333;">GRABIANS OFFER</p>
       <a href="shop.html" style="margin-top: 10px; background-color: #d60000; color: #fff; font-size: 14px; padding: 8px 14px; border: none; border-radius: 6px; cursor: pointer;">SHOP NOW</a>
       <div style="margin-top: 20px; display: flex; justify-content: center; gap: 6px;">
@@ -2425,7 +2420,7 @@
     <!-- ===================== All in One Section Start 3 ==============================  -->
     <section class="p-5">
         <section class="px-5">
-            <img src="assets/images/thumbs/accessories.jpg" alt="Shop HP" />
+            <img src="assets/images/all-banner.png" alt="Shop HP" />
             <div class="d-flex justify-content-between align-items-center  pt-20">
                 <h3 class="text-dark px-10">All in One</h3>
                 <a href="#" class="text-dark text-decoration-underline">See All</a>
@@ -2505,11 +2500,16 @@
    <!-- Swiper CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-<div class="company-logo">
-    <h1 class="text-dark px-10">Featured Brand</h1>
+<div class="company-logo mt-44">
+    <h1 class="text-dark px-10 mt-20">Featured Brand</h1>
     <div class="swiper brand-swiper">
         <div class="swiper-wrapper" id="brandLogo">
             <!-- Brand slides will be inserted here -->
+
+            <div id="slider3">
+  <button class="prev3">Prev</button>
+  <button class="next3">Next</button>
+</div>
        
 </div>
 
@@ -2520,7 +2520,7 @@
 
     <div class="service-container">
         <div class="section-title">
-            <h2>CORE SERVICE ASPECTS</h2>
+            <h2 class="text-dark">CORE SERVICE ASPECTS</h2>
         </div>
 
         <div class="services">
@@ -2593,27 +2593,7 @@
             .catch(error => console.error('Error loading header:', error));
 
 
-        function scrollHorizontal(direction) {
-            const container = document.getElementById('saleContainer');
-            const card = container.querySelector('.product-card');
-            const scrollAmount = card.offsetWidth + 5
-            ; // card width + gap
-
-            container.scrollBy({
-                left: direction * scrollAmount,
-                behavior: 'smooth'
-            });
-        }
-
-        function addToWishlist(button) {
-            if (button.innerHTML === '♡') {
-                button.innerHTML = '♥';
-                button.style.color = '#dc3545';
-            } else {
-                button.innerHTML = '♡';
-                button.style.color = '#dc3545';
-            }
-        }
+      
 
         // Phosphor Icons (for the arrows) 
 
@@ -2673,8 +2653,8 @@
                 clickable: true,
             },
             navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
+                nextEl: ".swiper-button-next1",
+                prevEl: ".swiper-button-prev1",
             },
             autoplay: {
                 delay: 3000,
@@ -2894,7 +2874,7 @@
 
                 data.products.forEach(product => {
                     if (product.name) {
-                        const displayName = product.name.length > 35 ? product.name.substring(0, 35) + '...' : product.name;
+                        const displayName = product.name.length > 35 ? product.name.substring(0, 70) + '...' : product.name;
                         const imageUrl = `${API_ADMINGRAB_URL}/${product.image_path.replace(/\\/g, '/')}`;
 
                         const productCard = `
@@ -2906,13 +2886,13 @@
                                                 </button>
                                                 <img src="${imageUrl}" alt="${product.name}"">
                                                 <div class="px-10">
-                                                    <div class="d-flex justify-content-between">
+                                                    <div class="d-flex justify-content-between px-10">
                                                         <span class="badge bg-success">In stock</span>
                                                         <span class="badge bg-warning text-dark">${product.discount || '0%'} Off</span>
                                                     </div>
-                                                    <p class="my-2 text-dark text-xl py-3">${displayName}</p>
-                                                    <p class="text-danger fw-bold my-1 fs-6">${product.offer_price} AED</p>
-                                                    <p class="text-decoration-line-through  fs-6 text-dark">${product.selling_price} AED</p>
+                                                    <p class="my-2 text-dark text-xl px-9 " style="font-size:14px !important; font-weight:600;">${displayName}</p>
+                                                    <p class="text-danger fw-bold my-1 fs-6  px-10">${product.offer_price} AED</p>
+                                                    <p class="text-decoration-line-through fs-6 px-10 mb-10 text-dark">${product.selling_price} AED</p>
                                                     
                                                 </div>
                                             </div>
@@ -2936,32 +2916,38 @@
 
       // -------------- Networking Devices brand product Start ----------------------
 async function fetchNetworkingDevices() {
-     function limitWords(text, wordLimit) {
-            const words = text.trim().split(/\s+/);
-            if (words.length <= wordLimit) return text;
-            return words.slice(0, wordLimit).join(' ') + '...';
-        }
-    try {
-        const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=Networking%20Devices`);
-        const data = await response.json();
+  function limitWords(text, wordLimit) {
+    const words = text.trim().split(/\s+/);
+    if (words.length <= wordLimit) return text;
+    return words.slice(0, wordLimit).join(' ') + '...';
+  }
 
-        const container = document.getElementById('networking-devices');
-        container.innerHTML = ''; // Clear existing
+  function getDisplayLimit() {
+    const screenWidth = window.innerWidth;
+    return screenWidth < 768 ? 6 : 12;
+  }
 
-        const products = Array.isArray(data) ? data : data.products;
+  try {
+    const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=Networking%20Devices`);
+    const data = await response.json();
 
-        if (!products || products.length === 0) {
-            container.innerHTML = '<p class="text-center w-100">No products available in Networking Devices.</p>';
-            return;
-        }
+    const container = document.getElementById('networking-devices');
+    container.innerHTML = ''; // Clear existing
 
-        // Limit to first 6 products
-        const limitedProducts = products.slice(0, 6);
+    const products = Array.isArray(data) ? data : data.products;
 
-        limitedProducts.forEach(product => {
-            const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
+    if (!products || products.length === 0) {
+      container.innerHTML = '<p class="text-center w-100">No products available in Networking Devices.</p>';
+      return;
+    }
 
-            const card = `
+    const displayLimit = getDisplayLimit();
+    const limitedProducts = products.slice(0, displayLimit);
+
+    limitedProducts.forEach(product => {
+      const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
+
+      const card = `
 <div class="col-6 col-sm-4 col-md-3 col-lg-2">
   <div class="card h-100 border border-gray-100 rounded-16 position-relative" style="height: 400px; overflow: hidden;">
     <a href="product-details.html?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
@@ -2977,27 +2963,33 @@ async function fetchNetworkingDevices() {
           <span class="badge bg-success">In stock</span>
           <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
         </div>
-       <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
-                            ${limitWords(product.name, 13)}
-                        </h6>
+        <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
+          ${limitWords(product.name, 13)}
+        </h6>
         <div class="mt-auto">
-          <p class="card-price text-danger  fs-6 fw-bold mb-0">${product.offer_price} AED</p>
-          <del class="text-muted">${product.selling_price} AED</del>
+          <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>
+          <del class="text-muted fs-6 mb-">${product.selling_price} AED</del>
         </div>
       </div>
     </a>
   </div>
 </div>
-            `;
-            container.insertAdjacentHTML('beforeend', card);
-        });
+      `;
 
-    } catch (error) {
-        console.error('Error fetching products:', error);
-        document.getElementById('networking-devices').innerHTML = '<p class="text-danger text-center">Error loading networking devices.</p>';
-    }
+      container.insertAdjacentHTML('beforeend', card);
+    });
+
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    document.getElementById('networking-devices').innerHTML = '<p class="text-danger text-center">Error loading networking devices.</p>';
+  }
 }
-document.addEventListener('DOMContentLoaded', fetchNetworkingDevices);
+
+// Initialize on page load and on window resize
+document.addEventListener('DOMContentLoaded', () => {
+  fetchNetworkingDevices();
+  window.addEventListener('resize', fetchNetworkingDevices);
+});
 // -------------- Networking Devices brand product End ----------------------
 
 

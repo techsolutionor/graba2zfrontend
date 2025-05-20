@@ -1166,59 +1166,13 @@
 
 
                         <div class="flex-between flex-wrap gap-16 mt-16">
-                            <!-- <div class="flex-align gap-16">
-                            <input type="text" id="coupon-code-input" class="common-input" placeholder="Enter Coupon Code">
-                            <button type="button"  class="btn btn-main py-18 w-100 rounded-8" onclick="applyCoupon()">Apply Coupon</button>
-                        </div>
-                        <div id="coupon-feedback" class="text-danger mt-2"></div>
-                        <div id="applied-coupon" class="mt-4 d-none">
-                            <span class="badge bg-success">Coupon Applied: <span id="applied-coupon-code"></span></span>
-                            <button type="button" class="btn btn-link text-danger" id="remove-coupon-button" onclick="removeCoupon()">Remove</button>
-                        </div>
-                        <button type="submit" class="text-lg text-gray-500 hover-text-main-600">Update Cart</button> -->
-
-                            <!-- <div id="applied-coupon" class="mt-4 d-none">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-success">Applied: <span id="applied-coupon-code"></span></span>
-                                <button class="btn btn-link text-danger" onclick="removeCoupon()">Remove</button>
-                            </div>
-                            <div class="d-flex justify-content-between mt-2">
-                                <span>Coupon Discount:</span>
-                                <span id="coupon-discount" class="text-danger">- AED 0.00</span>
-                            </div>
-                        </div> -->
+                          
 
                             <button onclick="clearCart()" class="btn btn-warning " id="cart">Clear Cart</button>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-xl-3 col-lg-4">
-                <div class="cart-sidebar border border-gray-100 rounded-8 px-24 py-40">
-                    <h6 class="text-xl mb-32">Cart Totals</h6>
-                    <div class="bg-color-three rounded-8 p-24">
-                        <div class="mb-32 flex-between gap-8">
-                            <span class="text-gray-900 font-heading-two">Subtotal</span>
-                            <span id="cart-subtotal" class="text-gray-900 fw-semibold">$0.00</span>
-                        </div>
-                        <div class="mb-32 flex-between gap-8">
-                            <span class="text-gray-900 font-heading-two">Estimated Delivery</span>
-                            <span class="text-gray-900 fw-semibold">Free</span>
-                        </div>
-                        <div class="mb-0 flex-between gap-8">
-                            <span class="text-gray-900 font-heading-two">Estimated Taxes</span>
-                            <span id="cart-taxes" class="text-gray-900 fw-semibold">$0.00</span>
-                        </div>
-                    </div>
-                    <div class="bg-color-three rounded-8 p-24 mt-24">
-                        <div class="flex-between gap-8">
-                            <span class="text-gray-900 text-xl fw-semibold">Total</span>
-                            <span id="cart-total" class="text-gray-900 text-xl fw-semibold">$0.00</span>
-                        </div>
-                    </div>
-                    
-                    <a href="checkout.html" class="btn btn-main mt-40 py-18 w-100 rounded-8">Proceed to checkout</a>
-                </div>
-            </div> -->
+                
 
                 <div class="col-xl-3 col-lg-4">
                     <div class="cart-sidebar border border-gray-100 rounded-8 px-4 py-4"
@@ -1423,15 +1377,17 @@
                     </button>
                 </td>
                 <td>
-                    <div class="table-product d-flex align-items-center gap-24">
-                        <img src="${API_ADMINGRAB_URL}/${product.image_path}" alt="${product.name}" class="table-product__thumb border border-gray-100 rounded-8 flex-center" style="width: 100px;">
+                    <div class="table-product  align-items-center gap-24">
+                      
                         <div class="table-product__content text-start fs-6">
-                           <p class="title text-lg fw-semibold fs-6 ">${limitWords(product.name, 3)}</p>
+                          
 
                         </div>
+                          <img src="${API_ADMINGRAB_URL}/${product.image_path}" alt="${product.name}" class="table-product__thumb border border-gray-100 rounded-8 flex-center" style="width: 100px;">
                     </div>
                 </td>
                 <td>
+                     <p class="title text-lg fw-semibold fs-6 mb-10">${limitWords(product.name, 3)}</p>
                     <span class="text-lg h6 mb-0 fw-semibold">AED ${price.toFixed(2)}</span>
                 </td>
                 <td>

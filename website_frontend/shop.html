@@ -2033,189 +2033,174 @@
     <!-- main js -->
     <script src="assets/js/main.js"></script>
 <script>
-    function getCategoryAndBrandFromURL() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const category = urlParams.get('category');
-        const brand = urlParams.get('brand');
-        const searchQuery = urlParams.get('search');
+ 
+// 🔹 Helper function to limit product name words
+function limitWords(text, wordLimit = 5) {
+    const words = text.trim().split(/\s+/);
+    return words.length <= wordLimit ? text : words.slice(0, wordLimit).join(' ') + '...';
+}
 
-        // If there's a search query, fetch and display the filtered products
-        if (searchQuery) {
-            fetchFilteredProducts(searchQuery);
-        }
-        return { category, brand };
+function getCategoryAndBrandFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = urlParams.get('category');
+    const brand = urlParams.get('brand');
+    const searchQuery = urlParams.get('search');
+
+    if (searchQuery) {
+        fetchFilteredProducts(searchQuery);
     }
-    // Initialize the price range slider
+    return { category, brand };
+}
 
-    $(function () {
-        const minPrice = 0; // Minimum price
-        const maxPrice = 1000; // Maximum price (adjust as per your range)
-        $("#slider-range").slider({
-            range: true,
-            min: minPrice,
-            max: maxPrice,
-            values: [minPrice, maxPrice],
-            slide: function (event, ui) {
-                $("#amount").val(`$${ui.values[0]} - $${ui.values[1]}`);
-            }
-        });
-        $("#amount").val(`$${$("#slider-range").slider("values", 0)} - $${$("#slider-range").slider("values", 1)}`);
+// 🔹 Price range slider
+$(function () {
+    const minPrice = 0;
+    const maxPrice = 1000;
+    $("#slider-range").slider({
+        range: true,
+        min: minPrice,
+        max: maxPrice,
+        values: [minPrice, maxPrice],
+        slide: function (event, ui) {
+            $("#amount").val(`$${ui.values[0]} - $${ui.values[1]}`);
+        }
     });
+    $("#amount").val(`$${$("#slider-range").slider("values", 0)} - $${$("#slider-range").slider("values", 1)}`);
+});
 
-    const priceFilterBtn = document.getElementById('price-filter-btn');
+// 🔹 Filter by price
+const priceFilterBtn = document.getElementById('price-filter-btn');
 
-    priceFilterBtn.addEventListener('click', async function () {
-        // Get the values from the min and max price inputs
-        const minPrice = document.getElementById('min-price').value;
-        const maxPrice = document.getElementById('max-price').value;
+priceFilterBtn.addEventListener('click', async function () {
+    const minPrice = document.getElementById('min-price').value;
+    const maxPrice = document.getElementById('max-price').value;
 
-        // If minPrice or maxPrice is empty or not a valid number, don't filter by price
-        if (minPrice && isNaN(minPrice)) {
-            alert('Please enter a valid minimum price');
+    if (minPrice && isNaN(minPrice)) {
+        alert('Please enter a valid minimum price');
+        return;
+    }
+    if (maxPrice && isNaN(maxPrice)) {
+        alert('Please enter a valid maximum price');
+        return;
+    }
+
+    try {
+        const productGrid = document.getElementById('product-grid');
+        if (!productGrid) {
+            console.error('❌ product-grid element not found');
             return;
         }
-        if (maxPrice && isNaN(maxPrice)) {
-            alert('Please enter a valid maximum price');
-            return;
-        }
 
-        // Get selected category and brand values (assuming they are set globally)
-        // const selectedCategory = 'Monitors'; // Example category, replace with actual category
-        // const selectedBrand = 'Dell'; // Example brand, replace with actual brand
+        productGrid.innerHTML = '<p>Loading products...</p>';
+        let apiUrl = `${API_CUSTOMER_URL}/api/products?`;
+        if (minPrice) apiUrl += `&minPrice=${encodeURIComponent(minPrice)}`;
+        if (maxPrice) apiUrl += `&maxPrice=${encodeURIComponent(maxPrice)}`;
 
-        try {
-            const productGrid = document.getElementById('product-grid');
-            if (!productGrid) {
-                console.error('❌ product-grid element not found');
-                return;
-            }
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error('Failed to fetch products');
 
-            productGrid.innerHTML = '<p>Loading products...</p>';
+        const data = await response.json();
+        const { products, totalCount } = data;
 
-            // Construct the API URL with the selected brand, category, and price range
-            let apiUrl = `${API_CUSTOMER_URL}/api/products?`;
+        document.getElementById('product-count').textContent = `Showing 1-${products.length} of ${totalCount} results`;
+        productGrid.innerHTML = '';
 
-            if (minPrice) apiUrl += `&minPrice=${encodeURIComponent(minPrice)}`;
-            if (maxPrice) apiUrl += `&maxPrice=${encodeURIComponent(maxPrice)}`;
-
-            const response = await fetch(apiUrl);
-            if (!response.ok) throw new Error('Failed to fetch products');
-
-            const data = await response.json();
-            const { products, totalCount } = data;
-
-            document.getElementById('product-count').textContent = `Showing 1-${products.length} of ${totalCount} results`;
-            productGrid.innerHTML = '';
-
-            // Display the products
-            products.forEach((product) => {
-                const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
-                const productCardHTML = `
-           <div class="product-card col-6 col-md-6 col-lg-4 col-xl-3 ">
-                <div style="min-width: 100% !important;" class="card h-100 border border-gray-100  rounded-16 position-relative w-200 h-400">
+        products.forEach((product) => {
+            const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
+            const productCardHTML = `
+            <div class="product-card col-6 col-md-6 col-lg-4 col-xl-3">
+                <div class="card h-100 border border-gray-100 rounded-16 position-relative w-200 h-400" style="min-width: 200px !; ">
                     <a href="product-details.html?slug=${product.slug}" class="product-card__thumb d-block position-relative">
                         <img src="${API_CUSTOMER_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
                     </a>
                     <div class="card-body">
-                            <div class="mb-2 d-flex justify-content-between">
+                        <div class="mb-2 d-flex justify-content-between">
                             <span class="badge bg-success">In stock</span>
                             <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
-                            </div>
-                           <h6 class="card-title" style="font-size: 14px; color:black;">${limitWords(product.name)}
-
-                            <p>
-                            <h4 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</p>
-                            <del class="text-muted">${product.selling_price} AED</del>
-                            </h6>
                         </div>
-         <div class="card-body">
-           <div class="mb-2 d-flex justify-content-between">
-              </div>
-                  <a href="javascript:void(0)" onclick="handleAddToCart({ id: ${product.id}, name: '${product.name}', selling_price: ${product.selling_price}, image_path:'${sanitizedImagePath}' })" class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">Add To Cart</a>
+                        <h6 class="card-title" style="font-size: 14px; color:black;">${limitWords(product.name, 5)}</h6>
+                        <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
+                        <del class="text-muted">${product.selling_price} AED</del></p>
+                    </div>
+                    <div class="card-body">
+                        <a href="javascript:void(0)" onclick="handleAddToCart({ id: ${product.id}, name: '${product.name}', selling_price: ${product.selling_price}, image_path:'${sanitizedImagePath}' })" class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">Add To Cart</a>
+                    </div>
+                </div>
             </div>
-             </div>
-              </div>
-        
-        `;
-                productGrid.innerHTML += productCardHTML;
-            });
-        } catch (error) {
-            console.error('❌ Error fetching products:', error);
-            document.getElementById('product-grid').innerHTML = '<p>Error loading products.</p>';
+            `;
+            productGrid.innerHTML += productCardHTML;
+        });
+    } catch (error) {
+        console.error('❌ Error fetching products:', error);
+        document.getElementById('product-grid').innerHTML = '<p>Error loading products.</p>';
+    }
+});
+
+
+
+    function limitWords(text, wordLimit) {
+    const words = text.trim().split(/\s+/);
+    return words.length <= wordLimit ? text : words.slice(0, wordLimit).join(' ') + '...';
+}
+
+async function loadProductsByCategoryAndBrand(category, brand, discount) {
+    try {
+        const productGrid = document.getElementById('product-grid');
+        if (!productGrid) {
+            console.error('❌ product-grid element not found');
+            return;
         }
-    });
 
-    async function loadProductsByCategoryAndBrand(category, brand, discount) {
-        try {
-            const productGrid = document.getElementById('product-grid');
-            if (!productGrid) {
-                console.error('❌ product-grid element not found');
-                return;
-            }
+        productGrid.innerHTML = '<p>Loading products...</p>';
 
-            productGrid.innerHTML = '<p>Loading products...</p>';
+        let apiUrl = `${API_CUSTOMER_URL}/api/products?`;
+        if (category) apiUrl += `category=${encodeURIComponent(category)}&`;
+        if (brand) apiUrl += `brand=${encodeURIComponent(brand)}&`;
+        // if (discount) apiUrl += `discount=${encodeURIComponent(discount)}&`;
 
-            // Construct the API URL with category, brand, and discount parameters
-            let apiUrl = `${API_CUSTOMER_URL}/api/products?`;
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error('Failed to fetch products');
 
-            if (category) apiUrl += `category=${encodeURIComponent(category)}&`;
-            if (brand) apiUrl += `brand=${encodeURIComponent(brand)}&`;
-            // if (discount) apiUrl += `discount=${encodeURIComponent(discount)}&`;  // Add discount parameter
+        const data = await response.json();
+        const { products, totalCount } = data;
 
-            // Make the API request
-            const response = await fetch(apiUrl);
-            if (!response.ok) throw new Error('Failed to fetch products');
+        document.getElementById('product-count').textContent = `Showing 1-${products.length} of ${totalCount} results`;
+        productGrid.innerHTML = '';
 
-            const data = await response.json();
-            const { products, totalCount } = data;
+        products.forEach((product) => {
+            const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
+            const limitedName = limitWords(product.name, 13); // ⬅️ Word limit applied here
 
-            // Update the UI with the fetched products
-            document.getElementById('product-count').textContent = `Showing 1-${products.length} of ${totalCount} results`;
-            productGrid.innerHTML = '';
-
-            // Display the products
-            products.forEach((product) => {
-                const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
-                const productCardHTML = `
-            <div class="product-card col-6 col-md-6 col-lg-4 col-xl-3 ">
-                <div style="min-width: 100% !important;" class="card h-100 border border-gray-100  rounded-16 position-relative" >
-                     <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
+            const productCardHTML = `
+            <div class="product-card col-6 col-md-6 col-lg-4 col-xl-3">
+                <div class="card h-100 border border-gray-100 rounded-16 position-relative">
+                    <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
                     <a href="product-details.html?slug=${product.slug}" class="product-card__thumb d-block position-relative">
                         <img src="${API_ADMINGRAB_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
                     </a>
-                      <div class="card-body">
-                            <div class="mb-2 d-flex justify-content-between">
+                    <div class="card-body">
+                        <div class="mb-2 d-flex justify-content-between">
                             <span class="badge bg-success">In stock</span>
                             <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
-                            </div>
-                            <h6 class="card-title" style="font-size: 14px; color:black;">${product.name}
-                            <p
-                            <h4 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</p>
-                            <del class="text-muted">${product.selling_price} AED</del>
-                            </h6>
                         </div>
-         <div class="card-body">
-           <div class="mb-2 d-flex justify-content-between">
-              </div>
-                  <a href="javascript:void(0)" onclick="handleAddToCart({ id: ${product.id}, name: '${product.name}', selling_price: ${product.selling_price}, image_path:'${sanitizedImagePath}' })" class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">Add To Cart</a>
+                        <h6 class="card-title" style="font-size: 14px; color:black;">${limitedName}</h6>
+                      <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
+                        <del class="text-muted">${product.selling_price} AED</del></p>
+                    </div>
+                    <div class="card-body">
+                        <a href="javascript:void(0)" onclick="handleAddToCart({ id: ${product.id}, name: '${product.name}', selling_price: ${product.selling_price}, image_path:'${sanitizedImagePath}' })" class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">Add To Cart</a>
+                    </div>
+                </div>
             </div>
-             </div>
-              </div>
-        `;
-                productGrid.innerHTML += productCardHTML;
-            });
-        } catch (error) {
-            console.error('❌ Error fetching products:', error);
-            document.getElementById('product-grid').innerHTML = '<p>Error loading products.</p>';
-        }
+            `;
+            productGrid.innerHTML += productCardHTML;
+        });
+    } catch (error) {
+        console.error('❌ Error fetching products:', error);
+        document.getElementById('product-grid').innerHTML = '<p>Error loading products.</p>';
     }
+}
 
-    document.getElementById('search-form').addEventListener('submit', (event) => {
-        event.preventDefault();
-        const searchQuery = document.getElementById('search-input').value.trim();
-        window.location.href = `shop.html?search=${encodeURIComponent(searchQuery)}`;
-        // await fetchFilteredProducts(searchQuery);
-    });
 
     async function fetchFilteredProducts(searchQuery) {
         try {
@@ -2255,7 +2240,7 @@
                             </div>
                             <h6 class="card-title" style="font-size: 14px; color:black;">${product.name}
                             <p
-                            <h4 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</p>
+                            <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
                             <del class="text-muted">${product.selling_price} AED</del>
                             </h6>
                         </div>
@@ -2434,7 +2419,7 @@
                             </div>
                             <h6 class="card-title" style="font-size: 14px; color:black;">${product.name}
                             <p
-                            <h4 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</p>
+                            <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
                             <del class="text-muted">${product.selling_price} AED</del>
                             </h6>
                         </div>
@@ -2494,7 +2479,7 @@
                             </div>
                             <h6 class="card-title" style="font-size: 14px; color:black;">${product.name}
                             <p
-                            <h4 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</p>
+                            <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
                             <del class="text-muted">${product.selling_price} AED</del>
                             </h6>
                         </div>
