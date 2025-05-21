@@ -1037,34 +1037,7 @@
             }
         }
 
-        /* company logo */
-
-        /* .company-logo {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .company-logo h1 {
-            font-size: 40px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .company-logo-logos {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .company-logo-logos img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-
-        } */
-         /* company logo */
+  
 /* Company logo */
 .company-logo {
     /* padding: 20px; */
@@ -1237,82 +1210,103 @@
             color: #000 !important;
         }
 
-        /* mobile res start */
-        /* Hide sidebar by default */
-        .sidebar {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            top: 0;
-            right: 0;
-            left: auto;
-            background-color: #ffffff;
-            overflow-x: hidden;
-            transition: 0.3s ease;
-            padding-top: 60px;
-            z-index: 999;
-        }
+       			/* Sidebar container */
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  transition: 0.3s ease;
+  padding-top: 60px;
+  z-index: 999;
+}
 
-        /* Sidebar content scrollable */
-        .sidebar-inner {
-            max-height: 100%;
-            overflow-y: auto;
-        }
+/* Open state */
+.sidebar.open {
+  width: 250px;
+}
 
-        .sidebar a {
-            display: block;
-            padding: 12px 20px;
-            color: rgb(0, 0, 0);
-            text-decoration: none;
-        }
+/* Sidebar content scrollable */
+.sidebar-inner {
+  max-height: 100%;
+  overflow-y: auto;
+}
 
-        .sidebar a:hover {
-            background: #fff4f4;
-            color: rgb(49, 136, 49);
-        }
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  padding: 12px 20px;
+  color: #000;
+  text-decoration: none;
+}
 
-        /* Menu button */
-        .menu-btn {
-            display: none;
-            position: absolute;
-            top: 61px;
-            right: 31px;
-            font-size: 24px;
-            background-color: #ffffff;
-            color: rgb(0, 0, 0);
-            padding: 10px;
-            z-index: 1000;
-            border-radius: 5px;
-            text-align: left;
-        }
+.sidebar a:hover {
+  background: #fff4f4;
+  color: rgb(49, 136, 49);
+}
 
-        /* Show on mobile and tablet only */
-        @media (max-width: 1024px) {
-            .menu-btn {
-                display: block;
-            }
+/* Open Button (☰) */
+.menu-open-btn {
+  display: none;
+  position: absolute;
+  top: 61px;
+  right: 31px;
+  font-size: 24px;
+  background-color: #ffffff;
+  color: #000;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000;
+  cursor: pointer;
+}
 
-            .sidebar {
-                display: block;
-            }
-        }
+/* Close Button (✖) inside Sidebar */
+.menu-close-btn {
+  display: none;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  background: transparent;
+  border: none;
+  color: red;
+  z-index: 1001;
+  cursor: pointer;
+}
 
-        /* Hide on larger screens */
-        @media (min-width: 1025px) {
-            .sidebar {
-                display: none !important;
-            }
+/* Responsive Display Settings */
+@media (max-width: 1024px) {
+  .menu-open-btn {
+    display: block;
+  }
 
-            .menu-btn {
-                display: none !important;
-            }
-        }
+  .sidebar {
+    display: block;
+  }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
+  .sidebar.open .menu-close-btn {
+    display: block;
+  }
+}
+
+@media (min-width: 1025px) {
+  .sidebar,
+  .menu-open-btn,
+  .menu-close-btn {
+    display: none !important;
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+
  /* cart circle css start  */
        .cart-item-count {
         min-width: 24px;
@@ -1413,13 +1407,18 @@
                 <!-- Header Middle Right End  -->
             </nav>
         </div>
-        <!-- ===================mobile responsive design ==============================  -->
-        <div class="menu-btn" onclick="toggleSidebar()">☰</div>
+        
+ <!-- ===================mobile responsive design ==============================  -->
+            
+    <!-- Open Sidebar Button -->
+<div class="menu-open-btn" onclick="toggleSidebar()">☰</div>
 
-        <!-- Sidebar Only For Mobile/Tablet -->
-        <div id="sidebar" class="sidebar">
-            <div class="sidebar-inner">
-                <ul>
+<!-- Sidebar -->
+<div id="sidebar" class="sidebar">
+  <!-- Close Sidebar Button -->
+  <button class="menu-close-btn" onclick="toggleSidebar()">✖</button>
+  <div class="sidebar-inner">
+    <ul>
 
                     <a href="shop.html?category=Desktops&brand=Lenovo">Lenovo Desktops </a>
                     </li>
@@ -1586,13 +1585,11 @@
                     <li>
                         <a href="shop.html?category=Wifi%20Dongles"> Wifi Dongles </a>
                     </li>
-                </ul>
-
-
-                <!-- Aise hi 61 tak add kar do -->
-            </div>
-        </div>
+                 </ul>
+  </div>
+</div>
         <!-- ===================== mobile responsive end ==============================  -->
+
 
     </header>
     <!-- ======================= Middle Header End ========================= -->
@@ -3581,19 +3578,7 @@ document.addEventListener('DOMContentLoaded', fetchBrands);
         // --------------Brands End----------------------
 
 
-        // toogle the mobile menu
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const menuBtn = document.querySelector('.menu-btn');
-
-            if (sidebar.style.width === '250px') {
-                sidebar.style.width = '0';
-                menuBtn.style.display = 'block'; // Show button when sidebar closes
-            } else {
-                sidebar.style.width = '250px';
-                menuBtn.style.display = 'none'; // Hide button when sidebar opens
-            }
-        }
+     
     </script>
 
     <!-- cart add section -->
@@ -3727,6 +3712,23 @@ document.addEventListener('DOMContentLoaded', fetchBrands);
             })
             .catch(error => console.error('Error loading header:', error));
     </script>
+   <script>
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const menuBtn = document.querySelector('.menu-open-btn');
+
+  if (sidebar.classList.contains('open')) {
+    sidebar.classList.remove('open');
+    menuBtn.style.display = 'block';
+  } else {
+    sidebar.classList.add('open');
+    menuBtn.style.display = 'none';
+  }
+}
+</script>
+
+
+
 
 
     </body>

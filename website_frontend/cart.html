@@ -176,6 +176,29 @@
   }
 }
 
+/* cros button aside bar */
+/* Close (X) Button inside Sidebar */
+.sidebar-close-btn {
+  display: none;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  background: transparent;
+  border: none;
+  color: rgb(255, 0, 0);
+  z-index: 1001;
+  cursor: pointer;
+}
+
+/* Show the close button only when sidebar is open on mobile/tablet */
+@media (max-width: 1024px) {
+  .sidebar.open .sidebar-close-btn {
+    display: block;
+  }
+}
+
+
     </style>
 
 <head>
@@ -402,12 +425,11 @@
                 </nav>
         </div>
         <!-- ===================mobile responsive design ==============================  -->
-        <div class="menu-btn" onclick="toggleSidebar()">☰</div>
-
-        <!-- Sidebar Only For Mobile/Tablet -->
-        <div id="sidebar" class="sidebar">
-            <div class="sidebar-inner">
-                <ul>
+            <div class="menu-btn" onclick="toggleSidebar()">☰</div>
+       <div id="sidebar" class="sidebar">
+  <button class="sidebar-close-btn" onclick="toggleSidebar()">✖</button>
+  <div class="sidebar-inner">
+    <ul>
 
                     <a href="shop.html?category=Desktops&brand=Lenovo">Lenovo Desktops </a>
                     </li>
@@ -1690,18 +1712,23 @@ window.addEventListener('resize', () => {
 
 
         // toogle the mobile menu
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const menuBtn = document.querySelector('.menu-btn');
+       
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const menuBtn = document.querySelector('.menu-btn');
 
-            if (sidebar.style.width === '250px') {
-                sidebar.style.width = '0';
-                menuBtn.style.display = 'block'; // Show button when sidebar closes
-            } else {
-                sidebar.style.width = '250px';
-                menuBtn.style.display = 'none'; // Hide button when sidebar opens
-            }
-        }
+  if (sidebar.classList.contains('open')) {
+    sidebar.classList.remove('open');
+    sidebar.style.width = '0';
+    menuBtn.style.display = 'block';
+  } else {
+    sidebar.classList.add('open');
+    sidebar.style.width = '250px';
+    menuBtn.style.display = 'none';
+  }
+}
+</script>
+
 
     </script>
     <script>
