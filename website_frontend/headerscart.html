@@ -177,6 +177,22 @@ border-top: 1px solid #eee;
         white-space: nowrap;
     }
 
+
+    /* Menu button */
+.menu-btn {
+  display: none;
+  position:absolute;
+  top: 41px;
+  right: 31px;
+  font-size: 24px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  z-index: 1000;
+  border-radius: 5px;
+  text-align: left;
+}
+
     </style>
     </head>
 
@@ -1148,6 +1164,21 @@ border-top: 1px solid #eee;
                 document.getElementById('cart-items-all-count').innerText = totalItems;
             });
         </script>
+        <script>
+    // Toggle sidebar function  for mobile/tablet
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const menuBtn = document.querySelector('.menu-btn');
+
+  if (sidebar.style.width === '250px') {
+    sidebar.style.width = '0';
+    menuBtn.style.display = 'block'; // Show button when sidebar closes
+  } else {
+    sidebar.style.width = '250px';
+    menuBtn.style.display = 'none'; // Hide button when sidebar opens
+  }
+}
+</script>
 
     </body>
 

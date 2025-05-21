@@ -148,6 +148,7 @@ body {
   width: 350px;
   width: 100%;
   margin-top: 10px;
+ 
   
 }
 
@@ -202,6 +203,7 @@ body {
     justify-content: center !important;
     align-items: center !important;
     text-align: center !important;
+    margin-left: 240px;
   }
 
   .footer .social-icons {
@@ -280,6 +282,10 @@ body {
   .footer .subscribe{
     display: flex !important;
     justify-content: center;
+   
+  }
+  .subscribe {
+   margin-left: 50px !important;
   }
 
   .footer .social-icons {

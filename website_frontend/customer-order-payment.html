@@ -120,6 +120,82 @@
         white-space: nowrap;
     }
 
+
+    
+    .sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: auto;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  transition: 0.3s ease;
+  padding-top: 60px;
+  z-index: 999;
+}
+
+
+.sidebar-inner {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.sidebar a {
+  display: block;
+  padding: 12px 20px;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  background: #fff4f4;
+  color: rgb(49, 136, 49);
+}
+
+
+.menu-btn {
+  display: none;
+  position:absolute;
+  top: 61px;
+  right: 31px;
+  font-size: 24px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  z-index: 1000;
+  border-radius: 5px;
+  text-align: left;
+}
+
+
+@media (max-width: 1024px) {
+  .menu-btn {
+    display: block;
+  }
+
+  .sidebar {
+    display: block;
+  }
+}
+
+
+@media (min-width: 1025px) {
+  .sidebar {
+    display: none !important;
+  }
+
+  .menu-btn {
+    display: none !important;
+  }
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
         </style>
         </head>
 <body >
@@ -184,6 +260,184 @@
                 <!-- Header Middle Right End  -->
             </nav>
         </div>
+         <div class="menu-btn" onclick="toggleSidebar()">☰</div>
+
+     <!-- Sidebar Only For Mobile/Tablet -->
+     <div id="sidebar" class="sidebar">
+       <div class="sidebar-inner">
+         <ul>
+         
+           <a href="shop.html?category=Desktops&brand=Lenovo">Lenovo Desktops </a>
+       </li>
+       <li>
+           <a href="shop.html?category=Desktops&brand=Dell"> Dell Desktops</a>
+       </li>
+       <li>
+           <a href="shop.html?category=Desktops&brand=Asus"> Asus Desktops</a>
+       </li>
+       <li>
+           <a href="shop.html?category=Desktops&brand=Acer"> Acer Desktops </a>
+       </li>
+       <li>
+           <a href="shop.html?category=Desktops&brand=HP"> HP Desktops</a>
+       </li>
+       <li>
+         <a href="shop.html?category=Monitors&brand=Lenovo"> Lenovo Monitors</a>
+     </li>
+     <li>
+         <a href="shop.html?category=Monitors&brand=MSI"> MSI Monitors</a>
+     </li>
+     <li>
+         <a href="shop.html?category=Monitors&brand=HP"> HP Monitors</a>
+     </li>
+     <li>
+         <a href="shop.html?category=Monitors&brand=Dell"> Dell Monitors</a>
+     </li>
+     <li>
+         <a href="shop.html?category=Monitors&brand=Asus"> Asus Monitors</a>
+     </li>
+     <li>
+         <a href="shop.html?category=Monitors&brand=Acer"> Acer Monitors</a>
+     </li>
+     <li>
+         <a href="shop.html?category=Monitors&brand=Samsung"> Samsung
+             Monitors</a>
+     </li>
+     <li>
+         <a href="shop.html?category=Monitors&brand=AOC"> AOC Monitors</a>
+     </li>
+     <li>
+         <a href="shop.html?category=Monitors&brand=Viewsonic"> Viewsonic
+             Monitors</a>
+     </li>
+     <li>
+         <a href="shop.html?category=Monitors&brand=LG"> LG Monitors</a>
+     </li>
+     <li>
+       <a href="shop.html?category=Laptops&brand=Lenovo"> Lenovo Laptops</a>
+     </li>
+     <li>
+       <a href="shop.html?category=Laptops&brand=MSI"> MSI Laptops</a>
+     </li>
+     <li>
+       <a href="shop.html?category=Laptops&brand=HP"> HP Laptops</a>
+     </li>
+     <li>
+       <a href="shop.html?category=Laptops&brand=Dell"> Dell Laptops</a>
+     </li>
+     <li>
+       <a href="shop.html?category=Laptops&brand=Asus"> Asus Laptops</a>
+     </li>
+     <li>
+       <a href="shop.html?category=Laptops&brand=Acer"> Acer Laptops</a>
+     </li>
+     <li>
+       <a href="shop.html?category=Laptops&brand=MI"> MI Laptops</a>
+     </li>
+     <li>
+       <a href="shop.html?category=Laptops&brand=Apple"> Apple Laptops</a>
+     </li>
+     <li>
+       <a href="shop.html?category=Laptops&brand=Microsoft"> Microsoft
+           Laptops</a>
+     </li>
+     <li>
+       <a href="shop.html?category=Printers%20&%20Copier&brand=HR"> HR Printer
+           & Copier </a>
+     </li>
+     <li>
+       <a href="shop.html?category=Printers%20&%20Copier&brand=Canon"> Canon
+           Printer & Copier</a>
+     
+     <li>
+       <a href="shop.html?category=Printers%20&%20Copier&brand=Brother">
+           Brother Printer & Copier</a>
+     </li>
+     <li>
+       <a href="shop.html?category=Printers%20&%20Copier&brand=Ricoh"> Ricoh
+           Printer & Copier</a>
+     </li>
+     <li>
+       <a href="shop.html?category=Printers%20&%20Copier&brand=Epson"> Epson
+           Printer & Copier</a>
+     </li>
+     <li>
+       <a href="shop.html?category=Printers%20&%20Copier&brand=Xerox"> Xerox
+           Printer & Copier</a>
+     </li>
+     <li>
+       <a href="shop.html?category=Routers&brand=TP%20Link"> TP Link Routers
+       </a>
+     </li>
+     <li>
+       <a href="shop.html?category=Projectors&brand=Optoma"> Optoma</a>
+     </li>
+     <li>
+       <a href="shop.html?category=Projectors&brand=BENQ"> BENQ</a>
+     </li>
+     <li>
+       <a href="shop.html?category=Projectors&brand=LG"> LG </a>
+     </li>
+     <li>
+       <a href="shop.html?category=Bags"> Bags</a>
+     </li>
+     <li>
+       <a href="shop.html?category=RAM"> RAMs</a>
+     </li>
+     <li>
+       <a href="shop.html?category=Mouse"> Mouse </a>
+     </li>
+     <li>
+       <a href="shop.html?category=Keyboard"> keyboard </a>
+     </li>
+     <li>
+       <a href="shop.html?category=Hard%20Drives"> Hard Drives</a>
+     </li>
+     <li>
+       <a href="shop.html?category=Headphones"> headphones </a>
+     </li>
+     <li>
+       <a href="shop.html?category=Storage%20Devices"> storage devices </a>
+     </li>
+     <li>
+       <a href="shop.html?category=Graphic%20Cards"> Graphic Cards </a>
+     </li>
+     <li>
+       <a href="shop.html?categoryMotherboard"> Motherboard </a>
+     </li>
+     <li>
+       <a href="shop.html?category=Power%20Supply"> Power Supply </a>
+     </li>
+     <li>
+       <a href="shop.html?category=Cables"> cables</a>
+     </li>
+     <li>
+       <a href="shop.html?category=HDMI"> HDMI</a>
+     </li>
+     <li>
+       <a href="shop.html?category=Adapter"> Adapters </a>
+     </li>
+     <li>
+       <a href="shop.html?category=USB"> USB C HUB </a>
+     </li>
+     <li>
+       <a href="shop.html?category=Connectors"> Connectors </a>
+     </li>
+     <li>
+       <a href="shop.html?category=Display%20Port"> Display Port </a>
+     </li>
+     <li>
+       <a href="shop.html?category=USB%20Dongles"> USB Dongles </a>
+     </li>
+     <li>
+       <a href="shop.html?category=Wifi%20Dongles"> Wifi Dongles </a>
+     </li>
+     </ul>
+     
+     
+         <!-- Aise hi 61 tak add kar do -->
+       </div>
+     </div>
     </header>
     <!-- ======================= Middle Header End ========================= -->
 
@@ -918,7 +1172,7 @@
                     <li class="d-flex align-items-center">
                         <i class="ph ph-caret-right"></i>
                     </li>
-                    <li class="text-sm text-main-600">Shipping Address</li>
+                    <li class="text-sm text-main-600 ">Shipping Address</li>
                 </ul>
             </div>
         </div>
@@ -930,22 +1184,22 @@
 
         <!-- Step Indicator -->
         <div class="d-flex align-items-center mb-4">
-            <span id="step1" class="fw-bold border border-dark rounded-circle px-6 py-2 me-2">01</span>
-            <span class="fw-bold">Shipping Details</span>
+            <span id="step1" class="fw-bold border border-dark rounded-circle px-6 py-2 me-2 text-dark">01</span>
+            <span class="fw-bold text-dark">Shipping Details</span>
             <span class="mx-2">—</span>
-            <span id="step2" class="text-secondary border border-dark rounded-circle px-5 py-2 me-2">02</span>
-            <span class="text-secondary">Summary</span>
+            <span id="step2" class="text-secondary border border-dark rounded-circle px-5 py-2 me-2 text-dark">02</span>
+            <span class="text-secondary text-dark">Summary</span>
             <span class="mx-2">—</span>
-            <span id="step3" class="text-secondary border border-dark rounded-circle px-5 py-2 me-2">03</span>
-            <span class="text-secondary">Payment Method</span>
+            <span id="step3" class="text-secondary border border-dark rounded-circle px-5 py-2 me-2 text-dark">03</span>
+            <span class="text-secondary " style="color: #000 !important;">Payment Method</span>
         </div>
 
         <div class="mb-3">
-            <label class="form-label fw-bold">Guest ID</label>
+            <label class="form-label fw-bold text-dark">Guest ID</label>
             <input type="text" id="guestId" class="form-control" readonly>
         </div>
         <div class="mb-3">
-            <label class="form-label fw-bold">Shiping Info</label>
+            <label class="form-label fw-bold text-dark">Shiping Info</label>
             <textarea id="guestshipinginfo" class="form-control" readonly rows="3"></textarea>
         </div>
         
@@ -953,7 +1207,7 @@
         <div class="row">
             <div class="col-lg-8">
                 <div id="paymentMethodSection">
-                    <h5 class="fw-bold mt-16" style="font-size: 25px;">Payment Method</h5>
+                    <h5 class="fw-bold mt-16" style="font-size: 25px; color: #000 !important;">Payment Method</h5>
 
                     <div class="card p-4 shadow-sm mt-28">
                         <!-- Tamara Payment Option -->
@@ -990,38 +1244,38 @@
                     </div>
 
                     <!-- Place Order Button -->
-                    <button class="btn btn-dark mt-40" style="width: 150px;">Place Order</button>
+                    <button class="btn  mt-40" style="width: 150px; background-color: #90c309 !important; color: #fff !important;">Place Order</button>
                 </div>
 
 
 
             </div>
             <div class="col-lg-4">
-                <div class="card p-3 shadow-sm position-sticky" style="margin-top: 110px;">
+                <div class="card p-3 shadow-sm position-sticky" style="margin-top: 75px;">
                     <h5 class="fw-bold ms-24 mt-28" style="font-size: 20px;">Order Summary</h5>
                     <div id="cart-items-container"></div> <!-- Cart items will be inserted here -->
 
                     <hr>
                     <div class="p-3">
                         <div class="mb-3 d-flex justify-content-between">
-                            <span class="text-dark fw-bold ms-24">Subtotal</span>
+                            <span class="text-dark fw-bold ms-24 text-dark">Subtotal</span>
                             <span id="cart-subtotal" class="text-dark fw-semibold me-20">AED 0.00</span>
                         </div>
                         <div class="mb-3 d-flex justify-content-between">
-                            <span class="text-muted ms-24">Shipping</span>
+                            <span class="text-muted ms-24 text-dark">Shipping</span>
                             <span id="shipping-cost" class="text-muted me-20">AED 10.00</span>
                         </div>
                         <div class="mb-3 d-flex justify-content-between">
-                            <span class="text-muted ms-24">COD Charge</span>
+                            <span class="text-muted ms-24 text-dark">COD Charge</span>
                             <span id="cod-charge" class="text-muted me-20">AED 0.00</span>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <span class="ms-24">Savings</span>
+                            <span class="ms-24 text-dark">Savings</span>
                             <span id="savings" class="text-muted me-20">AED 0.00</span>
                         </div>
                     </div>
                     <hr>
-                    <p class="d-flex justify-content-between fw-bold ms-24 me-20" style="margin-bottom: 25px;">
+                    <p class="d-flex justify-content-between fw-bold ms-24 me-20 text-dark" style="margin-bottom: 25px;">
                         <span>Total Amount</span>
                         <span id="total-amount">AED 0.00</span>
                     </p>
@@ -1144,64 +1398,7 @@ async function loadUserInfo() {
 }
 document.querySelector('#paymentMethodSection button').addEventListener('click', placeOrder);
 
-// async function placeOrder() {
-//   const cart = JSON.parse(localStorage.getItem('cart')) || [];
-//   const accessToken = localStorage.getItem("accessToken");
-//   const paymentType = document.querySelector('input[name="paymentOption"]:checked')?.id === 'tamaraPayment' ? 'cash' : 'card';
 
-//   if (!cart.length) return alert("🛒 Your cart is empty.");
-//   if (!accessToken) return alert("🔐 Please log in first.");
-//   if (!globalCustomer || !globalCustomer.id) return alert("❗ Customer info missing.");
-
-//   const totalAmount = cart.reduce((acc, item) => acc + (item.selling_price * item.quantity), 0);
-
-//   const payload = {
-//     customer_id: globalCustomer.id,    
-//     guest_id: null, // ✅ explicitly NULL
-//     total_amount: totalAmount,
-//     payment_type: paymentType,
-//     items: cart.map(item => ({
-//       product_id: item.id,
-//       quantity: item.quantity,
-//       price: item.selling_price // must match what backend expects
-//     })),
-//     shipping_address: {
-//       address: globalCustomer.address,
-//       city: globalCustomer.city,
-//       state: globalCustomer.state,
-//       country: globalCustomer.country,
-//       zip_code: globalCustomer.zip_code
-//     },
-//     shipping_info: {
-//       contact: globalCustomer.phone,
-//       email: globalCustomer.email
-//     },
-//     card_info: {} // empty if paying cash
-//   };
-
-//   console.log("📦 Order Payload:", payload);
-
-//   try {
-//     const res = await fetch(`${API_CUSTOMER_URL}/api/ordersCustomer`, {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify(payload)
-//     });
-
-//     const result = await res.json();
-//     if (!res.ok || !result.success) {
-//       console.error("❌ Backend Error:", result);
-//       return alert("❌ Failed to place order: " + (result.error || "Unknown error"));
-//     }
-
-//     alert("✅ Order placed successfully!");
-//     localStorage.removeItem("cart");
-//     window.location.href = `./order-confirmation.html?order_id=${result.order_id}`;
-//   } catch (error) {
-//     console.error("❌ Order Error:", error);
-//     alert("❌ Failed to place order. Please try again.");
-//   }
-// }
 
 
 async function placeOrder() {
@@ -1401,6 +1598,16 @@ async function placeOrder() {
       .catch(error => console.error('Error loading header:', error));
   </script>
 <script src="./apiConfig/apiConfig.js"></script>
+<script>
+  function showPopup(src) {
+    document.getElementById('popup-img').src = src;
+    document.getElementById('popup').classList.add('show');
+  }
+
+  function hidePopup() {
+    document.getElementById('popup').classList.remove('show');
+  }
+</script>
 </body>
 
 </html>
