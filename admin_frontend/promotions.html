@@ -972,7 +972,7 @@ document.getElementById('updatePromotionForm').addEventListener('submit', async 
     try {
         // Send update request
         const response = await fetch(`${API_ADMINGRAB_URL}/api/promotions/${promotionId}`, {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 'Authorization': token,
             },

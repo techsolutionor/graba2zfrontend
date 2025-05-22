@@ -789,7 +789,7 @@ document.getElementById('editReturnForm').addEventListener('submit', async (even
     try {
         // Sending PUT request to update purchase return
         const response = await fetch(`${API_ADMINGRAB_URL}/api/purchase-returns/${returnData.id}`, {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `${token}`, // Authorization header

@@ -661,7 +661,7 @@ async function submitUpdateAttributeForm() {
 
     try {
         const response = await fetch(`${API_ADMINGRAB_URL}/api/product-attributes/${currentAttributeId}`, {
-            method: 'PUT',
+            method: 'PATCH',
             body: JSON.stringify({ name }), // Send the updated name in the request body
             headers: {
                 'Authorization': `${token}`,

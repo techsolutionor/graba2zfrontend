@@ -731,7 +731,7 @@ function editOrder(orderId) {
 
     // Send the updated data to the backend
     fetch(`${API_ADMINGRAB_URL}/api/order/${orderId}`, {
-      method: 'PUT',
+      method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updatedOrder)
     })

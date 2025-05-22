@@ -895,7 +895,7 @@ document.getElementById('editUnitForm').addEventListener('submit', async (event)
 
     try {
         const response = await fetch(`${API_ADMINGRAB_URL}/api/units/${unitData.id}`, {
-            method: 'PUT',  // Use PUT to update the record
+            method: 'PATCH',  // Use PUT to update the record
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token,  // Include authorization if required

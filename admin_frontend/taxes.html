@@ -924,7 +924,7 @@ async function updateTax(id, updatedData) {
   const token = localStorage.getItem('token');
     try {
         const response = await fetch(`${API_ADMINGRAB_URL}/api/taxes/${id}`, {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `${token}`

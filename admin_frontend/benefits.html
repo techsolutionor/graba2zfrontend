@@ -683,7 +683,7 @@ document.getElementById('editBenefitsForm').addEventListener('submit', function 
 
   // Send updated data to the backend
   fetch(`${API_ADMINGRAB_URL}/api/benefits/${benefitId}` , {
-    method: 'PUT',
+    method: 'PATCH',
     body: formData,
   })
     .then((response) => {

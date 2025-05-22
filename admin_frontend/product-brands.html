@@ -707,7 +707,7 @@ function submitEditProductBrandForm() {
 
   // Send PUT request to update the product brand
   fetch(`https://grabatoz-production.up.railway.app/api/product-brands/${brandId}`, {
-    method: 'PUT',
+    method: 'PATCH',
     headers: {
       'Authorization': `${localStorage.getItem('token')}`, // Pass token for authentication
     },

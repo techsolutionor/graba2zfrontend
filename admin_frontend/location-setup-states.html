@@ -836,7 +836,7 @@ document.getElementById('editStateForm').addEventListener('submit', async functi
     try {
         const token = localStorage.getItem('token'); // Authentication token
         const response = await fetch(`${API_ADMINGRAB_URL}/api/states/${stateId}`, {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token,

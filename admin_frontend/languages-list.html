@@ -834,7 +834,7 @@ async function openUpdateForm(id) {
 
             try {
                 const updateResponse = await fetch(`${API_ADMINGRAB_URL}/api/languages/${id}`, {
-                    method: 'PUT',
+                    method: 'PATCH',
                     headers: {
                         'Authorization': token,
                     },

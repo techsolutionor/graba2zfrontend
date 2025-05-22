@@ -1086,7 +1086,7 @@
 
           //   // Send PUT request to update the product brand
           //   fetch(`https://grabatoz-production.up.railway.app/api/product-categories/${categoryId}`, {
-          //     method: 'PUT',
+          //     method: 'PATCH',
           //     headers: {
           //       'Authorization': `${localStorage.getItem('token')}`, // Pass token for authentication
           //     },
@@ -1132,7 +1132,7 @@
             }
 
             fetch(`https://grabatoz-production.up.railway.app/api/product-categories/${categoryId}`, {
-              method: 'PUT',
+              method: 'PATCH',
               headers: {
                 'Authorization': `${localStorage.getItem('token')}`,
               },

@@ -1204,7 +1204,7 @@ document.getElementById('updateCouponForm').addEventListener('submit', async (ev
     try {
         // Send updated coupon data to the server
         const response = await fetch(`${API_ADMINGRAB_URL}/api/coupons/${couponId}`, {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 'Authorization': token,
             },

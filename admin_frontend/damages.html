@@ -1038,7 +1038,7 @@ document.getElementById('updateDamageForm').addEventListener('submit', async fun
 
     try {
         const response = await fetch(`${API_ADMINGRAB_URL}/api/damages/${damageId}`, {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 'Authorization': token,
             },
