@@ -6,7 +6,25 @@
   <title>Document</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
+<style>
+     .cart-item-count {
+        min-width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 12px;
+        color: #fff;
+        background-color: #A3D02C;
+        position: absolute;
+        top: -14px;
+        right: -16px;
+        padding: 0 6px; /* Extra space for 2-3 digit numbers */
+        font-weight: bold;
+        white-space: nowrap;
+    }
+</style>
 </head>
 <body>
   <!-- Footer Start -->
@@ -109,11 +127,13 @@
       <i class="ph ph-grid-four icon-hover"></i>
       <span>Shop</span>
     </a>
-    <a href="/cart.html" class="position-relative">
-      <i class="ph ph-shopping-cart icon-hover"></i>
-      <span>Cart</span>
-      
-    </a>
+    <a href="cart.html" class="flex-align gap-4 item-hover">
+                            <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
+                                <i class="ph ph-shopping-cart-simple"></i>
+                              
+                            </span>
+                            <span >Cart</span>
+                        </a>
     <a href="tel:+97143540566" target="_blank">
       <i class="ph ph-whatsapp-logo icon-hover" style="color: #25D366;"></i>
       <span>Chat</span>
@@ -121,7 +141,152 @@
   </div>
   
 
-<script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+     <!-- cart add section -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartIcon(); // Update the cart icon with the correct count
+        });
+
+        // index.html - Update the cart icon count based on localStorage
+        function updateCartIcon() {
+            const cartItemCount = localStorage.getItem('cartItemCount') || 0; // Get the cart count from localStorage
+            const cartCountElement = document.querySelector('.cart-item-count'); // Get the element that holds the cart count
+
+            // Update the cart count in the UI
+            cartCountElement.innerText = cartItemCount; // Set the count to the number of items in the cart
+        }
+
+        document.getElementById('search-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const searchQuery = document.getElementById('search-input').value.trim();
+            window.location.href = `shop.html?search=${encodeURIComponent(searchQuery)}`;
+            // await fetchFilteredProducts(searchQuery);
+        });
+
+        function addToCart(product) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingProduct = cart.find(item => item.id === product.id);
+
+            if (existingProduct) {
+                existingProduct.quantity += 1; // Increment quantity if already in cart
+            } else {
+                cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Update the cart item count in localStorage
+            updateCartCount();
+
+            showSuccessMessage(`${product.name} added to cart.`);
+        }
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, product) => total + product.quantity, 0); // Calculate total quantity
+
+            // Update the cart count in localStorage
+            localStorage.setItem('cartItemCount', totalItems);
+        }
+        function showSuccessMessage(message) {
+            const messageContainer = document.createElement('div');
+            messageContainer.style.position = 'fixed';
+            messageContainer.style.top = '20px';
+            messageContainer.style.right = '20px';
+            messageContainer.style.backgroundColor = 'green';
+            messageContainer.style.color = 'white';
+            messageContainer.style.padding = '10px 20px';
+            messageContainer.style.borderRadius = '5px';
+            messageContainer.style.zIndex = '1000';
+            messageContainer.textContent = message;
+
+            document.body.appendChild(messageContainer);
+
+            // Remove the message after 3 seconds
+            setTimeout(() => {
+                document.body.removeChild(messageContainer);
+            }, 3000);
+        }
+
+        function handleAddToCart(product) {
+            addToCart(product); // Add product to cart
+            window.location.href = 'cart.html'; // Navigate to cart.html
+        }
+
+
+        // Function to toggle wishlist status
+        function toggleWishlist(product) {
+            // Get heart icon and current wishlist from localStorage
+            const heartIcon = document.getElementById('heart-icon');
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+            // Check if product already exists in wishlist
+            const productIndex = wishlist.findIndex(item => item.id === product.id);
+
+            if (productIndex === -1) {
+                // Product not in wishlist, add it and change icon color to red
+                wishlist.push(product);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Save to localStorage
+                heartIcon.style.color = 'red'; // Change heart color to red
+                showSuccessMessage('Product added to wishlist!');
+            } else {
+                // Product already in wishlist, remove it and reset icon color
+                wishlist.splice(productIndex, 1);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Remove from localStorage
+                heartIcon.style.color = ''; // Reset heart color
+                showSuccessMessage('Product removed from wishlist!');
+            }
+        }
+
+        function updateWishlistBadge() {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const wishlistBadge = document.getElementById('numberWishlist');
+
+            // Update the badge count
+            if (wishlistBadge) {
+                wishlistBadge.textContent = wishlist.length;
+            }
+        }
+
+        // Call this function on page load to ensure the badge is updated dynamically 
+        window.onload = updateWishlistBadge;
+
+
+        function toggleIcon(button) {
+            let icon = button.querySelector(".icon-toggle");
+            if (icon.classList.contains("bi-plus")) {
+                icon.classList.remove("bi-plus");
+                icon.classList.add("bi-dash");
+            } else {
+                icon.classList.remove("bi-dash");
+                icon.classList.add("bi-plus");
+            }
+        }
+    </script>
+    <script>
+        fetch('./topHeader.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('top-header').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
+   <script>
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const menuBtn = document.querySelector('.menu-open-btn');
+
+  if (sidebar.classList.contains('open')) {
+    sidebar.classList.remove('open');
+    menuBtn.style.display = 'block';
+  } else {
+    sidebar.classList.add('open');
+    menuBtn.style.display = 'none';
+  }
+}
+</script>
 </div>
 </body>
 </html>
