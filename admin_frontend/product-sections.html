@@ -1011,7 +1011,7 @@ async function handleUpdateFormSubmit(event) {
     try {
         const token = localStorage.getItem('token');
         const response = await fetch(`${API_ADMINGRAB_URL}/api/products-section/${sectionId}`, {
-            method: 'PATCH',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token,

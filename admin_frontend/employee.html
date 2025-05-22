@@ -918,7 +918,7 @@ async function updateUser(event) {
 
     try {
         const response = await fetch(`${API_ADMINGRAB_URL}/api/customers/updateUser/${userId}`, {
-            method: 'PATCH', // Use PUT for updating
+            method: 'PUT', // Use PUT for updating
             headers: {
                 'Content-Type': 'application/json',
             },

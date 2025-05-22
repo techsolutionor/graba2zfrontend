@@ -500,7 +500,7 @@ document.getElementById('updateForm').addEventListener('submit', async (e) => {
 
     try {
         const response = await fetch(`${API_ADMINGRAB_URL}/update-user`, {
-            method: 'PATCH',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': ` ${localStorage.getItem('token')}`

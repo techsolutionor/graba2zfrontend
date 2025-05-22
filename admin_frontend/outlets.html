@@ -921,7 +921,7 @@ async function handleUpdateFormSubmit(event) {
         // Send updated data to the backend via PUT request
         const token = localStorage.getItem('token'); // Retrieve token from localStorage
         const response = await fetch(`${API_ADMINGRAB_URL}/api/outlets/${outletId}`, {
-            method: 'PATCH',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token,

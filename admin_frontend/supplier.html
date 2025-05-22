@@ -1085,7 +1085,7 @@ async function deleteSupplier(supplierId) {
 
             try {
                 const response = await fetch(`${API_ADMINGRAB_URL}/api/suppliers/updateSupplier/${supplierId}`, {
-                    method: 'PATCH',
+                    method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json', // Make sure it's JSON if not using formData
                     },

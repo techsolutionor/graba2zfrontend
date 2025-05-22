@@ -993,7 +993,7 @@ document.getElementById('updateCityForm').addEventListener('submit', async funct
     try {
         const token = localStorage.getItem('token'); // Authentication token
         const response = await fetch(`${API_ADMINGRAB_URL}/api/cities/${cityId}`, {
-            method: 'PATCH',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token,

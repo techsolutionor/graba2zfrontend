@@ -190,7 +190,7 @@
 
             try {
                 const res = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders/update-on-the-way-status`, {
-                    method: 'PATCH',
+                    method: 'PUT',
                     headers: {
                         'Authorization': `${localStorage.getItem('token')}`,
                         'Content-Type': 'application/json',

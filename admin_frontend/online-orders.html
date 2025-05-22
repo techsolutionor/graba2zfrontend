@@ -880,7 +880,7 @@
 
                         try {
                             const response = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders/${orderId}/status`, {
-                                method: 'PATCH',
+                                method: 'PUT',
                                 headers: {
                                     'Authorization': token,
                                     'Content-Type': 'application/json',
@@ -998,7 +998,7 @@
 
                     //     try {
                     //         const response = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders/${orderId}/status`, {
-                    //             method: 'PATCH',
+                    //             method: 'PUT',
                     //             headers: {
                     //                 'Authorization': token,
                     //                 'Content-Type': 'application/json',

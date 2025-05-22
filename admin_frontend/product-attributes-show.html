@@ -848,7 +848,7 @@ async function handleEditFormSubmit(event) {
     try {
         const token = localStorage.getItem('token');
         const response = await fetch(`${API_ADMINGRAB_URL}/api/product-attribute-section/${id}`, {
-            method: 'PATCH',
+            method: 'PUT',
             headers: {
                 'Authorization': token,
                 'Content-Type': 'application/json',

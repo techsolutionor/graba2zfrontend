@@ -755,7 +755,7 @@ async function handleUpdateFormSubmit(event, id) {
     try {
         const token = localStorage.getItem('token'); // Retrieve the token for authentication
         const response = await fetch(`${API_ADMINGRAB_URL}/api/analytic-section/${id}`, {
-            method: 'PATCH',
+            method: 'PUT',
             headers: {
                 'Authorization': token,
                 'Content-Type': 'application/json',

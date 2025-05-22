@@ -1094,7 +1094,7 @@ async function fetchPurchases() {
 
 //     try {
 //         const response = await fetch(apiUrl, {
-//             method: 'PATCH',
+//             method: 'PUT',
 //             headers: {
 //                 'Authorization': token,
 //             },
@@ -1274,7 +1274,7 @@ document.getElementById('editPurchaseForm').addEventListener('submit', async (e)
 
     try {
         const response = await fetch(apiUrl, {
-            method: 'PATCH',
+            method: 'PUT',
             headers: {
                 'Authorization': token,
             },
