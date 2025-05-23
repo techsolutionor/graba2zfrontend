@@ -3726,7 +3726,22 @@ function toggleSidebar() {
   }
 }
 </script>
+<script>
+    function updateCartIcon() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
 
+    // This will update *all* elements with class cart-item-count on the page
+    const cartCountElements = document.querySelectorAll('.cart-item-count');
+    cartCountElements.forEach(el => {
+        el.textContent = totalItems;
+    });
+}
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartIcon();
+});
+
+    </script>
 
 
 
