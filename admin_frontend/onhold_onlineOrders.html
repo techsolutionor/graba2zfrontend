@@ -2,12 +2,52 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Order Management</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title> onhold Online Order </title>
+    <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+    <link rel="stylesheet" href="./assets/css/styles.min.css" />
+    <link rel="stylesheet" href="./assets/css/navbar.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/order.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <!-- Quill JS -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./popupMessages.js"></script>
+    
     <script src="./apiConfig/apiConfig.js"></script>
+ 
     <style>
-        table {
+       
+    
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+         table {
             width: 100%;
             border-collapse: collapse;
         }
@@ -28,144 +68,567 @@
             padding: 4px;
         }
     </style>
+  
+    <script>
+        (function checkAuth() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.replace('./login.html');
+            }
+        })();
+
+        window.onload = function () {
+            const token = localStorage.getItem('token');
+            const authContainer = document.getElementById('auth');
+
+            if (token) {
+                authContainer.innerHTML = `
+                    <a href="#" class="btn btn-outline-danger mx-3 mt-2 d-block" id="logoutButton">Logout</a>
+                `;
+                document.getElementById('logoutButton').addEventListener('click', logout);
+            } else {
+                authContainer.innerHTML = `
+                    <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Login</a>
+                `;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            window.location.href = './login.html';
+        }
+    </script>
 </head>
 
 <body>
-    <div style="margin-bottom: 15px;">
-        <label for="statusDropdown">Change Status:</label>
-        <select id="statusDropdown">
-            <option value="">-- Select Status --</option>
-        </select>
-        <button onclick="updateSelectedOrderStatus()">Update Status</button>
-        <div class="table-container mt-4">
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Order ID</th>
-                            <th>Customer Name</th>
-                            <th>Customer Contact</th>
-                            <th>Order Status</th>
-                            <th>Payment Type</th>
-                            <th>Order Date</th>
-                            <th>Total Amount</th>
-                            <th>Items</th>
-                            <th>Shipping Address</th>
-                        </tr>
-                    </thead>
-                    <tbody id="purchaseReturnsTableBody"></tbody>
-                </table>
+    <!-- Loader -->
+  
+            <!-- Sidebar scroll-->
+            <div>
+                <div class="brand-logo d-flex align-items-center justify-content-between">
+                    <a href="./index.html" class="text-nowrap logo-img">
+                        <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+                    </a>
+                    <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+                        <i class="ti ti-x fs-8"></i>
+                    </div>
+                    
+                          <div class="body-wrapper">
+            <!--  Header Start -->
+            <header class="app-header">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+                        <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="./assets//images/profile/user-1.jpg" alt="" width="35" height="35"
+                                        class="rounded-circle">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
+                                    aria-labelledby="drop2">
+                                    <div class="message-body">
+                                        <a href="./my-profile.html"
+                                            class="d-flex align-items-center gap-2 dropdown-item">
+                                            <i class="ti ti-user fs-6"></i>
+                                            <p class="mb-0 fs-3">My Profile</p>
+                                        </a>
+                                        <span id="auth">
+                                            <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block"
+                                                id="loginButton">Logout</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+
+
+
+             <div id="loader" class="loader-container" style="display: none;">
+        <div class="loader"></div>
+    </div>
+
+
+                </div>
+                <!-- Sidebar navigation-->
+                <div class="sidebar" id="sidebar">
+                    <a class="navbar-brand" href="#">
+                        <img src="./assets/images/logos/logo1.svg" width="180" alt="" />
+                    </a>
+
+                    <div class="section-title mt-9">HOME</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html">
+                                <i class="ti ti-layout-dashboard"></i> Dashboard
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="section-title">PRODUCTS & STOCK</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./products.html">
+                                <i class="fas fa-box"></i> Products
+                            </a>
+                        </li>
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" id="purchaseToggle">
+                                    <i class="fas fa-shopping-cart"></i> Purchases
+                                </a>
+                                <ul class="nav-submenu" id="purchaseSubmenu">
+                                    <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
+                                    <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
+                                    <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./damages.html">
+                                <i class="fas fa-exclamation-circle"></i> Damages
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./stock.html">
+                                <i class="fas fa-archive"></i> Stock
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="section-title">POS & ORDERS</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./pos.html">
+                                <i class="fas fa-cash-register"></i> POS
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./pos-orders.html">
+                                <i class="fas fa-receipt"></i> POS Orders
+                            </a>
+                        </li>
+                         <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="onlineOrdersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="fas fa-shopping-basket"></i> Orders
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="onlineOrdersDropdown">
+    <li><a class="dropdown-item" href="./online-orders.html">Online Orders</a></li>
+    <li><a class="dropdown-item" href="./ontheWay_onlineOrders.html">Received Orders</a></li>
+    <li><a class="dropdown-item" href="./inprogress_onlineOrders.html">Inprogress Orders</a></li>
+    <li><a class="dropdown-item" href="./readyForShipment_onlineOrders.html">Ready for Shipment</a></li>
+    <li><a class="dropdown-item" href="./ontheWay_onlineOrders.html">On the Way</a></li>
+    <li><a class="dropdown-item" href="./delevered_onlineOrders.html">Delivered</a></li>
+    <li><a class="dropdown-item" href="./onhold_onlineOrders.html">On Hold</a></li>
+    <li><a class="dropdown-item" href="./rejected_onlineOrders.html">Rejected</a></li>
+  </ul>
+</li>
+                    </ul>
+
+                    <div class="section-title">PROMO</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./coupons.html">
+                                <i class="fas fa-tags"></i> Coupons
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./promotions.html">
+                                <i class="fas fa-bullhorn"></i> Promotions
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./product-sections.html">
+                                <i class="fas fa-cube"></i> Product Sections
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="section-title">COMMUNICATIONS</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./push-notifications.html">
+                                <i class="fas fa-bell"></i> Push Notifications
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./subscribers.html">
+                                <i class="fas fa-users"></i> Subscribers
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="section-title">USERS</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./admin.html">
+                                <i class="fas fa-user"></i> Administrators
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./customer.html">
+                                <i class="fas fa-users"></i> Customers
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./employee.html">
+                                <i class="fas fa-user-tie"></i> Employees
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="section-title">ACCOUNTS</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-exchange-alt"></i> Transactions
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="section-title">REPORTS</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./sales-report.html">
+                                <i class="fas fa-chart-line"></i> Sales Report
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./products-report.html">
+                                <i class="fas fa-file-alt"></i> Products Report
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-credit-card"></i> Credit Balance Report
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="section-title">SETUP</div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" id="settingsToggle" href="#">
+                                <i class="fas fa-cog"></i> Settings
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="submenu" id="settingsSubmenu">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="./company.html">
+                                    <i class="fas fa-building"></i> Company
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./site.html">
+                                    <i class="fas fa-globe"></i> Site
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./mail.html">
+                                    <i class="fas fa-envelope"></i> Mail
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./location-setup.html">
+                                    <i class="fas fa-map-marker-alt"></i> Location Setup
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./shipping-setup.html">
+                                    <i class="fas fa-truck"></i> Shipping Setup
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="fas fa-lock"></i> OTP
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./notification.html">
+                                    <i class="fas fa-bell"></i> Notification
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./notification-alert.html">
+                                    <i class="fas fa-bell"></i> Notification alert
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./social-media.html">
+                                    <i class="fas fa-share-alt"></i> Social Media
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./cookies.html">
+                                    <i class="fas fa-cookie-bite"></i> Cookies
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./analytics.html">
+                                    <i class="fas fa-chart-bar"></i> Analytics
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./theme.html">
+                                    <i class="fas fa-paint-brush"></i> Theme
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./sliders.html">
+                                    <i class="fas fa-sliders-h"></i> Sliders
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./currencies.html">
+                                    <i class="fas fa-money-bill-wave"></i> Currencies
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./product-categories.html">
+                                    <i class="fas fa-tags"></i> Product Categories
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./product-attributes.html">
+                                    <i class="fas fa-cube"></i> Product Attributes
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./product-brands.html">
+                                    <i class="fas fa-tag"></i> Product Brands
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./supplier.html">
+                                    <i class="fas fa-industry"></i> Suppliers
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./outlets.html">
+                                    <i class="fas fa-store"></i> Outlets
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./benefits.html">
+                                    <i class="fas fa-gift"></i> Benefits
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./units.html">
+                                    <i class="fas fa-balance-scale"></i> Units
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./taxes.html">
+                                    <i class="fas fa-percent"></i> Taxes
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./page.html">
+                                    <i class="fas fa-file-alt"></i> Pages
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./role & permissions.html">
+                                    <i class="fas fa-user-shield"></i> Role & Permissions
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./languages-list.html">
+                                    <i class="fas fa-globe"></i> Languages
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./sms-gateway.html">
+                                    <i class="fas fa-comments"></i> Sms Gateway
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./payment-gateway.html">
+                                    <i class="fas fa-credit-card"></i> Payment Gateway
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./license.html">
+                                    <i class="fas fa-file-contract"></i> License
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Sidebar navigation -->
             </div>
-        </div>
-        <script>
-            const allowedStatuses = [
-                "Received Order", "Inprogress Order", "Ready for Shipment",
-                "On the Way", "Delevered", "On Hold"
-            ];
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!--  Sidebar End -->
+        <!--  Main wrapper -->
+      
 
-            const statusDropdown = document.getElementById("statusDropdown");
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+        <aside class="left-sidebar">
+            <!-- Sidebar content: COPY FROM online-orders.html sidebar -->
+        </aside>
 
-            // Populate the top dropdown
-            allowedStatuses.forEach(status => {
-                const opt = document.createElement("option");
-                opt.value = status;
-                opt.textContent = status;
-                statusDropdown.appendChild(opt);
-            });
+        <div class="body-wrapper">
+            <header class="app-header">
+                <!-- Navbar: COPY FROM online-orders.html header -->
+            </header>
+<div style="margin-bottom: 15px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px; background: #fff;">
+  <label for="statusDropdown" style="font-weight: 600; display: block; margin-bottom: 8px;">Change Status:</label>
+  <select id="statusDropdown" style="padding: 8px 12px; border-radius: 4px; border: 1px solid #ccc; width: 220px; margin-right: 12px;">
+    <option value="">-- Select Status --</option>
+  </select>
+  <button onclick="updateSelectedOrderStatus()" 
+          style="
+            background-color: #007bff; 
+            color: white; 
+            padding: 9px 20px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
+            transition: background-color 0.3s ease;
+          "
+          onmouseover="this.style.backgroundColor='#0056b3'" 
+          onmouseout="this.style.backgroundColor='#007bff'">
+    Update Status
+  </button>
 
-            async function fetchOrders() {
-                try {
-                    const response = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders/on-hold`, {
-                        method: 'GET',
-                        headers: {
-                            'Authorization': `${localStorage.getItem('token')}`,
-                            'Content-Type': 'application/json',
-                        },
-                    });
+  <div class="table-container mt-4" style="margin-top: 20px;">
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered" style="box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-radius: 6px; overflow: hidden;">
+        <thead style="background-color: #f8f9fa;">
+          <tr>
+            <th>Order ID</th>
+            <th>Customer Name</th>
+            <th>Customer Contact</th>
+            <th>Order Status</th>
+            <th>Payment Type</th>
+            <th>Order Date</th>
+            <th>Total Amount</th>
+            <th>Items</th>
+            <th>Shipping Address</th>
+          </tr>
+        </thead>
+        <tbody id="purchaseReturnsTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
-                    const orders = await response.json();
-                    console.log(orders, "✅ status received");
+<script>
+  const allowedStatuses = [
+    "Received Order", "Inprogress Order", "Ready for Shipment",
+    "On the Way", "Delevered", "On Hold"
+  ];
 
-                    const tbody = document.getElementById("purchaseReturnsTableBody");
-                    tbody.innerHTML = "";
+  const statusDropdown = document.getElementById("statusDropdown");
 
-                    orders.forEach(order => {
-                        const row = document.createElement("tr");
+  // Populate dropdown options
+  allowedStatuses.forEach(status => {
+    const opt = document.createElement("option");
+    opt.value = status;
+    opt.textContent = status;
+    statusDropdown.appendChild(opt);
+  });
 
-                        let customerContact = 'N/A';
-                        try {
-                            const info = JSON.parse(order.shippingInfo);
-                            customerContact = info.contact || 'N/A';
-                        } catch (e) { }
+  async function fetchOrders() {
+    try {
+      const response = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders/on-hold`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json',
+        },
+      });
 
-                        let itemsCount = 'N/A';
-                        try {
-                            const cardItems = JSON.parse(order.card_info);
-                            itemsCount = cardItems.reduce((sum, item) => sum + (item.quantity || 0), 0);
-                        } catch (e) { }
+      const orders = await response.json();
+      console.log(orders, "✅ status received");
 
-                        const orderDate = order.created_at
-                            ? new Date(order.created_at).toLocaleString()
-                            : 'N/A';
+      const tbody = document.getElementById("purchaseReturnsTableBody");
+      tbody.innerHTML = "";
 
-                        row.innerHTML = `
-                            <td>${order.order_id}</td>
-                            <td>${order.customer_name || 'N/A'}</td>
-                            <td>${customerContact}</td>
-                            <td>${order.order_status}</td>
-                            <td>${order.payment_type}</td>
-                            <td>${orderDate}</td>
-                            <td>${order.total_amount}</td>
-                            <td>${itemsCount}</td>
-                            <td>${order.shipping_address || 'N/A'}</td>
-                        `;
+      orders.forEach(order => {
+        const row = document.createElement("tr");
 
-                        tbody.appendChild(row);
-                    });
+        let customerContact = 'N/A';
+        try {
+          const info = JSON.parse(order.shippingInfo);
+          customerContact = info.contact || 'N/A';
+        } catch (e) {}
 
-                } catch (error) {
-                    console.error("❌ Fetch error:", error);
-                }
-            }
+        let itemsCount = 'N/A';
+        try {
+          const cardItems = JSON.parse(order.card_info);
+          itemsCount = cardItems.reduce((sum, item) => sum + (item.quantity || 0), 0);
+        } catch (e) {}
 
-            async function updateSelectedOrderStatus() {
-                const token = localStorage.getItem('token');
-                const newStatus = statusDropdown.value;
+        const orderDate = order.created_at
+          ? new Date(order.created_at).toLocaleString()
+          : 'N/A';
 
-                if (!newStatus) {
-                    alert("Please select a status to update all 'Received Order' entries.");
-                    return;
-                }
+        row.innerHTML = `
+          <td>${order.order_id}</td>
+          <td>${order.customer_name || 'N/A'}</td>
+          <td>${customerContact}</td>
+          <td>${order.order_status}</td>
+          <td>${order.payment_type}</td>
+          <td>${orderDate}</td>
+          <td>${order.total_amount}</td>
+          <td>${itemsCount}</td>
+          <td>${order.shipping_address || 'N/A'}</td>
+        `;
 
-                const rejection_comment = newStatus === 'Rejected'
-                    ? prompt("Enter rejection comment:") || "Rejected without comment"
-                    : null;
+        tbody.appendChild(row);
+      });
 
-                try {
-                    const res = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders/update-on-hold-status`, {
-                        method: 'PUT',
-                        headers: {
-                            'Authorization': `${localStorage.getItem('token')}`,
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            new_status: newStatus,
-                            rejection_comment: rejection_comment
-                        })
-                    });
+    } catch (error) {
+      console.error("❌ Fetch error:", error);
+    }
+  }
 
-                    const result = await res.json();
-                    alert(result.message || "Status updated.");
-                    fetchOrders();
+  async function updateSelectedOrderStatus() {
+    const newStatus = statusDropdown.value;
 
-                } catch (err) {
-                    console.error("❌ Status update error:", err);
-                }
-            }
+    if (!newStatus) {
+      alert("Please select a status to update all 'Received Order' entries.");
+      return;
+    }
 
-            fetchOrders();
-        </script>
+    const rejection_comment = newStatus === 'Rejected'
+      ? prompt("Enter rejection comment:") || "Rejected without comment"
+      : null;
+
+    try {
+      const res = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders/update-on-hold-status`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          new_status: newStatus,
+          rejection_comment: rejection_comment
+        })
+      });
+
+      const result = await res.json();
+      alert(result.message || "Status updated.");
+      fetchOrders();
+
+    } catch (err) {
+      console.error("❌ Status update error:", err);
+    }
+  }
+
+  fetchOrders();
+</script>
+
+
 
 </body>
-
 </html>

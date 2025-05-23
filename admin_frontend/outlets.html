@@ -16,19 +16,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 <script src="./popupMessages.js"></script>
 <script>
-    //(function() {
-    //     let(function() {
-    //     let path = window.location.pathname;
-    //     if (path.endsWith(".html")) {
-    //         let newPath = path.replace(".html", "");
-    //         window.history.replaceState({}, document.title, newPath);
-    //     }
-    // })(); path = window.location.pathname;
-    //     if (path.endsWith(".html")) {
-    //         let newPath = path.replace(".html", "");
-    //         window.history.replaceState({}, document.title, newPath);
-    //     }
-    // })();
+    
 
 
     (function checkAuth() {
@@ -113,11 +101,21 @@
                       <i class="fas fa-receipt"></i> POS Orders
                   </a>
               </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="./online-orders.html">
-                      <i class="fas fa-shopping-basket"></i> Online Orders
-                  </a>
-              </li>
+               <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="onlineOrdersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="fas fa-shopping-basket"></i> Orders
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="onlineOrdersDropdown">
+    <li><a class="dropdown-item" href="./online-orders.html">Online Orders</a></li>
+    <li><a class="dropdown-item" href="./ontheWay_onlineOrders.html">Received Orders</a></li>
+    <li><a class="dropdown-item" href="./inprogress_onlineOrders.html">Inprogress Orders</a></li>
+    <li><a class="dropdown-item" href="./readyForShipment_onlineOrders.html">Ready for Shipment</a></li>
+    <li><a class="dropdown-item" href="./ontheWay_onlineOrders.html">On the Way</a></li>
+    <li><a class="dropdown-item" href="./delevered_onlineOrders.html">Delivered</a></li>
+    <li><a class="dropdown-item" href="./onhold_onlineOrders.html">On Hold</a></li>
+    <li><a class="dropdown-item" href="./rejected_onlineOrders.html">Rejected</a></li>
+  </ul>
+</li>
           </ul>
 
           <div class="section-title">PROMO</div>

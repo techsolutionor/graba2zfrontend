@@ -1486,7 +1486,7 @@ ul {
                     <div class="flex-between gap-16 flex-wrap mb-40">
                         <span id="product-count" class="text-gray-900" style="color: #000;">Showing 1-20 of 85 results</span>
                         <div class="position-relative flex-align gap-16 flex-wrap">
-                            <!-- <div class="list-grid-btns flex-align gap-16">
+                            <div class="list-grid-btns flex-align gap-16">
                                 <button type="button"
                                     class="w-44 h-44 flex-center border border-gray-100 rounded-6 text-2xl list-btn">
                                     <i class="ph-bold ph-list-dashes"></i>
@@ -1495,16 +1495,16 @@ ul {
                                     class="w-44 h-44 flex-center border border-main-600 text-white bg-main-600 rounded-6 text-2xl grid-btn">
                                     <i class="ph ph-squares-four"></i>
                                 </button>
-                            </div> -->
+                            </div>
                             <div class="position-relative text-gray-500 flex-align gap-4 text-14">
   <label for="sorting" class="text-inherit flex-shrink-0 text-black">Sort by:</label>
   <div class="custom-dropdown" id="dropdown">
-    <div class="dropdown-selected">Recomended</div>
+    <div class="dropdown-selected">Popular</div>
     <div class="dropdown-list">
-      <div data-value="1">High to Low</div>
-      <div data-value="2">Low to High </div>
-      <div data-value="3">A to Z</div>
-      <div data-value="4">Z to A</div>
+      <div data-value="1">Popular</div>
+      <div data-value="2">Latest</div>
+      <div data-value="3">Trending</div>
+      <div data-value="4">Matches</div>
     </div>
   </div>
 </div>
@@ -1524,7 +1524,690 @@ ul {
                     </div>
                     <!-- </div> -->
 
-                  
+                    <!-- ----------------------Original Code below-------------------------------- -->
+
+                    <!-- <div class="flex-between gap-16 flex-wrap mb-40 ">
+                    <span id="product-count" class="text-gray-900">Showing 1-20 of 85 result</span>
+                    <div class="position-relative flex-align gap-16 flex-wrap">
+                        <div class="list-grid-btns flex-align gap-16">
+                            <button type="button" class="w-44 h-44 flex-center border border-gray-100 rounded-6 text-2xl list-btn">
+                                <i class="ph-bold ph-list-dashes"></i>
+                            </button>
+                            <button type="button" class="w-44 h-44 flex-center border border-main-600 text-white bg-main-600 rounded-6 text-2xl grid-btn">
+                                <i class="ph ph-squares-four"></i>
+                            </button>
+                        </div>  
+                        <div class="position-relative text-gray-500 flex-align gap-4 text-14">
+                            <label for="sorting" class="text-inherit flex-shrink-0">Sort by: </label>
+                            <select class="form-control common-input px-14 py-14 text-inherit rounded-6 w-auto" id="sorting">
+                                <option value="1" selected>Popular</option>
+                                <option value="1">Latest</option>
+                                <option value="1">Trending</option>
+                                <option value="1">Matches</option>
+                            </select>
+                        </div>
+                        <button type="button" class="w-44 h-44 d-lg-none d-flex flex-center border border-gray-100 rounded-6 text-2xl sidebar-btn">
+                            <i class="ph-bold ph-funnel"></i>
+                        </button>
+                    </div>
+                </div> -->
+
+                    <!-- Top End -->
+
+                    <!-- <div class="list-grid-wrapper">
+
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="product-details.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <img src="assets/images/thumbs/product-two-img1.png" alt="" class="w-auto max-w-unset">
+                            <span class="product-card__badge bg-primary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Sale  </span>
+                        </a>
+
+                        <div class="product-card__content mt-16">
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="product-details.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                            </h6>
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
+                                <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+        
+                            <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="product-details.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <img src="assets/images/thumbs/product-two-img2.png" alt="" class="w-auto max-w-unset">
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="product-details.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                            </h6>
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
+                                <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+        
+                            <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="product-details.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <img src="assets/images/thumbs/product-two-img3.png" alt="" class="w-auto max-w-unset">
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="product-details.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                            </h6>
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
+                                <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+        
+                            <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="product-details.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <span class="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sale 50%  </span>
+                            <img src="assets/images/thumbs/product-two-img4.png" alt="" class="w-auto max-w-unset">
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="product-details.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                            </h6>
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
+                                <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+        
+                            <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="product-details.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <img src="assets/images/thumbs/product-two-img5.png" alt="" class="w-auto max-w-unset">
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="product-details.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                            </h6>
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
+                                <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+        
+                            <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="product-details.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <img src="assets/images/thumbs/product-two-img6.png" alt="" class="w-auto max-w-unset">
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="product-details.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                            </h6>
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
+                                <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+        
+                            <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="product-details.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <img src="assets/images/thumbs/product-two-img7.png" alt="" class="w-auto max-w-unset">
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="product-details.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                            </h6>
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
+                                <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+        
+                            <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="product-details.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <img src="assets/images/thumbs/product-two-img8.png" alt="" class="w-auto max-w-unset">
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="product-details.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                            </h6>
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
+                                <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+        
+                            <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="product-details.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <span class="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sale 50% </span>
+                            <img src="assets/images/thumbs/product-two-img9.png" alt="" class="w-auto max-w-unset">
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="product-details.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                            </h6>
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
+                                <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+        
+                            <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="product-details.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <img src="assets/images/thumbs/product-two-img10.png" alt="" class="w-auto max-w-unset">
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="product-details.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                            </h6>
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
+                                <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+        
+                            <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="product-details.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <img src="assets/images/thumbs/product-two-img11.png" alt="" class="w-auto max-w-unset">
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="product-details.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                            </h6>
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
+                                <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+        
+                            <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="product-details.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New </span>
+                            <img src="assets/images/thumbs/product-two-img12.png" alt="" class="w-auto max-w-unset">
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="product-details.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                            </h6>
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
+                                <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+        
+                            <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="product-details.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <img src="assets/images/thumbs/product-two-img13.png" alt="" class="w-auto max-w-unset">
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="product-details.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                            </h6>
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
+                                <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+        
+                            <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="product-details.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <img src="assets/images/thumbs/product-two-img14.png" alt="" class="w-auto max-w-unset">
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="product-details.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                            </h6>
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
+                                <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+        
+                            <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="product-details.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <span class="product-card__badge bg-primary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Sale  </span>
+                            <img src="assets/images/thumbs/product-two-img15.png" alt="" class="w-auto max-w-unset">
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="product-details.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                            </h6>
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
+                                <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+        
+                            <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="product-details.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <span class="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">New</span>
+                            <img src="assets/images/thumbs/product-two-img15.png" alt="" class="w-auto max-w-unset">
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="product-details.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                            </h6>
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
+                                <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+        
+                            <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="product-details.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <img src="assets/images/thumbs/product-two-img1.png" alt="" class="w-auto max-w-unset">
+                            <span class="product-card__badge bg-primary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Best Sale  </span>
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="product-details.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                            </h6>
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
+                                <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+        
+                            <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="product-details.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <img src="assets/images/thumbs/product-two-img2.png" alt="" class="w-auto max-w-unset">
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="product-details.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                            </h6>
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
+                                <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+        
+                            <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="product-details.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <img src="assets/images/thumbs/product-two-img3.png" alt="" class="w-auto max-w-unset">
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="product-details.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                            </h6>
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
+                                <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+        
+                            <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                        <a href="product-details.html" class="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative">
+                            <span class="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">Sale 50%  </span>
+                            <img src="assets/images/thumbs/product-two-img4.png" alt="" class="w-auto max-w-unset">
+                        </a>
+                        <div class="product-card__content mt-16">
+                            <h6 class="title text-lg fw-semibold mt-12 mb-8">
+                                <a href="product-details.html" class="link text-line-2" tabindex="0">Taylor Farms Broccoli Florets Vegetables</a>
+                            </h6>
+                            <div class="flex-align mb-20 mt-16 gap-6">
+                                <span class="text-xs fw-medium text-gray-500">4.8</span>
+                                <span class="text-15 fw-medium text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
+                                <span class="text-xs fw-medium text-gray-500">(17k)</span>
+                            </div>
+                            <div class="mt-8">
+                                <div class="progress w-100 bg-color-three rounded-pill h-4" role="progressbar" aria-label="Basic example" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main-two-600 rounded-pill" style="width: 35%"></div>
+                                </div>
+                                <span class="text-gray-900 text-xs fw-medium mt-8">Sold: 18/35</span>
+                            </div>
+
+                            <div class="product-card__price my-20">
+                                <span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $28.99</span>
+                                <span class="text-heading text-md fw-semibold ">$14.99 <span class="text-gray-500 fw-normal">/Qty</span> </span>
+                            </div>
+        
+                            <a href="cart.html" class="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium" tabindex="0">
+                                Add To Cart <i class="ph ph-shopping-cart"></i> 
+                            </a>
+                        </div>
+                    </div>
+                </div> -->
+
+                    <!-- <div class="list-grid-wrapper" id="product-list">
+                    
+                </div> -->
+
+                    <!-- Pagination Start -->
+                    <!-- <ul class="pagination flex-center flex-wrap gap-16">
+                    <li class="page-item">
+                        <a class="page-link h-64 w-64 flex-center text-xxl rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">
+                            <i class="ph-bold ph-arrow-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link h-64 w-64 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">01</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link h-64 w-64 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">02</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link h-64 w-64 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">03</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link h-64 w-64 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">04</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link h-64 w-64 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">05</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link h-64 w-64 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">06</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link h-64 w-64 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">07</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link h-64 w-64 flex-center text-xxl rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">
+                            <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                    </li>
+                </ul> -->
+                    <!-- <ul id="pagination" class="pagination flex-center flex-wrap gap-16">
+                    
+                </ul> -->
                     <ul id="pagination" class="pagination flex-center flex-wrap gap-16">
                         <!-- Pagination items will be dynamically injected here -->
                     </ul>
@@ -1635,60 +2318,38 @@ ul {
 <script>
  
 // 🔹 Helper function to limit product name words
- 
-
-  // 🧠 Limit product name to N words
-  function limitWords(text, wordLimit = 8) {
+function limitWords(text, wordLimit = 5) {
     const words = text.trim().split(/\s+/);
     return words.length <= wordLimit ? text : words.slice(0, wordLimit).join(' ') + '...';
-  }
+}
 
-  // 🛒 Dummy Add to Cart function (replace with real logic if needed)
-  function handleAddToCart(product) {
-    console.log("🛒 Product added to cart:", product);
-    // Store in localStorage or call API here
-  }
-
-  // 🔎 Get URL parameters
-  function getCategoryAndBrandFromURL() {
+function getCategoryAndBrandFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     const category = urlParams.get('category');
     const brand = urlParams.get('brand');
     const searchQuery = urlParams.get('search');
 
     if (searchQuery) {
-      fetchFilteredProducts(searchQuery);
+        fetchFilteredProducts(searchQuery);
     }
-
     return { category, brand };
-  }
+}
 
-  // 🔍 Fetch products by search
-  async function fetchFilteredProducts(searchQuery) {
-    try {
-      const response = await fetch(`${API_CUSTOMER_URL}/api/products?search=${encodeURIComponent(searchQuery)}`);
-      const data = await response.json();
-      displayProducts(data.products);
-    } catch (error) {
-      console.error('Error fetching filtered products:', error);
-    }
-  }
-
-  // 💸 Price slider
-  $(function () {
+// 🔹 Price range slider
+$(function () {
     const minPrice = 0;
     const maxPrice = 1000;
 
     $("#slider-range").slider({
-      range: true,
-      min: minPrice,
-      max: maxPrice,
-      values: [minPrice, maxPrice],
-      slide: function (event, ui) {
-        $("#amount").val(`$${ui.values[0]} - $${ui.values[1]}`);
-        $('#min-price').val(ui.values[0]);
-        $('#max-price').val(ui.values[1]);
-      }
+        range: true,
+        min: minPrice,
+        max: maxPrice,
+        values: [minPrice, maxPrice],
+        slide: function (event, ui) {
+            $("#amount").val(`$${ui.values[0]} - $${ui.values[1]}`);
+            $('#min-price').val(ui.values[0]);
+            $('#max-price').val(ui.values[1]);
+        }
     });
 
     $("#amount").val(`$${minPrice} - $${maxPrice}`);
@@ -1696,107 +2357,105 @@ ul {
     $('#max-price').val(maxPrice);
 
     $('#min-price, #max-price').on('change', function () {
-      let minVal = parseInt($('#min-price').val()) || minPrice;
-      let maxVal = parseInt($('#max-price').val()) || maxPrice;
+        let minVal = parseInt($('#min-price').val()) || minPrice;
+        let maxVal = parseInt($('#max-price').val()) || maxPrice;
 
-      minVal = Math.max(minPrice, Math.min(minVal, maxVal));
-      maxVal = Math.min(maxPrice, Math.max(minVal, maxVal));
+        minVal = Math.max(minPrice, Math.min(minVal, maxVal));
+        maxVal = Math.min(maxPrice, Math.max(minVal, maxVal));
 
-      $('#slider-range').slider('values', [minVal, maxVal]);
-      $('#min-price').val(minVal);
-      $('#max-price').val(maxVal);
-      $('#amount').val(`$${minVal} - $${maxVal}`);
+        $('#slider-range').slider('values', [minVal, maxVal]);
+        $('#min-price').val(minVal);
+        $('#max-price').val(maxVal);
+        $('#amount').val(`$${minVal} - $${maxVal}`);
     });
-  });
+});
 
-  // 🧠 Price Filter Button Logic
-  const priceFilterBtn = document.getElementById('price-filter-btn');
+const priceFilterBtn = document.getElementById('price-filter-btn');
 
-  priceFilterBtn.addEventListener('click', async function () {
+priceFilterBtn.addEventListener('click', async function () {
     const minPrice = document.getElementById('min-price').value;
     const maxPrice = document.getElementById('max-price').value;
 
     if (minPrice && isNaN(minPrice)) {
-      alert('Please enter a valid minimum price');
-      return;
+        alert('Please enter a valid minimum price');
+        return;
     }
     if (maxPrice && isNaN(maxPrice)) {
-      alert('Please enter a valid maximum price');
-      return;
+        alert('Please enter a valid maximum price');
+        return;
     }
 
     try {
-      const productGrid = document.getElementById('product-grid');
-      if (!productGrid) {
-        console.error('❌ product-grid element not found');
-        return;
-      }
+        const productGrid = document.getElementById('product-grid');
+        if (!productGrid) {
+            console.error('❌ product-grid element not found');
+            return;
+        }
 
-      productGrid.innerHTML = '<p>Loading products...</p>';
+        productGrid.innerHTML = '<p>Loading products...</p>';
+        let apiUrl = `${API_CUSTOMER_URL}/api/products?`;
+        const params = [];
+        if (minPrice) params.push(`minPrice=${encodeURIComponent(minPrice)}`);
+        if (maxPrice) params.push(`maxPrice=${encodeURIComponent(maxPrice)}`);
+        apiUrl += params.join('&');
 
-      let apiUrl = `${API_CUSTOMER_URL}/api/products?`;
-      const params = [];
-      if (minPrice) params.push(`minPrice=${encodeURIComponent(minPrice)}`);
-      if (maxPrice) params.push(`maxPrice=${encodeURIComponent(maxPrice)}`);
-      apiUrl += params.join('&');
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error('Failed to fetch products');
 
-      const response = await fetch(apiUrl);
-      if (!response.ok) throw new Error('Failed to fetch products');
+        const data = await response.json();
+        const { products, totalCount } = data;
 
-      const data = await response.json();
-      const { products, totalCount } = data;
+        document.getElementById('product-count').textContent = `Showing 1-${products.length} of ${totalCount} results`;
+        productGrid.innerHTML = '';
 
-      document.getElementById('product-count').textContent = `Showing 1-${products.length} of ${totalCount} results`;
-      productGrid.innerHTML = '';
+        products.forEach((product) => {
+            const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
 
-      // Render each product card
-      products.forEach((product) => {
-        const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
+            // Create product card container
+            const productCard = document.createElement('div');
+            productCard.className = "product-card col-6 col-md-6 col-lg-4 col-xl-3";
 
-        const productCard = document.createElement('div');
-        productCard.className = "product-card col-6 col-md-6 col-lg-4 col-xl-3";
+            // Build product card HTML
+            productCard.innerHTML = `
+                <div class="card h-100 border border-gray-100 rounded-16 position-relative w-200 h-400" style="min-width: 200px !important;">
+                    <a href="product-details.html?slug=${product.slug}" class="product-card__thumb d-block position-relative">
+                        <img src="${API_CUSTOMER_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
+                    </a>
+                    <div class="card-body">
+                        <div class="mb-2 d-flex justify-content-between">
+                            <span class="badge bg-success">In stock</span>
+                            <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+                        </div>
+                        <h6 class="card-title" style="font-size: 14px; color:black;">${limitWords(product.name, 5)}</h6>
+                        <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
+                        <del class="text-muted">${product.selling_price} AED</del>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">
+                            Add To Cart
+                        </button>
+                    </div>
+                </div>
+            `;
 
-        productCard.innerHTML = `
-          <div class="card h-100 border border-gray-100 rounded-16 position-relative w-200 h-400" style="min-width: 200px !important;">
-            <a href="product-details.html?slug=${product.slug}" class="product-card__thumb d-block position-relative">
-              <img src="${API_CUSTOMER_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
-            </a>
-            <div class="card-body">
-              <div class="mb-2 d-flex justify-content-between">
-                <span class="badge bg-success">In stock</span>
-                <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
-              </div>
-              <h6 class="card-title" style="font-size: 14px; color:black;">${limitWords(product.name)}</h6>
-              <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
-              <del class="text-muted">${product.selling_price} AED</del>
-            </div>
-            <div class="card-body">
-              <button class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">
-                Add To Cart
-              </button>
-            </div>
-          </div>
-        `;
+            // Attach Add To Cart event listener
+            const addToCartBtn = productCard.querySelector('button');
+            addToCartBtn.addEventListener('click', () => {
+                handleAddToCart({
+                    id: product.id,
+                    name: product.name,
+                    selling_price: product.selling_price,
+                    image_path: sanitizedImagePath,
+                });
+            });
 
-        // 🧩 Add to cart listener
-        const addToCartBtn = productCard.querySelector('button');
-        addToCartBtn.addEventListener('click', () => {
-          handleAddToCart({
-            id: product.id,
-            name: product.name,
-            selling_price: product.selling_price,
-            image_path: sanitizedImagePath,
-          });
+            productGrid.appendChild(productCard);
         });
-
-        productGrid.appendChild(productCard);
-      });
-
     } catch (error) {
-      console.error('❌ Error fetching products:', error);
-      document.getElementById('product-grid').innerHTML = '<p>Error loading products.</p>';
+        console.error('❌ Error fetching products:', error);
+        document.getElementById('product-grid').innerHTML = '<p>Error loading products.</p>';
     }
-  });
+});
 
 // Helper function to limit words in product name (if not defined yet)
 function limitWords(str, numWords) {
@@ -1911,33 +2570,26 @@ async function loadProductsByCategoryAndBrand(category, brand, discount) {
                     <a href="product-details.html?slug=${product.slug}" class="product-card__thumb d-block position-relative">
                         <img src="${API_ADMINGRAB_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
                     </a>
-                     <div class="card-body">
-                <div class="mb-2 d-flex justify-content-between">
-                    <span class="badge bg-success">In stock</span>
-                    <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
-                </div>
-                <h6 class="card-title" style="font-size: 14px; color:black;">${limitWords(product.name, 5)}</h6>
-                <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
-                <del class="text-muted">${product.selling_price} AED</del>
+                      <div class="card-body">
+                            <div class="mb-2 d-flex justify-content-between">
+                            <span class="badge bg-success">In stock</span>
+                            <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+                            </div>
+                            <h6 class="card-title" style="font-size: 14px; color:black;">${product.name}
+                            <p
+                            <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
+                            <del class="text-muted">${product.selling_price} AED</del>
+                            </h6>
+                        </div>
+         <div class="card-body">
+           <div class="mb-2 d-flex justify-content-between">
+              </div>
+                  <a href="javascript:void(0)" onclick="handleAddToCart({ id: ${product.id}, name: '${product.name}', selling_price: ${product.selling_price}, image_path:'${sanitizedImagePath}' })" class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">Add To Cart</a>
             </div>
-            <div class="card-body">
-                <button class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">
-                    Add To Cart
-                </button>
-            </div>
-        </div>
+             </div>
+              </div>
     `;
-
-    // Attach event listener to Add To Cart button
-    const addToCartBtn = productCard.querySelector('button');
-    addToCartBtn.addEventListener('click', () => {
-        handleAddToCart({
-            id: product.id,
-            name: product.name,
-            selling_price: product.selling_price,
-            image_path: sanitizedImagePath,
-        });
-    });
+            // Append the product card HTML to the container
             container.insertAdjacentHTML('beforeend', productCardHTML);
         });
     }
@@ -2001,58 +2653,61 @@ async function loadProductsByCategoryAndBrand(category, brand, discount) {
         }, 3000);
     }
 
-     const API_CUSTOMER_URL = "https://websitegrabatoz-production.up.railway.app"; 
-    const API_ADMINGRAB_URL = "https://websitegrabatoz-production.up.railway.app";
-
-  async function loadCategories() {
+   async function loadCategories() {
     try {
-      const response = await fetch(`${API_CUSTOMER_URL}/api/product-counts`);
-      if (!response.ok) throw new Error('Failed to fetch product counts');
+        const response = await fetch(`${API_CUSTOMER_URL}/api/product-counts`);
 
-      const data = await response.json();
-      const categoryCounts = data.categoryCounts || [];
+        if (!response.ok) throw new Error('Failed to fetch product counts');
 
-      const categories = [
-        { name: 'Networking' },
-        { name: 'Accessories' },
-        { name: 'All In One' },
-        { name: 'Cables' },
-        { name: 'Desktop' },
-        { name: 'Keyboard' },
-        { name: 'Laptops' },
-        { name: 'Mobiles' },
-        { name: 'Monitors' },
-        { name: 'Mouse' },
-        { name: 'Printers & Copier' },
-        { name: 'Projector' },
-       
-        
-      ];
+        const data = await response.json();
+        console.log('API data:', data);
 
-      const featureItemWrapper = document.getElementById('left-navigation');
-      featureItemWrapper.innerHTML = '';
+        const categoryCounts = data.categoryCounts || [];
 
-      categories.forEach((category, index) => {
-        const categoryCount = categoryCounts.find(item => item.category === category.name);
-        const productCount = categoryCount ? categoryCount.product_count : 0;
+        const categories = [
+            { name: 'Networking' },
+            { name: 'Accessories' },
+            { name: 'All In One' },
+            { name: 'Cables' },
+            { name: 'Desktop' },
+            { name: 'Keyboard' },
+            { name: 'Laptops' },
+            { name: 'Mobiles' },
+            { name: 'Monitors' },
+            { name: 'Mouse' },
+            { name: 'Printers & Copier' },
+            { name: 'Projector' },
+            { name: 'Routers' },
+            { name: 'USB C HUB' }
+        ];
 
-        const featureItemHTML = `
-          <li class="mb-24" data-aos-duration="${(index + 1) * 400}">
-            <a href="shop.html?category=${encodeURIComponent(category.name)}" class="text-gray-900 hover-text-main-600">
-              ${category.name} (${productCount})
-            </a>
-          </li>
-        `;
+        const featureItemWrapper = document.getElementById('left-navigation');
+        featureItemWrapper.innerHTML = '';
 
-        featureItemWrapper.innerHTML += featureItemHTML;
-      });
+        categories.forEach((category, index) => {
+            const categoryCount = categoryCounts.find(item => item.category === category.name);
+            console.log(`Category: ${category.name}, Count:`, categoryCount);
+
+            const productCount = categoryCount ? categoryCount.product_count : 0;
+
+            const featureItemHTML = `
+                <li class="mb-24" data-aos-duration="${(index + 1) * 400}">
+                    <a href="shop.html?category=${encodeURIComponent(category.name)}" class="text-gray-900 hover-text-main-600">
+                        ${category.name} (${productCount})
+                    </a>
+                </li>
+            `;
+
+            featureItemWrapper.innerHTML += featureItemHTML;
+        });
     } catch (error) {
-      console.error('❌ Error fetching category counts:', error);
+        console.error('❌ Error fetching category counts:', error);
     }
-  }
+}
 
-  // Call on page load
-  loadCategories();
+
+// Call the function on page load
+loadCategories();
 
 // Pagination setup (no change)
 function setupPagination(totalPages) {
@@ -2187,7 +2842,18 @@ function setupPagination(totalPages) {
         }
     };
 
-   
+    /*function updateWishlistBadge() {
+        const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        const wishlistBadge = document.getElementById('numberWishlist');
+    
+        // Update the badge count
+        if (wishlistBadge) {
+            wishlistBadge.textContent = wishlist.length;
+        }
+    }
+    
+    // Call this function on page load to ensure the badge is updated dynamically
+    window.onload = updateWishlistBadge;*/
 
 
 </script>
