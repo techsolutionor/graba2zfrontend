@@ -10,6 +10,19 @@
   <link rel="stylesheet" href="./assets/css/navbar.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <script src="./popupMessages.js"></script>
+  <Style>
+    .sidebar-submenu {
+    padding-left: 40px; /* indent submenu */
+    list-style-type: disc; /* bullet points */
+  }
+  .sidebar-submenu li {
+    padding: 5px 0;
+  }
+  .sidebar-submenu li a {
+    color: #000000; /* submenu link color */
+    text-decoration: none;
+  }
+  </Style>
   <script>
     //(function() {
     //     let(function() {
@@ -138,21 +151,21 @@ function logout() {
                       <i class="fas fa-receipt"></i> POS Orders
                   </a>
               </li>
-               <li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" href="#" id="onlineOrdersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <i class="fas fa-shopping-basket"></i> Orders
-  </a>
-  <ul class="dropdown-menu" aria-labelledby="onlineOrdersDropdown">
-    <li><a class="dropdown-item" href="./online-orders.html">Online Orders</a></li>
-    <li><a class="dropdown-item" href="./ontheWay_onlineOrders.html">Received Orders</a></li>
-    <li><a class="dropdown-item" href="./inprogress_onlineOrders.html">Inprogress Orders</a></li>
-    <li><a class="dropdown-item" href="./readyForShipment_onlineOrders.html">Ready for Shipment</a></li>
-    <li><a class="dropdown-item" href="./ontheWay_onlineOrders.html">On the Way</a></li>
-    <li><a class="dropdown-item" href="./delevered_onlineOrders.html">Delivered</a></li>
-    <li><a class="dropdown-item" href="./onhold_onlineOrders.html">On Hold</a></li>
-    <li><a class="dropdown-item" href="./rejected_onlineOrders.html">Rejected</a></li>
-  </ul>
-</li>
+               <li class="nav-item">
+    <a class="nav-link" data-bs-toggle="collapse" href="#ordersMenu" role="button" aria-expanded="false" aria-controls="ordersMenu">
+      <i class="fas fa-shopping-basket"></i> Orders
+    </a>
+    <ul class="collapse sidebar-submenu" id="ordersMenu">
+      <li><a href="./online-orders.html" class="nav-link">Online Orders</a></li>
+      <li><a href="./ontheWay_onlineOrders.html" class="nav-link">Received Orders</a></li>
+      <li><a href="./inprogress_onlineOrders.html" class="nav-link">Inprogress Orders</a></li>
+      <li><a href="./readyForShipment_onlineOrders.html" class="nav-link">Ready for Shipment</a></li>
+      <li><a href="./ontheWay_onlineOrders.html" class="nav-link">On the Way</a></li>
+      <li><a href="./delevered_onlineOrders.html" class="nav-link">Delivered</a></li>
+      <li><a href="./onhold_onlineOrders.html" class="nav-link">On Hold</a></li>
+      <li><a href="./rejected_onlineOrders.html" class="nav-link">Rejected</a></li>
+    </ul>
+  </li>
           </ul>
 
           <div class="section-title">PROMO</div>

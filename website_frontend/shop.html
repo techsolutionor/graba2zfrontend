@@ -1497,17 +1497,17 @@ ul {
                                 </button>
                             </div> -->
                             <div class="position-relative text-gray-500 flex-align gap-4 text-14">
-  <label for="sorting" class="text-inherit flex-shrink-0 text-black">Sort by:</label>
-  <div class="custom-dropdown" id="dropdown">
-    <div class="dropdown-selected">Recomended</div>
-    <div class="dropdown-list">
-      <div data-value="1">High to Low</div>
-      <div data-value="2">Low to High </div>
-      <div data-value="3">A to Z</div>
-      <div data-value="4">Z to A</div>
-    </div>
-  </div>
-</div>
+                                <label for="sorting" class="text-inherit flex-shrink-0 text-black">Sort by:</label>
+                                <div class="custom-dropdown" id="dropdown">
+                                    <div class="dropdown-selected">Recomended</div>
+                                    <div class="dropdown-list">
+                                    <div data-value="1">High to Low</div>
+                                    <div data-value="2">Low to High </div>
+                                    <div data-value="3">A to Z</div>
+                                    <div data-value="4">Z to A</div>
+                                    </div>
+                                </div>
+                                </div>
 
                             
                             <button type="button"
@@ -1643,11 +1643,7 @@ ul {
     return words.length <= wordLimit ? text : words.slice(0, wordLimit).join(' ') + '...';
   }
 
-  // 🛒 Dummy Add to Cart function (replace with real logic if needed)
-  function handleAddToCart(product) {
-    console.log("🛒 Product added to cart:", product);
-    // Store in localStorage or call API here
-  }
+ 
 
   // 🔎 Get URL parameters
   function getCategoryAndBrandFromURL() {
@@ -1762,20 +1758,20 @@ ul {
               <img src="${API_CUSTOMER_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
             </a>
             <div class="card-body">
-              <div class="mb-2 d-flex justify-content-between">
-                <span class="badge bg-success">In stock</span>
-                <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
-              </div>
-              <h6 class="card-title" style="font-size: 14px; color:black;">${limitWords(product.name)}</h6>
-              <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
-              <del class="text-muted">${product.selling_price} AED</del>
+                <div class="mb-2 d-flex justify-content-between">
+                    <span class="badge bg-success">In stock</span>
+                    <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+                </div>
+                <h6 class="card-title" style="font-size: 14px; color:black;">${limitWords(product.name, 5)}</h6>
+                <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
+                <del class="text-muted">${product.selling_price} AED</del>
             </div>
             <div class="card-body">
-              <button class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">
-                Add To Cart
-              </button>
+                <button class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">
+                    Add To Cart
+                </button>
             </div>
-          </div>
+        </div>
         `;
 
         // 🧩 Add to cart listener
@@ -1970,17 +1966,21 @@ async function loadProductsByCategoryAndBrand(category, brand, discount) {
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        updateCartIcon(); // Update the cart icon with the correct count
-    });
+    updateCartIcon();
+});
 
     // index.html - Update the cart icon count based on localStorage
     function updateCartIcon() {
-        const cartItemCount = localStorage.getItem('cartItemCount') || 0; // Get the cart count from localStorage
-        const cartCountElement = document.querySelector('.cart-item-count'); // Get the element that holds the cart count
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
 
-        // Update the cart count in the UI
-        cartCountElement.innerText = cartItemCount; // Set the count to the number of items in the cart
-    }
+    // This will update *all* elements with class cart-item-count on the page
+    const cartCountElements = document.querySelectorAll('.cart-item-count');
+    cartCountElements.forEach(el => {
+        el.textContent = totalItems;
+    });
+}
+
     function showSuccessMessage(message) {
         const messageContainer = document.createElement('div');
         messageContainer.style.position = 'fixed';
@@ -2005,6 +2005,11 @@ async function loadProductsByCategoryAndBrand(category, brand, discount) {
     const API_ADMINGRAB_URL = "https://websitegrabatoz-production.up.railway.app";
 
   async function loadCategories() {
+
+     function limitWords(text, wordLimit = 5) {
+    const words = text.trim().split(/\s+/);
+    return words.length <= wordLimit ? text : words.slice(0, wordLimit).join(' ') + '...';
+  }
     try {
       const response = await fetch(`${API_CUSTOMER_URL}/api/product-counts`);
       if (!response.ok) throw new Error('Failed to fetch product counts');
@@ -2088,23 +2093,20 @@ function setupPagination(totalPages) {
                         <img src="${API_ADMINGRAB_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
                     </a>
                       <div class="card-body">
-                            <div class="mb-2 d-flex justify-content-between">
-                            <span class="badge bg-success">In stock</span>
-                            <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
-                            </div>
-                            <h6 class="card-title" style="font-size: 14px; color:black;">${product.name}
-                            <p
-                            <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
-                            <del class="text-muted">${product.selling_price} AED</del>
-                            </h6>
-                        </div>
-         <div class="card-body">
-           <div class="mb-2 d-flex justify-content-between">
-              </div>
-                  <a href="javascript:void(0)" onclick="handleAddToCart({ id: ${product.id}, name: '${product.name}', selling_price: ${product.selling_price}, image_path:'${sanitizedImagePath}' })" class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">Add To Cart</a>
+                <div class="mb-2 d-flex justify-content-between">
+                    <span class="badge bg-success">In stock</span>
+                    <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+                </div>
+                <h6 class="card-title" style="font-size: 14px; color:black;">${limitWords(product.name, 5)}</h6>
+                <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
+                <del class="text-muted">${product.selling_price} AED</del>
             </div>
-             </div>
-              </div>
+            <div class="card-body">
+                <button class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">
+                    Add To Cart
+                </button>
+            </div>
+        </div>
     `;
             document.getElementById('product-grid').innerHTML += productCardHTML;
         });
@@ -2147,24 +2149,21 @@ function setupPagination(totalPages) {
                     <a href="product-details.html?slug=${product.slug}" class="product-card__thumb d-block position-relative">
                         <img src="${API_ADMINGRAB_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
                     </a>
-                      <div class="card-body">
-                            <div class="mb-2 d-flex justify-content-between">
-                            <span class="badge bg-success">In stock</span>
-                            <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
-                            </div>
-                            <h6 class="card-title" style="font-size: 14px; color:black;">${product.name}
-                            <p
-                            <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
-                            <del class="text-muted">${product.selling_price} AED</del>
-                            </h6>
-                        </div>
-         <div class="card-body">
-           <div class="mb-2 d-flex justify-content-between">
-              </div>
-                  <a href="javascript:void(0)" onclick="handleAddToCart({ id: ${product.id}, name: '${product.name}', selling_price: ${product.selling_price}, image_path:'${sanitizedImagePath}' })" class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">Add To Cart</a>
+                     <div class="card-body">
+                <div class="mb-2 d-flex justify-content-between">
+                    <span class="badge bg-success">In stock</span>
+                    <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+                </div>
+                <h6 class="card-title" style="font-size: 14px; color:black;">${limitWords(product.name, 5)}</h6>
+                <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
+                <del class="text-muted">${product.selling_price} AED</del>
             </div>
-             </div>
-              </div>
+            <div class="card-body">
+                <button class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">
+                    Add To Cart
+                </button>
+            </div>
+        </div>
             `;
                     productGrid.innerHTML += productCardHTML;
                 });

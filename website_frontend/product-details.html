@@ -1316,7 +1316,7 @@ ul {
 </div> -->
                                 <div class="product-details__thumb flex-center h-100 border rounded-8 mb-10" style=" min-width: 300px !important; min-height: 100% !important;">
                                     <img id="specific-product-image" class="py-10" data-bs-toggle="modal"
-                                        data-bs-target="#imageModal" style="cursor: pointer;" style="cursor: zoom-in;">
+                                        data-bs-target="#imageModal" style="cursor: pointer; min-width: 300px !important; min-height: 400px !important;" style="cursor: zoom-in;">
                                 </div>
                                 <!-- <div class="product-details__thumb flex-center h-100">
   <img id="specific-product-image" src="your-image.jpg" class="py-10" style="cursor: zoom-in;" />
@@ -2574,6 +2574,22 @@ function toggleSidebar() {
     sidebar.classList.add('open');
     menuBtn.style.display = 'none';
   }
+}
+</script>
+<script>
+
+function addToWishlist(product) {
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+    // Prevent duplicate entries
+    if (!wishlist.find(item => item.id === product.id)) {
+        wishlist.push(product);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        displayWishlist(); // Optional: update badge
+        alert('Added to wishlist!');
+    } else {
+        alert('Already in wishlist!');
+    }
 }
 </script>
 
