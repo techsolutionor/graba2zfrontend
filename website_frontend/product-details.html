@@ -41,6 +41,8 @@
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
         /* this media query for table */
@@ -329,6 +331,73 @@ ul {
         font-weight: bold;
         white-space: nowrap;
     }
+/* Fullscreen overlay */
+.share-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.share-popup-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 300px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.share-popup-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #888;
+  cursor: pointer;
+}
+
+.share-popup-close:hover {
+  color: #000;
+}
+
+.copy-btn {
+  background-color: #90c309;
+  color: white;
+  padding: 10px 16px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.share-popup-social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.share-popup-social-icons a {
+  font-size: 20px;
+  color: #444;
+  transition: color 0.3s;
+}
+
+.share-popup-social-icons a:hover {
+  color: #90c309;
+}
+
 
     </style>
 </head>
@@ -1443,12 +1512,33 @@ ul {
                                             class="w-52 h-52 bg-main-50 text-main-600 text-xl hover-bg-main-600 hover-text-white flex-center rounded-circle">
                                             <i class="ph ph-shuffle"></i>
                                         </a>
-                                        <a href="#"
-                                            class="w-52 h-52 bg-main-50 text-main-600 text-xl hover-bg-main-600 hover-text-white flex-center rounded-circle">
-                                            <i class="ph ph-share-network"></i>
-                                        </a>
+                                        <!-- Share Button -->
+<a href="javascript:void(0)" class="w-52 h-52 bg-main-50 text-main-600 text-xl hover-bg-main-600 hover-text-white flex-center rounded-circle" id="shareBtn">
+    <i class="ph ph-share-network"></i>
+</a>
                                     </div>
                                 </div>
+<!-- Popup for Social Media Sharing -->
+<div id="sharePopup" class="share-popup">
+  <div class="share-popup-content">
+    <button class="share-popup-close" onclick="closeSharePopup()">
+      <i class="fas fa-times"></i>
+    </button>
+    <h3 style="color: #000!Important; font-size:30px ;">Share This Link</h3>
+    <input type="text" id="shareLink" readonly>
+    <button onclick="copyShareLink()" class="copy-btn">Copy Link</button>
+
+    <div class="share-popup-social-icons">
+      <a id="facebookShare" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a id="twitterShare" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a id="linkedinShare" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a id="whatsappShare" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a id="gmailShare" target="_blank"><i class="fas fa-envelope"></i></a>
+      <a id="instagramShare" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+</div>
+
 
                                 <div class="mt-32 flex-align flex-wrap gap-32">
 
@@ -1551,12 +1641,13 @@ ul {
                         </div>
 
                         <!-- Coupon Button -->
-                        <div class="text-center mb-3 m-5">
-                            <button class="btn w-100 fw-bold"
-                                style="background-color: #fdd835; color: #000; font-size: 14px;">
-                                <i class="bi bi-tag me-1"></i> Get My Coupon
-                            </button>
-                        </div>
+<div class="text-center mb-3 m-5">
+    <button class="btn w-100 fw-bold"
+        style="background-color: #FCDC00; color: #000 !important; font-size: 14px;">
+        <i class="bi bi-tag me-1" style="color: #000 !important;"></i> Get My Coupon
+    </button>
+</div>
+
 
                         <!-- Trusted Shipping -->
                         <div class="p-5 mt-5">
@@ -2128,23 +2219,38 @@ ul {
         image_path: "${cartImage}"
     })' <div class="product-toolbar d-flex flex-wrap align-items-center gap-14 mt-3">
   <div class="qty-box d-flex align-items-center">
-  <button class="qty-btn" onclick="changeQty(-1)">−</button>
-  <input type="text" id="qty" class="qty-input" value="1" readonly>
-  <button class="qty-btn" onclick="changeQty(1)">+</button>
-</div>
+    <button class="qty-btn" onclick="changeQty(-1)">−</button>
+    <input type="text" id="qty" class="qty-input" value="1" readonly>
+    <button class="qty-btn" onclick="changeQty(1)">+</button>
+  </div>
 
   <!-- Button 1: Add to Cart -->
-  <button class="btn btn-warning d-inline-flex align-items-center gap-4 px-8" style="background-color: #90c309;">
+  <button class="btn btn-warning d-inline-flex align-items-center gap-4 px-8" style="background-color: #90c309;" 
+    onclick="handleAddToCart({ 
+        id: ${product.id}, 
+        slug: '${product.slug}', 
+        name: '${product.name}', 
+        offer_price: ${product.offer_price || product.selling_price},
+        selling_price: ${product.selling_price},
+        image_path: '${product.image_path || ''}' 
+    })">
     <i class="ph ph-shopping-cart"></i> Add To Cart
   </button>
 
   <!-- Button 2: Buy Now -->
-  <button class="btn btn-warning d-inline-flex align-items-center gap-4 px-8" style="background-color: #ffc107; color: black;">
+  <button class="btn btn-warning d-inline-flex align-items-center gap-4 px-8" style="background-color: #ffc107; color: black;" 
+    onclick="handleBuyNow({ 
+        id: ${product.id}, 
+        slug: '${product.slug}', 
+        name: '${product.name}', 
+        offer_price: ${product.offer_price || product.selling_price},
+        selling_price: ${product.selling_price},
+        image_path: '${product.image_path || ''}' 
+    })">
     <i class="ph ph-credit-card"></i> Buy Now
   </button>
-
-  
 </div>
+
 
 
     </a>`;
@@ -2352,15 +2458,18 @@ ul {
         });
 
         // index.html - Update the cart icon count based on localStorage
-       function updateCartIcon() {
+    // Update the cart icon count
+function updateCartIcon() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
 
-    const cartCountElement = document.querySelector('.cart-item-count');
-    if (cartCountElement) {
-        cartCountElement.textContent = totalItems;
-    }
+    // Update the cart count in all cart icon elements
+    const cartCountElements = document.querySelectorAll('.cart-item-count');
+    cartCountElements.forEach(el => {
+        el.textContent = totalItems; // Update all cart item count elements
+    });
 }
+
 
 
         document.getElementById('search-form').addEventListener('submit', (event) => {
@@ -2370,22 +2479,24 @@ ul {
             // await fetchFilteredProducts(searchQuery);
         });
 
-       function addToCart(product) {
+       // Add product to cart
+function addToCart(product) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const existingProduct = cart.find(item => item.id === product.id);
 
     if (existingProduct) {
-        existingProduct.quantity += 1;
+        existingProduct.quantity += 1; // Increment quantity if already in cart
     } else {
-        cart.push({ ...product, quantity: 1 });
+        cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
     }
 
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    updateCartIcon(); // <-- update header count live
+    updateCartIcon(); // Update the cart count in the header
 
     showSuccessMessage(`${product.name} added to cart.`);
 }
+
 
 
         function updateCartCount() {
@@ -2415,12 +2526,10 @@ ul {
             }, 3000);
         }
 
-        function handleAddToCart(product) {
-            addToCart(product); // Add product to cart
-            // window.location.href = 'cart.html'; // Navigate to cart.html
-            // window.location.href = `product-details.html?slug=${product.slug}`; // Navigate to cart.html
-
-        }
+       // Handle Add to Cart (No page redirect)
+function handleAddToCart(product) {
+    addToCart(product); // Add product to cart
+}
 
 
         // Function to toggle wishlist status
@@ -2594,7 +2703,48 @@ function addToWishlist(product) {
 </script>
 
 
+<script>
+
+// Handle Buy Now (Add to Cart and redirect to cart page)
+function handleBuyNow(product) {
+    addToCart(product); // Add product to cart
+    setTimeout(() => {
+        window.location.href = 'cart.html'; // Redirect to cart page after a short delay
+    }, 500); // Delay of 500ms to ensure the cart is updated before redirecting
+}
 
 
 
+    </script>
+
+<script>
+document.getElementById('shareBtn').addEventListener('click', function () {
+  const currentUrl = window.location.href;
+  document.getElementById('shareLink').value = currentUrl;
+
+  document.getElementById('facebookShare').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+  document.getElementById('twitterShare').href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}`;
+  document.getElementById('linkedinShare').href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
+  document.getElementById('whatsappShare').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(currentUrl)}`;
+  document.getElementById('gmailShare').href = `mailto:?subject=Check this out&body=${encodeURIComponent(currentUrl)}`;
+  document.getElementById('instagramShare').href = `https://www.instagram.com/`;
+
+  document.getElementById('sharePopup').style.display = 'flex';
+});
+
+function closeSharePopup() {
+  document.getElementById('sharePopup').style.display = 'none';
+}
+
+function copyShareLink() {
+  const input = document.getElementById('shareLink');
+  input.select();
+  document.execCommand('copy');
+  alert('Link copied to clipboard!');
+}
+
+
+
+
+    </script>
 </body>
