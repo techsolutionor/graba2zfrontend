@@ -2402,6 +2402,7 @@ document.getElementById('favourite').innerHTML = `
             try {
                 // Fetch products of the same category excluding the current product
                 const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=${encodeURIComponent(category)}&exclude=${excludeProductId}`);
+                
                 if (!response.ok) {
                     throw new Error('Failed to fetch related products');
                 }
