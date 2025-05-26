@@ -47,17 +47,23 @@
                 transform: rotate(360deg);
             }
         }
+
         .sidebar-submenu {
-    padding-left: 40px; /* indent submenu */
-    list-style-type: disc; /* bullet points */
-  }
-  .sidebar-submenu li {
-    padding: 5px 0;
-  }
-  .sidebar-submenu li a {
-    color: #000000; /* submenu link color */
-    text-decoration: none;
-  }
+            padding-left: 40px;
+            /* indent submenu */
+            list-style-type: disc;
+            /* bullet points */
+        }
+
+        .sidebar-submenu li {
+            padding: 5px 0;
+        }
+
+        .sidebar-submenu li a {
+            color: #000000;
+            /* submenu link color */
+            text-decoration: none;
+        }
     </style>
     <script>
         (function checkAuth() {
@@ -167,21 +173,23 @@
                                 <i class="fas fa-receipt"></i> POS Orders
                             </a>
                         </li>
-                         <li class="nav-item">
-    <a class="nav-link" data-bs-toggle="collapse" href="#ordersMenu" role="button" aria-expanded="false" aria-controls="ordersMenu">
-      <i class="fas fa-shopping-basket"></i> Orders
-    </a>
-    <ul class="collapse sidebar-submenu" id="ordersMenu">
-      <li><a href="./online-orders.html" class="nav-link">Online Orders</a></li>
-      <li><a href="./ontheWay_onlineOrders.html" class="nav-link">Received Orders</a></li>
-      <li><a href="./inprogress_onlineOrders.html" class="nav-link">Inprogress Orders</a></li>
-      <li><a href="./readyForShipment_onlineOrders.html" class="nav-link">Ready for Shipment</a></li>
-      <li><a href="./ontheWay_onlineOrders.html" class="nav-link">On the Way</a></li>
-      <li><a href="./delevered_onlineOrders.html" class="nav-link">Delivered</a></li>
-      <li><a href="./onhold_onlineOrders.html" class="nav-link">On Hold</a></li>
-      <li><a href="./rejected_onlineOrders.html" class="nav-link">Rejected</a></li>
-    </ul>
-  </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#ordersMenu" role="button"
+                                aria-expanded="false" aria-controls="ordersMenu">
+                                <i class="fas fa-shopping-basket"></i> Orders
+                            </a>
+                            <ul class="collapse sidebar-submenu" id="ordersMenu">
+                                <li><a href="./online-orders.html" class="nav-link">Online Orders</a></li>
+                                <li><a href="./ontheWay_onlineOrders.html" class="nav-link">Received Orders</a></li>
+                                <li><a href="./inprogress_onlineOrders.html" class="nav-link">Inprogress Orders</a></li>
+                                <li><a href="./readyForShipment_onlineOrders.html" class="nav-link">Ready for
+                                        Shipment</a></li>
+                                <li><a href="./ontheWay_onlineOrders.html" class="nav-link">On the Way</a></li>
+                                <li><a href="./delevered_onlineOrders.html" class="nav-link">Delivered</a></li>
+                                <li><a href="./onhold_onlineOrders.html" class="nav-link">On Hold</a></li>
+                                <li><a href="./rejected_onlineOrders.html" class="nav-link">Rejected</a></li>
+                            </ul>
+                        </li>
 
                     </ul>
 
@@ -464,10 +472,21 @@
                             <h5>Online Orders</h5>
                             <div
                                 class="actions-bar d-flex flex-column flex-md-row align-items-center align-items-lg-end justify-content-center justify-content-md-center justify-content-lg-end">
+
+                                <!-- <input type="text" class="form-control filter-input" id="filterInput"
+                                    placeholder="Filter by Order ID">
                                 <div class="d-flex justify-content-center mb-2 mb-md-0 me-md-2 w-100"
                                     style="max-width: 105px;">
+
                                     <button class="filter-btn btn btn-primary w-100">Filter</button>
+                                </div> -->
+                                <input type="text" class="form-control" id="filterInput" placeholder="Search orders...">
+                                <div class="d-flex justify-content-center mb-2 mb-md-0 me-md-2 w-100"
+                                    style="max-width: 105px;">
+                                    <button type="button" class="filter-btn btn btn-primary w-100"
+                                        id="filterBtn">Filter</button>
                                 </div>
+
                                 <div id="dropdownSearch" class="dropdown-search d-none">
                                     <div class="dropdown-header bg-light p-2 border rounded">Search Orders</div>
                                     <div class="dropdown-fields mt-2 p-2 border rounded bg-white">
@@ -1108,6 +1127,57 @@
                         alert(message); // Replace with your preferred notification system
                     }
                 </script>
+                <!-- <script>
+                    document.getElementById('filterBtn').addEventListener('click', filterOrdersById);
+                    document.getElementById('filterOrderId').addEventListener('keyup', function (e) {
+                        if (e.key === 'Enter') filterOrdersById();
+                    });
+                    function filterOrdersById() {
+                        const input = document.getElementById('filterOrderId').value.toLowerCase().trim();
+                        const rows = document.querySelectorAll('#purchaseReturnsTableBody tr');
+
+                        rows.forEach(row => {
+                            const orderId = row.cells[0]?.textContent?.toLowerCase() || '';
+                            if (orderId.includes(input) || input === '') {
+                                row.style.display = '';
+                            } else {
+                                row.style.display = 'none';
+                            }
+                        });
+                    }
+function clearOrderFilter() {
+    document.getElementById('filterOrderId').value = '';
+    filterOrdersById();
+}
+
+
+                </script> -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const filterInput = document.getElementById('filterInput');
+                        const filterBtn = document.getElementById('filterBtn');
+
+                        // Filter on button click or enter key
+                        filterBtn.addEventListener('click', filterTable);
+                        filterInput.addEventListener('keyup', function (e) {
+                            if (e.key === 'Enter') filterTable();
+                        });
+
+                        function filterTable() {
+                            const query = filterInput.value.toLowerCase().trim();
+                            const rows = document.querySelectorAll('#purchaseReturnsTableBody tr');
+
+                            rows.forEach(row => {
+                                const cells = row.querySelectorAll('td');
+                                const matchFound = [...cells].some(cell =>
+                                    cell.textContent.toLowerCase().includes(query)
+                                );
+                                row.style.display = matchFound ? '' : 'none';
+                            });
+                        }
+                    });
+                </script>
+
             </div>
         </div>
     </div>
