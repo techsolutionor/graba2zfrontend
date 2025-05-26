@@ -8238,7 +8238,7 @@ input:focus-visible {
 }
 
 .has-submenu .nav-menu__link {
-  padding-inline-end: 17px;
+  padding-inline-end: 20px;
 }
 
 .has-submenu.active > a,

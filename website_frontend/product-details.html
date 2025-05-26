@@ -10,7 +10,7 @@
     <!-- Title -->
     <title> Graba2z- E-commerce website</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/images/logo/favicon.png">
+    <link rel="shortcut icon" href="assets/images/icon/favicon.png">
 
     <link rel="stylesheet" href="assets/css/footer.css" />
     <!-- Bootstrap -->
@@ -403,6 +403,14 @@ ul {
 }
 
 
+
+img {
+  border: 0;
+  border-style: none;
+}
+
+
+
     </style>
 </head>
 
@@ -446,14 +454,17 @@ ul {
                                 <i class="ph ph-magnifying-glass"></i>
                             </span>
                         </button>
-                      <a href="wishlist.html" class="flex-align gap-4 item-hover">
-                            <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
-                                <i class="ph ph-heart"></i>
-                                <span class="wishlist-item-count">0</span>
-                            </span>
-                            <span class="text-md text-gray-500 item-hover__text d-none d-lg-flex">Wishlist</span>
-                        </a>
-                       <a href="cart.html" class="flex-align gap-4 item-hover">
+                      <!-- In your header -->
+<a href="wishlist.html" class="position-relative d-flex align-items-center" style="gap: 8px;">
+  <!-- Heart Icon -->
+  <i class="ph ph-heart fs-4 position-relative" style="color: #000;">
+    <span id="wishlist-item-count" class="wishlist-item-count">0</span>
+  </i>
+  <span class="text-dark fw-medium">Wishlist</span>
+</a>
+
+
+                       <a href="cart.html" class="flex-align gap-4 item-hover ">
                             <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
                                 <i class="ph ph-shopping-cart-simple"></i>
                                 <span class="cart-item-count">0</span>
@@ -1387,9 +1398,10 @@ ul {
                                 <!-- <div class="product-details__thumb flex-center h-100">
   <img id="specific-product-image" class="py-10"  style="cursor: zoom-in;" />
 </div> -->
-                                <div class="product-details__thumb flex-center h-100 border rounded-8 mb-10" style=" min-width: 300px !important; min-height: 100% !important;">
-                                    <img id="specific-product-image" class="py-10" data-bs-toggle="modal"
-                                        data-bs-target="#imageModal" style="cursor: pointer; min-width: 300px !important; min-height: 400px !important;" style="cursor: zoom-in;">
+                                <div class="product-details__thumb flex-center h-100 border  rounded-8 mb-10" style=" min-width: 300px !important; min-height: 100% !important; ">
+                                    <img id="specific-product-image" class="py-10  " data-bs-toggle="modal"
+                                        data-bs-target="#imageModal" style="cursor: pointer; min-width: 300px !important; min-height: 400px !important; border: none !
+                                        ;" style="cursor: zoom-in;">
                                 </div>
                                 <!-- <div class="product-details__thumb flex-center h-100">
   <img id="specific-product-image" src="your-image.jpg" class="py-10" style="cursor: zoom-in;" />
@@ -1620,7 +1632,7 @@ ul {
                 <div class="col-lg-3" style="padding-right: 40px !important;">
                     <div class="product-details__sidebar overflow-hidden">
                        
-                        <div class="p-3 border rounded mb-3 m-5" style="background-color: #FFF8F8 !important;">
+                        <div class="p-3 border border-dark rounded mb-3 m-5" style="background-color: #FFF8F8 !important;">
                             <p class="mb-0 fw-semibold text-dark mb-5" style="font-size: 13px; font-weight: 600; line-height: 20px;">
                                 This item can be change or replaced or refund within 15 days of the purchase day for
                                 Free
@@ -1630,13 +1642,14 @@ ul {
                         </div>
 
                         <!-- Other Country Notice -->
-                        <div class="p-3 border rounded d-flex align-items-center m-5 p-10 my-10 "
-                            style="background-color: #DFF9EC;">
-                            <i class="bi bi-truck me-2" style="font-size: 18px; color: #000;"></i>
-                            <p class="mb-0 fw-semibold text-dark" style="font-size: 14px !important; line-height: 16px !important; font-weight: 600 !important;">
-                                Other Country our agent will contact for delivery Estimation.
-                            </p>
-                        </div>
+                        <div class="p-3 border rounded d-flex align-items-center m-5 p-10 my-10"
+    style="background-color: #DCFEDA; box-shadow: 0 2px 6px rgba(223, 249, 236, 0.9);">
+    <i class="bi bi-truck me-2" style="font-size: 18px; color: #000;"></i>
+    <p class="mb-0 fw-semibold text-dark" style="font-size: 14px !important; line-height: 16px !important; font-weight: 600 !important;">
+        Other Country our agent will contact for delivery Estimation.
+    </p>
+</div>
+
 
                         <!-- Payment Icons -->
                         <div class="text-center ">
@@ -2246,36 +2259,36 @@ ul {
     })">
     <i class="ph ph-shopping-cart"></i> Add To Cart
   </button>
+  </a>
 
   <!-- Button 2: Buy Now -->
-  <button class="btn btn-warning d-inline-flex align-items-center gap-4 px-8" style="background-color: #ffc107; color: black;" 
-    onclick="handleBuyNow({ 
-        id: ${product.id}, 
-        slug: '${product.slug}', 
-        name: '${product.name}', 
-        offer_price: ${product.offer_price || product.selling_price},
-        selling_price: ${product.selling_price},
-        image_path: '${product.image_path || ''}' 
-    })">
-    <i class="ph ph-credit-card"></i> Buy Now
-  </button>
+<button class="btn btn-warning d-inline-flex align-items-center gap-4 px-8" 
+  style="background-color: #ffc107; color: black;" 
+  onclick="window.location.href='cart.html'">
+  <i class="ph ph-credit-card"></i> Buy Now
+</button>
+
 </div>
 
 
 
-    </a>`;
+    `;
 
-                // Wishlist
-                document.getElementById('favourite').innerHTML = `
-    <a href="javascript:void(0)" id="wishlist-btn" onclick='toggleWishlist({ 
-        id: ${product.id},
-        slug: "${product.slug?.replace(/"/g, '\\"')}",
-        name: "${product.name?.replace(/"/g, '\\"')}",
-        selling_price: ${product.selling_price},
-        image_path: "${cartImage}"
-    })' class="w-52 h-52 bg-main-50 text-main-600 text-xl hover-bg-main-600 hover-text-white flex-center rounded-circle">
-        <i class="ph ph-heart" id="heart-icon"></i>
-    </a>`;
+             // Get wishlist from localStorage
+const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+const isInWishlist = wishlist.some(item => item.id === product.id);
+
+// Wishlist
+document.getElementById('favourite').innerHTML = `
+  <a href="javascript:void(0)" id="wishlist-btn" onclick='toggleWishlist({ 
+      id: ${product.id},
+      slug: "${product.slug?.replace(/"/g, '\\"')}",
+      name: "${product.name?.replace(/"/g, '\\"')}",
+      selling_price: ${product.selling_price},
+      image_path: "${cartImage}"
+  })' class="w-52 h-52 bg-main-50 text-main-600 text-xl hover-bg-main-600 hover-text-white flex-center rounded-circle">
+      <i class="ph ph-heart" id="heart-icon" style="color: ${isInWishlist ? 'red' : 'inherit'}"></i>
+  </a>`;
 
                 // Main display image
                 const mainImage = document.getElementById('specific-product-image');
@@ -2505,7 +2518,7 @@ function addToCart(product) {
 
     updateCartIcon(); // Update the cart count in the header
 
-    showSuccessMessage(`${product.name} added to cart.`);
+    showSuccessMessage(` Added to cart Successfully `);
 }
 
 
@@ -2543,43 +2556,7 @@ function handleAddToCart(product) {
 }
 
 
-        // Function to toggle wishlist status
-        function toggleWishlist(product) {
-            // Get heart icon and current wishlist from localStorage
-            const heartIcon = document.getElementById('heart-icon');
-            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-
-            // Check if product already exists in wishlist
-            const productIndex = wishlist.findIndex(item => item.id === product.id);
-
-            if (productIndex === -1) {
-                // Product not in wishlist, add it and change icon color to red
-                wishlist.push(product);
-                localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Save to localStorage
-                heartIcon.style.color = 'red'; // Change heart color to red
-                showSuccessMessage('Product added to wishlist!');
-            } else {
-                // Product already in wishlist, remove it and reset icon color
-                wishlist.splice(productIndex, 1);
-                localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Remove from localStorage
-                heartIcon.style.color = ''; // Reset heart color
-                showSuccessMessage('Product removed from wishlist!');
-            }
-        }
-
-        function updateWishlistBadge() {
-            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            const wishlistBadge = document.getElementById('numberWishlist');
-
-            // Update the badge count
-            if (wishlistBadge) {
-                wishlistBadge.textContent = wishlist.length;
-            }
-        }
-
-        // Call this function on page load to ensure the badge is updated dynamically 
-        window.onload = updateWishlistBadge;
-
+       
 
         function toggleIcon(button) {
             let icon = button.querySelector(".icon-toggle");
@@ -2605,6 +2582,49 @@ function handleAddToCart(product) {
 
 
     </script>
+    <script>
+  // Toggle wishlist
+  function toggleWishlist(product) {
+    const heartIcon = document.getElementById('heart-icon');
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const index = wishlist.findIndex(p => p.id === product.id);
+
+    if (index === -1) {
+        wishlist.push(product);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        heartIcon.style.color = 'red';
+        showSuccessMessage("Added to wishlist!");
+    } else {
+        wishlist.splice(index, 1);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        heartIcon.style.color = '';
+        showSuccessMessage("Removed from wishlist!");
+    }
+
+    updateWishlistBadge();
+}
+
+
+  // Update badge in header
+function updateWishlistBadge() {
+    const count = (JSON.parse(localStorage.getItem('wishlist')) || []).length;
+    const badge = document.getElementById('wishlist-item-count'); // Make sure this exists in header
+    if (badge) badge.textContent = count;
+}
+
+  // Display message
+  function showSuccessMessage(msg) {
+    const box = document.createElement('div');
+    box.style.cssText = 'position:fixed;top:20px;right:20px;background:green;color:white;padding:10px;border-radius:5px;z-index:1000';
+    box.innerText = msg;
+    document.body.appendChild(box);
+    setTimeout(() => box.remove(), 3000);
+  }
+
+  // Call on page load
+  document.addEventListener('DOMContentLoaded', updateWishlistBadge);
+</script>
+
     <script>
         // Optional: This JavaScript ensures the dropdown stays open when hovering over it
         document.addEventListener('DOMContentLoaded', function () {
@@ -2758,4 +2778,5 @@ function copyShareLink() {
 
 
     </script>
+    
 </body>

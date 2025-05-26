@@ -160,8 +160,7 @@ ul {
     padding: 0;
     margin: 0;
 }
-/* cart circle css start  */
-       .cart-item-count {
+ .cart-item-count {
         min-width: 24px;
         height: 24px;
         display: flex;
@@ -170,7 +169,7 @@ ul {
         border-radius: 50%;
         font-size: 12px;
         color: #fff;
-        background-color: #A3D02C;
+        background-color: #86c232;
         position: absolute;
         top: -12px;
         right: -11px;
@@ -189,7 +188,7 @@ ul {
         border-radius: 50%;
         font-size: 12px;
         color: #fff;
-        background-color: #A3D02C;
+        background-color: #86c232;
         position: absolute;
         top: -12px;
         right: -11px;
@@ -197,7 +196,6 @@ ul {
         font-weight: bold;
         white-space: nowrap;
     }
-
 
     </style>
 </head> 
@@ -243,10 +241,10 @@ ul {
                                 <i class="ph ph-magnifying-glass"></i>
                             </span>
                         </button>
-                      <a href="wishlist.html" class="flex-align gap-4 item-hover">
+                     <a href="wishlist.html" class="flex-align gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
                                 <i class="ph ph-heart"></i>
-                                <span class="wishlist-item-count">0</span>
+                                <span id="wishlist-item-count"  class="wishlist-item-count">0</span>
                             </span>
                             <span class="text-md text-gray-500 item-hover__text d-none d-lg-flex">Wishlist</span>
                         </a>
@@ -257,6 +255,7 @@ ul {
                             </span>
                             <span class="text-md text-gray-500 item-hover__text d-none d-lg-flex">Cart</span>
                         </a>
+
 
                     </div>
                 </div>
@@ -1434,6 +1433,49 @@ function toggleSidebar() {
       .catch(error => console.error('Error loading header:', error));
   </script>
 <script src="./apiConfig/apiConfig.js"></script>
+
+<script>
+  // Toggle wishlist
+  function toggleWishlist(product) {
+    const heartIcon = document.getElementById('heart-icon');
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const index = wishlist.findIndex(p => p.id === product.id);
+
+    if (index === -1) {
+        wishlist.push(product);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        heartIcon.style.color = 'red';
+        showSuccessMessage("Added to wishlist!");
+    } else {
+        wishlist.splice(index, 1);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        heartIcon.style.color = '';
+        showSuccessMessage("Removed from wishlist!");
+    }
+
+    updateWishlistBadge();
+}
+
+
+  // Update badge in header
+function updateWishlistBadge() {
+    const count = (JSON.parse(localStorage.getItem('wishlist')) || []).length;
+    const badge = document.getElementById('wishlist-item-count'); // Make sure this exists in header
+    if (badge) badge.textContent = count;
+}
+
+  // Display message
+  function showSuccessMessage(msg) {
+    const box = document.createElement('div');
+    box.style.cssText = 'position:fixed;top:20px;right:20px;background:green;color:white;padding:10px;border-radius:5px;z-index:1000';
+    box.innerText = msg;
+    document.body.appendChild(box);
+    setTimeout(() => box.remove(), 3000);
+  }
+
+  // Call on page load
+  document.addEventListener('DOMContentLoaded', updateWishlistBadge);
+</script>
         
 
 
