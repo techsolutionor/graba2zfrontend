@@ -548,15 +548,16 @@
                                     style="max-width: 105px;">
                                     <!-- Dropdown for Export button -->
                                     <div class="dropdown w-100">
-                                        <button class="export-btn btn btn-warning w-100" type="button"
+                                        <button class="btn btn-secondary" onclick="window.print()">Print</button>
+                                        <!-- <button class="export-btn btn btn-warning w-100" type="button"
                                             data-bs-toggle="dropdown" aria-expanded="false">
                                             Export
-                                        </button>
+                                        </button> -->
                                         <!-- Dropdown Menu -->
-                                        <ul class="dropdown-menu mt-2" aria-labelledby="exportButton">
+                                        <!-- <ul class="dropdown-menu mt-2" aria-labelledby="exportButton">
                                             <li><a class="dropdown-item" href="#" id="exportButton"><i
                                                         class="fas fa-file-excel"></i> XLS</a></li>
-                                        </ul>
+                                        </ul> -->
                                     </div>
                                 </div>
                             </div>
@@ -667,7 +668,7 @@
                                 </select>
                                 <button class="btn btn-primary" id="bulkUpdateBtn"
                                     style="display: none;">Update</button>
-                                <button class="btn btn-secondary" onclick="window.print()">Print</button>
+
                             </div>
 
                             <div class="table-container mt-4">
@@ -831,7 +832,6 @@
                 <td>${order.order_status || '—'}</td>
                 <td>
   <select class="form-select payment-type-select" data-id="${order.order_id}">
-    <option value="">Select</option>
     <option value="COD" ${order.payment_type === 'COD' ? 'selected' : ''}>COD</option>
     <option value="Card" ${order.payment_type === 'Card' ? 'selected' : ''}>Card</option>
     <option value="Bank Transfer" ${order.payment_type === 'Bank Transfer' ? 'selected' : ''}>Bank Transfer</option>
