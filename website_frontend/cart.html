@@ -208,7 +208,7 @@
     <!-- Title -->
     <title> Graba2z- E-commerce website</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/images/logo/favicon.png">
+    <link rel="shortcut icon" href="assets/images/icon/favicon.png">
 
     <link rel="stylesheet" href="assets/css/footer.css" />
     <!-- Bootstrap -->
@@ -404,13 +404,13 @@
                             </span>
                         </button>
                      <!-- In your header -->
-<a href="wishlist.html" class="position-relative d-flex align-items-center" style="gap: 8px;">
-  <!-- Heart Icon -->
-  <i class="ph ph-heart fs-4 position-relative" style="color: #000;">
-    <span id="wishlist-item-count" class="wishlist-item-count" style="font-weight: 400 !;">0</span>
-  </i>
-  <span class="text-dark fw-medium">Wishlist</span>
-</a>
+<a href="wishlist.html" class="flex-align gap-4 item-hover">
+                            <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
+                                <i class="ph ph-heart"></i>
+                                <span id="wishlist-item-count"  class="wishlist-item-count">0</span>
+                            </span>
+                            <span class="text-md text-gray-500 item-hover__text d-none d-lg-flex">Wishlist</span>
+                        </a>
 
                        <a href="cart.html" class="flex-align gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
@@ -1580,7 +1580,6 @@ function loadCart() {
     container.insertAdjacentHTML('beforeend', `
       <div class="cart-item">
         <div class="cart-item-header">
-          <i class="ph ph-shopping-cart-simple"></i> Added to cart
         </div>
         <div class="cart-item-body">
           <img class="cart-item-image" src="${API_ADMINGRAB_URL}/${product.image_path}" alt="${product.name}" />
@@ -1650,37 +1649,49 @@ window.addEventListener('resize', () => {
         updateCartCount();
     }
 
-    function updateCartTotals() {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  let subtotal = 0;
-  let savings = 0;
-  let shippingCost = 0;
+   function updateCartTotals() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let subtotal = 0;
+    let savings = 0;
+    let shippingCost = 0;
 
-  cart.forEach(product => {
-    const originalPrice = parseFloat(product.selling_price);
-    const offerPrice = product.offer_price ? parseFloat(product.offer_price) : originalPrice;
-    const quantity = product.quantity;
-    subtotal += offerPrice * quantity;
-    savings += (originalPrice - offerPrice) * quantity;
-  });
+    cart.forEach(product => {
+        const originalPrice = parseFloat(product.selling_price);
+        const offerPrice = product.offer_price ? parseFloat(product.offer_price) : originalPrice;
+        const quantity = product.quantity;
+        subtotal += offerPrice * quantity;
+        savings += (originalPrice - offerPrice) * quantity;
+    });
 
-  if (cart.length === 0) {
-    shippingCost = 0;
-    document.querySelector('.text-danger.small').textContent = "Your cart is empty";
-  } else if (subtotal >= 500) {
-    shippingCost = 0;
-    document.querySelector('.text-danger.small').textContent = "🎉 Congratulations! Free shipping applied!";
-  } else {
-    document.querySelector('.text-danger.small').textContent = "Purchase for AED 500 or more to enable free shipping";
-  }
+    if (cart.length === 0) {
+        shippingCost = 0;
+        document.querySelector('.text-danger.small').textContent = "Your cart is empty";
+    } else if (subtotal >= 500) {
+        shippingCost = 0;
+        document.querySelector('.text-danger.small').textContent = "🎉 Congratulations! Free shipping applied!";
+    } else {
+        document.querySelector('.text-danger.small').textContent = "Purchase for AED 500 or more to enable free shipping";
+    }
 
-  let total = subtotal + shippingCost - savings - couponDiscountAmount;
-
-  document.getElementById('cart-subtotal').textContent = `AED ${subtotal.toFixed(2)}`;
-  document.getElementById('cart-total').textContent = `AED ${total.toFixed(2)}`;
-  document.getElementById("shipping-cost").textContent = `AED ${shippingCost.toFixed(2)}`;
-  document.getElementById("savings-amount").textContent = `- AED ${savings.toFixed(2)}`;
+    let discountFromCoupon = 0;
+    const appliedCoupon = JSON.parse(localStorage.getItem('appliedCoupon'));
+if (appliedCoupon) {
+    discountFromCoupon = parseFloat(appliedCoupon.discountAmount || 0);
+    document.getElementById('coupon-discount-amount').textContent = `- AED ${discountFromCoupon.toFixed(2)}`;
+    document.getElementById('coupon-code-text').textContent = appliedCoupon.code;
+    document.getElementById('applied-coupon').classList.remove('d-none');
+} else {
+    document.getElementById('applied-coupon').classList.add('d-none');
 }
+
+    let total = subtotal + shippingCost - savings - discountFromCoupon;
+
+    document.getElementById('cart-subtotal').textContent = `AED ${subtotal.toFixed(2)}`;
+    document.getElementById('cart-total').textContent = `AED ${total.toFixed(2)}`;
+    document.getElementById("shipping-cost").textContent = `AED ${shippingCost.toFixed(2)}`;
+    document.getElementById("savings-amount").textContent = `- AED ${savings.toFixed(2)}`;
+}
+
 
 
     function updateCartCount() {
@@ -1712,6 +1723,11 @@ window.addEventListener('resize', () => {
     });
 
 
+function showCouponMessage(msg, isError) {
+    const el = document.getElementById('coupon-message');
+    el.textContent = msg;
+    el.style.color = isError ? 'red' : 'green';
+}
 
 
         // toogle the mobile menu
@@ -1743,124 +1759,71 @@ function toggleSidebar() {
             .catch(error => console.error('Error loading header:', error));
     </script>
 <script>
-    let appliedCoupon = null;
-let couponDiscountAmount = 0;
+function applyCoupon() {
+    const code = document.getElementById('coupon-code').value.trim();
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-async function applyCoupon() {
-  const code = document.getElementById('coupon-code').value.trim();
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-  if (cart.length === 0) {
-    showCouponMessage("Cart is empty.", true);
-    return;
-  }
-
-  let subtotal = 0;
-  cart.forEach(product => {
-    const price = product.offer_price ? parseFloat(product.offer_price) : parseFloat(product.selling_price);
-    subtotal += price * product.quantity;
-  });
-
-  try {
-    const response = await fetch(`${API_ADMINGRAB_URL}/api/coupons/validate?code=${code}`);
-    const result = await response.json();
-
-    if (!result.success) {
-      showCouponMessage(result.message || "Invalid coupon code.", true);
-      return;
+    if (!code) {
+        showCouponMessage("Please enter a coupon code.", true);
+        return;
     }
 
-    const coupon = result.coupon;
+    fetch(`https://grabatoz-production.up.railway.app/api/public/validate-coupon/${code}`)
+        .then(res => {
+            if (!res.ok) throw new Error("Invalid coupon");
+            return res.json();
+        })
+        .then(coupon => {
+            const subtotal = cart.reduce((total, item) => {
+                const price = item.offer_price ? parseFloat(item.offer_price) : parseFloat(item.selling_price);
+                return total + price * item.quantity;
+            }, 0);
 
-    if (subtotal < coupon.min_order_amount) {
-      showCouponMessage(`Minimum order AED ${coupon.min_order_amount} required.`, true);
-      return;
-    }
+            if (subtotal < parseFloat(coupon.min_order_amount)) {
+                showCouponMessage(`Minimum order AED ${coupon.min_order_amount} required.`, true);
+                return;
+            }
 
-    // Calculate discount
-    let discount = 0;
-    if (coupon.discount_type === "Fixed") {
-      discount = coupon.discount;
-    } else if (coupon.discount_type === "Percentage") {
-      discount = (subtotal * coupon.discount) / 100;
-      if (coupon.max_discount && discount > coupon.max_discount) {
-        discount = coupon.max_discount;
-      }
-    }
+            let discountAmount = 0;
+            if (coupon.discount_type === 'percentage') {
+                discountAmount = (subtotal * parseFloat(coupon.discount)) / 100;
+            } else {
+                discountAmount = parseFloat(coupon.discount);
+            }
 
-    // Apply discount
-    couponDiscountAmount = discount;
-    appliedCoupon = coupon;
-    updateCartTotals();
+            if (discountAmount > parseFloat(coupon.max_discount)) {
+                discountAmount = parseFloat(coupon.max_discount);
+            }
 
-    // UI Update
-    document.getElementById("coupon-code-text").textContent = coupon.code;
-    document.getElementById("coupon-discount-amount").textContent = `- AED ${discount.toFixed(2)}`;
-    document.getElementById("applied-coupon").classList.remove("d-none");
-    showCouponMessage("Coupon applied successfully!", false);
+            // Save in localStorage
+            localStorage.setItem('appliedCoupon', JSON.stringify({ code: coupon.code, discountAmount }));
 
-  } catch (error) {
-    console.error("Coupon Error:", error);
-    showCouponMessage("Something went wrong. Try again.", true);
-  }
+            // Update UI
+            document.getElementById('applied-coupon').classList.remove('d-none');
+            document.getElementById('coupon-code-text').textContent = coupon.code;
+            document.getElementById('coupon-discount-amount').textContent = `- AED ${discountAmount.toFixed(2)}`;
+            showCouponMessage("Coupon applied successfully!", false);
+
+            updateCartTotals();
+        })
+        .catch(error => {
+            console.error("Coupon Error:", error);
+            showCouponMessage("Invalid or expired coupon code.", true);
+        });
 }
 
 function removeCoupon() {
-  appliedCoupon = null;
-  couponDiscountAmount = 0;
-  document.getElementById("coupon-code").value = '';
-  document.getElementById("applied-coupon").classList.add("d-none");
-  updateCartTotals();
+    localStorage.removeItem('appliedCoupon');
+    document.getElementById('coupon-code').value = '';
+    document.getElementById('applied-coupon').classList.add('d-none');
+    updateCartTotals();
 }
 
 function showCouponMessage(msg, isError) {
-  const el = document.getElementById('coupon-message');
-  el.textContent = msg;
-  el.style.color = isError ? 'red' : 'green';
+    const el = document.getElementById('coupon-message');
+    el.textContent = msg;
+    el.style.color = isError ? 'red' : 'green';
 }
-
-</script>    
- <script>
-  // Toggle wishlist
-  function toggleWishlist(product) {
-    const heartIcon = document.getElementById('heart-icon');
-    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-    const index = wishlist.findIndex(p => p.id === product.id);
-
-    if (index === -1) {
-        wishlist.push(product);
-        localStorage.setItem('wishlist', JSON.stringify(wishlist));
-        heartIcon.style.color = 'red';
-        showSuccessMessage("Added to wishlist!");
-    } else {
-        wishlist.splice(index, 1);
-        localStorage.setItem('wishlist', JSON.stringify(wishlist));
-        heartIcon.style.color = '';
-        showSuccessMessage("Removed from wishlist!");
-    }
-
-    updateWishlistBadge();
-}
-
-
-  // Update badge in header
-function updateWishlistBadge() {
-    const count = (JSON.parse(localStorage.getItem('wishlist')) || []).length;
-    const badge = document.getElementById('wishlist-item-count'); // Make sure this exists in header
-    if (badge) badge.textContent = count;
-}
-
-  // Display message
-  function showSuccessMessage(msg) {
-    const box = document.createElement('div');
-    box.style.cssText = 'position:fixed;top:20px;right:20px;background:green;color:white;padding:10px;border-radius:5px;z-index:1000';
-    box.innerText = msg;
-    document.body.appendChild(box);
-    setTimeout(() => box.remove(), 3000);
-  }
-
-  // Call on page load
-  document.addEventListener('DOMContentLoaded', updateWishlistBadge);
 </script>
 
 </body>

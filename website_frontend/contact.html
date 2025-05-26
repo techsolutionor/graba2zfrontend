@@ -7,7 +7,7 @@
     <!-- Title -->
     <title> Graba2z- E-commerce website</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/images/logo/favicon.png">
+    <link rel="shortcut icon" href="assets/images/icon/favicon.png">
     
     <link rel="stylesheet" href="assets/css/footer.css" />
     <!-- Bootstrap -->
@@ -1574,7 +1574,8 @@ function toggleSidebar() {
   function toggleWishlist(product) {
     const heartIcon = document.getElementById('heart-icon');
     let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-    const index = wishlist.findIndex(p => p.id === product.id);
+    const index = 
+    list.findIndex(p => p.id === product.id);
 
     if (index === -1) {
         wishlist.push(product);
