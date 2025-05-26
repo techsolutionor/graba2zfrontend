@@ -1399,7 +1399,7 @@
                             </div>
                             <div class="mb-3 d-flex justify-content-between text-black">
                                 <span>Shipping</span>
-                                <span id="shipping-cost">AED 2.00</span>
+                                <span id="shipping-cost">AED 0.00</span>
                             </div>
                             <div class="d-flex justify-content-between text-black">
                                 <span>Savings</span>
@@ -1652,7 +1652,7 @@ window.addEventListener('resize', () => {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         let subtotal = 0;
         let savings = 0;
-        let shippingCost = 2;
+        let shippingCost = 0;
 
         cart.forEach(product => {
             const originalPrice = parseFloat(product.selling_price);
