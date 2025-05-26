@@ -562,46 +562,109 @@
               </h5>
               <div class="container">
                 <h5>Online Orders</h5>
-               <div class="actions-bar d-flex flex-column flex-md-row justify-content-center justify-content-md-end mb-3">
-  <div class="card p-3 w-100">
-    <form id="orderFilterForm" class="row g-2 align-items-end">
-      <div class="col-md-3">
-        <input type="text" id="filterOrderId" class="form-control" placeholder="Order ID" />
-      </div>
-      <div class="col-md-3">
-        <select id="filterStatus" class="form-select">
-          <option value="">All Statuses</option>
-          <option>Received Order</option>
-          <option>Inprogress Order</option>
-          <option>Ready for Shipment</option>
-          <option>On the Way</option>
-          <option>Delevered</option>
-          <option>On Hold</option>
-          <option>Rejected</option>
-        </select>
-      </div>
-      <div class="col-md-2">
-        <input type="date" id="filterFromDate" class="form-control" />
-      </div>
-      <div class="col-md-2">
-        <input type="date" id="filterToDate" class="form-control" />
-      </div>
-      <div class="col-md-2 d-flex gap-2">
-        <button type="submit" class="btn btn-primary w-50">Filter</button>
-        <!-- Export Dropdown -->
-        <div class="dropdown w-50">
-          <button class="btn btn-warning dropdown-toggle w-100" type="button" id="exportButton" data-bs-toggle="dropdown" aria-expanded="false">
-            Export
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="exportButton">
-            <li><a class="dropdown-item" href="#"><i class="fas fa-file-excel"></i> Export to XLS</a></li>
-          </ul>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
+                <div
+                  class="actions-bar d-flex flex-column flex-md-row align-items-center align-items-lg-end justify-content-center justify-content-md-center justify-content-lg-end"
+                >
+                  <div
+                    class="d-flex justify-content-center mb-2 mb-md-0 me-md-2 w-100"
+                    style="max-width: 105px"
+                  >
+                    <button class="filter-btn btn btn-primary w-100">
+                      Filter
+                    </button>
+                  </div>
+                  <div id="dropdownSearch" class="dropdown-search d-none">
+                    <div class="dropdown-header bg-light p-2 border rounded">
+                      Search Orders
+                    </div>
+                    <div
+                      class="dropdown-fields mt-2 p-2 border rounded bg-white"
+                    >
+                      <div class="filter-row row">
+                        <div class="label-input col-12 col-lg-6 mb-2">
+                          <label for="searchOrderId">Order ID</label>
+                          <input
+                            type="text"
+                            class="form-control filter-input"
+                            id="searchOrderId"
+                            placeholder="Enter Order ID"
+                          />
+                        </div>
+                        <div class="label-input col-12 col-lg-6 mb-2">
+                          <label for="searchCustomer">Customer</label>
+                          <input
+                            type="text"
+                            class="form-control filter-input"
+                            id="searchCustomer"
+                            placeholder="Enter Customer Name"
+                          />
+                        </div>
+                      </div>
+                      <div class="filter-row row">
+                        <div class="label-input col-12 col-lg-6 mb-2">
+                          <label for="searchDate">Date</label>
+                          <input
+                            type="date"
+                            class="form-control filter-input"
+                            id="searchDate"
+                          />
+                        </div>
+                        <div class="label-input col-12 col-lg-6 mb-2">
+                          <label for="searchStatus">Status</label>
+                          <input
+                            type="text"
+                            class="form-control filter-input"
+                            id="searchStatus"
+                            placeholder="Enter Status"
+                          />
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-between gap-2">
+                        <button
+                          class="btn btn-success search-btn w-100"
+                          style="max-width: 200px"
+                          onclick="filterTable()"
+                        >
+                          Search
+                        </button>
+                        <button
+                          class="btn btn-secondary clear-btn w-100"
+                          style="max-width: 200px"
+                          onclick="clearFilters()"
+                        >
+                          Clear
+                        </button>
+                      </div>
+                    </div>
+                  </div>
 
+                  <div
+                    class="d-flex justify-content-center mb-2 mb-md-0 me-md-2 w-100"
+                    style="max-width: 105px"
+                  >
+                    <!-- Dropdown for Export button -->
+                    <div class="dropdown w-100">
+                      <button
+                        class="export-btn btn btn-warning w-100"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        Export
+                      </button>
+                      <!-- Dropdown Menu -->
+                      <ul
+                        class="dropdown-menu mt-2"
+                        aria-labelledby="exportButton"
+                      >
+                        <li>
+                          <a class="dropdown-item" href="#" id="exportButton"
+                            ><i class="fas fa-file-excel"></i> XLS</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
 
                 <div id="orderViewOverlay" class="overlay">
@@ -635,7 +698,25 @@
                             <span id="paymentType"></span>
                           </p>
                         </div>
+                        <!-- <div class="col-md-6 text-end">
+                                                <button id="acceptBtn" class="btn btn-success me-2"
+                                                    onclick="updateOrderStatus('Confirmed')">Accept</button>
+                                                <button id="rejectBtn" class="btn btn-danger"
+                                                    onclick="updateOrderStatus('Cancelled')">Reject</button>
 
+                                                <div id="additionalActions" style="display: none;">
+                                                    <button class="btn btn-primary me-2">Print Invoice</button>
+                                                    <button id="acceptBtn" class="btn btn-success me-2"
+                                                        onclick="updateOrderStatus('Confirmed')">Accept</button>
+                                                    <button id="rejectBtn" class="btn btn-danger"
+                                                        onclick="updateOrderStatus('Cancelled')">Reject</button>
+                                                    <select id="statusSelect" class="form-select w-auto d-inline-block">
+                                                        <option value="Confirmed">Confirmed</option>
+                                                        <option value="On the Way">On the Way</option>
+                                                        <option value="Delivered">Delivered</option>
+                                                    </select>
+                                                </div>
+                                            </div> -->
                         <div class="col-md-6 text-end">
                           <button
                             class="btn btn-primary"
@@ -1173,54 +1254,6 @@
               // Implement your error message display logic here
               alert(message); // Replace with your preferred notification system
             }
-          </script>
-          <script>
-            document
-              .getElementById("orderFilterForm")
-              .addEventListener("submit", async function (e) {
-                e.preventDefault();
-                showLoader();
-
-                const token = localStorage.getItem("token");
-                const orderId = document
-                  .getElementById("filterOrderId")
-                  .value.trim();
-                const status = document
-                  .getElementById("filterStatus")
-                  .value.trim();
-                const fromDate =
-                  document.getElementById("filterFromDate").value;
-                const toDate = document.getElementById("filterToDate").value;
-
-                const queryParams = new URLSearchParams();
-                if (orderId) queryParams.append("order_id", orderId);
-                if (status) queryParams.append("status", status);
-                if (fromDate) queryParams.append("from_date", fromDate);
-                if (toDate) queryParams.append("to_date", toDate);
-
-                try {
-                  const response = await fetch(
-                    `${API_ADMINGRAB_URL}/api/onlineorders/filter?${queryParams}`,
-                    {
-                      headers: {
-                        Authorization: token,
-                      },
-                    }
-                  );
-
-                  if (!response.ok) {
-                    throw new Error("Failed to filter orders");
-                  }
-
-                  const data = await response.json();
-                  populateTable(data);
-                } catch (error) {
-                  console.error("❌ Filter error:", error);
-                  showErrorMessage(error.message || "Filter failed");
-                } finally {
-                  hideLoader();
-                }
-              });
           </script>
         </div>
       </div>
