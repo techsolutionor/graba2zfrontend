@@ -1673,7 +1673,7 @@ ul {
   // 💸 Price slider
   $(function () {
     const minPrice = 0;
-    const maxPrice = 10000;
+    const maxPrice = 50000;
 
     $("#slider-range").slider({
       range: true,
@@ -2113,11 +2113,25 @@ function setupPagination(totalPages) {
     }
 
     // Event listener for brand filter
+    
+    let selectedRadio = null;
+
     const brandFilterRadios = document.querySelectorAll('input[name="color"]');
 
     brandFilterRadios.forEach((radio) => {
-        radio.addEventListener('change', async function () {
-            const selectedBrand = this.nextElementSibling.textContent.trim(); // Get the label text of the selected radio button
+        radio.addEventListener('click', async function (e) {
+            if (selectedRadio === this) {
+                this.checked = false;
+                selectedRadio = null;
+
+                // 🔁 Load all products if unselected
+                await loadProductsByCategoryAndBrand('', '');
+                return;
+            } else {
+                selectedRadio = this;
+            }
+
+            const selectedBrand = this.nextElementSibling.textContent.trim();
 
             try {
                 const productGrid = document.getElementById('product-grid');
@@ -2128,7 +2142,6 @@ function setupPagination(totalPages) {
 
                 productGrid.innerHTML = '<p>Loading products...</p>';
 
-                // Construct the API URL with the selected brand
                 let apiUrl = `${API_CUSTOMER_URL}/api/products?brand=${encodeURIComponent(selectedBrand)}`;
 
                 const response = await fetch(apiUrl);
@@ -2143,28 +2156,28 @@ function setupPagination(totalPages) {
                 products.forEach((product) => {
                     const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
                     const productCardHTML = `
-               <div class="product-card col-6 col-md-6 col-lg-4 col-xl-3 ">
-                <div style="min-width: 100% !important;" class="card h-100 border border-gray-100  rounded-16 position-relative" >
-                     <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
-                    <a href="product-details.html?slug=${product.slug}" class="product-card__thumb d-block position-relative">
-                        <img src="${API_ADMINGRAB_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
-                    </a>
-                     <div class="card-body">
-                <div class="mb-2 d-flex justify-content-between">
-                    <span class="badge bg-success">In stock</span>
-                    <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
-                </div>
-                <h6 class="card-title" style="font-size: 14px; color:black;">${limitWords(product.name, 5)}</h6>
-                <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
-                <del class="text-muted">${product.selling_price} AED</del>
-            </div>
-            <div class="card-body">
-                <button class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">
-                    Add To Cart
-                </button>
-            </div>
-        </div>
-            `;
+                        <div class="product-card col-6 col-md-6 col-lg-4 col-xl-3">
+                            <div style="min-width: 100% !important;" class="card h-100 border border-gray-100 rounded-16 position-relative">
+                                <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
+                                <a href="product-details.html?slug=${product.slug}" class="product-card__thumb d-block position-relative">
+                                    <img src="${API_ADMINGRAB_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
+                                </a>
+                                <div class="card-body">
+                                    <div class="mb-2 d-flex justify-content-between">
+                                        <span class="badge bg-success">In stock</span>
+                                        <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+                                    </div>
+                                    <h6 class="card-title" style="font-size: 14px; color:black;">${limitWords(product.name, 5)}</h6>
+                                    <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
+                                    <del class="text-muted">${product.selling_price} AED</del>
+                                </div>
+                                <div class="card-body">
+                                    <button class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">
+                                        Add To Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>`;
                     productGrid.innerHTML += productCardHTML;
                 });
             } catch (error) {
@@ -2175,16 +2188,14 @@ function setupPagination(totalPages) {
     });
 
     window.onload = function () {
-        const { category, brand } = getCategoryAndBrandFromURL(); // Get category and brand from URL
-
+        const { category, brand } = getCategoryAndBrandFromURL();
         if (category || brand) {
-            // Load products based on category and/or brand
             loadProductsByCategoryAndBrand(category, brand);
         } else {
-            // Load all products if neither category nor brand is specified
             loadProductsByCategoryAndBrand('', '');
         }
     };
+</script>
 
    
 
@@ -2241,6 +2252,9 @@ function toggleSidebar() {
   }
 }
 </script>
+
+   
+
 
 
 </body>
