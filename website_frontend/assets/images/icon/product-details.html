@@ -2267,8 +2267,8 @@ ul {
   <!-- Button 2: Buy Now -->
   
 <!-- Button 2: Buy Now -->
-<button class="btn btn-warning d-inline-flex align-items-center gap-4 px-8     " 
-  style="background-color: #ffc107; color: black; margin-top:16px !important;" 
+<button class="btn btn-warning d-inline-flex align-items-center gap-4 px-8 mb-5" 
+  style="background-color: #ffc107; color: black;" 
   onclick='handleBuyNowDirect({
       id: ${product.id},
       slug: ${JSON.stringify(product.slug)},
@@ -2300,8 +2300,6 @@ document.getElementById('favourite').innerHTML = `
       slug: "${product.slug?.replace(/"/g, '\\"')}",
       name: "${product.name?.replace(/"/g, '\\"')}",
       selling_price: ${product.selling_price},
-       offer_price: ${product.offer_price},            // ✅ add this
-  discount: ${product.discount},                  // ✅ add this
       image_path: "${cartImage}"
   })' class="w-52 h-52 bg-main-50 text-main-600 text-xl hover-bg-main-600 hover-text-white flex-center rounded-circle">
       <i class="ph ph-heart" id="heart-icon" style="color: ${isInWishlist ? 'red' : 'inherit'}"></i>

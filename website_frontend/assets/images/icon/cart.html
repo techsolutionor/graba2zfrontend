@@ -1,5 +1,205 @@
 <!DOCTYPE html>
 <html lang="en" class="">
+    <style>
+        .cart-item {
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cart-item-header {
+  font-size: 25px;
+  color: gray;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-item-body {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cart-item-image {
+  width: 87px;
+  height: 87px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  object-fit: cover;
+}
+
+.cart-item-info h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.price-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.price-original {
+  text-decoration: line-through;
+  font-size: 13px;
+  color: #999;
+}
+
+.price-discount {
+  color: red;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.quantity-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.quantity-group button,
+.quantity-group input {
+  width: 36px;
+  height: 36px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.quantity-group input {
+  text-align: center;
+  background-color: #fff;
+}
+
+.quantity-group button {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.cart-subtotal {
+  margin-left: auto;
+  text-align: right;
+}
+
+.cart-subtotal p {
+  margin: 0;
+  font-size: 14px;
+  color: gray;
+}
+
+.cart-subtotal p:last-child {
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+}
+
+.cart-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-footer label {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.cart-footer button {
+  color: red;
+  background: none;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+/* 🌐 Responsive Styling */
+@media (max-width: 768px) {
+  .cart-item-body {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-subtotal {
+    margin-left: 0;
+    margin-top: 8px;
+    text-align: left;
+  }
+}
+
+@media (max-width: 580px) {
+  .cart-item-image {
+    width: 64px;
+    height: 64px;
+  }
+
+  .price-discount {
+    font-size: 14px;
+  }
+
+  .cart-subtotal p {
+    font-size: 13px;
+  }
+
+  .cart-subtotal p:last-child {
+    font-size: 14px;
+  }
+
+  .quantity-group button,
+  .quantity-group input {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    
+  }
+
+  .cart-footer {
+    display: flex;
+  justify-content: space-between;
+  align-items: center;
+  }
+  .quantity-group{
+     display: flex;
+  justify-content: space-around ;
+  align-items: center;
+  }
+}
+
+/* cros button aside bar */
+/* Close (X) Button inside Sidebar */
+.sidebar-close-btn {
+  display: none;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  background: transparent;
+  border: none;
+  color: rgb(255, 0, 0);
+  z-index: 1001;
+  cursor: pointer;
+}
+
+/* Show the close button only when sidebar is open on mobile/tablet */
+@media (max-width: 1024px) {
+  .sidebar.open .sidebar-close-btn {
+    display: block;
+  }
+}
+
+
+    </style>
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +208,7 @@
     <!-- Title -->
     <title> Graba2z- E-commerce website</title>
     <!-- Favicon -->
-  <link rel="shortcut icon" href="assets/images/icon/favicon.png">
+    <link rel="shortcut icon" href="assets/images/icon/favicon.png">
 
     <link rel="stylesheet" href="assets/css/footer.css" />
     <!-- Bootstrap -->
@@ -29,165 +229,99 @@
     <!-- Main css -->
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
+    <script src="./apiConfig/apiConfig.js"></script>
     <style>
-        @media (min-width: 768px) {
-            #banner-prev {
-                margin-top: 80px;
-                /* Replace with your value */
+        /* mobile res start */
+        /* Hide sidebar by default */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: auto;
+            background-color: #ffffff;
+            overflow-x: hidden;
+            transition: 0.3s ease;
+            padding-top: 60px;
+            z-index: 999;
+        }
+
+        /* Sidebar content scrollable */
+        .sidebar-inner {
+            max-height: 100%;
+            overflow-y: auto;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 12px 20px;
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            background: #fff4f4;
+            color: rgb(49, 136, 49);
+        }
+
+        /* Menu button */
+        .menu-btn {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 31px;
+            font-size: 24px;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            padding: 10px;
+            z-index: 1000;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        /* Show on mobile and tablet only */
+        @media (max-width: 1024px) {
+            .menu-btn {
+                display: block;
+            }
+
+            .sidebar {
+                display: block;
             }
         }
 
-        @media (min-width: 768px) {
-            #banner-next {
-                margin-top: 80px;
-                /* Replace with your value */
+        /* Hide on larger screens */
+        @media (min-width: 1025px) {
+            .sidebar {
+                display: none !important;
+            }
+
+            .menu-btn {
+                display: none !important;
             }
         }
 
-        /* Custom dropdown styling */
-        .dropdown-menu {
-            min-width: 220px;
-            border: 1px solid rgba(0, 0, 0, .15);
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
         }
 
-        /* .dropdown-item {
-            padding: 8px 16px;
-            font-size: 0.9rem;
-        } */
-
-        .dropdown-item i {
-            width: 20px;
-            text-align: center;
+        #cart:hover {
+            color: #ffffff;
+            background-color: red;
         }
 
-        @media (max-width: 768px) {
-            .border-right-item {
-                border-right: none !important;
-            }
-
-            .dropdown-menu {
-                position: fixed !important;
-                top: auto !important;
-                left: 50% !important;
-                transform: translateX(-50%);
-                width: 90%;
-                max-width: 300px;
-            }
-
-            .nav-link {
-                padding: 0.5rem 1rem;
-            }
+        .dropdown-item:hover {
+            color: #90C309;
         }
-           /* mobile res start */
-       /* Sidebar container */
-.sidebar {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  top: 0;
-  right: 0;
-  background-color: #ffffff;
-  overflow-x: hidden;
-  transition: 0.3s ease;
-  padding-top: 60px;
-  z-index: 999;
-}
 
-/* Open state */
-.sidebar.open {
-  width: 250px;
-}
+        /* mobile res end */
+        /* first dropdown */
+        /* Custom Dropdown Styles */
 
-/* Sidebar content scrollable */
-.sidebar-inner {
-  max-height: 100%;
-  overflow-y: auto;
-}
-
-/* Sidebar links */
-.sidebar a {
-  display: block;
-  padding: 12px 20px;
-  color: #000;
-  text-decoration: none;
-}
-
-.sidebar a:hover {
-  background: #fff4f4;
-  color: rgb(49, 136, 49);
-}
-
-/* Open Button (☰) */
-.menu-open-btn {
-  display: none;
-  position: absolute;
-  top: 61px;
-  right: 31px;
-  font-size: 24px;
-  background-color: #ffffff;
-  color: #000;
-  padding: 10px;
-  border-radius: 5px;
-  z-index: 1000;
-  cursor: pointer;
-}
-
-/* Close Button (✖) inside Sidebar */
-.menu-close-btn {
-  display: none;
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 24px;
-  background: transparent;
-  border: none;
-  color: red;
-  z-index: 1001;
-  cursor: pointer;
-}
-
-/* Responsive Display Settings */
-@media (max-width: 1024px) {
-  .menu-open-btn {
-    display: block;
-  }
-
-  .sidebar {
-    display: block;
-  }
-
-  .sidebar.open .menu-close-btn {
-    display: block;
-  }
-}
-
-@media (min-width: 1025px) {
-  .sidebar,
-  .menu-open-btn,
-  .menu-close-btn {
-    display: none !important;
-  }
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* hover effect on top navbar css start  */
-#hover:hover {
-   color: #86c232 !important;
-}
-.dropdown-item:hover {
-    color: #86c232 !important;
-}
- /* first dropdown */
-      /* Custom Dropdown Styles */
-
-
-      /* cart circle css start  */
+        /* cart circle css start  */
        .cart-item-count {
         min-width: 24px;
         height: 24px;
@@ -224,16 +358,17 @@ ul {
         font-weight: bold;
         white-space: nowrap;
     }
-
-      </style>
+    </style>
 </head>
+
 <body>
     <div id="top-header"></div>
+
 
     <!-- ======================= Middle Header Start ========================= -->
     <header class="header-middle bg-white border-bottom border-gray-100">
         <div class="container container-lg">
-            <nav class="header-inner flex-between">
+            <n class="header-inner flex-between">
                 <!-- Logo Start -->
                 <div class="logo">
                     <a href="index.html" class="link">
@@ -258,25 +393,25 @@ ul {
                         </div>
                     </div>
                 </form>
-
-
                 <!-- form location start -->
 
                 <!-- Header Middle Right start -->
-               <div class="header-right flex-align d-lg-block d-none">
+                <div class="header-right flex-align d-lg-block d-none">
                     <div class="flex-align flex-wrap gap-12">
                         <button type="button" class="search-icon flex-align d-lg-none d-flex gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative item-hover__text">
                                 <i class="ph ph-magnifying-glass"></i>
                             </span>
                         </button>
-                      <a href="wishlist.html" class="flex-align gap-4 item-hover">
+                     <!-- In your header -->
+<a href="wishlist.html" class="flex-align gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
                                 <i class="ph ph-heart"></i>
                                 <span id="wishlist-item-count"  class="wishlist-item-count">0</span>
                             </span>
                             <span class="text-md text-gray-500 item-hover__text d-none d-lg-flex">Wishlist</span>
                         </a>
+
                        <a href="cart.html" class="flex-align gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
                                 <i class="ph ph-shopping-cart-simple"></i>
@@ -287,20 +422,14 @@ ul {
 
                     </div>
                 </div>
+
                 <!-- Header Middle Right End  -->
-            </nav>
+                </nav>
         </div>
-      
-
-					 <!-- ===================mobile responsive design ==============================  -->
-            
-    <!-- Open Sidebar Button -->
-<div class="menu-open-btn" onclick="toggleSidebar()">☰</div>
-
-<!-- Sidebar -->
-<div id="sidebar" class="sidebar">
-  <!-- Close Sidebar Button -->
-  <button class="menu-close-btn" onclick="toggleSidebar()">✖</button>
+        <!-- ===================mobile responsive design ==============================  -->
+            <div class="menu-btn" onclick="toggleSidebar()">☰</div>
+       <div id="sidebar" class="sidebar">
+  <button class="sidebar-close-btn" onclick="toggleSidebar()">✖</button>
   <div class="sidebar-inner">
     <ul>
 
@@ -469,11 +598,13 @@ ul {
                     <li>
                         <a href="shop.html?category=Wifi%20Dongles"> Wifi Dongles </a>
                     </li>
-                 </ul>
-  </div>
-</div>
-        <!-- ===================== mobile responsive end ==============================  -->
+                </ul>
 
+
+                <!-- Aise hi 61 tak add kar do -->
+            </div>
+        </div>
+        <!-- ===================== mobile responsive end ==============================  -->
     </header>
     <!-- ======================= Middle Header End ========================= -->
 
@@ -485,7 +616,11 @@ ul {
 
                     <!-- Category Dropdown Start -->
                     <div class="category on-hover-item">
-
+                        <!-- <button type="button" class="category__button flex-align gap-8 fw-medium p-16 border-end border-start border-gray-100 text-heading">
+                        <span class="icon text-2xl d-xs-flex d-none"><i class="ph ph-dots-nine"></i></span>
+                        <span class="d-sm-flex d-none">All</span>  Categories
+                        <span class="arrow-icon text-xl d-flex"><i class="ph ph-caret-down"></i></span>
+                    </button> -->
 
                         <div
                             class="responsive-dropdown on-hover-dropdown common-dropdown nav-submenu p-0 submenus-submenu-wrapper">
@@ -516,22 +651,22 @@ ul {
                                         <h6 class="text-lg px-16 submenus-submenu__title">All In One</h6>
                                         <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
                                             <li>
-                                                <a href="shop.html?brand=Asus">Asus All in One</a>
+                                                <a href="shop.html">Asus All in One</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?brand=Acer">Acer All in One</a>
+                                                <a href="shop.html">Acer All in One</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?brand=Lenovo">Lenovo all In One </a>
+                                                <a href="shop.html">Lenovo all In One </a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?brand=HP">HP All In One</a>
+                                                <a href="shop.html">HP All In One</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?brand=Dell">Dell All in One</a>
+                                                <a href="shop.html">Dell All in One</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?brand=Apple">Apple All in One</a>
+                                                <a href="shop.html">Apple iMac</a>
                                             </li>
 
                                         </ul>
@@ -549,19 +684,19 @@ ul {
                                         <h6 class="text-lg px-16 submenus-submenu__title">Desktop</h6>
                                         <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
                                             <li>
-                                                <a href="shop.html?category=Desktops&brand=Lenovo">Lenovo Desktops </a>
+                                                <a href="shop.html">Lenovo Desktops </a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Desktops&brand=Dell"> Dell Desktops</a>
+                                                <a href="shop.html"> Dell Desktops</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Desktops&brand=Asus"> Asus Desktops</a>
+                                                <a href="shop.html"> Asus Desktops</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Desktops&brand=Acer"> Acer Desktops </a>
+                                                <a href="shop.html"> Acer Desktop </a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Desktops&brand=HP"> HP Desktops</a>
+                                                <a href="shop.html"> HP Desktop</a>
                                             </li>
 
                                         </ul>
@@ -579,36 +714,34 @@ ul {
                                         <h6 class="text-lg px-16 submenus-submenu__title">Monitors</h6>
                                         <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
                                             <li>
-                                                <a href="shop.html?category=Monitors&brand=Lenovo"> Lenovo Monitors</a>
+                                                <a href="shop.html"> Lenovo Monitors</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Monitors&brand=MSI"> MSI Monitors</a>
+                                                <a href="shop.html"> MSI Monitors</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Monitors&brand=HP"> HP Monitors</a>
+                                                <a href="shop.html"> HP Monitors</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Monitors&brand=Dell"> Dell Monitors</a>
+                                                <a href="shop.html"> Dell Monitors</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Monitors&brand=Asus"> Asus Monitors</a>
+                                                <a href="shop.html"> Asus Monitors</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Monitors&brand=Acer"> Acer Monitors</a>
+                                                <a href="shop.html"> Acer Monitors</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Monitors&brand=Samsung"> Samsung
-                                                    Monitors</a>
+                                                <a href="shop.html"> samsung Monitors</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Monitors&brand=AOC"> AOC Monitors</a>
+                                                <a href="shop.html"> AOC Monitors</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Monitors&brand=Viewsonic"> Viewsonic
-                                                    Monitors</a>
+                                                <a href="shop.html"> Viewsonic Monitors</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Monitors&brand=LG"> LG Monitors</a>
+                                                <a href="shop.html"> LG Monitors</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -625,7 +758,7 @@ ul {
                                         <h6 class="text-lg px-16 submenus-submenu__title">Mobiles</h6>
                                         <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
                                             <li>
-                                                <a href="shop.html?category=Mobiles&brand=Apple"> Apple</a>
+                                                <a href="shop.html"> Apple</a>
                                             </li>
 
                                         </ul>
@@ -643,32 +776,31 @@ ul {
                                         <h6 class="text-lg px-16 submenus-submenu__title">Laptops</h6>
                                         <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
                                             <li>
-                                                <a href="shop.html?category=Laptops&brand=Lenovo"> Lenovo Laptops</a>
+                                                <a href="shop.html"> Lenovo Laptops</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Laptops&brand=MSI"> MSI Laptops</a>
+                                                <a href="shop.html"> MSI Laptops</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Laptops&brand=HP"> HP Laptops</a>
+                                                <a href="shop.html"> HP Laptops</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Laptops&brand=Dell"> Dell Laptops</a>
+                                                <a href="shop.html"> Dell Laptops</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Laptops&brand=Asus"> Asus Laptops</a>
+                                                <a href="shop.html"> Asus Laptops</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Laptops&brand=Acer"> Acer Laptops</a>
+                                                <a href="shop.html"> Acer Laptops</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Laptops&brand=MI"> MI Laptops</a>
+                                                <a href="shop.html"> MI Laptops</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Laptops&brand=Apple"> Apple Laptops</a>
+                                                <a href="shop.html"> Apple Laptops</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Laptops&brand=Microsoft"> Microsoft
-                                                    Laptops</a>
+                                                <a href="shop.html"> Microsofts Laptops</a>
                                             </li>
 
                                         </ul>
@@ -678,7 +810,7 @@ ul {
                                     <a href="javascript:void(0)"
                                         class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
                                         <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                        <span>Printer & Copier</span>
+                                        <span>printer & Copier</span>
                                         <span class="icon text-md d-flex ms-auto"><i
                                                 class="ph ph-caret-right"></i></span>
                                     </a>
@@ -686,28 +818,22 @@ ul {
                                         <h6 class="text-lg px-16 submenus-submenu__title">printer & Copier</h6>
                                         <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
                                             <li>
-                                                <a href="shop.html?category=Printers%20&%20Copier&brand=HR"> HR Printer
-                                                    & Copier </a>
+                                                <a href="shop.html"> HR printer & Copier </a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Printers%20&%20Copier&brand=Canon"> Canon
-                                                    Printer & Copier</a>
+                                                <a href="shop.html"> Canon printer & Copier</a>
 
                                             <li>
-                                                <a href="shop.html?category=Printers%20&%20Copier&brand=Brother">
-                                                    Brother Printer & Copier</a>
+                                                <a href="shop.html"> Brother Printer & Copier</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Printers%20&%20Copier&brand=Ricoh"> Ricoh
-                                                    Printer & Copier</a>
+                                                <a href="shop.html"> Ricoh printer & Copier</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Printers%20&%20Copier&brand=Epson"> Epson
-                                                    Printer & Copier</a>
+                                                <a href="shop.html"> Epson printer & Copier</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Printers%20&%20Copier&brand=Xerox"> Xerox
-                                                    Printer & Copier</a>
+                                                <a href="shop.html"> Xerox printer & Copier</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -724,13 +850,14 @@ ul {
                                         <h6 class="text-lg px-16 submenus-submenu__title">Routers</h6>
                                         <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
                                             <li>
-                                                <a href="shop.html?category=Routers&brand=TP%20Link"> TP Link Routers
-                                                </a>
+                                                <a href="shop.html"> TP Link Routers </a>
                                             </li>
 
                                         </ul>
                                     </div>
                                 </li>
+
+
                                 <li class="has-submenus-submenu">
                                     <a href="javascript:void(0)"
                                         class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
@@ -740,16 +867,16 @@ ul {
                                                 class="ph ph-caret-right"></i></span>
                                     </a>
                                     <div class="submenus-submenu py-16">
-                                        <h6 class="text-lg px-16 submenus-submenu__title">Projectors</h6>
+                                        <h6 class="text-lg px-16 submenus-submenu__title">projector</h6>
                                         <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
                                             <li>
-                                                <a href="shop.html?category=Projectors&brand=Optoma"> Optoma</a>
+                                                <a href="shop.html"> Optoma</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Projectors&brand=BENQ"> BENQ</a>
+                                                <a href="shop.html"> BENQ</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Projectors&brand=LG"> LG </a>
+                                                <a href="shop.html"> LG </a>
                                             </li>
 
                                         </ul>
@@ -769,34 +896,34 @@ ul {
                                         <h6 class="text-lg px-16 submenus-submenu__title">Accessories</h6>
                                         <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
                                             <li>
-                                                <a href="shop.html?category=Bags"> Bags</a>
+                                                <a href="shop.html"> Bags</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=RAM"> RAMs</a>
+                                                <a href="shop.html"> RAMs</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Mouse"> Mouse </a>
+                                                <a href="shop.html"> Mouse </a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Keyboard"> keyboard </a>
+                                                <a href="shop.html"> keyboard </a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Hard%20Drives"> Hard Drives</a>
+                                                <a href="shop.html"> Hard Drives</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Headphones"> headphones </a>
+                                                <a href="shop.html"> headphones </a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Storage%20Devices"> storage devices </a>
+                                                <a href="shop.html"> storage devices </a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Graphic%20Cards"> Graphic Cards </a>
+                                                <a href="shop.html"> Graphics Card </a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?categoryMotherboard"> Motherboard </a>
+                                                <a href="shop.html"> Motherboard </a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Power%20Supply"> Power Supply </a>
+                                                <a href="shop.html"> Power Supply </a>
                                             </li>
 
                                         </ul>
@@ -815,31 +942,29 @@ ul {
                                         <h6 class="text-lg px-16 submenus-submenu__title">Networking</h6>
                                         <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
                                             <li>
-                                                <a href="shop.html?category=Cables"> cables</a>
+                                                <a href="shop.html"> cables</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=HDMI"> HDMI</a>
+                                                <a href="shop.html"> HDMI</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Adapter"> Adapters </a>
+                                                <a href="shop.html"> Adopters </a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=USB"> USB C HUB </a>
+                                                <a href="shop.html"> USB C HUB </a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Connectors"> Connectors </a>
+                                                <a href="shop.html"> Connectors </a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Display%20Port"> Display Port </a>
+                                                <a href="shop.html"> Display Port </a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=USB%20Dongles"> USB Dongles </a>
+                                                <a href="shop.html"> USB Dongles </a>
                                             </li>
                                             <li>
-                                                <a href="shop.html?category=Wifi%20Dongles"> Wifi Dongles </a>
+                                                <a href="shop.html"> Wifi Dongles </a>
                                             </li>
-
-
                                         </ul>
                                     </div>
                                 </li>
@@ -1193,174 +1318,513 @@ ul {
     </header>
     <!-- ==================== Header End Here ==================== -->
 
- <!-- ========================= Breadcrumb Start =============================== -->
-<div class="breadcrumb py-26" style="background-color: #cdf19b;">
-  <div class="container container-lg">
-    <div class="breadcrumb-wrapper flex-between flex-wrap gap-16">
-      <h6 class="mb-0 text-black">Wishlist</h6>
-      <ul class="flex-align gap-8 flex-wrap">
-        <li class="text-sm">
-          <a href="index.html" class="text-gray-900 flex-align gap-8 hover-text-main-600">
-            <i class="ph ph-house" style="color:#000;"></i>
-            Home
-          </a>
-        </li>
-        <li class="flex-align">
-          <i class="ph ph-caret-right"></i>
-        </li>
-        <li class="text-sm text-main-600 text-black">Product Wishlist</li>
-      </ul>
+    <!-- ========================= Breadcrumb Start =============================== -->
+    <div class="breadcrumb py-26" style="background-color: #e7fccb;">
+        <div class="container container-lg">
+            <div class="breadcrumb-wrapper flex-between flex-wrap gap-16">
+                <h6 class="mb-0 text-black">Cart</h6>
+                <ul class="flex-align gap-8 flex-wrap">
+                    <li class="text-sm">
+                        <a href="index.html" class="text-gray-900 flex-align gap-8 hover-text-main-600">
+                            <i class="ph ph-house"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="flex-align">
+                        <i class="ph ph-caret-right"></i>
+                    </li>
+                    <li class="text-sm text-main-600"> Product Cart </li>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-<!-- ========================= Breadcrumb End =============================== -->
+    <!-- ========================= Breadcrumb End =============================== -->
 
-<div class="container-lg  my-10">
-  <h2 class="text-center mb-4 text-black">Your Wishlist</h2>
-  <div class="row g-3 justify-content-start" id="wishlist-container">
-</div>
-</div>
-<!-- Footer -->
+    <!-- ================================ Cart Section Start ================================ -->
+    <section class="cart py-80">
+        <div class="container container-lg">
+            <div class="row gy-4">
+                <div class="col-xl-9 col-lg-8">
+                    <div class="cart-table border border-gray-100 rounded-8 px-40 py-30 ">
+                        <div class="overflow-x-auto scroll-sm scroll-sm-horizontal">
+                            <table class="table style-three">
+                                <!-- <thead>
+                                    <tr>
+                                        <th class="h6 mb-0 text-lg fw-bold">Delete</th>
+                                        <th class="h6 mb-0 text-lg fw-bold">Product Name</th>
+                                        <th class="h6 mb-0 text-lg fw-bold">Price</th>
+                                        <th class="h6 mb-0 text-lg fw-bold">Quantity</th>
+                                        <th class="h6 mb-0 text-lg fw-bold">Subtotal</th>
+                                    </tr>
+                                </thead> -->
+                                <tbody id="cart-items-container">
+
+                                </tbody>
+                            </table>
+
+                        </div>
 
 
-<div id="footer"></div>
 
-<script>
-  fetch('./assets/includes/footer.html')
-    .then(res => res.text())
-    .then(data => document.getElementById('footer').innerHTML = data);
-</script>
+                        <div class="flex-between flex-wrap gap-16 mt-16">
+                          
 
-<!-- Scripts -->
-<script src="assets/js/jquery-3.7.1.min.js"></script>
-<script src="assets/js/boostrap.bundle.min.js"></script>
-<script src="assets/js/phosphor-icon.js"></script>
-<script src="assets/js/select2.min.js"></script>
-<script src="assets/js/slick.min.js"></script>
-<script src="assets/js/count-down.js"></script>
-<script src="assets/js/jquery-ui.js"></script>
-<script src="assets/js/wow.min.js"></script>
-<script src="assets/js/aos.js"></script>
-<script src="assets/js/marque.min.js"></script>
-<script src="assets/js/vanilla-tilt.min.js"></script>
-<script src="assets/js/main.js"></script>
+                            <button onclick="clearCart()" class="btn btn-warning " id="cart">Clear Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    displayWishlist();
-    updateWishlistBadge();
-  });
+                <div class="col-xl-3 col-lg-4">
+                    <div class="cart-sidebar border border-gray-100 rounded-8 px-4 py-4"
+                        style="height: 505px; background-color: #f7f4f4;">
+                        <h6 class="text-xl mb-3 mt-14 ms-2 text-black">Cart Totals</h6>
+                        <p class="mt-12" style="color: black; font-size: 15px;">Enter Discount Code</p>
+                        <div class="mb-3 input-group">
+                            <input type="text" id="coupon-code" class="form-control" placeholder="Enter coupon code"
+                                style="font-size: 15px;">
+                            <button class="btn btn-secondary"
+                                style="color: #ffffff; background-color: #90C309 !important;"
+                                onclick="applyCoupon()">Apply</button>
 
-  function limitWords(text, limit) {
-    const words = text.trim().split(/\s+/);
-    return words.length > limit ? words.slice(0, limit).join(" ") + "..." : text;
+
+                        </div>
+
+
+
+
+                        <hr>
+                        <div class="p-3">
+                            <div class="mb-3 d-flex justify-content-between">
+                                <span class="text-dark fw-bold">Subtotal</span>
+                                <span id="cart-subtotal" class="text-dark fw-semibold">AED 99.00</span>
+                            </div>
+                            <div class="mb-3 d-flex justify-content-between text-black">
+                                <span>Shipping</span>
+                                <span id="shipping-cost">AED 0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between text-black">
+                                <span>Savings</span>
+                                <span id="savings-amount">- AED 246.00</span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="p-3 mt-3">
+                            <div class="d-flex justify-content-between">
+                                <span class="text-dark text-xl fw-semibold">Total</span>
+                                <span id="cart-total" class="text-dark text-xl fw-semibold">AED 109.00</span>
+                            </div>
+                        </div>
+                        <p class="text-danger small mt-2">Purchase for AED 500 or more to enable free shipping</p>
+                        <div class="d-flex align-items-center mb-3">
+                            <input type="checkbox" class="form-check-input me-2" id="termsCheck">
+                            <label class="form-check-label" for="termsCheck"
+                                style="white-space: nowrap; font-size: 12px; color: black;">I agree to our <a href="#"
+                                    style="font-size: 12px; color: black; text-decoration: underline;">Terms of use</a>
+                                & <a href="#" style="font-size: 12px; color: black; text-decoration: underline;">Privacy
+                                    Policy</a></label>
+                        </div>
+                        <a href="./guest.html" class="btn mt-10 py-18 w-100 rounded-8"
+                            style="background-color: #86c232;">Proceed to checkout</a>
+                        <a href="shop.html" class="btn mt-10"
+                            style="background-color: white; color:  black !important; border: 1px solid black; width: 100%; border-radius: 8px; padding: 15px 0;">Continue
+                            Shopping</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="coupon-message" class="text-danger small mt-2"></div>
+        <div id="applied-coupon" class="mt-3 d-none">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="badge bg-success">Applied: <span id="coupon-code-text"></span></span>
+                <button class="btn btn-link text-danger p-0" onclick="removeCoupon()">Remove</button>
+            </div>
+            <div class="d-flex justify-content-between">
+                <span>Coupon Discount:</span>
+                <span id="coupon-discount-amount" class="text-danger">- AED 0.00</span>
+            </div>
+
+
+
+    </section>
+    <!-- ================================ Cart Section End ================================ -->
+
+    <!-- ========================== Shipping Section Start ============================ -->
+    <section class="shipping mb-24" id="shipping">
+        <div class="container container-lg">
+            <div class="row gy-4">
+                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="400">
+                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
+                        <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
+                            style="background-color: #ffffff !important;"><i class="ph-fill ph-car-profile"
+                                style="color: #90C309 !important;"></i></span>
+                        <div class="">
+                            <h6 class="mb-0 text-black">Free Shipping</h6>
+                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over
+                                the US</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="600">
+                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
+                        <span class="w-56 h-56 flex-center rounded-circle text-white text-32 flex-shrink-0"
+                            style="background-color: #ffffff !important;"><i class="ph-fill ph-hand-heart"
+                                style="color: #90C309 !important;"></i></span>
+                        <div class="">
+                            <h6 class="mb-0 text-black"> 100% Satisfaction</h6>
+                            <span class="text-sm text-heading text-black" style="color: #000 !important;">Free shipping
+                                all over the US</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="800">
+                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
+                        <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
+                            style="background-color: #ffffff !important;"><i class="ph-fill ph-credit-card"
+                                style="color: #90C309 !important;"></i></span>
+                        <div class="">
+                            <h6 class="mb-0 text-black"> Secure Payments</h6>
+                            <span class="text-sm text-heading text-black" style="color: #000 !important;">Free shipping
+                                all over the US</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1000">
+                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
+                        <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
+                            style="background-color: #ffffff !important;"><i class="ph-fill ph-chats"
+                                style="color: #90C309 !important;"></i></span>
+                        <div class="">
+                            <h6 class="mb-0 text-black"> 24/7 Support</h6>
+                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over
+                                the US</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================== Shipping Section End ============================ -->
+    <div id="footer"></div>
+    <script>
+        // Fetch the footer dynamically
+        fetch('./assets/includes/footer.html') // Go one level up and access includes/
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error));
+    </script>
+    <!-- Jquery js -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap Bundle Js -->
+    <script src="assets/js/boostrap.bundle.min.js"></script>
+    <!-- Bootstrap Bundle Js -->
+    <script src="assets/js/phosphor-icon.js"></script>
+    <!-- Select 2 -->
+    <script src="assets/js/select2.min.js"></script>
+    <!-- Slick js -->
+    <script src="assets/js/slick.min.js"></script>
+    <!-- Slick js -->
+    <script src="assets/js/count-down.js"></script>
+    <!-- jquery UI js -->
+    <script src="assets/js/jquery-ui.js"></script>
+    <!-- wow js -->
+    <script src="assets/js/wow.min.js"></script>
+    <!-- AOS Animation -->
+    <script src="assets/js/aos.js"></script>
+    <!-- marque -->
+    <script src="assets/js/marque.min.js"></script>
+    <!-- marque -->
+    <script src="assets/js/vanilla-tilt.min.js"></script>
+    <!-- main js -->
+    <script src="assets/js/main.js"></script>
+
+    <script>
+    function limitWords(text, wordLimit) {
+  const words = text.trim().split(/\s+/);
+  return words.slice(0, wordLimit).join(" ") + (words.length > wordLimit ? "..." : "");
+}
+
+function getResponsiveWordLimit() {
+  const width = window.innerWidth;
+  return width <= 768 ? 5 : 15; // 5 words for mobile/tablet, 15 for desktop
+}
+
+document.getElementById('search-form').addEventListener('submit', (event) => {
+  event.preventDefault();
+  const searchQuery = document.getElementById('search-input').value.trim();
+  window.location.href = `shop.html?search=${encodeURIComponent(searchQuery)}`;
+});
+
+function loadCart() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const container = document.getElementById('cart-items-container');
+  container.innerHTML = '';
+
+  if (cart.length === 0) {
+    container.innerHTML = '<div style="text-align: center; color: gray; padding: 24px;">Your cart is empty.</div>';
+    updateCartTotals();
+    updateCartCount();
+    return;
   }
 
-  function displayWishlist() {
-    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-    const container = document.getElementById('wishlist-container');
+  const wordLimit = getResponsiveWordLimit();
 
-    if (wishlist.length === 0) {
-      container.innerHTML = '<p class="text-center">Your wishlist is empty.</p>';
-      return;
-    }
+  cart.forEach(product => {
+    const price = product.offer_price ? parseFloat(product.offer_price) : parseFloat(product.selling_price);
+    const subtotal = price * product.quantity;
 
-    container.innerHTML = '';
-    wishlist.forEach(product => {
-      const imgPath = product.image_path.replace(/\\/g, '/');
-      const item = `
-      <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
-      <div class="card border border-gray-100 rounded-16 h-100 position-relative">
-        <a href="product-details.html?id=${product.id}" class="d-block text-decoration-none text-dark h-100">
-
-          <!-- Image Section -->
-          <div class="position-relative" style="height: 200px;">
-            <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;" onclick="removeFromWishlist(${product.id})">&#10084;</span>
-            <img src="${API_CUSTOMER_URL}/${imgPath}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
-          </div>
-
-          <!-- Description -->
-          <div class="p-2 d-flex flex-column justify-content-between" style="height: 80px;">
-            <div class="d-flex justify-content-between mb-1">
-              <span class="badge bg-success">In stock</span>
-              <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+    container.insertAdjacentHTML('beforeend', `
+      <div class="cart-item">
+        <div class="cart-item-header">
+        </div>
+        <div class="cart-item-body">
+          <img class="cart-item-image" src="${API_ADMINGRAB_URL}/${product.image_path}" alt="${product.name}" />
+          
+          <div class="cart-item-info">
+            <h3>${limitWords(product.name, wordLimit)}</h3>
+            <div class="price-group">
+              ${product.offer_price ? `<span class="price-original">AED ${parseFloat(product.selling_price).toFixed(2)}</span>` : ''}
+              <span class="price-discount">AED ${price.toFixed(2)}</span>
             </div>
-            <h6 class="card-title mb-1" style="font-size: 13px; line-height: 1.3em; height: 2.6em; overflow: hidden;">
-              ${limitWords(product.name, 15)}
-            </h6>
+
+            <div class="quantity-group">
+              <button onclick="updateQuantity(${product.id}, -1)"><i class="ph ph-minus"></i></button>
+              <input type="text" value="${product.quantity}" readonly />
+              <button onclick="updateQuantity(${product.id}, 1)"><i class="ph ph-plus"></i></button>
+              <div class="cart-subtotal">
+                <p>Subtotal:</p>
+                <p>AED ${subtotal.toFixed(2)}</p>
+              </div>
+            </div>
           </div>
-        </a>
-        <div class="card-footer text-center border-0">
-          <button class="btn btn-danger btn-sm" onclick="removeFromWishlist(${product.id})">Remove</button>
+        </div>
+
+        <div class="cart-footer">
+          <label><input type="checkbox" /> Add Gift Wrap</label>
+          <button onclick="removeFromCart(${product.id})"><i class="ph ph-trash"></i></button>
         </div>
       </div>
-    </div>
+    `);
+  });
 
-  </div>
-</div>
+  updateCartTotals();
+  updateCartCount();
+}
 
-      `;
-      container.innerHTML += item;
+// Optional: reload cart content on resize to apply updated word limit
+window.addEventListener('resize', () => {
+  loadCart();
+});
+
+    function updateQuantity(productId, change) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let updatedCart = cart.map(product => {
+            if (product.id === productId) {
+                let newQuantity = product.quantity + change;
+                if (newQuantity < 1) newQuantity = 1;
+                return { ...product, quantity: newQuantity };
+            }
+            return product;
+        });
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        loadCart();
+        updateCartCount();
+    }
+
+    function removeFromCart(productId) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart = cart.filter(product => product.id !== productId);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        loadCart();
+        updateCartCount();
+    }
+
+    function clearCart() {
+        localStorage.removeItem('cart');
+        loadCart();
+        updateCartCount();
+    }
+
+   function updateCartTotals() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let subtotal = 0;
+    let savings = 0;
+    let shippingCost = 0;
+
+    cart.forEach(product => {
+        const originalPrice = parseFloat(product.selling_price);
+        const offerPrice = product.offer_price ? parseFloat(product.offer_price) : originalPrice;
+        const quantity = product.quantity;
+        subtotal += offerPrice * quantity;
+        savings += (originalPrice - offerPrice) * quantity;
     });
-  }
-  function removeFromWishlist(id) {
-    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-    wishlist = wishlist.filter(item => item.id !== id);
-    localStorage.setItem('wishlist', JSON.stringify(wishlist));
-    displayWishlist();
-    updateWishlistBadge();
-  }
 
-  function updateWishlistBadge() {
-    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-    const badge = document.getElementById('wishlist-item-count');
-    if (badge) badge.textContent = wishlist.length;
-  }
+    if (cart.length === 0) {
+        shippingCost = 0;
+        document.querySelector('.text-danger.small').textContent = "Your cart is empty";
+    } else if (subtotal >= 500) {
+        shippingCost = 0;
+        document.querySelector('.text-danger.small').textContent = "🎉 Congratulations! Free shipping applied!";
+    } else {
+        document.querySelector('.text-danger.small').textContent = "Purchase for AED 500 or more to enable free shipping";
+    }
 
+    let discountFromCoupon = 0;
+    const appliedCoupon = JSON.parse(localStorage.getItem('appliedCoupon'));
+if (appliedCoupon) {
+    discountFromCoupon = parseFloat(appliedCoupon.discountAmount || 0);
+    document.getElementById('coupon-discount-amount').textContent = `- AED ${discountFromCoupon.toFixed(2)}`;
+    document.getElementById('coupon-code-text').textContent = appliedCoupon.code;
+    document.getElementById('applied-coupon').classList.remove('d-none');
+} else {
+    document.getElementById('applied-coupon').classList.add('d-none');
+}
 
-       // Call this function on page load to ensure the badge is updated dynamically 
-       window.onload = updateWishlistBadge;
+    let total = subtotal + shippingCost - savings - discountFromCoupon;
 
-
-       function toggleIcon(button) {
-           let icon = button.querySelector(".icon-toggle");
-           if (icon.classList.contains("bi-plus")) {
-               icon.classList.remove("bi-plus");
-               icon.classList.add("bi-dash");
-           } else {
-               icon.classList.remove("bi-dash");
-               icon.classList.add("bi-plus");
-           }
-       }
-   </script>
-<script>
-    fetch('./topHeader.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('top-header').innerHTML = data;
-      })
-      .catch(error => console.error('Error loading header:', error));
-  </script>
-<script src="./apiConfig/apiConfig.js"></script>
+    document.getElementById('cart-subtotal').textContent = `AED ${subtotal.toFixed(2)}`;
+    document.getElementById('cart-total').textContent = `AED ${total.toFixed(2)}`;
+    document.getElementById("shipping-cost").textContent = `AED ${shippingCost.toFixed(2)}`;
+    document.getElementById("savings-amount").textContent = `- AED ${savings.toFixed(2)}`;
+}
 
 
 
-<script>
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const totalItems = cart.reduce((total, product) => total + (product.quantity || 0), 0);
+        localStorage.setItem('cartItemCount', totalItems);
+
+        const countElement = document.querySelector('.cart-item-count');
+        if (countElement) {
+            countElement.innerText = totalItems;
+        }
+
+        const customCount = document.getElementById('cart-items-all-count');
+        if (customCount) {
+            customCount.innerText = totalItems;
+        }
+    }
+
+    function updateCartIcon() {
+        const cartItemCount = localStorage.getItem('cartItemCount') || 0;
+        const cartCountElement = document.querySelector('.cart-item-count');
+        cartCountElement.innerText = cartItemCount;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        loadCart();
+        updateCartIcon();
+        updateCartCount();
+    });
+
+
+function showCouponMessage(msg, isError) {
+    const el = document.getElementById('coupon-message');
+    el.textContent = msg;
+    el.style.color = isError ? 'red' : 'green';
+}
+
+
+        // toogle the mobile menu
+       
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebar');
-  const menuBtn = document.querySelector('.menu-open-btn');
+  const menuBtn = document.querySelector('.menu-btn');
 
   if (sidebar.classList.contains('open')) {
     sidebar.classList.remove('open');
+    sidebar.style.width = '0';
     menuBtn.style.display = 'block';
   } else {
     sidebar.classList.add('open');
+    sidebar.style.width = '250px';
     menuBtn.style.display = 'none';
   }
 }
 </script>
 
 
+    </script>
+    <script>
+        fetch('./topHeader.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('top-header').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
+<script>
+function applyCoupon() {
+    const code = document.getElementById('coupon-code').value.trim();
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    if (!code) {
+        showCouponMessage("Please enter a coupon code.", true);
+        return;
+    }
+
+    fetch(`https://grabatoz-production.up.railway.app/api/coupons/${code}`)
+        .then(res => {
+            if (!res.ok) throw new Error("Invalid coupon");
+            return res.json();
+        })
+        .then(coupon => {
+            const subtotal = cart.reduce((total, item) => {
+                const price = item.offer_price ? parseFloat(item.offer_price) : parseFloat(item.selling_price);
+                return total + price * item.quantity;
+            }, 0);
+
+            if (subtotal < parseFloat(coupon.min_order_amount)) {
+                showCouponMessage(`Minimum order AED ${coupon.min_order_amount} required.`, true);
+                return;
+            }
+
+            let discountAmount = 0;
+            if (coupon.discount_type === 'percentage') {
+                discountAmount = (subtotal * parseFloat(coupon.discount)) / 100;
+            } else {
+                discountAmount = parseFloat(coupon.discount);
+            }
+
+            if (discountAmount > parseFloat(coupon.max_discount)) {
+                discountAmount = parseFloat(coupon.max_discount);
+            }
+
+            // Save in localStorage
+            localStorage.setItem('appliedCoupon', JSON.stringify({ code: coupon.code, discountAmount }));
+
+            // Update UI
+            document.getElementById('applied-coupon').classList.remove('d-none');
+            document.getElementById('coupon-code-text').textContent = coupon.code;
+            document.getElementById('coupon-discount-amount').textContent = `- AED ${discountAmount.toFixed(2)}`;
+            showCouponMessage("Coupon applied successfully!", false);
+
+            updateCartTotals();
+        })
+        .catch(error => {
+            console.error("Coupon Error:", error);
+            showCouponMessage("Invalid or expired coupon code.", true);
+        });
+}
+
+function removeCoupon() {
+    localStorage.removeItem('appliedCoupon');
+    document.getElementById('coupon-code').value = '';
+    document.getElementById('applied-coupon').classList.add('d-none');
+    updateCartTotals();
+}
+
+function showCouponMessage(msg, isError) {
+    const el = document.getElementById('coupon-message');
+    el.textContent = msg;
+    el.style.color = isError ? 'red' : 'green';
+}
+</script>
 <script>
   // Toggle wishlist
   function toggleWishlist(product) {
@@ -1403,82 +1867,6 @@ function updateWishlistBadge() {
   // Call on page load
   document.addEventListener('DOMContentLoaded', updateWishlistBadge);
 </script>
-
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-           updateCartIcon(); // Update the cart icon with the correct count
-       });
-
-       // index.html - Update the cart icon count based on localStorage
-       function updateCartIcon() {
-           const cartItemCount = localStorage.getItem('cartItemCount') || 0; // Get the cart count from localStorage
-           const cartCountElement = document.querySelector('.cart-item-count'); // Get the element that holds the cart count
-
-           // Update the cart count in the UI
-           cartCountElement.innerText = cartItemCount; // Set the count to the number of items in the cart
-       }
-
-       document.getElementById('search-form').addEventListener('submit', (event) => {
-           event.preventDefault();
-           const searchQuery = document.getElementById('search-input').value.trim();
-           window.location.href = `shop.html?search=${encodeURIComponent(searchQuery)}`;
-           // await fetchFilteredProducts(searchQuery);
-       });
-
-       function addToCart(product) {
-           const cart = JSON.parse(localStorage.getItem('cart')) || [];
-           const existingProduct = cart.find(item => item.id === product.id);
-
-           if (existingProduct) {
-               existingProduct.quantity += 1; // Increment quantity if already in cart
-           } else {
-               cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
-           }
-
-           localStorage.setItem('cart', JSON.stringify(cart));
-
-           // Update the cart item count in localStorage
-           updateCartCount();
-
-           showSuccessMessage(`${product.name} added to cart.`);
-       }
-
-       function updateCartCount() {
-           const cart = JSON.parse(localStorage.getItem('cart')) || [];
-           const totalItems = cart.reduce((total, product) => total + product.quantity, 0); // Calculate total quantity
-
-           // Update the cart count in localStorage
-           localStorage.setItem('cartItemCount', totalItems);
-       }
-       function showSuccessMessage(message) {
-           const messageContainer = document.createElement('div');
-           messageContainer.style.position = 'fixed';
-           messageContainer.style.top = '20px';
-           messageContainer.style.right = '20px';
-           messageContainer.style.backgroundColor = 'green';
-           messageContainer.style.color = 'white';
-           messageContainer.style.padding = '10px 20px';
-           messageContainer.style.borderRadius = '5px';
-           messageContainer.style.zIndex = '1000';
-           messageContainer.textContent = message;
-
-           document.body.appendChild(messageContainer);
-
-           // Remove the message after 3 seconds
-           setTimeout(() => {
-               document.body.removeChild(messageContainer);
-           }, 3000);
-       }
-
-       function handleAddToCart(product) {
-           addToCart(product); // Add product to cart
-           window.location.href = 'cart.html'; // Navigate to cart.html
-       }
-
-</script>
-
-
 
 </body>
 
