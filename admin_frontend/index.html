@@ -29,6 +29,9 @@
     text-decoration: none;
   }
 
+
+
+  /* for active status */
   .nav-link.active, .nav-link:hover {
   background-color: #f0f0f0;
   color: #000;
@@ -44,6 +47,30 @@
     background-color: #f0f0f0 !
 ;
 }
+
+
+.nav-link.active,
+.nav-link:hover {
+  background-color: #f0f0f0;
+  color: #000;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.sidebar-submenu .nav-link.active {
+  background-color: #e0e0e0;
+}
+
+/* for dropdown arrow reverse */
+.toggle-arrow {
+  transition: transform 0.3s ease;
+}
+
+.nav-link[aria-expanded="true"] .toggle-arrow {
+  transform: rotate(180deg);
+}
+
+
 
 
 
@@ -120,18 +147,20 @@
                       <i class="fas fa-box"></i> Products
                   </a>
               </li>
-              <ul class="nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="#" id="purchaseToggle">
-                    <i class="fas fa-shopping-cart"></i> Purchases 
-                  </a>
-                  <ul class="nav-submenu" id="purchaseSubmenu">
-                    <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
-                    <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
-                    <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
-                  </ul>
-                </li>
-              </ul>
+             <ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link d-flex justify-content-between align-items-center" href="#purchaseSubmenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="purchaseSubmenu" id="purchaseToggle">
+      <span><i class="fas fa-shopping-cart me-2"></i> Purchases</span>
+      <i class="fas fa-chevron-down toggle-arrow"></i>
+    </a>
+    <ul class="collapse nav-submenu" id="purchaseSubmenu">
+      <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
+      <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
+      <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
+    </ul>
+  </li>
+</ul>
+
             
               <li class="nav-item">
                   <a class="nav-link" href="./damages.html">
@@ -158,21 +187,22 @@
                   </a>
               </li>
              <li class="nav-item">
-    <a class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#ordersMenu" role="button">
-  <span><i class="fas fa-shopping-basket"></i> Online Orders</span>
-  <i class="fas fa-chevron-down ms-auto"></i>
-</a>
-    <ul class="collapse sidebar-submenu" id="ordersMenu">
-      <li><a href="./online-orders.html" class="nav-link">Orders</a></li>
-      <li><a href="./ontheWay_onlineOrders.html" class="nav-link">Received</a></li>
-      <li><a href="./inprogress_onlineOrders.html" class="nav-link">Inprogress</a></li>
-      <li><a href="./readyForShipment_onlineOrders.html" class="nav-link">Ready for Shipment</a></li>
-      <li><a href="./ontheWay_onlineOrders.html" class="nav-link">On the Way</a></li>
-      <li><a href="./delevered_onlineOrders.html" class="nav-link">Delivered</a></li>
-      <li><a href="./onhold_onlineOrders.html" class="nav-link">On Hold</a></li>
-      <li><a href="./rejected_onlineOrders.html" class="nav-link">Rejected</a></li>
-    </ul>
-  </li>
+  <a class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#ordersMenu" role="button" aria-expanded="false" aria-controls="ordersMenu">
+    <span><i class="fas fa-shopping-basket me-2"></i> Online Orders</span>
+    <i class="fas fa-chevron-down toggle-arrow"></i>
+  </a>
+  <ul class="collapse sidebar-submenu" id="ordersMenu">
+    <li><a href="./online-orders.html" class="nav-link">Orders</a></li>
+    <li><a href="./ontheWay_onlineOrders.html" class="nav-link">Received</a></li>
+    <li><a href="./inprogress_onlineOrders.html" class="nav-link">Inprogress</a></li>
+    <li><a href="./readyForShipment_onlineOrders.html" class="nav-link">Ready for Shipment</a></li>
+    <li><a href="./ontheWay_onlineOrders.html" class="nav-link">On the Way</a></li>
+    <li><a href="./delevered_onlineOrders.html" class="nav-link">Delivered</a></li>
+    <li><a href="./onhold_onlineOrders.html" class="nav-link">On Hold</a></li>
+    <li><a href="./rejected_onlineOrders.html" class="nav-link">Rejected</a></li>
+  </ul>
+</li>
+
 
           </ul>
 
@@ -951,6 +981,33 @@ var options = {
 
 
   </script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const currentFile = window.location.pathname.split("/").pop();
+
+    // Remove all active classes first
+    document.querySelectorAll(".nav-link").forEach(link => {
+      const href = link.getAttribute("href");
+      if (href && href.includes(currentFile)) {
+        link.classList.add("active");
+
+        // If inside a collapse menu (like Orders or Purchases), open it
+        const parentCollapse = link.closest(".collapse");
+        if (parentCollapse) {
+          parentCollapse.classList.add("show");
+          const parentToggle = parentCollapse.previousElementSibling;
+          if (parentToggle && parentToggle.classList.contains("nav-link")) {
+            parentToggle.classList.add("active");
+          }
+        }
+      } else {
+        link.classList.remove("active");
+      }
+    });
+  });
+</script>
+
 
  
 

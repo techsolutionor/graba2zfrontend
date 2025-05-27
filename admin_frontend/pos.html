@@ -11,20 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <script src="./popupMessages.js"></script>
   <script>
-    //(function() {
-    //     let(function() {
-    //     let path = window.location.pathname;
-    //     if (path.endsWith(".html")) {
-    //         let newPath = path.replace(".html", "");
-    //         window.history.replaceState({}, document.title, newPath);
-    //     }
-    // })(); path = window.location.pathname;
-    //     if (path.endsWith(".html")) {
-    //         let newPath = path.replace(".html", "");
-    //         window.history.replaceState({}, document.title, newPath);
-    //     }
-    // })();
-
+   
 
     (function checkAuth() {
       const token = localStorage.getItem('token');
@@ -34,6 +21,21 @@
       }
     })();
   </script> 
+
+  <style>
+    .nav-link.active,
+.nav-link:hover {
+  background-color: #f0f0f0;
+  color: #000;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.sidebar-submenu .nav-link.active {
+  background-color: #e0e0e0;
+}
+
+  </style>
 
 </head>
 
@@ -1190,6 +1192,34 @@ async function populateBrandOptions() {
 }
   
   </script>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const currentFile = window.location.pathname.split("/").pop();
+
+    // Remove all active classes first
+    document.querySelectorAll(".nav-link").forEach(link => {
+      const href = link.getAttribute("href");
+      if (href && href.includes(currentFile)) {
+        link.classList.add("active");
+
+        // If inside a collapse menu (like Orders or Purchases), open it
+        const parentCollapse = link.closest(".collapse");
+        if (parentCollapse) {
+          parentCollapse.classList.add("show");
+          const parentToggle = parentCollapse.previousElementSibling;
+          if (parentToggle && parentToggle.classList.contains("nav-link")) {
+            parentToggle.classList.add("active");
+          }
+        }
+      } else {
+        link.classList.remove("active");
+      }
+    });
+  });
+</script>
+
 </body>
 
 </html>
