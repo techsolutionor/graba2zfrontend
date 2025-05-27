@@ -16,7 +16,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./popupMessages.js"></script>
     <style>
-        @media print {
+        /* @media print {
 
             .actions-bar,
             .btn,
@@ -35,6 +35,30 @@
                 border: 1px solid #000 !important;
                 padding: 6px !important;
             }
+        } */
+        @media print {
+
+            .actions-bar,
+            .btn,
+            .no-print {
+                display: none !important;
+            }
+
+            table {
+                width: 100% !important;
+                border-collapse: collapse !important;
+            }
+
+            th,
+            td {
+                border: 1px solid #000 !important;
+                padding: 6px !important;
+            }
+        }
+
+        /* Optional: keep headers on each printed page */
+        thead {
+            display: table-header-group;
         }
 
         .loader-container {
@@ -84,6 +108,45 @@
             color: #000000;
             /* submenu link color */
             text-decoration: none;
+        }
+    </style>
+    <style>
+        thead {
+            display: table-header-group;
+        }
+
+        .payment-toggle {
+            background-color: #FFAE1F;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .payment-options {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+            margin-top: 5px;
+        }
+
+        .payment-options button {
+            display: block;
+            width: 100%;
+            padding: 8px 12px;
+            text-align: left;
+            background-color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .payment-options button:hover {
+            background-color: #f1f1f1;
         }
     </style>
     <script>
@@ -197,10 +260,10 @@
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="collapse" href="#ordersMenu" role="button"
                                 aria-expanded="false" aria-controls="ordersMenu">
-                                <i class="fas fa-shopping-basket"></i> Orders
+                                <i class="fas fa-shopping-basket"></i>Online Orders
                             </a>
                             <ul class="collapse sidebar-submenu" id="ordersMenu">
-                                <li><a href="./online-orders.html" class="nav-link">Online Orders</a></li>
+                                <li><a href="./online-orders.html" class="nav-link">All Orders</a></li>
                                 <li><a href="./ontheWay_onlineOrders.html" class="nav-link">Received Orders</a></li>
                                 <li><a href="./inprogress_onlineOrders.html" class="nav-link">Inprogress Orders</a></li>
                                 <li><a href="./readyForShipment_onlineOrders.html" class="nav-link">Ready for
@@ -493,73 +556,25 @@
                             <h5>Online Orders</h5>
                             <div
                                 class="actions-bar d-flex flex-column flex-md-row align-items-center align-items-lg-end justify-content-center justify-content-md-center justify-content-lg-end">
-
-                                <!-- <input type="text" class="form-control filter-input" id="filterInput"
-                                    placeholder="Filter by Order ID">
-                                <div class="d-flex justify-content-center mb-2 mb-md-0 me-md-2 w-100"
-                                    style="max-width: 105px;">
-
-                                    <button class="filter-btn btn btn-primary w-100">Filter</button>
-                                </div> -->
                                 <input type="text" class="form-control" id="filterInput" placeholder="Search orders...">
-                                <div class="d-flex justify-content-center mb-2 mb-md-0 me-md-2 w-100"
-                                    style="max-width: 105px;">
-                                    <button type="button" class="filter-btn btn btn-primary w-100"
-                                        id="filterBtn">Filter</button>
+
+                                <!-- This will now be the dropdown (selection filter) first -->
+                                <select id="statusFilter" class="form-select ms-3 w-auto">
+                                    <option value="">All Orders</option>
+                                    <option value="Received Order">Received Order</option>
+                                    <option value="Inprogress Order">Inprogress Order</option>
+                                    <option value="Ready for Shipment">Ready for Shipment</option>
+                                    <option value="On the Way">On the Way</option>
+                                    <option value="Delevered">Delevered</option>
+                                    <option value="On Hold">On Hold</option>
+                                    <option value="Rejected">Rejected</option>
+                                </select>
+
+                                <!-- Then the Print button -->
+                                <div class="dropdown w-100 ms-2">
+                                    <button onclick="printOnlyTable()" class="btn btn-secondary px-5">Print</button>
                                 </div>
 
-                                <div id="dropdownSearch" class="dropdown-search d-none">
-                                    <div class="dropdown-header bg-light p-2 border rounded">Search Orders</div>
-                                    <div class="dropdown-fields mt-2 p-2 border rounded bg-white">
-                                        <div class="filter-row row">
-                                            <div class="label-input col-12 col-lg-6 mb-2">
-                                                <label for="searchOrderId">Order ID</label>
-                                                <input type="text" class="form-control filter-input" id="searchOrderId"
-                                                    placeholder="Enter Order ID">
-                                            </div>
-                                            <div class="label-input col-12 col-lg-6 mb-2">
-                                                <label for="searchCustomer">Customer</label>
-                                                <input type="text" class="form-control filter-input" id="searchCustomer"
-                                                    placeholder="Enter Customer Name">
-                                            </div>
-                                        </div>
-                                        <div class="filter-row row">
-                                            <div class="label-input col-12 col-lg-6 mb-2">
-                                                <label for="searchDate">Date</label>
-                                                <input type="date" class="form-control filter-input" id="searchDate">
-                                            </div>
-                                            <div class="label-input col-12 col-lg-6 mb-2">
-                                                <label for="searchStatus">Status</label>
-                                                <input type="text" class="form-control filter-input" id="searchStatus"
-                                                    placeholder="Enter Status">
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-between gap-2">
-                                            <button class="btn btn-success search-btn w-100" style="max-width: 200px;"
-                                                onclick="filterTable()">Search</button>
-                                            <button class="btn btn-secondary clear-btn w-100" style="max-width: 200px;"
-                                                onclick="clearFilters()">Clear</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="d-flex justify-content-center mb-2 mb-md-0 me-md-2 w-100"
-                                    style="max-width: 105px;">
-                                    <!-- Dropdown for Export button -->
-                                    <div class="dropdown w-100">
-                                        <button class="btn btn-secondary" onclick="window.print()">Print</button>
-                                        <!-- <button class="export-btn btn btn-warning w-100" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                            Export
-                                        </button> -->
-                                        <!-- Dropdown Menu -->
-                                        <!-- <ul class="dropdown-menu mt-2" aria-labelledby="exportButton">
-                                            <li><a class="dropdown-item" href="#" id="exportButton"><i
-                                                        class="fas fa-file-excel"></i> XLS</a></li>
-                                        </ul> -->
-                                    </div>
-                                </div>
                             </div>
 
                             <div id="orderViewOverlay" class="overlay">
@@ -579,25 +594,6 @@
                                                 <p><strong>Order Type:</strong> Delivery</p>
                                                 <p><strong>Payment Type:</strong> <span id="paymentType"></span></p>
                                             </div>
-                                            <!-- <div class="col-md-6 text-end">
-                                                <button id="acceptBtn" class="btn btn-success me-2"
-                                                    onclick="updateOrderStatus('Confirmed')">Accept</button>
-                                                <button id="rejectBtn" class="btn btn-danger"
-                                                    onclick="updateOrderStatus('Cancelled')">Reject</button>
-
-                                                <div id="additionalActions" style="display: none;">
-                                                    <button class="btn btn-primary me-2">Print Invoice</button>
-                                                    <button id="acceptBtn" class="btn btn-success me-2"
-                                                        onclick="updateOrderStatus('Confirmed')">Accept</button>
-                                                    <button id="rejectBtn" class="btn btn-danger"
-                                                        onclick="updateOrderStatus('Cancelled')">Reject</button>
-                                                    <select id="statusSelect" class="form-select w-auto d-inline-block">
-                                                        <option value="Confirmed">Confirmed</option>
-                                                        <option value="On the Way">On the Way</option>
-                                                        <option value="Delivered">Delivered</option>
-                                                    </select>
-                                                </div>
-                                            </div> -->
                                             <div class="col-md-6 text-end">
                                                 <button class="btn btn-primary"
                                                     onclick="printProductDetails()">Print</button>
@@ -652,11 +648,63 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Printable Order Table -->
+                            <div id="printableOrderTable" style="display: none;">
+                                <table border="1" cellpadding="8" cellspacing="0"
+                                    style="width: 100%; border-collapse: collapse;">
+                                    <tbody>
+                                        <tr>
+                                            <th align="left">Order ID</th>
+                                            <td id="orderIdTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Status</th>
+                                            <td id="orderStatusTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Created At</th>
+                                            <td id="createdAtTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Payment Type</th>
+                                            <td id="paymentTypeTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Order Items</th>
+                                            <td>
+                                                <table border="1" cellpadding="6" cellspacing="0"
+                                                    style="width: 100%; border-collapse: collapse;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Product</th>
+                                                            <th>Qty</th>
+                                                            <th>Price</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="orderItemsTable"></tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Total Amount</th>
+                                            <td id="totalAmountTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Shipping Address</th>
+                                            <td id="shippingAddressTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Billing Address</th>
+                                            <td id="billingAddressTable"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
 
                             <div id="backgroundContent"></div>
-                            <div class="d-flex gap-3 align-items-center mb-3">
-                                <select id="bulkStatusSelect" class="form-select w-auto" style="display: none;">
+                            <div class="d-flex gap-3 align-items-center mb-3" style="margin-top: 10px;">
+                                <select id="bulkStatusSelect" class="form-select w-auto">
                                     <option value="Received Order">Received Order</option>
                                     <option value="Inprogress Order">Inprogress Order</option>
                                     <option value="Ready for Shipment">Ready for Shipment</option>
@@ -667,17 +715,17 @@
                                 </select>
                                 <button class="btn btn-primary" id="bulkUpdateBtn"
                                     style="display: none;">Update</button>
-
                             </div>
+
 
                             <div class="table-container mt-4">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
-                                                <th><input type="checkbox" id="selectAllCheckbox" /></th>
+                                                <th class="no-print"><input type="checkbox" id="selectAllCheckbox" />
+                                                </th>
                                                 <th>Order ID</th>
-                                                <!-- <th>Guest/Customer ID</th> -->
                                                 <th>Customer Name</th>
                                                 <th>Customer Contact</th>
                                                 <th>Order Status</th>
@@ -686,9 +734,10 @@
                                                 <th>Total Amount</th>
                                                 <th>Items</th>
                                                 <th>Shipping Address</th>
-                                                <th>Actions</th>
+                                                <th class="no-print">Actions</th>
                                             </tr>
                                         </thead>
+
                                         <tbody id="purchaseReturnsTableBody"></tbody>
                                     </table>
                                 </div>
@@ -821,7 +870,7 @@
                             const displayId = order.customer_id || order.guest_id || '—';
                             const badgeColor = type === 'Customer' ? 'success' : 'primary';
 
-                            row.innerHTML = `<td><input type="checkbox" class="orderCheckbox" value="${order.order_id}" /></td>
+                            row.innerHTML = ` <td class="no-print"><input type="checkbox" class="orderCheckbox" value="${order.order_id}" /></td>
                 <td>${order.order_id}</td>
                 <td>${order.customer_name || '—'}</td>
                 <td> ${(order.shippingInfo && JSON.parse(order.shippingInfo)?.contact)
@@ -830,12 +879,16 @@
                                 }</td>
                 <td>${order.order_status || '—'}</td>
                 <td>
-  <select class="form-select payment-type-select" data-id="${order.order_id}">
-    <option value="COD" ${order.payment_type === 'COD' ? 'selected' : ''}>COD</option>
-    <option value="Card" ${order.payment_type === 'Card' ? 'selected' : ''}>Card</option>
-    <option value="Bank Transfer" ${order.payment_type === 'Bank Transfer' ? 'selected' : ''}>Bank Transfer</option>
-  </select>
+  <div style="position: relative;">
+    <button class="payment-toggle" data-id="${order.order_id}">${order.payment_type}</button>
+    <div class="payment-options">
+      <button class="payment-select-option" data-id="${order.order_id}" data-value="COD">COD</button>
+      <button class="payment-select-option" data-id="${order.order_id}" data-value="Card">Card</button>
+      <button class="payment-select-option" data-id="${order.order_id}" data-value="Bank Transfer">Bank Transfer</button>
+    </div>
+  </div>
 </td>
+
 
                 <td>${formattedDate}</td>
                 <td>${parseFloat(order.total_amount || 0).toFixed(2)}</td>
@@ -844,9 +897,9 @@
                                     : '—'
                                 }</td>
                 <td>${order.shipping_address || '—'}</td>
-                <td class="action-buttons">
-                    <button class="btn btn-view" onclick="viewOrder('${String(order.order_id)}')">👁</button>
-                </td>
+                 <td class="no-print action-buttons">
+        <button class="btn btn-view" onclick="viewOrder('${String(order.order_id)}')">👁</button>
+    </td>
                 
             `;
 
@@ -1006,124 +1059,6 @@
                     function closeOverlay() {
                         document.getElementById('orderViewOverlay').style.display = 'none';
                     }
-
-
-                    // function populateOrderDetails(order) {
-                    //     document.getElementById('orderId').textContent = order.order_id || '—';
-                    //     document.getElementById('orderStatus').textContent = order.status || 'Pending';
-
-                    //     try {
-                    //         document.getElementById('createdAt').textContent =
-                    //             order.created_at ? new Date(order.created_at).toLocaleString() : '—';
-                    //     } catch (e) {
-                    //         document.getElementById('createdAt').textContent = 'Invalid Date';
-                    //     }
-
-                    //     document.getElementById('paymentType').textContent = order.payment_type || '—';
-
-                    //     // Populate order items
-                    //     const itemsList = document.getElementById('orderItemsList');
-                    //     itemsList.innerHTML = '';
-                    //     if (order.items && order.items.length > 0) {
-                    //         order.items.forEach(item => {
-                    //             const li = document.createElement('li');
-                    //             li.textContent = `${item.product_name || 'Unknown Product'} - Qty: ${item.quantity || 0} - Price: ${item.price || 0}`;
-                    //             itemsList.appendChild(li);
-                    //         });
-                    //     } else {
-                    //         itemsList.innerHTML = '<li>No items found</li>';
-                    //     }
-
-                    //     document.getElementById('totalAmount').textContent =
-                    //         parseFloat(order.total_amount || 0).toFixed(2);
-                    //     document.getElementById('shippingAddress').textContent =
-                    //         order.shipping_address || 'No shipping address provided';
-                    //     document.getElementById('billingAddress').textContent =
-                    //         order.billing_address || order.shipping_address || 'No billing address provided';
-
-                    //     // Show/hide buttons based on status
-                    //     const acceptBtn = document.getElementById('acceptBtn');
-                    //     const rejectBtn = document.getElementById('rejectBtn');
-                    //     const additionalActions = document.getElementById('additionalActions');
-
-                    //     if (order.status === 'Pending') {
-                    //         acceptBtn.style.display = 'inline-block';
-                    //         rejectBtn.style.display = 'inline-block';
-                    //         additionalActions.style.display = 'none';
-                    //     } else {
-                    //         acceptBtn.style.display = 'none';
-                    //         rejectBtn.style.display = 'none';
-                    //         additionalActions.style.display = 'block';
-
-                    //         // Set the current status in the dropdown
-                    //         const statusSelect = document.getElementById('statusSelect');
-                    //         if (statusSelect) {
-                    //             statusSelect.value = order.status || 'Confirmed';
-                    //         }
-                    //     }
-
-                    //     // Show the overlay
-                    //     document.getElementById('orderViewOverlay').style.display = 'block';
-                    // }
-
-                    // function closeOverlay() {
-                    //     document.getElementById('orderViewOverlay').style.display = 'none';
-                    // }
-
-                    // async function updateOrderStatus(newStatus) {
-                    //     const orderId = document.getElementById('orderId').textContent;
-                    //     const token = localStorage.getItem('token');
-
-                    //     if (!orderId || orderId === '—') {
-                    //         showErrorMessage('Invalid order ID');
-                    //         return;
-                    //     }
-
-                    //     showLoader();
-
-                    //     try {
-                    //         const response = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders/${orderId}/status`, {
-                    //             method: 'PUT',
-                    //             headers: {
-                    //                 'Authorization': token,
-                    //                 'Content-Type': 'application/json',
-                    //             },
-                    //             body: JSON.stringify({ status: newStatus }),
-                    //         });
-
-                    //         if (!response.ok) {
-                    //             throw new Error(`HTTP error! status: ${response.status}`);
-                    //         }
-
-                    //         // Update the cache
-                    //         if (ordersCache) {
-                    //             const updatedOrder = ordersCache.find(o => o.order_id == orderId);
-                    //             if (updatedOrder) {
-                    //                 updatedOrder.status = newStatus;
-                    //             }
-                    //         }
-
-                    //         // Update the UI
-                    //         document.getElementById('orderStatus').textContent = newStatus;
-
-                    //         if (newStatus === 'Confirmed') {
-                    //             document.getElementById('acceptBtn').style.display = 'none';
-                    //             document.getElementById('rejectBtn').style.display = 'none';
-                    //             document.getElementById('additionalActions').style.display = 'block';
-                    //         } else if (newStatus === 'Cancelled') {
-                    //             closeOverlay();
-                    //         }
-
-                    //         showSuccessMessage('Order status updated successfully!');
-                    //     } catch (error) {
-                    //         console.error('❌ Error updating order status:', error);
-                    //         showErrorMessage('Failed to update order status. Please try again.');
-                    //     } finally {
-                    //         hideLoader();
-                    //     }
-                    // }
-
-                    // Debounce the filter function
                     let filterTimeout;
                     function filterTable() {
                         clearTimeout(filterTimeout);
@@ -1171,56 +1106,24 @@
                         alert(message); // Replace with your preferred notification system
                     }
                 </script>
-                <!-- <script>
-                    document.getElementById('filterBtn').addEventListener('click', filterOrdersById);
-                    document.getElementById('filterOrderId').addEventListener('keyup', function (e) {
-                        if (e.key === 'Enter') filterOrdersById();
-                    });
-                    function filterOrdersById() {
-                        const input = document.getElementById('filterOrderId').value.toLowerCase().trim();
-                        const rows = document.querySelectorAll('#purchaseReturnsTableBody tr');
-
-                        rows.forEach(row => {
-                            const orderId = row.cells[0]?.textContent?.toLowerCase() || '';
-                            if (orderId.includes(input) || input === '') {
-                                row.style.display = '';
-                            } else {
-                                row.style.display = 'none';
-                            }
-                        });
-                    }
-function clearOrderFilter() {
-    document.getElementById('filterOrderId').value = '';
-    filterOrdersById();
-}
-
-
-                </script> -->
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
-                        const filterInput = document.getElementById('filterInput');
-                        const filterBtn = document.getElementById('filterBtn');
+                        const statusDropdown = document.getElementById('statusFilter');
 
-                        // Filter on button click or enter key
-                        filterBtn.addEventListener('click', filterTable);
-                        filterInput.addEventListener('keyup', function (e) {
-                            if (e.key === 'Enter') filterTable();
-                        });
+                        if (statusDropdown) {
+                            statusDropdown.addEventListener('change', function () {
+                                const selected = this.value.toLowerCase();
+                                const rows = document.querySelectorAll('#purchaseReturnsTableBody tr');
 
-                        function filterTable() {
-                            const query = filterInput.value.toLowerCase().trim();
-                            const rows = document.querySelectorAll('#purchaseReturnsTableBody tr');
-
-                            rows.forEach(row => {
-                                const cells = row.querySelectorAll('td');
-                                const matchFound = [...cells].some(cell =>
-                                    cell.textContent.toLowerCase().includes(query)
-                                );
-                                row.style.display = matchFound ? '' : 'none';
+                                rows.forEach(row => {
+                                    const status = row.children[4]?.textContent?.toLowerCase() || '';
+                                    row.style.display = !selected || status.includes(selected) ? '' : 'none';
+                                });
                             });
                         }
                     });
                 </script>
+
                 <script>
                     // Select all
                     document.getElementById("selectAllCheckbox").addEventListener("change", function () {
@@ -1238,7 +1141,6 @@ function clearOrderFilter() {
 
                     function toggleBulkActions() {
                         const anyChecked = document.querySelectorAll(".orderCheckbox:checked").length > 0;
-                        document.getElementById("bulkStatusSelect").style.display = anyChecked ? "block" : "none";
                         document.getElementById("bulkUpdateBtn").style.display = anyChecked ? "inline-block" : "none";
                     }
 
@@ -1253,7 +1155,7 @@ function clearOrderFilter() {
                         }
 
                         for (let id of selectedIds) {
-                            await fetch(`${API_ADMINGRAB_URL}/api/onlineorders/${id}/status`, {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders/${id}/status`, {
                                 method: 'PUT',
                                 headers: {
                                     'Authorization': token,
@@ -1261,11 +1163,22 @@ function clearOrderFilter() {
                                 },
                                 body: JSON.stringify({ order_status: selectedStatus })
                             });
+
+                            const result = await response.json();
+                            if (response.ok) {
+                                // ✅ Update the order row instantly
+                                const row = document.querySelector(`tr[data-id="${id}"]`);
+                                if (row) {
+                                    row.children[4].textContent = selectedStatus; // Assuming status is 5th column (index 4)
+                                }
+                            } else {
+                                console.error("❌ Failed for ID:", id, result.message);
+                            }
                         }
 
-                        alert("Statuses updated successfully.");
-                        fetchDamagesReport(); // Refresh table
+                        showSuccessMessage("Statuses updated successfully.");
                     });
+
                 </script>
 
                 <script>
@@ -1301,7 +1214,135 @@ function clearOrderFilter() {
 
                 </script>
 
+                <!-- <script>
+                    function printOnlyTable() {
+                        const tableHTML = document.querySelector('.table-container').innerHTML;
+                        const originalBody = document.body.innerHTML;
+                        document.body.innerHTML = tableHTML;
+                        window.print();
+                        document.body.innerHTML = originalBody;
+                        window.location.reload(); // reload for restoring JS functionality
+                    }
+                </script> -->
+                <script>
+                    function printOnlyTable() {
+                        const printContent = document.querySelector('.table-container').innerHTML;
+                        const originalContent = document.body.innerHTML;
 
+                        const style = `
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                padding: 20px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 12px;
+            }
+            th, td {
+                border: 1px solid #000;
+                padding: 6px;
+                text-align: left;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+        </style>
+    `;
+
+                        document.body.innerHTML = style + '<h2>Online Orders</h2>' + printContent;
+                        window.print();
+                        document.body.innerHTML = originalContent;
+                        window.location.reload(); // optional: reload to restore JS
+                    }
+                </script>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        document.body.addEventListener('click', (e) => {
+                            // Close other open dropdowns
+                            document.querySelectorAll('.payment-options').forEach(menu => {
+                                if (!menu.contains(e.target)) menu.style.display = 'none';
+                            });
+
+                            if (e.target.classList.contains('payment-toggle')) {
+                                const dropdown = e.target.nextElementSibling;
+                                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+                            }
+
+                            if (e.target.classList.contains('payment-select-option')) {
+                                const orderId = e.target.dataset.id;
+                                const paymentType = e.target.dataset.value;
+                                const token = localStorage.getItem("token");
+
+                                fetch(`${API_ADMINGRAB_URL}/api/onlineorders/${orderId}/payment-type`, {
+                                    method: 'PUT',
+                                    headers: {
+                                        'Authorization': token,
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({ payment_type: paymentType })
+                                })
+                                    .then(res => res.json())
+                                    .then(result => {
+                                        if (result.message) showSuccessMessage(result.message);
+                                        document.querySelector(`.payment-toggle[data-id='${orderId}']`).innerText = paymentType;
+                                        e.target.closest('.payment-options').style.display = 'none';
+                                    })
+                                    .catch(err => {
+                                        console.error(err);
+                                        showErrorMessage('Failed to update payment type');
+                                    });
+                            }
+                        });
+                    });
+                </script>
+                <script>
+                    // Live search functionality for "Search orders..."
+                    document.getElementById('filterInput').addEventListener('input', function () {
+                        const query = this.value.toLowerCase().trim();
+                        const rows = document.querySelectorAll('#purchaseReturnsTableBody tr');
+
+                        rows.forEach(row => {
+                            const cells = row.querySelectorAll('td');
+                            const textContent = Array.from(cells).map(cell => cell.textContent.toLowerCase()).join(' ');
+                            row.style.display = textContent.includes(query) ? '' : 'none';
+                        });
+                    });
+                </script>
+                <script>
+                    function printProductDetails() {
+                        // Fill in the printable table dynamically
+                        document.getElementById('orderIdTable').textContent = document.getElementById('orderId').textContent;
+                        document.getElementById('orderStatusTable').textContent = document.getElementById('orderStatus').textContent;
+                        document.getElementById('createdAtTable').textContent = document.getElementById('createdAt').textContent;
+                        document.getElementById('paymentTypeTable').textContent = document.getElementById('paymentType').textContent;
+                        document.getElementById('totalAmountTable').textContent = document.getElementById('totalAmount').textContent;
+                        document.getElementById('shippingAddressTable').textContent = document.getElementById('shippingAddress').textContent;
+                        document.getElementById('billingAddressTable').textContent = document.getElementById('billingAddress').textContent;
+
+                        // Order Items
+                        const orderItemsList = document.getElementById('orderItemsList').querySelectorAll('li');
+                        const itemsTable = document.getElementById('orderItemsTable');
+                        itemsTable.innerHTML = '';
+                        orderItemsList.forEach(li => {
+                            const [name, qtyPart, pricePart] = li.textContent.split(' - ');
+                            const qty = qtyPart.replace('Qty: ', '');
+                            const price = pricePart.replace('Price: ', '');
+                            const row = `<tr><td>${name}</td><td>${qty}</td><td>${price}</td></tr>`;
+                            itemsTable.innerHTML += row;
+                        });
+
+                        const printContent = document.getElementById('printableOrderTable').innerHTML;
+                        const originalContent = document.body.innerHTML;
+                        document.body.innerHTML = printContent;
+                        window.print();
+                        document.body.innerHTML = originalContent;
+                        window.location.reload(); // Optional restore
+                    }
+
+                </script>
             </div>
         </div>
     </div>
