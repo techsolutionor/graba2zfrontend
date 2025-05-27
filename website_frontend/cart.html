@@ -1768,7 +1768,7 @@ function applyCoupon() {
         return;
     }
 
-    fetch(`https://grabatoz-production.up.railway.app/api/public/validate-coupon/${code}`)
+    fetch(`https://grabatoz-production.up.railway.app/api/coupons/${code}`)
         .then(res => {
             if (!res.ok) throw new Error("Invalid coupon");
             return res.json();
@@ -1824,6 +1824,48 @@ function showCouponMessage(msg, isError) {
     el.textContent = msg;
     el.style.color = isError ? 'red' : 'green';
 }
+</script>
+<script>
+  // Toggle wishlist
+  function toggleWishlist(product) {
+    const heartIcon = document.getElementById('heart-icon');
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const index = wishlist.findIndex(p => p.id === product.id);
+
+    if (index === -1) {
+        wishlist.push(product);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        heartIcon.style.color = 'red';
+        showSuccessMessage("Added to wishlist!");
+    } else {
+        wishlist.splice(index, 1);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        heartIcon.style.color = '';
+        showSuccessMessage("Removed from wishlist!");
+    }
+
+    updateWishlistBadge();
+}
+
+
+  // Update badge in header
+function updateWishlistBadge() {
+    const count = (JSON.parse(localStorage.getItem('wishlist')) || []).length;
+    const badge = document.getElementById('wishlist-item-count'); // Make sure this exists in header
+    if (badge) badge.textContent = count;
+}
+
+  // Display message
+  function showSuccessMessage(msg) {
+    const box = document.createElement('div');
+    box.style.cssText = 'position:fixed;top:20px;right:20px;background:green;color:white;padding:10px;border-radius:5px;z-index:1000';
+    box.innerText = msg;
+    document.body.appendChild(box);
+    setTimeout(() => box.remove(), 3000);
+  }
+
+  // Call on page load
+  document.addEventListener('DOMContentLoaded', updateWishlistBadge);
 </script>
 
 </body>
