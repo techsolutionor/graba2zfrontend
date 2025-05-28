@@ -9,7 +9,6 @@
     <title> Graba2z- E-commerce website</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/images/logo/favicon.png">
-
     <link rel="stylesheet" href="assets/css/footer.css" />
     <!-- Bootstrap -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -17,9 +16,6 @@
     <link rel="stylesheet" href="assets/css/select2.min.css">
     <!-- Slick -->
     <link rel="stylesheet" href="assets/css/slick.css">
-
-
-
     <!-- Jquery Ui -->
     <link rel="stylesheet" href="assets/css/jquery-ui.css">
     <!-- animate -->
@@ -29,60 +25,60 @@
     <!-- Main css -->
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
-    
+    <script src="./apiConfig/apiConfig.js"></script>
 </head>
 <style>
-      /* first dropdown */
-      /* Custom Dropdown Styles */
-      .custom-dropdown {
-  position: relative;
-  width: 150px;
-  font-family: Arial, sans-serif;
-  cursor: pointer;
-}
+    /* first dropdown */
+    /* Custom Dropdown Styles */
+    .custom-dropdown {
+        position: relative;
+        width: 150px;
+        font-family: Arial, sans-serif;
+        cursor: pointer;
+    }
 
-.dropdown-selected {
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-}
+    .dropdown-selected {
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
 
-.dropdown-selected:hover {
-  background-color: #f9f9f9;
-}
+    .dropdown-selected:hover {
+        background-color: #f9f9f9;
+    }
 
-.dropdown-list {
-  display: none;
-  position: absolute;
-  top: 110%;
-  left: 0;
-  width: 100%;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-}
+    .dropdown-list {
+        display: none;
+        position: absolute;
+        top: 110%;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+    }
 
-.dropdown-list div {
-  padding: 10px 12px;
-  transition: background 0.2s ease;
-}
+    .dropdown-list div {
+        padding: 10px 12px;
+        transition: background 0.2s ease;
+    }
 
-.dropdown-list div:hover {
-  color: white !important;
-  background-color: #90C309 !important;
-}
+    .dropdown-list div:hover {
+        color: white !important;
+        background-color: #90C309 !important;
+    }
 
-.custom-dropdown.open .dropdown-list {
-  display: block;
-}
-/* cart circle css start  */
-       .cart-item-count {
+    .custom-dropdown.open .dropdown-list {
+        display: block;
+    }
+
+    /* cart circle css start  */
+    .cart-item-count {
         min-width: 24px;
         height: 24px;
         display: flex;
@@ -95,7 +91,8 @@
         position: absolute;
         top: -12px;
         right: -11px;
-        padding: 0 6px; /* Extra space for 2-3 digit numbers */
+        padding: 0 6px;
+        /* Extra space for 2-3 digit numbers */
         font-weight: bold;
         white-space: nowrap;
     }
@@ -119,129 +116,116 @@
         white-space: nowrap;
     }
 
+    .sidebar {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        top: 0;
+        right: 0;
+        background-color: #ffffff;
+        overflow-x: hidden;
+        transition: 0.3s ease;
+        padding-top: 60px;
+        z-index: 999;
+    }
 
- .sidebar {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  top: 0;
-  right: 0;
-  background-color: #ffffff;
-  overflow-x: hidden;
-  transition: 0.3s ease;
-  padding-top: 60px;
-  z-index: 999;
-}
+    /* Open state */
+    .sidebar.open {
+        width: 250px;
+    }
 
-/* Open state */
-.sidebar.open {
-  width: 250px;
-}
+    /* Sidebar content scrollable */
+    .sidebar-inner {
+        max-height: 100%;
+        overflow-y: auto;
+    }
 
-/* Sidebar content scrollable */
-.sidebar-inner {
-  max-height: 100%;
-  overflow-y: auto;
-}
+    /* Sidebar links */
+    .sidebar a {
+        display: block;
+        padding: 12px 20px;
+        color: #000;
+        text-decoration: none;
+    }
 
-/* Sidebar links */
-.sidebar a {
-  display: block;
-  padding: 12px 20px;
-  color: #000;
-  text-decoration: none;
-}
+    .sidebar a:hover {
+        background: #fff4f4;
+        color: rgb(49, 136, 49);
+    }
 
-.sidebar a:hover {
-  background: #fff4f4;
-  color: rgb(49, 136, 49);
-}
+    /* Open Button (☰) */
+    .menu-open-btn {
+        display: none;
+        position: absolute;
+        top: 61px;
+        right: 31px;
+        font-size: 24px;
+        background-color: #ffffff;
+        color: #000;
+        padding: 10px;
+        border-radius: 5px;
+        z-index: 1000;
+        cursor: pointer;
+    }
 
-/* Open Button (☰) */
-.menu-open-btn {
-  display: none;
-  position: absolute;
-  top: 61px;
-  right: 31px;
-  font-size: 24px;
-  background-color: #ffffff;
-  color: #000;
-  padding: 10px;
-  border-radius: 5px;
-  z-index: 1000;
-  cursor: pointer;
-}
+    /* Close Button (✖) inside Sidebar */
+    .menu-close-btn {
+        display: none;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 24px;
+        background: transparent;
+        border: none;
+        color: red;
+        z-index: 1001;
+        cursor: pointer;
+    }
 
-/* Close Button (✖) inside Sidebar */
-.menu-close-btn {
-  display: none;
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 24px;
-  background: transparent;
-  border: none;
-  color: red;
-  z-index: 1001;
-  cursor: pointer;
-}
+    /* Responsive Display Settings */
+    @media (max-width: 1024px) {
+        .menu-open-btn {
+            display: block;
+        }
 
-/* Responsive Display Settings */
-@media (max-width: 1024px) {
-  .menu-open-btn {
-    display: block;
-  }
+        .sidebar {
+            display: block;
+        }
 
-  .sidebar {
-    display: block;
-  }
+        .sidebar.open .menu-close-btn {
+            display: block;
+        }
+    }
 
-  .sidebar.open .menu-close-btn {
-    display: block;
-  }
-}
+    @media (min-width: 1025px) {
 
-@media (min-width: 1025px) {
-  .sidebar,
-  .menu-open-btn,
-  .menu-close-btn {
-    display: none !important;
-  }
-}
+        .sidebar,
+        .menu-open-btn,
+        .menu-close-btn {
+            display: none !important;
+        }
+    }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
 
-
-
+    .form-check-input:checked+.form-check-label {
+        font-weight: bold;
+        color: #90C309;
+    }
 </style>
+
 <body>
     <div id="top-header"></div>
-    <!--==================== Preloader Start ====================-->
-    <!-- <div class="preloader">
-    <img src="assets/images/icon/preloader.gif" alt="">
-  </div> -->
-    <!--==================== Preloader End ====================-->
-
     <!--==================== Overlay Start ====================-->
     <div class="overlay"></div>
     <!--==================== Overlay End ====================-->
-
     <!--==================== Sidebar Overlay End ====================-->
     <div class="side-overlay"></div>
     <!--==================== Sidebar Overlay End ====================-->
-
-    <!-- ==================== Scroll to Top End Here ==================== -->
-    <!-- <div class="progress-wrap">
-        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
-        </svg>
-    </div> -->
-    <!-- ==================== Scroll to Top End Here ==================== -->
-
     <!-- ==================== Search Box Start Here ==================== -->
     <form action="#" class="search-box">
         <button type="button"
@@ -260,7 +244,6 @@ ul {
         </div>
     </form>
     <!-- ==================== Search Box End Here ==================== -->
-
     <!-- ==================== Mobile Menu Start Here ==================== -->
     <div class="mobile-menu scroll-sm d-lg-none d-block">
         <button type="button" class="close-button"> <i class="ph ph-x"></i> </button>
@@ -355,19 +338,12 @@ ul {
                             </li>
                         </ul>
                     </li>
-                    <!-- <li class="nav-menu__item">
-                        <a href="contact.html" class="nav-menu__link">Contact Us</a>
-                    </li> -->
                 </ul>
                 <!-- Nav Menu End -->
             </div>
         </div>
     </div>
     <!-- ==================== Mobile Menu End Here ==================== -->
-
-
-   
-
     <!-- ======================= Middle Header Start ========================= -->
     <header class="header-middle bg-white border-bottom border-gray-100">
         <div class="container container-lg">
@@ -379,7 +355,6 @@ ul {
                     </a>
                 </div>
                 <!-- Logo End  -->
-
                 <!-- form location Start -->
                 <form id="search-form" class="flex-align flex-wrap form-location-wrapper">
                     <div
@@ -397,50 +372,43 @@ ul {
                     </div>
                 </form>
                 <!-- form location start -->
-
                 <!-- Header Middle Right start -->
-                 <div class="header-right flex-align d-lg-block d-none">
+                <div class="header-right flex-align d-lg-block d-none">
                     <div class="flex-align flex-wrap gap-12">
                         <button type="button" class="search-icon flex-align d-lg-none d-flex gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative item-hover__text">
                                 <i class="ph ph-magnifying-glass"></i>
                             </span>
                         </button>
-                     <a href="wishlist.html" class="flex-align gap-4 item-hover">
+                        <a href="wishlist.html" class="flex-align gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
                                 <i class="ph ph-heart"></i>
-                                <span id="wishlist-item-count"  class="wishlist-item-count">0</span>
+                                <span id="wishlist-item-count" class="wishlist-item-count">0</span>
                             </span>
                             <span class="text-md text-gray-500 item-hover__text d-none d-lg-flex">Wishlist</span>
                         </a>
-                       <a href="cart.html" class="flex-align gap-4 item-hover">
+                        <a href="cart.html" class="flex-align gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
                                 <i class="ph ph-shopping-cart-simple"></i>
                                 <span class="cart-item-count">0</span>
                             </span>
                             <span class="text-md text-gray-500 item-hover__text d-none d-lg-flex">Cart</span>
                         </a>
-
                     </div>
                 </div>
                 <!-- Header Middle Right End  -->
             </nav>
         </div>
+        <!-- ===================mobile responsive design ==============================  -->
+        <!-- Open Sidebar Button -->
+        <div class="menu-open-btn" onclick="toggleSidebar()">☰</div>
 
-     
-
-					 <!-- ===================mobile responsive design ==============================  -->
-            
-    <!-- Open Sidebar Button -->
-<div class="menu-open-btn" onclick="toggleSidebar()">☰</div>
-
-<!-- Sidebar -->
-<div id="sidebar" class="sidebar">
-  <!-- Close Sidebar Button -->
-  <button class="menu-close-btn" onclick="toggleSidebar()">✖</button>
-  <div class="sidebar-inner">
-    <ul>
-
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar">
+            <!-- Close Sidebar Button -->
+            <button class="menu-close-btn" onclick="toggleSidebar()">✖</button>
+            <div class="sidebar-inner">
+                <ul>
                     <a href="shop.html?category=Desktops&brand=Lenovo">Lenovo Desktops </a>
                     </li>
                     <li>
@@ -606,15 +574,12 @@ ul {
                     <li>
                         <a href="shop.html?category=Wifi%20Dongles"> Wifi Dongles </a>
                     </li>
-                 </ul>
-  </div>
-</div>
+                </ul>
+            </div>
+        </div>
         <!-- ===================== mobile responsive end ==============================  -->
-
-
     </header>
     <!-- ======================= Middle Header End ========================= -->
-
     <!-- ==================== Header Start Here ==================== -->
     <header class="header bg-white border-bottom border-gray-100">
         <div class="container container-lg">
@@ -915,7 +880,6 @@ ul {
                                         </ul>
                                     </div>
                                 </li>
-
                                 <li class="has-submenus-submenu">
                                     <a href="javascript:void(0)"
                                         class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
@@ -958,7 +922,6 @@ ul {
                         </div>
                     </div>
                     <!-- Category Dropdown End  -->
-
                     <!-- Menu Start  -->
                     <div class="header-menu d-lg-block d-none">
                         <!-- Nav Menu Start -->
@@ -1297,14 +1260,12 @@ ul {
                         </ul>
                         <!-- Nav Menu End -->
                     </div>
-
                     <!-- Menu End  -->
                 </div>
             </nav>
         </div>
     </header>
     <!-- ==================== Header End Here ==================== -->
-
     <!-- ========================= Breadcrumb Start =============================== -->
     <div class="breadcrumb py-26" style="background-color: #cdf19b;">
         <div class="container container-lg">
@@ -1326,7 +1287,6 @@ ul {
         </div>
     </div>
     <!-- ========================= Breadcrumb End =============================== -->
-
     <!-- =============================== Shop Section Start ======================================== -->
     <section class="shop py-80">
         <div class="container container-lg">
@@ -1339,18 +1299,19 @@ ul {
                             <i class="ph ph-x"></i>
                         </button>
                         <div class="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
-    <h6 class="text-xl border-bottom border-gray-100 pb-24 mb-24 text-dark">Product Category</h6>
-    <ul class="max-h-540 overflow-y-auto scroll-sm" id="left-navigation"></ul>
-</div>
-
+                            <h6 class="text-xl border-bottom border-gray-100 pb-24 mb-24 text-dark">Product Category
+                            </h6>
+                            <ul class="max-h-540 overflow-y-auto scroll-sm" id="left-navigation"></ul>
+                        </div>
                         <div class="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
                             <h6 class="text-xl border-bottom border-gray-100 pb-24 mb-24 text-dark">Filter by Price</h6>
                             <div class="custom--range">
                                 <div id="slider-range"></div>
                                 <div class="flex-between flex-wrap-reverse gap-8 mt-24">
                                     <button type="button" id="price-filter-btn"
-                                        class="btn btn-main h-40 flex-align text-dark" style="background-color: #90C309 !important;">Filter</button>
-                                    <div class="custom--range__content flex-align gap-8">
+                                        class="btn btn-main h-40 flex-align text-dark"
+                                        style="background-color: #90C309 !important;">Filter</button>
+                                    <div class="custom--range__content flex-align gap-5">
                                         <span class="text-gray-500 text-md flex-shrink-0 text-dark">Min:</span>
                                         <input type="number"
                                             class="custom--range__prices text-neutral-600 text-start text-md fw-medium"
@@ -1371,62 +1332,63 @@ ul {
                             <ul class="max-h-540 overflow-y-auto scroll-sm">
                                 <li class="mb-24">
                                     <div class="form-check common-check common-radio checked-black">
-                                        <input class="form-check-input" type="radio" name="color" id="color1">
-                                        <label class="form-check-label" for="color1 "
-                                        style="color: black;">10% or More</label>
+                                        <input class="form-check-input" type="radio" name="discount" value="10"
+                                            id="discount10">
+                                        <label class="form-check-label" for="color1 " style="color: black;">10% or
+                                            More</label>
                                     </div>
                                 </li>
                                 <li class="mb-24">
                                     <div class="form-check common-check common-radio checked-primary">
-                                        <input class="form-check-input" type="radio" name="color" id="color2">
-                                        <label class="form-check-label" for="color2 " style="color: #000;">20% or More</label>
+                                        <input class="form-check-input" type="radio" name="discount" value="20"
+                                            id="discount20">
+                                        <label class="form-check-label" for="color2 " style="color: #000;">20% or
+                                            More</label>
                                     </div>
                                 </li>
                                 <li class="mb-24">
                                     <div class="form-check common-check common-radio checked-gray">
-                                        <input class="form-check-input" type="radio" name="color" id="color3">
-                                        <label class="form-check-label" for="color3 " style="color: #000;">30% or More</label>
+                                        <input class="form-check-input" type="radio" name="discount" value="30"
+                                            id="discount30">
+                                        <label class="form-check-label" for="color3 " style="color: #000;">30% or
+                                            More</label>
                                     </div>
                                 </li>
                                 <li class="mb-24">
                                     <div class="form-check common-check common-radio checked-success">
-                                        <input class="form-check-input" type="radio" name="color" id="color4">
-                                        <label class="form-check-label" for="color4 " style="color: #000;">40% or More</label>
+                                        <input class="form-check-input" type="radio" name="discount" value="40"
+                                            id="discount40">
+                                        <label class="form-check-label" for="color4 " style="color: #000;">40% or
+                                            More</label>
                                     </div>
                                 </li>
                                 <li class="mb-24">
                                     <div class="form-check common-check common-radio checked-danger">
-                                        <input class="form-check-input" type="radio" name="color" id="color5">
-                                        <label class="form-check-label" for="color5 " style="color: #000;">50% or More</label>
+                                        <input class="form-check-input" type="radio" name="discount" value="50"
+                                            id="discount50">
+                                        <label class="form-check-label" for="color5 " style="color: #000;">50% or
+                                            More</label>
                                     </div>
                                 </li>
                                 <li class="mb-24">
                                     <div class="form-check common-check common-radio checked-white">
-                                        <input class="form-check-input" type="radio" name="color" id="color6">
-                                        <label class="form-check-label" for="color6" style="color: #000;">60% or More</label>
+                                        <input class="form-check-input" type="radio" name="discount" value="60"
+                                            id="discount60">
+                                        <label class="form-check-label" for="color6" style="color: #000;">60% or
+                                            More</label>
                                     </div>
                                 </li>
                                 <li class="mb-0">
                                     <div class="form-check common-check common-radio checked-purple">
-                                        <input class="form-check-input" type="radio" name="color" id="color7">
-                                        <label class="form-check-label" for="color7" style="color: #000;" >70% or More</label>
+                                        <input class="form-check-input" type="radio" name="discount" value="70"
+                                            id="discount70">
+                                        <label class="form-check-label" for="color7" style="color: #000;">70% or
+                                            More</label>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                         <!-- <div class="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
-                        <h6 class="text-xl border-bottom border-gray-100 pb-24 mb-24">Discount</h6>
-                        <ul class="max-h-540 overflow-y-auto scroll-sm">
-                            <li><input type="radio" name="discount" value="10"> 10% or More</li>
-                            <li><input type="radio" name="discount" value="20"> 20% or More</li>
-                            <li><input type="radio" name="discount" value="30"> 30% or More</li>
-                            <li><input type="radio" name="discount" value="40"> 40% or More</li>
-                            <li><input type="radio" name="discount" value="50"> 50% or More</li>
-                            <li><input type="radio" name="discount" value="60"> 60% or More</li>
-                            <li><input type="radio" name="discount" value="70"> 70% or More</li>
-                        </ul>
-                    </div> -->
-                        <div class="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
                             <h6 class="text-xl border-bottom border-gray-100 pb-24 mb-24 text-dark">Filter by Brand</h6>
                             <ul class="max-h-540 overflow-y-auto scroll-sm">
                                 <li class="mb-24">
@@ -1438,13 +1400,15 @@ ul {
                                 <li class="mb-24">
                                     <div class="form-check common-check common-radio">
                                         <input class="form-check-input" type="radio" name="color" id="brand2">
-                                        <label class="form-check-label" for="brand2 " style="color: #000;">Samsung</label>
+                                        <label class="form-check-label" for="brand2 "
+                                            style="color: #000;">Samsung</label>
                                     </div>
                                 </li>
                                 <li class="mb-24">
                                     <div class="form-check common-check common-radio">
                                         <input class="form-check-input" type="radio" name="color" id="brand3">
-                                        <label class="form-check-label" for="brand3 " style="color: #000;">Microsoft</label>
+                                        <label class="form-check-label" for="brand3 "
+                                            style="color: #000;">Microsoft</label>
                                     </div>
                                 </li>
                                 <li class="mb-24">
@@ -1472,6 +1436,13 @@ ul {
                                     </div>
                                 </li>
                             </ul>
+                        </div> -->
+
+                        <!-- Filter by Brand -->
+                        <div class="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
+                            <h6>Filter by Brand</h6>
+                            <ul class="max-h-540 overflow-y-auto scroll-sm" id="brand-list" data-filter="brand"></ul>
+
                         </div>
                         <div class="shop-sidebar__box rounded-8">
                             <!-- <img src="assets/images/thumbs/advertise-img1.png" alt=""> -->
@@ -1479,44 +1450,28 @@ ul {
                     </div>
                 </div>
                 <!-- Sidebar End -->
-
                 <!-- Content Start -->
                 <div class="col-lg-9">
                     <!-- Top Start -->
                     <div class="flex-between gap-16 flex-wrap mb-40">
                         <span id="product-count" class="text-gray-900" style="color: #000;"></span>
-                        <div class="position-relative flex-align gap-16 flex-wrap">
-                            <!-- <div class="list-grid-btns flex-align gap-16">
-                                <button type="button"
-                                    class="w-44 h-44 flex-center border border-gray-100 rounded-6 text-2xl list-btn">
-                                    <i class="ph-bold ph-list-dashes"></i>
-                                </button>
-                                <button type="button"
-                                    class="w-44 h-44 flex-center border border-main-600 text-white bg-main-600 rounded-6 text-2xl grid-btn">
-                                    <i class="ph ph-squares-four"></i>
-                                </button>
-                            </div> -->
+                        <!-- <div class="position-relative flex-align gap-16 flex-wrap">
                             <div class="position-relative text-gray-500 flex-align gap-4 text-14">
                                 <label for="sorting" class="text-inherit flex-shrink-0 text-black">Sort by:</label>
                                 <div class="custom-dropdown" id="dropdown">
                                     <div class="dropdown-selected">Recomended</div>
                                     <div class="dropdown-list">
-                                    <div data-value="1">High to Low</div>
-                                    <div data-value="2">Low to High </div>
-                                    <div data-value="3">A to Z</div>
-                                    <div data-value="4">Z to A</div>
+                                        <div data-value="1">High to Low</div>
+                                        <div data-value="2">Low to High </div>
+                                        <div data-value="3">A to Z</div>
+                                        <div data-value="4">Z to A</div>
                                     </div>
                                 </div>
-                                </div>
-
-                            
+                            </div>
                             <button type="button"
                                 class="w-44 h-44 d-lg-none d-flex flex-center border border-gray-100 rounded-6 text-2xl sidebar-btn"><i
                                     class="ph-bold ph-funnel"></i></button>
-                        </div>
-
-                       
-
+                        </div> -->
                     </div>
                     <!-- <div class="list-grid-wrapper"> -->
                     <div id="product-grid" class="  row g-3 justify-content-center">
@@ -1524,7 +1479,7 @@ ul {
                     </div>
                     <!-- </div> -->
 
-                  
+
                     <ul id="pagination" class="pagination flex-center flex-wrap gap-16">
                         <!-- Pagination items will be dynamically injected here -->
                     </ul>
@@ -1546,45 +1501,49 @@ ul {
             <div class="row gy-4">
                 <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="400">
                     <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                        <span
-                            class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0" style="background-color: #ffffff;"><i
-                                class="ph-fill ph-car-profile" style="Color: #90C309;"></i></span>
+                        <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
+                            style="background-color: #ffffff;"><i class="ph-fill ph-car-profile"
+                                style="Color: #90C309;"></i></span>
                         <div class="">
                             <h6 class="mb-0 text-black">Free Shipping</h6>
-                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over the US</span>
+                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over
+                                the US</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="600">
                     <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                        <span
-                            class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0" style="background-color: #ffffff;"><i
-                                class="ph-fill ph-hand-heart" style="Color: #90C309;"></i></span>
+                        <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
+                            style="background-color: #ffffff;"><i class="ph-fill ph-hand-heart"
+                                style="Color: #90C309;"></i></span>
                         <div class="">
                             <h6 class="mb-0 text-black"> 100% Satisfaction</h6>
-                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over the US</span>
+                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over
+                                the US</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="800">
                     <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                        <span
-                            class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0" style="background-color: #ffffff;"><i
-                                class="ph-fill ph-credit-card" style="Color: #90C309;"></i></span>
+                        <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
+                            style="background-color: #ffffff;"><i class="ph-fill ph-credit-card"
+                                style="Color: #90C309;"></i></span>
                         <div class="">
                             <h6 class="mb-0 text-black"> Secure Payments</h6>
-                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over the US</span>
+                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over
+                                the US</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1000">
                     <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                        <span
-                            class="w-56 h-56 flex-center rounded-circle text-white text-32 flex-shrink-0" style="background-color: #ffffff;"><i
-                                class="ph-fill ph-chats" style="Color: #90C309;"></i></span>
+                        <span class="w-56 h-56 flex-center rounded-circle text-white text-32 flex-shrink-0"
+                            style="background-color: #ffffff;"><i class="ph-fill ph-chats"
+                                style="Color: #90C309;"></i></span>
                         <div class="">
                             <h6 class="mb-0 text-black"> 24/7 Support</h6>
-                            <span class="text-sm text-heading" style="color: #000 !important;">Free shipping all over the US</span>
+                            <span class="text-sm text-heading" style="color: #000 !important;">Free shipping all over
+                                the US</span>
                         </div>
                     </div>
                 </div>
@@ -1592,11 +1551,7 @@ ul {
         </div>
     </section>
     <!-- ========================== Shipping Section End ============================ -->
-
-
-
     <div id="footer"></div>
-
     <script>
         // Fetch the footer dynamically
         fetch('./assets/includes/footer.html') // Go one level up and access includes/
@@ -1606,8 +1561,6 @@ ul {
             })
             .catch(error => console.error('Error loading footer:', error));
     </script>
-
-
     <!-- Jquery js -->
     <script src="assets/js/jquery-3.7.1.min.js"></script>
     <!-- Bootstrap Bundle Js -->
@@ -1632,130 +1585,100 @@ ul {
     <script src="assets/js/vanilla-tilt.min.js"></script>
     <!-- main js -->
     <script src="assets/js/main.js"></script>
-<script>
- 
-// 🔹 Helper function to limit product name words
- 
+    <script>
+        // 🔹 Helper function to limit product name words
+        // 🧠 Limit product name to N words
+        function limitWords(text, wordLimit = 8) {
+            const words = text.trim().split(/\s+/);
+            return words.length <= wordLimit ? text : words.slice(0, wordLimit).join(' ') + '...';
+        }
+        // 🔎 Get URL parameters
+        function getCategoryAndBrandFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('category');
+            const brand = urlParams.get('brand');
+            const searchQuery = urlParams.get('search');
+            if (searchQuery) {
+                fetchFilteredProducts(searchQuery);
+            }
+            return { category, brand };
+        }
+        // 🔍 Fetch products by search
+        async function fetchFilteredProducts(searchQuery) {
+            try {
+                const response = await fetch(`${API_CUSTOMER_URL}/api/products?search=${encodeURIComponent(searchQuery)}`);
+                const data = await response.json();
+                displayProducts(data.products);
+            } catch (error) {
+                console.error('Error fetching filtered products:', error);
+            }
+        }
+        // 💸 Price slider
+        $(async function () {
+            const minPrice = 0;
+            let maxPrice = 50000;
+            const res = await fetch(`${API_CUSTOMER_URL}/api/filters`);
+            const data = await res.json();
+            maxPrice = data.maxPrice;
 
-  // 🧠 Limit product name to N words
-  function limitWords(text, wordLimit = 8) {
-    const words = text.trim().split(/\s+/);
-    return words.length <= wordLimit ? text : words.slice(0, wordLimit).join(' ') + '...';
-  }
+            $("#slider-range").slider({
+                range: true,
+                min: minPrice,
+                max: maxPrice,
+                values: [minPrice, maxPrice],
+                slide: function (event, ui) {
+                    $("#amount").val(`AED ${ui.values[0]} - AED ${ui.values[1]}`);
+                    $("#min-price").val(ui.values[0]);
+                    $("#max-price").val(ui.values[1]);
+                }
+            });
 
- 
+            $("#amount").val(`AED ${minPrice} - AED ${maxPrice}`);
+            $("#min-price").val(minPrice);
+            $("#max-price").val(maxPrice);
+        });
 
-  // 🔎 Get URL parameters
-  function getCategoryAndBrandFromURL() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const category = urlParams.get('category');
-    const brand = urlParams.get('brand');
-    const searchQuery = urlParams.get('search');
+        const priceFilterBtn = document.getElementById('price-filter-btn');
 
-    if (searchQuery) {
-      fetchFilteredProducts(searchQuery);
-    }
+        priceFilterBtn.addEventListener('click', async function () {
+            const minPrice = document.getElementById('min-price').value;
+            const maxPrice = document.getElementById('max-price').value;
 
-    return { category, brand };
-  }
-
-  // 🔍 Fetch products by search
-  async function fetchFilteredProducts(searchQuery) {
-    try {
-      const response = await fetch(`${API_CUSTOMER_URL}/api/products?search=${encodeURIComponent(searchQuery)}`);
-      const data = await response.json();
-      displayProducts(data.products);
-    } catch (error) {
-      console.error('Error fetching filtered products:', error);
-    }
-  }
-
-  // 💸 Price slider
-  $(function () {
-    const minPrice = 0;
-    const maxPrice = 50000;
-
-    $("#slider-range").slider({
-      range: true,
-      min: minPrice,
-      max: maxPrice,
-      values: [minPrice, maxPrice],
-      slide: function (event, ui) {
-        $("#amount").val(`$${ui.values[0]} - $${ui.values[1]}`);
-        $('#min-price').val(ui.values[0]);
-        $('#max-price').val(ui.values[1]);
-      }
-    });
-
-    $("#amount").val(`$${minPrice} - $${maxPrice}`);
-    $('#min-price').val(minPrice);
-    $('#max-price').val(maxPrice);
-
-    $('#min-price, #max-price').on('change', function () {
-      let minVal = parseInt($('#min-price').val()) || minPrice;
-      let maxVal = parseInt($('#max-price').val()) || maxPrice;
-
-      minVal = Math.max(minPrice, Math.min(minVal, maxVal));
-      maxVal = Math.min(maxPrice, Math.max(minVal, maxVal));
-
-      $('#slider-range').slider('values', [minVal, maxVal]);
-      $('#min-price').val(minVal);
-      $('#max-price').val(maxVal);
-      $('#amount').val(`$${minVal} - $${maxVal}`);
-    });
-  });
-
-  // 🧠 Price Filter Button Logic
-  const priceFilterBtn = document.getElementById('price-filter-btn');
-
-  priceFilterBtn.addEventListener('click', async function () {
-    const minPrice = document.getElementById('min-price').value;
-    const maxPrice = document.getElementById('max-price').value;
-
-    if (minPrice && isNaN(minPrice)) {
-      alert('Please enter a valid minimum price');
-      return;
-    }
-    if (maxPrice && isNaN(maxPrice)) {
-      alert('Please enter a valid maximum price');
-      return;
-    }
-
-    try {
-      const productGrid = document.getElementById('product-grid');
-      if (!productGrid) {
-        console.error('❌ product-grid element not found');
-        return;
-      }
-
-      productGrid.innerHTML = '<p>Loading products...</p>';
-
-      let apiUrl = `${API_CUSTOMER_URL}/api/products?`;
-      const params = [];
-      if (minPrice) params.push(`minPrice=${encodeURIComponent(minPrice)}`);
-      if (maxPrice) params.push(`maxPrice=${encodeURIComponent(maxPrice)}`);
-      apiUrl += params.join('&');
-
-      const response = await fetch(apiUrl);
-      if (!response.ok) throw new Error('Failed to fetch products');
-
-      const data = await response.json();
-      const { products, totalCount } = data;
-
-      document.getElementById('product-count').textContent = `Showing 1-${products.length} of ${totalCount} results`;
-      productGrid.innerHTML = '';
-
-      // Render each product card
-      products.forEach((product) => {
-        const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
-
-        const productCard = document.createElement('div');
-        productCard.className = "product-card col-6 col-md-6 col-lg-4 col-xl-3";
-
-        productCard.innerHTML = `
+            if (minPrice && isNaN(minPrice)) {
+                alert('Please enter a valid minimum price');
+                return;
+            }
+            if (maxPrice && isNaN(maxPrice)) {
+                alert('Please enter a valid maximum price');
+                return;
+            }
+            try {
+                const productGrid = document.getElementById('product-grid');
+                if (!productGrid) {
+                    console.error('❌ product-grid element not found');
+                    return;
+                }
+                productGrid.innerHTML = '<p>Loading products...</p>';
+                let apiUrl = `${API_CUSTOMER_URL}/api/products?`;
+                const params = [];
+                if (minPrice) params.push(`minPrice=${encodeURIComponent(minPrice)}`);
+                if (maxPrice) params.push(`maxPrice=${encodeURIComponent(maxPrice)}`);
+                apiUrl += params.join('&');
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error('Failed to fetch products');
+                const data = await response.json();
+                const { products, totalCount } = data;
+                document.getElementById('product-count').textContent = `Showing 1-${products.length} of ${totalCount} results`;
+                productGrid.innerHTML = '';
+                // Render each product card
+                products.forEach((product) => {
+                    const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
+                    const productCard = document.createElement('div');
+                    productCard.className = "product-card col-6 col-md-6 col-lg-4 col-xl-3";
+                    productCard.innerHTML = `
           <div class="card h-100 border border-gray-100 rounded-16 position-relative w-200 h-400" style="min-width: 200px !important;">
             <a href="product-details.html?slug=${product.slug}" class="product-card__thumb d-block position-relative">
-              <img src="${API_CUSTOMER_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
+              <img src="${API_ADMINGRAB_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
             </a>
             <div class="card-body">
                 <div class="mb-2 d-flex justify-content-between">
@@ -1773,71 +1696,58 @@ ul {
             </div>
         </div>
         `;
+                    // 🧩 Add to cart listener
+                    const addToCartBtn = productCard.querySelector('button');
+                    addToCartBtn.addEventListener('click', () => {
+                        handleAddToCart({
+                            id: product.id,
+                            name: product.name,
+                            selling_price: product.selling_price,
+                            image_path: sanitizedImagePath,
+                        });
+                    });
 
-        // 🧩 Add to cart listener
-        const addToCartBtn = productCard.querySelector('button');
-        addToCartBtn.addEventListener('click', () => {
-          handleAddToCart({
-            id: product.id,
-            name: product.name,
-            selling_price: product.selling_price,
-            image_path: sanitizedImagePath,
-          });
+                    productGrid.appendChild(productCard);
+                });
+
+            } catch (error) {
+                console.error('❌ Error fetching products:', error);
+                document.getElementById('product-grid').innerHTML = '<p>Error loading products.</p>';
+            }
         });
-
-        productGrid.appendChild(productCard);
-      });
-
-    } catch (error) {
-      console.error('❌ Error fetching products:', error);
-      document.getElementById('product-grid').innerHTML = '<p>Error loading products.</p>';
-    }
-  });
-
-// Helper function to limit words in product name (if not defined yet)
-function limitWords(str, numWords) {
-    const words = str.split(' ');
-    return words.length > numWords ? words.slice(0, numWords).join(' ') + '...' : str;
-}
-
-
-  
-async function loadProductsByCategoryAndBrand(category, brand, discount) {
-    try {
-        const productGrid = document.getElementById('product-grid');
-        if (!productGrid) {
-            console.error('❌ product-grid element not found');
-            return;
+        // Helper function to limit words in product name (if not defined yet)
+        function limitWords(str, numWords) {
+            const words = str.split(' ');
+            return words.length > numWords ? words.slice(0, numWords).join(' ') + '...' : str;
         }
-
-        productGrid.innerHTML = '<p>Loading products...</p>';
-
-        let apiUrl = `${API_CUSTOMER_URL}/api/products?`;
-        if (category) apiUrl += `category=${encodeURIComponent(category)}&`;
-        if (brand) apiUrl += `brand=${encodeURIComponent(brand)}&`;
-        // if (discount) apiUrl += `discount=${encodeURIComponent(discount)}&`;
-
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error('Failed to fetch products');
-
-        const data = await response.json();
-        const { products, totalCount } = data;
-
-        document.getElementById('product-count').textContent = `Showing 1-${products.length} of ${totalCount} results`;
-        productGrid.innerHTML = '';
-
-       products.forEach((product) => {
-    const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
-
-    // Create product card container div
-    const productCard = document.createElement('div');
-    productCard.className = "product-card col-6 col-md-6 col-lg-4 col-xl-3";
-
-    // Set inner HTML (no inline onclick)
-    productCard.innerHTML = `
+        async function loadProductsByCategoryAndBrand(category, brand, discount) {
+            try {
+                const productGrid = document.getElementById('product-grid');
+                if (!productGrid) {
+                    console.error('❌ product-grid element not found');
+                    return;
+                }
+                productGrid.innerHTML = '<p>Loading products...</p>';
+                let apiUrl = `${API_CUSTOMER_URL}/api/products?`;
+                if (category) apiUrl += `category=${encodeURIComponent(category)}&`;
+                if (brand) apiUrl += `brand=${encodeURIComponent(brand)}&`;
+                // if (discount) apiUrl += `discount=${encodeURIComponent(discount)}&`;
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error('Failed to fetch products');
+                const data = await response.json();
+                const { products, totalCount } = data;
+                document.getElementById('product-count').textContent = `Showing 1-${products.length} of ${totalCount} results`;
+                productGrid.innerHTML = '';
+                products.forEach((product) => {
+                    const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
+                    // Create product card container div
+                    const productCard = document.createElement('div');
+                    productCard.className = "product-card col-6 col-md-6 col-lg-4 col-xl-3";
+                    // Set inner HTML (no inline onclick)
+                    productCard.innerHTML = `
         <div class="card h-100 border border-gray-100 rounded-16 position-relative w-200 h-400" style="min-width: 200px !important;">
             <a href="product-details.html?slug=${product.slug}" class="product-card__thumb d-block position-relative">
-                <img src="${API_CUSTOMER_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
+                <img src="${API_ADMINGRAB_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
             </a>
             <div class="card-body">
                 <div class="mb-2 d-flex justify-content-between">
@@ -1855,237 +1765,254 @@ async function loadProductsByCategoryAndBrand(category, brand, discount) {
             </div>
         </div>
     `;
+                    // Attach event listener to Add To Cart button
+                    const addToCartBtn = productCard.querySelector('button');
+                    addToCartBtn.addEventListener('click', () => {
+                        handleAddToCart({
+                            id: product.id,
+                            name: product.name,
+                            selling_price: product.selling_price,
+                            image_path: sanitizedImagePath,
+                        });
+                    });
 
-    // Attach event listener to Add To Cart button
-    const addToCartBtn = productCard.querySelector('button');
-    addToCartBtn.addEventListener('click', () => {
-        handleAddToCart({
-            id: product.id,
-            name: product.name,
-            selling_price: product.selling_price,
-            image_path: sanitizedImagePath,
-        });
-    });
-
-    productGrid.appendChild(productCard);
-});
-    } catch (error) {
-        console.error('❌ Error fetching products:', error);
-        document.getElementById('product-grid').innerHTML = '<p>Error loading products.</p>';
-    }
-}
-
-
-    async function fetchFilteredProducts(searchQuery) {
-        try {
-            // Make the API call with the search query
-            const response = await fetch(`${API_CUSTOMER_URL}/api/products?search=${encodeURIComponent(searchQuery)}`);
-            const data = await response.json();
-            displayProducts(data.products);
-        } catch (error) {
-            console.error('Error fetching filtered products:', error);
+                    productGrid.appendChild(productCard);
+                });
+            } catch (error) {
+                console.error('❌ Error fetching products:', error);
+                document.getElementById('product-grid').innerHTML = '<p>Error loading products.</p>';
+            }
         }
-    }
-
-    // Function to display the fetched products in the provided card design
-    function displayProducts(products) {
-        const container = document.getElementById('product-grid');
-        container.innerHTML = ''; // Clear any existing content
-
-        if (products.length === 0) {
-            container.innerHTML = '<p>No products found.</p>';
-            return;
+        async function fetchFilteredProducts(searchQuery) {
+            try {
+                // Make the API call with the search query
+                const response = await fetch(`${API_CUSTOMER_URL}/api/products?search=${encodeURIComponent(searchQuery)}`);
+                const data = await response.json();
+                displayProducts(data.products);
+            } catch (error) {
+                console.error('Error fetching filtered products:', error);
+            }
         }
+        // Function to display the fetched products in the provided card design
+        function displayProducts(products, totalCount = null) {
+            const container = document.getElementById('product-grid');
+            const productCountElement = document.getElementById('product-count');
 
-        // Loop through products and create HTML to display them
-        products.forEach(product => {
-            const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
-            const productCardHTML = `
-        <div class="product-card col-6 col-md-6 col-lg-4 col-xl-3 ">
-                <div style="min-width: 100% !important;" class="card h-100 border border-gray-100  rounded-16 position-relative" >
-                     <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
+            // Clear product list
+            container.innerHTML = '';
+
+            // Always show product count
+            const shownCount = products.length;
+            productCountElement.textContent = `Showing 1-${shownCount} of ${totalCount ?? shownCount} results`;
+
+            if (shownCount === 0) {
+                container.innerHTML = '<p>No products found.</p>';
+                return;
+            }
+
+            // Render each product
+            products.forEach(product => {
+                const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
+                const productCardHTML = `
+            <div class="product-card col-6 col-md-6 col-lg-4 col-xl-3">
+                <div class="card h-100 border border-gray-100 rounded-16 position-relative">
                     <a href="product-details.html?slug=${product.slug}" class="product-card__thumb d-block position-relative">
                         <img src="${API_ADMINGRAB_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
                     </a>
-                     <div class="card-body">
-                <div class="mb-2 d-flex justify-content-between">
-                    <span class="badge bg-success">In stock</span>
-                    <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+                    <div class="card-body">
+                        <div class="mb-2 d-flex justify-content-between">
+                            <span class="badge bg-success">In stock</span>
+                            <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+                        </div>
+                        <h6 class="card-title" style="font-size: 14px; color:black;">${limitWords(product.name, 5)}</h6>
+                        <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
+                        <del class="text-muted">${product.selling_price} AED</del>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-block btn-primary fw-medium py-2" style="background-color: #90c309 !important">
+                            Add To Cart
+                        </button>
+                    </div>
                 </div>
-                <h6 class="card-title" style="font-size: 14px; color:black;">${limitWords(product.name, 5)}</h6>
-                <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
-                <del class="text-muted">${product.selling_price} AED</del>
             </div>
-            <div class="card-body">
-                <button class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">
-                    Add To Cart
-                </button>
-            </div>
-        </div>
-    `;
+        `;
+                container.insertAdjacentHTML('beforeend', productCardHTML);
 
-    // Attach event listener to Add To Cart button
-    const addToCartBtn = productCard.querySelector('button');
-    addToCartBtn.addEventListener('click', () => {
-        handleAddToCart({
-            id: product.id,
-            name: product.name,
-            selling_price: product.selling_price,
-            image_path: sanitizedImagePath,
-        });
-    });
-            container.insertAdjacentHTML('beforeend', productCardHTML);
-        });
+                // Add cart listener
+                const addToCartBtn = container.querySelector('.product-card:last-child button');
+                addToCartBtn.addEventListener('click', () => {
+                    handleAddToCart({
+                        id: product.id,
+                        name: product.name,
+                        selling_price: product.selling_price,
+                        image_path: sanitizedImagePath,
+                    });
+                });
+            });
+        }
+        // end functionality for shop cards 
+        async function applyFilters() {
+    const minPrice = document.getElementById('min-price').value || 0;
+    const maxPrice = document.getElementById('max-price').value || 99999;
+    const brand = selectedBrandRadio ? selectedBrandRadio.value : '';
+    const discount = document.querySelector('input[name="discount"]:checked')?.value || '';
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = urlParams.get('category') || '';
+
+    let apiUrl = `${API_CUSTOMER_URL}/api/products?`;
+    if (category) apiUrl += `category=${encodeURIComponent(category)}&`;
+    if (brand) apiUrl += `brand=${encodeURIComponent(brand)}&`;
+    if (minPrice) apiUrl += `minPrice=${minPrice}&`;
+    if (maxPrice) apiUrl += `maxPrice=${maxPrice}&`;
+    if (discount) apiUrl += `discount=${discount}&`;
+
+    try {
+        const response = await fetch(apiUrl);
+        const { products, totalCount } = await response.json();
+        displayProducts(products, totalCount);
+
+    } catch (err) {
+        console.error("❌ Error applying filters:", err);
     }
-    // end functionality for shop cards 
+}
 
-    function addToCart(product) {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const existingProduct = cart.find(item => item.id === product.id);
+        function addToCart(product) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingProduct = cart.find(item => item.id === product.id);
 
-        if (existingProduct) {
-            existingProduct.quantity += 1; // Increment quantity if already in cart
-        } else {
-            cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
+            if (existingProduct) {
+                existingProduct.quantity += 1; // Increment quantity if already in cart
+            } else {
+                cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            // Update the cart item count in localStorage
+            updateCartCount();
+            showSuccessMessage(`${product.name} added to cart.`);
+        }
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, product) => total + product.quantity, 0); // Calculate total quantity
+
+            // Update the cart count in localStorage
+            localStorage.setItem('cartItemCount', totalItems);
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartIcon();
+        });
+        // index.html - Update the cart icon count based on localStorage
+        function updateCartIcon() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
+
+            // This will update *all* elements with class cart-item-count on the page
+            const cartCountElements = document.querySelectorAll('.cart-item-count');
+            cartCountElements.forEach(el => {
+                el.textContent = totalItems;
+            });
+        }
+        function showSuccessMessage(message) {
+            const messageContainer = document.createElement('div');
+            messageContainer.style.position = 'fixed';
+            messageContainer.style.top = '20px';
+            messageContainer.style.right = '20px';
+            messageContainer.style.backgroundColor = 'green';
+            messageContainer.style.color = 'white';
+            messageContainer.style.padding = '10px 20px';
+            messageContainer.style.borderRadius = '5px';
+            messageContainer.style.zIndex = '1000';
+            messageContainer.textContent = message;
+            document.body.appendChild(messageContainer);
+            // Remove the message after 3 seconds
+            setTimeout(() => {
+                document.body.removeChild(messageContainer);
+            }, 3000);
+        }
+        async function loadCategories() {
+            const response = await fetch(`${API_CUSTOMER_URL}/api/product-categories`);
+            const { categories } = await response.json();
+            const container = document.getElementById('left-navigation');
+            container.innerHTML = '';
+            categories.forEach(cat => {
+                container.innerHTML += `
+      <li class="mb-24">
+        <a href="shop.html?category=${encodeURIComponent(cat.name)}" class="text-gray-900 hover-text-main-600">
+          ${cat.name}
+        </a>
+      </li>
+    `;
+            });
         }
 
-        localStorage.setItem('cart', JSON.stringify(cart));
+        loadCategories();
+        let selectedBrandRadio = null;
 
-        // Update the cart item count in localStorage
-        updateCartCount();
+        async function loadBrands() {
+            const response = await fetch(`${API_CUSTOMER_URL}/api/product-brands`);
+            const brands = await response.json();
+            const container = document.getElementById('brand-list');
+            container.innerHTML = '';
 
-        showSuccessMessage(`${product.name} added to cart.`);
-    }
-
-    function updateCartCount() {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const totalItems = cart.reduce((total, product) => total + product.quantity, 0); // Calculate total quantity
-
-        // Update the cart count in localStorage
-        localStorage.setItem('cartItemCount', totalItems);
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-    updateCartIcon();
-});
-
-    // index.html - Update the cart icon count based on localStorage
-    function updateCartIcon() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
-
-    // This will update *all* elements with class cart-item-count on the page
-    const cartCountElements = document.querySelectorAll('.cart-item-count');
-    cartCountElements.forEach(el => {
-        el.textContent = totalItems;
-    });
-}
-
-    function showSuccessMessage(message) {
-        const messageContainer = document.createElement('div');
-        messageContainer.style.position = 'fixed';
-        messageContainer.style.top = '20px';
-        messageContainer.style.right = '20px';
-        messageContainer.style.backgroundColor = 'green';
-        messageContainer.style.color = 'white';
-        messageContainer.style.padding = '10px 20px';
-        messageContainer.style.borderRadius = '5px';
-        messageContainer.style.zIndex = '1000';
-        messageContainer.textContent = message;
-
-        document.body.appendChild(messageContainer);
-
-        // Remove the message after 3 seconds
-        setTimeout(() => {
-            document.body.removeChild(messageContainer);
-        }, 3000);
-    }
-
-     const API_CUSTOMER_URL = "https://websitegrabatoz-production.up.railway.app"; 
-    const API_ADMINGRAB_URL = "https://websitegrabatoz-production.up.railway.app";
-
-  async function loadCategories() {
-
-     function limitWords(text, wordLimit = 5) {
-    const words = text.trim().split(/\s+/);
-    return words.length <= wordLimit ? text : words.slice(0, wordLimit).join(' ') + '...';
-  }
-    try {
-      const response = await fetch(`${API_CUSTOMER_URL}/api/product-counts`);
-      if (!response.ok) throw new Error('Failed to fetch product counts');
-
-      const data = await response.json();
-      const categoryCounts = data.categoryCounts || [];
-
-      const categories = [
-        { name: 'Networking' },
-        { name: 'Accessories' },
-        { name: 'All In One' },
-        { name: 'Cables' },
-        { name: 'Desktop' },
-        { name: 'Keyboard' },
-        { name: 'Laptops' },
-        { name: 'Mobiles' },
-        { name: 'Monitors' },
-        { name: 'Mouse' },
-        { name: 'Printers & Copier' },
-        { name: 'Projector' },
-       
-        
-      ];
-
-      const featureItemWrapper = document.getElementById('left-navigation');
-      featureItemWrapper.innerHTML = '';
-
-      categories.forEach((category, index) => {
-        const categoryCount = categoryCounts.find(item => item.category === category.name);
-        const productCount = categoryCount ? categoryCount.product_count : 0;
-
-        const featureItemHTML = `
-          <li class="mb-24" data-aos-duration="${(index + 1) * 400}">
-            <a href="shop.html?category=${encodeURIComponent(category.name)}" class="text-gray-900 hover-text-main-600">
-              ${category.name} (${productCount})
-            </a>
-          </li>
+            brands.forEach((brand, i) => {
+                container.innerHTML += `
+            <li class="mb-24">
+                <div class="form-check common-check common-radio">
+                    <input class="form-check-input brand-radio" type="radio" name="brand" id="brand${i}" value="${brand.name}">
+                    <label class="form-check-label" for="brand${i}" style="color: #000;">${brand.name}</label>
+                </div>
+            </li>
         `;
+            });
 
-        featureItemWrapper.innerHTML += featureItemHTML;
-      });
-    } catch (error) {
-      console.error('❌ Error fetching category counts:', error);
-    }
-  }
+            // 🧠 Toggle radio like discount
+            document.querySelectorAll('.brand-radio').forEach(radio => {
+                radio.addEventListener('click', function () {
+                    if (selectedBrandRadio === this) {
+                        this.checked = false;
+                        selectedBrandRadio = null;
+                        applyFilters(); // Clear brand filter
+                        return;
+                    }
 
-  // Call on page load
-  loadCategories();
-
-// Pagination setup (no change)
-function setupPagination(totalPages) {
-    const paginationContainer = document.getElementById('pagination-container');
-    paginationContainer.innerHTML = ''; // Clear previous pagination
-
-    for (let i = 1; i <= totalPages; i++) {
-        const pageButton = document.createElement('button');
-        pageButton.classList.add('pagination-btn');
-        pageButton.textContent = i;
-        pageButton.onclick = () => loadPage(i);
-        paginationContainer.appendChild(pageButton);
-    }
-}
+                    selectedBrandRadio = this;
+                    applyFilters(); // Apply selected brand
+                });
+            });
+        }
+        document.querySelectorAll('input[name="discount"]').forEach(radio => {
+            radio.addEventListener('change', () => applyFilters());
+        });
 
 
-    // Function to load a specific page of products
-    async function loadPage(pageNumber) {
-        const category = getCategoryFromURL();
-        const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=${category}&page=${pageNumber}`);
-        const data = await response.json();
-        const products = data.products;
-        const totalCount = data.totalCount;
+        document.getElementById('price-filter-btn').addEventListener('click', () => {
+            applyFilters();
+        });
 
-        document.getElementById('product-grid').innerHTML = '';
-        products.forEach(product => {
-            // Re-use the product card HTML generation from earlier
-            const productCardHTML = `
+        // Pagination setup (no change)
+        function setupPagination(totalPages) {
+            const paginationContainer = document.getElementById('pagination-container');
+            paginationContainer.innerHTML = ''; // Clear previous pagination
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.classList.add('pagination-btn');
+                pageButton.textContent = i;
+                pageButton.onclick = () => loadPage(i);
+                paginationContainer.appendChild(pageButton);
+            }
+        }
+        // Function to load a specific page of products
+        async function loadPage(pageNumber) {
+            const category = getCategoryFromURL();
+            const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=${category}&page=${pageNumber}`);
+            const data = await response.json();
+            const products = data.products;
+            const totalCount = data.totalCount;
+            document.getElementById('product-grid').innerHTML = '';
+            products.forEach(product => {
+                // Re-use the product card HTML generation from earlier
+                const productCardHTML = `
         <div class="product-card col-6 col-md-6 col-lg-4 col-xl-3 ">
                 <div style="min-width: 100% !important;" class="card h-100 border border-gray-100  rounded-16 position-relative" >
                      <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
@@ -2108,54 +2035,45 @@ function setupPagination(totalPages) {
             </div>
         </div>
     `;
-            document.getElementById('product-grid').innerHTML += productCardHTML;
-        });
-    }
+                document.getElementById('product-grid').innerHTML += productCardHTML;
+            });
+        }
 
-    // Event listener for brand filter
-    
-    let selectedRadio = null;
-
-    const brandFilterRadios = document.querySelectorAll('input[name="color"]');
-
-    brandFilterRadios.forEach((radio) => {
-        radio.addEventListener('click', async function (e) {
-            if (selectedRadio === this) {
-                this.checked = false;
-                selectedRadio = null;
-
-                // 🔁 Load all products if unselected
-                await loadProductsByCategoryAndBrand('', '');
-                return;
-            } else {
-                selectedRadio = this;
-            }
-
-            const selectedBrand = this.nextElementSibling.textContent.trim();
-
-            try {
-                const productGrid = document.getElementById('product-grid');
-                if (!productGrid) {
-                    console.error('❌ product-grid element not found');
+        // Event listener for brand filter
+        let selectedRadio = null;
+        const brandFilterRadios = document.querySelectorAll('input[name="color"]');
+        brandFilterRadios.forEach((radio) => {
+            radio.addEventListener('click', async function (e) {
+                if (selectedRadio === this) {
+                    this.checked = false;
+                    selectedRadio = null;
+                    // 🔁 Load all products if unselected
+                    await loadProductsByCategoryAndBrand('', '');
                     return;
+                } else {
+                    selectedRadio = this;
                 }
+                const selectedBrand = this.nextElementSibling.textContent.trim();
+                try {
+                    const productGrid = document.getElementById('product-grid');
+                    if (!productGrid) {
+                        console.error('❌ product-grid element not found');
+                        return;
+                    }
+                    productGrid.innerHTML = '<p>Loading products...</p>';
+                    let apiUrl = `${API_CUSTOMER_URL}/api/products?brand=${encodeURIComponent(selectedBrand)}`;
+                    const response = await fetch(apiUrl);
+                    if (!response.ok) throw new Error('Failed to fetch products');
 
-                productGrid.innerHTML = '<p>Loading products...</p>';
+                    const data = await response.json();
+                    const { products, totalCount } = data;
 
-                let apiUrl = `${API_CUSTOMER_URL}/api/products?brand=${encodeURIComponent(selectedBrand)}`;
+                    document.getElementById('product-count').textContent = `Showing 1-${products.length} of ${totalCount} results`;
+                    productGrid.innerHTML = '';
 
-                const response = await fetch(apiUrl);
-                if (!response.ok) throw new Error('Failed to fetch products');
-
-                const data = await response.json();
-                const { products, totalCount } = data;
-
-                document.getElementById('product-count').textContent = `Showing 1-${products.length} of ${totalCount} results`;
-                productGrid.innerHTML = '';
-
-                products.forEach((product) => {
-                    const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
-                    const productCardHTML = `
+                    products.forEach((product) => {
+                        const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
+                        const productCardHTML = `
                         <div class="product-card col-6 col-md-6 col-lg-4 col-xl-3">
                             <div style="min-width: 100% !important;" class="card h-100 border border-gray-100 rounded-16 position-relative">
                                 <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
@@ -2178,129 +2096,111 @@ function setupPagination(totalPages) {
                                 </div>
                             </div>
                         </div>`;
-                    productGrid.innerHTML += productCardHTML;
-                });
-            } catch (error) {
-                console.error('❌ Error fetching products:', error);
-                document.getElementById('product-grid').innerHTML = '<p>Error loading products.</p>';
-            }
+                        productGrid.innerHTML += productCardHTML;
+                    });
+                } catch (error) {
+                    console.error('❌ Error fetching products:', error);
+                    document.getElementById('product-grid').innerHTML = '<p>Error loading products.</p>';
+                }
+            });
         });
-    });
 
-    window.onload = function () {
-        const { category, brand } = getCategoryAndBrandFromURL();
-        if (category || brand) {
-            loadProductsByCategoryAndBrand(category, brand);
-        } else {
-            loadProductsByCategoryAndBrand('', '');
-        }
-    };
-</script>
+        window.onload = function () {
+            loadCategories();
+            loadBrands();
+            applyFilters(); // Initial load
+        };
 
-   
+    </script>
+    </script>
 
+    </script>
 
-</script>
-   
-      </script>
-      <script src="./apiConfig/apiConfig.js"></script>
-      <script>
-        fetch('./topHeader.html')
-          .then(response => response.text())
-          .then(data => {
-            document.getElementById('top-header').innerHTML = data;
-          })
-          .catch(error => console.error('Error loading header:', error));
-      </script>
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-  const dropdown = document.getElementById("dropdown");
-  const selected = dropdown.querySelector(".dropdown-selected");
-  const options = dropdown.querySelectorAll(".dropdown-list div");
-
-  selected.addEventListener("click", () => {
-    dropdown.classList.toggle("open");
-  });
-
-  options.forEach(option => {
-    option.addEventListener("click", () => {
-      selected.textContent = option.textContent;
-      dropdown.classList.remove("open");
-    });
-  });
-
-  // Close dropdown if clicked outside
-  document.addEventListener("click", (e) => {
-    if (!dropdown.contains(e.target)) {
-      dropdown.classList.remove("open");
-    }
-  });
-});
-
-      </script>
     <script>
-function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  const menuBtn = document.querySelector('.menu-open-btn');
+        fetch('./topHeader.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('top-header').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const dropdown = document.getElementById("dropdown");
+            const selected = dropdown.querySelector(".dropdown-selected");
+            const options = dropdown.querySelectorAll(".dropdown-list div");
 
-  if (sidebar.classList.contains('open')) {
-    sidebar.classList.remove('open');
-    menuBtn.style.display = 'block';
-  } else {
-    sidebar.classList.add('open');
-    menuBtn.style.display = 'none';
-  }
-}
-</script>
+            selected.addEventListener("click", () => {
+                dropdown.classList.toggle("open");
+            });
 
+            options.forEach(option => {
+                option.addEventListener("click", () => {
+                    selected.textContent = option.textContent;
+                    dropdown.classList.remove("open");
+                });
+            });
 
-<script>
-  // Toggle wishlist
-  function toggleWishlist(product) {
-    const heartIcon = document.getElementById('heart-icon');
-    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-    const index = wishlist.findIndex(p => p.id === product.id);
+            // Close dropdown if clicked outside
+            document.addEventListener("click", (e) => {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove("open");
+                }
+            });
+        });
+    </script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const menuBtn = document.querySelector('.menu-open-btn');
 
-    if (index === -1) {
-        wishlist.push(product);
-        localStorage.setItem('wishlist', JSON.stringify(wishlist));
-        heartIcon.style.color = 'red';
-        showSuccessMessage("Added to wishlist!");
-    } else {
-        wishlist.splice(index, 1);
-        localStorage.setItem('wishlist', JSON.stringify(wishlist));
-        heartIcon.style.color = '';
-        showSuccessMessage("Removed from wishlist!");
-    }
+            if (sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+                menuBtn.style.display = 'block';
+            } else {
+                sidebar.classList.add('open');
+                menuBtn.style.display = 'none';
+            }
+        }
+    </script>
+    <script>
+        // Toggle wishlist
+        function toggleWishlist(product) {
+            const heartIcon = document.getElementById('heart-icon');
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const index = wishlist.findIndex(p => p.id === product.id);
 
-    updateWishlistBadge();
-}
+            if (index === -1) {
+                wishlist.push(product);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                heartIcon.style.color = 'red';
+                showSuccessMessage("Added to wishlist!");
+            } else {
+                wishlist.splice(index, 1);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                heartIcon.style.color = '';
+                showSuccessMessage("Removed from wishlist!");
+            }
 
-
-  // Update badge in header
-function updateWishlistBadge() {
-    const count = (JSON.parse(localStorage.getItem('wishlist')) || []).length;
-    const badge = document.getElementById('wishlist-item-count'); // Make sure this exists in header
-    if (badge) badge.textContent = count;
-}
-
-  // Display message
-  function showSuccessMessage(msg) {
-    const box = document.createElement('div');
-    box.style.cssText = 'position:fixed;top:20px;right:20px;background:green;color:white;padding:10px;border-radius:5px;z-index:1000';
-    box.innerText = msg;
-    document.body.appendChild(box);
-    setTimeout(() => box.remove(), 3000);
-  }
-
-  // Call on page load
-  document.addEventListener('DOMContentLoaded', updateWishlistBadge);
-</script>
-
-   
-
-
-
+            updateWishlistBadge();
+        }
+        // Update badge in header
+        function updateWishlistBadge() {
+            const count = (JSON.parse(localStorage.getItem('wishlist')) || []).length;
+            const badge = document.getElementById('wishlist-item-count'); // Make sure this exists in header
+            if (badge) badge.textContent = count;
+        }
+        // Display message
+        function showSuccessMessage(msg) {
+            const box = document.createElement('div');
+            box.style.cssText = 'position:fixed;top:20px;right:20px;background:green;color:white;padding:10px;border-radius:5px;z-index:1000';
+            box.innerText = msg;
+            document.body.appendChild(box);
+            setTimeout(() => box.remove(), 3000);
+        }
+        // Call on page load
+        document.addEventListener('DOMContentLoaded', updateWishlistBadge);
+    </script>
 </body>
 
 </html>
