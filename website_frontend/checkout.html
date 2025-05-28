@@ -8,7 +8,7 @@
     <!-- Title -->
     <title> Graba2z- E-commerce website</title>
     <!-- Favicon -->
-   <link rel="shortcut icon" href="assets/images/icon/favicon.png">
+    <link rel="shortcut icon" href="assets/images/icon/favicon.png">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/footer.css" />
     <!-- Bootstrap -->
@@ -393,10 +393,10 @@
                                 <i class="ph ph-magnifying-glass"></i>
                             </span>
                         </button>
-                         <a href="wishlist.html" class="flex-align gap-4 item-hover">
+                        <a href="wishlist.html" class="flex-align gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
                                 <i class="ph ph-heart"></i>
-                                <span id="wishlist-item-count"  class="wishlist-item-count">0</span>
+                                <span id="wishlist-item-count" class="wishlist-item-count">0</span>
                             </span>
                             <span class="text-md text-gray-500 item-hover__text d-none d-lg-flex">Wishlist</span>
                         </a>
@@ -1312,12 +1312,61 @@
     </script>
 
     <script>
-    const shippingInfo = JSON.parse(localStorage.getItem('shippingInfo'));
+        const shippingInfo = JSON.parse(localStorage.getItem('shippingInfo'));
         // Proceed to payment handler
         $("#proceedToPayment").click(function () {
             // Add payment processing logic here
             alert("Proceeding to payment...");
         });
+        // $(document).ready(function () {
+        //     // Display shipping address
+        //     const shippingInfo = JSON.parse(localStorage.getItem('shippingInfo'));
+        //     if (shippingInfo && shippingInfo.shippingAddress) {
+        //         const addr = shippingInfo.shippingAddress;
+        //         const addressString = `${addr.address}, ${addr.city}, ${addr.state}, ${addr.country} - ${addr.zipCode}`;
+        //         $('#summaryShippingAddress').text(addressString);
+        //     }
+        //     // Display cart items
+        //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        //     const cartItemsContainer = $('#cartItemsContainer');
+        //     let subtotal = 0;
+
+        //     if (cart.length === 0) {
+        //         cartItemsContainer.html("<p class='text-muted'>Your cart is empty.</p>");
+        //     } else {
+        //         cartItemsContainer.empty();
+        //         cart.forEach(item => {
+        //             const itemTotal = item.selling_price * item.quantity;
+        //             subtotal += itemTotal;
+
+        //             cartItemsContainer.append(`
+        //         <div class="d-flex align-items-center mb-3">
+        //             <img src="${item.image_path}" 
+        //                  class="me-3 rounded" 
+        //                  width="50" 
+        //                  alt="${item.name}">
+        //             <div>
+        //                 <p class="mb-0 fw-bold">${item.name}</p>
+        //                 <small>Qty: ${item.quantity}</small>
+        //                 <p class="mb-0 fw-bold text-danger">AED ${itemTotal.toFixed(2)}</p>
+        //             </div>
+        //         </div>
+        //     `);
+        //         });
+        //     }
+        //     // Update totals
+        //     const shippingCost = 0; // AED 10 fixed shipping cost
+        //     const total = subtotal + shippingCost;
+        //     $('#cartSubtotal').text(`AED ${subtotal.toFixed(2)}`);
+        //     $('#shippingCost').text(`AED ${shippingCost.toFixed(2)}`);
+        //     $('#totalAmount').text(`AED ${total.toFixed(2)}`);
+        //     // Proceed to payment handler
+        //     $('#proceedToPayment').click(function () {
+        //         // Add your payment processing logic here
+        //         window.location.href = 'order-payment.html';
+        //     });
+        // });
+
         $(document).ready(function () {
             // Display shipping address
             const shippingInfo = JSON.parse(localStorage.getItem('shippingInfo'));
@@ -1326,7 +1375,7 @@
                 const addressString = `${addr.address}, ${addr.city}, ${addr.state}, ${addr.country} - ${addr.zipCode}`;
                 $('#summaryShippingAddress').text(addressString);
             }
-            // Display cart items
+
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
             const cartItemsContainer = $('#cartItemsContainer');
             let subtotal = 0;
@@ -1340,32 +1389,47 @@
                     subtotal += itemTotal;
 
                     cartItemsContainer.append(`
-                <div class="d-flex align-items-center mb-3">
-                    <img src="${item.image_path}" 
-                         class="me-3 rounded" 
-                         width="50" 
-                         alt="${item.name}">
-                    <div>
-                        <p class="mb-0 fw-bold">${item.name}</p>
-                        <small>Qty: ${item.quantity}</small>
-                        <p class="mb-0 fw-bold text-danger">AED ${itemTotal.toFixed(2)}</p>
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="${item.image_path}" class="me-3 rounded" width="50" alt="${item.name}">
+                        <div>
+                            <p class="mb-0 fw-bold">${item.name}</p>
+                            <small>Qty: ${item.quantity}</small>
+                            <p class="mb-0 fw-bold text-danger">AED ${itemTotal.toFixed(2)}</p>
+                        </div>
                     </div>
-                </div>
-            `);
+                `);
                 });
             }
+
+            // ✅ Show discount if coupon is applied
+            const appliedCoupon = JSON.parse(localStorage.getItem('appliedCoupon'));
+            const discountAmount = appliedCoupon ? parseFloat(appliedCoupon.discountAmount || 0) : 0;
+
+            const shippingCost = 0;
+            const total = subtotal + shippingCost - discountAmount;
+
             // Update totals
-            const shippingCost = 0; // AED 10 fixed shipping cost
-            const total = subtotal + shippingCost;
             $('#cartSubtotal').text(`AED ${subtotal.toFixed(2)}`);
             $('#shippingCost').text(`AED ${shippingCost.toFixed(2)}`);
             $('#totalAmount').text(`AED ${total.toFixed(2)}`);
-            // Proceed to payment handler
+
+            // 👇 Append discount row to summary card
+            if (discountAmount > 0) {
+                $('.card .p-3').append(`
+                <div class="mb-3 d-flex justify-content-between">
+                    <span class="text-success">Discount</span>
+                    <span class="text-success">- AED ${discountAmount.toFixed(2)}</span>
+                </div>
+            `);
+            }
+
+            // ✅ You can also send the discount to the next page or backend
             $('#proceedToPayment').click(function () {
-                // Add your payment processing logic here
+                localStorage.setItem('checkoutDiscount', discountAmount);
                 window.location.href = 'order-payment.html';
             });
         });
+
     </script>
 
 

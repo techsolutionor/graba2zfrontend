@@ -1,205 +1,204 @@
 <!DOCTYPE html>
 <html lang="en" class="">
-    <style>
-        .cart-item {
-  background-color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+<style>
+    .cart-item {
+        background-color: white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
 
-.cart-item-header {
-  font-size: 25px;
-  color: gray;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
+    .cart-item-header {
+        font-size: 25px;
+        color: gray;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
 
-.cart-item-body {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
+    .cart-item-body {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
 
-.cart-item-image {
-  width: 87px;
-  height: 87px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  object-fit: cover;
-}
+    .cart-item-image {
+        width: 87px;
+        height: 87px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        object-fit: cover;
+    }
 
-.cart-item-info h3 {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0 0 4px 0;
-}
+    .cart-item-info h3 {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0 0 4px 0;
+    }
 
-.price-group {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  margin-bottom: 5px;
-}
+    .price-group {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 5px;
+    }
 
-.price-original {
-  text-decoration: line-through;
-  font-size: 13px;
-  color: #999;
-}
+    .price-original {
+        text-decoration: line-through;
+        font-size: 13px;
+        color: #999;
+    }
 
-.price-discount {
-  color: red;
-  font-weight: bold;
-  font-size: 16px;
-}
+    .price-discount {
+        color: red;
+        font-weight: bold;
+        font-size: 16px;
+    }
 
-.quantity-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 8px;
-}
+    .quantity-group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 8px;
+    }
 
-.quantity-group button,
-.quantity-group input {
-  width: 36px;
-  height: 36px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
+    .quantity-group button,
+    .quantity-group input {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
 
-.quantity-group input {
-  text-align: center;
-  background-color: #fff;
-}
+    .quantity-group input {
+        text-align: center;
+        background-color: #fff;
+    }
 
-.quantity-group button {
-  background-color: #f0f0f0;
-  cursor: pointer;
-}
+    .quantity-group button {
+        background-color: #f0f0f0;
+        cursor: pointer;
+    }
 
-.cart-subtotal {
-  margin-left: auto;
-  text-align: right;
-}
+    .cart-subtotal {
+        margin-left: auto;
+        text-align: right;
+    }
 
-.cart-subtotal p {
-  margin: 0;
-  font-size: 14px;
-  color: gray;
-}
+    .cart-subtotal p {
+        margin: 0;
+        font-size: 14px;
+        color: gray;
+    }
 
-.cart-subtotal p:last-child {
-  font-size: 16px;
-  font-weight: bold;
-  color: black;
-}
+    .cart-subtotal p:last-child {
+        font-size: 16px;
+        font-weight: bold;
+        color: black;
+    }
 
-.cart-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+    .cart-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-.cart-footer label {
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-}
+    .cart-footer label {
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        cursor: pointer;
+    }
 
-.cart-footer button {
-  color: red;
-  background: none;
-  border: none;
-  font-size: 25px;
-  cursor: pointer;
-}
+    .cart-footer button {
+        color: red;
+        background: none;
+        border: none;
+        font-size: 25px;
+        cursor: pointer;
+    }
 
-/* 🌐 Responsive Styling */
-@media (max-width: 768px) {
-  .cart-item-body {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+    /* 🌐 Responsive Styling */
+    @media (max-width: 768px) {
+        .cart-item-body {
+            flex-direction: column;
+            align-items: flex-start;
+        }
 
-  .cart-subtotal {
-    margin-left: 0;
-    margin-top: 8px;
-    text-align: left;
-  }
-}
+        .cart-subtotal {
+            margin-left: 0;
+            margin-top: 8px;
+            text-align: left;
+        }
+    }
 
-@media (max-width: 580px) {
-  .cart-item-image {
-    width: 64px;
-    height: 64px;
-  }
+    @media (max-width: 580px) {
+        .cart-item-image {
+            width: 64px;
+            height: 64px;
+        }
 
-  .price-discount {
-    font-size: 14px;
-  }
+        .price-discount {
+            font-size: 14px;
+        }
 
-  .cart-subtotal p {
-    font-size: 13px;
-  }
+        .cart-subtotal p {
+            font-size: 13px;
+        }
 
-  .cart-subtotal p:last-child {
-    font-size: 14px;
-  }
+        .cart-subtotal p:last-child {
+            font-size: 14px;
+        }
 
-  .quantity-group button,
-  .quantity-group input {
-    width: 32px;
-    height: 32px;
-    font-size: 14px;
-    
-  }
+        .quantity-group button,
+        .quantity-group input {
+            width: 32px;
+            height: 32px;
+            font-size: 14px;
 
-  .cart-footer {
-    display: flex;
-  justify-content: space-between;
-  align-items: center;
-  }
-  .quantity-group{
-     display: flex;
-  justify-content: space-around ;
-  align-items: center;
-  }
-}
+        }
 
-/* cros button aside bar */
-/* Close (X) Button inside Sidebar */
-.sidebar-close-btn {
-  display: none;
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 24px;
-  background: transparent;
-  border: none;
-  color: rgb(255, 0, 0);
-  z-index: 1001;
-  cursor: pointer;
-}
+        .cart-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-/* Show the close button only when sidebar is open on mobile/tablet */
-@media (max-width: 1024px) {
-  .sidebar.open .sidebar-close-btn {
-    display: block;
-  }
-}
+        .quantity-group {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+    }
 
+    /* cros button aside bar */
+    /* Close (X) Button inside Sidebar */
+    .sidebar-close-btn {
+        display: none;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 24px;
+        background: transparent;
+        border: none;
+        color: rgb(255, 0, 0);
+        z-index: 1001;
+        cursor: pointer;
+    }
 
-    </style>
+    /* Show the close button only when sidebar is open on mobile/tablet */
+    @media (max-width: 1024px) {
+        .sidebar.open .sidebar-close-btn {
+            display: block;
+        }
+    }
+</style>
 
 <head>
     <meta charset="UTF-8">
@@ -322,42 +321,43 @@
         /* Custom Dropdown Styles */
 
         /* cart circle css start  */
-       .cart-item-count {
-        min-width: 24px;
-        height: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        font-size: 12px;
-        color: #fff;
-        background-color: #86c232;
-        position: absolute;
-        top: -12px;
-        right: -11px;
-        padding: 0 6px; /* Extra space for 2-3 digit numbers */
-        font-weight: bold;
-        white-space: nowrap;
-    }
+        .cart-item-count {
+            min-width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 12px;
+            color: #fff;
+            background-color: #86c232;
+            position: absolute;
+            top: -12px;
+            right: -11px;
+            padding: 0 6px;
+            /* Extra space for 2-3 digit numbers */
+            font-weight: bold;
+            white-space: nowrap;
+        }
 
-    /* whislist circle css start  */
-    .wishlist-item-count {
-        min-width: 24px;
-        height: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        font-size: 12px;
-        color: #fff;
-        background-color: #86c232;
-        position: absolute;
-        top: -12px;
-        right: -11px;
-        padding: 0 6px;
-        font-weight: bold;
-        white-space: nowrap;
-    }
+        /* whislist circle css start  */
+        .wishlist-item-count {
+            min-width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 12px;
+            color: #fff;
+            background-color: #86c232;
+            position: absolute;
+            top: -12px;
+            right: -11px;
+            padding: 0 6px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
     </style>
 </head>
 
@@ -403,16 +403,16 @@
                                 <i class="ph ph-magnifying-glass"></i>
                             </span>
                         </button>
-                     <!-- In your header -->
-<a href="wishlist.html" class="flex-align gap-4 item-hover">
+                        <!-- In your header -->
+                        <a href="wishlist.html" class="flex-align gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
                                 <i class="ph ph-heart"></i>
-                                <span id="wishlist-item-count"  class="wishlist-item-count">0</span>
+                                <span id="wishlist-item-count" class="wishlist-item-count">0</span>
                             </span>
                             <span class="text-md text-gray-500 item-hover__text d-none d-lg-flex">Wishlist</span>
                         </a>
 
-                       <a href="cart.html" class="flex-align gap-4 item-hover">
+                        <a href="cart.html" class="flex-align gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
                                 <i class="ph ph-shopping-cart-simple"></i>
                                 <span class="cart-item-count">0</span>
@@ -427,11 +427,11 @@
                 </nav>
         </div>
         <!-- ===================mobile responsive design ==============================  -->
-            <div class="menu-btn" onclick="toggleSidebar()">☰</div>
-       <div id="sidebar" class="sidebar">
-  <button class="sidebar-close-btn" onclick="toggleSidebar()">✖</button>
-  <div class="sidebar-inner">
-    <ul>
+        <div class="menu-btn" onclick="toggleSidebar()">☰</div>
+        <div id="sidebar" class="sidebar">
+            <button class="sidebar-close-btn" onclick="toggleSidebar()">✖</button>
+            <div class="sidebar-inner">
+                <ul>
 
                     <a href="shop.html?category=Desktops&brand=Lenovo">Lenovo Desktops </a>
                     </li>
@@ -1367,13 +1367,13 @@
 
 
                         <div class="flex-between flex-wrap gap-16 mt-16">
-                          
+
 
                             <button onclick="clearCart()" class="btn btn-warning " id="cart">Clear Cart</button>
                         </div>
                     </div>
                 </div>
-                
+
 
                 <div class="col-xl-3 col-lg-4">
                     <div class="cart-sidebar border border-gray-100 rounded-8 px-4 py-4"
@@ -1543,41 +1543,41 @@
     <script src="assets/js/main.js"></script>
 
     <script>
-    function limitWords(text, wordLimit) {
-  const words = text.trim().split(/\s+/);
-  return words.slice(0, wordLimit).join(" ") + (words.length > wordLimit ? "..." : "");
-}
+        function limitWords(text, wordLimit) {
+            const words = text.trim().split(/\s+/);
+            return words.slice(0, wordLimit).join(" ") + (words.length > wordLimit ? "..." : "");
+        }
 
-function getResponsiveWordLimit() {
-  const width = window.innerWidth;
-  return width <= 768 ? 5 : 15; // 5 words for mobile/tablet, 15 for desktop
-}
+        function getResponsiveWordLimit() {
+            const width = window.innerWidth;
+            return width <= 768 ? 5 : 15; // 5 words for mobile/tablet, 15 for desktop
+        }
 
-document.getElementById('search-form').addEventListener('submit', (event) => {
-  event.preventDefault();
-  const searchQuery = document.getElementById('search-input').value.trim();
-  window.location.href = `shop.html?search=${encodeURIComponent(searchQuery)}`;
-});
+        document.getElementById('search-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const searchQuery = document.getElementById('search-input').value.trim();
+            window.location.href = `shop.html?search=${encodeURIComponent(searchQuery)}`;
+        });
 
-function loadCart() {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  const container = document.getElementById('cart-items-container');
-  container.innerHTML = '';
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const container = document.getElementById('cart-items-container');
+            container.innerHTML = '';
 
-  if (cart.length === 0) {
-    container.innerHTML = '<div style="text-align: center; color: gray; padding: 24px;">Your cart is empty.</div>';
-    updateCartTotals();
-    updateCartCount();
-    return;
-  }
+            if (cart.length === 0) {
+                container.innerHTML = '<div style="text-align: center; color: gray; padding: 24px;">Your cart is empty.</div>';
+                updateCartTotals();
+                updateCartCount();
+                return;
+            }
 
-  const wordLimit = getResponsiveWordLimit();
+            const wordLimit = getResponsiveWordLimit();
 
-  cart.forEach(product => {
-    const price = product.offer_price ? parseFloat(product.offer_price) : parseFloat(product.selling_price);
-    const subtotal = price * product.quantity;
+            cart.forEach(product => {
+                const price = product.offer_price ? parseFloat(product.offer_price) : parseFloat(product.selling_price);
+                const subtotal = price * product.quantity;
 
-    container.insertAdjacentHTML('beforeend', `
+                container.insertAdjacentHTML('beforeend', `
       <div class="cart-item">
         <div class="cart-item-header">
         </div>
@@ -1609,144 +1609,181 @@ function loadCart() {
         </div>
       </div>
     `);
-  });
+            });
 
-  updateCartTotals();
-  updateCartCount();
-}
+            updateCartTotals();
+            updateCartCount();
+        }
 
-// Optional: reload cart content on resize to apply updated word limit
-window.addEventListener('resize', () => {
-  loadCart();
-});
-
-    function updateQuantity(productId, change) {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        let updatedCart = cart.map(product => {
-            if (product.id === productId) {
-                let newQuantity = product.quantity + change;
-                if (newQuantity < 1) newQuantity = 1;
-                return { ...product, quantity: newQuantity };
-            }
-            return product;
+        // Optional: reload cart content on resize to apply updated word limit
+        window.addEventListener('resize', () => {
+            loadCart();
         });
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
-        loadCart();
-        updateCartCount();
-    }
 
-    function removeFromCart(productId) {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart = cart.filter(product => product.id !== productId);
-        localStorage.setItem('cart', JSON.stringify(cart));
-        loadCart();
-        updateCartCount();
-    }
-
-    function clearCart() {
-        localStorage.removeItem('cart');
-        loadCart();
-        updateCartCount();
-    }
-
-   function updateCartTotals() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let subtotal = 0;
-    let savings = 0;
-    let shippingCost = 0;
-
-    cart.forEach(product => {
-        const originalPrice = parseFloat(product.selling_price);
-        const offerPrice = product.offer_price ? parseFloat(product.offer_price) : originalPrice;
-        const quantity = product.quantity;
-        subtotal += offerPrice * quantity;
-        savings += (originalPrice - offerPrice) * quantity;
-    });
-
-    if (cart.length === 0) {
-        shippingCost = 0;
-        document.querySelector('.text-danger.small').textContent = "Your cart is empty";
-    } else if (subtotal >= 500) {
-        shippingCost = 0;
-        document.querySelector('.text-danger.small').textContent = "🎉 Congratulations! Free shipping applied!";
-    } else {
-        document.querySelector('.text-danger.small').textContent = "Purchase for AED 500 or more to enable free shipping";
-    }
-
-    let discountFromCoupon = 0;
-    const appliedCoupon = JSON.parse(localStorage.getItem('appliedCoupon'));
-if (appliedCoupon) {
-    discountFromCoupon = parseFloat(appliedCoupon.discountAmount || 0);
-    document.getElementById('coupon-discount-amount').textContent = `- AED ${discountFromCoupon.toFixed(2)}`;
-    document.getElementById('coupon-code-text').textContent = appliedCoupon.code;
-    document.getElementById('applied-coupon').classList.remove('d-none');
-} else {
-    document.getElementById('applied-coupon').classList.add('d-none');
-}
-
-    let total = subtotal + shippingCost - savings - discountFromCoupon;
-
-    document.getElementById('cart-subtotal').textContent = `AED ${subtotal.toFixed(2)}`;
-    document.getElementById('cart-total').textContent = `AED ${total.toFixed(2)}`;
-    document.getElementById("shipping-cost").textContent = `AED ${shippingCost.toFixed(2)}`;
-    document.getElementById("savings-amount").textContent = `- AED ${savings.toFixed(2)}`;
-}
-
-
-
-    function updateCartCount() {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const totalItems = cart.reduce((total, product) => total + (product.quantity || 0), 0);
-        localStorage.setItem('cartItemCount', totalItems);
-
-        const countElement = document.querySelector('.cart-item-count');
-        if (countElement) {
-            countElement.innerText = totalItems;
+        function updateQuantity(productId, change) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let updatedCart = cart.map(product => {
+                if (product.id === productId) {
+                    let newQuantity = product.quantity + change;
+                    if (newQuantity < 1) newQuantity = 1;
+                    return { ...product, quantity: newQuantity };
+                }
+                return product;
+            });
+            localStorage.setItem('cart', JSON.stringify(updatedCart));
+            loadCart();
+            updateCartCount();
         }
 
-        const customCount = document.getElementById('cart-items-all-count');
-        if (customCount) {
-            customCount.innerText = totalItems;
+        function removeFromCart(productId) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(product => product.id !== productId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+            updateCartCount();
         }
-    }
 
-    function updateCartIcon() {
-        const cartItemCount = localStorage.getItem('cartItemCount') || 0;
-        const cartCountElement = document.querySelector('.cart-item-count');
-        cartCountElement.innerText = cartItemCount;
-    }
+        function clearCart() {
+            localStorage.removeItem('cart');
+            loadCart();
+            updateCartCount();
+        }
 
-    document.addEventListener("DOMContentLoaded", () => {
-        loadCart();
-        updateCartIcon();
-        updateCartCount();
-    });
+        // function updateCartTotals() {
+        //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        //     let subtotal = 0;
+        //     let savings = 0;
+        //     let shippingCost = 0;
+
+        //     cart.forEach(product => {
+        //         const originalPrice = parseFloat(product.selling_price);
+        //         const offerPrice = product.offer_price ? parseFloat(product.offer_price) : originalPrice;
+        //         const quantity = product.quantity;
+        //         subtotal += offerPrice * quantity;
+        //         savings += (originalPrice - offerPrice) * quantity;
+        //     });
+
+        //     if (cart.length === 0) {
+        //         shippingCost = 0;
+        //         document.querySelector('.text-danger.small').textContent = "Your cart is empty";
+        //     } else if (subtotal >= 500) {
+        //         shippingCost = 0;
+        //         document.querySelector('.text-danger.small').textContent = "🎉 Congratulations! Free shipping applied!";
+        //     } else {
+        //         document.querySelector('.text-danger.small').textContent = "Purchase for AED 500 or more to enable free shipping";
+        //     }
+
+        //     let discountFromCoupon = 0;
+        //     const appliedCoupon = JSON.parse(localStorage.getItem('appliedCoupon'));
+        //     if (appliedCoupon) {
+        //         discountFromCoupon = parseFloat(appliedCoupon.discountAmount || 0);
+        //         document.getElementById('coupon-discount-amount').textContent = `- AED ${discountFromCoupon.toFixed(2)}`;
+        //         document.getElementById('coupon-code-text').textContent = appliedCoupon.code;
+        //         document.getElementById('applied-coupon').classList.remove('d-none');
+        //     } else {
+        //         document.getElementById('applied-coupon').classList.add('d-none');
+        //     }
+
+        //     let total = subtotal + shippingCost - savings - discountFromCoupon;
+
+        //     document.getElementById('cart-subtotal').textContent = `AED ${subtotal.toFixed(2)}`;
+        //     document.getElementById('cart-total').textContent = `AED ${total.toFixed(2)}`;
+        //     document.getElementById("shipping-cost").textContent = `AED ${shippingCost.toFixed(2)}`;
+        //     document.getElementById("savings-amount").textContent = `- AED ${savings.toFixed(2)}`;
+        // }
+        function updateCartTotals() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let subtotal = 0, savings = 0, shippingCost = 0;
+
+            cart.forEach(product => {
+                const original = parseFloat(product.selling_price);
+                const offer = product.offer_price ? parseFloat(product.offer_price) : original;
+                const qty = product.quantity;
+                subtotal += offer * qty;
+                savings += (original - offer) * qty;
+            });
+
+            if (subtotal >= 500) {
+                shippingCost = 0;
+                document.querySelector('.text-danger.small').textContent = "🎉 Congratulations! Free shipping applied!";
+            } else {
+                document.querySelector('.text-danger.small').textContent = "Purchase for AED 500 or more to enable free shipping";
+            }
+
+            const appliedCoupon = JSON.parse(localStorage.getItem('appliedCoupon'));
+            let discountFromCoupon = 0;
+
+            if (appliedCoupon && appliedCoupon.discountAmount) {
+                discountFromCoupon = parseFloat(appliedCoupon.discountAmount);
+                document.getElementById('coupon-discount-amount').textContent = `- AED ${discountFromCoupon.toFixed(2)}`;
+                document.getElementById('coupon-code-text').textContent = appliedCoupon.code;
+                document.getElementById('applied-coupon').classList.remove('d-none');
+            } else {
+                document.getElementById('applied-coupon').classList.add('d-none');
+            }
+
+            const total = subtotal + shippingCost - savings - discountFromCoupon;
+            const totalSavings = savings + discountFromCoupon;
+
+            document.getElementById('cart-subtotal').textContent = `AED ${subtotal.toFixed(2)}`;
+            document.getElementById('cart-total').textContent = `AED ${total.toFixed(2)}`;
+            document.getElementById('shipping-cost').textContent = `AED ${shippingCost.toFixed(2)}`;
+            document.getElementById('savings-amount').textContent = `- AED ${totalSavings.toFixed(2)}`;
+        }
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, product) => total + (product.quantity || 0), 0);
+            localStorage.setItem('cartItemCount', totalItems);
+
+            const countElement = document.querySelector('.cart-item-count');
+            if (countElement) {
+                countElement.innerText = totalItems;
+            }
+
+            const customCount = document.getElementById('cart-items-all-count');
+            if (customCount) {
+                customCount.innerText = totalItems;
+            }
+        }
+
+        function updateCartIcon() {
+            const cartItemCount = localStorage.getItem('cartItemCount') || 0;
+            const cartCountElement = document.querySelector('.cart-item-count');
+            cartCountElement.innerText = cartItemCount;
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadCart();
+            updateCartIcon();
+            updateCartCount();
+        });
 
 
-function showCouponMessage(msg, isError) {
-    const el = document.getElementById('coupon-message');
-    el.textContent = msg;
-    el.style.color = isError ? 'red' : 'green';
-}
+        function showCouponMessage(msg, isError) {
+            const el = document.getElementById('coupon-message');
+            el.textContent = msg;
+            el.style.color = isError ? 'red' : 'green';
+        }
 
 
         // toogle the mobile menu
-       
-function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  const menuBtn = document.querySelector('.menu-btn');
 
-  if (sidebar.classList.contains('open')) {
-    sidebar.classList.remove('open');
-    sidebar.style.width = '0';
-    menuBtn.style.display = 'block';
-  } else {
-    sidebar.classList.add('open');
-    sidebar.style.width = '250px';
-    menuBtn.style.display = 'none';
-  }
-}
-</script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const menuBtn = document.querySelector('.menu-btn');
+
+            if (sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+                sidebar.style.width = '0';
+                menuBtn.style.display = 'block';
+            } else {
+                sidebar.classList.add('open');
+                sidebar.style.width = '250px';
+                menuBtn.style.display = 'none';
+            }
+        }
+    </script>
 
 
     </script>
@@ -1758,115 +1795,171 @@ function toggleSidebar() {
             })
             .catch(error => console.error('Error loading header:', error));
     </script>
-<script>
-function applyCoupon() {
-    const code = document.getElementById('coupon-code').value.trim();
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    <script>
+        // function applyCoupon() {
+        //     const code = document.getElementById('coupon-code').value.trim();
+        //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    if (!code) {
-        showCouponMessage("Please enter a coupon code.", true);
-        return;
-    }
+        //     if (!code) {
+        //         showCouponMessage("Please enter a coupon code.", true);
+        //         return;
+        //     }
 
-    fetch(`https://grabatoz-production.up.railway.app/api/coupons/${code}`)
-        .then(res => {
-            if (!res.ok) throw new Error("Invalid coupon");
-            return res.json();
-        })
-        .then(coupon => {
-            const subtotal = cart.reduce((total, item) => {
-                const price = item.offer_price ? parseFloat(item.offer_price) : parseFloat(item.selling_price);
-                return total + price * item.quantity;
-            }, 0);
+        //     // fetch(`https://grabatoz-production.up.railway.app//api/coupons/validate`)
+        //     fetch(`https://grabatoz-production.up.railway.app/api/coupons/code/${code}`)
 
-            if (subtotal < parseFloat(coupon.min_order_amount)) {
-                showCouponMessage(`Minimum order AED ${coupon.min_order_amount} required.`, true);
+        //         .then(res => {
+        //             if (!res.ok) throw new Error("Invalid coupon");
+        //             return res.json();
+        //         })
+        //         .then(coupon => {
+        //             const subtotal = cart.reduce((total, item) => {
+        //                 const price = item.offer_price ? parseFloat(item.offer_price) : parseFloat(item.selling_price);
+        //                 return total + price * item.quantity;
+        //             }, 0);
+
+        //             if (subtotal < parseFloat(coupon.min_order_amount)) {
+        //                 showCouponMessage(`Minimum order AED ${coupon.min_order_amount} required.`, true);
+        //                 return;
+        //             }
+
+        //             let discountAmount = 0;
+        //             if (coupon.discount_type === 'percentage') {
+        //                 discountAmount = (subtotal * parseFloat(coupon.discount)) / 100;
+        //             } else {
+        //                 discountAmount = parseFloat(coupon.discount);
+        //             }
+
+        //             if (discountAmount > parseFloat(coupon.max_discount)) {
+        //                 discountAmount = parseFloat(coupon.max_discount);
+        //             }
+
+        //             // Save in localStorage
+        //             localStorage.setItem('appliedCoupon', JSON.stringify({ code: coupon.code, discountAmount }));
+
+        //             // Update UI
+        //             document.getElementById('applied-coupon').classList.remove('d-none');
+        //             document.getElementById('coupon-code-text').textContent = coupon.code;
+        //             document.getElementById('coupon-discount-amount').textContent = `- AED ${discountAmount.toFixed(2)}`;
+        //             showCouponMessage("Coupon applied successfully!", false);
+
+        //             updateCartTotals();
+        //         })
+        //         .catch(error => {
+        //             console.error("Coupon Error:", error);
+        //             showCouponMessage("Invalid or expired coupon code.", true);
+        //         });
+        // }
+        function applyCoupon() {
+            const code = document.getElementById('coupon-code').value.trim();
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            if (!code) {
+                showCouponMessage("Please enter a coupon code.", true);
                 return;
             }
 
-            let discountAmount = 0;
-            if (coupon.discount_type === 'percentage') {
-                discountAmount = (subtotal * parseFloat(coupon.discount)) / 100;
-            } else {
-                discountAmount = parseFloat(coupon.discount);
-            }
+            fetch(`https://websitegrabatoz-production.up.railway.app/api/coupons/code/${code}`)
+                .then(res => {
+                    if (!res.ok) throw new Error("Invalid coupon");
+                    return res.json();
+                })
+                .then(coupon => {
+                    const subtotal = cart.reduce((total, item) => {
+                        const price = item.offer_price ? parseFloat(item.offer_price) : parseFloat(item.selling_price);
+                        return total + price * item.quantity;
+                    }, 0);
 
-            if (discountAmount > parseFloat(coupon.max_discount)) {
-                discountAmount = parseFloat(coupon.max_discount);
-            }
+                    // ✅ No min_order_amount check here anymore
 
-            // Save in localStorage
-            localStorage.setItem('appliedCoupon', JSON.stringify({ code: coupon.code, discountAmount }));
+                    let discountAmount = 0;
+                    if (coupon.discount_type.toLowerCase() === 'percentage') {
+                        discountAmount = (subtotal * parseFloat(coupon.discount)) / 100;
+                    } else {
+                        discountAmount = parseFloat(coupon.discount);
+                    }
 
-            // Update UI
-            document.getElementById('applied-coupon').classList.remove('d-none');
-            document.getElementById('coupon-code-text').textContent = coupon.code;
-            document.getElementById('coupon-discount-amount').textContent = `- AED ${discountAmount.toFixed(2)}`;
-            showCouponMessage("Coupon applied successfully!", false);
+                    if (discountAmount > parseFloat(coupon.max_discount)) {
+                        discountAmount = parseFloat(coupon.max_discount);
+                    }
 
+                    localStorage.setItem('appliedCoupon', JSON.stringify({
+                        code: coupon.code,
+                        discountAmount
+                    }));
+
+                    showCouponMessage(`Coupon applied! You saved AED ${discountAmount.toFixed(2)}`, false);
+                    updateCartTotals(); // apply discount
+                })
+                .catch(error => {
+                    localStorage.removeItem('appliedCoupon');
+                    updateCartTotals(); // reset totals
+                    showCouponMessage("Invalid or expired coupon code.", true);
+                });
+        }
+
+        // function removeCoupon() {
+        //     localStorage.removeItem('appliedCoupon');
+        //     document.getElementById('coupon-code').value = '';
+        //     document.getElementById('applied-coupon').classList.add('d-none');
+        //     updateCartTotals();
+        // }
+        function removeCoupon() {
+            localStorage.removeItem('appliedCoupon');
+            document.getElementById('coupon-code').value = '';
+            document.getElementById('applied-coupon').classList.add('d-none');
+            showCouponMessage("Coupon removed.", false);
             updateCartTotals();
-        })
-        .catch(error => {
-            console.error("Coupon Error:", error);
-            showCouponMessage("Invalid or expired coupon code.", true);
-        });
-}
+        }
 
-function removeCoupon() {
-    localStorage.removeItem('appliedCoupon');
-    document.getElementById('coupon-code').value = '';
-    document.getElementById('applied-coupon').classList.add('d-none');
-    updateCartTotals();
-}
+        function showCouponMessage(msg, isError) {
+            const el = document.getElementById('coupon-message');
+            el.textContent = msg;
+            el.style.color = isError ? 'red' : 'green';
+        }
+    </script>
+    <script>
+        // Toggle wishlist
+        function toggleWishlist(product) {
+            const heartIcon = document.getElementById('heart-icon');
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const index = wishlist.findIndex(p => p.id === product.id);
 
-function showCouponMessage(msg, isError) {
-    const el = document.getElementById('coupon-message');
-    el.textContent = msg;
-    el.style.color = isError ? 'red' : 'green';
-}
-</script>
-<script>
-  // Toggle wishlist
-  function toggleWishlist(product) {
-    const heartIcon = document.getElementById('heart-icon');
-    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-    const index = wishlist.findIndex(p => p.id === product.id);
+            if (index === -1) {
+                wishlist.push(product);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                heartIcon.style.color = 'red';
+                showSuccessMessage("Added to wishlist!");
+            } else {
+                wishlist.splice(index, 1);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                heartIcon.style.color = '';
+                showSuccessMessage("Removed from wishlist!");
+            }
 
-    if (index === -1) {
-        wishlist.push(product);
-        localStorage.setItem('wishlist', JSON.stringify(wishlist));
-        heartIcon.style.color = 'red';
-        showSuccessMessage("Added to wishlist!");
-    } else {
-        wishlist.splice(index, 1);
-        localStorage.setItem('wishlist', JSON.stringify(wishlist));
-        heartIcon.style.color = '';
-        showSuccessMessage("Removed from wishlist!");
-    }
-
-    updateWishlistBadge();
-}
+            updateWishlistBadge();
+        }
 
 
-  // Update badge in header
-function updateWishlistBadge() {
-    const count = (JSON.parse(localStorage.getItem('wishlist')) || []).length;
-    const badge = document.getElementById('wishlist-item-count'); // Make sure this exists in header
-    if (badge) badge.textContent = count;
-}
+        // Update badge in header
+        function updateWishlistBadge() {
+            const count = (JSON.parse(localStorage.getItem('wishlist')) || []).length;
+            const badge = document.getElementById('wishlist-item-count'); // Make sure this exists in header
+            if (badge) badge.textContent = count;
+        }
 
-  // Display message
-  function showSuccessMessage(msg) {
-    const box = document.createElement('div');
-    box.style.cssText = 'position:fixed;top:20px;right:20px;background:green;color:white;padding:10px;border-radius:5px;z-index:1000';
-    box.innerText = msg;
-    document.body.appendChild(box);
-    setTimeout(() => box.remove(), 3000);
-  }
+        // Display message
+        function showSuccessMessage(msg) {
+            const box = document.createElement('div');
+            box.style.cssText = 'position:fixed;top:20px;right:20px;background:green;color:white;padding:10px;border-radius:5px;z-index:1000';
+            box.innerText = msg;
+            document.body.appendChild(box);
+            setTimeout(() => box.remove(), 3000);
+        }
 
-  // Call on page load
-  document.addEventListener('DOMContentLoaded', updateWishlistBadge);
-</script>
+        // Call on page load
+        document.addEventListener('DOMContentLoaded', updateWishlistBadge);
+    </script>
 
 </body>
 
