@@ -1586,7 +1586,7 @@
     <!-- main js -->
     <script src="assets/js/main.js"></script>
     <script>
-        // 🔹 Helper function to limit product name words
+      let selectedDiscountRadio = null;
         // 🧠 Limit product name to N words
         function limitWords(text, wordLimit = 8) {
             const words = text.trim().split(/\s+/);
@@ -1981,8 +1981,18 @@
             });
         }
         document.querySelectorAll('input[name="discount"]').forEach(radio => {
-            radio.addEventListener('change', () => applyFilters());
-        });
+    radio.addEventListener('click', function () {
+        if (selectedDiscountRadio === this) {
+            this.checked = false;
+            selectedDiscountRadio = null;
+        } else {
+            selectedDiscountRadio = this;
+        }
+
+        applyFilters();
+    });
+});
+
 
 
         document.getElementById('price-filter-btn').addEventListener('click', () => {
