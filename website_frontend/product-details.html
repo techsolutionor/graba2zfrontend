@@ -2205,7 +2205,7 @@
     })' <div class="product-toolbar d-flex flex-wrap align-items-center gap-14 mt-3">
   <div class="qty-box d-flex align-items-center">
     <button class="qty-btn" onclick="changeQty(-1)">−</button>
-    <input type="text" id="qty" class="qty-input" value="1" readonly>
+    <input type="text" id="qty" class="qty-input" value="1" readonly data-product-id="${product.id}">
     <button class="qty-btn" onclick="changeQty(1)">+</button>
   </div>
   <!-- Button 1: Add to Cart -->
@@ -2237,6 +2237,15 @@
 </button>
 </div>
     `;
+    
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+const itemInCart = cart.find(p => p.id === product.id);
+const qtyInput = document.getElementById("qty");
+if (qtyInput && itemInCart) {
+    qtyInput.value = itemInCart.quantity;
+}
+
+
                 // Get wishlist from localStorage
                 const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
                 const isInWishlist = wishlist.some(item => item.id === product.id);
@@ -2527,11 +2536,17 @@
             showSuccessMessage(` Added to cart Successfully `);
         }
         function updateCartCount() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const totalItems = cart.reduce((total, product) => total + product.quantity, 0); // Calculate total quantity
-            // Update the cart count in localStorage
-            localStorage.setItem('cartItemCount', totalItems);
-        }
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    const cartCountElement = document.querySelector(".cart-item-count");
+    if (cartCountElement) {
+        cartCountElement.textContent = totalItems;
+    }
+
+    localStorage.setItem('cartItemCount', totalItems);
+}
+
         function showSuccessMessage(message) {
             const messageContainer = document.createElement('div');
             messageContainer.style.position = 'fixed';
@@ -2551,26 +2566,52 @@
         }
         // Handle Add to Cart (No page redirect)
         function handleAddToCart(product) {
-            addToCart(product); // Add product to cart
-        }
-        function toggleIcon(button) {
-            let icon = button.querySelector(".icon-toggle");
-            if (icon.classList.contains("bi-plus")) {
-                icon.classList.remove("bi-plus");
-                icon.classList.add("bi-dash");
-            } else {
-                icon.classList.remove("bi-dash");
-                icon.classList.add("bi-plus");
-            }
-        }
+    const qtyInput = document.getElementById("qty");
+    const qty = parseInt(qtyInput?.value || "1");
 
-        function changeQty(change) {
-            const qtyInput = document.getElementById("qty");
-            let qty = parseInt(qtyInput.value);
-            qty = isNaN(qty) ? 1 : qty + change;
-            if (qty < 1) qty = 1;
-            qtyInput.value = qty;
-        }
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingProduct = cart.find(item => item.id === product.id);
+
+    if (existingProduct) {
+        showSuccessMessage("Product already in cart. Use + / − to adjust quantity.");
+        return;
+    }
+
+    cart.push({ ...product, quantity: qty });
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    updateCartCount(); // ✅ update live
+    showSuccessMessage(`Added ${qty} item(s) to cart`);
+}
+
+
+
+
+function changeQty(change) {
+    const qtyInput = document.getElementById("qty");
+    const productId = parseInt(qtyInput.dataset.productId);
+    let qty = parseInt(qtyInput.value);
+    if (isNaN(qty)) qty = 1;
+
+    qty += change;
+    if (qty < 1) qty = 1;
+
+    qtyInput.value = qty;
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const index = cart.findIndex(item => item.id === productId);
+
+    if (index !== -1) {
+        cart[index].quantity = qty;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount(); // ✅ update live
+    } else {
+        showSuccessMessage("Add to cart first before changing quantity.");
+    }
+}
+
+
+
     </script>
     <script>
         // Toggle wishlist
