@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul class="scroll-sm p-0 py-8 w-300 max-h-400 overflow-y-auto" id="dynamic-category-menu">
+        <li class="text-center text-gray-400 py-12">Loading categories...</li>
+    </ul>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("https://websitegrabatoz-production.up.railway.app/api/product-categories")
+                .then((res) => res.json())
+                .then((data) => {
+                    const categories = data.categories;
+
+                    // Convert parent_category to number (if not null) for safe comparison
+                    categories.forEach(cat => {
+                        if (cat.parent_category !== null) {
+                            cat.parent_category = parseInt(cat.parent_category);
+                        }
+                    });
+
+                    const parents = categories.filter(cat => cat.parent_category === null);
+                    const children = categories.filter(cat => cat.parent_category !== null);
+
+                    const menu = document.getElementById("dynamic-category-menu");
+                    menu.innerHTML = "";
+
+                    parents.forEach(parent => {
+                        const childItems = children
+                            .filter(child => child.parent_category === parent.id)
+                            .map(child => `<li><a href="shop.html?category=${encodeURIComponent(child.name)}">${child.name}</a></li>`)
+                            .join('');
+
+                        const li = document.createElement('li');
+                        li.className = "has-submenus-submenu";
+                        li.innerHTML = `
+            <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+              <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+              <span>${parent.name}</span>
+              <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
+            </a>
+            <div class="submenus-submenu py-16">
+              <h6 class="text-lg px-16 submenus-submenu__title">${parent.name}</h6>
+              <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                ${childItems || '<li><em class="text-muted px-16">No subcategories</em></li>'}
+              </ul>
+            </div>
+          `;
+                        menu.appendChild(li);
+                    });
+
+                    if (parents.length === 0) {
+                        menu.innerHTML = '<li class="text-danger text-center py-12">No categories found</li>';
+                    }
+                })
+                .catch((error) => {
+                    console.error("❌ Fetch Error:", error);
+                    document.getElementById("dynamic-category-menu").innerHTML =
+                        '<li class="text-danger text-center py-12">Error loading categories</li>';
+                });
+        });
+    </script>
+
+
+
+</body>
+
+</html>
