@@ -2178,8 +2178,8 @@
                 document.getElementById('product-price').textContent = `$${product.offer_price ?? product.selling_price ?? 0.00}`;
                 document.getElementById('product-tax').textContent = product.tax || 'Inclusive VAT';
                 document.getElementById('product-sku').textContent = product.sku || 'N/A';
-                document.getElementById('product-categories').textContent = product.category || 'N/A';
-                document.getElementById('product-brand').textContent = product.brand || 'N/A';
+                document.getElementById('product-categories').textContent = product.category_name || 'N/A';
+document.getElementById('product-brand').textContent = product.brand_name || 'N/A';
                 document.getElementById('product-description').innerHTML = `
             <h6 class="mb-24">Product Description</h6>
             <p>${product.description || 'No description available.'}</p>
