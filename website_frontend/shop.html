@@ -28,6 +28,13 @@
     <script src="./apiConfig/apiConfig.js"></script>
 </head>
 <style>
+    .category-link.active,
+    .subcategory-link.active {
+        color: #90C309 !important;
+        /* your green shade */
+        font-weight: bold;
+    }
+
     /* first dropdown */
     /* Custom Dropdown Styles */
     .custom-dropdown {
@@ -1299,11 +1306,6 @@
                             <i class="ph ph-x"></i>
                         </button>
                         <div class="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
-                            <h6 class="text-xl border-bottom border-gray-100 pb-24 mb-24 text-dark">Product Category
-                            </h6>
-                            <ul class="max-h-540 overflow-y-auto scroll-sm" id="left-navigation"></ul>
-                        </div>
-                        <div class="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
                             <h6 class="text-xl border-bottom border-gray-100 pb-24 mb-24 text-dark">Filter by Price</h6>
                             <div class="custom--range">
                                 <div id="slider-range"></div>
@@ -1326,9 +1328,15 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
+                            <h6 class="text-xl border-bottom border-gray-100 pb-24 mb-24 text-dark">Filter by Category
+                            </h6>
+                            <ul class="max-h-540 overflow-y-auto scroll-sm" id="left-navigation"></ul>
+                        </div>
+
 
                         <div class="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
-                            <h6 class="text-xl border-bottom border-gray-100 pb-24 mb-24 text-dark">Discount</h6>
+                            <h6 class="text-xl border-bottom border-gray-100 pb-24 mb-24 text-dark">Filter by Discount</h6>
                             <ul class="max-h-540 overflow-y-auto scroll-sm">
                                 <li class="mb-24">
                                     <div class="form-check common-check common-radio checked-black">
@@ -1440,7 +1448,7 @@
 
                         <!-- Filter by Brand -->
                         <div class="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
-                            <h6>Filter by Brand</h6>
+                            <h6 class="text-xl border-bottom border-gray-100 pb-24 mb-24 text-dark">Filter by brand</h6>
                             <ul class="max-h-540 overflow-y-auto scroll-sm" id="brand-list" data-filter="brand"></ul>
 
                         </div>
@@ -1586,7 +1594,7 @@
     <!-- main js -->
     <script src="assets/js/main.js"></script>
     <script>
-      let selectedDiscountRadio = null;
+        let selectedDiscountRadio = null;
         // 🧠 Limit product name to N words
         function limitWords(text, wordLimit = 8) {
             const words = text.trim().split(/\s+/);
@@ -1852,30 +1860,30 @@
         }
         // end functionality for shop cards 
         async function applyFilters() {
-    const minPrice = document.getElementById('min-price').value || 0;
-    const maxPrice = document.getElementById('max-price').value || 99999;
-    const brand = selectedBrandRadio ? selectedBrandRadio.value : '';
-    const discount = document.querySelector('input[name="discount"]:checked')?.value || '';
+            const minPrice = document.getElementById('min-price').value || 0;
+            const maxPrice = document.getElementById('max-price').value || 99999;
+            const brand = selectedBrandRadio ? selectedBrandRadio.value : '';
+            const discount = document.querySelector('input[name="discount"]:checked')?.value || '';
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const category = urlParams.get('category') || '';
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('category') || '';
 
-    let apiUrl = `${API_CUSTOMER_URL}/api/products?`;
-    if (category) apiUrl += `category=${encodeURIComponent(category)}&`;
-    if (brand) apiUrl += `brand=${encodeURIComponent(brand)}&`;
-    if (minPrice) apiUrl += `minPrice=${minPrice}&`;
-    if (maxPrice) apiUrl += `maxPrice=${maxPrice}&`;
-    if (discount) apiUrl += `discount=${discount}&`;
+            let apiUrl = `${API_CUSTOMER_URL}/api/products?`;
+            if (category) apiUrl += `category=${encodeURIComponent(category)}&`;
+            if (brand) apiUrl += `brand=${encodeURIComponent(brand)}&`;
+            if (minPrice) apiUrl += `minPrice=${minPrice}&`;
+            if (maxPrice) apiUrl += `maxPrice=${maxPrice}&`;
+            if (discount) apiUrl += `discount=${discount}&`;
 
-    try {
-        const response = await fetch(apiUrl);
-        const { products, totalCount } = await response.json();
-        displayProducts(products, totalCount);
+            try {
+                const response = await fetch(apiUrl);
+                const { products, totalCount } = await response.json();
+                displayProducts(products, totalCount);
 
-    } catch (err) {
-        console.error("❌ Error applying filters:", err);
-    }
-}
+            } catch (err) {
+                console.error("❌ Error applying filters:", err);
+            }
+        }
 
         function addToCart(product) {
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -1929,20 +1937,102 @@
                 document.body.removeChild(messageContainer);
             }, 3000);
         }
+        //     async function loadCategories() {
+        //         const response = await fetch(`${API_CUSTOMER_URL}/api/product-categories`);
+        //         const { categories } = await response.json();
+        //         const container = document.getElementById('left-navigation');
+        //         container.innerHTML = '';
+        //         categories.forEach(cat => {
+        //             container.innerHTML += `
+        //   <li class="mb-24">
+        //     <a href="shop.html?category=${encodeURIComponent(cat.name)}" class="text-gray-900 hover-text-main-600">
+        //       ${cat.name}
+        //     </a>
+        //   </li>
+        // `;
+        //         });
+        //     }
         async function loadCategories() {
             const response = await fetch(`${API_CUSTOMER_URL}/api/product-categories`);
             const { categories } = await response.json();
+
             const container = document.getElementById('left-navigation');
             container.innerHTML = '';
+
+            const parents = categories.filter(c => c.parent_category === null);
+            const childrenMap = {};
+
             categories.forEach(cat => {
-                container.innerHTML += `
-      <li class="mb-24">
-        <a href="shop.html?category=${encodeURIComponent(cat.name)}" class="text-gray-900 hover-text-main-600">
-          ${cat.name}
-        </a>
-      </li>
-    `;
+                if (cat.parent_category !== null) {
+                    if (!childrenMap[cat.parent_category]) childrenMap[cat.parent_category] = [];
+                    childrenMap[cat.parent_category].push(cat);
+                }
             });
+
+            parents.forEach(parent => {
+                const hasChildren = childrenMap[parent.id] && childrenMap[parent.id].length > 0;
+                const li = document.createElement('li');
+                li.classList.add('mb-3', 'py-5',);
+
+                li.innerHTML = `
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="" class="text-dark category-link" data-name="${parent.name}">${parent.name}</a>
+                ${hasChildren ? `<button class=" btn-sm toggle-subcategory" data-id="${parent.id}" style="">+</button>` : ''}
+            </div>
+            ${hasChildren ? `<ul class="subcategory-list ms-3 mt-2 d-none" id="subcategory-${parent.id}"></ul>` : ''}
+        `;
+                container.appendChild(li);
+
+                if (hasChildren) {
+                    const subList = li.querySelector(`#subcategory-${parent.id}`);
+                    childrenMap[parent.id].forEach(child => {
+                        const subLi = document.createElement('li');
+                        subLi.innerHTML = `<a href="" class="text-secondary subcategory-link" data-name="${child.name}">${child.name}</a>`;
+                        subList.appendChild(subLi);
+                    });
+                }
+            });
+
+            // Toggle child list
+            document.querySelectorAll('.toggle-subcategory').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.dataset.id;
+                    const list = document.getElementById(`subcategory-${id}`);
+                    list.classList.toggle('d-none');
+                    btn.textContent = list.classList.contains('d-none') ? '+' : '–';
+                });
+            });
+
+            // Load filtered products
+            // document.querySelectorAll('.category-link, .subcategory-link').forEach(link => {
+            //     link.addEventListener('click', async (e) => {
+            //         e.preventDefault();
+            //         const category = link.dataset.name;
+            //         const url = new URL(window.location.href);
+            //         url.searchParams.set('category', category);
+            //         history.pushState({}, '', url);
+            //         await loadProductsByCategoryAndBrand(category); // Already defined in your code
+            //     });
+            // });
+            document.querySelectorAll('.category-link, .subcategory-link').forEach(link => {
+                link.addEventListener('click', async (e) => {
+                    e.preventDefault();
+
+                    // Remove active class from all
+                    document.querySelectorAll('.category-link, .subcategory-link').forEach(l => l.classList.remove('active'));
+
+                    // Add active class to the clicked one
+                    link.classList.add('active');
+
+                    const category = link.dataset.name;
+                    const url = new URL(window.location.href);
+                    url.searchParams.set('category', category);
+                    history.pushState({}, '', url);
+
+                    await loadProductsByCategoryAndBrand(category);
+                });
+            });
+
         }
 
         loadCategories();
@@ -1981,17 +2071,17 @@
             });
         }
         document.querySelectorAll('input[name="discount"]').forEach(radio => {
-    radio.addEventListener('click', function () {
-        if (selectedDiscountRadio === this) {
-            this.checked = false;
-            selectedDiscountRadio = null;
-        } else {
-            selectedDiscountRadio = this;
-        }
+            radio.addEventListener('click', function () {
+                if (selectedDiscountRadio === this) {
+                    this.checked = false;
+                    selectedDiscountRadio = null;
+                } else {
+                    selectedDiscountRadio = this;
+                }
 
-        applyFilters();
-    });
-});
+                applyFilters();
+            });
+        });
 
 
 
