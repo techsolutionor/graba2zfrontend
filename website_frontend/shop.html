@@ -26,207 +26,591 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <script src="./apiConfig/apiConfig.js"></script>
-</head>
-<style>
-    .category-link.active,
-    .subcategory-link.active {
-        color: #90C309 !important;
-        /* your green shade */
-        font-weight: bold;
-    }
-
-    /* first dropdown */
-    /* Custom Dropdown Styles */
-    .custom-dropdown {
-        position: relative;
-        width: 150px;
-        font-family: Arial, sans-serif;
-        cursor: pointer;
-    }
-
-    .dropdown-selected {
-        padding: 10px 12px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        background-color: #fff;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-        transition: all 0.3s ease;
-    }
-
-    .dropdown-selected:hover {
-        background-color: #f9f9f9;
-    }
-
-    .dropdown-list {
-        display: none;
-        position: absolute;
-        top: 110%;
-        left: 0;
-        width: 100%;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        z-index: 10;
-    }
-
-    .dropdown-list div {
-        padding: 10px 12px;
-        transition: background 0.2s ease;
-    }
-
-    .dropdown-list div:hover {
-        color: white !important;
-        background-color: #90C309 !important;
-    }
-
-    .custom-dropdown.open .dropdown-list {
-        display: block;
-    }
-
-    /* cart circle css start  */
-    .cart-item-count {
-        min-width: 24px;
-        height: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        font-size: 12px;
-        color: #fff;
-        background-color: #A3D02C;
-        position: absolute;
-        top: -12px;
-        right: -11px;
-        padding: 0 6px;
-        /* Extra space for 2-3 digit numbers */
-        font-weight: bold;
-        white-space: nowrap;
-    }
-
-    /* whislist circle css start  */
-    .wishlist-item-count {
-        min-width: 24px;
-        height: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        font-size: 12px;
-        color: #fff;
-        background-color: #A3D02C;
-        position: absolute;
-        top: -12px;
-        right: -11px;
-        padding: 0 6px;
-        font-weight: bold;
-        white-space: nowrap;
-    }
-
-    .sidebar {
-        height: 100%;
-        width: 0;
-        position: fixed;
-        top: 0;
-        right: 0;
-        background-color: #ffffff;
-        overflow-x: hidden;
-        transition: 0.3s ease;
-        padding-top: 60px;
-        z-index: 999;
-    }
-
-    /* Open state */
-    .sidebar.open {
-        width: 250px;
-    }
-
-    /* Sidebar content scrollable */
-    .sidebar-inner {
-        max-height: 100%;
-        overflow-y: auto;
-    }
-
-    /* Sidebar links */
-    .sidebar a {
-        display: block;
-        padding: 12px 20px;
-        color: #000;
-        text-decoration: none;
-    }
-
-    .sidebar a:hover {
-        background: #fff4f4;
-        color: rgb(49, 136, 49);
-    }
-
-    /* Open Button (☰) */
-    .menu-open-btn {
-        display: none;
-        position: absolute;
-        top: 61px;
-        right: 31px;
-        font-size: 24px;
-        background-color: #ffffff;
-        color: #000;
-        padding: 10px;
-        border-radius: 5px;
-        z-index: 1000;
-        cursor: pointer;
-    }
-
-    /* Close Button (✖) inside Sidebar */
-    .menu-close-btn {
-        display: none;
-        position: absolute;
-        top: 15px;
-        right: 20px;
-        font-size: 24px;
-        background: transparent;
-        border: none;
-        color: red;
-        z-index: 1001;
-        cursor: pointer;
-    }
-
-    /* Responsive Display Settings */
-    @media (max-width: 1024px) {
-        .menu-open-btn {
-            display: block;
+     <style>
+        @media (min-width: 768px) {
+            #banner-prev {
+                margin-top: 80px;
+                /* Replace with your value */
+            }
         }
 
+        @media (min-width: 768px) {
+            #banner-next {
+                margin-top: 80px;
+                /* Replace with your value */
+            }
+        }
+
+        /* Custom dropdown styling */
+        .dropdown-menu {
+            min-width: 220px;
+            border: 1px solid rgba(0, 0, 0, .15);
+        }
+
+        .dropdown-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .dropdown-item:hover {
+            color: #86c232;
+        }
+
+        @media (max-width: 768px) {
+            .border-right-item {
+                border-right: none !important;
+            }
+
+            .dropdown-menu {
+                position: fixed !important;
+                top: auto !important;
+                left: 50% !important;
+                transform: translateX(-50%);
+                width: 90%;
+                max-width: 300px;
+            }
+
+            .nav-link {
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        /* Animation */
+        .slide-in {
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: all 1s ease-in-out;
+        }
+
+        .slide-in.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .custom-heading {
+            padding-left: 10px;
+            box-shadow: none;
+            background-color: transparent;
+        }
+
+        /* mobile responsive start */
         .sidebar {
-            display: block;
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: auto;
+            background-color: #ffffff;
+            overflow-x: hidden;
+            transition: 0.3s ease;
+            padding-top: 60px;
+            z-index: 999;
         }
 
-        .sidebar.open .menu-close-btn {
+        /* Sidebar content scrollable */
+        .sidebar-inner {
+            max-height: 100%;
+            overflow-y: auto;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 12px 20px;
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            background: #fff4f4;
+            color: rgb(49, 136, 49);
+        }
+
+        /* Menu button */
+        .menu-btn {
+            display: none;
+            position: fixed;
+            top: 61px;
+            right: 31px;
+            font-size: 24px;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            padding: 10px;
+            z-index: 1000;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        /* Show on mobile and tablet only */
+        @media (max-width: 1024px) {
+            .menu-btn {
+                display: block;
+            }
+
+            .sidebar {
+                display: block;
+            }
+        }
+
+        /* Hide on larger screens */
+        @media (min-width: 1025px) {
+            .sidebar {
+                display: none !important;
+            }
+
+            .menu-btn {
+                display: none !important;
+            }
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* mobile responsive end */
+        /* first dropdown */
+        /* Custom Dropdown Styles */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            min-width: 180px;
+            z-index: 1000;
+            padding: 8px 0;
+            box-shadow: 0 4px 8px 0 rgba(59, 58, 58, 0.19), 0 6px 20px 0 rgba(59, 58, 58, 0.19) !important;
+
+        }
+
+        /* Hover effects for dropdown */
+        @media (min-width: 992px) {
+            .dropdown:hover .dropdown-menu {
+                display: block;
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            /* Smooth transition for dropdown items */
+            .dropdown-item {
+                transition: all 0.2s ease;
+                /* padding: 8px 16px !important; */
+            }
+
+            .dropdown-item:hover {
+                color: #90C309 !important;
+                background-color: #f8f9fa;
+            }
+        }
+
+        /* Dropdown items styling */
+        .dropdown-item {
+            color: #333 !important;
+            font-size: 14px !important;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        /* Icon spacing */
+        .dropdown-item i {
+            width: 20px;
+            text-align: center;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        /* Link hover effect */
+        .hover-text-decoration-underline:hover {
+            text-decoration: underline !important;
+        }
+
+        /*  */
+        /* drop panga */
+        /* Hover dropdown styles */
+        .user-dropdown.show {
+            display: block !important;
+        }
+
+
+        .user-menu {
+            position: relative;
+        }
+
+        .user-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            width: 140px;
+            z-index: 1000;
+            padding: 8px 0;
+            box-shadow: 0 4px 8px 0 rgba(59, 58, 58, 0.19), 0 6px 20px 0 rgba(59, 58, 58, 0.19) !important;
+        }
+
+        @media (min-width: 768px) {
+            .user-menu:hover .user-dropdown {
+                display: block;
+            }
+        }
+
+        .user-item {
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .user-item:hover {
+            color: #90c309;
+            background-color: #f8f9fa;
+        }
+
+        /* .user-divider {
+    border-top: 1px solid #eee;
+} */
+
+        .user-dropdown.show {
+            display: block !important;
+        }
+
+        /* Added spacing for icons */
+        .user-item i {
+            width: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        /* cart circle css start  */
+        .cart-item-count {
+            min-width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 12px;
+            color: #fff;
+            background-color: #A3D02C;
+            position: absolute;
+            top: -12px;
+            right: -11px;
+            padding: 0 6px;
+            /* Extra space for 2-3 digit numbers */
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* whislist circle css start  */
+        .wishlist-item-count {
+            min-width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 12px;
+            color: #fff;
+            background-color: #A3D02C;
+            position: absolute;
+            top: -12px;
+            right: -11px;
+            padding: 0 6px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+    </style>
+    <style>
+        .category-link.active,
+        .subcategory-link.active {
+            color: #90C309 !important;
+            /* your green shade */
+            font-weight: bold;
+        }
+    
+        /* first dropdown */
+        /* Custom Dropdown Styles */
+        .custom-dropdown {
+            position: relative;
+            width: 150px;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+        }
+    
+        .dropdown-selected {
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+    
+        .dropdown-selected:hover {
+            background-color: #f9f9f9;
+        }
+    
+        .dropdown-list {
+            display: none;
+            position: absolute;
+            top: 110%;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+    
+        .dropdown-list div {
+            padding: 10px 12px;
+            transition: background 0.2s ease;
+        }
+    
+        .dropdown-list div:hover {
+            color: white !important;
+            background-color: #90C309 !important;
+        }
+    
+        .custom-dropdown.open .dropdown-list {
             display: block;
         }
-    }
-
-    @media (min-width: 1025px) {
-
-        .sidebar,
-        .menu-open-btn,
+    
+        /* cart circle css start  */
+        .cart-item-count {
+            min-width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 12px;
+            color: #fff;
+            background-color: #A3D02C;
+            position: absolute;
+            top: -12px;
+            right: -11px;
+            padding: 0 6px;
+            /* Extra space for 2-3 digit numbers */
+            font-weight: bold;
+            white-space: nowrap;
+        }
+    
+        /* whislist circle css start  */
+        .wishlist-item-count {
+            min-width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 12px;
+            color: #fff;
+            background-color: #A3D02C;
+            position: absolute;
+            top: -12px;
+            right: -11px;
+            padding: 0 6px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+    
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #ffffff;
+            overflow-x: hidden;
+            transition: 0.3s ease;
+            padding-top: 60px;
+            z-index: 999;
+        }
+    
+        /* Open state */
+        .sidebar.open {
+            width: 250px;
+        }
+    
+        /* Sidebar content scrollable */
+        .sidebar-inner {
+            max-height: 100%;
+            overflow-y: auto;
+        }
+    
+        /* Sidebar links */
+        .sidebar a {
+            display: block;
+            padding: 12px 20px;
+            color: #000;
+            text-decoration: none;
+        }
+    
+        .sidebar a:hover {
+            background: #fff4f4;
+            color: rgb(49, 136, 49);
+        }
+    
+        /* Open Button (☰) */
+        .menu-open-btn {
+            display: none;
+            position: absolute;
+            top: 61px;
+            right: 31px;
+            font-size: 24px;
+            background-color: #ffffff;
+            color: #000;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+            cursor: pointer;
+        }
+    
+        /* Close Button (✖) inside Sidebar */
         .menu-close-btn {
-            display: none !important;
+            display: none;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            background: transparent;
+            border: none;
+            color: red;
+            z-index: 1001;
+            cursor: pointer;
         }
-    }
-
-    ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .form-check-input:checked+.form-check-label {
-        font-weight: bold;
-        color: #90C309;
-    }
-</style>
+    
+        /* Responsive Display Settings */
+        @media (max-width: 1024px) {
+            .menu-open-btn {
+                display: block;
+            }
+    
+            .sidebar {
+                display: block;
+            }
+    
+            .sidebar.open .menu-close-btn {
+                display: block;
+            }
+        }
+    
+        @media (min-width: 1025px) {
+    
+            .sidebar,
+            .menu-open-btn,
+            .menu-close-btn {
+                display: none !important;
+            }
+        }
+    
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+    
+        .form-check-input:checked+.form-check-label {
+            font-weight: bold;
+            color: #90C309;
+        }
+    </style>
+</head>
 
 <body>
-    <div id="top-header"></div>
+    <!-- ======================= top Header Start ========================= -->
+    <div class="header-top flex-between" style="background-color: #a3d02c;">
+        <div class="container container-lg">
+            <div class="flex-between flex-wrap gap-8">
+                <ul class="flex-align flex-wrap d-none d-md-flex">
+                    <!-- <li class="border-right-item"><a href="#shipping" class="text-white text-sm hover-text-decoration-underline">Become A Seller</a></li> -->
+                    <li class="border-right-item"><a href="./about-us.html"
+                            class="text-white text-sm hover-text-decoration-underline">About Us</a></li>
+                    <li class="border-right-item"><a href="./contact.html"
+                            class="text-white text-sm hover-text-decoration-underline">Contact Us</a></li>
+                    <li class="border-right-item dropdown hover-dropdown">
+                         <a href="account.html" class="text-white text-sm hover-text-decoration-underline" id="policyDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            All Policy
+                        </a>
+                        <div class="dropdown-menu shadow-sm" aria-labelledby="policyDropdown">
+                            <a class="dropdown-item" href="./terms-conditions.html">
+                                <i class="ph ph-file-text me-10 text-sm"></i> Terms & Condition
+                            </a>
+                            <a class="dropdown-item" href="./refund-and-return.html">
+                                <i class="ph ph-arrow-counter-clockwise me-10 text-sm"></i> Refund and Returns
+                            </a>
+                            <a class="dropdown-item" href="./cookies-policy.html">
+                                <i class="ph ph-cookie me-10 text-sm"></i> Cookies Policies
+                            </a>
+                            <a class="dropdown-item" href="./privacy-policy.html">
+                                <i class="ph ph-shield-check me-10 text-sm"></i> Privacy Policies
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="header-top__right flex-align flex-wrap">
+                    <li class="on-hover-item border-right-item border-right-item-sm-space has-submenu arrow-white">
+                        <a href="javascript:void(0)" class="text-white text-sm py-8">Help Center</a>
+                        <ul class="on-hover-dropdown common-dropdown common-dropdown--sm max-h-200 scroll-sm px-0 py-8">
+                            <li class="nav-submenu__item">
+                                <a href="#"
+                                    class="nav-submenu__link hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0">
+                                    <span class="text-sm d-flex"><i class="ph ph-headset"></i></span>
+                                    Call Center
+                                </a>
+                            </li>
+                            <li class="nav-submenu__item">
+                                <a href="#"
+                                    class="nav-submenu__link hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0">
+                                    <span class="text-sm d-flex"><i class="ph ph-chat-circle-dots"></i></span>
+                                    Live Chat
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item user-menu position-relative w-auto">
+                         <a href="account.html" class="text-white text-sm py-8 flex-align gap-6 nav-link user-toggle" role="button"
+                            id="userMenuButton">
+                            <span><i class="ph ph-user-circle"></i></span>
+                            <span class="hover-text-decoration-underline d-none d-md-inline">My Account</span>
+                        </a>
+                        <ul class="user-dropdown shadow-sm">
+                            <li><a class="user-item px-12 py-5" href="#"><i class="ph ph-user me-8"></i>Account</a></li>
+                            <!-- <li><hr class="user-divider my-4 mx-12"></li> -->
+                            <li>
+                                <a class="user-item px-12 py-5" href="#" id="auth-link">
+                                    <i class="ph ph-sign-in me-8" id="auth-icon"></i>
+                                    <span id="auth-text">Sign In</span>
+                                </a>
+                            </li>
+                            <li><a class="user-item px-12 py-5" href="track-order.html"><i
+                                        class="ph ph-truck me-8"></i>Track Order</a></li>
+                            <li><a class="user-item px-12 py-5" href="help-center.html"><i
+                                        class="ph ph-question me-8"></i>Help Center</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- ======================= top Header Start ========================= -->
+    <!-- <div id="top-header"></div> -->
     <!--==================== Overlay Start ====================-->
     <div class="overlay"></div>
     <!--==================== Overlay End ====================-->
@@ -587,11 +971,12 @@
         <!-- ===================== mobile responsive end ==============================  -->
     </header>
     <!-- ======================= Middle Header End ========================= -->
-    <!-- ==================== Header Start Here ==================== -->
+       <!-- ==================== category Header Start Here ==================== -->
     <header class="header bg-white border-bottom border-gray-100">
         <div class="container container-lg">
             <nav class="header-inner d-flex justify-content-between gap-8">
                 <div class="flex-align menu-category-wrapper">
+
 
                     <!-- Category Dropdown Start -->
                     <div class="category on-hover-item">
@@ -599,7 +984,9 @@
                             class="responsive-dropdown on-hover-dropdown common-dropdown nav-submenu p-0 submenus-submenu-wrapper">
                             <button type="button"
                                 class="close-responsive-dropdown rounded-circle text-xl position-absolute inset-inline-end-0 inset-block-start-0 mt-4 me-8 d-lg-none d-flex">
-                                <i class="ph ph-x"></i> </button>
+                                <i class="ph ph-x"></i>
+                            </button>
+
                             <!-- Logo Start -->
                             <div class="logo px-16 d-lg-none d-block">
                                 <a href="index.html" class="link">
@@ -607,663 +994,19 @@
                                 </a>
                             </div>
                             <!-- Logo End -->
-                            <ul class="scroll-sm p-0 py-8 w-300 max-h-400 overflow-y-auto">
-                                <li class="has-submenus-submenu">
-                                    <a href="javascript:void(0)"
-                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                        <span class="text-xl d-flex"><i class="ph ph-carrot"></i></span>
-                                        <span> All in One</span>
-                                        <span class="icon text-md d-flex ms-auto"><i
-                                                class="ph ph-caret-right"></i></span>
-                                    </a>
-                                    <div class="submenus-submenu py-16">
-                                        <h6 class="text-lg px-16 submenus-submenu__title">All In One</h6>
-                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                                            <li>
-                                                <a href="shop.html">Asus All in One</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">Acer All in One</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">Lenovo all In One </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">HP All In One</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">Dell All in One</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html">Apple iMac</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="has-submenus-submenu">
-                                    <a href="javascript:void(0)"
-                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                        <span>Desktop</span>
-                                        <span class="icon text-md d-flex ms-auto"><i
-                                                class="ph ph-caret-right"></i></span>
-                                    </a>
-                                    <div class="submenus-submenu py-16">
-                                        <h6 class="text-lg px-16 submenus-submenu__title">Desktop</h6>
-                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                                            <li>
-                                                <a href="shop.html">Lenovo Desktops </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Dell Desktops</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Asus Desktops</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Acer Desktop </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> HP Desktop</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="has-submenus-submenu">
-                                    <a href="javascript:void(0)"
-                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                        <span>Monitors</span>
-                                        <span class="icon text-md d-flex ms-auto"><i
-                                                class="ph ph-caret-right"></i></span>
-                                    </a>
-                                    <div class="submenus-submenu py-16">
-                                        <h6 class="text-lg px-16 submenus-submenu__title">Monitors</h6>
-                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                                            <li>
-                                                <a href="shop.html"> Lenovo Monitors</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> MSI Monitors</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> HP Monitors</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Dell Monitors</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Asus Monitors</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Acer Monitors</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> samsung Monitors</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> AOC Monitors</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Viewsonic Monitors</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> LG Monitors</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="has-submenus-submenu">
-                                    <a href="javascript:void(0)"
-                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                        <span>Mobiles</span>
-                                        <span class="icon text-md d-flex ms-auto"><i
-                                                class="ph ph-caret-right"></i></span>
-                                    </a>
-                                    <div class="submenus-submenu py-16">
-                                        <h6 class="text-lg px-16 submenus-submenu__title">Mobiles</h6>
-                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                                            <li>
-                                                <a href="shop.html"> Apple</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="has-submenus-submenu">
-                                    <a href="javascript:void(0)"
-                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                        <span>Laptops</span>
-                                        <span class="icon text-md d-flex ms-auto"><i
-                                                class="ph ph-caret-right"></i></span>
-                                    </a>
-                                    <div class="submenus-submenu py-16">
-                                        <h6 class="text-lg px-16 submenus-submenu__title">Laptops</h6>
-                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                                            <li>
-                                                <a href="shop.html"> Lenovo Laptops</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> MSI Laptops</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> HP Laptops</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Dell Laptops</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Asus Laptops</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Acer Laptops</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> MI Laptops</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Apple Laptops</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Microsofts Laptops</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="has-submenus-submenu">
-                                    <a href="javascript:void(0)"
-                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                        <span>printer & Copier</span>
-                                        <span class="icon text-md d-flex ms-auto"><i
-                                                class="ph ph-caret-right"></i></span>
-                                    </a>
-                                    <div class="submenus-submenu py-16">
-                                        <h6 class="text-lg px-16 submenus-submenu__title">printer & Copier</h6>
-                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                                            <li>
-                                                <a href="shop.html"> HR printer & Copier </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Canon printer & Copier</a>
 
-                                            <li>
-                                                <a href="shop.html"> Brother Printer & Copier</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Ricoh printer & Copier</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Epson printer & Copier</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Xerox printer & Copier</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="has-submenus-submenu">
-                                    <a href="javascript:void(0)"
-                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                        <span>Routers</span>
-                                        <span class="icon text-md d-flex ms-auto"><i
-                                                class="ph ph-caret-right"></i></span>
-                                    </a>
-                                    <div class="submenus-submenu py-16">
-                                        <h6 class="text-lg px-16 submenus-submenu__title">Routers</h6>
-                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                                            <li>
-                                                <a href="shop.html"> TP Link Routers </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="has-submenus-submenu">
-                                    <a href="javascript:void(0)"
-                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                        <span>projector</span>
-                                        <span class="icon text-md d-flex ms-auto"><i
-                                                class="ph ph-caret-right"></i></span>
-                                    </a>
-                                    <div class="submenus-submenu py-16">
-                                        <h6 class="text-lg px-16 submenus-submenu__title">projector</h6>
-                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                                            <li>
-                                                <a href="shop.html"> Optoma</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> BENQ</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> LG </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="has-submenus-submenu">
-                                    <a href="javascript:void(0)"
-                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                        <span>Accessories</span>
-                                        <span class="icon text-md d-flex ms-auto"><i
-                                                class="ph ph-caret-right"></i></span>
-                                    </a>
-                                    <div class="submenus-submenu py-16">
-                                        <h6 class="text-lg px-16 submenus-submenu__title">Accessories</h6>
-                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                                            <li>
-                                                <a href="shop.html"> Bags</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> RAMs</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Mouse </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> keyboard </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Hard Drives</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> headphones </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> storage devices </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Graphics Card </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Motherboard </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Power Supply </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="has-submenus-submenu">
-                                    <a href="javascript:void(0)"
-                                        class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                                        <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                                        <span>Networking</span>
-                                        <span class="icon text-md d-flex ms-auto"><i
-                                                class="ph ph-caret-right"></i></span>
-                                    </a>
-                                    <div class="submenus-submenu py-16">
-                                        <h6 class="text-lg px-16 submenus-submenu__title">Networking</h6>
-                                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                                            <li>
-                                                <a href="shop.html"> cables</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> HDMI</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Adopters </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> USB C HUB </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Connectors </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Display Port </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> USB Dongles </a>
-                                            </li>
-                                            <li>
-                                                <a href="shop.html"> Wifi Dongles </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
+                            <ul class="scroll-sm p-0 py-8 w-300 max-h-400 overflow-y-auto" id="categoryDropdown">
+                                <!-- Categories will be loaded dynamically here -->
                             </ul>
                         </div>
                     </div>
                     <!-- Category Dropdown End  -->
+
                     <!-- Menu Start  -->
                     <div class="header-menu d-lg-block d-none">
                         <!-- Nav Menu Start -->
-                        <ul class="nav-menu flex-align ">
-                            <li class="on-hover-item nav-menu__item has-submenu activePage">
-                                <a href="javascript:void(0)" class="nav-menu__link">All In One</a>
-                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-                                    <li class="common-dropdown__item nav-submenu__item activePage">
-                                        <a href="shop.html?brand=Apple"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Apple
-                                            All in One</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?brand=Asus"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Asus
-                                            All In One</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?brand=Acer"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Acer
-                                            All In One</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?brand=Lenovo"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Lenovo
-                                            All In One</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?brand=HP"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Hp All
-                                            In One</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?brand=Dell"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Dell
-                                            All In One</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="on-hover-item nav-menu__item has-submenu">
-                                <a href="javascript:void(0)" class="nav-menu__link">Desktop</a>
-                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Desktops&brand=Lenovo"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Lenovo
-                                            Desktops</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Desktops&brand=Dell"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Dell
-                                            Desktops</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Desktops&brand=Asus"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Asus
-                                            Desktops</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Desktops&brand=Acer"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Acer
-                                            Desktops</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Desktops&brand=HP"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Hp
-                                            Desktops</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="on-hover-item nav-menu__item has-submenu">
-                                <a href="javascript:void(0)" class="nav-menu__link">Monitors</a>
-                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Monitors&brand=Lenovo"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Lenovo
-                                            Monitors</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Monitors&brand=MSI"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">MSI
-                                            Monitors</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Monitors&brand=HP"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Hp
-                                            Monitors</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Monitors&brand=Dell"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Dell
-                                            Monitors</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Monitors&brand=Asus"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Asus
-                                            Monitors</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Monitors&brand=Acer"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Acer
-                                            Monitors</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Monitors&brand=Samsung"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Samsung
-                                            Monitors</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Monitors&brand=AOC"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">AOC
-                                            Monitors</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Monitors&brand=Viewsonic"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Viewsonic
-                                            Monitors</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Monitors&brand=LG"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">LG
-                                            Monitors</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="on-hover-item nav-menu__item has-submenu">
-                                <a href="javascript:void(0)" class="nav-menu__link">Mobiles</a>
-                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Mobiles&brand=Apple"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Apple</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="on-hover-item nav-menu__item has-submenu">
-                                <a href="javascript:void(0)" class="nav-menu__link">Laptops</a>
-                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Laptops&brand=Lenovo"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Lenovo
-                                            Laptops</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Laptops&brand=MSI"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">MSI
-                                            Laptops</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Laptops&brand=HP"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Hp
-                                            Laptops</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Laptops&brand=Dell"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Dell
-                                            Laptops</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Laptops&brand=Asus"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Asus
-                                            Laptops</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Laptops&brand=Acer"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Acer
-                                            Laptops</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Laptops&brand=MI"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">MI
-                                            Laptops</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Macbooks&brand=Apple"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Apple
-                                            Macbook</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Laptops&brand=Microsoft"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Microsoft
-                                            Surface</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="on-hover-item nav-menu__item has-submenu">
-                                <a href="javascript:void(0)" class="nav-menu__link">Printers & Copier</a>
-                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Printers%20&%20Copier&brand=HP"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Hp
-                                            Printers & Copier</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Printers%20&%20Copier&brand=Canon"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Canon
-                                            Printers & Copier</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Printers%20&%20Copier&brand=Brother"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Brother
-                                            Printers & Copier</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Printers%20&%20Copier&brandRicoh"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Ricoh
-                                            Printers & Copier</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Printers%20&%20Copier&brand=Epson"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Epson
-                                            Printers & Copier</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Printers%20&%20Copier&brand=Xerox"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Xerox
-                                            Printers & Copier</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="on-hover-item nav-menu__item has-submenu">
-                                <a href="javascript:void(0)" class="nav-menu__link">Routers</a>
-                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Routers&brand=Tp%20Link"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Tp Link
-                                            Routers</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="on-hover-item nav-menu__item has-submenu">
-                                <a href="javascript:void(0)" class="nav-menu__link">Projector</a>
-                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Projectors&brand=Optoma"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Optoma</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Projectors&brand=BENQ"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">BENQ</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Projectors&brand=LG"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">LG</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="on-hover-item nav-menu__item has-submenu">
-                                <a href="javascript:void(0)" class="nav-menu__link">Accessories</a>
-                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Bags"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Bags</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=RAM"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">RAMs</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Mouse"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Mouse</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Keyboard"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Keyboard</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Hard%20Drives"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Hard
-                                            Drives</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Headphones"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Headphones</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Storage%20Devices"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Storage
-                                            Devices</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Graphic%20Cards"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Graphic
-                                            Cards</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Motherboard"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Motherboard</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Power%20Supply"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Power
-                                            Supply</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="on-hover-item nav-menu__item has-submenu">
-                                <a href="javascript:void(0)" class="nav-menu__link">Networking</a>
-                                <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Cables"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">cables</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=HDMI"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">HDMI</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Adopters"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Adopters</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=USB"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">USB C
-                                            HUB</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Connectors"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Connectors</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Display%20Port"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Display
-                                            Port</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=USB%20Dongles"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">USB
-                                            Dongles</a>
-                                    </li>
-                                    <li class="common-dropdown__item nav-submenu__item">
-                                        <a href="shop.html?category=Wifi%20Dongles"
-                                            class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">Wifi
-                                            Dongles</a>
-                                    </li>
-                                </ul>
-                            </li>
+                        <ul class="nav-menu flex-align" id="mainMenu">
+                            <!-- Main menu items will be loaded dynamically here -->
                         </ul>
                         <!-- Nav Menu End -->
                     </div>
@@ -1272,7 +1015,8 @@
             </nav>
         </div>
     </header>
-    <!-- ==================== Header End Here ==================== -->
+
+    <!-- ==================== category Header End Here ==================== -->
     <!-- ========================= Breadcrumb Start =============================== -->
     <div class="breadcrumb py-26" style="background-color: #cdf19b;">
         <div class="container container-lg">
@@ -1593,6 +1337,151 @@
     <script src="assets/js/vanilla-tilt.min.js"></script>
     <!-- main js -->
     <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fetch categories from your API
+            fetchCategories();
+        });
+
+        async function fetchCategories() {
+            try {
+                const response = await fetch(`${API_CUSTOMER_URL}/api/product-categories`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch categories');
+                }
+
+                const data = await response.json();
+                const categories = data.categories || [];
+
+                // Organize categories by parent-child relationship
+                const categoryMap = organizeCategories(categories);
+
+                // Render the dropdown menu
+                renderCategoryDropdown(categoryMap);
+
+                // Render the main menu
+                renderMainMenu(categoryMap);
+
+            } catch (error) {
+                console.error('Error loading categories:', error);
+                // You might want to show a user-friendly error message here
+            }
+        }
+
+        function organizeCategories(categories) {
+            const categoryMap = {
+                parentCategories: [],
+                childCategories: {}
+            };
+
+            // First pass: identify all parent categories
+            categories.forEach(category => {
+                if (!category.parent_category) {
+                    categoryMap.parentCategories.push(category);
+                    categoryMap.childCategories[category.id] = [];
+                }
+            });
+
+            // Second pass: assign child categories to their parents
+            categories.forEach(category => {
+                if (category.parent_category) {
+                    const parentId = category.parent_category;
+                    if (categoryMap.childCategories[parentId]) {
+                        categoryMap.childCategories[parentId].push(category);
+                    } else {
+                        // Handle case where parent category might not exist
+                        console.warn(`Parent category ${parentId} not found for child ${category.id}`);
+                    }
+                }
+            });
+
+            return categoryMap;
+        }
+
+        function renderCategoryDropdown(categoryMap) {
+            const dropdownContainer = document.getElementById('categoryDropdown');
+            dropdownContainer.innerHTML = '';
+
+            categoryMap.parentCategories.forEach(parentCategory => {
+                const hasChildren = categoryMap.childCategories[parentCategory.id]?.length > 0;
+
+                const listItem = document.createElement('li');
+                listItem.className = hasChildren ? 'has-submenus-submenu' : '';
+
+                listItem.innerHTML = `
+            <a href="shop.html?category=${encodeURIComponent(parentCategory.name)}" 
+               class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                <span>${parentCategory.name}</span>
+                ${hasChildren ? '<span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>' : ''}
+            </a>
+        `;
+
+                if (hasChildren) {
+                    const submenu = document.createElement('div');
+                    submenu.className = 'submenus-submenu py-16';
+
+                    const title = document.createElement('h6');
+                    title.className = 'text-lg px-16 submenus-submenu__title';
+                    title.textContent = parentCategory.name;
+
+                    const submenuList = document.createElement('ul');
+                    submenuList.className = 'submenus-submenu__list max-h-300 overflow-y-auto scroll-sm';
+
+                    categoryMap.childCategories[parentCategory.id].forEach(childCategory => {
+                        const childItem = document.createElement('li');
+                        childItem.innerHTML = `<a href="shop.html?category=${encodeURIComponent(childCategory.name)}">${childCategory.name}</a>`;
+                        submenuList.appendChild(childItem);
+                    });
+
+                    submenu.appendChild(title);
+                    submenu.appendChild(submenuList);
+                    listItem.appendChild(submenu);
+                }
+
+                dropdownContainer.appendChild(listItem);
+            });
+        }
+
+        function renderMainMenu(categoryMap) {
+            const menuContainer = document.getElementById('mainMenu');
+            menuContainer.innerHTML = '';
+
+            categoryMap.parentCategories.forEach(parentCategory => {
+                const hasChildren = categoryMap.childCategories[parentCategory.id]?.length > 0;
+
+                const menuItem = document.createElement('li');
+                menuItem.className = `on-hover-item nav-menu__item ${hasChildren ? 'has-submenu' : ''}`;
+
+                menuItem.innerHTML = `
+  <a href="shop.html?category=${encodeURIComponent(parentCategory.name)}" 
+     class="nav-menu__link">${parentCategory.name}</a>
+`;
+
+
+                if (hasChildren) {
+                    const submenu = document.createElement('ul');
+                    submenu.className = 'on-hover-dropdown common-dropdown nav-submenu scroll-sm';
+
+                    categoryMap.childCategories[parentCategory.id].forEach(childCategory => {
+                        const submenuItem = document.createElement('li');
+                        submenuItem.className = 'common-dropdown__item nav-submenu__item';
+                        submenuItem.innerHTML = `
+                    <a href="shop.html?category=${encodeURIComponent(childCategory.name)}" 
+                       class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">
+                        ${childCategory.name}
+                    </a>
+                `;
+                        submenu.appendChild(submenuItem);
+                    });
+
+                    menuItem.appendChild(submenu);
+                }
+
+                menuContainer.appendChild(menuItem);
+            });
+        }
+    </script>
     <script>
         let selectedDiscountRadio = null;
         // 🧠 Limit product name to N words
