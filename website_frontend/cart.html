@@ -1,6 +1,64 @@
 <!DOCTYPE html>
 <html lang="en" class="">
 <style>
+    /* Related Products Section */
+    .new-arrival {
+        background-color: #f9f9f9;
+        padding: 40px 0;
+    }
+
+    .section-heading {
+        margin-bottom: 30px;
+    }
+
+    .section-heading h5 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    #relatedProducts .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #e0e0e0;
+    }
+
+    #relatedProducts .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    #relatedProducts .card-title {
+        min-height: 40px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    #relatedProducts .badge {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+
+    #relatedProducts .card-price {
+        color: #86c232;
+    }
+
+    @media (max-width: 767px) {
+        #relatedProducts .col-6 {
+            padding: 0 8px;
+        }
+
+        #relatedProducts .card-title {
+            font-size: 13px;
+        }
+
+        #relatedProducts .card-price {
+            font-size: 14px;
+        }
+    }
+</style>
+<style>
     .cart-item {
         background-color: white;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -191,6 +249,7 @@
         z-index: 1001;
         cursor: pointer;
     }
+
     #applied-coupon {
         font-size: 14px;
         background-color: #f0fdf4;
@@ -1403,13 +1462,14 @@
 
                         <div id="applied-coupon" class="mt-2 d-none">
                             <div class="d-flex justify-content-between align-items-center">
-                              <span class="badge bg-success">Applied: <span id="coupon-code-text"></span></span>
-                              <button class="btn btn-sm text-danger fw-bold border-0 bg-transparent" onclick="removeCoupon()">Remove</button>
+                                <span class="badge bg-success">Applied: <span id="coupon-code-text"></span></span>
+                                <button class="btn btn-sm text-danger fw-bold border-0 bg-transparent"
+                                    onclick="removeCoupon()">Remove</button>
                             </div>
                             <div class="text-end text-danger fw-semibold" id="coupon-discount-amount">- AED 0.00</div>
-                          </div>
+                        </div>
 
-                        
+
 
 
                         <hr>
@@ -1456,74 +1516,48 @@
 
         <div id="applied-coupon" class="mt-2 d-none">
             <div class="d-flex justify-content-between align-items-center">
-              <span class="badge bg-success">Applied: <span id="coupon-code-text"></span></span>
-              <span class="remove-icon" onclick="removeCoupon()" title="Remove coupon">❌</span>
+                <span class="badge bg-success">Applied: <span id="coupon-code-text"></span></span>
+                <span class="remove-icon" onclick="removeCoupon()" title="Remove coupon">❌</span>
             </div>
             <div class="text-end text-danger fw-semibold" id="coupon-discount-amount">- AED 0.00</div>
-          </div>
-          
-          <p id="coupon-message" class="mt-2" style="font-size: 14px;"></p>
+        </div>
+
+        <p id="coupon-message" class="mt-2" style="font-size: 14px;"></p>
 
 
     </section>
     <!-- ================================ Cart Section End ================================ -->
 
-    <!-- ========================== Shipping Section Start ============================ -->
-    <section class="shipping mb-24" id="shipping">
+    <!-- ========================== Related Products Start ============================= -->
+    <section class="new-arrival pb-80">
         <div class="container container-lg">
-            <div class="row gy-4">
-                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="400">
-                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                        <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
-                            style="background-color: #ffffff !important;"><i class="ph-fill ph-car-profile"
-                                style="color: #90C309 !important;"></i></span>
-                        <div class="">
-                            <h6 class="mb-0 text-black">Free Shipping</h6>
-                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over
-                                the US</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="600">
-                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                        <span class="w-56 h-56 flex-center rounded-circle text-white text-32 flex-shrink-0"
-                            style="background-color: #ffffff !important;"><i class="ph-fill ph-hand-heart"
-                                style="color: #90C309 !important;"></i></span>
-                        <div class="">
-                            <h6 class="mb-0 text-black"> 100% Satisfaction</h6>
-                            <span class="text-sm text-heading text-black" style="color: #000 !important;">Free shipping
-                                all over the US</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="800">
-                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                        <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
-                            style="background-color: #ffffff !important;"><i class="ph-fill ph-credit-card"
-                                style="color: #90C309 !important;"></i></span>
-                        <div class="">
-                            <h6 class="mb-0 text-black"> Secure Payments</h6>
-                            <span class="text-sm text-heading text-black" style="color: #000 !important;">Free shipping
-                                all over the US</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1000">
-                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                        <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
-                            style="background-color: #ffffff !important;"><i class="ph-fill ph-chats"
-                                style="color: #90C309 !important;"></i></span>
-                        <div class="">
-                            <h6 class="mb-0 text-black"> 24/7 Support</h6>
-                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over
-                                the US</span>
-                        </div>
+            <div class="section-heading">
+                <div class="flex-between flex-wrap gap-8">
+                    <h5 class="mb-0 text-dark">You May Also Like</h5>
+                    <div class="flex-align gap-16">
+                        <a href="shop.html"
+                            class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">All
+                            Products</a>
+                        <!-- <div class="flex-align gap-8">
+                            <button type="button" id="related-prev"
+                                class="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1">
+                                <i class="ph ph-caret-left"></i>
+                            </button>
+                            <button type="button" id="related-next"
+                                class="slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1">
+                                <i class="ph ph-caret-right"></i>
+                            </button>
+                        </div> -->
                     </div>
                 </div>
             </div>
+
+            <div id="relatedProducts" class="row">
+                <!-- Related products will be loaded here -->
+            </div>
         </div>
     </section>
-    <!-- ========================== Shipping Section End ============================ -->
+    <!-- ========================== Related Products End ============================= -->
     <div id="footer"></div>
     <script>
         // Fetch the footer dynamically
@@ -1666,7 +1700,7 @@
             updateCartCount();
         }
 
-     
+
         function updateCartTotals() {
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
             let subtotal = 0, savings = 0, shippingCost = 0;
@@ -1821,7 +1855,7 @@
                 });
         }
 
-      
+
         function removeCoupon() {
             localStorage.removeItem('appliedCoupon');
             document.getElementById('coupon-code').value = '';
@@ -1877,6 +1911,112 @@
 
         // Call on page load
         document.addEventListener('DOMContentLoaded', updateWishlistBadge);
+    </script>
+
+    <script>
+        // Function to fetch related products based on cart items
+        async function fetchRelatedProductsForCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            if (cart.length === 0) {
+                // If cart is empty, show some popular products or hide the section
+                document.getElementById('relatedProducts').innerHTML = `
+            <div class="col-12 text-center py-4">
+                <p>Your cart is empty. Check out our popular products!</p>
+            </div>
+        `;
+                return;
+            }
+
+            // Get unique category IDs from cart items
+            const categoryIds = [...new Set(cart.map(item => item.category_id))];
+
+            try {
+                // Fetch related products from the first category in the cart
+                const response = await fetch(`${API_CUSTOMER_URL}/api/products?category_id=${categoryIds[0]}&limit=6`);
+                const data = await response.json();
+
+                const products = Array.isArray(data) ? data : data.products;
+
+                if (!products || products.length === 0) {
+                    document.getElementById('relatedProducts').innerHTML = `
+                <div class="col-12 text-center py-4">
+                    <p>No related products found.</p>
+                </div>
+            `;
+                    return;
+                }
+
+                // Filter out products that are already in the cart
+                const cartProductIds = cart.map(item => item.id);
+                const filteredProducts = products.filter(product => !cartProductIds.includes(product.id));
+
+                // Display the products
+                displayRelatedProducts(filteredProducts.slice(0, 6)); // Show max 6 products
+            } catch (error) {
+                console.error('Error fetching related products:', error);
+                document.getElementById('relatedProducts').innerHTML = `
+            <div class="col-12 text-center py-4">
+                <p>Error loading related products.</p>
+            </div>
+        `;
+            }
+        }
+
+        // Function to display related products
+        function displayRelatedProducts(products) {
+            function limitWords(text, wordLimit) {
+                const words = text.trim().split(/\s+/);
+                if (words.length <= wordLimit) return text;
+                return words.slice(0, wordLimit).join(' ') + '...';
+            }
+
+            const container = document.getElementById('relatedProducts');
+            container.innerHTML = '';
+
+            products.forEach(product => {
+                const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
+                const price = product.offer_price || product.selling_price;
+                const originalPrice = product.offer_price ? product.selling_price : null;
+
+                const card = `
+<div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+    <div class="card h-100 border border-gray-100 rounded-16 position-relative" style="height: 400px; overflow: hidden;">
+        <a href="product-details.html?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
+            <!-- Image section -->
+            <div class="position-relative" style="height: 200px;">
+                <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
+            </div>
+
+            <!-- Description section -->
+            <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px;">
+                <div class="d-flex justify-content-between mb-1">
+                    <span class="badge bg-success">In stock</span>
+                    ${product.discount ? `<span class="badge bg-warning text-dark">${product.discount}% Off</span>` : ''}
+                </div>
+                <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
+                    ${limitWords(product.name, 13)}
+                </h6>
+                <div class="mt-auto">
+                    <p class="card-price text-danger fs-6 fw-bold mb-0">${price} AED</p>
+                    ${originalPrice ? `<del class="text-muted fs-6">${originalPrice} AED</del>` : ''}
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+        `;
+                container.insertAdjacentHTML('beforeend', card);
+            });
+        }
+
+        // Call this function when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCart();
+            updateCartIcon();
+            updateCartCount();
+            fetchRelatedProductsForCart(); // Add this line
+        });
     </script>
 
 </body>
