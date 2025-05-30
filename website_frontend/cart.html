@@ -1462,6 +1462,7 @@
             <div class="text-end text-danger fw-semibold" id="coupon-discount-amount">- AED 0.00</div>
           </div>
           
+          <p id="coupon-message" class="mt-2" style="font-size: 14px;"></p>
 
 
     </section>
@@ -1665,48 +1666,7 @@
             updateCartCount();
         }
 
-        // function updateCartTotals() {
-        //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        //     let subtotal = 0;
-        //     let savings = 0;
-        //     let shippingCost = 0;
-
-        //     cart.forEach(product => {
-        //         const originalPrice = parseFloat(product.selling_price);
-        //         const offerPrice = product.offer_price ? parseFloat(product.offer_price) : originalPrice;
-        //         const quantity = product.quantity;
-        //         subtotal += offerPrice * quantity;
-        //         savings += (originalPrice - offerPrice) * quantity;
-        //     });
-
-        //     if (cart.length === 0) {
-        //         shippingCost = 0;
-        //         document.querySelector('.text-danger.small').textContent = "Your cart is empty";
-        //     } else if (subtotal >= 500) {
-        //         shippingCost = 0;
-        //         document.querySelector('.text-danger.small').textContent = "🎉 Congratulations! Free shipping applied!";
-        //     } else {
-        //         document.querySelector('.text-danger.small').textContent = "Purchase for AED 500 or more to enable free shipping";
-        //     }
-
-        //     let discountFromCoupon = 0;
-        //     const appliedCoupon = JSON.parse(localStorage.getItem('appliedCoupon'));
-        //     if (appliedCoupon) {
-        //         discountFromCoupon = parseFloat(appliedCoupon.discountAmount || 0);
-        //         document.getElementById('coupon-discount-amount').textContent = `- AED ${discountFromCoupon.toFixed(2)}`;
-        //         document.getElementById('coupon-code-text').textContent = appliedCoupon.code;
-        //         document.getElementById('applied-coupon').classList.remove('d-none');
-        //     } else {
-        //         document.getElementById('applied-coupon').classList.add('d-none');
-        //     }
-
-        //     let total = subtotal + shippingCost - savings - discountFromCoupon;
-
-        //     document.getElementById('cart-subtotal').textContent = `AED ${subtotal.toFixed(2)}`;
-        //     document.getElementById('cart-total').textContent = `AED ${total.toFixed(2)}`;
-        //     document.getElementById("shipping-cost").textContent = `AED ${shippingCost.toFixed(2)}`;
-        //     document.getElementById("savings-amount").textContent = `- AED ${savings.toFixed(2)}`;
-        // }
+     
         function updateCartTotals() {
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
             let subtotal = 0, savings = 0, shippingCost = 0;
@@ -1812,60 +1772,7 @@
             .catch(error => console.error('Error loading header:', error));
     </script>
     <script>
-        // function applyCoupon() {
-        //     const code = document.getElementById('coupon-code').value.trim();
-        //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-        //     if (!code) {
-        //         showCouponMessage("Please enter a coupon code.", true);
-        //         return;
-        //     }
-
-        //     // fetch(`https://grabatoz-production.up.railway.app//api/coupons/validate`)
-        //     fetch(`https://grabatoz-production.up.railway.app/api/coupons/code/${code}`)
-
-        //         .then(res => {
-        //             if (!res.ok) throw new Error("Invalid coupon");
-        //             return res.json();
-        //         })
-        //         .then(coupon => {
-        //             const subtotal = cart.reduce((total, item) => {
-        //                 const price = item.offer_price ? parseFloat(item.offer_price) : parseFloat(item.selling_price);
-        //                 return total + price * item.quantity;
-        //             }, 0);
-
-        //             if (subtotal < parseFloat(coupon.min_order_amount)) {
-        //                 showCouponMessage(`Minimum order AED ${coupon.min_order_amount} required.`, true);
-        //                 return;
-        //             }
-
-        //             let discountAmount = 0;
-        //             if (coupon.discount_type === 'percentage') {
-        //                 discountAmount = (subtotal * parseFloat(coupon.discount)) / 100;
-        //             } else {
-        //                 discountAmount = parseFloat(coupon.discount);
-        //             }
-
-        //             if (discountAmount > parseFloat(coupon.max_discount)) {
-        //                 discountAmount = parseFloat(coupon.max_discount);
-        //             }
-
-        //             // Save in localStorage
-        //             localStorage.setItem('appliedCoupon', JSON.stringify({ code: coupon.code, discountAmount }));
-
-        //             // Update UI
-        //             document.getElementById('applied-coupon').classList.remove('d-none');
-        //             document.getElementById('coupon-code-text').textContent = coupon.code;
-        //             document.getElementById('coupon-discount-amount').textContent = `- AED ${discountAmount.toFixed(2)}`;
-        //             showCouponMessage("Coupon applied successfully!", false);
-
-        //             updateCartTotals();
-        //         })
-        //         .catch(error => {
-        //             console.error("Coupon Error:", error);
-        //             showCouponMessage("Invalid or expired coupon code.", true);
-        //         });
-        // }
         function applyCoupon() {
             const code = document.getElementById('coupon-code').value.trim();
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -1914,12 +1821,7 @@
                 });
         }
 
-        // function removeCoupon() {
-        //     localStorage.removeItem('appliedCoupon');
-        //     document.getElementById('coupon-code').value = '';
-        //     document.getElementById('applied-coupon').classList.add('d-none');
-        //     updateCartTotals();
-        // }
+      
         function removeCoupon() {
             localStorage.removeItem('appliedCoupon');
             document.getElementById('coupon-code').value = '';
