@@ -2543,6 +2543,20 @@ if (qtyInput && itemInCart) {
     if (cartCountElement) {
         cartCountElement.textContent = totalItems;
     }
+     // Initial update
+  updateCartCount();
+
+// ✅ Detect if user returns to this tab/page
+document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible") {
+        updateCartCount();
+    }
+});
+
+// ✅ Extra fallback for Safari/back-nav behavior
+window.addEventListener("pageshow", function () {
+    updateCartCount();
+});
 
     localStorage.setItem('cartItemCount', totalItems);
 }
