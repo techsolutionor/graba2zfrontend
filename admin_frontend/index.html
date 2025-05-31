@@ -1002,7 +1002,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Remove all active classes first
     document.querySelectorAll(".nav-link").forEach(link => {
       const href = link.getAttribute("href");
-      if (href && href.includes(currentFile)) {
+      if (href && href === currentFile) {
         link.classList.add("active");
 
         // If inside a collapse menu (like Orders or Purchases), open it
