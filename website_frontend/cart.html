@@ -1607,10 +1607,12 @@
             }
 
             const total = subtotal + shippingCost - savings - totalCouponDiscount;
+
             const totalSavings = savings + totalCouponDiscount;
             // ✅ Store subtotal and savings in localStorage
             localStorage.setItem('cartSubtotal', subtotal.toFixed(2));
             localStorage.setItem('cartSavings', totalSavings.toFixed(2));
+            localStorage.setItem('FinalPrice', total.toFixed(2));
             document.getElementById('cart-subtotal').textContent = `AED ${subtotal.toFixed(2)}`;
             document.getElementById('cart-total').textContent = `AED ${total.toFixed(2)}`;
             document.getElementById('shipping-cost').textContent = `AED ${shippingCost.toFixed(2)}`;
