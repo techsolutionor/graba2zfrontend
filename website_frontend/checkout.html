@@ -547,8 +547,9 @@
                             class="text-white text-sm hover-text-decoration-underline">Contact Us</a></li>
                     <!-- <li class="border-right-item"><a href="#shipping" class="text-white text-sm hover-text-decoration-underline">All Policy</a></li> -->
                     <li class="border-right-item dropdown">
-                         <a href="account.html" class="text-white text-sm hover-text-decoration-underline" id="policyDropdown"
-                            role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a href="account.html" class="text-white text-sm hover-text-decoration-underline"
+                            id="policyDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
                             All Policy
                         </a>
                         <div class="dropdown-menu" aria-labelledby="policyDropdown">
@@ -625,7 +626,7 @@
                         </ul>
                     </li>
                     <li class="border-right-item nav-item dropdown">
-                         <a href="account.html" class="text-white text-sm py-8 flex-align gap-6 nav-link dropdown-toggle"
+                        <a href="account.html" class="text-white text-sm py-8 flex-align gap-6 nav-link dropdown-toggle"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="icon text-md d-flex"><i class="ph ph-user-circle"></i></span>
                             <span class="hover-text-decoration-underline d-none d-md-inline">My Account</span>
@@ -1175,7 +1176,7 @@
             } else {
                 cartItemsContainer.empty();
                 cart.forEach(item => {
-                    const itemTotal = item.selling_price * item.quantity;
+                    const itemTotal = item.offer_price * item.quantity;
                     subtotal += itemTotal;
 
                     cartItemsContainer.append(`
@@ -1193,7 +1194,8 @@
 
             // ✅ Show discount if coupon is applied
             const appliedCoupon = JSON.parse(localStorage.getItem('appliedCoupon'));
-            const discountAmount = appliedCoupon ? parseFloat(appliedCoupon.discountAmount || 0) : 0;
+            // const discountAmount = appliedCoupon ? parseFloat(appliedCoupon.discountAmount || 0) : 0;
+            const discountAmount = localStorage.getItem('cartSavings') || '0.00';
 
             const shippingCost = 0;
             const total = subtotal + shippingCost - discountAmount;
@@ -1208,7 +1210,7 @@
                 $('.card .p-3').append(`
                 <div class="mb-3 d-flex justify-content-between">
                     <span class="text-success">Discount</span>
-                    <span class="text-success">- AED ${discountAmount.toFixed(2)}</span>
+                    <span class="text-success">- AED ${localStorage.getItem('cartSavings') || '0.00'}</span>
                 </div>
             `);
             }

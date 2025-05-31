@@ -299,7 +299,7 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <script src="./apiConfig/apiConfig.js"></script>
-     <style>
+    <style>
         @media (min-width: 768px) {
             #banner-prev {
                 margin-top: 80px;
@@ -748,8 +748,9 @@
                     <li class="border-right-item"><a href="./contact.html"
                             class="text-white text-sm hover-text-decoration-underline">Contact Us</a></li>
                     <li class="border-right-item dropdown hover-dropdown">
-                         <a href="account.html" class="text-white text-sm hover-text-decoration-underline" id="policyDropdown"
-                            role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a href="account.html" class="text-white text-sm hover-text-decoration-underline"
+                            id="policyDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
                             All Policy
                         </a>
                         <div class="dropdown-menu shadow-sm" aria-labelledby="policyDropdown">
@@ -789,8 +790,8 @@
                         </ul>
                     </li>
                     <li class="nav-item user-menu position-relative w-auto">
-                         <a href="account.html" class="text-white text-sm py-8 flex-align gap-6 nav-link user-toggle" role="button"
-                            id="userMenuButton">
+                        <a href="account.html" class="text-white text-sm py-8 flex-align gap-6 nav-link user-toggle"
+                            role="button" id="userMenuButton">
                             <span><i class="ph ph-user-circle"></i></span>
                             <span class="hover-text-decoration-underline d-none d-md-inline">My Account</span>
                         </a>
@@ -1235,8 +1236,8 @@
 
         <div id="applied-coupon" class="mt-2 d-none"></div>
 
-          
-          <p id="coupon-message" class="mt-2" style="font-size: 14px;"></p>
+
+        <p id="coupon-message" class="mt-2" style="font-size: 14px;"></p>
 
 
     </section>
@@ -1306,7 +1307,7 @@
     <script src="assets/js/vanilla-tilt.min.js"></script>
     <!-- main js -->
     <script src="assets/js/main.js"></script>
-<script>
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Fetch categories from your API
             fetchCategories();
@@ -1560,33 +1561,34 @@
 
 
         function updateCartTotals() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let subtotal = 0, savings = 0, shippingCost = 0;
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let subtotal = 0, savings = 0, shippingCost = 0;
 
-    cart.forEach(product => {
-        const original = parseFloat(product.selling_price);
-        const offer = product.offer_price ? parseFloat(product.offer_price) : original;
-        const qty = product.quantity;
-        subtotal += offer * qty;
-        savings += (original - offer) * qty;
-    });
+            cart.forEach(product => {
+                const original = parseFloat(product.selling_price);
+                const offer = product.offer_price ? parseFloat(product.offer_price) : original;
+                const qty = product.quantity;
+                subtotal += offer * qty;
+                // savings += (original - offer) * qty;
+                savings += 0;
+            });
 
-    if (subtotal >= 500) {
-        shippingCost = 0;
-        document.querySelector('.text-danger.small').textContent = "🎉 Congratulations! Free shipping applied!";
-    } else {
-        document.querySelector('.text-danger.small').textContent = "Purchase for AED 500 or more to enable free shipping";
-    }
+            if (subtotal >= 500) {
+                shippingCost = 0;
+                document.querySelector('.text-danger.small').textContent = "🎉 Congratulations! Free shipping applied!";
+            } else {
+                document.querySelector('.text-danger.small').textContent = "Purchase for AED 500 or more to enable free shipping";
+            }
 
-    const appliedCoupons = JSON.parse(localStorage.getItem('appliedCoupons')) || [];
-    let totalCouponDiscount = appliedCoupons.reduce((sum, c) => sum + parseFloat(c.discountAmount), 0);
+            const appliedCoupons = JSON.parse(localStorage.getItem('appliedCoupons')) || [];
+            let totalCouponDiscount = appliedCoupons.reduce((sum, c) => sum + parseFloat(c.discountAmount), 0);
 
-    // Display all applied coupons
-    const appliedCouponDiv = document.getElementById('applied-coupon');
-    appliedCouponDiv.innerHTML = '';
-    if (appliedCoupons.length > 0) {
-        appliedCoupons.forEach(coupon => {
-            const html = `
+            // Display all applied coupons
+            const appliedCouponDiv = document.getElementById('applied-coupon');
+            appliedCouponDiv.innerHTML = '';
+            if (appliedCoupons.length > 0) {
+                appliedCoupons.forEach(coupon => {
+                    const html = `
     <div class="d-flex justify-content-between align-items-center mb-1">
         <span style="background-color: #28a745; color: white; padding: 6px 10px; border-radius: 4px;">Applied: ${coupon.code}</span>
         <button onclick="removeCoupon('${coupon.code}')" 
@@ -1597,21 +1599,23 @@
     <div class="text-end fw-semibold" style="color: red;">- AED ${coupon.discountAmount.toFixed(2)}</div>
 `;
 
-            appliedCouponDiv.innerHTML += html;
-        });
-        appliedCouponDiv.classList.remove('d-none');
-    } else {
-        appliedCouponDiv.classList.add('d-none');
-    }
+                    appliedCouponDiv.innerHTML += html;
+                });
+                appliedCouponDiv.classList.remove('d-none');
+            } else {
+                appliedCouponDiv.classList.add('d-none');
+            }
 
-    const total = subtotal + shippingCost - savings - totalCouponDiscount;
-    const totalSavings = savings + totalCouponDiscount;
-
-    document.getElementById('cart-subtotal').textContent = `AED ${subtotal.toFixed(2)}`;
-    document.getElementById('cart-total').textContent = `AED ${total.toFixed(2)}`;
-    document.getElementById('shipping-cost').textContent = `AED ${shippingCost.toFixed(2)}`;
-    document.getElementById('savings-amount').textContent = `- AED ${totalSavings.toFixed(2)}`;
-}
+            const total = subtotal + shippingCost - savings - totalCouponDiscount;
+            const totalSavings = savings + totalCouponDiscount;
+            // ✅ Store subtotal and savings in localStorage
+            localStorage.setItem('cartSubtotal', subtotal.toFixed(2));
+            localStorage.setItem('cartSavings', totalSavings.toFixed(2));
+            document.getElementById('cart-subtotal').textContent = `AED ${subtotal.toFixed(2)}`;
+            document.getElementById('cart-total').textContent = `AED ${total.toFixed(2)}`;
+            document.getElementById('shipping-cost').textContent = `AED ${shippingCost.toFixed(2)}`;
+            document.getElementById('savings-amount').textContent = `- AED ${totalSavings.toFixed(2)}`;
+        }
 
         function updateCartCount() {
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -1643,28 +1647,28 @@
 
 
         function showCouponMessage(msg, isError) {
-    const alertBox = document.createElement('div');
-    alertBox.innerText = msg;
-    alertBox.style.position = 'fixed';
-    alertBox.style.bottom = '30px';
-    alertBox.style.right = '30px';
-    alertBox.style.backgroundColor = isError ? '#f44336' : '#28a745';
-    alertBox.style.color = '#fff';
-    alertBox.style.padding = '12px 20px';
-    alertBox.style.borderRadius = '4px';
-    alertBox.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
-    alertBox.style.zIndex = '99999';
-    alertBox.style.fontSize = '14px';
-    alertBox.style.transition = 'opacity 0.5s ease';
-    alertBox.style.opacity = '1';
+            const alertBox = document.createElement('div');
+            alertBox.innerText = msg;
+            alertBox.style.position = 'fixed';
+            alertBox.style.bottom = '30px';
+            alertBox.style.right = '30px';
+            alertBox.style.backgroundColor = isError ? '#f44336' : '#28a745';
+            alertBox.style.color = '#fff';
+            alertBox.style.padding = '12px 20px';
+            alertBox.style.borderRadius = '4px';
+            alertBox.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
+            alertBox.style.zIndex = '99999';
+            alertBox.style.fontSize = '14px';
+            alertBox.style.transition = 'opacity 0.5s ease';
+            alertBox.style.opacity = '1';
 
-    document.body.appendChild(alertBox);
+            document.body.appendChild(alertBox);
 
-    setTimeout(() => {
-        alertBox.style.opacity = '0';
-        setTimeout(() => alertBox.remove(), 500);
-    }, 3000);
-}
+            setTimeout(() => {
+                alertBox.style.opacity = '0';
+                setTimeout(() => alertBox.remove(), 500);
+            }, 3000);
+        }
 
 
 
@@ -1698,79 +1702,145 @@
     </script>
     <script>
 
-function applyCoupon() {
-    const code = document.getElementById('coupon-code').value.trim();
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        // function applyCoupon() {
+        //     const code = document.getElementById('coupon-code').value.trim();
+        //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    if (!code) {
-        showCouponMessage("Please enter a coupon code.", true);
-        return;
-    }
+        //     if (!code) {
+        //         showCouponMessage("Please enter a coupon code.", true);
+        //         return;
+        //     }
 
-    fetch(`https://websitegrabatoz-production.up.railway.app/api/coupons/code/${code}`)
-        .then(res => {
-            if (!res.ok) throw new Error("Invalid coupon");
-            return res.json();
-        })
-        .then(coupon => {
-            let appliedCoupons = JSON.parse(localStorage.getItem('appliedCoupons')) || [];
+        //     fetch(`https://websitegrabatoz-production.up.railway.app/api/coupons/code/${code}`)
+        //         .then(res => {
+        //             if (!res.ok) throw new Error("Invalid coupon");
+        //             return res.json();
+        //         })
+        //         .then(coupon => {
+        //             let appliedCoupons = JSON.parse(localStorage.getItem('appliedCoupons')) || [];
 
-            // Check for duplicates
-            if (appliedCoupons.some(c => c.code === coupon.code)) {
-                showCouponMessage("Coupon already applied.", true);
+        //             // Check for duplicates
+        //             if (appliedCoupons.some(c => c.code === coupon.code)) {
+        //                 showCouponMessage("Coupon already applied.", true);
+        //                 return;
+        //             }
+
+        //             // Limit to 2 coupons
+        //             if (appliedCoupons.length >= 2) {
+        //                 showCouponMessage("You can apply up to 2 coupons only.", true);
+        //                 return;
+        //             }
+
+        //             // Calculate subtotal
+        //             const subtotal = cart.reduce((total, item) => {
+        //                 const price = item.offer_price ? parseFloat(item.offer_price) : parseFloat(item.selling_price);
+        //                 return total + price * item.quantity;
+        //             }, 0);
+
+        //             // Calculate discount
+        //             let discountAmount = 0;
+        //             if (coupon.discount_type.toLowerCase() === 'percentage') {
+        //                 discountAmount = (subtotal * parseFloat(coupon.discount)) / 100;
+        //             } else {
+        //                 discountAmount = parseFloat(coupon.discount);
+        //             }
+
+        //             if (discountAmount > parseFloat(coupon.max_discount)) {
+        //                 discountAmount = parseFloat(coupon.max_discount);
+        //             }
+
+        //             appliedCoupons.push({ code: coupon.code, discountAmount });
+        //             localStorage.setItem('appliedCoupons', JSON.stringify(appliedCoupons));
+
+        //             showCouponMessage(`Coupon applied! Saved AED ${discountAmount.toFixed(2)}`, false);
+        //             updateCartTotals();
+        //         })
+        //         .catch(() => {
+        //             showCouponMessage("Invalid or expired coupon code.", true);
+        //         });
+        // }
+        function applyCoupon() {
+            const code = document.getElementById('coupon-code').value.trim();
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            if (!code) {
+                showCouponMessage("Please enter a coupon code.", true);
                 return;
             }
 
-            // Limit to 2 coupons
-            if (appliedCoupons.length >= 2) {
-                showCouponMessage("You can apply up to 2 coupons only.", true);
-                return;
-            }
+            fetch(`${API_CUSTOMER_URL}/api/coupons/code/${code}`)
+                .then(res => {
+                    if (!res.ok) throw new Error("Invalid coupon");
+                    return res.json();
+                })
+                .then(coupon => {
+                    let appliedCoupons = JSON.parse(localStorage.getItem('appliedCoupons')) || [];
 
-            // Calculate subtotal
-            const subtotal = cart.reduce((total, item) => {
-                const price = item.offer_price ? parseFloat(item.offer_price) : parseFloat(item.selling_price);
-                return total + price * item.quantity;
-            }, 0);
+                    // Check for duplicates
+                    if (appliedCoupons.some(c => c.code === coupon.code)) {
+                        showCouponMessage("Coupon already applied.", true);
+                        return;
+                    }
 
-            // Calculate discount
-            let discountAmount = 0;
-            if (coupon.discount_type.toLowerCase() === 'percentage') {
-                discountAmount = (subtotal * parseFloat(coupon.discount)) / 100;
-            } else {
-                discountAmount = parseFloat(coupon.discount);
-            }
+                    // Limit to 2 coupons
+                    if (appliedCoupons.length >= 2) {
+                        showCouponMessage("You can apply up to 2 coupons only.", true);
+                        return;
+                    }
 
-            if (discountAmount > parseFloat(coupon.max_discount)) {
-                discountAmount = parseFloat(coupon.max_discount);
-            }
+                    // Calculate subtotal
+                    const subtotal = cart.reduce((total, item) => {
+                        const price = item.offer_price ? parseFloat(item.offer_price) : parseFloat(item.selling_price);
+                        return total + price * item.quantity;
+                    }, 0);
 
-            appliedCoupons.push({ code: coupon.code, discountAmount });
-            localStorage.setItem('appliedCoupons', JSON.stringify(appliedCoupons));
+                    // Calculate discount based on coupon type
+                    let discountAmount = 0;
+                    if (coupon.discount_type.toLowerCase() === 'percentage') {
+                        // For percentage, calculate percentage of subtotal
+                        discountAmount = (subtotal * parseFloat(coupon.discount)) / 100;
 
-            showCouponMessage(`Coupon applied! Saved AED ${discountAmount.toFixed(2)}`, false);
-            updateCartTotals();
-        })
-        .catch(() => {
-            showCouponMessage("Invalid or expired coupon code.", true);
-        });
-}
+                        // Apply max discount if specified
+                        // if (coupon.max_discount && discountAmount > parseFloat(coupon.max_discount)) {
+                        //     discountAmount = parseFloat(coupon.max_discount);
+                        // }
+                    } else {
+                        // For fixed, use the discount amount directly
+                        discountAmount = parseFloat(coupon.discount);
+                    }
 
-      
-function removeCoupon(code) {
-    let appliedCoupons = JSON.parse(localStorage.getItem('appliedCoupons')) || [];
-    appliedCoupons = appliedCoupons.filter(c => c.code !== code);
-    localStorage.setItem('appliedCoupons', JSON.stringify(appliedCoupons));
-    showCouponMessage("Coupon removed.", false);
-    updateCartTotals();
-}
+                    appliedCoupons.push({
+                        code: coupon.code,
+                        discountAmount,
+                        discountType: coupon.discount_type,
+                        originalDiscount: coupon.discount
+                    });
 
+                    localStorage.setItem('appliedCoupons', JSON.stringify(appliedCoupons));
 
-        function showCouponMessage(msg, isError) {
-            const el = document.getElementById('coupon-message');
-            el.textContent = msg;
-            el.style.color = isError ? 'red' : 'green';
+                    showCouponMessage(`Coupon applied! Saved AED ${discountAmount.toFixed(2)}`, false);
+                    updateCartTotals();
+                })
+                .catch(() => {
+                    showCouponMessage("Invalid or expired coupon code.", true);
+                });
         }
+
+
+        function removeCoupon(code) {
+            let appliedCoupons = JSON.parse(localStorage.getItem('appliedCoupons')) || [];
+            appliedCoupons = appliedCoupons.filter(c => c.code !== code);
+            localStorage.setItem('appliedCoupons', JSON.stringify(appliedCoupons));
+            showCouponMessage("Coupon removed.", false);
+            updateCartTotals();
+        }
+
+
+        // function showCouponMessage(msg, isError) {
+        //     const el = document.getElementById('coupon-message');
+        //     el.textContent = msg;
+        //     el.style.color = isError ? 'red' : 'green';
+        // }
     </script>
     <script>
         // Toggle wishlist
