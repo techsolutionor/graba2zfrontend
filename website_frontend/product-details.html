@@ -2365,78 +2365,7 @@ if (qtyInput && itemInCart) {
         `;
             }
         }
-        // async function fetchRelatedProducts(category, excludeProductId) {
-        //     try {
-        //         // Fetch products of the same category excluding the current product
-        //         const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=${encodeURIComponent(category)}&exclude=${excludeProductId}`);
-
-        //         if (!response.ok) {
-        //             throw new Error('Failed to fetch related products');
-        //         }
-        //         const data = await response.json();
-        //         console.log('Related Products API Response:', data);
-
-        //         // Extract the array of products
-        //         const relatedProducts = data.products;
-
-        //         // Ensure the extracted products are an array
-        //         if (!Array.isArray(relatedProducts)) {
-        //             console.error('Error: Expected an array of related products but received:', relatedProducts);
-        //             return;
-        //         }
-        //         // Populate the related products section
-        //         const relatedProductsContainer = document.getElementById('relatedProducts');
-        //         relatedProductsContainer.innerHTML = ''; // Clear existing content
-
-        //         // const rowDiv = document.createElement('div');
-        //         // rowDiv.classList.add('row');
-
-        //         if (relatedProducts.length === 0) {
-        //             relatedProductsContainer.innerHTML = '<p >No related products found.</p>';
-        //             return;
-        //         }
-        //         relatedProducts.forEach(product => {
-        //             const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
-        //             const productCard = `
-        //     <div class="col-md-4">
-        //         <div class="product-card h-100 p-8 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-        //             <a href="product-details.html?slug=${product.slug}" class="product-card__thumb flex-center">
-        //                 <img src="${API_ADMINGRAB_URL}/${sanitizedImagePath}" alt="${product.name}">
-        //             </a>
-        //             <div class="product-card__content p-sm-2">
-        //                 <h6 class="title text-lg fw-semibold mt-12 mb-8">
-        //                     <a href="product-details.html?slug=${product.slug}" class="link text-line-2">${product.name}</a>
-        //                 </h6>
-        //                 <div class="flex-align gap-4">
-        //                     <span class="text-main-600 text-md d-flex"><i class="ph-fill ph-storefront"></i></span>
-        //                     <span class="text-gray-500 text-xs">By ${product.brand || 'Unknown'}</span>
-        //                 </div>
-        //                 <div class="product-card__content mt-12">
-        //                     <div class="product-card__price mb-8">
-        //                         <span class="text-heading text-md fw-semibold ">$${product.offer_price || product.selling_price || 0.00} <span class="text-gray-500 fw-normal">/Qty</span> </span>
-        //                         ${product.offer_price ? `<span class="text-gray-400 text-md fw-semibold text-decoration-line-through"> $${product.selling_price}</span>` : ''}
-        //                     </div>
-        //                     <div class="flex-align gap-6">
-        //                         <span class="text-xs fw-bold text-gray-600">4.8</span>
-        //                         <span class="text-15 fw-bold text-warning-600 d-flex"><i class="ph-fill ph-star"></i></span>
-        //                         <span class="text-xs fw-bold text-gray-600">(17k)</span>
-        //                     </div>
-
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>
-        //     `;
-        //             relatedProductsContainer.insertAdjacentHTML('beforeend', productCard);
-        //         });
-
-        //     } catch (error) {
-        //         console.error('Error fetching related products:', error);
-        //         document.getElementById('relatedProducts').innerHTML = `
-        //     <p>Failed to load related products. Please try again later.</p>
-        // `;
-        //     }
-        // }
+        
         async function fetchRelatedProducts(categoryId, excludeProductId) {
             function limitWords(text, wordLimit) {
                 const words = text.trim().split(/\s+/);
