@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Redirect query string URLs to clean path
+RewriteCond %{THE_REQUEST} \s/+product\?slug=([^\s&]+) [NC]
+RewriteRule ^ /product/%1? [R=301,L]
+
+# Internally rewrite clean URL to query version
+RewriteRule ^product/([^/]+)/?$ product?slug=$1 [L,QSA]

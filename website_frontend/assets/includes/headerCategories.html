@@ -1650,7 +1650,7 @@
 
                             <!-- Logo Start -->
                             <div class="logo px-16 d-lg-none d-block">
-                                <a href="index.html" class="link">
+                                <a href="index" class="link">
                                     <img src="assets/images/logo/logo.png" alt="Logo">
                                 </a>
                             </div>
@@ -1750,7 +1750,7 @@
                 listItem.className = hasChildren ? 'has-submenus-submenu' : '';
 
                 listItem.innerHTML = `
-            <a href="shop.html?category=${encodeURIComponent(parentCategory.name)}" 
+            <a href="shop?category=${encodeURIComponent(parentCategory.name)}" 
                class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
                 <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
                 <span>${parentCategory.name}</span>
@@ -1771,7 +1771,7 @@
 
                     categoryMap.childCategories[parentCategory.id].forEach(childCategory => {
                         const childItem = document.createElement('li');
-                        childItem.innerHTML = `<a href="shop.html?category=${encodeURIComponent(childCategory.name)}">${childCategory.name}</a>`;
+                        childItem.innerHTML = `<a href="shop?category=${encodeURIComponent(childCategory.name)}">${childCategory.name}</a>`;
                         submenuList.appendChild(childItem);
                     });
 
@@ -1795,7 +1795,7 @@
                 menuItem.className = `on-hover-item nav-menu__item ${hasChildren ? 'has-submenu' : ''}`;
 
                 menuItem.innerHTML = `
-            <a href="${hasChildren ? 'javascript:void(0)' : `shop.html?category=${encodeURIComponent(parentCategory.name)}`}" 
+            <a href="${hasChildren ? 'javascript:void(0)' : `shop?category=${encodeURIComponent(parentCategory.name)}`}" 
                class="nav-menu__link">${parentCategory.name}</a>
         `;
 
@@ -1807,7 +1807,7 @@
                         const submenuItem = document.createElement('li');
                         submenuItem.className = 'common-dropdown__item nav-submenu__item';
                         submenuItem.innerHTML = `
-                    <a href="shop.html?category=${encodeURIComponent(childCategory.name)}" 
+                    <a href="shop?category=${encodeURIComponent(childCategory.name)}" 
                        class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">
                         ${childCategory.name}
                     </a>

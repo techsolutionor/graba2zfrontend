@@ -80,7 +80,7 @@
     let FileName = window.location.pathname.split("/").reverse()[0];
   
     // If we are at the root path ("/" or no file name), keep the activePage class on the Home item
-    if (FileName === "" || FileName === "index.html") {
+    if (FileName === "" || FileName === "index") {
       // Keep the activePage class on the Home link
       selector.find("li.nav-menu__item.has-submenu").eq(0).addClass("activePage");
     } else {

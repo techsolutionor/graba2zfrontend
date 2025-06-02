@@ -29,14 +29,14 @@
         if (response.success) {
           localStorage.removeItem('cart');
           sessionStorage.removeItem('pendingPaymentOrder');
-          window.location.href = `./order-confirmation.html?order_id=${orderId}`;
+          window.location.href = `./order-confirmation?order_id=${orderId}`;
         } else {
-          window.location.href = `./order-details.html?order_id=${orderId}&payment_error=1`;
+          window.location.href = `./order-details?order_id=${orderId}&payment_error=1`;
         }
       },
       error: function (err) {
         console.error("VERIFY ERROR:", err);
-        window.location.href = `./order-details.html?order_id=${orderId}&payment_error=1`;
+        window.location.href = `./order-details?order_id=${orderId}&payment_error=1`;
       }
     });
   </script>

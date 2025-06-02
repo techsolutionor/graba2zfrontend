@@ -33,7 +33,7 @@
         <div class="row">
             <div class="col-md-3 mb-4">
                
-                <img alt="Graba2z logo with a shopping cart icon" class="mb-3" src="assets/images/logo/logo.png" style="width: 200px; height: 70px;">
+                <img alt="Graba2z logo with a shopping cart icon" class="mb-3" src="https://graba2z.netlify.app/assets/images/logo/logo.png" style="width: 200px; height: 70px;">
                 <p style="color: white; margin-left: 7px;">Subscribe to our newsletter</p>
                 <div class="subscribe d-flex">
                     <input type="email" placeholder="Enter your email address">
@@ -61,23 +61,23 @@
             <div class="col-md-2 mb-4">
                 <h5 style="color: white; font-size: 20px;">More Categories</h5>
                 <ul class="list-unstyled">
-                    <li><a href="/shop.html">Projector</a></li>
-                    <li><a href="/shop.html">Monitors</a></li>
-                    <li><a href="/shop.html">Scanners</a></li>
-                    <li><a href="/shop.html">Copier</a></li>
-                    <li><a href="/shop.html">Printers</a></li>
-                    <li><a href="/shop.html">Storage Solution</a></li>
+                    <li><a href="/shop">Projector</a></li>
+                    <li><a href="/shop">Monitors</a></li>
+                    <li><a href="/shop">Scanners</a></li>
+                    <li><a href="/shop">Copier</a></li>
+                    <li><a href="/shop">Printers</a></li>
+                    <li><a href="/shop">Storage Solution</a></li>
                 </ul>
             </div>
             <div class="col-md-2 mb-4">
                 <h5 style="color: white; font-size: 20px;">Legal</h5>
                 <ul class="list-unstyled">
-                    <li><a href="./terms-conditions.html">Terms & Condition</a></li>
-                    <li><a href="./refund-and-return.html">Refund and Returns</a></li>
-                    <li><a href="./cookies-policy.html">Cookies Policies</a></li>
+                    <li><a href="./terms-conditions">Terms & Condition</a></li>
+                    <li><a href="./refund-and-return">Refund and Returns</a></li>
+                    <li><a href="./cookies-policy">Cookies Policies</a></li>
                     
-                    <li><a href="./privacy-policy.html">Privacy Policies</a></li>
-                    <li>   <a href="terms-conditions.html" data-bs-toggle="modal"
+                    <li><a href="./privacy-policy">Privacy Policies</a></li>
+                    <li>   <a href="terms-conditions" data-bs-toggle="modal"
                                     data-bs-target="#remoteDeliveryModal"
                                     style="color: #ffffff;">
                                    Site Map
@@ -87,10 +87,10 @@
             <div class="col-md-3 mb-4">
                 <h5 style="color: white; font-size: 20px;">Support</h5>  
                 <ul class="list-unstyled">
-                    <li><a href="./about-us.html">About us</a></li>
-                    <li><a href="./contact.html">Contact us</a></li>
-                    <li><a href="./bulk-purchase.html">Bulk Purchase</a></li>
-                    <li><a href="./bulk-purchase.html">Corporate Deal</a></li>
+                    <li><a href="./about-us">About us</a></li>
+                    <li><a href="./contact">Contact us</a></li>
+                    <li><a href="./bulk-purchase">Bulk Purchase</a></li>
+                    <li><a href="./bulk-purchase">Corporate Deal</a></li>
                 </ul>
                 <p style="color: white; " ><i class="fas fa-phone"></i> (+971) 4-354 0566</p>
                 <p style="color: white;"><i class="fas fa-envelope"></i> Support@graba2z.com</p>
@@ -103,13 +103,13 @@
 <footer class="footer-bottom">
   <div class="container-fluid px-4 d-flex flex-column flex-md-row justify-content-between align-items-center text-center text-md-start">
     <p class="mb-2 mb-md-0">© 2025 Grabatoz Powered By Crown Excel</p>
-    <img src="assets/images/thumbs/Color-Icon-1.svg" alt="Payment Methods">
+    <img src="https://graba2z.netlify.app/assets/images/thumbs/Color-Icon-1.svg" alt="Payment Methods">
     <div>
       <a href="https://www.apple.com/store" class="me-2">
-        <img src="assets/images/thumbs/app_store.png" alt="App Store">
+        <img src="https://graba2z.netlify.app/assets/images/thumbs/app_store.png" alt="App Store">
       </a>
       <a href="https://play.google.com/store/apps?hl=en">
-        <img src="assets/images/thumbs/google_play.png" alt="Google Play">
+        <img src="https://graba2z.netlify.app/assets/images/thumbs/google_play.png" alt="Google Play">
       </a>
     </div>
   </div>
@@ -119,15 +119,15 @@
 <div>
   <!-- Mobile Nav -->
   <div class="mobile-nav">
-    <a href="index.html">
+    <a href="index">
       <i class="ph ph-house"></i>
       <span>Home</span>
     </a>
-    <a href="/shop.html">
+    <a href="/shop">
       <i class="ph ph-grid-four icon-hover"></i>
       <span>Shop</span>
     </a>
-    <a href="cart.html" class="flex-align gap-4 item-hover">
+    <a href="cart" class="flex-align gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
                                 <i class="ph ph-shopping-cart-simple"></i>
                               
@@ -149,7 +149,7 @@
             updateCartIcon(); // Update the cart icon with the correct count
         });
 
-        // index.html - Update the cart icon count based on localStorage
+        // index - Update the cart icon count based on localStorage
         function updateCartIcon() {
             const cartItemCount = localStorage.getItem('cartItemCount') || 0; // Get the cart count from localStorage
             const cartCountElement = document.querySelector('.cart-item-count'); // Get the element that holds the cart count
@@ -161,7 +161,7 @@
         document.getElementById('search-form').addEventListener('submit', (event) => {
             event.preventDefault();
             const searchQuery = document.getElementById('search-input').value.trim();
-            window.location.href = `shop.html?search=${encodeURIComponent(searchQuery)}`;
+            window.location.href = `shop?search=${encodeURIComponent(searchQuery)}`;
             // await fetchFilteredProducts(searchQuery);
         });
 
@@ -212,7 +212,7 @@
 
         function handleAddToCart(product) {
             addToCart(product); // Add product to cart
-            window.location.href = 'cart.html'; // Navigate to cart.html
+            window.location.href = 'cart'; // Navigate to cart
         }
 
 
@@ -266,7 +266,7 @@
         }
     </script>
     <script>
-        fetch('./topHeader.html')
+        fetch('./topHeader')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('top-header').innerHTML = data;
