@@ -696,6 +696,7 @@
 </head>
 
 <body>
+
     <!-- ======================= top Header Start ========================= -->
     <div class="header-top flex-between" style="background-color: #a3d02c;">
         <div class="container container-lg">
@@ -819,14 +820,14 @@
                             </span>
                         </button>
                         <!-- In your header -->
-                        <a href="wishlist" class="flex-align gap-4 item-hover">
+                        <a href="https://graba2z.netlify.app/wishlist" class="flex-align gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
                                 <i class="ph ph-heart"></i>
                                 <span id="wishlist-item-count" class="wishlist-item-count">0</span>
                             </span>
                             <span class="text-md text-gray-500 item-hover__text d-none d-lg-flex">Wishlist</span>
                         </a>
-                        <a href="cart" class="flex-align gap-4 item-hover ">
+                        <a href="https://graba2z.netlify.app/cart" class="flex-align gap-4 item-hover ">
                             <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
                                 <i class="ph ph-shopping-cart-simple"></i>
                                 <span class="cart-item-count">0</span>
@@ -1835,6 +1836,8 @@
             </div>
         </div>
     </section>
+ 
+
     <!-- ========================== Shipping Section End ============================ -->
     <div id="footer"></div>
     <script>
@@ -2035,8 +2038,9 @@
             updateCartCount();
         });
         // Extract product ID from the URL
-        const params = new URLSearchParams(window.location.search);
-        const productId = params.get('slug');
+        document.addEventListener('DOMContentLoaded', function () {
+
+       const productId = window.location.pathname.split('/').pop();
 
         if (productId) {
             console.log('Product ID:', productId);
@@ -2047,7 +2051,7 @@
         }
         async function fetchProductDetails(productId) {
             try {
-                const response = await fetch(`${API_CUSTOMER_URL}/api/products/${productId}`);
+                const response = await fetch(`https://websitegrabatoz-production.up.railway.app/api/products/${productId}`);
                 if (!response.ok) throw new Error('Failed to fetch product details');
 
                 const product = await response.json();
@@ -2403,6 +2407,8 @@
                 el.textContent = totalItems;
             });
         }
+        });
+
         function showSuccessMessage(message) {
             const messageContainer = document.createElement('div');
             messageContainer.style.position = 'fixed';

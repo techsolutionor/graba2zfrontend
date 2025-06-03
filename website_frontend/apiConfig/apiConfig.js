@@ -3,5 +3,8 @@
 
 // const API_ADMINGRAB_URL = "https://admingrab.techatooz.com"
 // const API_CUSTOMER_URL = "https://server.techatooz.com"
-const API_ADMINGRAB_URL = "https://grabatoz-production.up.railway.app"
+// const API_ADMINGRAB_URL = "https://grabatoz-production.up.railway.app"
+const API_ADMINGRAB_URL = "http://grabatoz-production.up.railway.app"
+
+// const API_CUSTOMER_URL = "https://websitegrabatoz-production.up.railway.app"
 const API_CUSTOMER_URL = "https://websitegrabatoz-production.up.railway.app"
