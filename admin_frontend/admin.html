@@ -810,63 +810,7 @@ alert(JSON.stringify(updatedUser, null, 2));
 }
 
 
-// async function updateUser(event) {
-//     event.preventDefault(); // Prevent the default form submission
-//     const userId = document.getElementById('editUserId').value;
 
-//     const updatedUser = {
-//         name: document.getElementById('editUserName').value.trim(),
-//         email: document.getElementById('editEmail').value.trim(),
-//         phone: document.getElementById('editPhone').value.trim(),
-//         role: document.getElementById('edituserRole').value.trim(),
-        
-//         password: document.getElementById('editPassword').value.trim(), // Handle securely
-//         status: document.getElementById('editStatus').value.trim(),
-//         address: document.getElementById('editaddress').value.trim(), // Added address
-//         country: document.getElementById('editCountry').value.trim(), // Added country
-//         state: document.getElementById('editState').value.trim(), // Added state
-//         city: document.getElementById('editcity').value.trim(), // Added city
-//         zip_code: document.getElementById('editzipcode').value.trim() // Added zip code
-//     };
-
-//     // alert the updatedUser object as a string for debugging
-//     alert(JSON.stringify(updatedUser, null));
-
-//     try {
-//         const response = await fetch(`${API_ADMINGRAB_URL}/api/admin/updateUser/${userId}`, {
-//             method: 'PUT', // Use PUT for updating
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify(updatedUser), // Send the updated data as JSON   
-//         });
-
-//         if (response.ok) {
-//             fetchUsers();
-//             // Close the edit modal after successful update
-//             closeEditModal();
-
-//             // Show an alert with the updated user details
-//             showSuccessMessage(`User Updated Successfully!
-//                 Name: ${updatedUser.name}
-//                 Email: ${updatedUser.email}
-//                 Phone: ${updatedUser.phone}
-//                 Role: ${updatedUser.role}
-//                 Status: ${updatedUser.status}
-//                 Address: ${updatedUser.address}
-//                 Country: ${updatedUser.country}
-//                 State: ${updatedUser.state}
-//                 City: ${updatedUser.city}
-//                 Zip Code: ${updatedUser.zip_code}`);
-//         } else {
-//             const errorMsg = await response.json();
-//             showErrorMessage(`Failed to update user: ${errorMsg.error}`);
-//         }
-//     } catch (error) {
-//         console.error('Error updating user:', error);
-//         showErrorMessage('Error updating user. Please try again.');
-//     }
-// }
 
 async function updateUser(event) {
     event.preventDefault(); // Prevent the default form submission
@@ -914,78 +858,7 @@ async function updateUser(event) {
 
 
 
-// Add new user
-// document.addEventListener("DOMContentLoaded", () => {
-//     document.getElementById("saveUserBtn").addEventListener("click", async (event) => {
-//         event.preventDefault();  // Prevent default form submission
-//         const saveButton = document.getElementById("saveUserBtn");
-//         saveButton.disabled = true; // Disable the button to prevent multiple submissions
 
-//         // Gather form data
-//         const userData = {
-//             name: document.getElementById('userName').value.trim(),
-//             email: document.getElementById('userEmail').value.trim(),
-//             phone: document.getElementById('userPhone').value.trim(),
-//             status: document.querySelector('input[name="userStatus"]:checked')?.value,
-//             password: document.getElementById('userPassword').value.trim(),
-//             confirm_password: document.getElementById('confirm_Password').value.trim(), // Get confirm password correctly
-//             role: document.getElementById('userRole').value.trim(), // Correctly call trim()
-//             country: document.getElementById('country').value.trim(), // New field
-//             address: document.getElementById('address').value.trim(), // New field
-//             state: document.getElementById('state').value.trim(), // New field
-//             city: document.getElementById('city').value.trim(), // New field
-//             zip_code: document.getElementById('zipCode').value.trim(), // New field
-//             created_at: new Date().toISOString() // Current date-time for record creation
-//         };
-
-//         // alert userData for debugging
-//         alert(JSON.stringify(userData, null)); // Format for readability
-
-//         // Validate email format using a regex pattern
-//         const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-//         if (!emailPattern.test(userData.email)) {
-//             showErrorMessage('Please enter a valid email address.');
-//             saveButton.disabled = false; // Re-enable the button if email is invalid
-//             return;
-//         }
-
-//         // Check if passwords match
-//         if (userData.password !== userData.confirm_password) {
-//             showErrorMessage('Passwords do not match!');
-//             saveButton.disabled = false; // Re-enable the button if passwords do not match
-//             return;
-//         }
-
-//         // Proceed to send the POST request if validations pass
-//         try {
-//             // Include confirm_password in the request body
-//             const response = await fetch(`${API_ADMINGRAB_URL}/api/admin`, {
-//                 method: 'POST',
-//                 headers: {
-//                     'Content-Type': 'application/json'
-//                 },
-//                 body: JSON.stringify(userData) // Send the complete userData object with confirm_password
-//             });
-            
-//             const data = await response.json();
-
-//             if (response.ok) {
-//                 fetchUsers();
-//                 showSuccessMessage('User saved successfully!');
-//                 document.getElementById('addUserForm').reset(); // Reset the form
-//                 const modal = bootstrap.Modal.getInstance(document.getElementById('addUserModal'));
-//                 modal.hide(); // Close the modal
-//             } else {
-//                 showErrorMessage(`Error: ${data.message}`);
-//             }
-//         } catch (error) {
-//             console.error('Error saving user:', error);
-//             showErrorMessage('Error saving user. Please try again.');
-//         } finally {
-//             saveButton.disabled = false; // Re-enable the button once the request is completed
-//         }
-//     });
-// });
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("saveUserBtn").addEventListener("click", async (event) => {
