@@ -1651,20 +1651,29 @@
                 loadCart();
             });
 
-            function updateQuantity(productId, change) {
-                let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                let updatedCart = cart.map(product => {
-                    if (product.id === productId) {
-                        let newQuantity = product.quantity + change;
-                        if (newQuantity < 1) newQuantity = 1;
-                        return { ...product, quantity: newQuantity };
-                    }
-                    return product;
-                });
-                localStorage.setItem('cart', JSON.stringify(updatedCart));
-                loadCart();
-                updateCartCount();
-            }
+           function updateQuantity(productId, change) {
+    const cart = getCart();
+    const index = cart.findIndex(item => item.id === productId);
+
+    if (index !== -1) {
+        cart[index].quantity += change;
+
+        if (cart[index].quantity < 1) {
+            // If quantity is less than 1 → remove item from cart
+            cart.splice(index, 1);
+        }
+
+        // Save updated cart
+        saveCart(cart);
+
+        // Re-render the cart display
+        renderCart();
+
+        // ✅ Update the header Cart count
+        updateCartBadge();
+    }
+}
+
 
             function removeFromCart(productId) {
                 let cart = JSON.parse(localStorage.getItem('cart')) || [];
