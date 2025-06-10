@@ -38,6 +38,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/style.css"> -->
      <link href="https://unpkg.com/phosphor-icons@1.4.2/dist/ph.min.css" rel="stylesheet">
+<script src="/assets/js/wishlist.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -2705,7 +2706,7 @@ updateWishlistBadge();
             }
         }
     </script>
-   <script>
+   <!-- <script>
     // Toggle wishlist
     function toggleWishlist(product) {
         const heartIcon = document.getElementById('heart-icon');
@@ -2752,7 +2753,7 @@ updateWishlistBadge();
 
     // On page load
     document.addEventListener('DOMContentLoaded', updateWishlistBadge);
-</script>
+</script> -->
 
 
     <script>
@@ -2985,42 +2986,42 @@ updateWishlistBadge();
             }
 
 
-            // Function to toggle wishlist status
-            function toggleWishlist(product) {
-                // Get heart icon and current wishlist from localStorage
-                const heartIcon = document.getElementById('heart-icon');
-                let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            // // Function to toggle wishlist status
+            // function toggleWishlist(product) {
+            //     // Get heart icon and current wishlist from localStorage
+            //     const heartIcon = document.getElementById('heart-icon');
+            //     let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
-                // Check if product already exists in wishlist
-                const productIndex = wishlist.findIndex(item => item.id === product.id);
+            //     // Check if product already exists in wishlist
+            //     const productIndex = wishlist.findIndex(item => item.id === product.id);
 
-                if (productIndex === -1) {
-                    // Product not in wishlist, add it and change icon color to red
-                    wishlist.push(product);
-                    localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Save to localStorage
-                    heartIcon.style.color = 'red'; // Change heart color to red
-                    showSuccessMessage('Product added to wishlist!');
-                } else {
-                    // Product already in wishlist, remove it and reset icon color
-                    wishlist.splice(productIndex, 1);
-                    localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Remove from localStorage
-                    heartIcon.style.color = ''; // Reset heart color
-                    showSuccessMessage('Product removed from wishlist!');
-                }
-            }
+            //     if (productIndex === -1) {
+            //         // Product not in wishlist, add it and change icon color to red
+            //         wishlist.push(product);
+            //         localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Save to localStorage
+            //         heartIcon.style.color = 'red'; // Change heart color to red
+            //         showSuccessMessage('Product added to wishlist!');
+            //     } else {
+            //         // Product already in wishlist, remove it and reset icon color
+            //         wishlist.splice(productIndex, 1);
+            //         localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Remove from localStorage
+            //         heartIcon.style.color = ''; // Reset heart color
+            //         showSuccessMessage('Product removed from wishlist!');
+            //     }
+            // }
 
-            function updateWishlistBadge() {
-                const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-                const wishlistBadge = document.getElementById('numberWishlist');
+            // function updateWishlistBadge() {
+            //     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            //     const wishlistBadge = document.getElementById('numberWishlist');
 
-                // Update the badge count
-                if (wishlistBadge) {
-                    wishlistBadge.textContent = wishlist.length;
-                }
-            }
+            //     // Update the badge count
+            //     if (wishlistBadge) {
+            //         wishlistBadge.textContent = wishlist.length;
+            //     }
+            // }
 
-            // Call this function on page load to ensure the badge is updated dynamically 
-            window.onload = updateWishlistBadge;
+            // // Call this function on page load to ensure the badge is updated dynamically 
+            // window.onload = updateWishlistBadge;
 
 
             function toggleIcon(button) {
