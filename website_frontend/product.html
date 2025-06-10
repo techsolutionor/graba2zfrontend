@@ -2555,33 +2555,22 @@ updateWishlistBadge();
        
 
         // Handle Add to Cart button click
-        function handleAddToCart(product) {
-            const qtyInput = document.getElementById("qty");
-            const qty = parseInt(qtyInput?.value || "1");
+       function handleAddToCart(product) {
+    const cart = getCart();
+    const existingProduct = cart.find(item => item.id === product.id);
 
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const existingProductIndex = cart.findIndex(item => item.id === product.id);
+    if (existingProduct) {
+        showSuccessMessage("This product is already in cart. Use + / - buttons to change quantity.");
+        return;
+    }
 
-            if (existingProductIndex !== -1) {
-                // Product already in cart - show message
-                showSuccessMessage("This product is already in cart");
-                return;
-            }
+    const qtyInput = document.getElementById("qty");
+    const qty = parseInt(qtyInput?.value || "1");
 
-            // Add new product to cart
-            cart.push({
-                ...product,
-                quantity: qty,
-                price: product.offer_price || product.selling_price // Ensure price is set
-            });
+    addToCart(product, qty); // from cart.js
+    updateAddToCartUI(product.id, qty);
+}
 
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartCount();
-            showSuccessMessage(`Item added successfully`);
-
-            // Update the UI to show it's in cart
-            updateAddToCartUI(product.id, qty);
-        }
         // Update UI when product is in cart
         function updateAddToCartUI(productId, quantity) {
             const addToCartBtn = document.querySelector('.add-to-cart-btn');
