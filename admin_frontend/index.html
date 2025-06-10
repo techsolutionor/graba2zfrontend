@@ -293,7 +293,18 @@ let allOrders = []; // to store unfiltered full API response
       <button id="applyDateFilter" class="btn btn-dark w-100">Apply Filter</button>
     </div>
   </div>
+  <div class="col-md-4">
+  <label for="dayRange" class="form-label">Quick Range:</label>
+  <select class="form-select" id="dayRange">
+    <option value="">-- Select --</option>
+    <option value="1">Last 1 Day</option>
+    <option value="3">Last 3 Days</option>
+    <option value="7">Last 7 Days</option>
+    <option value="30">Last 30 Days</option>
+  </select>
 </div>
+</div>
+
 
           
           <div class="row">
@@ -493,7 +504,7 @@ let allOrders = []; // to store unfiltered full API response
           <h3>Raw Orders Debug</h3>
           <pre id="orderDebug" style="max-height: 400px; overflow-y: auto; background-color: #f8f9fa; padding: 10px; border: 1px solid #ddd;"></pre>
         </div>
-        
+
         <div class="row" style="width: 90%; margin: 0px auto 0 auto;">
           <div class="col-12 col-md-6">
         <div id="thirdgraph"></div>
@@ -744,6 +755,28 @@ function renderTopCustomersChart(data) {
           updateAllStats(filtered);
         });
       });
+      document.getElementById("dayRange").addEventListener("change", function () {
+  const days = parseInt(this.value);
+  if (!days) return;
+
+  const toDate = new Date();
+  const fromDate = new Date();
+  fromDate.setDate(toDate.getDate() - days + 1);
+  toDate.setHours(23, 59, 59, 999);
+
+  const filtered = allOrders.filter(order => {
+    if (!order.createdAt) return false;
+    const orderDate = new Date(order.createdAt);
+    return orderDate >= fromDate && orderDate <= toDate;
+  });
+
+  updateAllStats(filtered);
+
+  // Also update the date fields visually for user reference
+  document.getElementById("fromDate").value = fromDate.toISOString().split('T')[0];
+  document.getElementById("toDate").value = new Date().toISOString().split('T')[0];
+});
+
     </script>
     
       
