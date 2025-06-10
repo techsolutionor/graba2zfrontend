@@ -26,6 +26,60 @@
     color: #000000; /* submenu link color */
     text-decoration: none;
   }
+    .left-sidebar {
+      width: 260px;
+      height: 100vh;
+      background-color: #ffffff;
+      position: fixed;
+      overflow-y: auto;
+      border-right: 1px solid #ddd;
+    }
+    .section-title {
+      padding: 10px 20px;
+      font-weight: bold;
+      font-size: 12px;
+      color: #6c757d;
+    }
+    .nav-link {
+      display: block;
+      padding: 10px 20px;
+      color: #000;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .nav-link:hover {
+      background-color: #f0f0f0;
+    }
+    .nav-link.active {
+      background-color: #000;
+      color: #fff !important;
+      font-weight: bold;
+      border-radius: 8px;
+      position: relative;
+    }
+    .nav-link.active::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      background-color: #ff7300;
+      border-radius: 50%;
+    }
+    .sidebar-submenu {
+      padding-left: 30px;
+      list-style: none;
+    }
+    .sidebar-submenu .nav-link {
+      font-size: 14px;
+      padding: 6px 20px;
+    }
+    .body-wrapper {
+      margin-left: 260px;
+      padding: 30px;
+    }
   </style>
 <!-- Quill JS -->
 <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
