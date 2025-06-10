@@ -2552,26 +2552,7 @@ updateWishlistBadge();
                 document.body.removeChild(messageContainer);
             }, 3000);
         }
-        // Handle Add to Cart (No page redirect)
-        // function handleAddToCart(product) {
-        //     const qtyInput = document.getElementById("qty");
-        //     const qty = parseInt(qtyInput?.value || "1");
-
-        //     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        //     const existingProduct = cart.find(item => item.id === product.id);
-
-        //     if (existingProduct) {
-        //         showSuccessMessage("This Product already in cart.");
-        //         return;
-        //     }
-
-        //     cart.push({ ...product, quantity: qty });
-        //     localStorage.setItem('cart', JSON.stringify(cart));
-
-        //     updateCartCount(); // ✅ update live
-        //     showSuccessMessage(`Added ${qty} item(s) to cart`);
-        // }
-
+       
 
         // Handle Add to Cart button click
         function handleAddToCart(product) {
@@ -2620,29 +2601,7 @@ updateWishlistBadge();
         }
 
 
-        // function changeQty(change) {
-        //     const qtyInput = document.getElementById("qty");
-        //     const productId = parseInt(qtyInput.dataset.productId);
-        //     let qty = parseInt(qtyInput.value);
-        //     if (isNaN(qty)) qty = 1;
-
-        //     qty += change;
-        //     if (qty < 1) qty = 1;
-
-        //     qtyInput.value = qty;
-
-        //     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        //     const index = cart.findIndex(item => item.id === productId);
-
-        //     if (index !== -1) {
-        //         cart[index].quantity = qty;
-        //         localStorage.setItem('cart', JSON.stringify(cart));
-        //         updateCartCount(); // ✅ update live
-        //     } else {
-        //         showSuccessMessage("Add to cart first before changing quantity.");
-        //     }
-        // }
-
+        
         // Handle quantity changes (+/- buttons)
         function changeQty(change) {
             const qtyInput = document.getElementById("qty");
