@@ -280,29 +280,28 @@ let allOrders = []; // to store unfiltered full API response
 <!-- DATE FILTER BOX (Initially hidden) -->
 <div id="filterBox" class="card p-3 mb-4" style="display: none;">
   <h6 class="mb-3">Filter by Date</h6>
-  <div class="row g-2 align-items-end">
-    <div class="col-md-4">
-      <label for="fromDate" class="form-label">From Date:</label>
-      <input type="date" class="form-control" id="fromDate">
-    </div>
-    <div class="col-md-4">
-      <label for="toDate" class="form-label">To Date:</label>
-      <input type="date" class="form-control" id="toDate">
-    </div>
-    <div class="col-md-4">
-      <button id="applyDateFilter" class="btn btn-dark w-100">Apply Filter</button>
-    </div>
+ <div class="row g-2 align-items-end">
+  <div class="col-md-4">
+    <label for="fromDate" class="form-label">From Date:</label>
+    <input type="date" class="form-control" id="fromDate">
   </div>
   <div class="col-md-4">
-  <label for="dayRange" class="form-label">Quick Range:</label>
-  <select class="form-select" id="dayRange">
-    <option value="">-- Select --</option>
-    <option value="1">Last 1 Day</option>
-    <option value="3">Last 3 Days</option>
-    <option value="7">Last 7 Days</option>
-    <option value="30">Last 30 Days</option>
-  </select>
+    <label for="toDate" class="form-label">To Date:</label>
+    <input type="date" class="form-control" id="toDate">
+  </div>
+  <div class="col-md-4">
+    <label for="dayRange" class="form-label">Quick Range:</label>
+    <select class="form-select" id="dayRange">
+      <option value="">-- Select --</option>
+      <option value="1">Last 1 Day</option>
+      <option value="3">Last 3 Days</option>
+      <option value="7">Last 7 Days</option>
+      <option value="30">Last 30 Days</option>
+    </select>
+  </div>
 </div>
+
+  
 </div>
 
 
@@ -733,29 +732,32 @@ function renderTopCustomersChart(data) {
       document.addEventListener("DOMContentLoaded", function () {
         fetchOrderStats();
     
-        document.getElementById("applyDateFilter").addEventListener("click", function () {
-          const fromDateInput = document.getElementById("fromDate").value;
-          const toDateInput = document.getElementById("toDate").value;
-    
-          if (!fromDateInput || !toDateInput) {
-            alert("Please select both valid dates");
-            return;
-          }
-    
-          const fromDate = new Date(fromDateInput);
-          const toDate = new Date(toDateInput);
-          toDate.setHours(23, 59, 59, 999);
-    
-          const filtered = allOrders.filter(order => {
-            if (!order.createdAt) return false;
-            const orderDate = new Date(order.createdAt);
-            return orderDate >= fromDate && orderDate <= toDate;
-          });
-    
-          updateAllStats(filtered);
-        });
-      });
-      document.getElementById("dayRange").addEventListener("change", function () {
+      // Auto-filter function (shared)
+function autoFilterOrders() {
+  const fromDateInput = document.getElementById("fromDate").value;
+  const toDateInput = document.getElementById("toDate").value;
+
+  if (!fromDateInput || !toDateInput) return;
+
+  const fromDate = new Date(fromDateInput);
+  const toDate = new Date(toDateInput);
+  toDate.setHours(23, 59, 59, 999);
+
+  const filtered = allOrders.filter(order => {
+    if (!order.createdAt) return false;
+    const orderDate = new Date(order.createdAt);
+    return orderDate >= fromDate && orderDate <= toDate;
+  });
+
+  updateAllStats(filtered);
+}
+
+// Listen to manual date changes (auto-apply filter)
+document.getElementById("fromDate").addEventListener("change", autoFilterOrders);
+document.getElementById("toDate").addEventListener("change", autoFilterOrders);
+
+// Listen to Quick Range dropdown
+document.getElementById("dayRange").addEventListener("change", function () {
   const days = parseInt(this.value);
   if (!days) return;
 
@@ -764,11 +766,13 @@ function renderTopCustomersChart(data) {
   fromDate.setDate(toDate.getDate() - days + 1);
   toDate.setHours(23, 59, 59, 999);
 
-  const filtered = allOrders.filter(order => {
-    if (!order.createdAt) return false;
-    const orderDate = new Date(order.createdAt);
-    return orderDate >= fromDate && orderDate <= toDate;
-  });
+  // Update input fields visually
+  document.getElementById("fromDate").value = fromDate.toISOString().split('T')[0];
+  document.getElementById("toDate").value = toDate.toISOString().split('T')[0];
+
+  // Trigger filter
+  autoFilterOrders();
+});
 
   updateAllStats(filtered);
 
