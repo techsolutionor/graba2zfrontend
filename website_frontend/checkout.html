@@ -385,14 +385,14 @@
             width: auto !important;
         } */
     </style>
-    <script src="./apiConfig/apiConfig.js"></script>
+    <script src="https://graba2z.netlify.app/apiConfig/apiConfig.js"></script>
 </head>
 
 <body>
 
     <!--==================== Preloader Start ====================-->
     <!-- <div class="preloader">
-    <img src="assets/images/icon/preloader.gif" alt="">
+    <img src="https://graba2z.netlify.app/assets/images/icon/preloader.gif" alt="">
   </div> -->
     <!--==================== Preloader End ====================-->
 
@@ -436,7 +436,7 @@
         <button type="button" class="close-button"> <i class="ph ph-x"></i> </button>
         <div class="mobile-menu__inner">
             <a href="index" class="mobile-menu__logo">
-                <img src="assets/images/logo/logo.png" alt="Logo">
+                <img src="https://graba2z.netlify.app/assets/images/logo/logo.png" alt="Logo">
             </a>
             <div class="mobile-menu__menu">
                 <!-- Nav Menu Start -->
@@ -587,7 +587,7 @@
                             <li>
                                 <a href="javascript:void(0)"
                                     class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0">
-                                    <img src="assets/images/thumbs/flag1.png" alt=""
+                                    <img src="https://graba2z.netlify.app/assets/images/thumbs/flag1.png" alt=""
                                         class="w-16 h-12 rounded-4 border border-gray-100">
                                     English
                                 </a>
@@ -595,7 +595,7 @@
                             <li>
                                 <a href="javascript:void(0)"
                                     class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0">
-                                    <img src="assets/images/thumbs/flag2.png" alt=""
+                                    <img src="https://graba2z.netlify.app/assets/images/thumbs/flag2.png" alt=""
                                         class="w-16 h-12 rounded-4 border border-gray-100">
                                     Arabic
                                 </a>
@@ -609,7 +609,7 @@
                             <li>
                                 <a href="javascript:void(0)"
                                     class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0">
-                                    <img src="assets/images/thumbs/flag1.png" alt=""
+                                    <img src="https://graba2z.netlify.app/assets/images/thumbs/flag1.png" alt=""
                                         class="w-16 h-12 rounded-4 border border-gray-100">
                                     USD
                                 </a>
@@ -617,7 +617,7 @@
                             <li>
                                 <a href="javascript:void(0)"
                                     class="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0">
-                                    <img src="assets/images/thumbs/flag2.png" alt=""
+                                    <img src="https://graba2z.netlify.app/assets/images/thumbs/flag2.png" alt=""
                                         class="w-16 h-12 rounded-4 border border-gray-100">
                                     AED
                                 </a>
@@ -668,7 +668,7 @@
                 <!-- Logo Start -->
                 <div class="logo">
                     <a href="index" class="link">
-                        <img src="assets/images/logo/logo1.svg" style="width: 170px; height: 70px;" alt="Logo">
+                        <img src="https://graba2z.netlify.app/assets/images/logo/logo1.svg" style="width: 170px; height: 70px;" alt="Logo">
                     </a>
                 </div>
                 <!-- Logo End  -->
@@ -742,7 +742,7 @@
                             <!-- Logo Start -->
                             <div class="logo px-16 d-lg-none d-block">
                                 <a href="index" class="link">
-                                    <img src="assets/images/logo/logo.png" alt="Logo">
+                                    <img src="https://graba2z.netlify.app/assets/images/logo/logo.png" alt="Logo">
                                 </a>
                             </div>
                             <!-- Logo End -->
@@ -1009,7 +1009,9 @@
         </script>
         <!-- ==================== Footer End Here ==================== -->
         <!-- Jquery js -->
-        <script src="assets/js/jquery-3.7.1.min.js"></script>
+        <script src="https://graba2z.netlify.app/assets/js/jquery-3.7.1.min.js"></script>
+         <!-- <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script> -->
+
         <!-- Bootstrap Bundle Js -->
         <script src="assets/js/boostrap.bundle.min.js"></script>
         <!-- Bootstrap Bundle Js -->
@@ -1289,6 +1291,8 @@
                 }
 
                 const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                console.log('Cart items:', cart); // Debugging line to check cart contents
+                
                 const cartItemsContainer = $('#cartItemsContainer');
                 let subtotal = 0;
 
@@ -1339,7 +1343,7 @@
                 // ✅ You can also send the discount to the next page or backend
                 $('#proceedToPayment').click(function () {
                     localStorage.setItem('checkoutDiscount', discountAmount);
-                    window.location.href = 'order-payment';
+                    window.location.href = 'https://graba2z.netlify.app/order-payment';
                 });
             });
 
