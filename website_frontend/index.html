@@ -1673,9 +1673,8 @@
                     <li class="border-right-item"><a href="./contact"
                             class="text-white text-sm hover-text-decoration-underline">Contact Us</a></li>
                     <li class="border-right-item dropdown hover-dropdown">
-                        <a href="account" class="text-white text-sm hover-text-decoration-underline"
-                            id="policyDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
+                        <a href="account" class="text-white text-sm hover-text-decoration-underline" id="policyDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             All Policy
                         </a>
                         <div class="dropdown-menu shadow-sm" aria-labelledby="policyDropdown">
@@ -1729,8 +1728,8 @@
                                     <span id="auth-text">Sign In</span>
                                 </a>
                             </li>
-                            <li><a class="user-item px-12 py-5" href="track-order"><i
-                                        class="ph ph-truck me-8"></i>Track Order</a></li>
+                            <li><a class="user-item px-12 py-5" href="track-order"><i class="ph ph-truck me-8"></i>Track
+                                    Order</a></li>
                             <li><a class="user-item px-12 py-5" href="help-center"><i
                                         class="ph ph-question me-8"></i>Help Center</a></li>
                         </ul>
@@ -2037,20 +2036,36 @@
     </header>
 
     <!-- ==================== category Header End Here ==================== -->
+    <!-- ============================ Static Banner Section =============================== -->
+    <!-- ==================== Category Header End Here ==================== -->
+    <!-- ============================ Swiper Banner Section =============================== -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
-    <!-- ============================ Banner Section start =============================== -->
     <div class="container-fluid my-2">
         <div class="swiper mySwiper">
-            <div class="swiper-wrapper" id="sliderWrapper">
-                <!-- Slides will be dynamically inserted here -->
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="https://grabatoz-production.up.railway.app/uploads/1733483800661.png" alt="Banner 1"
+                        class="img-fluid w-100 rounded">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://graba2z.netlify.app/assets/images/bg/banner-img3.png" alt="Banner 2"
+                        class="img-fluid w-100 rounded">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://graba2z.netlify.app/assets/images/bg/banner-img3.png" alt="Banner 3"
+                        class="img-fluid w-100 rounded">
+                </div>
             </div>
 
+            <!-- Optional controls -->
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-pagination"></div>
         </div>
     </div>
-    <!-- ===================== Banner Section End ==============================  -->
+
+
 
     <!-- ===================== Category Slider Section Start ==============================  -->
     <div class="container-fluid galleria-wrap">
@@ -2320,24 +2335,24 @@
                             </div>
                             <div class="col-md-2 mb-4 text-start">
                                 <h5 style="color: white; font-size: 20px;">Top Categories</h5>
-                                <ul class="list-unstyled">
-                                    <li><a href="#">Laptops</a></li>
+                                <ul class="list-unstyled" id="top-categories">
+                                    <!-- <li><a href="#">Laptops</a></li>
                                     <li><a href="#">Routers</a></li>
                                     <li><a href="#">Gaming Hub</a></li>
                                     <li><a href="#">Tablets</a></li>
                                     <li><a href="#">Desktop</a></li>
-                                    <li><a href="#">Mobile</a></li>
+                                    <li><a href="#">Mobile</a></li> -->
                                 </ul>
                             </div>
                             <div class="col-md-2 mb-4 text-start">
                                 <h5 style="color: white; font-size: 20px;">More Categories</h5>
-                                <ul class="list-unstyled">
-                                    <li><a href="/shop">Projector</a></li>
+                                <ul class="list-unstyled" id="more-categories">
+                                    <!-- <li><a href="/shop">Projector</a></li>
                                     <li><a href="/shop">Monitors</a></li>
                                     <li><a href="/shop">Scanners</a></li>
                                     <li><a href="/shop">Copier</a></li>
                                     <li><a href="/shop">Printers</a></li>
-                                    <li><a href="/shop">Storage Solution</a></li>
+                                    <li><a href="/shop">Storage Solution</a></li> -->
                                 </ul>
                             </div>
                             <div class="col-md-2 mb-4 text-start">
@@ -2792,7 +2807,15 @@
                     }
                     document.addEventListener('DOMContentLoaded', loadSliderImages);
                     // --------------loadmain banner slider images End----------------------
-
+   function slugify(text) {
+    return text.toString()
+        .toLowerCase()
+        .replace(/\s+/g, '-')           // Replace spaces with -
+        .replace(/[^\w\-]+/g, '')       // Remove non-word chars
+        .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+        .replace(/^-+/, '')             // Trim - from start
+        .replace(/-+$/, '');            // Trim - from end
+}
                     // --------------loadCateory slider Start----------------------
                     async function loadCategories() {
                         try {
@@ -2819,7 +2842,7 @@
                         <div class="swiper-slide">
                             <div class="galleria-item">
                                 <div class="emblem-frame">
-                                    <a href="product-category/${encodeURIComponent(category.name)}">
+                                    <a href="/product-category/${slugify(category.name)}">
                                         <img src="${API_ADMINGRAB_URL}/${imagePath}" alt="${category.name}">
                                     </a>
                                 </div>
@@ -2932,7 +2955,7 @@
                         }
 
                         try {
-                            const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=Networking%20Devices`);
+                            const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=Networking+Devices`);
                             const data = await response.json();
 
                             const container = document.getElementById('networking-devices');
@@ -3318,7 +3341,7 @@
                         }
 
                         try {
-                            const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=All in One`);
+                            const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=All+in+One`);
                             const data = await response.json();
 
                             const container = document.getElementById('allInOne-devices');
@@ -3396,7 +3419,7 @@
                         }
 
                         try {
-                            const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=lenovo Devices`);
+                            const response = await fetch(`${API_CUSTOMER_URL}/api/products?category=lenovo+Devices`);
                             const data = await response.json();
 
                             const container = document.getElementById('lenovo-devices');
@@ -3597,7 +3620,14 @@
                         // Fetch categories from your API
                         fetchCategories();
                     });
-
+                    function slugify(text) {
+                        return text
+                            .toLowerCase()
+                            .trim()
+                            .replace(/[^\w\s-]/g, '')        // Remove non-word characters
+                            .replace(/\s+/g, '-')            // Replace spaces with hyphens
+                            .replace(/-+/g, '-');            // Remove multiple hyphens
+                    }
                     async function fetchCategories() {
                         try {
                             const response = await fetch(`${API_CUSTOMER_URL}/api/product-categories`);
@@ -3664,7 +3694,7 @@
                             listItem.className = hasChildren ? 'has-submenus-submenu' : '';
 
                             listItem.innerHTML = `
-            <a href="product-category/${encodeURIComponent(parentCategory.name)}" 
+            <a href="product-category/${slugify(parentCategory.name)}" 
                class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
                 <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
                 <span>${parentCategory.name}</span>
@@ -3685,7 +3715,7 @@
 
                                 categoryMap.childCategories[parentCategory.id].forEach(childCategory => {
                                     const childItem = document.createElement('li');
-                                    childItem.innerHTML = `<a href="product-category/${encodeURIComponent(childCategory.name)}">${childCategory.name}</a>`;
+                                    childItem.innerHTML = `<a href="product-category/${slugify(childCategory.name)}">${childCategory.name}</a>`;
                                     submenuList.appendChild(childItem);
                                 });
 
@@ -3709,7 +3739,7 @@
                             menuItem.className = `on-hover-item nav-menu__item ${hasChildren ? 'has-submenu' : ''}`;
 
                             menuItem.innerHTML = `
-  <a href="product-category/${encodeURIComponent(parentCategory.name)}" 
+  <a href="product-category/${slugify(parentCategory.name)}" 
      class="nav-menu__link">${parentCategory.name}</a>
 `;
 
@@ -3722,7 +3752,7 @@
                                     const submenuItem = document.createElement('li');
                                     submenuItem.className = 'common-dropdown__item nav-submenu__item';
                                     submenuItem.innerHTML = `
-                    <a href="product-category/${encodeURIComponent(childCategory.name)}" 
+                    <a href="product-category/${slugify(childCategory.name)}" 
                        class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">
                         ${childCategory.name}
                     </a>
@@ -3942,6 +3972,42 @@
                     document.addEventListener('DOMContentLoaded', updateWishlistBadge);
                 </script>
 
+                <script>
+                    document.addEventListener('DOMContentLoaded', async function () {
+                        const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/product-categories';
+
+                        try {
+                            const res = await fetch(API_URL);
+                            const data = await res.json();
+
+                            const categories = data.categories || [];
+
+                            // Filter only parent categories (parent_category is null)
+                            const parentCategories = categories.filter(cat => cat.parent_category === null);
+
+                            const topList = document.getElementById('top-categories');
+                            const moreList = document.getElementById('more-categories');
+
+                            parentCategories.forEach((cat, index) => {
+                                const li = document.createElement('li');
+                                li.innerHTML = `<a href="/product-category/${slugify(cat.name)}">${cat.name}</a>`;
+
+                                if (index < 6) {
+                                    topList.appendChild(li);
+                                } else {
+                                    moreList.appendChild(li);
+                                }
+                            });
+                        } catch (err) {
+                            console.error('Failed to load categories:', err);
+                        }
+
+                        // Helper to slugify category name
+                        function slugify(text) {
+                            return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
+                        }
+                    });
+                </script>
 
 
 

@@ -748,9 +748,8 @@
                     <li class="border-right-item"><a href="./contact"
                             class="text-white text-sm hover-text-decoration-underline">Contact Us</a></li>
                     <li class="border-right-item dropdown hover-dropdown">
-                        <a href="account" class="text-white text-sm hover-text-decoration-underline"
-                            id="policyDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
+                        <a href="account" class="text-white text-sm hover-text-decoration-underline" id="policyDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             All Policy
                         </a>
                         <div class="dropdown-menu shadow-sm" aria-labelledby="policyDropdown">
@@ -804,8 +803,8 @@
                                     <span id="auth-text">Sign In</span>
                                 </a>
                             </li>
-                            <li><a class="user-item px-12 py-5" href="track-order"><i
-                                        class="ph ph-truck me-8"></i>Track Order</a></li>
+                            <li><a class="user-item px-12 py-5" href="track-order"><i class="ph ph-truck me-8"></i>Track
+                                    Order</a></li>
                             <li><a class="user-item px-12 py-5" href="help-center"><i
                                         class="ph ph-question me-8"></i>Help Center</a></li>
                         </ul>
@@ -1273,113 +1272,235 @@
         </div>
     </section>
     <!-- ========================== Related Products End ============================= -->
-    <div id="footer"></div>
-    <script>
-        // Fetch the footer dynamically
-        fetch('./assets/includes/footer') // Go one level up and access includes/
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer').innerHTML = data;
-            })
-            .catch(error => console.error('Error loading footer:', error));
-    </script>
-    <!-- Jquery js -->
-    <script src="assets/js/jquery-3.7.1.min.js"></script>
-    <!-- Bootstrap Bundle Js -->
-    <script src="assets/js/boostrap.bundle.min.js"></script>
-    <!-- Bootstrap Bundle Js -->
-    <script src="assets/js/phosphor-icon.js"></script>
-    <!-- Select 2 -->
-    <script src="assets/js/select2.min.js"></script>
-    <!-- Slick js -->
-    <script src="assets/js/slick.min.js"></script>
-    <!-- Slick js -->
-    <script src="assets/js/count-down.js"></script>
-    <!-- jquery UI js -->
-    <script src="assets/js/jquery-ui.js"></script>
-    <!-- wow js -->
-    <script src="assets/js/wow.min.js"></script>
-    <!-- AOS Animation -->
-    <script src="assets/js/aos.js"></script>
-    <!-- marque -->
-    <script src="assets/js/marque.min.js"></script>
-    <!-- marque -->
-    <script src="assets/js/vanilla-tilt.min.js"></script>
-    <!-- main js -->
-    <script src="assets/js/main.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Fetch categories from your API
-            fetchCategories();
-        });
+    <!-- <div id="footer"></div> -->
+    <!-- Footer Start -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 mb-4">
 
-        async function fetchCategories() {
-            try {
-                const response = await fetch(`${API_CUSTOMER_URL}/api/product-categories`);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch categories');
-                }
+                    <img alt="Graba2z logo with a shopping cart icon" class="mb-3"
+                        src="https://graba2z.netlify.app/assets/images/logo/logo.png"
+                        style="width: 200px; height: 70px;">
+                    <p style="color: white; margin-left: 7px;">Subscribe to our newsletter</p>
+                    <div class="subscribe d-flex">
+                        <input type="email" placeholder="Enter your email address">
+                        <button type="button">Subscribe</button>
+                    </div>
+                    <div class="social-icons mt-3">
+                        <a href="https://www.facebook.com/grabatoz"><i class="fab fa-facebook"></i></a>
+                        <a href="https://twitter.com/GrabAtoz"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/grabatoz/#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/grabatoz/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.pinterest.com/grabatoz/"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 style="color: white; font-size: 20px;">Top Categories</h5>
+                    <ul class="list-unstyled" id="top-categories">
+                        <!-- <li><a href="#">Laptops</a></li>
+                    <li><a href="#">Routers</a></li>
+                    <li><a href="#">Gaming Hub</a></li>
+                    <li><a href="#">Tablets</a></li>
+                    <li><a href="#">Desktop</a></li>
+                    <li><a href="#">Mobile</a></li> -->
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 style="color: white; font-size: 20px;">More Categories</h5>
+                    <ul class="list-unstyled" id="more-categories">
+                        <!-- <li><a href="/shop">Projector</a></li>
+                    <li><a href="/shop">Monitors</a></li>
+                    <li><a href="/shop">Scanners</a></li>
+                    <li><a href="/shop">Copier</a></li>
+                    <li><a href="/shop">Printers</a></li>
+                    <li><a href="/shop">Storage Solution</a></li> -->
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 style="color: white; font-size: 20px;">Legal</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="./terms-conditions">Terms & Condition</a></li>
+                        <li><a href="./refund-and-return">Refund and Returns</a></li>
+                        <li><a href="./cookies-policy">Cookies Policies</a></li>
 
-                const data = await response.json();
-                const categories = data.categories || [];
+                        <li><a href="./privacy-policy">Privacy Policies</a></li>
+                        <li> <a href="terms-conditions" data-bs-toggle="modal" data-bs-target="#remoteDeliveryModal"
+                                style="color: #ffffff;">
+                                Site Map
+                            </a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 style="color: white; font-size: 20px;">Support</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="./about-us">About us</a></li>
+                        <li><a href="./contact">Contact us</a></li>
+                        <li><a href="./bulk-purchase">Bulk Purchase</a></li>
+                        <li><a href="./bulk-purchase">Corporate Deal</a></li>
+                    </ul>
+                    <p style="color: white; "><i class="fas fa-phone"></i> (+971) 4-354 0566</p>
+                    <p style="color: white;"><i class="fas fa-envelope"></i> Support@graba2z.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script></script>
+    <!-- Footer Bottom -->
+    <footer class="footer-bottom">
+        <div
+            class="container-fluid px-4 d-flex flex-column flex-md-row justify-content-between align-items-center text-center text-md-start">
+            <p class="mb-2 mb-md-0">© 2025 Grabatoz Powered By Crown Excel</p>
+            <img src="https://graba2z.netlify.app/assets/images/thumbs/Color-Icon-1.svg" alt="Payment Methods">
+            <div>
+                <a href="https://www.apple.com/store" class="me-2">
+                    <img src="https://graba2z.netlify.app/assets/images/thumbs/app_store.png" alt="App Store">
+                </a>
+                <a href="https://play.google.com/store/apps?hl=en">
+                    <img src="https://graba2z.netlify.app/assets/images/thumbs/google_play.png" alt="Google Play">
+                </a>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+    </footer>
+    <div>
+        <!-- Mobile Nav -->
+        <div class="mobile-nav">
+            <a href="index">
+                <i class="ph ph-house"></i>
+                <span>Home</span>
+            </a>
+            <a href="/shop">
+                <i class="ph ph-grid-four icon-hover"></i>
+                <span>Shop</span>
+            </a>
+            <a href="cart" class="flex-align gap-4 item-hover">
+                <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
+                    <i class="ph ph-shopping-cart-simple"></i>
 
-                // Organize categories by parent-child relationship
-                const categoryMap = organizeCategories(categories);
-
-                // Render the dropdown menu
-                renderCategoryDropdown(categoryMap);
-
-                // Render the main menu
-                renderMainMenu(categoryMap);
-
-            } catch (error) {
-                console.error('Error loading categories:', error);
-                // You might want to show a user-friendly error message here
-            }
-        }
-
-        function organizeCategories(categories) {
-            const categoryMap = {
-                parentCategories: [],
-                childCategories: {}
-            };
-
-            // First pass: identify all parent categories
-            categories.forEach(category => {
-                if (!category.parent_category) {
-                    categoryMap.parentCategories.push(category);
-                    categoryMap.childCategories[category.id] = [];
-                }
+                </span>
+                <span>Cart</span>
+            </a>
+            <a href="tel:+97143540566" target="_blank">
+                <i class="ph ph-whatsapp-logo icon-hover" style="color: #25D366;"></i>
+                <span>Chat</span>
+            </a>
+        </div>
+        <script>
+            // Fetch the footer dynamically
+            fetch('./assets/includes/footer') // Go one level up and access includes/
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading footer:', error));
+        </script>
+        <!-- Jquery js -->
+        <script src="assets/js/jquery-3.7.1.min.js"></script>
+        <!-- Bootstrap Bundle Js -->
+        <script src="assets/js/boostrap.bundle.min.js"></script>
+        <!-- Bootstrap Bundle Js -->
+        <script src="assets/js/phosphor-icon.js"></script>
+        <!-- Select 2 -->
+        <script src="assets/js/select2.min.js"></script>
+        <!-- Slick js -->
+        <script src="assets/js/slick.min.js"></script>
+        <!-- Slick js -->
+        <script src="assets/js/count-down.js"></script>
+        <!-- jquery UI js -->
+        <script src="assets/js/jquery-ui.js"></script>
+        <!-- wow js -->
+        <script src="assets/js/wow.min.js"></script>
+        <!-- AOS Animation -->
+        <script src="assets/js/aos.js"></script>
+        <!-- marque -->
+        <script src="assets/js/marque.min.js"></script>
+        <!-- marque -->
+        <script src="assets/js/vanilla-tilt.min.js"></script>
+        <!-- main js -->
+        <script src="assets/js/main.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Fetch categories from your API
+                fetchCategories();
             });
 
-            // Second pass: assign child categories to their parents
-            categories.forEach(category => {
-                if (category.parent_category) {
-                    const parentId = category.parent_category;
-                    if (categoryMap.childCategories[parentId]) {
-                        categoryMap.childCategories[parentId].push(category);
-                    } else {
-                        // Handle case where parent category might not exist
-                        console.warn(`Parent category ${parentId} not found for child ${category.id}`);
+            async function fetchCategories() {
+                try {
+                    const response = await fetch(`${API_CUSTOMER_URL}/api/product-categories`);
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch categories');
                     }
+
+                    const data = await response.json();
+                    const categories = data.categories || [];
+
+                    // Organize categories by parent-child relationship
+                    const categoryMap = organizeCategories(categories);
+
+                    // Render the dropdown menu
+                    renderCategoryDropdown(categoryMap);
+
+                    // Render the main menu
+                    renderMainMenu(categoryMap);
+
+                } catch (error) {
+                    console.error('Error loading categories:', error);
+                    // You might want to show a user-friendly error message here
                 }
-            });
+            }
 
-            return categoryMap;
-        }
+            function organizeCategories(categories) {
+                const categoryMap = {
+                    parentCategories: [],
+                    childCategories: {}
+                };
 
-        function renderCategoryDropdown(categoryMap) {
-            const dropdownContainer = document.getElementById('categoryDropdown');
-            dropdownContainer.innerHTML = '';
+                // First pass: identify all parent categories
+                categories.forEach(category => {
+                    if (!category.parent_category) {
+                        categoryMap.parentCategories.push(category);
+                        categoryMap.childCategories[category.id] = [];
+                    }
+                });
 
-            categoryMap.parentCategories.forEach(parentCategory => {
-                const hasChildren = categoryMap.childCategories[parentCategory.id]?.length > 0;
+                // Second pass: assign child categories to their parents
+                categories.forEach(category => {
+                    if (category.parent_category) {
+                        const parentId = category.parent_category;
+                        if (categoryMap.childCategories[parentId]) {
+                            categoryMap.childCategories[parentId].push(category);
+                        } else {
+                            // Handle case where parent category might not exist
+                            console.warn(`Parent category ${parentId} not found for child ${category.id}`);
+                        }
+                    }
+                });
 
-                const listItem = document.createElement('li');
-                listItem.className = hasChildren ? 'has-submenus-submenu' : '';
+                return categoryMap;
+            }
+            function slugify(text) {
+                return text.toString()
+                    .toLowerCase()
+                    .replace(/\s+/g, '-')           // Replace spaces with -
+                    .replace(/[^\w\-]+/g, '')       // Remove non-word chars
+                    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+                    .replace(/^-+/, '')             // Trim - from start
+                    .replace(/-+$/, '');            // Trim - from end
+            }
+            function renderCategoryDropdown(categoryMap) {
+                const dropdownContainer = document.getElementById('categoryDropdown');
+                dropdownContainer.innerHTML = '';
 
-                listItem.innerHTML = `
-            <a href="shop?category=${encodeURIComponent(parentCategory.name)}" 
+                categoryMap.parentCategories.forEach(parentCategory => {
+                    const hasChildren = categoryMap.childCategories[parentCategory.id]?.length > 0;
+
+                    const listItem = document.createElement('li');
+                    listItem.className = hasChildren ? 'has-submenus-submenu' : '';
+
+                    listItem.innerHTML = `
+            <a href="/product-category/${slugify(parentCategory.name)}" 
                class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
                 <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
                 <span>${parentCategory.name}</span>
@@ -1387,107 +1508,107 @@
             </a>
         `;
 
-                if (hasChildren) {
-                    const submenu = document.createElement('div');
-                    submenu.className = 'submenus-submenu py-16';
+                    if (hasChildren) {
+                        const submenu = document.createElement('div');
+                        submenu.className = 'submenus-submenu py-16';
 
-                    const title = document.createElement('h6');
-                    title.className = 'text-lg px-16 submenus-submenu__title';
-                    title.textContent = parentCategory.name;
+                        const title = document.createElement('h6');
+                        title.className = 'text-lg px-16 submenus-submenu__title';
+                        title.textContent = parentCategory.name;
 
-                    const submenuList = document.createElement('ul');
-                    submenuList.className = 'submenus-submenu__list max-h-300 overflow-y-auto scroll-sm';
+                        const submenuList = document.createElement('ul');
+                        submenuList.className = 'submenus-submenu__list max-h-300 overflow-y-auto scroll-sm';
 
-                    categoryMap.childCategories[parentCategory.id].forEach(childCategory => {
-                        const childItem = document.createElement('li');
-                        childItem.innerHTML = `<a href="shop?category=${encodeURIComponent(childCategory.name)}">${childCategory.name}</a>`;
-                        submenuList.appendChild(childItem);
-                    });
+                        categoryMap.childCategories[parentCategory.id].forEach(childCategory => {
+                            const childItem = document.createElement('li');
+                            childItem.innerHTML = `<a href="/product-category/${slugify(childCategory.name)}">${childCategory.name}</a>`;
+                            submenuList.appendChild(childItem);
+                        });
 
-                    submenu.appendChild(title);
-                    submenu.appendChild(submenuList);
-                    listItem.appendChild(submenu);
-                }
+                        submenu.appendChild(title);
+                        submenu.appendChild(submenuList);
+                        listItem.appendChild(submenu);
+                    }
 
-                dropdownContainer.appendChild(listItem);
-            });
-        }
+                    dropdownContainer.appendChild(listItem);
+                });
+            }
 
-        function renderMainMenu(categoryMap) {
-            const menuContainer = document.getElementById('mainMenu');
-            menuContainer.innerHTML = '';
+            function renderMainMenu(categoryMap) {
+                const menuContainer = document.getElementById('mainMenu');
+                menuContainer.innerHTML = '';
 
-            categoryMap.parentCategories.forEach(parentCategory => {
-                const hasChildren = categoryMap.childCategories[parentCategory.id]?.length > 0;
+                categoryMap.parentCategories.forEach(parentCategory => {
+                    const hasChildren = categoryMap.childCategories[parentCategory.id]?.length > 0;
 
-                const menuItem = document.createElement('li');
-                menuItem.className = `on-hover-item nav-menu__item ${hasChildren ? 'has-submenu' : ''}`;
+                    const menuItem = document.createElement('li');
+                    menuItem.className = `on-hover-item nav-menu__item ${hasChildren ? 'has-submenu' : ''}`;
 
-                menuItem.innerHTML = `
-  <a href="shop?category=${encodeURIComponent(parentCategory.name)}" 
+                    menuItem.innerHTML = `
+  <a href="/product-category/${slugify(parentCategory.name)}" 
      class="nav-menu__link">${parentCategory.name}</a>
 `;
 
 
-                if (hasChildren) {
-                    const submenu = document.createElement('ul');
-                    submenu.className = 'on-hover-dropdown common-dropdown nav-submenu scroll-sm';
+                    if (hasChildren) {
+                        const submenu = document.createElement('ul');
+                        submenu.className = 'on-hover-dropdown common-dropdown nav-submenu scroll-sm';
 
-                    categoryMap.childCategories[parentCategory.id].forEach(childCategory => {
-                        const submenuItem = document.createElement('li');
-                        submenuItem.className = 'common-dropdown__item nav-submenu__item';
-                        submenuItem.innerHTML = `
-                    <a href="shop?category=${encodeURIComponent(childCategory.name)}" 
+                        categoryMap.childCategories[parentCategory.id].forEach(childCategory => {
+                            const submenuItem = document.createElement('li');
+                            submenuItem.className = 'common-dropdown__item nav-submenu__item';
+                            submenuItem.innerHTML = `
+                    <a href="/product-category/${slugify(childCategory.name)}" 
                        class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">
                         ${childCategory.name}
                     </a>
                 `;
-                        submenu.appendChild(submenuItem);
-                    });
+                            submenu.appendChild(submenuItem);
+                        });
 
-                    menuItem.appendChild(submenu);
-                }
+                        menuItem.appendChild(submenu);
+                    }
 
-                menuContainer.appendChild(menuItem);
-            });
-        }
-    </script>
-    <script>
-        function limitWords(text, wordLimit) {
-            const words = text.trim().split(/\s+/);
-            return words.slice(0, wordLimit).join(" ") + (words.length > wordLimit ? "..." : "");
-        }
-
-        function getResponsiveWordLimit() {
-            const width = window.innerWidth;
-            return width <= 768 ? 5 : 15; // 5 words for mobile/tablet, 15 for desktop
-        }
-
-        document.getElementById('search-form').addEventListener('submit', (event) => {
-            event.preventDefault();
-            const searchQuery = document.getElementById('search-input').value.trim();
-            window.location.href = `shop?search=${encodeURIComponent(searchQuery)}`;
-        });
-
-        function loadCart() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const container = document.getElementById('cart-items-container');
-            container.innerHTML = '';
-
-            if (cart.length === 0) {
-                container.innerHTML = '<div style="text-align: center; color: gray; padding: 24px;">Your cart is empty.</div>';
-                updateCartTotals();
-                updateCartCount();
-                return;
+                    menuContainer.appendChild(menuItem);
+                });
+            }
+        </script>
+        <script>
+            function limitWords(text, wordLimit) {
+                const words = text.trim().split(/\s+/);
+                return words.slice(0, wordLimit).join(" ") + (words.length > wordLimit ? "..." : "");
             }
 
-            const wordLimit = getResponsiveWordLimit();
+            function getResponsiveWordLimit() {
+                const width = window.innerWidth;
+                return width <= 768 ? 5 : 15; // 5 words for mobile/tablet, 15 for desktop
+            }
 
-            cart.forEach(product => {
-                const price = product.offer_price ? parseFloat(product.offer_price) : parseFloat(product.selling_price);
-                const subtotal = price * product.quantity;
+            document.getElementById('search-form').addEventListener('submit', (event) => {
+                event.preventDefault();
+                const searchQuery = document.getElementById('search-input').value.trim();
+                window.location.href = `shop?search=${encodeURIComponent(searchQuery)}`;
+            });
 
-                container.insertAdjacentHTML('beforeend', `
+            function loadCart() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const container = document.getElementById('cart-items-container');
+                container.innerHTML = '';
+
+                if (cart.length === 0) {
+                    container.innerHTML = '<div style="text-align: center; color: gray; padding: 24px;">Your cart is empty.</div>';
+                    updateCartTotals();
+                    updateCartCount();
+                    return;
+                }
+
+                const wordLimit = getResponsiveWordLimit();
+
+                cart.forEach(product => {
+                    const price = product.offer_price ? parseFloat(product.offer_price) : parseFloat(product.selling_price);
+                    const subtotal = price * product.quantity;
+
+                    container.insertAdjacentHTML('beforeend', `
       <div class="cart-item">
         <div class="cart-item-header">
         </div>
@@ -1519,76 +1640,76 @@
         </div>
       </div>
     `);
-            });
+                });
 
-            updateCartTotals();
-            updateCartCount();
-        }
-
-        // Optional: reload cart content on resize to apply updated word limit
-        window.addEventListener('resize', () => {
-            loadCart();
-        });
-
-        function updateQuantity(productId, change) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            let updatedCart = cart.map(product => {
-                if (product.id === productId) {
-                    let newQuantity = product.quantity + change;
-                    if (newQuantity < 1) newQuantity = 1;
-                    return { ...product, quantity: newQuantity };
-                }
-                return product;
-            });
-            localStorage.setItem('cart', JSON.stringify(updatedCart));
-            loadCart();
-            updateCartCount();
-        }
-
-        function removeFromCart(productId) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart = cart.filter(product => product.id !== productId);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            loadCart();
-            updateCartCount();
-        }
-
-        function clearCart() {
-            localStorage.removeItem('cart');
-            loadCart();
-            updateCartCount();
-        }
-
-
-        function updateCartTotals() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            let subtotal = 0, savings = 0, shippingCost = 0;
-
-            cart.forEach(product => {
-                const original = parseFloat(product.selling_price);
-                const offer = product.offer_price ? parseFloat(product.offer_price) : original;
-                const qty = product.quantity;
-                subtotal += offer * qty;
-                // savings += (original - offer) * qty;
-                savings += 0;
-            });
-
-            if (subtotal >= 500) {
-                shippingCost = 0;
-                document.querySelector('.text-danger.small').textContent = "🎉 Congratulations! Free shipping applied!";
-            } else {
-                document.querySelector('.text-danger.small').textContent = "Purchase for AED 500 or more to enable free shipping";
+                updateCartTotals();
+                updateCartCount();
             }
 
-            const appliedCoupons = JSON.parse(localStorage.getItem('appliedCoupons')) || [];
-            let totalCouponDiscount = appliedCoupons.reduce((sum, c) => sum + parseFloat(c.discountAmount), 0);
+            // Optional: reload cart content on resize to apply updated word limit
+            window.addEventListener('resize', () => {
+                loadCart();
+            });
 
-            // Display all applied coupons
-            const appliedCouponDiv = document.getElementById('applied-coupon');
-            appliedCouponDiv.innerHTML = '';
-            if (appliedCoupons.length > 0) {
-                appliedCoupons.forEach(coupon => {
-                    const html = `
+            function updateQuantity(productId, change) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                let updatedCart = cart.map(product => {
+                    if (product.id === productId) {
+                        let newQuantity = product.quantity + change;
+                        if (newQuantity < 1) newQuantity = 1;
+                        return { ...product, quantity: newQuantity };
+                    }
+                    return product;
+                });
+                localStorage.setItem('cart', JSON.stringify(updatedCart));
+                loadCart();
+                updateCartCount();
+            }
+
+            function removeFromCart(productId) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart = cart.filter(product => product.id !== productId);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                loadCart();
+                updateCartCount();
+            }
+
+            function clearCart() {
+                localStorage.removeItem('cart');
+                loadCart();
+                updateCartCount();
+            }
+
+
+            function updateCartTotals() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                let subtotal = 0, savings = 0, shippingCost = 0;
+
+                cart.forEach(product => {
+                    const original = parseFloat(product.selling_price);
+                    const offer = product.offer_price ? parseFloat(product.offer_price) : original;
+                    const qty = product.quantity;
+                    subtotal += offer * qty;
+                    // savings += (original - offer) * qty;
+                    savings += 0;
+                });
+
+                if (subtotal >= 500) {
+                    shippingCost = 0;
+                    document.querySelector('.text-danger.small').textContent = "🎉 Congratulations! Free shipping applied!";
+                } else {
+                    document.querySelector('.text-danger.small').textContent = "Purchase for AED 500 or more to enable free shipping";
+                }
+
+                const appliedCoupons = JSON.parse(localStorage.getItem('appliedCoupons')) || [];
+                let totalCouponDiscount = appliedCoupons.reduce((sum, c) => sum + parseFloat(c.discountAmount), 0);
+
+                // Display all applied coupons
+                const appliedCouponDiv = document.getElementById('applied-coupon');
+                appliedCouponDiv.innerHTML = '';
+                if (appliedCoupons.length > 0) {
+                    appliedCoupons.forEach(coupon => {
+                        const html = `
     <div class="d-flex justify-content-between align-items-center mb-1">
         <span style="background-color: #28a745; color: white; padding: 6px 10px; border-radius: 4px;">Applied: ${coupon.code}</span>
         <button onclick="removeCoupon('${coupon.code}')" 
@@ -1599,361 +1720,361 @@
     <div class="text-end fw-semibold" style="color: red;">- AED ${coupon.discountAmount.toFixed(2)}</div>
 `;
 
-                    appliedCouponDiv.innerHTML += html;
-                });
-                appliedCouponDiv.classList.remove('d-none');
-            } else {
-                appliedCouponDiv.classList.add('d-none');
-            }
-
-            const total = subtotal + shippingCost - savings - totalCouponDiscount;
-
-            const totalSavings = savings + totalCouponDiscount;
-            // ✅ Store subtotal and savings in localStorage
-            localStorage.setItem('cartSubtotal', subtotal.toFixed(2));
-            localStorage.setItem('cartSavings', totalSavings.toFixed(2));
-            localStorage.setItem('FinalPrice', total.toFixed(2));
-            document.getElementById('cart-subtotal').textContent = `AED ${subtotal.toFixed(2)}`;
-            document.getElementById('cart-total').textContent = `AED ${total.toFixed(2)}`;
-            document.getElementById('shipping-cost').textContent = `AED ${shippingCost.toFixed(2)}`;
-            document.getElementById('savings-amount').textContent = `- AED ${totalSavings.toFixed(2)}`;
-        }
-
-        function updateCartCount() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const totalItems = cart.reduce((total, product) => total + (product.quantity || 0), 0);
-            localStorage.setItem('cartItemCount', totalItems);
-
-            const countElement = document.querySelector('.cart-item-count');
-            if (countElement) {
-                countElement.innerText = totalItems;
-            }
-
-            const customCount = document.getElementById('cart-items-all-count');
-            if (customCount) {
-                customCount.innerText = totalItems;
-            }
-        }
-
-        function updateCartIcon() {
-            const cartItemCount = localStorage.getItem('cartItemCount') || 0;
-            const cartCountElement = document.querySelector('.cart-item-count');
-            cartCountElement.innerText = cartItemCount;
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            loadCart();
-            updateCartIcon();
-            updateCartCount();
-        });
-
-
-        function showCouponMessage(msg, isError) {
-            const alertBox = document.createElement('div');
-            alertBox.innerText = msg;
-            alertBox.style.position = 'fixed';
-            alertBox.style.bottom = '30px';
-            alertBox.style.right = '30px';
-            alertBox.style.backgroundColor = isError ? '#f44336' : '#28a745';
-            alertBox.style.color = '#fff';
-            alertBox.style.padding = '12px 20px';
-            alertBox.style.borderRadius = '4px';
-            alertBox.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
-            alertBox.style.zIndex = '99999';
-            alertBox.style.fontSize = '14px';
-            alertBox.style.transition = 'opacity 0.5s ease';
-            alertBox.style.opacity = '1';
-
-            document.body.appendChild(alertBox);
-
-            setTimeout(() => {
-                alertBox.style.opacity = '0';
-                setTimeout(() => alertBox.remove(), 500);
-            }, 3000);
-        }
-
-
-
-        // toogle the mobile menu
-
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const menuBtn = document.querySelector('.menu-btn');
-
-            if (sidebar.classList.contains('open')) {
-                sidebar.classList.remove('open');
-                sidebar.style.width = '0';
-                menuBtn.style.display = 'block';
-            } else {
-                sidebar.classList.add('open');
-                sidebar.style.width = '250px';
-                menuBtn.style.display = 'none';
-            }
-        }
-    </script>
-
-
-    </script>
-    <script>
-        fetch('./topHeader')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('top-header').innerHTML = data;
-            })
-            .catch(error => console.error('Error loading header:', error));
-    </script>
-    <script>
-
-        // function applyCoupon() {
-        //     const code = document.getElementById('coupon-code').value.trim();
-        //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-        //     if (!code) {
-        //         showCouponMessage("Please enter a coupon code.", true);
-        //         return;
-        //     }
-
-        //     fetch(`https://websitegrabatoz-production.up.railway.app/api/coupons/code/${code}`)
-        //         .then(res => {
-        //             if (!res.ok) throw new Error("Invalid coupon");
-        //             return res.json();
-        //         })
-        //         .then(coupon => {
-        //             let appliedCoupons = JSON.parse(localStorage.getItem('appliedCoupons')) || [];
-
-        //             // Check for duplicates
-        //             if (appliedCoupons.some(c => c.code === coupon.code)) {
-        //                 showCouponMessage("Coupon already applied.", true);
-        //                 return;
-        //             }
-
-        //             // Limit to 2 coupons
-        //             if (appliedCoupons.length >= 2) {
-        //                 showCouponMessage("You can apply up to 2 coupons only.", true);
-        //                 return;
-        //             }
-
-        //             // Calculate subtotal
-        //             const subtotal = cart.reduce((total, item) => {
-        //                 const price = item.offer_price ? parseFloat(item.offer_price) : parseFloat(item.selling_price);
-        //                 return total + price * item.quantity;
-        //             }, 0);
-
-        //             // Calculate discount
-        //             let discountAmount = 0;
-        //             if (coupon.discount_type.toLowerCase() === 'percentage') {
-        //                 discountAmount = (subtotal * parseFloat(coupon.discount)) / 100;
-        //             } else {
-        //                 discountAmount = parseFloat(coupon.discount);
-        //             }
-
-        //             if (discountAmount > parseFloat(coupon.max_discount)) {
-        //                 discountAmount = parseFloat(coupon.max_discount);
-        //             }
-
-        //             appliedCoupons.push({ code: coupon.code, discountAmount });
-        //             localStorage.setItem('appliedCoupons', JSON.stringify(appliedCoupons));
-
-        //             showCouponMessage(`Coupon applied! Saved AED ${discountAmount.toFixed(2)}`, false);
-        //             updateCartTotals();
-        //         })
-        //         .catch(() => {
-        //             showCouponMessage("Invalid or expired coupon code.", true);
-        //         });
-        // }
-        function applyCoupon() {
-            const code = document.getElementById('coupon-code').value.trim();
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-            if (!code) {
-                showCouponMessage("Please enter a coupon code.", true);
-                return;
-            }
-
-            fetch(`${API_CUSTOMER_URL}/api/coupons/code/${code}`)
-                .then(res => {
-                    if (!res.ok) throw new Error("Invalid coupon");
-                    return res.json();
-                })
-                .then(coupon => {
-                    let appliedCoupons = JSON.parse(localStorage.getItem('appliedCoupons')) || [];
-
-                    // Check for duplicates
-                    if (appliedCoupons.some(c => c.code === coupon.code)) {
-                        showCouponMessage("Coupon already applied.", true);
-                        return;
-                    }
-
-                    // Limit to 2 coupons
-                    if (appliedCoupons.length >= 2) {
-                        showCouponMessage("You can apply up to 2 coupons only.", true);
-                        return;
-                    }
-
-                    // Calculate subtotal
-                    const subtotal = cart.reduce((total, item) => {
-                        const price = item.offer_price ? parseFloat(item.offer_price) : parseFloat(item.selling_price);
-                        return total + price * item.quantity;
-                    }, 0);
-
-                    // Calculate discount based on coupon type
-                    let discountAmount = 0;
-                    if (coupon.discount_type.toLowerCase() === 'percentage') {
-                        // For percentage, calculate percentage of subtotal
-                        discountAmount = (subtotal * parseFloat(coupon.discount)) / 100;
-
-                        // Apply max discount if specified
-                        // if (coupon.max_discount && discountAmount > parseFloat(coupon.max_discount)) {
-                        //     discountAmount = parseFloat(coupon.max_discount);
-                        // }
-                    } else {
-                        // For fixed, use the discount amount directly
-                        discountAmount = parseFloat(coupon.discount);
-                    }
-
-                    appliedCoupons.push({
-                        code: coupon.code,
-                        discountAmount,
-                        discountType: coupon.discount_type,
-                        originalDiscount: coupon.discount
+                        appliedCouponDiv.innerHTML += html;
                     });
+                    appliedCouponDiv.classList.remove('d-none');
+                } else {
+                    appliedCouponDiv.classList.add('d-none');
+                }
 
-                    localStorage.setItem('appliedCoupons', JSON.stringify(appliedCoupons));
+                const total = subtotal + shippingCost - savings - totalCouponDiscount;
 
-                    showCouponMessage(`Coupon applied! Saved AED ${discountAmount.toFixed(2)}`, false);
-                    updateCartTotals();
-                })
-                .catch(() => {
-                    showCouponMessage("Invalid or expired coupon code.", true);
-                });
-        }
-
-
-        function removeCoupon(code) {
-            let appliedCoupons = JSON.parse(localStorage.getItem('appliedCoupons')) || [];
-            appliedCoupons = appliedCoupons.filter(c => c.code !== code);
-            localStorage.setItem('appliedCoupons', JSON.stringify(appliedCoupons));
-            showCouponMessage("Coupon removed.", false);
-            updateCartTotals();
-        }
-
-
-        // function showCouponMessage(msg, isError) {
-        //     const el = document.getElementById('coupon-message');
-        //     el.textContent = msg;
-        //     el.style.color = isError ? 'red' : 'green';
-        // }
-    </script>
-    <script>
-        // Toggle wishlist
-        function toggleWishlist(product) {
-            const heartIcon = document.getElementById('heart-icon');
-            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            const index = wishlist.findIndex(p => p.id === product.id);
-
-            if (index === -1) {
-                wishlist.push(product);
-                localStorage.setItem('wishlist', JSON.stringify(wishlist));
-                heartIcon.style.color = 'red';
-                showSuccessMessage("Added to wishlist!");
-            } else {
-                wishlist.splice(index, 1);
-                localStorage.setItem('wishlist', JSON.stringify(wishlist));
-                heartIcon.style.color = '';
-                showSuccessMessage("Removed from wishlist!");
+                const totalSavings = savings + totalCouponDiscount;
+                // ✅ Store subtotal and savings in localStorage
+                localStorage.setItem('cartSubtotal', subtotal.toFixed(2));
+                localStorage.setItem('cartSavings', totalSavings.toFixed(2));
+                localStorage.setItem('FinalPrice', total.toFixed(2));
+                document.getElementById('cart-subtotal').textContent = `AED ${subtotal.toFixed(2)}`;
+                document.getElementById('cart-total').textContent = `AED ${total.toFixed(2)}`;
+                document.getElementById('shipping-cost').textContent = `AED ${shippingCost.toFixed(2)}`;
+                document.getElementById('savings-amount').textContent = `- AED ${totalSavings.toFixed(2)}`;
             }
 
-            updateWishlistBadge();
-        }
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const totalItems = cart.reduce((total, product) => total + (product.quantity || 0), 0);
+                localStorage.setItem('cartItemCount', totalItems);
+
+                const countElement = document.querySelector('.cart-item-count');
+                if (countElement) {
+                    countElement.innerText = totalItems;
+                }
+
+                const customCount = document.getElementById('cart-items-all-count');
+                if (customCount) {
+                    customCount.innerText = totalItems;
+                }
+            }
+
+            function updateCartIcon() {
+                const cartItemCount = localStorage.getItem('cartItemCount') || 0;
+                const cartCountElement = document.querySelector('.cart-item-count');
+                cartCountElement.innerText = cartItemCount;
+            }
+
+            document.addEventListener("DOMContentLoaded", () => {
+                loadCart();
+                updateCartIcon();
+                updateCartCount();
+            });
 
 
-        // Update badge in header
-        function updateWishlistBadge() {
-            const count = (JSON.parse(localStorage.getItem('wishlist')) || []).length;
-            const badge = document.getElementById('wishlist-item-count'); // Make sure this exists in header
-            if (badge) badge.textContent = count;
-        }
+            function showCouponMessage(msg, isError) {
+                const alertBox = document.createElement('div');
+                alertBox.innerText = msg;
+                alertBox.style.position = 'fixed';
+                alertBox.style.bottom = '30px';
+                alertBox.style.right = '30px';
+                alertBox.style.backgroundColor = isError ? '#f44336' : '#28a745';
+                alertBox.style.color = '#fff';
+                alertBox.style.padding = '12px 20px';
+                alertBox.style.borderRadius = '4px';
+                alertBox.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
+                alertBox.style.zIndex = '99999';
+                alertBox.style.fontSize = '14px';
+                alertBox.style.transition = 'opacity 0.5s ease';
+                alertBox.style.opacity = '1';
 
-        // Display message
-        function showSuccessMessage(msg) {
-            const box = document.createElement('div');
-            box.style.cssText = 'position:fixed;top:20px;right:20px;background:green;color:white;padding:10px;border-radius:5px;z-index:1000';
-            box.innerText = msg;
-            document.body.appendChild(box);
-            setTimeout(() => box.remove(), 3000);
-        }
+                document.body.appendChild(alertBox);
 
-        // Call on page load
-        document.addEventListener('DOMContentLoaded', updateWishlistBadge);
-    </script>
+                setTimeout(() => {
+                    alertBox.style.opacity = '0';
+                    setTimeout(() => alertBox.remove(), 500);
+                }, 3000);
+            }
 
-    <script>
-        // Function to fetch related products based on cart items
-        async function fetchRelatedProductsForCart() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-            if (cart.length === 0) {
-                // If cart is empty, show some popular products or hide the section
-                document.getElementById('relatedProducts').innerHTML = `
+
+            // toogle the mobile menu
+
+            function toggleSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                const menuBtn = document.querySelector('.menu-btn');
+
+                if (sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                    sidebar.style.width = '0';
+                    menuBtn.style.display = 'block';
+                } else {
+                    sidebar.classList.add('open');
+                    sidebar.style.width = '250px';
+                    menuBtn.style.display = 'none';
+                }
+            }
+        </script>
+
+
+        </script>
+        <script>
+            fetch('./topHeader')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('top-header').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading header:', error));
+        </script>
+        <script>
+
+            // function applyCoupon() {
+            //     const code = document.getElementById('coupon-code').value.trim();
+            //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            //     if (!code) {
+            //         showCouponMessage("Please enter a coupon code.", true);
+            //         return;
+            //     }
+
+            //     fetch(`https://websitegrabatoz-production.up.railway.app/api/coupons/code/${code}`)
+            //         .then(res => {
+            //             if (!res.ok) throw new Error("Invalid coupon");
+            //             return res.json();
+            //         })
+            //         .then(coupon => {
+            //             let appliedCoupons = JSON.parse(localStorage.getItem('appliedCoupons')) || [];
+
+            //             // Check for duplicates
+            //             if (appliedCoupons.some(c => c.code === coupon.code)) {
+            //                 showCouponMessage("Coupon already applied.", true);
+            //                 return;
+            //             }
+
+            //             // Limit to 2 coupons
+            //             if (appliedCoupons.length >= 2) {
+            //                 showCouponMessage("You can apply up to 2 coupons only.", true);
+            //                 return;
+            //             }
+
+            //             // Calculate subtotal
+            //             const subtotal = cart.reduce((total, item) => {
+            //                 const price = item.offer_price ? parseFloat(item.offer_price) : parseFloat(item.selling_price);
+            //                 return total + price * item.quantity;
+            //             }, 0);
+
+            //             // Calculate discount
+            //             let discountAmount = 0;
+            //             if (coupon.discount_type.toLowerCase() === 'percentage') {
+            //                 discountAmount = (subtotal * parseFloat(coupon.discount)) / 100;
+            //             } else {
+            //                 discountAmount = parseFloat(coupon.discount);
+            //             }
+
+            //             if (discountAmount > parseFloat(coupon.max_discount)) {
+            //                 discountAmount = parseFloat(coupon.max_discount);
+            //             }
+
+            //             appliedCoupons.push({ code: coupon.code, discountAmount });
+            //             localStorage.setItem('appliedCoupons', JSON.stringify(appliedCoupons));
+
+            //             showCouponMessage(`Coupon applied! Saved AED ${discountAmount.toFixed(2)}`, false);
+            //             updateCartTotals();
+            //         })
+            //         .catch(() => {
+            //             showCouponMessage("Invalid or expired coupon code.", true);
+            //         });
+            // }
+            function applyCoupon() {
+                const code = document.getElementById('coupon-code').value.trim();
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                if (!code) {
+                    showCouponMessage("Please enter a coupon code.", true);
+                    return;
+                }
+
+                fetch(`${API_CUSTOMER_URL}/api/coupons/code/${code}`)
+                    .then(res => {
+                        if (!res.ok) throw new Error("Invalid coupon");
+                        return res.json();
+                    })
+                    .then(coupon => {
+                        let appliedCoupons = JSON.parse(localStorage.getItem('appliedCoupons')) || [];
+
+                        // Check for duplicates
+                        if (appliedCoupons.some(c => c.code === coupon.code)) {
+                            showCouponMessage("Coupon already applied.", true);
+                            return;
+                        }
+
+                        // Limit to 2 coupons
+                        if (appliedCoupons.length >= 2) {
+                            showCouponMessage("You can apply up to 2 coupons only.", true);
+                            return;
+                        }
+
+                        // Calculate subtotal
+                        const subtotal = cart.reduce((total, item) => {
+                            const price = item.offer_price ? parseFloat(item.offer_price) : parseFloat(item.selling_price);
+                            return total + price * item.quantity;
+                        }, 0);
+
+                        // Calculate discount based on coupon type
+                        let discountAmount = 0;
+                        if (coupon.discount_type.toLowerCase() === 'percentage') {
+                            // For percentage, calculate percentage of subtotal
+                            discountAmount = (subtotal * parseFloat(coupon.discount)) / 100;
+
+                            // Apply max discount if specified
+                            // if (coupon.max_discount && discountAmount > parseFloat(coupon.max_discount)) {
+                            //     discountAmount = parseFloat(coupon.max_discount);
+                            // }
+                        } else {
+                            // For fixed, use the discount amount directly
+                            discountAmount = parseFloat(coupon.discount);
+                        }
+
+                        appliedCoupons.push({
+                            code: coupon.code,
+                            discountAmount,
+                            discountType: coupon.discount_type,
+                            originalDiscount: coupon.discount
+                        });
+
+                        localStorage.setItem('appliedCoupons', JSON.stringify(appliedCoupons));
+
+                        showCouponMessage(`Coupon applied! Saved AED ${discountAmount.toFixed(2)}`, false);
+                        updateCartTotals();
+                    })
+                    .catch(() => {
+                        showCouponMessage("Invalid or expired coupon code.", true);
+                    });
+            }
+
+
+            function removeCoupon(code) {
+                let appliedCoupons = JSON.parse(localStorage.getItem('appliedCoupons')) || [];
+                appliedCoupons = appliedCoupons.filter(c => c.code !== code);
+                localStorage.setItem('appliedCoupons', JSON.stringify(appliedCoupons));
+                showCouponMessage("Coupon removed.", false);
+                updateCartTotals();
+            }
+
+
+            // function showCouponMessage(msg, isError) {
+            //     const el = document.getElementById('coupon-message');
+            //     el.textContent = msg;
+            //     el.style.color = isError ? 'red' : 'green';
+            // }
+        </script>
+        <script>
+            // Toggle wishlist
+            function toggleWishlist(product) {
+                const heartIcon = document.getElementById('heart-icon');
+                let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                const index = wishlist.findIndex(p => p.id === product.id);
+
+                if (index === -1) {
+                    wishlist.push(product);
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    heartIcon.style.color = 'red';
+                    showSuccessMessage("Added to wishlist!");
+                } else {
+                    wishlist.splice(index, 1);
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    heartIcon.style.color = '';
+                    showSuccessMessage("Removed from wishlist!");
+                }
+
+                updateWishlistBadge();
+            }
+
+
+            // Update badge in header
+            function updateWishlistBadge() {
+                const count = (JSON.parse(localStorage.getItem('wishlist')) || []).length;
+                const badge = document.getElementById('wishlist-item-count'); // Make sure this exists in header
+                if (badge) badge.textContent = count;
+            }
+
+            // Display message
+            function showSuccessMessage(msg) {
+                const box = document.createElement('div');
+                box.style.cssText = 'position:fixed;top:20px;right:20px;background:green;color:white;padding:10px;border-radius:5px;z-index:1000';
+                box.innerText = msg;
+                document.body.appendChild(box);
+                setTimeout(() => box.remove(), 3000);
+            }
+
+            // Call on page load
+            document.addEventListener('DOMContentLoaded', updateWishlistBadge);
+        </script>
+
+        <script>
+            // Function to fetch related products based on cart items
+            async function fetchRelatedProductsForCart() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                if (cart.length === 0) {
+                    // If cart is empty, show some popular products or hide the section
+                    document.getElementById('relatedProducts').innerHTML = `
             <div class="col-12 text-center py-4">
                 <p>Your cart is empty. Check out our popular products!</p>
             </div>
         `;
-                return;
-            }
+                    return;
+                }
 
-            // Get unique category IDs from cart items
-            const categoryIds = [...new Set(cart.map(item => item.category_id))];
+                // Get unique category IDs from cart items
+                const categoryIds = [...new Set(cart.map(item => item.category_id))];
 
-            try {
-                // Fetch related products from the first category in the cart
-                const response = await fetch(`${API_CUSTOMER_URL}/api/products?category_id=${categoryIds[0]}&limit=6`);
-                const data = await response.json();
+                try {
+                    // Fetch related products from the first category in the cart
+                    const response = await fetch(`${API_CUSTOMER_URL}/api/products?category_id=${categoryIds[0]}&limit=6`);
+                    const data = await response.json();
 
-                const products = Array.isArray(data) ? data : data.products;
+                    const products = Array.isArray(data) ? data : data.products;
 
-                if (!products || products.length === 0) {
-                    document.getElementById('relatedProducts').innerHTML = `
+                    if (!products || products.length === 0) {
+                        document.getElementById('relatedProducts').innerHTML = `
                 <div class="col-12 text-center py-4">
                     <p>No related products found.</p>
                 </div>
             `;
-                    return;
-                }
+                        return;
+                    }
 
-                // Filter out products that are already in the cart
-                const cartProductIds = cart.map(item => item.id);
-                const filteredProducts = products.filter(product => !cartProductIds.includes(product.id));
+                    // Filter out products that are already in the cart
+                    const cartProductIds = cart.map(item => item.id);
+                    const filteredProducts = products.filter(product => !cartProductIds.includes(product.id));
 
-                // Display the products
-                displayRelatedProducts(filteredProducts.slice(0, 6)); // Show max 6 products
-            } catch (error) {
-                console.error('Error fetching related products:', error);
-                document.getElementById('relatedProducts').innerHTML = `
+                    // Display the products
+                    displayRelatedProducts(filteredProducts.slice(0, 6)); // Show max 6 products
+                } catch (error) {
+                    console.error('Error fetching related products:', error);
+                    document.getElementById('relatedProducts').innerHTML = `
             <div class="col-12 text-center py-4">
                 <p>Error loading related products.</p>
             </div>
         `;
-            }
-        }
-
-        // Function to display related products
-        function displayRelatedProducts(products) {
-            function limitWords(text, wordLimit) {
-                const words = text.trim().split(/\s+/);
-                if (words.length <= wordLimit) return text;
-                return words.slice(0, wordLimit).join(' ') + '...';
+                }
             }
 
-            const container = document.getElementById('relatedProducts');
-            container.innerHTML = '';
+            // Function to display related products
+            function displayRelatedProducts(products) {
+                function limitWords(text, wordLimit) {
+                    const words = text.trim().split(/\s+/);
+                    if (words.length <= wordLimit) return text;
+                    return words.slice(0, wordLimit).join(' ') + '...';
+                }
 
-            products.forEach(product => {
-                const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
-                const price = product.offer_price || product.selling_price;
-                const originalPrice = product.offer_price ? product.selling_price : null;
+                const container = document.getElementById('relatedProducts');
+                container.innerHTML = '';
 
-                const card = `
+                products.forEach(product => {
+                    const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
+                    const price = product.offer_price || product.selling_price;
+                    const originalPrice = product.offer_price ? product.selling_price : null;
+
+                    const card = `
 <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
     <div class="card h-100 border border-gray-100 rounded-16 position-relative" style="height: 400px; overflow: hidden;">
         <a href="product?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
@@ -1980,19 +2101,198 @@
     </div>
 </div>
         `;
-                container.insertAdjacentHTML('beforeend', card);
+                    container.insertAdjacentHTML('beforeend', card);
+                });
+            }
+
+            // Call this function when the page loads
+            document.addEventListener('DOMContentLoaded', () => {
+                loadCart();
+                updateCartIcon();
+                updateCartCount();
+                fetchRelatedProductsForCart(); // Add this line
             });
-        }
+        </script>
+        <!-- footer  -->
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                updateCartIcon(); // Update the cart icon with the correct count
+            });
 
-        // Call this function when the page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            loadCart();
-            updateCartIcon();
-            updateCartCount();
-            fetchRelatedProductsForCart(); // Add this line
-        });
-    </script>
+            // index - Update the cart icon count based on localStorage
+            function updateCartIcon() {
+                const cartItemCount = localStorage.getItem('cartItemCount') || 0; // Get the cart count from localStorage
+                const cartCountElement = document.querySelector('.cart-item-count'); // Get the element that holds the cart count
 
+                // Update the cart count in the UI
+                cartCountElement.innerText = cartItemCount; // Set the count to the number of items in the cart
+            }
+
+            document.getElementById('search-form').addEventListener('submit', (event) => {
+                event.preventDefault();
+                const searchQuery = document.getElementById('search-input').value.trim();
+                window.location.href = `shop?search=${encodeURIComponent(searchQuery)}`;
+                // await fetchFilteredProducts(searchQuery);
+            });
+
+            function addToCart(product) {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingProduct = cart.find(item => item.id === product.id);
+
+                if (existingProduct) {
+                    existingProduct.quantity += 1; // Increment quantity if already in cart
+                } else {
+                    cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                // Update the cart item count in localStorage
+                updateCartCount();
+
+                showSuccessMessage(`${product.name} added to cart.`);
+            }
+
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const totalItems = cart.reduce((total, product) => total + product.quantity, 0); // Calculate total quantity
+
+                // Update the cart count in localStorage
+                localStorage.setItem('cartItemCount', totalItems);
+            }
+            function showSuccessMessage(message) {
+                const messageContainer = document.createElement('div');
+                messageContainer.style.position = 'fixed';
+                messageContainer.style.top = '20px';
+                messageContainer.style.right = '20px';
+                messageContainer.style.backgroundColor = 'green';
+                messageContainer.style.color = 'white';
+                messageContainer.style.padding = '10px 20px';
+                messageContainer.style.borderRadius = '5px';
+                messageContainer.style.zIndex = '1000';
+                messageContainer.textContent = message;
+
+                document.body.appendChild(messageContainer);
+
+                // Remove the message after 3 seconds
+                setTimeout(() => {
+                    document.body.removeChild(messageContainer);
+                }, 3000);
+            }
+
+            function handleAddToCart(product) {
+                addToCart(product); // Add product to cart
+                window.location.href = 'cart'; // Navigate to cart
+            }
+
+
+            // Function to toggle wishlist status
+            function toggleWishlist(product) {
+                // Get heart icon and current wishlist from localStorage
+                const heartIcon = document.getElementById('heart-icon');
+                let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+                // Check if product already exists in wishlist
+                const productIndex = wishlist.findIndex(item => item.id === product.id);
+
+                if (productIndex === -1) {
+                    // Product not in wishlist, add it and change icon color to red
+                    wishlist.push(product);
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Save to localStorage
+                    heartIcon.style.color = 'red'; // Change heart color to red
+                    showSuccessMessage('Product added to wishlist!');
+                } else {
+                    // Product already in wishlist, remove it and reset icon color
+                    wishlist.splice(productIndex, 1);
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Remove from localStorage
+                    heartIcon.style.color = ''; // Reset heart color
+                    showSuccessMessage('Product removed from wishlist!');
+                }
+            }
+
+            function updateWishlistBadge() {
+                const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                const wishlistBadge = document.getElementById('numberWishlist');
+
+                // Update the badge count
+                if (wishlistBadge) {
+                    wishlistBadge.textContent = wishlist.length;
+                }
+            }
+
+            // Call this function on page load to ensure the badge is updated dynamically 
+            window.onload = updateWishlistBadge;
+
+
+            function toggleIcon(button) {
+                let icon = button.querySelector(".icon-toggle");
+                if (icon.classList.contains("bi-plus")) {
+                    icon.classList.remove("bi-plus");
+                    icon.classList.add("bi-dash");
+                } else {
+                    icon.classList.remove("bi-dash");
+                    icon.classList.add("bi-plus");
+                }
+            }
+        </script>
+        <script>
+            fetch('./topHeader')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('top-header').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading header:', error));
+        </script>
+        <script>
+            function toggleSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                const menuBtn = document.querySelector('.menu-open-btn');
+
+                if (sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                    menuBtn.style.display = 'block';
+                } else {
+                    sidebar.classList.add('open');
+                    menuBtn.style.display = 'none';
+                }
+            }
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', async function () {
+                const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/product-categories';
+
+                try {
+                    const res = await fetch(API_URL);
+                    const data = await res.json();
+
+                    const categories = data.categories || [];
+
+                    // Filter only parent categories (parent_category is null)
+                    const parentCategories = categories.filter(cat => cat.parent_category === null);
+
+                    const topList = document.getElementById('top-categories');
+                    const moreList = document.getElementById('more-categories');
+
+                    parentCategories.forEach((cat, index) => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<a href="/product-category/${slugify(cat.name)}">${cat.name}</a>`;
+
+                        if (index < 6) {
+                            topList.appendChild(li);
+                        } else {
+                            moreList.appendChild(li);
+                        }
+                    });
+                } catch (err) {
+                    console.error('Failed to load categories:', err);
+                }
+
+                // Helper to slugify category name
+                function slugify(text) {
+                    return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
+                }
+            });
+        </script>
 </body>
 
 </html>

@@ -8,7 +8,7 @@
     <!-- Title -->
     <title> Graba2z- E-commerce website</title>
     <!-- Favicon -->
-   <link rel="shortcut icon" href="assets/images/icon/favicon.png">
+    <link rel="shortcut icon" href="assets/images/icon/favicon.png">
 
     <link rel="stylesheet" href="assets/css/footer.css" />
     <!-- Bootstrap -->
@@ -31,7 +31,7 @@
     <!-- Main css -->
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
- <style>
+    <style>
         @media (min-width: 768px) {
             #banner-prev {
                 margin-top: 80px;
@@ -361,9 +361,9 @@
             padding: 8px 16px;
             font-size: 0.9rem;
         } */
-         .dropdown-item:hover {
+        .dropdown-item:hover {
             color: #86c232 !important;
-         }
+        }
 
         .dropdown-item i {
             width: 20px;
@@ -388,143 +388,147 @@
                 padding: 0.5rem 1rem;
             }
         }
-       .sidebar {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  top: 0;
-  right: 0;
-  background-color: #ffffff;
-  overflow-x: hidden;
-  transition: 0.3s ease;
-  padding-top: 60px;
-  z-index: 999;
-}
 
-/* Open state */
-.sidebar.open {
-  width: 250px;
-}
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #ffffff;
+            overflow-x: hidden;
+            transition: 0.3s ease;
+            padding-top: 60px;
+            z-index: 999;
+        }
 
-/* Sidebar content scrollable */
-.sidebar-inner {
-  max-height: 100%;
-  overflow-y: auto;
-}
+        /* Open state */
+        .sidebar.open {
+            width: 250px;
+        }
 
-/* Sidebar links */
-.sidebar a {
-  display: block;
-  padding: 12px 20px;
-  color: #000;
-  text-decoration: none;
-}
+        /* Sidebar content scrollable */
+        .sidebar-inner {
+            max-height: 100%;
+            overflow-y: auto;
+        }
 
-.sidebar a:hover {
-  background: #fff4f4;
-  color: rgb(49, 136, 49);
-}
+        /* Sidebar links */
+        .sidebar a {
+            display: block;
+            padding: 12px 20px;
+            color: #000;
+            text-decoration: none;
+        }
 
-/* Open Button (☰) */
-.menu-open-btn {
-  display: none;
-  position: absolute;
-  top: 61px;
-  right: 31px;
-  font-size: 24px;
-  background-color: #ffffff;
-  color: #000;
-  padding: 10px;
-  border-radius: 5px;
-  z-index: 1000;
-  cursor: pointer;
-}
+        .sidebar a:hover {
+            background: #fff4f4;
+            color: rgb(49, 136, 49);
+        }
 
-/* Close Button (✖) inside Sidebar */
-.menu-close-btn {
-  display: none;
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 24px;
-  background: transparent;
-  border: none;
-  color: red;
-  z-index: 1001;
-  cursor: pointer;
-}
+        /* Open Button (☰) */
+        .menu-open-btn {
+            display: none;
+            position: absolute;
+            top: 61px;
+            right: 31px;
+            font-size: 24px;
+            background-color: #ffffff;
+            color: #000;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+            cursor: pointer;
+        }
 
-/* Responsive Display Settings */
-@media (max-width: 1024px) {
-  .menu-open-btn {
-    display: block;
-  }
+        /* Close Button (✖) inside Sidebar */
+        .menu-close-btn {
+            display: none;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            background: transparent;
+            border: none;
+            color: red;
+            z-index: 1001;
+            cursor: pointer;
+        }
 
-  .sidebar {
-    display: block;
-  }
+        /* Responsive Display Settings */
+        @media (max-width: 1024px) {
+            .menu-open-btn {
+                display: block;
+            }
 
-  .sidebar.open .menu-close-btn {
-    display: block;
-  }
-}
+            .sidebar {
+                display: block;
+            }
 
-@media (min-width: 1025px) {
-  .sidebar,
-  .menu-open-btn,
-  .menu-close-btn {
-    display: none !important;
-  }
-}
+            .sidebar.open .menu-close-btn {
+                display: block;
+            }
+        }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
+        @media (min-width: 1025px) {
+
+            .sidebar,
+            .menu-open-btn,
+            .menu-close-btn {
+                display: none !important;
+            }
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
 
 
- /* cart circle css start  */
-       .cart-item-count {
-        min-width: 24px;
-        height: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        font-size: 12px;
-        color: #fff;
-        background-color: #A3D02C;
-        position: absolute;
-        top: -12px;
-        right: -11px;
-        padding: 0 6px; /* Extra space for 2-3 digit numbers */
-        font-weight: bold;
-        white-space: nowrap;
-    }
+        /* cart circle css start  */
+        .cart-item-count {
+            min-width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 12px;
+            color: #fff;
+            background-color: #A3D02C;
+            position: absolute;
+            top: -12px;
+            right: -11px;
+            padding: 0 6px;
+            /* Extra space for 2-3 digit numbers */
+            font-weight: bold;
+            white-space: nowrap;
+        }
 
-    /* whislist circle css start  */
-    .wishlist-item-count {
-        min-width: 24px;
-        height: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        font-size: 12px;
-        color: #fff;
-        background-color: #A3D02C;
-        position: absolute;
-        top: -12px;
-        right: -11px;
-        padding: 0 6px;
-        font-weight: bold;
-        white-space: nowrap;
-    }
-</style>
+        /* whislist circle css start  */
+        .wishlist-item-count {
+            min-width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 12px;
+            color: #fff;
+            background-color: #A3D02C;
+            position: absolute;
+            top: -12px;
+            right: -11px;
+            padding: 0 6px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+    </style>
 </head>
+
 <body>
-<!-- ======================= top Header Start ========================= -->
+    <!-- ======================= top Header Start ========================= -->
     <div class="header-top flex-between" style="background-color: #a3d02c;">
         <div class="container container-lg">
             <div class="flex-between flex-wrap gap-8">
@@ -535,7 +539,7 @@ ul {
                     <li class="border-right-item"><a href="./contact"
                             class="text-white text-sm hover-text-decoration-underline">Contact Us</a></li>
                     <li class="border-right-item dropdown hover-dropdown">
-                         <a href="account" class="text-white text-sm hover-text-decoration-underline" id="policyDropdown"
+                        <a href="account" class="text-white text-sm hover-text-decoration-underline" id="policyDropdown"
                             role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             All Policy
                         </a>
@@ -576,8 +580,8 @@ ul {
                         </ul>
                     </li>
                     <li class="nav-item user-menu position-relative w-auto">
-                         <a href="account" class="text-white text-sm py-8 flex-align gap-6 nav-link user-toggle" role="button"
-                            id="userMenuButton">
+                        <a href="account" class="text-white text-sm py-8 flex-align gap-6 nav-link user-toggle"
+                            role="button" id="userMenuButton">
                             <span><i class="ph ph-user-circle"></i></span>
                             <span class="hover-text-decoration-underline d-none d-md-inline">My Account</span>
                         </a>
@@ -590,8 +594,8 @@ ul {
                                     <span id="auth-text">Sign In</span>
                                 </a>
                             </li>
-                            <li><a class="user-item px-12 py-5" href="track-order"><i
-                                        class="ph ph-truck me-8"></i>Track Order</a></li>
+                            <li><a class="user-item px-12 py-5" href="track-order"><i class="ph ph-truck me-8"></i>Track
+                                    Order</a></li>
                             <li><a class="user-item px-12 py-5" href="help-center"><i
                                         class="ph ph-question me-8"></i>Help Center</a></li>
                         </ul>
@@ -637,21 +641,21 @@ ul {
                 <!-- form location start -->
 
                 <!-- Header Middle Right start -->
-               <div class="header-right flex-align d-lg-block d-none">
+                <div class="header-right flex-align d-lg-block d-none">
                     <div class="flex-align flex-wrap gap-12">
                         <button type="button" class="search-icon flex-align d-lg-none d-flex gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative item-hover__text">
                                 <i class="ph ph-magnifying-glass"></i>
                             </span>
                         </button>
-                      <a href="wishlist" class="flex-align gap-4 item-hover">
+                        <a href="wishlist" class="flex-align gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
                                 <i class="ph ph-heart"></i>
-                                <span id="wishlist-item-count"  class="wishlist-item-count">0</span>
+                                <span id="wishlist-item-count" class="wishlist-item-count">0</span>
                             </span>
                             <span class="text-md text-gray-500 item-hover__text d-none d-lg-flex">Wishlist</span>
                         </a>
-                       <a href="cart" class="flex-align gap-4 item-hover">
+                        <a href="cart" class="flex-align gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
                                 <i class="ph ph-shopping-cart-simple"></i>
                                 <span class="cart-item-count">0</span>
@@ -664,17 +668,17 @@ ul {
                 <!-- Header Middle Right End  -->
             </nav>
         </div>
-         <!-- ===================mobile responsive design ==============================  -->
-            
-    <!-- Open Sidebar Button -->
-<div class="menu-open-btn" onclick="toggleSidebar()">☰</div>
+        <!-- ===================mobile responsive design ==============================  -->
 
-<!-- Sidebar -->
-<div id="sidebar" class="sidebar">
-  <!-- Close Sidebar Button -->
-  <button class="menu-close-btn" onclick="toggleSidebar()">✖</button>
-  <div class="sidebar-inner">
-    <ul>
+        <!-- Open Sidebar Button -->
+        <div class="menu-open-btn" onclick="toggleSidebar()">☰</div>
+
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar">
+            <!-- Close Sidebar Button -->
+            <button class="menu-close-btn" onclick="toggleSidebar()">✖</button>
+            <div class="sidebar-inner">
+                <ul>
 
                     <a href="shop?category=Desktops&brand=Lenovo">Lenovo Desktops </a>
                     </li>
@@ -841,9 +845,9 @@ ul {
                     <li>
                         <a href="shop?category=Wifi%20Dongles"> Wifi Dongles </a>
                     </li>
-                 </ul>
-  </div>
-</div>
+                </ul>
+            </div>
+        </div>
         <!-- ===================== mobile responsive end ==============================  -->
 
     </header>
@@ -909,8 +913,9 @@ ul {
 
                                 <a href="./login">
                                     <label
-                                        class="btn btn-secondary w-33 d-flex align-items-center justify-content-center py-1 fw-bold text-black " style="color:#ffffff ; background-color: #86c232 !important;"
-                                         for="guestBtn "  >Login</label>
+                                        class="btn btn-secondary w-33 d-flex align-items-center justify-content-center py-1 fw-bold text-black "
+                                        style="color:#ffffff ; background-color: #86c232 !important;"
+                                        for="guestBtn ">Login</label>
                                 </a>
 
 
@@ -922,7 +927,7 @@ ul {
                                 </a>
 
                                 <a href="./guest">
-                                 
+
                                     <label
                                         class="btn btn-outline-light w-33 d-flex align-items-center justify-content-center py-1 fw-bold"
                                         style="color: black !important;" for="loginBtn">Guest</label>
@@ -933,7 +938,7 @@ ul {
 
                     </div>
                 </div>
-               
+
                 <div id="loginForm" class="mt-5">
                     <h5 class="mt-28 text-black">Welcome back!</h5>
                     <p style="color: #000 !important;">Login to access all your data</p>
@@ -951,8 +956,9 @@ ul {
                                 placeholder="Enter your password" required>
                         </div>
 
-                        <button type="submit" class="btn btn-secondary mt-8 py-10 w-100 rounded-8" style="color: #ffffff !important; background-color: #86c232 !important; ">Login</button>
-                    <!-- </form>
+                        <button type="submit" class="btn btn-secondary mt-8 py-10 w-100 rounded-8"
+                            style="color: #ffffff !important; background-color: #86c232 !important; ">Login</button>
+                        <!-- </form>
 
                 
                     <div class="d-flex align-items-center my-4 mt-24"> 
@@ -981,8 +987,187 @@ ul {
     </div>
     </div>
     <br><br>
-    <div id="footer"></div>
+    <!-- <div id="footer"></div> -->
+    <!-- footer  -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartIcon(); // Update the cart icon with the correct count
+        });
 
+        // index - Update the cart icon count based on localStorage
+        function updateCartIcon() {
+            const cartItemCount = localStorage.getItem('cartItemCount') || 0; // Get the cart count from localStorage
+            const cartCountElement = document.querySelector('.cart-item-count'); // Get the element that holds the cart count
+
+            // Update the cart count in the UI
+            cartCountElement.innerText = cartItemCount; // Set the count to the number of items in the cart
+        }
+
+        document.getElementById('search-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const searchQuery = document.getElementById('search-input').value.trim();
+            window.location.href = `shop?search=${encodeURIComponent(searchQuery)}`;
+            // await fetchFilteredProducts(searchQuery);
+        });
+
+        function addToCart(product) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingProduct = cart.find(item => item.id === product.id);
+
+            if (existingProduct) {
+                existingProduct.quantity += 1; // Increment quantity if already in cart
+            } else {
+                cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Update the cart item count in localStorage
+            updateCartCount();
+
+            showSuccessMessage(`${product.name} added to cart.`);
+        }
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, product) => total + product.quantity, 0); // Calculate total quantity
+
+            // Update the cart count in localStorage
+            localStorage.setItem('cartItemCount', totalItems);
+        }
+        function showSuccessMessage(message) {
+            const messageContainer = document.createElement('div');
+            messageContainer.style.position = 'fixed';
+            messageContainer.style.top = '20px';
+            messageContainer.style.right = '20px';
+            messageContainer.style.backgroundColor = 'green';
+            messageContainer.style.color = 'white';
+            messageContainer.style.padding = '10px 20px';
+            messageContainer.style.borderRadius = '5px';
+            messageContainer.style.zIndex = '1000';
+            messageContainer.textContent = message;
+
+            document.body.appendChild(messageContainer);
+
+            // Remove the message after 3 seconds
+            setTimeout(() => {
+                document.body.removeChild(messageContainer);
+            }, 3000);
+        }
+
+        function handleAddToCart(product) {
+            addToCart(product); // Add product to cart
+            window.location.href = 'cart'; // Navigate to cart
+        }
+
+
+        // Function to toggle wishlist status
+        function toggleWishlist(product) {
+            // Get heart icon and current wishlist from localStorage
+            const heartIcon = document.getElementById('heart-icon');
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+            // Check if product already exists in wishlist
+            const productIndex = wishlist.findIndex(item => item.id === product.id);
+
+            if (productIndex === -1) {
+                // Product not in wishlist, add it and change icon color to red
+                wishlist.push(product);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Save to localStorage
+                heartIcon.style.color = 'red'; // Change heart color to red
+                showSuccessMessage('Product added to wishlist!');
+            } else {
+                // Product already in wishlist, remove it and reset icon color
+                wishlist.splice(productIndex, 1);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Remove from localStorage
+                heartIcon.style.color = ''; // Reset heart color
+                showSuccessMessage('Product removed from wishlist!');
+            }
+        }
+
+        function updateWishlistBadge() {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const wishlistBadge = document.getElementById('numberWishlist');
+
+            // Update the badge count
+            if (wishlistBadge) {
+                wishlistBadge.textContent = wishlist.length;
+            }
+        }
+
+        // Call this function on page load to ensure the badge is updated dynamically 
+        window.onload = updateWishlistBadge;
+
+
+        function toggleIcon(button) {
+            let icon = button.querySelector(".icon-toggle");
+            if (icon.classList.contains("bi-plus")) {
+                icon.classList.remove("bi-plus");
+                icon.classList.add("bi-dash");
+            } else {
+                icon.classList.remove("bi-dash");
+                icon.classList.add("bi-plus");
+            }
+        }
+    </script>
+    <script>
+        fetch('./topHeader')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('top-header').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const menuBtn = document.querySelector('.menu-open-btn');
+
+            if (sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+                menuBtn.style.display = 'block';
+            } else {
+                sidebar.classList.add('open');
+                menuBtn.style.display = 'none';
+            }
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+            const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/product-categories';
+
+            try {
+                const res = await fetch(API_URL);
+                const data = await res.json();
+
+                const categories = data.categories || [];
+
+                // Filter only parent categories (parent_category is null)
+                const parentCategories = categories.filter(cat => cat.parent_category === null);
+
+                const topList = document.getElementById('top-categories');
+                const moreList = document.getElementById('more-categories');
+
+                parentCategories.forEach((cat, index) => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<a href="/product-category/${slugify(cat.name)}">${cat.name}</a>`;
+
+                    if (index < 6) {
+                        topList.appendChild(li);
+                    } else {
+                        moreList.appendChild(li);
+                    }
+                });
+            } catch (err) {
+                console.error('Failed to load categories:', err);
+            }
+
+            // Helper to slugify category name
+            function slugify(text) {
+                return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
+            }
+        });
+    </script>
     <script>
         // Fetch the footer dynamically
         fetch('./assets/includes/footer') // Go one level up and access includes/
@@ -1025,8 +1210,8 @@ ul {
                 alert('An error occurred during login.');
             }
         });
-    
-      
+
+
     </script>
 
 
@@ -1061,7 +1246,7 @@ ul {
     <script src="assets/js/vanilla-tilt.min.js"></script>
     <!-- main js -->
     <script src="assets/js/main.js"></script>
-<script>
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Fetch categories from your API
             fetchCategories();
@@ -1121,7 +1306,15 @@ ul {
 
             return categoryMap;
         }
-
+        function slugify(text) {
+            return text.toString()
+                .toLowerCase()
+                .replace(/\s+/g, '-')           // Replace spaces with -
+                .replace(/[^\w\-]+/g, '')       // Remove non-word chars
+                .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+                .replace(/^-+/, '')             // Trim - from start
+                .replace(/-+$/, '');            // Trim - from end
+        }
         function renderCategoryDropdown(categoryMap) {
             const dropdownContainer = document.getElementById('categoryDropdown');
             dropdownContainer.innerHTML = '';
@@ -1133,7 +1326,7 @@ ul {
                 listItem.className = hasChildren ? 'has-submenus-submenu' : '';
 
                 listItem.innerHTML = `
-            <a href="shop?category=${encodeURIComponent(parentCategory.name)}" 
+            <a href="/product-category/${slugify(parentCategory.name)}" 
                class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
                 <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
                 <span>${parentCategory.name}</span>
@@ -1154,7 +1347,7 @@ ul {
 
                     categoryMap.childCategories[parentCategory.id].forEach(childCategory => {
                         const childItem = document.createElement('li');
-                        childItem.innerHTML = `<a href="shop?category=${encodeURIComponent(childCategory.name)}">${childCategory.name}</a>`;
+                        childItem.innerHTML = `<a href="/product-category/${slugify(childCategory.name)}">${childCategory.name}</a>`;
                         submenuList.appendChild(childItem);
                     });
 
@@ -1178,7 +1371,7 @@ ul {
                 menuItem.className = `on-hover-item nav-menu__item ${hasChildren ? 'has-submenu' : ''}`;
 
                 menuItem.innerHTML = `
-  <a href="shop?category=${encodeURIComponent(parentCategory.name)}" 
+  <a href="/product-category/${slugify(parentCategory.name)}" 
      class="nav-menu__link">${parentCategory.name}</a>
 `;
 
@@ -1191,7 +1384,7 @@ ul {
                         const submenuItem = document.createElement('li');
                         submenuItem.className = 'common-dropdown__item nav-submenu__item';
                         submenuItem.innerHTML = `
-                    <a href="shop?category=${encodeURIComponent(childCategory.name)}" 
+                    <a href="/product-category/${slugify(childCategory.name)}" 
                        class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">
                         ${childCategory.name}
                     </a>
@@ -1207,198 +1400,377 @@ ul {
         }
     </script>
     <!-- cart add section -->
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-           updateCartIcon(); // Update the cart icon with the correct count
-       });
+            updateCartIcon(); // Update the cart icon with the correct count
+        });
 
-       // index - Update the cart icon count based on localStorage
-       function updateCartIcon() {
-           const cartItemCount = localStorage.getItem('cartItemCount') || 0; // Get the cart count from localStorage
-           const cartCountElement = document.querySelector('.cart-item-count'); // Get the element that holds the cart count
+        // index - Update the cart icon count based on localStorage
+        function updateCartIcon() {
+            const cartItemCount = localStorage.getItem('cartItemCount') || 0; // Get the cart count from localStorage
+            const cartCountElement = document.querySelector('.cart-item-count'); // Get the element that holds the cart count
 
-           // Update the cart count in the UI
-           cartCountElement.innerText = cartItemCount; // Set the count to the number of items in the cart
-       }
+            // Update the cart count in the UI
+            cartCountElement.innerText = cartItemCount; // Set the count to the number of items in the cart
+        }
 
-       document.getElementById('search-form').addEventListener('submit', (event) => {
-           event.preventDefault();
-           const searchQuery = document.getElementById('search-input').value.trim();
-           window.location.href = `shop?search=${encodeURIComponent(searchQuery)}`;
-           // await fetchFilteredProducts(searchQuery);
-       });
+        document.getElementById('search-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const searchQuery = document.getElementById('search-input').value.trim();
+            window.location.href = `shop?search=${encodeURIComponent(searchQuery)}`;
+            // await fetchFilteredProducts(searchQuery);
+        });
 
-       function addToCart(product) {
-           const cart = JSON.parse(localStorage.getItem('cart')) || [];
-           const existingProduct = cart.find(item => item.id === product.id);
+        function addToCart(product) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingProduct = cart.find(item => item.id === product.id);
 
-           if (existingProduct) {
-               existingProduct.quantity += 1; // Increment quantity if already in cart
-           } else {
-               cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
-           }
+            if (existingProduct) {
+                existingProduct.quantity += 1; // Increment quantity if already in cart
+            } else {
+                cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
+            }
 
-           localStorage.setItem('cart', JSON.stringify(cart));
+            localStorage.setItem('cart', JSON.stringify(cart));
 
-           // Update the cart item count in localStorage
-           updateCartCount();
+            // Update the cart item count in localStorage
+            updateCartCount();
 
-           showSuccessMessage(`${product.name} added to cart.`);
-       }
+            showSuccessMessage(`${product.name} added to cart.`);
+        }
 
-       function updateCartCount() {
-           const cart = JSON.parse(localStorage.getItem('cart')) || [];
-           const totalItems = cart.reduce((total, product) => total + product.quantity, 0); // Calculate total quantity
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, product) => total + product.quantity, 0); // Calculate total quantity
 
-           // Update the cart count in localStorage
-           localStorage.setItem('cartItemCount', totalItems);
-       }
-       function showSuccessMessage(message) {
-           const messageContainer = document.createElement('div');
-           messageContainer.style.position = 'fixed';
-           messageContainer.style.top = '20px';
-           messageContainer.style.right = '20px';
-           messageContainer.style.backgroundColor = 'green';
-           messageContainer.style.color = 'white';
-           messageContainer.style.padding = '10px 20px';
-           messageContainer.style.borderRadius = '5px';
-           messageContainer.style.zIndex = '1000';
-           messageContainer.textContent = message;
+            // Update the cart count in localStorage
+            localStorage.setItem('cartItemCount', totalItems);
+        }
+        function showSuccessMessage(message) {
+            const messageContainer = document.createElement('div');
+            messageContainer.style.position = 'fixed';
+            messageContainer.style.top = '20px';
+            messageContainer.style.right = '20px';
+            messageContainer.style.backgroundColor = 'green';
+            messageContainer.style.color = 'white';
+            messageContainer.style.padding = '10px 20px';
+            messageContainer.style.borderRadius = '5px';
+            messageContainer.style.zIndex = '1000';
+            messageContainer.textContent = message;
 
-           document.body.appendChild(messageContainer);
+            document.body.appendChild(messageContainer);
 
-           // Remove the message after 3 seconds
-           setTimeout(() => {
-               document.body.removeChild(messageContainer);
-           }, 3000);
-       }
+            // Remove the message after 3 seconds
+            setTimeout(() => {
+                document.body.removeChild(messageContainer);
+            }, 3000);
+        }
 
-       function handleAddToCart(product) {
-           addToCart(product); // Add product to cart
-           window.location.href = 'cart'; // Navigate to cart
-       }
-
-
-       // Function to toggle wishlist status
-       function toggleWishlist(product) {
-           // Get heart icon and current wishlist from localStorage
-           const heartIcon = document.getElementById('heart-icon');
-           let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-
-           // Check if product already exists in wishlist
-           const productIndex = wishlist.findIndex(item => item.id === product.id);
-
-           if (productIndex === -1) {
-               // Product not in wishlist, add it and change icon color to red
-               wishlist.push(product);
-               localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Save to localStorage
-               heartIcon.style.color = 'red'; // Change heart color to red
-               showSuccessMessage('Product added to wishlist!');
-           } else {
-               // Product already in wishlist, remove it and reset icon color
-               wishlist.splice(productIndex, 1);
-               localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Remove from localStorage
-               heartIcon.style.color = ''; // Reset heart color
-               showSuccessMessage('Product removed from wishlist!');
-           }
-       }
-
-       function updateWishlistBadge() {
-           const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-           const wishlistBadge = document.getElementById('numberWishlist');
-
-           // Update the badge count
-           if (wishlistBadge) {
-               wishlistBadge.textContent = wishlist.length;
-           }
-       }
-
-       // Call this function on page load to ensure the badge is updated dynamically 
-       window.onload = updateWishlistBadge;
+        function handleAddToCart(product) {
+            addToCart(product); // Add product to cart
+            window.location.href = 'cart'; // Navigate to cart
+        }
 
 
-       function toggleIcon(button) {
-           let icon = button.querySelector(".icon-toggle");
-           if (icon.classList.contains("bi-plus")) {
-               icon.classList.remove("bi-plus");
-               icon.classList.add("bi-dash");
-           } else {
-               icon.classList.remove("bi-dash");
-               icon.classList.add("bi-plus");
-           }
-       }
-   </script>
+        // Function to toggle wishlist status
+        function toggleWishlist(product) {
+            // Get heart icon and current wishlist from localStorage
+            const heartIcon = document.getElementById('heart-icon');
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+            // Check if product already exists in wishlist
+            const productIndex = wishlist.findIndex(item => item.id === product.id);
+
+            if (productIndex === -1) {
+                // Product not in wishlist, add it and change icon color to red
+                wishlist.push(product);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Save to localStorage
+                heartIcon.style.color = 'red'; // Change heart color to red
+                showSuccessMessage('Product added to wishlist!');
+            } else {
+                // Product already in wishlist, remove it and reset icon color
+                wishlist.splice(productIndex, 1);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Remove from localStorage
+                heartIcon.style.color = ''; // Reset heart color
+                showSuccessMessage('Product removed from wishlist!');
+            }
+        }
+
+        function updateWishlistBadge() {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const wishlistBadge = document.getElementById('numberWishlist');
+
+            // Update the badge count
+            if (wishlistBadge) {
+                wishlistBadge.textContent = wishlist.length;
+            }
+        }
+
+        // Call this function on page load to ensure the badge is updated dynamically 
+        window.onload = updateWishlistBadge;
 
 
-<script>
+        function toggleIcon(button) {
+            let icon = button.querySelector(".icon-toggle");
+            if (icon.classList.contains("bi-plus")) {
+                icon.classList.remove("bi-plus");
+                icon.classList.add("bi-dash");
+            } else {
+                icon.classList.remove("bi-dash");
+                icon.classList.add("bi-plus");
+            }
+        }
+    </script>
+
+
+    <script>
         fetch('./topHeader')
-          .then(response => response.text())
-          .then(data => {
-            document.getElementById('top-header').innerHTML = data;
-          })
-          .catch(error => console.error('Error loading header:', error));
-      </script>
-      <script src="./apiConfig/apiConfig.js"></script>
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('top-header').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
+    <script src="./apiConfig/apiConfig.js"></script>
 
 
-      <script>
-function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  const menuBtn = document.querySelector('.menu-open-btn');
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const menuBtn = document.querySelector('.menu-open-btn');
 
-  if (sidebar.classList.contains('open')) {
-    sidebar.classList.remove('open');
-    menuBtn.style.display = 'block';
-  } else {
-    sidebar.classList.add('open');
-    menuBtn.style.display = 'none';
-  }
-}
-</script>
-<script>
-  // Toggle wishlist
-  function toggleWishlist(product) {
-    const heartIcon = document.getElementById('heart-icon');
-    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-    const index = wishlist.findIndex(p => p.id === product.id);
+            if (sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+                menuBtn.style.display = 'block';
+            } else {
+                sidebar.classList.add('open');
+                menuBtn.style.display = 'none';
+            }
+        }
+    </script>
+    <script>
+        // Toggle wishlist
+        function toggleWishlist(product) {
+            const heartIcon = document.getElementById('heart-icon');
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const index = wishlist.findIndex(p => p.id === product.id);
 
-    if (index === -1) {
-        wishlist.push(product);
-        localStorage.setItem('wishlist', JSON.stringify(wishlist));
-        heartIcon.style.color = 'red';
-        showSuccessMessage("Added to wishlist!");
-    } else {
-        wishlist.splice(index, 1);
-        localStorage.setItem('wishlist', JSON.stringify(wishlist));
-        heartIcon.style.color = '';
-        showSuccessMessage("Removed from wishlist!");
-    }
+            if (index === -1) {
+                wishlist.push(product);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                heartIcon.style.color = 'red';
+                showSuccessMessage("Added to wishlist!");
+            } else {
+                wishlist.splice(index, 1);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                heartIcon.style.color = '';
+                showSuccessMessage("Removed from wishlist!");
+            }
 
-    updateWishlistBadge();
-}
+            updateWishlistBadge();
+        }
 
 
-  // Update badge in header
-function updateWishlistBadge() {
-    const count = (JSON.parse(localStorage.getItem('wishlist')) || []).length;
-    const badge = document.getElementById('wishlist-item-count'); // Make sure this exists in header
-    if (badge) badge.textContent = count;
-}
+        // Update badge in header
+        function updateWishlistBadge() {
+            const count = (JSON.parse(localStorage.getItem('wishlist')) || []).length;
+            const badge = document.getElementById('wishlist-item-count'); // Make sure this exists in header
+            if (badge) badge.textContent = count;
+        }
 
-  // Display message
-  function showSuccessMessage(msg) {
-    const box = document.createElement('div');
-    box.style.cssText = 'position:fixed;top:20px;right:20px;background:green;color:white;padding:10px;border-radius:5px;z-index:1000';
-    box.innerText = msg;
-    document.body.appendChild(box);
-    setTimeout(() => box.remove(), 3000);
-  }
+        // Display message
+        function showSuccessMessage(msg) {
+            const box = document.createElement('div');
+            box.style.cssText = 'position:fixed;top:20px;right:20px;background:green;color:white;padding:10px;border-radius:5px;z-index:1000';
+            box.innerText = msg;
+            document.body.appendChild(box);
+            setTimeout(() => box.remove(), 3000);
+        }
 
-  // Call on page load
-  document.addEventListener('DOMContentLoaded', updateWishlistBadge);
-</script>
+        // Call on page load
+        document.addEventListener('DOMContentLoaded', updateWishlistBadge);
+    </script>
+    <!-- footer  -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartIcon(); // Update the cart icon with the correct count
+        });
 
+        // index - Update the cart icon count based on localStorage
+        function updateCartIcon() {
+            const cartItemCount = localStorage.getItem('cartItemCount') || 0; // Get the cart count from localStorage
+            const cartCountElement = document.querySelector('.cart-item-count'); // Get the element that holds the cart count
+
+            // Update the cart count in the UI
+            cartCountElement.innerText = cartItemCount; // Set the count to the number of items in the cart
+        }
+
+        document.getElementById('search-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const searchQuery = document.getElementById('search-input').value.trim();
+            window.location.href = `shop?search=${encodeURIComponent(searchQuery)}`;
+            // await fetchFilteredProducts(searchQuery);
+        });
+
+        function addToCart(product) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingProduct = cart.find(item => item.id === product.id);
+
+            if (existingProduct) {
+                existingProduct.quantity += 1; // Increment quantity if already in cart
+            } else {
+                cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Update the cart item count in localStorage
+            updateCartCount();
+
+            showSuccessMessage(`${product.name} added to cart.`);
+        }
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, product) => total + product.quantity, 0); // Calculate total quantity
+
+            // Update the cart count in localStorage
+            localStorage.setItem('cartItemCount', totalItems);
+        }
+        function showSuccessMessage(message) {
+            const messageContainer = document.createElement('div');
+            messageContainer.style.position = 'fixed';
+            messageContainer.style.top = '20px';
+            messageContainer.style.right = '20px';
+            messageContainer.style.backgroundColor = 'green';
+            messageContainer.style.color = 'white';
+            messageContainer.style.padding = '10px 20px';
+            messageContainer.style.borderRadius = '5px';
+            messageContainer.style.zIndex = '1000';
+            messageContainer.textContent = message;
+
+            document.body.appendChild(messageContainer);
+
+            // Remove the message after 3 seconds
+            setTimeout(() => {
+                document.body.removeChild(messageContainer);
+            }, 3000);
+        }
+
+        function handleAddToCart(product) {
+            addToCart(product); // Add product to cart
+            window.location.href = 'cart'; // Navigate to cart
+        }
+
+
+        // Function to toggle wishlist status
+        function toggleWishlist(product) {
+            // Get heart icon and current wishlist from localStorage
+            const heartIcon = document.getElementById('heart-icon');
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+            // Check if product already exists in wishlist
+            const productIndex = wishlist.findIndex(item => item.id === product.id);
+
+            if (productIndex === -1) {
+                // Product not in wishlist, add it and change icon color to red
+                wishlist.push(product);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Save to localStorage
+                heartIcon.style.color = 'red'; // Change heart color to red
+                showSuccessMessage('Product added to wishlist!');
+            } else {
+                // Product already in wishlist, remove it and reset icon color
+                wishlist.splice(productIndex, 1);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Remove from localStorage
+                heartIcon.style.color = ''; // Reset heart color
+                showSuccessMessage('Product removed from wishlist!');
+            }
+        }
+
+        function updateWishlistBadge() {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const wishlistBadge = document.getElementById('numberWishlist');
+
+            // Update the badge count
+            if (wishlistBadge) {
+                wishlistBadge.textContent = wishlist.length;
+            }
+        }
+
+        // Call this function on page load to ensure the badge is updated dynamically 
+        window.onload = updateWishlistBadge;
+
+
+        function toggleIcon(button) {
+            let icon = button.querySelector(".icon-toggle");
+            if (icon.classList.contains("bi-plus")) {
+                icon.classList.remove("bi-plus");
+                icon.classList.add("bi-dash");
+            } else {
+                icon.classList.remove("bi-dash");
+                icon.classList.add("bi-plus");
+            }
+        }
+    </script>
+    <script>
+        fetch('./topHeader')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('top-header').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const menuBtn = document.querySelector('.menu-open-btn');
+
+            if (sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+                menuBtn.style.display = 'block';
+            } else {
+                sidebar.classList.add('open');
+                menuBtn.style.display = 'none';
+            }
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+            const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/product-categories';
+
+            try {
+                const res = await fetch(API_URL);
+                const data = await res.json();
+
+                const categories = data.categories || [];
+
+                // Filter only parent categories (parent_category is null)
+                const parentCategories = categories.filter(cat => cat.parent_category === null);
+
+                const topList = document.getElementById('top-categories');
+                const moreList = document.getElementById('more-categories');
+
+                parentCategories.forEach((cat, index) => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<a href="/product-category/${slugify(cat.name)}">${cat.name}</a>`;
+
+                    if (index < 6) {
+                        topList.appendChild(li);
+                    } else {
+                        moreList.appendChild(li);
+                    }
+                });
+            } catch (err) {
+                console.error('Failed to load categories:', err);
+            }
+
+            // Helper to slugify category name
+            function slugify(text) {
+                return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
+            }
+        });
+    </script>
 </body>
 
 </html>

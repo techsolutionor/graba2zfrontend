@@ -1301,7 +1301,7 @@ ul {
     <br><br>
 
 
-    <div id="footer"></div>
+    <!-- <div id="footer"></div> -->
 
     <script>
         // Fetch the footer dynamically
@@ -1647,6 +1647,186 @@ function updateWishlistBadge() {
   // Call on page load
   document.addEventListener('DOMContentLoaded', updateWishlistBadge);
 </script>
+<!-- footer  -->
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                updateCartIcon(); // Update the cart icon with the correct count
+            });
+
+            // index - Update the cart icon count based on localStorage
+            function updateCartIcon() {
+                const cartItemCount = localStorage.getItem('cartItemCount') || 0; // Get the cart count from localStorage
+                const cartCountElement = document.querySelector('.cart-item-count'); // Get the element that holds the cart count
+
+                // Update the cart count in the UI
+                cartCountElement.innerText = cartItemCount; // Set the count to the number of items in the cart
+            }
+
+            document.getElementById('search-form').addEventListener('submit', (event) => {
+                event.preventDefault();
+                const searchQuery = document.getElementById('search-input').value.trim();
+                window.location.href = `shop?search=${encodeURIComponent(searchQuery)}`;
+                // await fetchFilteredProducts(searchQuery);
+            });
+
+            function addToCart(product) {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingProduct = cart.find(item => item.id === product.id);
+
+                if (existingProduct) {
+                    existingProduct.quantity += 1; // Increment quantity if already in cart
+                } else {
+                    cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                // Update the cart item count in localStorage
+                updateCartCount();
+
+                showSuccessMessage(`${product.name} added to cart.`);
+            }
+
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const totalItems = cart.reduce((total, product) => total + product.quantity, 0); // Calculate total quantity
+
+                // Update the cart count in localStorage
+                localStorage.setItem('cartItemCount', totalItems);
+            }
+            function showSuccessMessage(message) {
+                const messageContainer = document.createElement('div');
+                messageContainer.style.position = 'fixed';
+                messageContainer.style.top = '20px';
+                messageContainer.style.right = '20px';
+                messageContainer.style.backgroundColor = 'green';
+                messageContainer.style.color = 'white';
+                messageContainer.style.padding = '10px 20px';
+                messageContainer.style.borderRadius = '5px';
+                messageContainer.style.zIndex = '1000';
+                messageContainer.textContent = message;
+
+                document.body.appendChild(messageContainer);
+
+                // Remove the message after 3 seconds
+                setTimeout(() => {
+                    document.body.removeChild(messageContainer);
+                }, 3000);
+            }
+
+            function handleAddToCart(product) {
+                addToCart(product); // Add product to cart
+                window.location.href = 'cart'; // Navigate to cart
+            }
+
+
+            // Function to toggle wishlist status
+            function toggleWishlist(product) {
+                // Get heart icon and current wishlist from localStorage
+                const heartIcon = document.getElementById('heart-icon');
+                let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+                // Check if product already exists in wishlist
+                const productIndex = wishlist.findIndex(item => item.id === product.id);
+
+                if (productIndex === -1) {
+                    // Product not in wishlist, add it and change icon color to red
+                    wishlist.push(product);
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Save to localStorage
+                    heartIcon.style.color = 'red'; // Change heart color to red
+                    showSuccessMessage('Product added to wishlist!');
+                } else {
+                    // Product already in wishlist, remove it and reset icon color
+                    wishlist.splice(productIndex, 1);
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Remove from localStorage
+                    heartIcon.style.color = ''; // Reset heart color
+                    showSuccessMessage('Product removed from wishlist!');
+                }
+            }
+
+            function updateWishlistBadge() {
+                const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                const wishlistBadge = document.getElementById('numberWishlist');
+
+                // Update the badge count
+                if (wishlistBadge) {
+                    wishlistBadge.textContent = wishlist.length;
+                }
+            }
+
+            // Call this function on page load to ensure the badge is updated dynamically 
+            window.onload = updateWishlistBadge;
+
+
+            function toggleIcon(button) {
+                let icon = button.querySelector(".icon-toggle");
+                if (icon.classList.contains("bi-plus")) {
+                    icon.classList.remove("bi-plus");
+                    icon.classList.add("bi-dash");
+                } else {
+                    icon.classList.remove("bi-dash");
+                    icon.classList.add("bi-plus");
+                }
+            }
+        </script>
+        <script>
+            fetch('./topHeader')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('top-header').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading header:', error));
+        </script>
+        <script>
+            function toggleSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                const menuBtn = document.querySelector('.menu-open-btn');
+
+                if (sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                    menuBtn.style.display = 'block';
+                } else {
+                    sidebar.classList.add('open');
+                    menuBtn.style.display = 'none';
+                }
+            }
+        </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+            const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/product-categories';
+
+            try {
+                const res = await fetch(API_URL);
+                const data = await res.json();
+
+                const categories = data.categories || [];
+
+                // Filter only parent categories (parent_category is null)
+                const parentCategories = categories.filter(cat => cat.parent_category === null);
+
+                const topList = document.getElementById('top-categories');
+                const moreList = document.getElementById('more-categories');
+
+                parentCategories.forEach((cat, index) => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<a href="/product-category/${slugify(cat.name)}">${cat.name}</a>`;
+
+                    if (index < 6) {
+                        topList.appendChild(li);
+                    } else {
+                        moreList.appendChild(li);
+                    }
+                });
+            } catch (err) {
+                console.error('Failed to load categories:', err);
+            }
+
+            // Helper to slugify category name
+            function slugify(text) {
+                return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
+            }
+        });
+    </script>
 </body>
 
 </html>
