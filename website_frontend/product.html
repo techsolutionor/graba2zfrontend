@@ -2603,69 +2603,28 @@ updateWishlistBadge();
 
         
         // Handle quantity changes (+/- buttons)
-        function changeQty(change) {
-            const qtyInput = document.getElementById("qty");
-            const productId = parseInt(qtyInput.dataset.productId);
-            let qty = parseInt(qtyInput.value);
-            if (isNaN(qty)) qty = 1;
+function changeQty(change) {
+    const qtyInput = document.getElementById("qty");
+    const productId = parseInt(qtyInput.dataset.productId);
+    let qty = parseInt(qtyInput.value);
+    if (isNaN(qty)) qty = 1;
 
-            qty += change;
-            if (qty < 1) qty = 1; // Minimum quantity is 1
+    qty += change;
+    if (qty < 1) qty = 1; // Minimum quantity is 1
 
-            qtyInput.value = qty;
+    qtyInput.value = qty;
 
-            // let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            // const existingProductIndex = cart.findIndex(item => item.id === productId);
+    // Use the clean cart.js function now
+    changeCartQty(productId, change);
 
-            // if (existingProductIndex !== -1) {
-            //     if (change === 1) {
-            //         // Increment quantity (+ button)
-            //         cart[existingProductIndex].quantity = qty;
-            //         showSuccessMessage(`Quantity updated to ${qty}`);
-            //     } else {
-            //         // Decrement quantity (- button)
-            //         if (qty === 0) {
-            //             // Remove item if quantity reaches 0
-            //             cart.splice(existingProductIndex, 1);
-            //             showSuccessMessage("Item removed from cart");
-            //             // Reset UI since item is no longer in cart
-            //             resetAddToCartUI(productId);
-            //         } else {
-            //             cart[existingProductIndex].quantity = qty;
-            //             showSuccessMessage(`Quantity updated to ${qty}`);
-            //         }
-            //     }
+    // Optional: If qty becomes 0 after decrement → reset UI
+    const cart = getCart();
+    const item = cart.find(item => item.id === productId);
+    if (!item) {
+        resetAddToCartUI(productId);
+    }
+}
 
-            //     localStorage.setItem('cart', JSON.stringify(cart));
-            //     updateCartCount();
-            // } else if (change === 1) {
-            //     // If not in cart but + was clicked, add it
-            //     handleAddToCart({
-            //         id: productId,
-            //         slug: document.getElementById('product-name').dataset.slug,
-            //         name: document.getElementById('product-name').textContent,
-            //         selling_price: parseFloat(document.getElementById('product-price').textContent.replace('$', '')),
-            //         image_path: document.getElementById('specific-product-image').src
-            //     });
-            // }
-        }
-        // Reset UI when product is removed from cart
-        function resetAddToCartUI(productId) {
-            const addToCartBtn = document.querySelector('.add-to-cart-btn');
-            if (addToCartBtn) {
-                addToCartBtn.style.display = 'block';
-            }
-
-            const inCartMessage = document.querySelector('.in-cart-message');
-            if (inCartMessage) {
-                inCartMessage.style.display = 'none';
-            }
-
-            const qtyInput = document.getElementById("qty");
-            if (qtyInput) {
-                qtyInput.value = 1;
-            }
-        }
     </script>
    <!-- <script>
     // Toggle wishlist
