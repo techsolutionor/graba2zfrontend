@@ -299,6 +299,8 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <script src="./apiConfig/apiConfig.js"></script>
+    <script src="/assets/js/wishlist.js"></script>
+<script src="/assets/js/cart.js"></script>
     <style>
         @media (min-width: 768px) {
             #banner-prev {
@@ -1651,7 +1653,7 @@
                 loadCart();
             });
 
-           function updateQuantity(productId, change) {
+         function updateQuantity(productId, change) {
     const cart = getCart();
     const index = cart.findIndex(item => item.id === productId);
 
@@ -1667,27 +1669,31 @@
         saveCart(cart);
 
         // Re-render the cart display
-        renderCart();
+        loadCart(); // ✅ correct
 
-        // ✅ Update the header Cart count
-        updateCartBadge();
+        // Update the header Cart count
+        updateCartBadge(); // ✅ correct
     }
 }
 
 
-            function removeFromCart(productId) {
-                let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                cart = cart.filter(product => product.id !== productId);
-                localStorage.setItem('cart', JSON.stringify(cart));
-                loadCart();
-                updateCartCount();
-            }
+           function removeFromCart(productId) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart = cart.filter(product => product.id !== productId);
+    localStorage.setItem('cart', JSON.stringify(cart));
 
-            function clearCart() {
-                localStorage.removeItem('cart');
-                loadCart();
-                updateCartCount();
-            }
+    loadCart();          // Re-render cart
+    updateCartBadge();   // ✅ Update header cart count
+}
+
+
+           function clearCart() {
+    localStorage.removeItem('cart');
+
+    loadCart();          // Re-render cart
+    updateCartBadge();   // ✅ Update header cart count
+}
+
 
 
             function updateCartTotals() {
