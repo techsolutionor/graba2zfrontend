@@ -84,7 +84,7 @@
       transform: translateY(-50%);
       width: 8px;
       height: 8px;
-      background-color: #ff7300;
+      background-color: #8fc208;
       border-radius: 50%;
     }
     .sidebar-submenu {
@@ -100,6 +100,27 @@
       padding: 30px;
     }
 
+
+
+
+    .sidebar-submenu {
+  display: none;
+  list-style: none;
+  padding-left: 20px;
+  transition: all 0.3s ease;
+}
+
+.sidebar-submenu.show {
+  display: block;
+}
+
+.rotate-icon {
+  transition: transform 0.3s ease;
+}
+
+.rotate-icon.rotate {
+  transform: rotate(180deg);
+}
   </style>
   <script src="./popupMessages.js"></script>
   <script>
@@ -203,14 +224,20 @@ function logout() {
           <!-- PRODUCTS & STOCK -->
           <li class="section-title">PRODUCTS & STOCK</li>
           <li class="nav-item"><a class="nav-link" href="products.html"><i class="fas fa-box"></i> Products</a></li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#purchaseMenu" role="button"><i class="fas fa-shopping-cart"></i> Purchases</a>
-            <ul class="collapse sidebar-submenu" id="purchaseMenu">
-              <li><a class="nav-link" href="purchases.html">List Purchase</a></li>
-              <li><a class="nav-link" href="add-purchase.html">Add Purchase</a></li>
-              <li><a class="nav-link" href="return-purchase.html">Purchase Return</a></li>
-            </ul>
-          </li>
+           <li class="nav-item">
+  <a href="javascript:void(0);" class="nav-link d-flex justify-content-between align-items-center purchases-toggle-custom">
+    <span><i class="fas fa-shopping-cart me-1"></i> Purchases</span>
+    <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
+  </a>
+
+  <ul class="sidebar-submenu" id="purchaseMenuCustom">
+    <li><a class="nav-link" href="purchases.html">List Purchase</a></li>
+    <li><a class="nav-link" href="add-purchase.html">Add Purchase</a></li>
+    <li><a class="nav-link" href="return-purchase.html">Purchase Return</a></li>
+  </ul>
+</li>
+
+
           <li class="nav-item"><a class="nav-link" href="damages.html"><i class="fas fa-exclamation-circle"></i> Damages</a></li>
           <li class="nav-item"><a class="nav-link" href="stock.html"><i class="fas fa-archive"></i> Stock</a></li>
       
@@ -218,19 +245,26 @@ function logout() {
           <li class="section-title">POS & ORDERS</li>
           <li class="nav-item"><a class="nav-link" href="pos.html"><i class="fas fa-cash-register"></i> POS</a></li>
           <li class="nav-item"><a class="nav-link" href="pos-orders.html"><i class="fas fa-receipt"></i> POS Orders</a></li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ordersMenu" role="button"><i class="fas fa-shopping-basket"></i> Orders</a>
-            <ul class="collapse sidebar-submenu" id="ordersMenu">
-              <li><a class="nav-link" href="online-orders.html">Online Orders</a></li>
-              <li><a class="nav-link" href="received_onlineOrders.html">Received Orders</a></li>
-              <li><a class="nav-link" href="inprogress_onlineOrders.html">Inprogress Orders</a></li>
-              <li><a class="nav-link" href="readyForShipment_onlineOrders.html">Ready for Shipment</a></li>
-              <li><a class="nav-link" href="ontheWay_onlineOrders.html">On the Way</a></li>
-              <li><a class="nav-link" href="delevered_onlineOrders.html">Delivered</a></li>
-              <li><a class="nav-link" href="onhold_onlineOrders.html">On Hold</a></li>
-              <li><a class="nav-link" href="rejected_onlineOrders.html">Rejected</a></li>
-            </ul>
-          </li>
+           <li class="nav-item">
+  <a 
+    href="javascript:void(0);" 
+    class="nav-link d-flex justify-content-between align-items-center orders-toggle" 
+  >
+    <span><i class="fas fa-shopping-basket me-1"></i> Orders</span>
+    <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
+  </a>
+
+    <ul class="sidebar-submenu" id="ordersMenu">
+    <li><a class="nav-link" href="online-orders.html">Online Orders</a></li>
+    <li><a class="nav-link" href="received_onlineOrders.html">Received Orders</a></li>
+    <li><a class="nav-link" href="inprogress_onlineOrders.html">Inprogress Orders</a></li>
+    <li><a class="nav-link" href="readyForShipment_onlineOrders.html">Ready for Shipment</a></li>
+    <li><a class="nav-link" href="ontheWay_onlineOrders.html">On the Way</a></li>
+    <li><a class="nav-link" href="delevered_onlineOrders.html">Delivered</a></li>
+    <li><a class="nav-link" href="onhold_onlineOrders.html">On Hold</a></li>
+    <li><a class="nav-link" href="rejected_onlineOrders.html">Rejected</a></li>
+  </ul>
+</li>
       
           <!-- PROMO -->
           <li class="section-title">PROMO</li>
@@ -1315,6 +1349,34 @@ document.addEventListener("DOMContentLoaded", fetchUsers);
     });
   });
 </script>
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggle = document.querySelector('.orders-toggle');
+    const submenu = document.getElementById('ordersMenu');
+    const arrow = toggle.querySelector('.arrow-icon');
+
+    toggle.addEventListener('click', () => {
+      submenu.classList.toggle('show');
+      arrow.classList.toggle('rotate');
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const purchasesToggle = document.querySelector('.purchases-toggle-custom');
+    const purchasesMenu = document.getElementById('purchaseMenuCustom');
+    const purchasesArrow = purchasesToggle.querySelector('.arrow-icon');
+
+    purchasesToggle.addEventListener('click', () => {
+      purchasesMenu.classList.toggle('show');
+      purchasesArrow.classList.toggle('rotate');
+    });
+  });
+</script>
+
+
 
 </body>
 
