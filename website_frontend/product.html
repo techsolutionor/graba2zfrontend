@@ -2564,7 +2564,7 @@ updateWishlistBadge();
     const existingProduct = cart.find(item => item.id === product.id);
 
     if (existingProduct) {
-        showSuccessMessage("This product is already in cart. Use + / - buttons to change quantity.");
+        showSuccessMessage("This product already in cart (use + /- buttons to change quantity)");
         return;
     }
 
