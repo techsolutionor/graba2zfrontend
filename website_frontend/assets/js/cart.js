@@ -20,7 +20,7 @@ function addToCart(product, qty = 1) {
     }
 
     saveCart(cart);
-    showSuccessMessage(`${product.name} added to cart.`);
+showSuccessMessage(`Item added to cart.`);
 }
 
 function changeCartQty(productId, change) {
