@@ -2277,6 +2277,10 @@ function slugify(text) {
                 if (qtyInput && itemInCart) {
                     qtyInput.value = itemInCart.quantity;
                 }
+                // ✅ Update UI if already in cart
+if (itemInCart) {
+    updateAddToCartUI(product.id, itemInCart.quantity);
+}
 
 
                 // Get wishlist from localStorage
