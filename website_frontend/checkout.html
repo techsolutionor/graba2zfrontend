@@ -668,7 +668,8 @@
                 <!-- Logo Start -->
                 <div class="logo">
                     <a href="index" class="link">
-                        <img src="https://graba2z.netlify.app/assets/images/logo/logo1.svg" style="width: 170px; height: 70px;" alt="Logo">
+                        <img src="https://graba2z.netlify.app/assets/images/logo/logo1.svg"
+                            style="width: 170px; height: 70px;" alt="Logo">
                     </a>
                 </div>
                 <!-- Logo End  -->
@@ -830,7 +831,7 @@
                     <div class="p-3">
                         <div class="mb-3 d-flex justify-content-between">
                             <span class="text-dark fw-bold">Subtotal</span>
-                            <span id="cartSubtotal" class="text-dark fw-semibold">AED 0.00</span>
+                            <span id="cartSubtotal" class="text-dark fw-semibold"></span>
                         </div>
                         <div class="mb-3 d-flex justify-content-between">
                             <span class="text-muted">Shipping</span>
@@ -1010,7 +1011,7 @@
         <!-- ==================== Footer End Here ==================== -->
         <!-- Jquery js -->
         <script src="https://graba2z.netlify.app/assets/js/jquery-3.7.1.min.js"></script>
-         <!-- <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script> -->
+        <!-- <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script> -->
 
         <!-- Bootstrap Bundle Js -->
         <script src="assets/js/boostrap.bundle.min.js"></script>
@@ -1292,7 +1293,7 @@
 
                 const cart = JSON.parse(localStorage.getItem('cart')) || [];
                 console.log('Cart items:', cart); // Debugging line to check cart contents
-                
+
                 const cartItemsContainer = $('#cartItemsContainer');
                 let subtotal = 0;
 
@@ -1303,6 +1304,8 @@
                     cart.forEach(item => {
                         const itemTotal = item.offer_price * item.quantity;
                         subtotal += itemTotal;
+                        console.log(subtotal, "subtotal");
+
 
                         cartItemsContainer.append(`
                     <div class="d-flex align-items-center mb-3">
@@ -1321,12 +1324,16 @@
                 const appliedCoupon = JSON.parse(localStorage.getItem('appliedCoupon'));
                 // const discountAmount = appliedCoupon ? parseFloat(appliedCoupon.discountAmount || 0) : 0;
                 const discountAmount = localStorage.getItem('cartSavings') || '0.00';
-
+                console.log(discountAmount, "discountAmount");
                 const shippingCost = 0;
                 const total = subtotal + shippingCost - discountAmount;
-
+                console.log(total, "total");
                 // Update totals
-                $('#cartSubtotal').text(`AED ${subtotal.toFixed(2)}`);
+                // $('#cartSubtotal').text(`AED ${subtotal.toFixed(2)}`);
+                const cartSubtotalValue = localStorage.getItem('cartSubtotal');
+                console.log(cartSubtotalValue, "cartSubtotalValue");
+                
+                document.getElementById('cartSubtotal').textContent = 'AED ' + parseFloat(cartSubtotalValue).toFixed(2);
                 $('#shippingCost').text(`AED ${shippingCost.toFixed(2)}`);
                 $('#totalAmount').text(`AED ${total.toFixed(2)}`);
 
