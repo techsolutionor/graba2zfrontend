@@ -1372,7 +1372,8 @@
 
 
         <!-- Jquery js -->
-        <script src="https://graba2z.netlify.app/assets/js/jquery-1.11.0.min.js"></script>
+        <!-- <script src="https://graba2z.netlify.app/assets/js/jquery-3.7.1.min.js"></script> -->
+         <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
         <!-- Bootstrap Bundle Js -->
         <script src="https://graba2z.netlify.app/assets/js/boostrap.bundle.min.js"></script>
         <!-- Bootstrap Bundle Js -->
@@ -1405,7 +1406,7 @@
 
             async function fetchCategories() {
                 try {
-                    const response = await fetch(`${API_CUSTOMER_URL}/api/product-categories`);
+                    const response = await fetch(`https://websitegrabatoz-production.up.railway.app/api/product-categories`);
                     if (!response.ok) {
                         throw new Error('Failed to fetch categories');
                     }
@@ -1559,9 +1560,10 @@
                 $("#guestId").val(guestId || "No Guest ID Found");
 
                 // Fetch and show guest shipping info
-                fetch(`${API_CUSTOMER_URL}/api/guests/latest`)
+                fetch(`https://websitegrabatoz-production.up.railway.app/api/guests/latest`)
                     .then(res => res.json())
                     .then(guest => {
+                        console.log('Guest API Response:', guest);
                         globalGuest = guest;
 
                         const shippingInfoText = `Name: ${guest.name || 'Guest'}\nPhone: ${guest.mobile || 'N/A'}\nEmail: ${guest.email || 'N/A'}`;
@@ -1587,7 +1589,7 @@
                 cart.forEach(item => {
                     cartItemsContainer.append(`
                     <div class="d-flex align-items-center mb-3">
-                        <img src="${API_CUSTOMER_URL}/${item.image_path}" class="me-3 rounded" width="50">
+                        <img src="https://websitegrabatoz-production.up.railway.app/${item.image_path}" class="me-3 rounded" width="50">
                         <div>
                             <p class="mb-0 fw-bold">${item.name}</p>
                             <small>Qty: ${item.quantity}</small>
@@ -1660,7 +1662,7 @@
 
             //     // ✅ Send order to backend
             //     try {
-            //         const response = await fetch(`${API_CUSTOMER_URL}/api/orders`, {
+            //         const response = await fetch(`https://websitegrabatoz-production.up.railway.app/api/orders`, {
             //             method: 'POST',
             //             headers: { 'Content-Type': 'application/json' },
             //             body: JSON.stringify(orderData)
@@ -1734,7 +1736,7 @@
 
             //     try {
             //         // 1. Create the order in your database
-            //         const orderResponse = await fetch(`${API_CUSTOMER_URL}/api/orders`, {
+            //         const orderResponse = await fetch(`https://websitegrabatoz-production.up.railway.app/api/orders`, {
             //             method: 'POST',
             //             headers: { 'Content-Type': 'application/json' },
             //             body: JSON.stringify(orderData)
@@ -1748,7 +1750,7 @@
 
             //         // if (isOnlinePayment) {
             //         //     // 2. Initiate online payment
-            //         //     const paymentResponse = await fetch(`${API_CUSTOMER_URL}/api/payments/ngenius`, {
+            //         //     const paymentResponse = await fetch(`https://websitegrabatoz-production.up.railway.app/api/payments/ngenius`, {
             //         //         method: 'POST',
             //         //         headers: { 'Content-Type': 'application/json' },
             //         //         body: JSON.stringify({
@@ -1778,7 +1780,7 @@
             //                 placeOrderBtn.disabled = true;
             //                 placeOrderBtn.textContent = 'Processing Payment...';
 
-            //                 const paymentResponse = await fetch(`${API_CUSTOMER_URL}/api/payments/ngenius`, {
+            //                 const paymentResponse = await fetch(`https://websitegrabatoz-production.up.railway.app/api/payments/ngenius`, {
             //                     method: 'POST',
             //                     headers: { 'Content-Type': 'application/json' },
             //                     body: JSON.stringify({
@@ -1879,7 +1881,7 @@
                 };
 
                 try {
-                    const orderResponse = await fetch(`${API_CUSTOMER_URL}/api/orders`, {
+                    const orderResponse = await fetch(`https://websitegrabatoz-production.up.railway.app/api/orders`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(orderData)
@@ -1896,7 +1898,7 @@
                         placeOrderBtn.disabled = true;
                         placeOrderBtn.textContent = 'Processing Payment...';
 
-                        const paymentResponse = await fetch(`${API_CUSTOMER_URL}/api/payments/ngenius`, {
+                        const paymentResponse = await fetch(`https://websitegrabatoz-production.up.railway.app/api/payments/ngenius`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({
