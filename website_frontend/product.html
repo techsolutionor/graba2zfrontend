@@ -2463,21 +2463,7 @@ updateWishlistBadge();
             }
         }
 
-        // document.addEventListener('DOMContentLoaded', () => {
-        //     updateCartIcon(); // Update the cart icon with the correct count
-        // });
-        // index - Update the cart icon count based on localStorage
-        // Update the cart icon count
-        // function updateCartIcon() {
-        //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        //     const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
-
-        //     // Update the cart count in all cart icon elements
-        //     const cartCountElements = document.querySelectorAll('.cart-item-count');
-        //     cartCountElements.forEach(el => {
-        //         el.textContent = totalItems; // Update all cart item count elements
-        //     });
-        // }
+       
         document.getElementById('search-form').addEventListener('submit', (event) => {
             event.preventDefault();
             const searchQuery = document.getElementById('search-input').value.trim();
@@ -2485,58 +2471,7 @@ updateWishlistBadge();
             // await fetchFilteredProducts(searchQuery);
         });
 
-        // Add product to cart
-        // function addToCart(product) {
-        //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        //     const existingProduct = cart.find(item => item.id === product.id);
 
-        //     if (existingProduct) {
-        //         existingProduct.quantity += 1; // Increment quantity if already in cart
-        //     } else {
-        //         cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
-        //     }
-
-        //     localStorage.setItem('cart', JSON.stringify(cart));
-
-        //     updateCartIcon(); // Update the cart count in the header
-
-        //     showSuccessMessage(` Added to cart Successfully `);
-        // }
-        // function updateCartCount() {
-        //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        //     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-
-        //     const cartCountElement = document.querySelector(".cart-item-count");
-        //     if (cartCountElement) {
-        //         cartCountElement.textContent = totalItems;
-        //     }
-        //     // Initial update
-        //     updateCartCount();
-
-        //     // ✅ Detect if user returns to this tab/page
-        //     document.addEventListener("visibilitychange", function () {
-        //         if (document.visibilityState === "visible") {
-        //             updateCartCount();
-        //         }
-        //     });
-
-        //     // ✅ Extra fallback for Safari/back-nav behavior
-        //     window.addEventListener("pageshow", function () {
-        //         updateCartCount();
-        //     });
-
-        //     localStorage.setItem('cartItemCount', totalItems);
-        // }
-
-        // Update cart count in header
-        // function updateCartCount() {
-        //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        //     const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
-
-        //     document.querySelectorAll('.cart-item-count').forEach(el => {
-        //         el.textContent = totalItems;
-        //     });
-        // }
         });
 
         function showSuccessMessage(message) {
@@ -2621,54 +2556,7 @@ function changeQty(change) {
 
 
     </script>
-   <!-- <script>
-    // Toggle wishlist
-    function toggleWishlist(product) {
-        const heartIcon = document.getElementById('heart-icon');
-        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-        const index = wishlist.findIndex(p => p.id === product.id);
-
-        if (index === -1) {
-            wishlist.push(product);
-            localStorage.setItem('wishlist', JSON.stringify(wishlist));
-            heartIcon.style.color = 'red';
-            showSuccessMessage("Added to wishlist!");
-        } else {
-            wishlist.splice(index, 1);
-            localStorage.setItem('wishlist', JSON.stringify(wishlist));
-            heartIcon.style.color = '';
-            showSuccessMessage("Removed from wishlist!");
-        }
-
-        updateWishlistBadge();
-    }
-
-    // Update badge in header
-    function updateWishlistBadge() {
-        const count = (JSON.parse(localStorage.getItem('wishlist')) || []).length;
-        const badge = document.getElementById('wishlist-item-count');
-        if (badge) badge.textContent = count;
-    }
-
-    // ✅ Listen to changes in wishlist across tabs or programmatically
-    window.addEventListener('storage', function (e) {
-        if (e.key === 'wishlist') {
-            updateWishlistBadge();
-        }
-    });
-
-    // Display message
-    function showSuccessMessage(msg) {
-        const box = document.createElement('div');
-        box.style.cssText = 'position:fixed;top:20px;right:20px;background:green;color:white;padding:10px;border-radius:5px;z-index:1000';
-        box.innerText = msg;
-        document.body.appendChild(box);
-        setTimeout(() => box.remove(), 3000);
-    }
-
-    // On page load
-    document.addEventListener('DOMContentLoaded', updateWishlistBadge);
-</script> -->
+   
 
 
     <script>
@@ -2843,93 +2731,7 @@ function changeQty(change) {
             });
 addToCart(productObject); // From cart.js
 
-            // function addToCart(product) {
-            //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            //     const existingProduct = cart.find(item => item.id === product.id);
-
-            //     if (existingProduct) {
-            //         existingProduct.quantity += 1; // Increment quantity if already in cart
-            //     } else {
-            //         cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
-            //     }
-
-            //     localStorage.setItem('cart', JSON.stringify(cart));
-
-            //     // Update the cart item count in localStorage
-            //     updateCartCount();
-
-            //     showSuccessMessage(`${product.name} added to cart.`);
-            // }
-
-            // function updateCartCount() {
-            //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            //     const totalItems = cart.reduce((total, product) => total + product.quantity, 0); // Calculate total quantity
-
-            //     // Update the cart count in localStorage
-            //     localStorage.setItem('cartItemCount', totalItems);
-            // }
-            // function showSuccessMessage(message) {
-            //     const messageContainer = document.createElement('div');
-            //     messageContainer.style.position = 'fixed';
-            //     messageContainer.style.top = '20px';
-            //     messageContainer.style.right = '20px';
-            //     messageContainer.style.backgroundColor = 'green';
-            //     messageContainer.style.color = 'white';
-            //     messageContainer.style.padding = '10px 20px';
-            //     messageContainer.style.borderRadius = '5px';
-            //     messageContainer.style.zIndex = '1000';
-            //     messageContainer.textContent = message;
-
-            //     document.body.appendChild(messageContainer);
-
-            //     // Remove the message after 3 seconds
-            //     setTimeout(() => {
-            //         document.body.removeChild(messageContainer);
-            //     }, 3000);
-            // }
-
-            // function handleAddToCart(product) {
-            //     addToCart(product); // Add product to cart
-            //     window.location.href = 'https://graba2z.netlify.app/cart'; // Navigate to cart
-            // }
-
-
-            // // Function to toggle wishlist status
-            // function toggleWishlist(product) {
-            //     // Get heart icon and current wishlist from localStorage
-            //     const heartIcon = document.getElementById('heart-icon');
-            //     let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-
-            //     // Check if product already exists in wishlist
-            //     const productIndex = wishlist.findIndex(item => item.id === product.id);
-
-            //     if (productIndex === -1) {
-            //         // Product not in wishlist, add it and change icon color to red
-            //         wishlist.push(product);
-            //         localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Save to localStorage
-            //         heartIcon.style.color = 'red'; // Change heart color to red
-            //         showSuccessMessage('Product added to wishlist!');
-            //     } else {
-            //         // Product already in wishlist, remove it and reset icon color
-            //         wishlist.splice(productIndex, 1);
-            //         localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Remove from localStorage
-            //         heartIcon.style.color = ''; // Reset heart color
-            //         showSuccessMessage('Product removed from wishlist!');
-            //     }
-            // }
-
-            // function updateWishlistBadge() {
-            //     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            //     const wishlistBadge = document.getElementById('numberWishlist');
-
-            //     // Update the badge count
-            //     if (wishlistBadge) {
-            //         wishlistBadge.textContent = wishlist.length;
-            //     }
-            // }
-
-            // // Call this function on page load to ensure the badge is updated dynamically 
-            // window.onload = updateWishlistBadge;
+           
 
 
             function toggleIcon(button) {
