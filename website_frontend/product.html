@@ -1102,57 +1102,166 @@
                 <div class="col-lg-9">
                     <div class="row gy-4">
                         <div class="col-xl-5">
-                            <div class="product-details__left">
+                            <div class="product-details-slider__left">
+  <!-- Main product image -->
+  <div class="product-details-slider__thumb flex-center h-100 border rounded-8 mb-10"
+      style="min-width: 300px !important; min-height: 100% !important;">
+      <img id="product-details-slider-main-image" class="py-10" data-bs-toggle="modal" data-bs-target="#product-details-slider-image-modal"
+          src="assets/images/white-placeholder.png" style="cursor: zoom-in; min-width: 300px !important; min-height: 400px !important; border: 5px solid white;"
+          alt="Product Image">
+  </div>
 
+  <!-- Modal for enlarged product image -->
+  <div class="modal fade" id="product-details-slider-image-modal" tabindex="-1" aria-labelledby="product-details-slider-image-modal-label" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content bg-transparent border-0">
+              <div class="position-relative d-inline-block mx-auto">
+                  <img id="product-details-slider-modal-image" src="" alt="Enlarged Product Image" class="img-fluid rounded-3"
+                      style="max-height: 80vh; width: auto;">
+                  <button type="button" class="btn-close cross-button position-absolute"
+                      style="top: 10px; right: 10px; z-index: 10; filter: invert(1);" data-bs-dismiss="modal"
+                      aria-label="Close">
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>
 
-                                <!-- <div class="product-details__thumb flex-center h-100">
-  <img id="specific-product-image" class="py-10"  style="cursor: zoom-in;" />
-</div> -->
-                                <div class="product-details__thumb flex-center h-100 border rounded-8 mb-10"
-                                    style="min-width: 300px !important; min-height: 100% !important;">
-                                    <img id="specific-product-image" class="py-10" data-bs-toggle="modal"
-                                        data-bs-target="#imageModal" src="assets/images/white-placeholder.png"
-                                        style="cursor: zoom-in; min-width: 300px !important; min-height: 400px !important; border: 5px solid white;"
-                                        alt="Product Image">
-                                </div>
-                                <!-- <div class="product-details__thumb flex-center h-100">
-  <img id="specific-product-image" src="your-image.jpg" class="py-10" style="cursor: zoom-in;" />
-</div> -->
-                                <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-lg">
-                                        <div class="modal-content bg-transparent border-0">
+  <!-- Thumbnail slider -->
+  <div class="product-details-slider-thumbnail-container" style="padding-bottom: 20px;">
+      <button class="product-details-slider-thumbnail-arrow left" id="product-details-slider-thumbnail-prev">&#10094;</button>
+      <div class="product-details-slider-thumbnail-slider" id="product-details-slider-thumbnail-slider">
+          <!-- Thumbnails will be inserted here dynamically -->
+      </div>
+      <button class="product-details-slider-thumbnail-arrow right" id="product-details-slider-thumbnail-next">&#10095;</button>
+  </div>
+</div>
 
-                                            <!-- Relative wrapper for positioning the button on the image -->
-                                            <div class="position-relative d-inline-block mx-auto">
+<!-- Related Products Styles -->
+<style>
+.product-details-slider-thumbnail-container {
+  position: relative;
+  overflow: hidden;
+  padding: 10px 0;
+}
 
-                                                <!-- The image -->
-                                                <img id="modal-product-image" src="" alt="Enlarged Product Image"
-                                                    class="img-fluid rounded-3" style="max-height: 80vh; width: auto;">
+.product-details-slider-thumbnail-slider {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px;
+}
 
-                                                <!-- Close button OVER the image, inside top-right corner -->
-                                                <button type="button" class="btn-close cross-button position-absolute"
-                                                    style="top: 10px; right: 10px; z-index: 10; filter: invert(1);"
-                                                    data-bs-dismiss="modal" aria-label="Close">
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="padding-bottom:20px;">
-                                    <div class="swiper mySwiper" style="width: 100%; max-width: 520px;">
-                                        <div class="swiper-wrapper" id="product-thumbnails">
-                                        </div>
-                                        <div class="swiper-button-next"
-                                            style="background-color: #0c0c0b; height: 60px;width: 22px; border-radius: 5%;">
-                                            <img src="./assets/images/all in one.png" alt="">
-                                        </div>
-                                        <div class="swiper-button-prev"
-                                            style="background-color: #0c0c0b; height: 60px;width: 22px; border-radius: 5%;">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+.product-details-slider-thumbnail-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.product-details-slider-thumbnail-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 10;
+}
+
+.product-details-slider-thumbnail-arrow.left {
+  left: 0;
+}
+
+.product-details-slider-thumbnail-arrow.right {
+  right: 0;
+}
+
+.product-details-slider-thumbnail-slider .product-details-slider-thumbnail-slide {
+  flex: 0 0 120px;  /* Fixed size for each thumbnail */
+  cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid #ddd;
+}
+
+.product-details-slider-thumbnail-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+</style>
+
+<!-- Related Products JS -->
+<script>
+document.getElementById('product-details-slider-thumbnail-prev').addEventListener('click', function() {
+  document.getElementById('product-details-slider-thumbnail-slider').scrollBy({
+    left: -300,
+    behavior: 'smooth'
+  });
+});
+
+document.getElementById('product-details-slider-thumbnail-next').addEventListener('click', function() {
+  document.getElementById('product-details-slider-thumbnail-slider').scrollBy({
+    left: 300,
+    behavior: 'smooth'
+  });
+});
+
+// Fetch product images from API
+async function fetchProductImages(categoryId, excludeProductId) {
+  try {
+    const API_CUSTOMER_URL = 'https://websitegrabatoz-production.up.railway.app'; // Your API URL
+    const API_ADMINGRAB_URL = 'http://grabatoz-production.up.railway.app';  // Your API image URL
+
+    const response = await fetch(`${API_CUSTOMER_URL}/api/products?category_id=${categoryId}&exclude=${excludeProductId}`);
+    const data = await response.json();
+
+    const container = document.getElementById('product-details-slider-thumbnail-slider');
+    container.innerHTML = ''; // Clear previous thumbnails
+
+    const products = Array.isArray(data) ? data : data.products;
+
+    if (!products || products.length === 0) {
+      container.innerHTML = '<p class="text-center w-100">No related products found.</p>';
+      return;
+    }
+
+    // Update main image and modal image
+    const mainImage = document.getElementById('product-details-slider-main-image');
+    const modalImage = document.getElementById('product-details-slider-modal-image');
+
+    products.forEach((product, index) => {
+      const imagePath = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
+      const fullPath = `${API_ADMINGRAB_URL}/${imagePath}`;
+
+      const slide = document.createElement('div');
+      slide.className = 'product-details-slider-thumbnail-slide';
+      slide.innerHTML = `
+        <img src="${fullPath}" alt="Thumbnail ${index + 1}" />
+      `;
+
+      // When thumbnail is clicked, update the main and modal images
+      slide.querySelector('img').addEventListener('click', () => {
+        mainImage.src = fullPath;
+        mainImage.alt = `Product Image ${index + 1}`;
+        modalImage.src = fullPath;
+      });
+
+      container.appendChild(slide);
+    });
+
+  } catch (error) {
+    console.error('Error fetching product images:', error);
+    document.getElementById('product-details-slider-thumbnail-slider').innerHTML = '<p class="text-danger text-center">Error loading product images.</p>';
+  }
+}
+
+// Call the function with categoryId and excludeProductId
+fetchProductImages('10', '131');  // Example: replace with actual categoryId and excludeProductId
+</script>
+
                         </div>
                         <div class="col-xl-7 p-6">
                             <!-- foe my self -->
