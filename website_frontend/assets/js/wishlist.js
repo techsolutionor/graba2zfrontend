@@ -24,7 +24,11 @@ function toggleWishlist(product) {
         updateHeartIcon(false);
         showSuccessMessage("Removed from wishlist!");
     }
+
+    // Ensure the badge is updated dynamically on all pages
+    updateWishlistBadge();  // Add this line to update the badge
 }
+
 
 function isInWishlist(productId) {
     return getWishlist().some(p => p.id === productId);
@@ -35,7 +39,15 @@ function updateWishlistBadge() {
     const count = getWishlist().length;
     const badge = document.getElementById('wishlist-item-count');
     if (badge) badge.textContent = count;
+
+    // If on the wishlist page, update the badge on that page too
+    if (window.location.pathname.includes("wishlist")) {
+        const wishlistContainer = document.getElementById('wishlist-container');
+        // Re-render the wishlist to reflect changes in the UI
+        displayWishlist();  // Call your display function again to refresh the wishlist page
+    }
 }
+
 
 function updateHeartIcon(isActive) {
     const heart = document.getElementById('heart-icon');
@@ -56,6 +68,9 @@ document.addEventListener('DOMContentLoaded', updateWishlistBadge);
 // --- Sync across tabs ---
 window.addEventListener('storage', function (e) {
     if (e.key === 'wishlist') {
-        updateWishlistBadge();
+        updateWishlistBadge();  // Update badge when storage changes
+        if (window.location.pathname.includes("wishlist")) {
+            displayWishlist();  // Update the wishlist page if storage changes
+        }
     }
 });
