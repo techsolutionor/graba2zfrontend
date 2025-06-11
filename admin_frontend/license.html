@@ -272,6 +272,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
         </ul>
       </aside>
 
+
   <!--  Sidebar End -->
   <!--  Main wrapper -->
   <div class="body-wrapper">
@@ -429,32 +430,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 </script>
 
-<script src="https://unpkg.com/@phosphor-icons/web"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const toggle = document.querySelector('.orders-toggle');
-    const submenu = document.getElementById('ordersMenu');
-    const arrow = toggle.querySelector('.arrow-icon');
 
-    toggle.addEventListener('click', () => {
-      submenu.classList.toggle('show');
-      arrow.classList.toggle('rotate');
-    });
-  });
-</script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const purchasesToggle = document.querySelector('.purchases-toggle-custom');
-    const purchasesMenu = document.getElementById('purchaseMenuCustom');
-    const purchasesArrow = purchasesToggle.querySelector('.arrow-icon');
-
-    purchasesToggle.addEventListener('click', () => {
-      purchasesMenu.classList.toggle('show');
-      purchasesArrow.classList.toggle('rotate');
-    });
-  });
-</script>
 </body>
 
 </html>
