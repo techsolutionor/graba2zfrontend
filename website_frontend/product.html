@@ -17,7 +17,7 @@
     <!-- select 2 -->
     <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/select2.min.css">
     <!-- Slick -->
-    <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/slick.css">
+    <!-- <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/slick.css"> -->
     <!-- Jquery Ui -->
     <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/jquery-ui.css">
     <!-- animate -->
@@ -1752,37 +1752,29 @@
     </div>
 
     <!-- ========================== Similar Product Start ============================= -->
-    <section class="new-arrival py-30">
-        <div class="container container-lg">
-            <div class="section-heading">
-                <div class="flex-between flex-wrap gap-8">
-                    <h5 class="mb-0 text-dark">Related Products</h5>
-                    <div class="flex-align gap-16">
-                        <a href="shop"
-                            class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">All
-                            Products</a>
-                        <div class="flex-align gap-8">
-                            <button type="button" id="new-arrival-prev"
-                                class="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1">
-                                <i class="ph ph-caret-left"></i>
-                            </button>
-                            <button type="button" id="new-arrival-next"
-                                class="slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1">
-                                <i class="ph ph-caret-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div id="relatedProducts">
-                <div class="new-arrival__slider arrow-style-two">
-
-                </div>
-            </div>
+   <!-- ========================== Related Products Start ============================= -->
+<section class="new-arrival py-30">
+  <div class="container container-lg">
+    <div class="section-heading">
+      <div class="flex-between flex-wrap gap-8">
+        <h5 class="mb-0 text-dark">Related Products</h5>
+        <div class="flex-align gap-16">
+          <a href="shop" class="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline">All Products</a>
         </div>
-    </section>
+      </div>
+    </div>
+
+    <div class="related-products-wrapper mt-3">
+      <button class="slider-arrow left" id="related-prev">&#10094;</button>
+      <div class="related-products-slider" id="related-slider">
+        <!-- Products will be inserted here -->
+      </div>
+      <button class="slider-arrow right" id="related-next">&#10095;</button>
+    </div>
+  </div>
+</section>
+<!-- ========================== Related Products End ============================= -->
+
     <!-- ========================== Similar Product End ============================= -->
 
     <!-- ========================== Shipping Section Start ============================ -->
@@ -1976,7 +1968,7 @@
     <!-- Select 2 -->
     <script src="https://graba2z.netlify.app/assets/js/select2.min.js"></script>
     <!-- Slick js -->
-    <script src="https://graba2z.netlify.app/assets/js/slick.min.js"></script>
+    <!-- <script src="https://graba2z.netlify.app/assets/js/slick.min.js"></script> -->
     <!-- Slick js -->
     <script src="https://graba2z.netlify.app/assets/js/count-down.js"></script>
     <!-- jquery UI js -->
@@ -2146,6 +2138,80 @@ function slugify(text) {
             });
         }
     </script>
+    <script>
+document.getElementById('related-prev').addEventListener('click', function() {
+  document.getElementById('related-slider').scrollBy({
+    left: -300,
+    behavior: 'smooth'
+  });
+});
+
+document.getElementById('related-next').addEventListener('click', function() {
+  document.getElementById('related-slider').scrollBy({
+    left: 300,
+    behavior: 'smooth'
+  });
+});
+
+async function fetchRelatedProducts(categoryId, excludeProductId) {
+  function limitWords(text, wordLimit) {
+    const words = text.trim().split(/\s+/);
+    if (words.length <= wordLimit) return text;
+    return words.slice(0, wordLimit).join(' ') + '...';
+  }
+
+  try {
+    const response = await fetch(`${API_CUSTOMER_URL}/api/products?category_id=${categoryId}&exclude=${excludeProductId}`);
+    const data = await response.json();
+
+    const container = document.getElementById('related-slider');
+    container.innerHTML = ''; // clear
+
+    const products = Array.isArray(data) ? data : data.products;
+
+    if (!products || products.length === 0) {
+      container.innerHTML = '<p class="text-center w-100">No related products found.</p>';
+      return;
+    }
+
+    products.forEach(product => {
+      const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
+
+      const card = `
+        <div class="card h-100 border border-gray-100 rounded-16 position-relative" style="flex: 0 0 200px; height: 400px; overflow: hidden;">
+          <a href="product?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
+            <!-- Image -->
+            <div class="position-relative" style="height: 200px;">
+              <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
+            </div>
+            <!-- Info -->
+            <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px;">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="badge bg-success">In stock</span>
+                <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+              </div>
+              <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
+                ${limitWords(product.name, 13)}
+              </h6>
+              <div class="mt-auto">
+                <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>
+                <del class="text-muted fs-6">${product.selling_price} AED</del>
+              </div>
+            </div>
+          </a>
+        </div>
+      `;
+
+      container.insertAdjacentHTML('beforeend', card);
+    });
+
+  } catch (error) {
+    console.error('Error fetching related products:', error);
+    document.getElementById('related-slider').innerHTML = '<p class="text-danger text-center">Error loading related products.</p>';
+  }
+}
+</script>
+
     <script>
         // Initialize cart UI on page load
         document.addEventListener('DOMContentLoaded', function () {
@@ -2367,73 +2433,73 @@ const swiper = new Swiper('.mySwiper', {
                     }
                 }
 
-                // Related products
-                if (product.category) {
-                    // await fetchRelatedProducts(product.category, productId);
-                    await fetchRelatedProducts(product.category_id || product.category, product.id);
+    //             // Related products
+    //             if (product.category) {
+    //                 // await fetchRelatedProducts(product.category, productId);
+    //                 await fetchRelatedProducts(product.category_id || product.category, product.id);
 
-                }
-            } catch (error) {
-                console.error('Error fetching product details:', error);
-                document.querySelector('.product-details__content').innerHTML = `
-            <p style="color: #000 ;">Failed to load product details. Please try again later.</p>
-        `;
-            }
-        }
+    //             }
+    //         } catch (error) {
+    //             console.error('Error fetching product details:', error);
+    //             document.querySelector('.product-details__content').innerHTML = `
+    //         <p style="color: #000 ;">Failed to load product details. Please try again later.</p>
+    //     `;
+    //         }
+    //     }
 
-        async function fetchRelatedProducts(categoryId, excludeProductId) {
-    function limitWords(text, wordLimit) {
-        const words = text.trim().split(/\s+/);
-        if (words.length <= wordLimit) return text;
-        return words.slice(0, wordLimit).join(' ') + '...';
-    }
+    //     async function fetchRelatedProducts(categoryId, excludeProductId) {
+    // function limitWords(text, wordLimit) {
+    //     const words = text.trim().split(/\s+/);
+    //     if (words.length <= wordLimit) return text;
+    //     return words.slice(0, wordLimit).join(' ') + '...';
+    // }
 
-    try {
-        const response = await fetch(`${API_CUSTOMER_URL}/api/products?category_id=${categoryId}&exclude=${excludeProductId}`);
-        const data = await response.json();
+    // try {
+    //     const response = await fetch(`${API_CUSTOMER_URL}/api/products?category_id=${categoryId}&exclude=${excludeProductId}`);
+    //     const data = await response.json();
 
-        const container = document.querySelector('#relatedProducts .new-arrival__slider');
-        container.innerHTML = ''; // Clear previous products
+    //     const container = document.querySelector('#relatedProducts .new-arrival__slider');
+    //     container.innerHTML = ''; // Clear previous products
 
-        const products = Array.isArray(data) ? data : data.products;
+    //     const products = Array.isArray(data) ? data : data.products;
 
-        if (!products || products.length === 0) {
-            container.innerHTML = '<p class="text-center w-100">No related products found.</p>';
-            return;
-        }
+    //     if (!products || products.length === 0) {
+    //         container.innerHTML = '<p class="text-center w-100">No related products found.</p>';
+    //         return;
+    //     }
 
-        products.forEach(product => {
-            const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
+    //     products.forEach(product => {
+    //         const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
 
-            const card = `
-                <div>
-                    <div class="card h-100 border border-gray-100 rounded-16 position-relative" style="height: 400px; overflow: hidden;">
-                        <a href="product?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
-                            <!-- Image section -->
-                            <div class="position-relative" style="height: 200px;">
-                                <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
-                            </div>
-                            <!-- Description section -->
-                            <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px;">
-                                <div class="d-flex justify-content-between mb-1">
-                                    <span class="badge bg-success">In stock</span>
-                                    <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
-                                </div>
-                                <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
-                                    ${limitWords(product.name, 13)}
-                                </h6>
-                                <div class="mt-auto">
-                                    <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>
-                                    <del class="text-muted fs-6">${product.selling_price} AED</del>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            `;
+    //         const card = `
+    //             <div>
+    //                 <div class="card h-100 border border-gray-100 rounded-16 position-relative" style="height: 400px; overflow: hidden;">
+    //                     <a href="product?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
+    //                         <!-- Image section -->
+    //                         <div class="position-relative" style="height: 200px;">
+    //                             <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
+    //                         </div>
+    //                         <!-- Description section -->
+    //                         <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px;">
+    //                             <div class="d-flex justify-content-between mb-1">
+    //                                 <span class="badge bg-success">In stock</span>
+    //                                 <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+    //                             </div>
+    //                             <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
+    //                                 ${limitWords(product.name, 13)}
+    //                             </h6>
+    //                             <div class="mt-auto">
+    //                                 <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>
+    //                                 <del class="text-muted fs-6">${product.selling_price} AED</del>
+    //                             </div>
+    //                         </div>
+    //                     </a>
+    //                 </div>
+    //             </div>
+    //         `;
 
-            container.insertAdjacentHTML('beforeend', card);
-        });
+    //         container.insertAdjacentHTML('beforeend', card);
+    //     });
 
         // Initialize Slick Carousel AFTER adding all products
         $('.new-arrival__slider').slick({
