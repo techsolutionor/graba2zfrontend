@@ -1136,10 +1136,10 @@
                             <span class="text-muted ms-24">Shipping</span>
                             <span id="shipping-cost" class="text-muted me-20">AED 0.00</span>
                         </div>
-                        <div class="mb-3 d-flex justify-content-between">
+                        <!-- <div class="mb-3 d-flex justify-content-between">
                             <span class="text-muted ms-24">COD Charge</span>
                             <span id="cod-charge" class="text-muted me-20">AED 0.00</span>
-                        </div>
+                        </div> -->
                         <div class="d-flex justify-content-between">
                             <span class="ms-24">Savings</span>
                             <span id="savings" class="text-muted me-20">AED 0.00</span>
@@ -1839,7 +1839,7 @@
                 const customerName = localStorage.getItem('customerName') || 'Guest';
                 const cart = JSON.parse(localStorage.getItem('cart')) || [];
                 const isOnlinePayment = document.querySelector('input[name="paymentOption"]:checked')?.id === 'onlinePayment';
-                const paymentType = isOnlinePayment ? 'card' : 'COD';
+                const paymentType = isOnlinePayment ? 'card' : 'cash';
                 const productItem_count = JSON.parse(localStorage.getItem('cartItemCount') || '{}');
                 const guest = globalGuest;
 

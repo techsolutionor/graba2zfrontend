@@ -351,7 +351,7 @@
               <div
                 class="actions-bar d-flex flex-column flex-md-row align-items-center align-items-lg-end justify-content-center justify-content-md-center justify-content-lg-end gap-2">
                 <!-- Select Dropdown -->
-                <select id="selectItems" class="form-select form-select-sm w-auto"
+                <!-- <select id="selectItems" class="form-select form-select-sm w-auto"
                   style="min-width: 80px; height: 38px; border-color: #0d6efd; color: #0d6efd; font-weight: bold; cursor: pointer;">
                   <option value="10">10</option>
                   <option value="20">25</option>
@@ -359,7 +359,7 @@
                   <option value="100">100</option>
                   <option value="500">500</option>
                   <option value="1000">1000</option>
-                </select>
+                </select> -->
                 <div class="d-flex justify-content-center w-100" style="max-width: 105px;">
                   <button class="filter-btn btn btn-primary w-100">Filter</button>
                 </div>
@@ -491,7 +491,7 @@
                             <div class="input-group mb-3">
                               <div class="input-group-prepend">
                                 <span class="input-group-text"
-                                  id="basic-addon3">https://graba2z.netlify.app/product-details.html?slug=</span>
+                                  id="basic-addon3">https://graba2z.netlify.app/product/</span>
                               </div>
                               <input type="text" id="slug" class="form-control slug-input" required>
                               <!-- <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"> -->
@@ -814,7 +814,7 @@
                             <div class="input-group mb-3">
                               <div class="input-group-prepend">
                                 <span class="input-group-text"
-                                  id="basic-addon3">https://graba2z.netlify.app/product-details.html?slug=</span>
+                                  id="basic-addon3">https://graba2z.netlify.app/product/</span>
                               </div>
                               <input type="text" id="update_slug" class="form-control slug-input" placeholder="Slug"
                                 required>
@@ -1452,7 +1452,7 @@ function toggleFullName(element) {
     ${truncateWords(product.name, 3)}
   </span>
 </td>
-                        <td>https://graba2z.netlify.app/product-details.html?slug=${product.slug}</td>
+                        <td>https://graba2z.netlify.app/product/${product.slug}</td>
                         <td>${product.category_name || '—'}</td>
                         <td>${product.brand_name || '—'}</td>
                         <td>${product.buying_price}</td>
@@ -2023,7 +2023,7 @@ function toggleFullName(element) {
 
               // Set basic fields
               document.getElementById('productName').textContent = product.name || '—';
-              document.getElementById('productSlug').textContent = `https://graba2z.netlify.app/product-details.html?slug=${product.slug}` || '—';
+              document.getElementById('productSlug').textContent = `https://graba2z.netlify.app/product/${product.slug}` || '—';
               document.getElementById('productSKU').textContent = product.sku || '—';
               document.getElementById('productCategory').textContent = product.category_name || '—';
               document.getElementById('productBarcode').textContent = product.barcode || '—';
