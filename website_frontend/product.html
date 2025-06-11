@@ -553,7 +553,7 @@
 
         /* first dropdown */
         /* Custom Dropdown Styles */
-        .magnifier-lens {
+        /* .magnifier-lens {
             position: absolute;
             border: 2px solid #000;
             width: 150px;
@@ -564,7 +564,7 @@
             background-repeat: no-repeat;
             background-size: 200% 200%;
             z-index: 999;
-        }
+        } */
 
         .cross-button:hover {
             filter: invert(17%) sepia(97%) saturate(7472%) hue-rotate(357deg) brightness(98%) contrast(115%);
@@ -576,19 +576,20 @@
         }
 
         .magnifier-lens {
-            position: absolute;
-            border: 2px solid #000;
-            width: 200px;
-            /* Increased from 120px */
-            height: 200px;
-            border-radius: 50%;
-            pointer-events: none;
-            visibility: hidden;
-            background-repeat: no-repeat;
-            background-size: 300% 300%;
-            /* Adjust as needed */
-            z-index: 999;
-        }
+    position: absolute;
+    border: 3px solid #000;
+    border-radius: 50%;
+    cursor: none;
+    width: 100px;
+    height: 100px;
+    visibility: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    pointer-events: none;
+    z-index: 9999;
+}
+
 
         /* cart circle css start  */
         .cart-item-count {
@@ -1117,50 +1118,41 @@
 
                                 <!-- <div class="product-details__thumb flex-center h-100">
   <img id="specific-product-image" class="py-10"  style="cursor: zoom-in;" />
-</div> -->
-                                <div class="product-details__thumb flex-center h-100 border rounded-8 mb-10"
-                                    style="min-width: 300px !important; min-height: 100% !important;">
-                                    <img id="specific-product-image" class="py-10" data-bs-toggle="modal"
-                                        data-bs-target="#imageModal" src="assets/images/white-placeholder.png"
-                                        style="cursor: zoom-in; min-width: 300px !important; min-height: 400px !important; border: 5px solid white;"
-                                        alt="Product Image">
-                                </div>
-                                <!-- <div class="product-details__thumb flex-center h-100">
-  <img id="specific-product-image" src="your-image.jpg" class="py-10" style="cursor: zoom-in;" />
-</div> -->
-                                <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-lg">
-                                        <div class="modal-content bg-transparent border-0">
+</div> --><div class="product-details__thumb flex-center h-100 border rounded-8 mb-10"
+    style="min-width: 300px !important; min-height: 100% !important;">
+    <img id="specific-product-image" class="py-10" data-bs-toggle="modal"
+        data-bs-target="#imageModal" src="assets/images/white-placeholder.png"
+        style="cursor: zoom-in; min-width: 300px !important; min-height: 400px !important; border: 5px solid white;"
+        alt="Product Image">
+</div>
 
-                                            <!-- Relative wrapper for positioning the button on the image -->
-                                            <div class="position-relative d-inline-block mx-auto">
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-transparent border-0">
+            <div class="position-relative d-inline-block mx-auto">
+                <img id="modal-product-image" src="" alt="Enlarged Product Image"
+                    class="img-fluid rounded-3" style="max-height: 80vh; width: auto;">
+                <button type="button" class="btn-close cross-button position-absolute"
+                    style="top: 10px; right: 10px; z-index: 10; filter: invert(1);"
+                    data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+</div>
 
-                                                <!-- The image -->
-                                                <img id="modal-product-image" src="" alt="Enlarged Product Image"
-                                                    class="img-fluid rounded-3" style="max-height: 80vh; width: auto;">
+<div style="padding-bottom:20px;">
+    <div class="swiper mySwiper" style="width: 100%; max-width: 520px;">
+        <div class="swiper-wrapper" id="product-thumbnails">
+            <!-- Thumbnails will be added here dynamically -->
+        </div>
+        <div class="swiper-button-next"
+            style="background-color: #0c0c0b; height: 60px;width: 22px; border-radius: 5%;"></div>
+        <div class="swiper-button-prev"
+            style="background-color: #0c0c0b; height: 60px;width: 22px; border-radius: 5%;"></div>
+    </div>
+</div>
 
-                                                <!-- Close button OVER the image, inside top-right corner -->
-                                                <button type="button" class="btn-close cross-button position-absolute"
-                                                    style="top: 10px; right: 10px; z-index: 10; filter: invert(1);"
-                                                    data-bs-dismiss="modal" aria-label="Close">
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="padding-bottom:20px;">
-                                    <div class="swiper mySwiper" style="width: 100%; max-width: 520px;">
-                                        <div class="swiper-wrapper" id="product-thumbnails">
-                                        </div>
-                                        <div class="swiper-button-next"
-                                            style="background-color: #0c0c0b; height: 60px;width: 22px; border-radius: 5%;">
-                                        </div>
-                                        <div class="swiper-button-prev"
-                                            style="background-color: #0c0c0b; height: 60px;width: 22px; border-radius: 5%;">
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                         <div class="col-xl-7 p-6">
@@ -2302,77 +2294,61 @@ if (itemInCart) {
   </a>`;
 updateWishlistBadge();
 
-                // Main display image
-                const mainImage = document.getElementById('specific-product-image');
-                mainImage.src = cartImage;
-                mainImage.alt = 'Main Product Image';
-                const thumbnailsContainer = document.getElementById('product-thumbnails');
-                thumbnailsContainer.innerHTML = '';
-                imagePaths.forEach((imgPath, index) => {
-                    const fullPath = `${API_ADMINGRAB_URL}/${imgPath}`;
-                    const slide = document.createElement('div');
-                    slide.className = 'swiper-slide';
-                    slide.innerHTML = `
-    <div class="border border-gray-200 rounded p-2" style="width: 120px; height: 120px; cursor: pointer;">
-      <img src="${fullPath}" alt="image" style="width: 80%; height: 80%; object-fit: cover;" />
-    </div>
-  `;
-                    const modalImage = document.getElementById('modal-product-image');
+//                 // Main display image
+// const mainImage = document.getElementById('specific-product-image');
+// mainImage.src = cartImage;
+// mainImage.alt = 'Main Product Image';
 
-                    // Initial load
-                    mainImage.src = cartImage;
-                    mainImage.alt = 'Main Product Image';
-                    modalImage.src = cartImage;
+// const modalImage = document.getElementById('modal-product-image');
+// modalImage.src = cartImage;
 
-                    // On thumbnail click, update modal too
-                    imagePaths.forEach((imgPath, index) => {
-                        const fullPath = `${API_ADMINGRAB_URL}/${imgPath}`;
-                        const slide = document.createElement('div');
-                        slide.className = 'swiper-slide';
-                        slide.innerHTML = `
-    <div class="border border-gray-200 rounded p-2" style="width: 120px; height: 120px; cursor: pointer;">
-      <img src="${fullPath}" alt="image" style="width: 100%; height: 100%; object-fit: cover;" />
-    </div>
-  `;
-                        slide.querySelector('img').addEventListener('click', () => {
-                            mainImage.src = fullPath;
-                            mainImage.alt = `Product Image ${index + 1}`;
-                            modalImage.src = fullPath;
-                        });
+// const thumbnailsContainer = document.getElementById('product-thumbnails');
+// thumbnailsContainer.innerHTML = '';
 
-                        thumbnailsContainer.appendChild(slide);
-                    });
+// imagePaths.forEach((imgPath, index) => {
+//     const fullPath = `${API_ADMINGRAB_URL}/${imgPath}`;
+//     const slide = document.createElement('div');
+//     slide.className = 'swiper-slide';
+//     slide.innerHTML = `
+//         <div class="border border-gray-200 rounded p-2" style="width: 120px; height: 120px; cursor: pointer;">
+//             <img src="${fullPath}" alt="image" style="width: 100%; height: 100%; object-fit: cover;" />
+//         </div>
+//     `;
 
+//     slide.querySelector('img').addEventListener('click', () => {
+//         mainImage.src = fullPath;
+//         mainImage.alt = `Product Image ${index + 1}`;
+//         modalImage.src = fullPath;
+//     });
 
+//     thumbnailsContainer.appendChild(slide);
+// });
 
-                    slide.querySelector('img').addEventListener('click', () => {
-                        mainImage.src = fullPath;
-                        mainImage.alt = `Product Image ${index + 1}`;
-                    });
+// // Initialize Swiper (optionally destroy previous instance first)
+// if (window.thumbnailSwiper) {
+//     window.thumbnailSwiper.destroy(true, true);
+// }
 
-                    thumbnailsContainer.appendChild(slide);
-                });
+// window.thumbnailSwiper = new Swiper('.mySwiper', {
+//     slidesPerView: 3,
+//     spaceBetween: 13,
+//     navigation: {
+//         nextEl: '.swiper-button-next',
+//         prevEl: '.swiper-button-prev'
+//     },
+//     breakpoints: {
+//         0: {
+//             slidesPerView: 3
+//         },
+//         640: {
+//             slidesPerView: 3
+//         },
+//         1024: {
+//             slidesPerView: 3
+//         }
+//     }
+// });
 
-                // Init Swiper
-                const swiper = new Swiper('.mySwiper', {
-                    slidesPerView: 3,
-                    spaceBetween: 13,
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev'
-                    },
-                    breakpoints: {
-                        0: {
-                            slidesPerView: 3
-                        },
-                        640: {
-                            slidesPerView: 3
-                        },
-                        1024: {
-                            slidesPerView: 3
-                        }
-                    }
-                });
                 // === ✅ Product Specifications Table ===
                 const specifications = JSON.parse(product.specifications || "[]");
                 const details = JSON.parse(product.details || "[]");
@@ -2463,7 +2439,21 @@ updateWishlistBadge();
             }
         }
 
-       
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     updateCartIcon(); // Update the cart icon with the correct count
+        // });
+        // index - Update the cart icon count based on localStorage
+        // Update the cart icon count
+        // function updateCartIcon() {
+        //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        //     const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
+
+        //     // Update the cart count in all cart icon elements
+        //     const cartCountElements = document.querySelectorAll('.cart-item-count');
+        //     cartCountElements.forEach(el => {
+        //         el.textContent = totalItems; // Update all cart item count elements
+        //     });
+        // }
         document.getElementById('search-form').addEventListener('submit', (event) => {
             event.preventDefault();
             const searchQuery = document.getElementById('search-input').value.trim();
@@ -2471,7 +2461,58 @@ updateWishlistBadge();
             // await fetchFilteredProducts(searchQuery);
         });
 
+        // Add product to cart
+        // function addToCart(product) {
+        //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        //     const existingProduct = cart.find(item => item.id === product.id);
 
+        //     if (existingProduct) {
+        //         existingProduct.quantity += 1; // Increment quantity if already in cart
+        //     } else {
+        //         cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
+        //     }
+
+        //     localStorage.setItem('cart', JSON.stringify(cart));
+
+        //     updateCartIcon(); // Update the cart count in the header
+
+        //     showSuccessMessage(` Added to cart Successfully `);
+        // }
+        // function updateCartCount() {
+        //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        //     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+        //     const cartCountElement = document.querySelector(".cart-item-count");
+        //     if (cartCountElement) {
+        //         cartCountElement.textContent = totalItems;
+        //     }
+        //     // Initial update
+        //     updateCartCount();
+
+        //     // ✅ Detect if user returns to this tab/page
+        //     document.addEventListener("visibilitychange", function () {
+        //         if (document.visibilityState === "visible") {
+        //             updateCartCount();
+        //         }
+        //     });
+
+        //     // ✅ Extra fallback for Safari/back-nav behavior
+        //     window.addEventListener("pageshow", function () {
+        //         updateCartCount();
+        //     });
+
+        //     localStorage.setItem('cartItemCount', totalItems);
+        // }
+
+        // Update cart count in header
+        // function updateCartCount() {
+        //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        //     const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
+
+        //     document.querySelectorAll('.cart-item-count').forEach(el => {
+        //         el.textContent = totalItems;
+        //     });
+        // }
         });
 
         function showSuccessMessage(message) {
@@ -2556,7 +2597,54 @@ function changeQty(change) {
 
 
     </script>
-   
+   <!-- <script>
+    // Toggle wishlist
+    function toggleWishlist(product) {
+        const heartIcon = document.getElementById('heart-icon');
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        const index = wishlist.findIndex(p => p.id === product.id);
+
+        if (index === -1) {
+            wishlist.push(product);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            heartIcon.style.color = 'red';
+            showSuccessMessage("Added to wishlist!");
+        } else {
+            wishlist.splice(index, 1);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            heartIcon.style.color = '';
+            showSuccessMessage("Removed from wishlist!");
+        }
+
+        updateWishlistBadge();
+    }
+
+    // Update badge in header
+    function updateWishlistBadge() {
+        const count = (JSON.parse(localStorage.getItem('wishlist')) || []).length;
+        const badge = document.getElementById('wishlist-item-count');
+        if (badge) badge.textContent = count;
+    }
+
+    // ✅ Listen to changes in wishlist across tabs or programmatically
+    window.addEventListener('storage', function (e) {
+        if (e.key === 'wishlist') {
+            updateWishlistBadge();
+        }
+    });
+
+    // Display message
+    function showSuccessMessage(msg) {
+        const box = document.createElement('div');
+        box.style.cssText = 'position:fixed;top:20px;right:20px;background:green;color:white;padding:10px;border-radius:5px;z-index:1000';
+        box.innerText = msg;
+        document.body.appendChild(box);
+        setTimeout(() => box.remove(), 3000);
+    }
+
+    // On page load
+    document.addEventListener('DOMContentLoaded', updateWishlistBadge);
+</script> -->
 
 
     <script>
@@ -2591,46 +2679,153 @@ function changeQty(change) {
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const img = document.getElementById("specific-product-image");
+    // Example: your imagePaths from backend
+    console.log('imagePaths:', imagePaths);
+    console.log('API_ADMINGRAB_URL:', API_ADMINGRAB_URL);
 
-            // Create magnifier lens
-            const lens = document.createElement("div");
-            lens.className = "magnifier-lens";
-            document.body.appendChild(lens);
+    const mainImage = document.getElementById('specific-product-image');
+    const modalImage = document.getElementById('modal-product-image');
+    const thumbnailsContainer = document.getElementById('product-thumbnails');
 
-            img.addEventListener("mouseenter", function (e) {
-                lens.style.visibility = "visible";
-                lens.style.backgroundImage = `url('${img.src}')`;
-            });
+    // Set main image (first image)
+    if (imagePaths.length > 0) {
+        const firstFullPath = `${API_ADMINGRAB_URL}/${imagePaths[0]}`;
+        mainImage.src = firstFullPath;
+        mainImage.alt = 'Main Product Image';
+        modalImage.src = firstFullPath;
+    }
 
-            img.addEventListener("mousemove", function (e) {
-                moveLens(e);
-            });
+    // Clear thumbnails first
+    thumbnailsContainer.innerHTML = '';
 
-            img.addEventListener("mouseleave", function () {
-                lens.style.visibility = "hidden";
-            });
+    // Populate thumbnails
+    imagePaths.forEach((imgPath, index) => {
+        const fullPath = `${API_ADMINGRAB_URL}/${imgPath}`;
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide';
+        slide.innerHTML = `
+            <div class="border border-gray-200 rounded p-2" style="width: 120px; height: 120px; cursor: pointer;">
+                <img src="${fullPath}" alt="Thumbnail ${index + 1}" style="width: 100%; height: 100%; object-fit: cover;" />
+            </div>
+        `;
 
-            function moveLens(e) {
-                const rect = img.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                const lensSize = lens.offsetWidth / 2;
-
-                let posX = e.pageX - lensSize;
-                let posY = e.pageY - lensSize;
-
-                lens.style.left = `${posX}px`;
-                lens.style.top = `${posY}px`;
-
-                const bgX = (x / img.width) * 100;
-                const bgY = (y / img.height) * 100;
-
-                lens.style.backgroundSize = `${img.width * 1.5}px ${img.height * 1.5}px`;
-                lens.style.backgroundPosition = `${bgX}% ${bgY}%`;
-            }
+        slide.querySelector('img').addEventListener('click', () => {
+            mainImage.src = fullPath;
+            mainImage.alt = `Product Image ${index + 1}`;
+            modalImage.src = fullPath;
         });
+
+        thumbnailsContainer.appendChild(slide);
+    });
+
+    // Initialize Swiper (destroy previous if needed)
+    if (window.thumbnailSwiper) {
+        window.thumbnailSwiper.destroy(true, true);
+    }
+
+    window.thumbnailSwiper = new Swiper('.mySwiper', {
+        slidesPerView: 3,
+        spaceBetween: 13,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+        },
+        breakpoints: {
+            0: {
+                slidesPerView: 3
+            },
+            640: {
+                slidesPerView: 3
+            },
+            1024: {
+                slidesPerView: 3
+            }
+        }
+    });
+
+    // === Magnifier Effect ===
+    const img = mainImage;
+
+    // Create magnifier lens
+    const lens = document.createElement("div");
+    lens.className = "magnifier-lens";
+    document.body.appendChild(lens);
+
+    img.addEventListener("mouseenter", function (e) {
+        lens.style.visibility = "visible";
+        lens.style.backgroundImage = `url('${img.src}')`;
+    });
+
+    img.addEventListener("mousemove", function (e) {
+        moveLens(e);
+    });
+
+    img.addEventListener("mouseleave", function () {
+        lens.style.visibility = "hidden";
+    });
+
+    function moveLens(e) {
+        const rect = img.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const lensSize = lens.offsetWidth / 2;
+
+        let posX = e.pageX - lensSize;
+        let posY = e.pageY - lensSize;
+
+        lens.style.left = `${posX}px`;
+        lens.style.top = `${posY}px`;
+
+        const bgX = (x / img.width) * 100;
+        const bgY = (y / img.height) * 100;
+
+        lens.style.backgroundSize = `${img.width * 1.5}px ${img.height * 1.5}px`;
+        lens.style.backgroundPosition = `${bgX}% ${bgY}%`;
+    }
+});
+
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     const img = document.getElementById("specific-product-image");
+
+        //     // Create magnifier lens
+        //     const lens = document.createElement("div");
+        //     lens.className = "magnifier-lens";
+        //     document.body.appendChild(lens);
+
+        //     img.addEventListener("mouseenter", function (e) {
+        //         lens.style.visibility = "visible";
+        //         lens.style.backgroundImage = `url('${img.src}')`;
+        //     });
+
+        //     img.addEventListener("mousemove", function (e) {
+        //         moveLens(e);
+        //     });
+
+        //     img.addEventListener("mouseleave", function () {
+        //         lens.style.visibility = "hidden";
+        //     });
+
+        //     function moveLens(e) {
+        //         const rect = img.getBoundingClientRect();
+        //         const x = e.clientX - rect.left;
+        //         const y = e.clientY - rect.top;
+
+        //         const lensSize = lens.offsetWidth / 2;
+
+        //         let posX = e.pageX - lensSize;
+        //         let posY = e.pageY - lensSize;
+
+        //         lens.style.left = `${posX}px`;
+        //         lens.style.top = `${posY}px`;
+
+        //         const bgX = (x / img.width) * 100;
+        //         const bgY = (y / img.height) * 100;
+
+        //         lens.style.backgroundSize = `${img.width * 1.5}px ${img.height * 1.5}px`;
+        //         lens.style.backgroundPosition = `${bgX}% ${bgY}%`;
+        //     }
+        // });
     </script>
     <script>
         function toggleSidebar() {
@@ -2731,7 +2926,93 @@ function changeQty(change) {
             });
 addToCart(productObject); // From cart.js
 
-           
+            // function addToCart(product) {
+            //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            //     const existingProduct = cart.find(item => item.id === product.id);
+
+            //     if (existingProduct) {
+            //         existingProduct.quantity += 1; // Increment quantity if already in cart
+            //     } else {
+            //         cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
+            //     }
+
+            //     localStorage.setItem('cart', JSON.stringify(cart));
+
+            //     // Update the cart item count in localStorage
+            //     updateCartCount();
+
+            //     showSuccessMessage(`${product.name} added to cart.`);
+            // }
+
+            // function updateCartCount() {
+            //     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            //     const totalItems = cart.reduce((total, product) => total + product.quantity, 0); // Calculate total quantity
+
+            //     // Update the cart count in localStorage
+            //     localStorage.setItem('cartItemCount', totalItems);
+            // }
+            // function showSuccessMessage(message) {
+            //     const messageContainer = document.createElement('div');
+            //     messageContainer.style.position = 'fixed';
+            //     messageContainer.style.top = '20px';
+            //     messageContainer.style.right = '20px';
+            //     messageContainer.style.backgroundColor = 'green';
+            //     messageContainer.style.color = 'white';
+            //     messageContainer.style.padding = '10px 20px';
+            //     messageContainer.style.borderRadius = '5px';
+            //     messageContainer.style.zIndex = '1000';
+            //     messageContainer.textContent = message;
+
+            //     document.body.appendChild(messageContainer);
+
+            //     // Remove the message after 3 seconds
+            //     setTimeout(() => {
+            //         document.body.removeChild(messageContainer);
+            //     }, 3000);
+            // }
+
+            // function handleAddToCart(product) {
+            //     addToCart(product); // Add product to cart
+            //     window.location.href = 'https://graba2z.netlify.app/cart'; // Navigate to cart
+            // }
+
+
+            // // Function to toggle wishlist status
+            // function toggleWishlist(product) {
+            //     // Get heart icon and current wishlist from localStorage
+            //     const heartIcon = document.getElementById('heart-icon');
+            //     let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+            //     // Check if product already exists in wishlist
+            //     const productIndex = wishlist.findIndex(item => item.id === product.id);
+
+            //     if (productIndex === -1) {
+            //         // Product not in wishlist, add it and change icon color to red
+            //         wishlist.push(product);
+            //         localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Save to localStorage
+            //         heartIcon.style.color = 'red'; // Change heart color to red
+            //         showSuccessMessage('Product added to wishlist!');
+            //     } else {
+            //         // Product already in wishlist, remove it and reset icon color
+            //         wishlist.splice(productIndex, 1);
+            //         localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Remove from localStorage
+            //         heartIcon.style.color = ''; // Reset heart color
+            //         showSuccessMessage('Product removed from wishlist!');
+            //     }
+            // }
+
+            // function updateWishlistBadge() {
+            //     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            //     const wishlistBadge = document.getElementById('numberWishlist');
+
+            //     // Update the badge count
+            //     if (wishlistBadge) {
+            //         wishlistBadge.textContent = wishlist.length;
+            //     }
+            // }
+
+            // // Call this function on page load to ensure the badge is updated dynamically 
+            // window.onload = updateWishlistBadge;
 
 
             function toggleIcon(button) {
