@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Product Gallery</title>
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
+    <!-- Bootstrap CSS (for modal) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        .swiper-button-next, .swiper-button-prev {
+            background-color: rgba(0, 0, 0, 0.5);
+            height: 40px;
+            width: 20px;
+            border-radius: 4px;
+            color: #fff;
+        }
+
+        .swiper-slide img {
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border 0.3s;
+        }
+
+        .swiper-slide-thumb-active img {
+            border-color: #007bff;
+        }
+
+        #main-product-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            cursor: zoom-in;
+        }
+
+        /* Modal zoom image */
+        #modal-zoom-image {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .swiper-container {
+            padding-bottom: 30px;
+        }
+    </style>
+</head>
+<body class="p-4">
+
+    <!-- Main Image -->
+    <div class="text-center mb-4">
+        <img id="main-product-image" src="https://via.placeholder.com/600x400?text=Product+Image+Placeholder" data-bs-toggle="modal" data-bs-target="#zoomModal" />
+    </div>
+
+    <!-- Thumbnails Slider -->
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper" id="product-thumbnails">
+            <!-- Thumbnails will go here -->
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <!-- Modal for zoom -->
+    <div class="modal fade" id="zoomModal" tabindex="-1" aria-labelledby="zoomModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-transparent border-0">
+                <div class="position-relative d-inline-block mx-auto">
+                    <img id="modal-zoom-image" src="" alt="Zoomed Product Image" class="img-fluid rounded-3" />
+                    <button type="button" class="btn-close position-absolute" style="top: 10px; right: 10px; z-index: 10; filter: invert(1);" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const mainImage = document.getElementById('main-product-image');
+        const modalZoomImage = document.getElementById('modal-zoom-image');
+        const thumbnailsContainer = document.getElementById('product-thumbnails');
+        const baseImageUrl = 'https://your-server.com/images/'; // Replace with your image base URL
+
+        // Hardcoded product ID: 'acc-prod'
+        const productId = 'acc-prod';
+
+        console.log('Product ID:', productId);
+        // Fetch product details from the API
+        fetchProductDetails(productId);
+
+        async function fetchProductDetails(productId) {
+            try {
+                const response = await fetch(`https://websitegrabatoz-production.up.railway.app/api/products/${productId}`);
+                if (!response.ok) throw new Error('Failed to fetch product details');
+
+                const product = await response.json();
+                console.log('Product Details:', product);
+
+                // Ensure elements exist before setting their content
+                const productNameElement = document.getElementById('product-name');
+                const productPriceElement = document.getElementById('product-price');
+                const productDescriptionElement = document.getElementById('product-description');
+                
+                if (productNameElement) {
+                    productNameElement.textContent = product.name || 'N/A';
+                }
+                if (productPriceElement) {
+                    productPriceElement.textContent = `$${product.offer_price ?? product.selling_price ?? 0.00}`;
+                }
+                if (productDescriptionElement) {
+                    productDescriptionElement.innerHTML = `<h6 class="mb-24">Product Description</h6><p>${product.description || 'No description available.'}</p>`;
+                }
+
+                // Parse image paths from backend (ensure it's a valid JSON)
+                let imagePaths = [];
+                try {
+                    imagePaths = JSON.parse(product.image_paths || '[]').map(path => path.replace(/\\/g, '/'));
+                } catch (e) {
+                    console.error('Invalid image_paths JSON:', e);
+                }
+
+                // Fallback image if no images are found
+                const fallbackImage = product.image_path ? `${baseImageUrl}${product.image_path.replace(/\\/g, '/')}` : 'https://via.placeholder.com/600x400?text=Product+Image+Placeholder';
+                const cartImage = imagePaths[0] ? `${baseImageUrl}${imagePaths[0]}` : fallbackImage;
+
+                // Call function to load images into gallery
+                loadProductImages(imagePaths, fallbackImage);
+
+                // Set initial image
+                mainImage.src = cartImage;
+                modalZoomImage.src = cartImage;
+
+                // Handle Add to Cart & Buy Now
+                document.getElementById('addToCart').innerHTML = `
+                    <div class="product-toolbar d-flex flex-wrap align-items-center gap-14 mt-3">
+                        <div class="qty-box d-flex align-items-center">
+                            <button class="qty-btn" onclick="changeQty(-1)">−</button>
+                            <input type="text" id="qty" class="qty-input" value="1" readonly data-product-id="${product.id}">
+                            <button class="qty-btn" onclick="changeQty(1)">+</button>
+                        </div>
+                        <button class="btn btn-warning" onclick="handleAddToCart({ id: ${product.id}, name: '${product.name}', offer_price: ${product.offer_price || product.selling_price} })">
+                            Add To Cart
+                        </button>
+                    </div>
+                `;
+            } catch (error) {
+                console.error('Error fetching product details:', error);
+                document.querySelector('.product-details__content').innerHTML = `<p style="color: #000 ;">Failed to load product details. Please try again later.</p>`;
+            }
+        }
+
+        // Load product images dynamically
+        function loadProductImages(imagePaths, fallbackImage) {
+            if (!Array.isArray(imagePaths) || imagePaths.length === 0) {
+                imagePaths = [fallbackImage];
+            }
+
+            // Clear existing thumbnails
+            thumbnailsContainer.innerHTML = '';
+
+            imagePaths.forEach((imgPath, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'swiper-slide';
+                slide.innerHTML = `<img src="${imgPath}" alt="Thumbnail ${index + 1}" style="width: 100px; height: 100px; object-fit: cover;" />`;
+                slide.querySelector('img').addEventListener('click', () => {
+                    mainImage.src = imgPath;
+                    modalZoomImage.src = imgPath;
+                });
+                thumbnailsContainer.appendChild(slide);
+            });
+
+            // Initialize Swiper
+            const swiper = new Swiper('.mySwiper', {
+                slidesPerView: 4,
+                spaceBetween: 10,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev'
+                },
+                breakpoints: {
+                    0: { slidesPerView: 3 },
+                    640: { slidesPerView: 4 },
+                    1024: { slidesPerView: 5 }
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
