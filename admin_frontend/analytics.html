@@ -65,7 +65,7 @@
       transform: translateY(-50%);
       width: 8px;
       height: 8px;
-      background-color: #ff7300;
+      background-color: #8fc208;
       border-radius: 50%;
     }
     .sidebar-submenu {
@@ -79,6 +79,30 @@
     .body-wrapper {
       margin-left: 260px;
       padding: 30px;
+    }
+
+
+    .sidebar-submenu {
+  display: none;
+  list-style: none;
+  padding-left: 20px;
+  transition: all 0.3s ease;
+}
+
+.sidebar-submenu.show {
+  display: block;
+}
+
+.rotate-icon {
+  transition: transform 0.3s ease;
+}
+
+.rotate-icon.rotate {
+  transform: rotate(180deg);
+}
+
+.sidebar .nav-link.active{
+      background-color: #000;
     }
   </style>
 <!-- Quill JS -->
@@ -111,6 +135,24 @@
           }
         })();
       </script> 
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const currentPath = window.location.pathname.split("/").pop();
+          const navLinks = document.querySelectorAll(".left-sidebar .nav-link");
+    
+          navLinks.forEach((link) => {
+            const href = link.getAttribute("href");
+            if (href && href.endsWith(".html") && href === currentPath) {
+              link.classList.add("active");
+              const parentCollapse = link.closest(".collapse");
+              if (parentCollapse) {
+                new bootstrap.Collapse(parentCollapse, { toggle: false }).show();
+              }
+            }
+          });
+        });
+      </script>
 </head>
 
 <body>
@@ -152,15 +194,17 @@
               </li>
                <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="#" id="purchaseToggle">
-                <i class="fas fa-shopping-cart"></i> Purchases 
-              </a>
-              <ul class="nav-submenu" id="purchaseSubmenu">
-                <li><a href="./purchases.html" class="nav-link">List Purchase</a></li>
-                <li><a href="./add-purchase.html" class="nav-link">Add Purchase</a></li>
-                <li><a href="./return-purchase.html" class="nav-link">Purchase Return</a></li>
-              </ul>
-            </li>
+  <a href="javascript:void(0);" class="nav-link d-flex justify-content-between align-items-center purchases-toggle-custom">
+    <span><i class="fas fa-shopping-cart me-1"></i> Purchases</span>
+    <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
+  </a>
+
+  <ul class="sidebar-submenu" id="purchaseMenuCustom">
+    <li><a class="nav-link" href="purchases.html">List Purchase</a></li>
+    <li><a class="nav-link" href="add-purchase.html">Add Purchase</a></li>
+    <li><a class="nav-link" href="return-purchase.html">Purchase Return</a></li>
+  </ul>
+</li>
           </ul>
               <li class="nav-item">
                   <a class="nav-link" href="./damages.html">
@@ -185,21 +229,26 @@
                       <i class="fas fa-receipt"></i> POS Orders
                   </a>
               </li>
-              <li class="nav-item">
-    <a class="nav-link" data-bs-toggle="collapse" href="#ordersMenu" role="button" aria-expanded="false" aria-controls="ordersMenu">
-      <i class="fas fa-shopping-basket"></i> Orders
-    </a>
-    <ul class="collapse sidebar-submenu" id="ordersMenu">
-      <li><a href="./online-orders.html" class="nav-link">Online Orders</a></li>
-      <li><a href="./ontheWay_onlineOrders.html" class="nav-link">Received Orders</a></li>
-      <li><a href="./inprogress_onlineOrders.html" class="nav-link">Inprogress Orders</a></li>
-      <li><a href="./readyForShipment_onlineOrders.html" class="nav-link">Ready for Shipment</a></li>
-      <li><a href="./ontheWay_onlineOrders.html" class="nav-link">On the Way</a></li>
-      <li><a href="./delevered_onlineOrders.html" class="nav-link">Delivered</a></li>
-      <li><a href="./onhold_onlineOrders.html" class="nav-link">On Hold</a></li>
-      <li><a href="./rejected_onlineOrders.html" class="nav-link">Rejected</a></li>
-    </ul>
-  </li>
+               <li class="nav-item">
+  <a 
+    href="javascript:void(0);" 
+    class="nav-link d-flex justify-content-between align-items-center orders-toggle" 
+  >
+    <span><i class="fas fa-shopping-basket me-1"></i> Orders</span>
+    <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
+  </a>
+
+    <ul class="sidebar-submenu" id="ordersMenu">
+    <li><a class="nav-link" href="online-orders.html">Online Orders</a></li>
+    <li><a class="nav-link" href="received_onlineOrders.html">Received Orders</a></li>
+    <li><a class="nav-link" href="inprogress_onlineOrders.html">Inprogress Orders</a></li>
+    <li><a class="nav-link" href="readyForShipment_onlineOrders.html">Ready for Shipment</a></li>
+    <li><a class="nav-link" href="ontheWay_onlineOrders.html">On the Way</a></li>
+    <li><a class="nav-link" href="delevered_onlineOrders.html">Delivered</a></li>
+    <li><a class="nav-link" href="onhold_onlineOrders.html">On Hold</a></li>
+    <li><a class="nav-link" href="rejected_onlineOrders.html">Rejected</a></li>
+  </ul>
+</li>
           </ul>
 
           <div class="section-title">PROMO</div>
@@ -978,6 +1027,33 @@ fetchAnalyticsData();
 
 
 </script>  
+
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggle = document.querySelector('.orders-toggle');
+    const submenu = document.getElementById('ordersMenu');
+    const arrow = toggle.querySelector('.arrow-icon');
+
+    toggle.addEventListener('click', () => {
+      submenu.classList.toggle('show');
+      arrow.classList.toggle('rotate');
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const purchasesToggle = document.querySelector('.purchases-toggle-custom');
+    const purchasesMenu = document.getElementById('purchaseMenuCustom');
+    const purchasesArrow = purchasesToggle.querySelector('.arrow-icon');
+
+    purchasesToggle.addEventListener('click', () => {
+      purchasesMenu.classList.toggle('show');
+      purchasesArrow.classList.toggle('rotate');
+    });
+  });
+</script>
 
 </body>
 
