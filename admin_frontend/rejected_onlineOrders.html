@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Online Orders</title>
-    <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="./assets/images/logos/favicon.png"
+    />
     <link rel="stylesheet" href="./assets/css/styles.min.css" />
     <link rel="stylesheet" href="./assets/css/navbar.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="./assets/css/order.css">
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/order.css" />
+    <link
+      href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
+      rel="stylesheet"
+    />
     <!-- Quill JS -->
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./popupMessages.js"></script>
     <style>
-        /* @media print {
+      /* @media print {
 
             .actions-bar,
             .btn,
@@ -36,232 +45,259 @@
                 padding: 6px !important;
             }
         } */
-        @media print {
-
-            .actions-bar,
-            .btn,
-            .no-print {
-                display: none !important;
-            }
-
-            table {
-                width: 100% !important;
-                border-collapse: collapse !important;
-            }
-
-            th,
-            td {
-                border: 1px solid #000 !important;
-                padding: 6px !important;
-            }
+      @media print {
+        .actions-bar,
+        .btn,
+        .no-print {
+          display: none !important;
         }
 
-        /* Optional: keep headers on each printed page */
-        thead {
-            display: table-header-group;
+        table {
+          width: 100% !important;
+          border-collapse: collapse !important;
         }
 
-        .loader-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
+        th,
+        td {
+          border: 1px solid #000 !important;
+          padding: 6px !important;
+        }
+      }
+
+      /* Optional: keep headers on each printed page */
+      thead {
+        display: table-header-group;
+      }
+
+      .loader-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      .loader {
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
         }
 
-        .loader {
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #3498db;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
+        100% {
+          transform: rotate(360deg);
         }
+      }
 
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
+      .sidebar-submenu {
+        padding-left: 40px;
+        /* indent submenu */
+        list-style-type: disc;
+        /* bullet points */
+      }
 
-            100% {
-                transform: rotate(360deg);
-            }
-        }
+      .sidebar-submenu li {
+        padding: 5px 0;
+      }
 
-        .sidebar-submenu {
-            padding-left: 40px;
-            /* indent submenu */
-            list-style-type: disc;
-            /* bullet points */
-        }
-
-        .sidebar-submenu li {
-            padding: 5px 0;
-        }
-
-        .sidebar-submenu li a {
-            color: #000000;
-            /* submenu link color */
-            text-decoration: none;
-        }
-        .left-sidebar {
-      width: 260px;
-      height: 100vh;
-      background-color: #ffffff;
-      position: fixed;
-      overflow-y: auto;
-      border-right: 1px solid #ddd;
-    }
-    .section-title {
-      padding: 10px 20px;
-      font-weight: bold;
-      font-size: 12px;
-      color: #6c757d;
-    }
-    .nav-link {
-      display: block;
-      padding: 10px 20px;
-      color: #000;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-    .nav-link:hover {
-      background-color: #f0f0f0;
-    }
-    .nav-link.active {
-      background-color: #000;
-      color: #fff !important;
-      font-weight: bold;
-      border-radius: 8px;
-      position: relative;
-    }
-    .nav-link.active::before {
-      content: '';
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 8px;
-      height: 8px;
-      background-color: #ff7300;
-      border-radius: 50%;
-    }
-    .sidebar-submenu {
-      padding-left: 30px;
-      list-style: none;
-    }
-    .sidebar-submenu .nav-link {
-      font-size: 14px;
-      padding: 6px 20px;
-    }
-    .body-wrapper {
-      margin-left: 260px;
-      padding: 30px;
-    }
+      .sidebar-submenu li a {
+        color: #000000;
+        /* submenu link color */
+        text-decoration: none;
+      }
+      .left-sidebar {
+        width: 260px;
+        height: 100vh;
+        background-color: #ffffff;
+        position: fixed;
+        overflow-y: auto;
+        border-right: 1px solid #ddd;
+      }
+      .section-title {
+        padding: 10px 20px;
+        font-weight: bold;
+        font-size: 12px;
+        color: #6c757d;
+      }
+      .nav-link {
+        display: block;
+        padding: 10px 20px;
+        color: #000;
+        text-decoration: none;
+        transition: all 0.2s ease;
+      }
+      .nav-link:hover {
+        background-color: #f0f0f0;
+      }
+      .nav-link.active {
+        background-color: #000;
+        color: #fff !important;
+        font-weight: bold;
+        border-radius: 8px;
+        position: relative;
+      }
+      .nav-link.active::before {
+        content: "";
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 8px;
+        height: 8px;
+        background-color: #8fc208;
+        border-radius: 50%;
+      }
+      .sidebar-submenu {
+        padding-left: 30px;
+        list-style: none;
+      }
+      .sidebar-submenu .nav-link {
+        font-size: 14px;
+        padding: 6px 20px;
+      }
+      .body-wrapper {
+        margin-left: 260px;
+        padding: 30px;
+      }
     </style>
     <style>
-        thead {
-            display: table-header-group;
-        }
+      thead {
+        display: table-header-group;
+      }
 
-        .payment-toggle {
-            background-color: #FFAE1F;
-            color: white;
-            padding: 6px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            border: none;
-        }
+      .payment-toggle {
+        background-color: #ffae1f;
+        color: white;
+        padding: 6px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        border: none;
+      }
 
-        .payment-options {
-            display: none;
-            position: absolute;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 9999;
-            margin-top: 5px;
-        }
+      .payment-options {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+        margin-top: 5px;
+      }
 
-        .payment-options button {
-            display: block;
-            width: 100%;
-            padding: 8px 12px;
-            text-align: left;
-            background-color: #fff;
-            border: none;
-            cursor: pointer;
-        }
+      .payment-options button {
+        display: block;
+        width: 100%;
+        padding: 8px 12px;
+        text-align: left;
+        background-color: #fff;
+        border: none;
+        cursor: pointer;
+      }
 
-        .payment-options button:hover {
-            background-color: #f1f1f1;
-        }
+      .payment-options button:hover {
+        background-color: #f1f1f1;
+      }
+
+      .sidebar-submenu {
+        display: none;
+        list-style: none;
+        padding-left: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .sidebar-submenu.show {
+        display: block;
+      }
+
+      .rotate-icon {
+        transition: transform 0.3s ease;
+      }
+
+      .rotate-icon.rotate {
+        transform: rotate(180deg);
+      }
     </style>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const currentPath = window.location.pathname.split("/").pop();
-          const navLinks = document.querySelectorAll(".left-sidebar .nav-link");
-    
-          navLinks.forEach((link) => {
-            const href = link.getAttribute("href");
-            if (href && href.endsWith(".html") && href === currentPath) {
-              link.classList.add("active");
-              const parentCollapse = link.closest(".collapse");
-              if (parentCollapse) {
-                new bootstrap.Collapse(parentCollapse, { toggle: false }).show();
-              }
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentPath = window.location.pathname.split("/").pop();
+        const navLinks = document.querySelectorAll(".left-sidebar .nav-link");
+
+        navLinks.forEach((link) => {
+          const href = link.getAttribute("href");
+          if (href && href.endsWith(".html") && href === currentPath) {
+            link.classList.add("active");
+            const parentCollapse = link.closest(".collapse");
+            if (parentCollapse) {
+              new bootstrap.Collapse(parentCollapse, { toggle: false }).show();
             }
-          });
+          }
         });
-      </script>
+      });
+    </script>
     <script>
-        (function checkAuth() {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                window.location.replace('./login.html');
-            }
-        })();
+      (function checkAuth() {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          window.location.replace("./login.html");
+        }
+      })();
 
-        window.onload = function () {
-            const token = localStorage.getItem('token');
-            const authContainer = document.getElementById('auth');
+      window.onload = function () {
+        const token = localStorage.getItem("token");
+        const authContainer = document.getElementById("auth");
 
-            if (token) {
-                authContainer.innerHTML = `
+        if (token) {
+          authContainer.innerHTML = `
                     <a href="#" class="btn btn-outline-danger mx-3 mt-2 d-block" id="logoutButton">Logout</a>
                 `;
-                document.getElementById('logoutButton').addEventListener('click', logout);
-            } else {
-                authContainer.innerHTML = `
+          document
+            .getElementById("logoutButton")
+            .addEventListener("click", logout);
+        } else {
+          authContainer.innerHTML = `
                     <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Login</a>
                 `;
-            }
         }
+      };
 
-        function logout() {
-            localStorage.removeItem('token');
-            window.location.href = './login.html';
-        }
+      function logout() {
+        localStorage.removeItem("token");
+        window.location.href = "./login.html";
+      }
     </script>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- Loader -->
     <div id="loader" class="loader-container">
-        <div class="loader"></div>
+      <div class="loader"></div>
     </div>
 
     <!--  Body Wrapper -->
-    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-        data-sidebar-position="fixed" data-header-position="fixed">
-        <!-- Sidebar Start -->
-    <aside class="left-sidebar">
+    <div
+      class="page-wrapper"
+      id="main-wrapper"
+      data-layout="vertical"
+      data-navbarbg="skin6"
+      data-sidebartype="full"
+      data-sidebar-position="fixed"
+      data-header-position="fixed"
+    >
+      <!-- Sidebar Start -->
+      <aside class="left-sidebar">
         <div class="logo-img text-center p-3">
           <a href="index.html">
             <img src="./assets/images/logos/logo1.svg" width="180" alt="Logo" />
@@ -270,472 +306,829 @@
         <ul class="nav flex-column">
           <!-- HOME -->
           <li class="section-title">HOME</li>
-          <li class="nav-item"><a class="nav-link" href="index.html"><i class="ti ti-layout-dashboard"></i> Dashboard</a></li>
-      
+          <li class="nav-item">
+            <a class="nav-link" href="index.html"
+              ><i class="ti ti-layout-dashboard"></i> Dashboard</a
+            >
+          </li>
+
           <!-- PRODUCTS & STOCK -->
           <li class="section-title">PRODUCTS & STOCK</li>
-          <li class="nav-item"><a class="nav-link" href="products.html"><i class="fas fa-box"></i> Products</a></li>
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#purchaseMenu" role="button"><i class="fas fa-shopping-cart"></i> Purchases</a>
-            <ul class="collapse sidebar-submenu" id="purchaseMenu">
-              <li><a class="nav-link" href="purchases.html">List Purchase</a></li>
-              <li><a class="nav-link" href="add-purchase.html">Add Purchase</a></li>
-              <li><a class="nav-link" href="return-purchase.html">Purchase Return</a></li>
+            <a class="nav-link" href="products.html"
+              ><i class="fas fa-box"></i> Products</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              href="javascript:void(0);"
+              class="nav-link d-flex justify-content-between align-items-center purchases-toggle-custom"
+            >
+              <span><i class="fas fa-shopping-cart me-1"></i> Purchases</span>
+              <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
+            </a>
+
+            <ul class="sidebar-submenu" id="purchaseMenuCustom">
+              <li>
+                <a class="nav-link" href="purchases.html">List Purchase</a>
+              </li>
+              <li>
+                <a class="nav-link" href="add-purchase.html">Add Purchase</a>
+              </li>
+              <li>
+                <a class="nav-link" href="return-purchase.html"
+                  >Purchase Return</a
+                >
+              </li>
             </ul>
           </li>
-          <li class="nav-item"><a class="nav-link" href="damages.html"><i class="fas fa-exclamation-circle"></i> Damages</a></li>
-          <li class="nav-item"><a class="nav-link" href="stock.html"><i class="fas fa-archive"></i> Stock</a></li>
-      
+          <li class="nav-item">
+            <a class="nav-link" href="damages.html"
+              ><i class="fas fa-exclamation-circle"></i> Damages</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="stock.html"
+              ><i class="fas fa-archive"></i> Stock</a
+            >
+          </li>
+
           <!-- POS & ORDERS -->
           <li class="section-title">POS & ORDERS</li>
-          <li class="nav-item"><a class="nav-link" href="pos.html"><i class="fas fa-cash-register"></i> POS</a></li>
-          <li class="nav-item"><a class="nav-link" href="pos-orders.html"><i class="fas fa-receipt"></i> POS Orders</a></li>
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ordersMenu" role="button"><i class="fas fa-shopping-basket"></i> Orders</a>
-            <ul class="collapse sidebar-submenu" id="ordersMenu">
-              <li><a class="nav-link" href="online-orders.html">Online Orders</a></li>
-              <li><a class="nav-link" href="received_onlineOrders.html">Received Orders</a></li>
-              <li><a class="nav-link" href="inprogress_onlineOrders.html">Inprogress Orders</a></li>
-              <li><a class="nav-link" href="readyForShipment_onlineOrders.html">Ready for Shipment</a></li>
-              <li><a class="nav-link" href="ontheWay_onlineOrders.html">On the Way</a></li>
-              <li><a class="nav-link" href="delevered_onlineOrders.html">Delivered</a></li>
-              <li><a class="nav-link" href="onhold_onlineOrders.html">On Hold</a></li>
-              <li><a class="nav-link" href="rejected_onlineOrders.html">Rejected</a></li>
+            <a class="nav-link" href="pos.html"
+              ><i class="fas fa-cash-register"></i> POS</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pos-orders.html"
+              ><i class="fas fa-receipt"></i> POS Orders</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              href="javascript:void(0);"
+              class="nav-link d-flex justify-content-between align-items-center orders-toggle"
+            >
+              <span><i class="fas fa-shopping-basket me-1"></i> Orders</span>
+              <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
+            </a>
+
+            <ul class="sidebar-submenu" id="ordersMenu">
+              <li>
+                <a class="nav-link" href="online-orders.html">Online Orders</a>
+              </li>
+              <li>
+                <a class="nav-link" href="received_onlineOrders.html"
+                  >Received Orders</a
+                >
+              </li>
+              <li>
+                <a class="nav-link" href="inprogress_onlineOrders.html"
+                  >Inprogress Orders</a
+                >
+              </li>
+              <li>
+                <a class="nav-link" href="readyForShipment_onlineOrders.html"
+                  >Ready for Shipment</a
+                >
+              </li>
+              <li>
+                <a class="nav-link" href="ontheWay_onlineOrders.html"
+                  >On the Way</a
+                >
+              </li>
+              <li>
+                <a class="nav-link" href="delevered_onlineOrders.html"
+                  >Delivered</a
+                >
+              </li>
+              <li>
+                <a class="nav-link" href="onhold_onlineOrders.html">On Hold</a>
+              </li>
+              <li>
+                <a class="nav-link" href="rejected_onlineOrders.html"
+                  >Rejected</a
+                >
+              </li>
             </ul>
           </li>
-      
+
           <!-- PROMO -->
           <li class="section-title">PROMO</li>
-          <li class="nav-item"><a class="nav-link" href="coupons.html"><i class="fas fa-tags"></i> Coupons</a></li>
-          <li class="nav-item"><a class="nav-link" href="promotions.html"><i class="fas fa-bullhorn"></i> Promotions</a></li>
-          <li class="nav-item"><a class="nav-link" href="product-sections.html"><i class="fas fa-cube"></i> Product Sections</a></li>
-      
+          <li class="nav-item">
+            <a class="nav-link" href="coupons.html"
+              ><i class="fas fa-tags"></i> Coupons</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="promotions.html"
+              ><i class="fas fa-bullhorn"></i> Promotions</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="product-sections.html"
+              ><i class="fas fa-cube"></i> Product Sections</a
+            >
+          </li>
+
           <!-- COMMUNICATIONS -->
           <li class="section-title">COMMUNICATIONS</li>
-          <li class="nav-item"><a class="nav-link" href="push-notifications.html"><i class="fas fa-bell"></i> Push Notifications</a></li>
-          <li class="nav-item"><a class="nav-link" href="subscribers.html"><i class="fas fa-users"></i> Subscribers</a></li>
-      
+          <li class="nav-item">
+            <a class="nav-link" href="push-notifications.html"
+              ><i class="fas fa-bell"></i> Push Notifications</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="subscribers.html"
+              ><i class="fas fa-users"></i> Subscribers</a
+            >
+          </li>
+
           <!-- USERS -->
           <li class="section-title">USERS</li>
-          <li class="nav-item"><a class="nav-link" href="admin.html"><i class="fas fa-user"></i> Administrators</a></li>
-          <li class="nav-item"><a class="nav-link" href="customer.html"><i class="fas fa-users"></i> Customers</a></li>
-          <li class="nav-item"><a class="nav-link" href="employee.html"><i class="fas fa-user-tie"></i> Employees</a></li>
-      
+          <li class="nav-item">
+            <a class="nav-link" href="admin.html"
+              ><i class="fas fa-user"></i> Administrators</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="customer.html"
+              ><i class="fas fa-users"></i> Customers</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="employee.html"
+              ><i class="fas fa-user-tie"></i> Employees</a
+            >
+          </li>
+
           <!-- ACCOUNTS -->
           <li class="section-title">ACCOUNTS</li>
-          <li class="nav-item"><a class="nav-link" href="transactions.html"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
-      
+          <li class="nav-item">
+            <a class="nav-link" href="transactions.html"
+              ><i class="fas fa-exchange-alt"></i> Transactions</a
+            >
+          </li>
+
           <!-- REPORTS -->
           <li class="section-title">REPORTS</li>
-          <li class="nav-item"><a class="nav-link" href="sales-report.html"><i class="fas fa-chart-line"></i> Sales Report</a></li>
-          <li class="nav-item"><a class="nav-link" href="products-report.html"><i class="fas fa-file-alt"></i> Products Report</a></li>
-          <li class="nav-item"><a class="nav-link" href="credit-balance-report.html"><i class="fas fa-credit-card"></i> Credit Balance Report</a></li>
-      
+          <li class="nav-item">
+            <a class="nav-link" href="sales-report.html"
+              ><i class="fas fa-chart-line"></i> Sales Report</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products-report.html"
+              ><i class="fas fa-file-alt"></i> Products Report</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="credit-balance-report.html"
+              ><i class="fas fa-credit-card"></i> Credit Balance Report</a
+            >
+          </li>
+
           <!-- SETUP -->
           <li class="section-title">SETUP</li>
-          <li class="nav-item"><a class="nav-link" href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
-          <li class="nav-item"><a class="nav-link" href="site.html"><i class="fas fa-globe"></i> Site</a></li>
-          <li class="nav-item"><a class="nav-link" href="mail.html"><i class="fas fa-envelope"></i> Mail</a></li>
-          <li class="nav-item"><a class="nav-link" href="location-setup.html"><i class="fas fa-map-marker-alt"></i> Location Setup</a></li>
-          <li class="nav-item"><a class="nav-link" href="shipping-setup.html"><i class="fas fa-truck"></i> Shipping Setup</a></li>
-          <li class="nav-item"><a class="nav-link" href="otp.html"><i class="fas fa-lock"></i> OTP</a></li>
-          <li class="nav-item"><a class="nav-link" href="notification.html"><i class="fas fa-bell"></i> Notification</a></li>
-          <li class="nav-item"><a class="nav-link" href="notification-alert.html"><i class="fas fa-bell"></i> Notification Alert</a></li>
-          <li class="nav-item"><a class="nav-link" href="social-media.html"><i class="fas fa-share-alt"></i> Social Media</a></li>
-          <li class="nav-item"><a class="nav-link" href="cookies.html"><i class="fas fa-cookie-bite"></i> Cookies</a></li>
-          <li class="nav-item"><a class="nav-link" href="analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
-          <li class="nav-item"><a class="nav-link" href="theme.html"><i class="fas fa-paint-brush"></i> Theme</a></li>
-          <li class="nav-item"><a class="nav-link" href="sliders.html"><i class="fas fa-sliders-h"></i> Sliders</a></li>
-          <li class="nav-item"><a class="nav-link" href="currencies.html"><i class="fas fa-money-bill-wave"></i> Currencies</a></li>
-          <li class="nav-item"><a class="nav-link" href="product-categories.html"><i class="fas fa-tags"></i> Product Categories</a></li>
-          <li class="nav-item"><a class="nav-link" href="product-attributes.html"><i class="fas fa-cube"></i> Product Attributes</a></li>
-          <li class="nav-item"><a class="nav-link" href="product-brands.html"><i class="fas fa-tag"></i> Product Brands</a></li>
-          <li class="nav-item"><a class="nav-link" href="supplier.html"><i class="fas fa-industry"></i> Suppliers</a></li>
-          <li class="nav-item"><a class="nav-link" href="outlets.html"><i class="fas fa-store"></i> Outlets</a></li>
-          <li class="nav-item"><a class="nav-link" href="benefits.html"><i class="fas fa-gift"></i> Benefits</a></li>
-          <li class="nav-item"><a class="nav-link" href="units.html"><i class="fas fa-balance-scale"></i> Units</a></li>
-          <li class="nav-item"><a class="nav-link" href="taxes.html"><i class="fas fa-percent"></i> Taxes</a></li>
-          <li class="nav-item"><a class="nav-link" href="page.html"><i class="fas fa-file-alt"></i> Pages</a></li>
-          <li class="nav-item"><a class="nav-link" href="role & permissions.html"><i class="fas fa-user-shield"></i> Role & Permissions</a></li>
-          <li class="nav-item"><a class="nav-link" href="languages-list.html"><i class="fas fa-globe"></i> Languages</a></li>
-          <li class="nav-item"><a class="nav-link" href="sms-gateway.html"><i class="fas fa-comments"></i> SMS Gateway</a></li>
-          <li class="nav-item"><a class="nav-link" href="payment-gateway.html"><i class="fas fa-credit-card"></i> Payment Gateway</a></li>
-          <li class="nav-item"><a class="nav-link" href="license.html"><i class="fas fa-file-contract"></i> License</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="settings.html"
+              ><i class="fas fa-cog"></i> Settings</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="site.html"
+              ><i class="fas fa-globe"></i> Site</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="mail.html"
+              ><i class="fas fa-envelope"></i> Mail</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="location-setup.html"
+              ><i class="fas fa-map-marker-alt"></i> Location Setup</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shipping-setup.html"
+              ><i class="fas fa-truck"></i> Shipping Setup</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="otp.html"
+              ><i class="fas fa-lock"></i> OTP</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="notification.html"
+              ><i class="fas fa-bell"></i> Notification</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="notification-alert.html"
+              ><i class="fas fa-bell"></i> Notification Alert</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="social-media.html"
+              ><i class="fas fa-share-alt"></i> Social Media</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cookies.html"
+              ><i class="fas fa-cookie-bite"></i> Cookies</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="analytics.html"
+              ><i class="fas fa-chart-bar"></i> Analytics</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="theme.html"
+              ><i class="fas fa-paint-brush"></i> Theme</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sliders.html"
+              ><i class="fas fa-sliders-h"></i> Sliders</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="currencies.html"
+              ><i class="fas fa-money-bill-wave"></i> Currencies</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="product-categories.html"
+              ><i class="fas fa-tags"></i> Product Categories</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="product-attributes.html"
+              ><i class="fas fa-cube"></i> Product Attributes</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="product-brands.html"
+              ><i class="fas fa-tag"></i> Product Brands</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="supplier.html"
+              ><i class="fas fa-industry"></i> Suppliers</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="outlets.html"
+              ><i class="fas fa-store"></i> Outlets</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="benefits.html"
+              ><i class="fas fa-gift"></i> Benefits</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="units.html"
+              ><i class="fas fa-balance-scale"></i> Units</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="taxes.html"
+              ><i class="fas fa-percent"></i> Taxes</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="page.html"
+              ><i class="fas fa-file-alt"></i> Pages</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="role & permissions.html"
+              ><i class="fas fa-user-shield"></i> Role & Permissions</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="languages-list.html"
+              ><i class="fas fa-globe"></i> Languages</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sms-gateway.html"
+              ><i class="fas fa-comments"></i> SMS Gateway</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="payment-gateway.html"
+              ><i class="fas fa-credit-card"></i> Payment Gateway</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="license.html"
+              ><i class="fas fa-file-contract"></i> License</a
+            >
+          </li>
         </ul>
       </aside>
-      
+
       <!--  Sidebar End -->
-        <!--  Main wrapper -->
-        <div class="body-wrapper">
-            <!--  Header Start -->
-            <header class="app-header">
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
-                        <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="./assets//images/profile/user-1.jpg" alt="" width="35" height="35"
-                                        class="rounded-circle">
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
-                                    aria-labelledby="drop2">
-                                    <div class="message-body">
-                                        <a href="./my-profile.html"
-                                            class="d-flex align-items-center gap-2 dropdown-item">
-                                            <i class="ti ti-user fs-6"></i>
-                                            <p class="mb-0 fs-3">My Profile</p>
-                                        </a>
-                                        <span id="auth">
-                                            <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block"
-                                                id="loginButton">Logout</a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+      <!--  Main wrapper -->
+      <div class="body-wrapper">
+        <!--  Header Start -->
+        <header class="app-header">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <div
+              class="navbar-collapse justify-content-end px-0"
+              id="navbarNav"
+            >
+              <ul
+                class="navbar-nav flex-row ms-auto align-items-center justify-content-end"
+              >
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link nav-icon-hover"
+                    href="javascript:void(0)"
+                    id="drop2"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <img
+                      src="./assets//images/profile/user-1.jpg"
+                      alt=""
+                      width="35"
+                      height="35"
+                      class="rounded-circle"
+                    />
+                  </a>
+                  <div
+                    class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
+                    aria-labelledby="drop2"
+                  >
+                    <div class="message-body">
+                      <a
+                        href="./my-profile.html"
+                        class="d-flex align-items-center gap-2 dropdown-item"
+                      >
+                        <i class="ti ti-user fs-6"></i>
+                        <p class="mb-0 fs-3">My Profile</p>
+                      </a>
+                      <span id="auth">
+                        <a
+                          href="./login.html"
+                          class="btn btn-outline-primary mx-3 mt-2 d-block"
+                          id="loginButton"
+                          >Logout</a
+                        >
+                      </span>
                     </div>
-                </nav>
-            </header>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </header>
 
-            <div class="container-fluid">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title fw-semibold mb-4">Dashboard / Online Orders</h5>
-                        <div class="container">
-                            <h5>Rejected Orders</h5>
-                            <div
-                                class="actions-bar d-flex flex-column flex-md-row align-items-center align-items-lg-end justify-content-center justify-content-md-center justify-content-lg-end">
-                                <input type="text" class="form-control" id="filterInput" placeholder="Search orders...">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title fw-semibold mb-4">
+                Dashboard / Online Orders
+              </h5>
+              <div class="container">
+                <h5>Rejected Orders</h5>
+                <div
+                  class="actions-bar d-flex flex-column flex-md-row align-items-center align-items-lg-end justify-content-center justify-content-md-center justify-content-lg-end"
+                >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="filterInput"
+                    placeholder="Search orders..."
+                  />
 
-                                <!-- This will now be the dropdown (selection filter) first -->
-                                <select id="statusFilter" class="form-select ms-3 w-auto">
-                                    <option value="">All Orders</option>
-                                    <option value="Received Order">Received Order</option>
-                                    <option value="Inprogress Order">Inprogress Order</option>
-                                    <option value="Ready for Shipment">Ready for Shipment</option>
-                                    <option value="On the Way">On the Way</option>
-                                    <option value="Delevered">Delevered</option>
-                                    <option value="On Hold">On Hold</option>
-                                    <option value="Rejected">Rejected</option>
-                                </select>
+                  <!-- This will now be the dropdown (selection filter) first -->
+                  <select id="statusFilter" class="form-select ms-3 w-auto">
+                    <option value="">All Orders</option>
+                    <option value="Received Order">Received Order</option>
+                    <option value="Inprogress Order">Inprogress Order</option>
+                    <option value="Ready for Shipment">
+                      Ready for Shipment
+                    </option>
+                    <option value="On the Way">On the Way</option>
+                    <option value="Delevered">Delevered</option>
+                    <option value="On Hold">On Hold</option>
+                    <option value="Rejected">Rejected</option>
+                  </select>
 
-                                <!-- Then the Print button -->
-                                <div class="dropdown w-100 ms-2">
-                                    <button onclick="printOnlyTable()" class="btn btn-secondary px-5">Print</button>
-                                </div>
-
-                            </div>
-
-                            <div id="orderViewOverlay" class="overlay">
-                                <div class="overlay-content">
-                                    <span class="close-btn" onclick="closeOverlay()">&times;</span>
-
-                                    <div class="mb-4">
-                                        <h3>Dashboard / Online Orders / View</h3>
-                                    </div>
-
-                                    <div class="box">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <p><strong>Order ID:</strong> <span id="orderId"></span></p>
-                                                <p><strong>Status:</strong> <span id="orderStatus"></span></p>
-                                                <p><strong>Created At:</strong> <span id="createdAt"></span></p>
-                                                <p><strong>Order Type:</strong> Delivery</p>
-                                                <p><strong>Payment Type:</strong> <span id="paymentType"></span></p>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                                <button class="btn btn-primary"
-                                                    onclick="printProductDetails()">Print</button>
-
-                                                <button id="acceptBtn" class="btn btn-success me-2">Accept</button>
-                                                <button id="rejectBtn" class="btn btn-danger">Reject</button>
-                                                <div id="rejectionCommentContainer" class="mt-2" style="display:none;">
-                                                    <textarea id="rejectionComment" class="form-control" rows="3"
-                                                        placeholder="Enter rejection reason..."></textarea>
-                                                    <button id="confirmRejectionBtn" class="btn btn-danger mt-2">Confirm
-                                                        Rejection</button>
-                                                </div>
-
-                                                <div id="statusDropdownContainer" style="display:none;">
-                                                    <select id="statusSelect" class="form-select w-auto d-inline-block">
-                                                        <option value="Received Order">Received Order</option>
-                                                        <option value="Inprogress Order">Inprogress Order</option>
-                                                        <option value="Ready for Shipment">Ready for Shipment</option>
-                                                        <option value="On the Way">On the Way</option>
-                                                        <option value="Delevered">Delevered</option>
-                                                        <option value="On Hold">On Hold</option>
-                                                        <option value="Rejected">Rejected</option>
-                                                    </select>
-                                                    <button id="updateStatusBtn"
-                                                        class="btn btn-primary ms-2">Update</button>
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 box">
-                                            <h5>Order Items</h5>
-                                            <ul id="orderItemsList"></ul>
-                                        </div>
-
-                                        <div class="col-md-6 box">
-                                            <h5>Total Amount</h5>
-                                            <p id="totalAmount"></p>
-                                        </div>
-                                    </div>
-
-                                    <div class="box">
-                                        <h5>Shipping Address</h5>
-                                        <p id="shippingAddress"></p>
-                                    </div>
-
-                                    <div class="box">
-                                        <h5>Billing Address</h5>
-                                        <p id="billingAddress"></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Printable Order Table -->
-                            <div id="printableOrderTable" style="display: none;">
-                                <table border="1" cellpadding="8" cellspacing="0"
-                                    style="width: 100%; border-collapse: collapse;">
-                                    <tbody>
-                                        <tr>
-                                            <th align="left">Order ID</th>
-                                            <td id="orderIdTable"></td>
-                                        </tr>
-                                        <tr>
-                                            <th align="left">Status</th>
-                                            <td id="orderStatusTable"></td>
-                                        </tr>
-                                        <tr>
-                                            <th align="left">Created At</th>
-                                            <td id="createdAtTable"></td>
-                                        </tr>
-                                        <tr>
-                                            <th align="left">Payment Type</th>
-                                            <td id="paymentTypeTable"></td>
-                                        </tr>
-                                        <tr>
-                                            <th align="left">Order Items</th>
-                                            <td>
-                                                <table border="1" cellpadding="6" cellspacing="0"
-                                                    style="width: 100%; border-collapse: collapse;">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Product</th>
-                                                            <th>Qty</th>
-                                                            <th>Price</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="orderItemsTable"></tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th align="left">Total Amount</th>
-                                            <td id="totalAmountTable"></td>
-                                        </tr>
-                                        <tr>
-                                            <th align="left">Shipping Address</th>
-                                            <td id="shippingAddressTable"></td>
-                                        </tr>
-                                        <tr>
-                                            <th align="left">Billing Address</th>
-                                            <td id="billingAddressTable"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-
-                            <div id="backgroundContent"></div>
-                            <div class="d-flex gap-3 align-items-center mb-3" style="margin-top: 10px;">
-                                <select id="bulkStatusSelect" class="form-select w-auto">
-                                    <option value="Received Order">Received Order</option>
-                                    <option value="Inprogress Order">Inprogress Order</option>
-                                    <option value="Ready for Shipment">Ready for Shipment</option>
-                                    <option value="On the Way">On the Way</option>
-                                    <option value="Delevered">Delevered</option>
-                                    <option value="On Hold">On Hold</option>
-                                    <option value="Rejected">Rejected</option>
-                                </select>
-                                <button class="btn btn-primary" id="bulkUpdateBtn"
-                                    style="display: none;">Update</button>
-                            </div>
-
-
-                            <div class="table-container mt-4">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th class="no-print"><input type="checkbox" id="selectAllCheckbox" />
-                                                </th>
-                                                <th style="font-size: 10px;">Order ID</th>
-                                                <th style="font-size: 10px;">Customer Name</th>
-                                                <th style="font-size: 10px;">Customer Contact</th>
-                                                <th style="font-size: 10px;">Order Status</th>
-                                                <th style="font-size: 10px;">Payment Type</th>
-                                                <th style="font-size: 10px;">Order Date</th>
-                                                <th style="font-size: 10px;">Total Amount</th>
-                                                <th style="font-size: 10px;">Items</th>
-                                                <th style="font-size: 10px;">Shipping Address</th>
-                                                <th style="font-size: 10px;" class="no-print">Actions</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody id="purchaseReturnsTableBody"></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  <!-- Then the Print button -->
+                  <div class="dropdown w-100 ms-2">
+                    <button
+                      onclick="printOnlyTable()"
+                      class="btn btn-secondary px-5"
+                    >
+                      Print
+                    </button>
+                  </div>
                 </div>
-                <div id="formContainer"></div>
-                <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
-                <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-                <script src="./assets/js/sidebarmenu.js"></script>
-                <script src="./assets/js/app.min.js"></script>
-                <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-                <script src="./apiConfig/apiConfig.js"></script>
-                <script>
-                    // Show loader immediately when page starts loading
-                    document.addEventListener('DOMContentLoaded', function () {
-                        // Start fetching data immediately
-                        fetchDamagesReport();
 
-                        // Set up periodic refresh (every 5 minutes)
-                        setInterval(fetchDamagesReport, 300000);
-                    });
-                    // Cache for orders data
-                    let ordersCache = null;
-                    let lastFetchTime = 0;
-                    const CACHE_EXPIRY = 300000; // 5 minutes in milliseconds
+                <div id="orderViewOverlay" class="overlay">
+                  <div class="overlay-content">
+                    <span class="close-btn" onclick="closeOverlay()"
+                      >&times;</span
+                    >
 
-                    function showLoader() {
-                        document.getElementById('loader').style.display = 'flex';
-                    }
+                    <div class="mb-4">
+                      <h3>Dashboard / Online Orders / View</h3>
+                    </div>
 
-                    function hideLoader() {
-                        document.getElementById('loader').style.display = 'none';
-                    }
+                    <div class="box">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <p>
+                            <strong>Order ID:</strong>
+                            <span id="orderId"></span>
+                          </p>
+                          <p>
+                            <strong>Status:</strong>
+                            <span id="orderStatus"></span>
+                          </p>
+                          <p>
+                            <strong>Created At:</strong>
+                            <span id="createdAt"></span>
+                          </p>
+                          <p><strong>Order Type:</strong> Delivery</p>
+                          <p>
+                            <strong>Payment Type:</strong>
+                            <span id="paymentType"></span>
+                          </p>
+                        </div>
+                        <div class="col-md-6 text-end">
+                          <button
+                            class="btn btn-primary"
+                            onclick="printProductDetails()"
+                          >
+                            Print
+                          </button>
 
-                    async function fetchDamagesReport() {
-                        const token = localStorage.getItem('token');
-                        const currentTime = new Date().getTime();
+                          <button id="acceptBtn" class="btn btn-success me-2">
+                            Accept
+                          </button>
+                          <button id="rejectBtn" class="btn btn-danger">
+                            Reject
+                          </button>
+                          <div
+                            id="rejectionCommentContainer"
+                            class="mt-2"
+                            style="display: none"
+                          >
+                            <textarea
+                              id="rejectionComment"
+                              class="form-control"
+                              rows="3"
+                              placeholder="Enter rejection reason..."
+                            ></textarea>
+                            <button
+                              id="confirmRejectionBtn"
+                              class="btn btn-danger mt-2"
+                            >
+                              Confirm Rejection
+                            </button>
+                          </div>
 
-                        // Show loader while fetching data
-                        showLoader();
+                          <div
+                            id="statusDropdownContainer"
+                            style="display: none"
+                          >
+                            <select
+                              id="statusSelect"
+                              class="form-select w-auto d-inline-block"
+                            >
+                              <option value="Received Order">
+                                Received Order
+                              </option>
+                              <option value="Inprogress Order">
+                                Inprogress Order
+                              </option>
+                              <option value="Ready for Shipment">
+                                Ready for Shipment
+                              </option>
+                              <option value="On the Way">On the Way</option>
+                              <option value="Delevered">Delevered</option>
+                              <option value="On Hold">On Hold</option>
+                              <option value="Rejected">Rejected</option>
+                            </select>
+                            <button
+                              id="updateStatusBtn"
+                              class="btn btn-primary ms-2"
+                            >
+                              Update
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 box">
+                        <h5>Order Items</h5>
+                        <ul id="orderItemsList"></ul>
+                      </div>
 
-                        // Use cached data if available and not expired
-                        if (ordersCache && (currentTime - lastFetchTime) < CACHE_EXPIRY) {
-                            populateTable(ordersCache);
-                            hideLoader();
-                            return;
-                        }
+                      <div class="col-md-6 box">
+                        <h5>Total Amount</h5>
+                        <p id="totalAmount"></p>
+                      </div>
+                    </div>
 
-                        try {
-                            const response = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders`, {
-                                method: 'GET',
-                                headers: {
-                                    'Authorization': token,
-                                },
-                            });
+                    <div class="box">
+                      <h5>Shipping Address</h5>
+                      <p id="shippingAddress"></p>
+                    </div>
 
-                            if (!response.ok) {
-                                throw new Error(`HTTP error! status: ${response.status}`);
-                            }
+                    <div class="box">
+                      <h5>Billing Address</h5>
+                      <p id="billingAddress"></p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Printable Order Table -->
+                <div id="printableOrderTable" style="display: none">
+                  <table
+                    border="1"
+                    cellpadding="8"
+                    cellspacing="0"
+                    style="width: 100%; border-collapse: collapse"
+                  >
+                    <tbody>
+                      <tr>
+                        <th align="left">Order ID</th>
+                        <td id="orderIdTable"></td>
+                      </tr>
+                      <tr>
+                        <th align="left">Status</th>
+                        <td id="orderStatusTable"></td>
+                      </tr>
+                      <tr>
+                        <th align="left">Created At</th>
+                        <td id="createdAtTable"></td>
+                      </tr>
+                      <tr>
+                        <th align="left">Payment Type</th>
+                        <td id="paymentTypeTable"></td>
+                      </tr>
+                      <tr>
+                        <th align="left">Order Items</th>
+                        <td>
+                          <table
+                            border="1"
+                            cellpadding="6"
+                            cellspacing="0"
+                            style="width: 100%; border-collapse: collapse"
+                          >
+                            <thead>
+                              <tr>
+                                <th>Product</th>
+                                <th>Qty</th>
+                                <th>Price</th>
+                              </tr>
+                            </thead>
+                            <tbody id="orderItemsTable"></tbody>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th align="left">Total Amount</th>
+                        <td id="totalAmountTable"></td>
+                      </tr>
+                      <tr>
+                        <th align="left">Shipping Address</th>
+                        <td id="shippingAddressTable"></td>
+                      </tr>
+                      <tr>
+                        <th align="left">Billing Address</th>
+                        <td id="billingAddressTable"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
 
-                            const orders = await response.json();
-                            console.log("✅ Fetched Orders:", orders);
+                <div id="backgroundContent"></div>
+                <div
+                  class="d-flex gap-3 align-items-center mb-3"
+                  style="margin-top: 10px"
+                >
+                  <select id="bulkStatusSelect" class="form-select w-auto">
+                    <option value="Received Order">Received Order</option>
+                    <option value="Inprogress Order">Inprogress Order</option>
+                    <option value="Ready for Shipment">
+                      Ready for Shipment
+                    </option>
+                    <option value="On the Way">On the Way</option>
+                    <option value="Delevered">Delevered</option>
+                    <option value="On Hold">On Hold</option>
+                    <option value="Rejected">Rejected</option>
+                  </select>
+                  <button
+                    class="btn btn-primary"
+                    id="bulkUpdateBtn"
+                    style="display: none"
+                  >
+                    Update
+                  </button>
+                </div>
 
-                            // Cache the data
-                            ordersCache = orders;
-                            lastFetchTime = currentTime;
-                            const receivedOrders = orders.filter(order => order.order_status === 'Rejected');
-                            populateTable(receivedOrders);
+                <div class="table-container mt-4">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th class="no-print">
+                            <input type="checkbox" id="selectAllCheckbox" />
+                          </th>
+                          <th style="font-size: 10px">Order ID</th>
+                          <th style="font-size: 10px">Customer Name</th>
+                          <th style="font-size: 10px">Customer Contact</th>
+                          <th style="font-size: 10px">Order Status</th>
+                          <th style="font-size: 10px">Payment Type</th>
+                          <th style="font-size: 10px">Order Date</th>
+                          <th style="font-size: 10px">Total Amount</th>
+                          <th style="font-size: 10px">Items</th>
+                          <th style="font-size: 10px">Shipping Address</th>
+                          <th style="font-size: 10px" class="no-print">
+                            Actions
+                          </th>
+                        </tr>
+                      </thead>
 
-                        } catch (error) {
-                            console.error('❌ Error fetching orders:', error);
-                            showErrorMessage('Failed to fetch orders. Please try again.');
+                      <tbody id="purchaseReturnsTableBody"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="formContainer"></div>
+          <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+          <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+          <script src="./assets/js/sidebarmenu.js"></script>
+          <script src="./assets/js/app.min.js"></script>
+          <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+          <script src="./apiConfig/apiConfig.js"></script>
+          <script>
+            // Show loader immediately when page starts loading
+            document.addEventListener("DOMContentLoaded", function () {
+              // Start fetching data immediately
+              fetchDamagesReport();
 
-                            // Show empty state if no cached data
-                            if (!ordersCache) {
-                                const ordersTableBody = document.getElementById('purchaseReturnsTableBody');
-                                ordersTableBody.innerHTML = `
+              // Set up periodic refresh (every 5 minutes)
+              setInterval(fetchDamagesReport, 300000);
+            });
+            // Cache for orders data
+            let ordersCache = null;
+            let lastFetchTime = 0;
+            const CACHE_EXPIRY = 300000; // 5 minutes in milliseconds
+
+            function showLoader() {
+              document.getElementById("loader").style.display = "flex";
+            }
+
+            function hideLoader() {
+              document.getElementById("loader").style.display = "none";
+            }
+
+            async function fetchDamagesReport() {
+              const token = localStorage.getItem("token");
+              const currentTime = new Date().getTime();
+
+              // Show loader while fetching data
+              showLoader();
+
+              // Use cached data if available and not expired
+              if (ordersCache && currentTime - lastFetchTime < CACHE_EXPIRY) {
+                populateTable(ordersCache);
+                hideLoader();
+                return;
+              }
+
+              try {
+                const response = await fetch(
+                  `${API_ADMINGRAB_URL}/api/onlineorders`,
+                  {
+                    method: "GET",
+                    headers: {
+                      Authorization: token,
+                    },
+                  }
+                );
+
+                if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const orders = await response.json();
+                console.log("✅ Fetched Orders:", orders);
+
+                // Cache the data
+                ordersCache = orders;
+                lastFetchTime = currentTime;
+                const receivedOrders = orders.filter(
+                  (order) => order.order_status === "Rejected"
+                );
+                populateTable(receivedOrders);
+              } catch (error) {
+                console.error("❌ Error fetching orders:", error);
+                showErrorMessage("Failed to fetch orders. Please try again.");
+
+                // Show empty state if no cached data
+                if (!ordersCache) {
+                  const ordersTableBody = document.getElementById(
+                    "purchaseReturnsTableBody"
+                  );
+                  ordersTableBody.innerHTML = `
                     <tr>
                         <td colspan="8" class="text-center text-danger">
                             Failed to load data. Please check your connection and try again.
                         </td>
                     </tr>
                 `;
-                            }
-                        } finally {
-                            hideLoader();
-                        }
-                    }
+                }
+              } finally {
+                hideLoader();
+              }
+            }
 
-                    function populateTable(orders) {
-                        const ordersTableBody = document.getElementById('purchaseReturnsTableBody');
+            function populateTable(orders) {
+              const ordersTableBody = document.getElementById(
+                "purchaseReturnsTableBody"
+              );
 
-                        // Clear existing rows
-                        ordersTableBody.innerHTML = '';
+              // Clear existing rows
+              ordersTableBody.innerHTML = "";
 
-                        if (!orders || orders.length === 0) {
-                            ordersTableBody.innerHTML = `
+              if (!orders || orders.length === 0) {
+                ordersTableBody.innerHTML = `
                 <tr>
                     <td colspan="8" class="text-center">No orders found</td>
                 </tr>
             `;
-                            return;
-                        }
+                return;
+              }
 
-                        const formatDateTime = (dateString) => {
-                            try {
-                                const date = new Date(dateString);
-                                const time = date.toLocaleTimeString([], {
-                                    hour: '2-digit',
-                                    minute: '2-digit',
-                                    hour12: true
-                                });
-                                const formattedDate = date.toLocaleDateString('en-GB');
-                                return `${time}, ${formattedDate}`;
-                            } catch (e) {
-                                console.error('Invalid date format:', dateString);
-                                return 'Invalid Date';
-                            }
-                        };
+              const formatDateTime = (dateString) => {
+                try {
+                  const date = new Date(dateString);
+                  const time = date.toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: true,
+                  });
+                  const formattedDate = date.toLocaleDateString("en-GB");
+                  return `${time}, ${formattedDate}`;
+                } catch (e) {
+                  console.error("Invalid date format:", dateString);
+                  return "Invalid Date";
+                }
+              };
 
-                        orders.forEach(order => {
-                            const row = document.createElement('tr');
-                            row.setAttribute('data-id', order.order_id);
+              orders.forEach((order) => {
+                const row = document.createElement("tr");
+                row.setAttribute("data-id", order.order_id);
 
-                            const formattedDate = formatDateTime(order.created_at);
+                const formattedDate = formatDateTime(order.created_at);
 
-                            const type = order.customer_id ? 'Customer' : 'Guest';
-                            const displayId = order.customer_id || order.guest_id || '—';
-                            const badgeColor = type === 'Customer' ? 'success' : 'primary';
+                const type = order.customer_id ? "Customer" : "Guest";
+                const displayId = order.customer_id || order.guest_id || "—";
+                const badgeColor = type === "Customer" ? "success" : "primary";
 
-                            row.innerHTML = ` <td class="no-print"><input type="checkbox" class="orderCheckbox" value="${order.order_id}" /></td>
+                row.innerHTML = ` <td class="no-print"><input type="checkbox" class="orderCheckbox" value="${
+                  order.order_id
+                }" /></td>
                 <td>${order.order_id}</td>
-                <td>${order.customer_name || '—'}</td>
-                <td> ${(order.shippingInfo && JSON.parse(order.shippingInfo)?.contact)
-                                    ? JSON.parse(order.shippingInfo).contact
-                                    : '—'
-                                }</td>
-                <td>${order.order_status || '—'}</td>
+                <td>${order.customer_name || "—"}</td>
+                <td> ${
+                  order.shippingInfo && JSON.parse(order.shippingInfo)?.contact
+                    ? JSON.parse(order.shippingInfo).contact
+                    : "—"
+                }</td>
+                <td>${order.order_status || "—"}</td>
                 <td>
   <div style="position: relative;">
-    <button class="payment-toggle" data-id="${order.order_id}">${order.payment_type}</button>
+    <button class="payment-toggle" data-id="${order.order_id}">${
+                  order.payment_type
+                }</button>
     <div class="payment-options">
-      <button class="payment-select-option" data-id="${order.order_id}" data-value="COD">COD</button>
-      <button class="payment-select-option" data-id="${order.order_id}" data-value="Card">Card</button>
-      <button class="payment-select-option" data-id="${order.order_id}" data-value="Bank Transfer">Bank Transfer</button>
+      <button class="payment-select-option" data-id="${
+        order.order_id
+      }" data-value="COD">COD</button>
+      <button class="payment-select-option" data-id="${
+        order.order_id
+      }" data-value="Card">Card</button>
+      <button class="payment-select-option" data-id="${
+        order.order_id
+      }" data-value="Bank Transfer">Bank Transfer</button>
     </div>
   </div>
 </td>
@@ -743,359 +1136,436 @@
 
                 <td>${formattedDate}</td>
                 <td>${parseFloat(order.total_amount || 0).toFixed(2)}</td>
-                <td> ${(order.card_info && JSON.parse(order.card_info)[0]?.quantity)
-                                    ? JSON.parse(order.card_info)[0].quantity
-                                    : '—'
-                                }</td>
-                <td>${order.shipping_address || '—'}</td>
+                <td> ${
+                  order.card_info && JSON.parse(order.card_info)[0]?.quantity
+                    ? JSON.parse(order.card_info)[0].quantity
+                    : "—"
+                }</td>
+                <td>${order.shipping_address || "—"}</td>
                  <td class="no-print action-buttons">
-        <button class="btn btn-view" onclick="viewOrder('${String(order.order_id)}')">👁</button>
+        <button class="btn btn-view" onclick="viewOrder('${String(
+          order.order_id
+        )}')">👁</button>
     </td>
                 
             `;
 
-                            ordersTableBody.appendChild(row);
-                        });
+                ordersTableBody.appendChild(row);
+              });
+            }
+
+            function viewOrder(orderId) {
+              showLoader();
+
+              // Find the order in cache
+              const order = ordersCache?.find((o) => o.order_id == orderId);
+              if (order) {
+                populateOrderDetails(order);
+                hideLoader();
+              } else {
+                // If not found in cache, fetch it individually
+                fetchOrderDetails(orderId);
+              }
+            }
+
+            async function fetchOrderDetails(orderId) {
+              const token = localStorage.getItem("token");
+              try {
+                const response = await fetch(
+                  `${API_ADMINGRAB_URL}/api/onlineorders?status=Received%20Order`,
+                  {
+                    method: "GET",
+                    headers: {
+                      Authorization: token,
+                    },
+                  }
+                );
+
+                if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const order = await response.json();
+                populateOrderDetails(order);
+              } catch (error) {
+                console.error("❌ Error fetching order details:", error);
+                showErrorMessage(
+                  "Failed to fetch order details. Please try again."
+                );
+              } finally {
+                hideLoader();
+              }
+            }
+            // Add this inside your existing populateOrderDetails(order)
+            function populateOrderDetails(order) {
+              document.getElementById("orderId").textContent =
+                order.order_id || "—";
+              document.getElementById("orderStatus").textContent =
+                order.order_status || "Received Order";
+              document.getElementById("createdAt").textContent =
+                order.created_at
+                  ? new Date(order.created_at).toLocaleString()
+                  : "—";
+              document.getElementById("paymentType").textContent =
+                order.payment_type || "—";
+
+              // Populate order items
+              const itemsList = document.getElementById("orderItemsList");
+              itemsList.innerHTML = "";
+              if (order.card_info) {
+                const items = JSON.parse(order.card_info);
+                items.forEach((item) => {
+                  const li = document.createElement("li");
+                  li.textContent = `${item.name || "Unknown Product"} - Qty: ${
+                    item.quantity || 0
+                  } - Price: ${item.selling_price || 0}`;
+                  itemsList.appendChild(li);
+                });
+              } else {
+                itemsList.innerHTML = "<li>No items found</li>";
+              }
+
+              document.getElementById("totalAmount").textContent = parseFloat(
+                order.total_amount || 0
+              ).toFixed(2);
+              document.getElementById("shippingAddress").textContent =
+                order.shipping_address || "No shipping address provided";
+              document.getElementById("billingAddress").textContent =
+                order.billing_address ||
+                order.shipping_address ||
+                "No billing address provided";
+
+              const acceptBtn = document.getElementById("acceptBtn");
+              const rejectBtn = document.getElementById("rejectBtn");
+              const statusDropdownContainer = document.getElementById(
+                "statusDropdownContainer"
+              );
+              const statusSelect = document.getElementById("statusSelect");
+
+              if (order.order_status === "Received Order") {
+                acceptBtn.style.display = "inline-block";
+                rejectBtn.style.display = "inline-block";
+                statusDropdownContainer.style.display = "none";
+              } else if (order.order_status === "Rejected") {
+                acceptBtn.style.display = "none";
+                rejectBtn.style.display = "none";
+                statusDropdownContainer.style.display = "none";
+              } else {
+                acceptBtn.style.display = "none";
+                rejectBtn.style.display = "none";
+                statusDropdownContainer.style.display = "inline-block";
+                statusSelect.value = order.order_status;
+              }
+
+              acceptBtn.onclick = () =>
+                updateOrderStatus(order.order_id, "Inprogress Order");
+              // rejectBtn.onclick = () => updateOrderStatus(order.order_id, 'Rejected');
+              rejectBtn.onclick = () => {
+                document.getElementById(
+                  "rejectionCommentContainer"
+                ).style.display = "block";
+                document.getElementById("confirmRejectionBtn").onclick = () => {
+                  const comment = document
+                    .getElementById("rejectionComment")
+                    .value.trim();
+                  if (!comment) {
+                    alert("Please provide a rejection reason.");
+                    return;
+                  }
+                  updateOrderStatus(order.order_id, "Rejected", comment);
+                };
+              };
+
+              document.getElementById("updateStatusBtn").onclick = () => {
+                const newStatus = statusSelect.value;
+                updateOrderStatus(order.order_id, newStatus);
+              };
+
+              document.getElementById("orderViewOverlay").style.display =
+                "block";
+            }
+
+            // async function updateOrderStatus(orderId, newStatus) {
+            async function updateOrderStatus(
+              orderId,
+              newStatus,
+              rejectionComment = null
+            ) {
+              const token = localStorage.getItem("token");
+              showLoader();
+
+              try {
+                const response = await fetch(
+                  `${API_ADMINGRAB_URL}/api/onlineorders/${orderId}/status`,
+                  {
+                    method: "PUT",
+                    headers: {
+                      Authorization: token,
+                      "Content-Type": "application/json",
+                    },
+                    // body: JSON.stringify({ order_status: newStatus }),
+                    body: JSON.stringify({
+                      order_status: newStatus,
+                      ...(newStatus === "Rejected" && rejectionComment
+                        ? { rejection_comment: rejectionComment }
+                        : {}),
+                    }),
+                  }
+                );
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                  throw new Error(result.message || "Failed to update status");
+                }
+
+                document.getElementById("orderStatus").textContent = newStatus;
+                // ✅ ✅ ✅ PLACE THIS HERE
+                document.getElementById(
+                  "rejectionCommentContainer"
+                ).style.display = "none";
+                document.getElementById("rejectionComment").value = "";
+                // Update local cache
+                const cachedOrder = ordersCache.find(
+                  (o) => o.order_id == orderId
+                );
+
+                if (cachedOrder) cachedOrder.order_status = newStatus;
+
+                const row = document.querySelector(`tr[data-id="${orderId}"]`);
+
+                // If the current view is "Inprogress Orders", remove from table if status changed
+                if (newStatus !== "Inprogress Order") {
+                  if (row && row.parentElement) {
+                    row.parentElement.removeChild(row);
+                  }
+
+                  // Remove from cache too (optional but safer)
+                  ordersCache = ordersCache.filter(
+                    (o) => o.order_id != orderId
+                  );
+                } else {
+                  // Just update the status text
+                  if (row) {
+                    row.children[4].textContent = newStatus;
+                  }
+                }
+
+                closeOverlay(); // Always close overlay
+
+                showSuccessMessage(result.message);
+              } catch (error) {
+                console.error("❌ Error updating order status:", error);
+                showErrorMessage(error.message);
+              } finally {
+                hideLoader();
+              }
+            }
+
+            function closeOverlay() {
+              document.getElementById("orderViewOverlay").style.display =
+                "none";
+            }
+            let filterTimeout;
+            function filterTable() {
+              clearTimeout(filterTimeout);
+              filterTimeout = setTimeout(() => {
+                const orderIdFilter = document
+                  .getElementById("searchOrderId")
+                  .value.toLowerCase();
+                const customerFilter = document
+                  .getElementById("searchCustomer")
+                  .value.toLowerCase();
+                const dateFilter = document.getElementById("searchDate").value;
+                const statusFilter = document
+                  .getElementById("searchStatus")
+                  .value.toLowerCase();
+
+                const rows = document.querySelectorAll(
+                  "#purchaseReturnsTableBody tr"
+                );
+
+                rows.forEach((row) => {
+                  if (row.cells.length < 7) return; // Skip if not a valid row
+
+                  const rowOrderId = row.cells[0].textContent.toLowerCase();
+                  const rowCustomer = row.cells[2].textContent.toLowerCase();
+                  const rowDate = row.cells[4].textContent;
+                  const rowStatus = row.getAttribute("data-status") || ""; // Add data-status attribute to your rows if needed
+
+                  const matchesOrderId =
+                    !orderIdFilter || rowOrderId.includes(orderIdFilter);
+                  const matchesCustomer =
+                    !customerFilter || rowCustomer.includes(customerFilter);
+                  const matchesDate =
+                    !dateFilter || rowDate.includes(dateFilter);
+                  const matchesStatus =
+                    !statusFilter ||
+                    rowStatus.toLowerCase().includes(statusFilter);
+
+                  row.style.display =
+                    matchesOrderId &&
+                    matchesCustomer &&
+                    matchesDate &&
+                    matchesStatus
+                      ? ""
+                      : "none";
+                });
+              }, 300);
+            }
+
+            function clearFilters() {
+              document.getElementById("searchOrderId").value = "";
+              document.getElementById("searchCustomer").value = "";
+              document.getElementById("searchDate").value = "";
+              document.getElementById("searchStatus").value = "";
+              filterTable();
+            }
+
+            // function showSuccessMessage(message) {
+            //     // Implement your success message display logic here
+            //     alert(message); // Replace with your preferred notification system
+            // }
+
+            function showErrorMessage(message) {
+              // Implement your error message display logic here
+              alert(message); // Replace with your preferred notification system
+            }
+          </script>
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const statusDropdown = document.getElementById("statusFilter");
+
+              if (statusDropdown) {
+                statusDropdown.addEventListener("change", function () {
+                  const selected = this.value.toLowerCase();
+                  const rows = document.querySelectorAll(
+                    "#purchaseReturnsTableBody tr"
+                  );
+
+                  rows.forEach((row) => {
+                    const status =
+                      row.children[4]?.textContent?.toLowerCase() || "";
+                    row.style.display =
+                      !selected || status.includes(selected) ? "" : "none";
+                  });
+                });
+              }
+            });
+          </script>
+
+          <script>
+            // Select all
+            document
+              .getElementById("selectAllCheckbox")
+              .addEventListener("change", function () {
+                const checkboxes = document.querySelectorAll(".orderCheckbox");
+                checkboxes.forEach((cb) => (cb.checked = this.checked));
+                toggleBulkActions();
+              });
+
+            // Toggle dropdown on individual checkbox select
+            document.addEventListener("change", function (e) {
+              if (e.target.classList.contains("orderCheckbox")) {
+                toggleBulkActions();
+              }
+            });
+
+            function toggleBulkActions() {
+              const anyChecked =
+                document.querySelectorAll(".orderCheckbox:checked").length > 0;
+              document.getElementById("bulkUpdateBtn").style.display =
+                anyChecked ? "inline-block" : "none";
+            }
+
+            document
+              .getElementById("bulkUpdateBtn")
+              .addEventListener("click", async function () {
+                const selectedStatus =
+                  document.getElementById("bulkStatusSelect").value;
+                const token = localStorage.getItem("token");
+                const selectedIds = [
+                  ...document.querySelectorAll(".orderCheckbox:checked"),
+                ].map((cb) => cb.value);
+
+                if (!selectedStatus || selectedIds.length === 0) {
+                  alert("Please select at least one order and a status.");
+                  return;
+                }
+
+                for (let id of selectedIds) {
+                  const response = await fetch(
+                    `${API_ADMINGRAB_URL}/api/onlineorders/${id}/status`,
+                    {
+                      method: "PUT",
+                      headers: {
+                        Authorization: token,
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({ order_status: selectedStatus }),
                     }
+                  );
 
-                    function viewOrder(orderId) {
-                        showLoader();
-
-                        // Find the order in cache
-                        const order = ordersCache?.find(o => o.order_id == orderId);
-                        if (order) {
-                            populateOrderDetails(order);
-                            hideLoader();
-                        } else {
-                            // If not found in cache, fetch it individually
-                            fetchOrderDetails(orderId);
-                        }
-                    }
-
-                    async function fetchOrderDetails(orderId) {
-                        const token = localStorage.getItem('token');
-                        try {
-                            const response = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders?status=Received%20Order`, {
-
-                                method: 'GET',
-                                headers: {
-                                    'Authorization': token,
-                                },
-                            });
-
-                            if (!response.ok) {
-                                throw new Error(`HTTP error! status: ${response.status}`);
-                            }
-
-                            const order = await response.json();
-                            populateOrderDetails(order);
-                        } catch (error) {
-                            console.error('❌ Error fetching order details:', error);
-                            showErrorMessage('Failed to fetch order details. Please try again.');
-                        } finally {
-                            hideLoader();
-                        }
-                    }
-                    // Add this inside your existing populateOrderDetails(order)
-                    function populateOrderDetails(order) {
-                        document.getElementById('orderId').textContent = order.order_id || '—';
-                        document.getElementById('orderStatus').textContent = order.order_status || 'Received Order';
-                        document.getElementById('createdAt').textContent = order.created_at ? new Date(order.created_at).toLocaleString() : '—';
-                        document.getElementById('paymentType').textContent = order.payment_type || '—';
-
-                        // Populate order items
-                        const itemsList = document.getElementById('orderItemsList');
-                        itemsList.innerHTML = '';
-                        if (order.card_info) {
-                            const items = JSON.parse(order.card_info);
-                            items.forEach(item => {
-                                const li = document.createElement('li');
-                                li.textContent = `${item.name || 'Unknown Product'} - Qty: ${item.quantity || 0} - Price: ${item.selling_price || 0}`;
-                                itemsList.appendChild(li);
-                            });
-                        } else {
-                            itemsList.innerHTML = '<li>No items found</li>';
-                        }
-
-                        document.getElementById('totalAmount').textContent = parseFloat(order.total_amount || 0).toFixed(2);
-                        document.getElementById('shippingAddress').textContent = order.shipping_address || 'No shipping address provided';
-                        document.getElementById('billingAddress').textContent = order.billing_address || order.shipping_address || 'No billing address provided';
-
-                        const acceptBtn = document.getElementById('acceptBtn');
-                        const rejectBtn = document.getElementById('rejectBtn');
-                        const statusDropdownContainer = document.getElementById('statusDropdownContainer');
-                        const statusSelect = document.getElementById('statusSelect');
-
-                        if (order.order_status === 'Received Order') {
-                            acceptBtn.style.display = 'inline-block';
-                            rejectBtn.style.display = 'inline-block';
-                            statusDropdownContainer.style.display = 'none';
-                        } else if (order.order_status === 'Rejected') {
-                            acceptBtn.style.display = 'none';
-                            rejectBtn.style.display = 'none';
-                            statusDropdownContainer.style.display = 'none';
-                        } else {
-                            acceptBtn.style.display = 'none';
-                            rejectBtn.style.display = 'none';
-                            statusDropdownContainer.style.display = 'inline-block';
-                            statusSelect.value = order.order_status;
-                        }
-
-                        acceptBtn.onclick = () => updateOrderStatus(order.order_id, 'Inprogress Order');
-                        // rejectBtn.onclick = () => updateOrderStatus(order.order_id, 'Rejected');
-                        rejectBtn.onclick = () => {
-                            document.getElementById('rejectionCommentContainer').style.display = 'block';
-                            document.getElementById('confirmRejectionBtn').onclick = () => {
-                                const comment = document.getElementById('rejectionComment').value.trim();
-                                if (!comment) {
-                                    alert("Please provide a rejection reason.");
-                                    return;
-                                }
-                                updateOrderStatus(order.order_id, 'Rejected', comment);
-                            };
-                        };
-
-                        document.getElementById('updateStatusBtn').onclick = () => {
-                            const newStatus = statusSelect.value;
-                            updateOrderStatus(order.order_id, newStatus);
-                        };
-
-                        document.getElementById('orderViewOverlay').style.display = 'block';
-                    }
-
-                    // async function updateOrderStatus(orderId, newStatus) {
-                    async function updateOrderStatus(orderId, newStatus, rejectionComment = null) {
-                        const token = localStorage.getItem('token');
-                        showLoader();
-
-                        try {
-                            const response = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders/${orderId}/status`, {
-                                method: 'PUT',
-                                headers: {
-                                    'Authorization': token,
-                                    'Content-Type': 'application/json',
-                                },
-                                // body: JSON.stringify({ order_status: newStatus }),
-                                body: JSON.stringify({
-                                    order_status: newStatus,
-                                    ...(newStatus === 'Rejected' && rejectionComment ? { rejection_comment: rejectionComment } : {})
-                                }),
-
-                            });
-
-                            const result = await response.json();
-
-                            if (!response.ok) {
-                                throw new Error(result.message || 'Failed to update status');
-                            }
-
-                            document.getElementById('orderStatus').textContent = newStatus;
-                            // ✅ ✅ ✅ PLACE THIS HERE
-                            document.getElementById('rejectionCommentContainer').style.display = 'none';
-                            document.getElementById('rejectionComment').value = '';
-                            // Update local cache
-                            const cachedOrder = ordersCache.find(o => o.order_id == orderId);
-
-                            if (cachedOrder) cachedOrder.order_status = newStatus;
-
-                            const row = document.querySelector(`tr[data-id="${orderId}"]`);
-
-                            // If the current view is "Inprogress Orders", remove from table if status changed
-                            if (newStatus !== 'Inprogress Order') {
-                                if (row && row.parentElement) {
-                                    row.parentElement.removeChild(row);
-                                }
-
-                                // Remove from cache too (optional but safer)
-                                ordersCache = ordersCache.filter(o => o.order_id != orderId);
-                            } else {
-                                // Just update the status text
-                                if (row) {
-                                    row.children[4].textContent = newStatus;
-                                }
-                            }
-
-                            closeOverlay(); // Always close overlay
-
-
-
-                            showSuccessMessage(result.message);
-                        } catch (error) {
-                            console.error('❌ Error updating order status:', error);
-                            showErrorMessage(error.message);
-                        } finally {
-                            hideLoader();
-                        }
-                    }
-
-                    function closeOverlay() {
-                        document.getElementById('orderViewOverlay').style.display = 'none';
-                    }
-                    let filterTimeout;
-                    function filterTable() {
-                        clearTimeout(filterTimeout);
-                        filterTimeout = setTimeout(() => {
-                            const orderIdFilter = document.getElementById('searchOrderId').value.toLowerCase();
-                            const customerFilter = document.getElementById('searchCustomer').value.toLowerCase();
-                            const dateFilter = document.getElementById('searchDate').value;
-                            const statusFilter = document.getElementById('searchStatus').value.toLowerCase();
-
-                            const rows = document.querySelectorAll('#purchaseReturnsTableBody tr');
-
-                            rows.forEach(row => {
-                                if (row.cells.length < 7) return; // Skip if not a valid row
-
-                                const rowOrderId = row.cells[0].textContent.toLowerCase();
-                                const rowCustomer = row.cells[2].textContent.toLowerCase();
-                                const rowDate = row.cells[4].textContent;
-                                const rowStatus = row.getAttribute('data-status') || ''; // Add data-status attribute to your rows if needed
-
-                                const matchesOrderId = !orderIdFilter || rowOrderId.includes(orderIdFilter);
-                                const matchesCustomer = !customerFilter || rowCustomer.includes(customerFilter);
-                                const matchesDate = !dateFilter || rowDate.includes(dateFilter);
-                                const matchesStatus = !statusFilter || rowStatus.toLowerCase().includes(statusFilter);
-
-                                row.style.display = matchesOrderId && matchesCustomer && matchesDate && matchesStatus ? '' : 'none';
-                            });
-                        }, 300);
-                    }
-
-                    function clearFilters() {
-                        document.getElementById('searchOrderId').value = '';
-                        document.getElementById('searchCustomer').value = '';
-                        document.getElementById('searchDate').value = '';
-                        document.getElementById('searchStatus').value = '';
-                        filterTable();
-                    }
-
-                    // function showSuccessMessage(message) {
-                    //     // Implement your success message display logic here
-                    //     alert(message); // Replace with your preferred notification system
+                  const result = await response.json();
+                  if (response.ok) {
+                    // ✅ Update the order row instantly
+                    const row = document.querySelector(`tr[data-id="${id}"]`);
+                    // if (row) {
+                    //     row.children[4].textContent = selectedStatus; // Assuming status is 5th column (index 4)
                     // }
 
-                    function showErrorMessage(message) {
-                        // Implement your error message display logic here
-                        alert(message); // Replace with your preferred notification system
+                    if (row) {
+                      if (selectedStatus !== "Received Order") {
+                        row.remove();
+                      } else {
+                        row.children[4].textContent = selectedStatus;
+                      }
                     }
-                </script>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        const statusDropdown = document.getElementById('statusFilter');
+                  } else {
+                    console.error("❌ Failed for ID:", id, result.message);
+                  }
+                }
 
-                        if (statusDropdown) {
-                            statusDropdown.addEventListener('change', function () {
-                                const selected = this.value.toLowerCase();
-                                const rows = document.querySelectorAll('#purchaseReturnsTableBody tr');
+                showSuccessMessage("Status updated successfully.");
+              });
+          </script>
 
-                                rows.forEach(row => {
-                                    const status = row.children[4]?.textContent?.toLowerCase() || '';
-                                    row.style.display = !selected || status.includes(selected) ? '' : 'none';
-                                });
-                            });
-                        }
-                    });
-                </script>
+          <script>
+            document.addEventListener("change", async function (e) {
+              if (e.target.classList.contains("payment-type-select")) {
+                const orderId = e.target.getAttribute("data-id");
+                const selectedType = e.target.value;
+                const token = localStorage.getItem("token");
 
-                <script>
-                    // Select all
-                    document.getElementById("selectAllCheckbox").addEventListener("change", function () {
-                        const checkboxes = document.querySelectorAll(".orderCheckbox");
-                        checkboxes.forEach(cb => cb.checked = this.checked);
-                        toggleBulkActions();
-                    });
+                if (!orderId || !selectedType) return;
 
-                    // Toggle dropdown on individual checkbox select
-                    document.addEventListener("change", function (e) {
-                        if (e.target.classList.contains("orderCheckbox")) {
-                            toggleBulkActions();
-                        }
-                    });
-
-                    function toggleBulkActions() {
-                        const anyChecked = document.querySelectorAll(".orderCheckbox:checked").length > 0;
-                        document.getElementById("bulkUpdateBtn").style.display = anyChecked ? "inline-block" : "none";
+                try {
+                  const response = await fetch(
+                    `${API_ADMINGRAB_URL}/api/onlineorders/${orderId}/payment-type`,
+                    {
+                      method: "PUT",
+                      headers: {
+                        Authorization: token,
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({
+                        payment_type: selectedType,
+                      }),
                     }
+                  );
 
-                    document.getElementById("bulkUpdateBtn").addEventListener("click", async function () {
-                        const selectedStatus = document.getElementById("bulkStatusSelect").value;
-                        const token = localStorage.getItem('token');
-                        const selectedIds = [...document.querySelectorAll(".orderCheckbox:checked")].map(cb => cb.value);
+                  const result = await response.json();
+                  if (!response.ok) throw new Error(result.message);
+                  showSuccessMessage("✅ Payment type updated");
+                } catch (error) {
+                  console.error("❌ Failed to update payment type:", error);
+                  showErrorMessage(error.message || "Update failed");
+                }
+              }
+            });
+          </script>
 
-                        if (!selectedStatus || selectedIds.length === 0) {
-                            alert("Please select at least one order and a status.");
-                            return;
-                        }
-
-                        for (let id of selectedIds) {
-                            const response = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders/${id}/status`, {
-                                method: 'PUT',
-                                headers: {
-                                    'Authorization': token,
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify({ order_status: selectedStatus })
-                            });
-
-                            const result = await response.json();
-                            if (response.ok) {
-                                // ✅ Update the order row instantly
-                                const row = document.querySelector(`tr[data-id="${id}"]`);
-                                // if (row) {
-                                //     row.children[4].textContent = selectedStatus; // Assuming status is 5th column (index 4)
-                                // }
-
-                                if (row) {
-                                    if (selectedStatus !== 'Received Order') {
-                                        row.remove();
-                                    } else {
-                                        row.children[4].textContent = selectedStatus;
-                                    }
-                                }
-
-                            } else {
-                                console.error("❌ Failed for ID:", id, result.message);
-                            }
-                        }
-
-                        showSuccessMessage("Status updated successfully.");
-                    });
-
-                </script>
-
-                <script>
-                    document.addEventListener("change", async function (e) {
-                        if (e.target.classList.contains("payment-type-select")) {
-                            const orderId = e.target.getAttribute("data-id");
-                            const selectedType = e.target.value;
-                            const token = localStorage.getItem("token");
-
-                            if (!orderId || !selectedType) return;
-
-                            try {
-                                const response = await fetch(`${API_ADMINGRAB_URL}/api/onlineorders/${orderId}/payment-type`, {
-                                    method: "PUT",
-                                    headers: {
-                                        "Authorization": token,
-                                        "Content-Type": "application/json"
-                                    },
-                                    body: JSON.stringify({
-                                        payment_type: selectedType
-                                    })
-                                });
-
-                                const result = await response.json();
-                                if (!response.ok) throw new Error(result.message);
-                                showSuccessMessage("✅ Payment type updated");
-                            } catch (error) {
-                                console.error("❌ Failed to update payment type:", error);
-                                showErrorMessage(error.message || "Update failed");
-                            }
-                        }
-                    });
-
-                </script>
-
-                <!-- <script>
+          <!-- <script>
                     function printOnlyTable() {
                         const tableHTML = document.querySelector('.table-container').innerHTML;
                         const originalBody = document.body.innerHTML;
@@ -1105,12 +1575,13 @@
                         window.location.reload(); // reload for restoring JS functionality
                     }
                 </script> -->
-                <script>
-                    function printOnlyTable() {
-                        const printContent = document.querySelector('.table-container').innerHTML;
-                        const originalContent = document.body.innerHTML;
+          <script>
+            function printOnlyTable() {
+              const printContent =
+                document.querySelector(".table-container").innerHTML;
+              const originalContent = document.body.innerHTML;
 
-                        const style = `
+              const style = `
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -1132,101 +1603,157 @@
         </style>
     `;
 
-                        document.body.innerHTML = style + '<h2>Online Orders</h2>' + printContent;
-                        window.print();
-                        document.body.innerHTML = originalContent;
-                        window.location.reload(); // optional: reload to restore JS
+              document.body.innerHTML =
+                style + "<h2>Online Orders</h2>" + printContent;
+              window.print();
+              document.body.innerHTML = originalContent;
+              window.location.reload(); // optional: reload to restore JS
+            }
+          </script>
+
+          <script>
+            document.addEventListener("DOMContentLoaded", () => {
+              document.body.addEventListener("click", (e) => {
+                // Close other open dropdowns
+                document
+                  .querySelectorAll(".payment-options")
+                  .forEach((menu) => {
+                    if (!menu.contains(e.target)) menu.style.display = "none";
+                  });
+
+                if (e.target.classList.contains("payment-toggle")) {
+                  const dropdown = e.target.nextElementSibling;
+                  dropdown.style.display =
+                    dropdown.style.display === "block" ? "none" : "block";
+                }
+
+                if (e.target.classList.contains("payment-select-option")) {
+                  const orderId = e.target.dataset.id;
+                  const paymentType = e.target.dataset.value;
+                  const token = localStorage.getItem("token");
+
+                  fetch(
+                    `${API_ADMINGRAB_URL}/api/onlineorders/${orderId}/payment-type`,
+                    {
+                      method: "PUT",
+                      headers: {
+                        Authorization: token,
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({ payment_type: paymentType }),
                     }
-                </script>
-
-                <script>
-                    document.addEventListener('DOMContentLoaded', () => {
-                        document.body.addEventListener('click', (e) => {
-                            // Close other open dropdowns
-                            document.querySelectorAll('.payment-options').forEach(menu => {
-                                if (!menu.contains(e.target)) menu.style.display = 'none';
-                            });
-
-                            if (e.target.classList.contains('payment-toggle')) {
-                                const dropdown = e.target.nextElementSibling;
-                                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-                            }
-
-                            if (e.target.classList.contains('payment-select-option')) {
-                                const orderId = e.target.dataset.id;
-                                const paymentType = e.target.dataset.value;
-                                const token = localStorage.getItem("token");
-
-                                fetch(`${API_ADMINGRAB_URL}/api/onlineorders/${orderId}/payment-type`, {
-                                    method: 'PUT',
-                                    headers: {
-                                        'Authorization': token,
-                                        'Content-Type': 'application/json'
-                                    },
-                                    body: JSON.stringify({ payment_type: paymentType })
-                                })
-                                    .then(res => res.json())
-                                    .then(result => {
-                                        if (result.message) showSuccessMessage(result.message);
-                                        document.querySelector(`.payment-toggle[data-id='${orderId}']`).innerText = paymentType;
-                                        e.target.closest('.payment-options').style.display = 'none';
-                                    })
-                                    .catch(err => {
-                                        console.error(err);
-                                        showErrorMessage('Failed to update payment type');
-                                    });
-                            }
-                        });
+                  )
+                    .then((res) => res.json())
+                    .then((result) => {
+                      if (result.message) showSuccessMessage(result.message);
+                      document.querySelector(
+                        `.payment-toggle[data-id='${orderId}']`
+                      ).innerText = paymentType;
+                      e.target.closest(".payment-options").style.display =
+                        "none";
+                    })
+                    .catch((err) => {
+                      console.error(err);
+                      showErrorMessage("Failed to update payment type");
                     });
-                </script>
-                <script>
-                    // Live search functionality for "Search orders..."
-                    document.getElementById('filterInput').addEventListener('input', function () {
-                        const query = this.value.toLowerCase().trim();
-                        const rows = document.querySelectorAll('#purchaseReturnsTableBody tr');
+                }
+              });
+            });
+          </script>
+          <script>
+            // Live search functionality for "Search orders..."
+            document
+              .getElementById("filterInput")
+              .addEventListener("input", function () {
+                const query = this.value.toLowerCase().trim();
+                const rows = document.querySelectorAll(
+                  "#purchaseReturnsTableBody tr"
+                );
 
-                        rows.forEach(row => {
-                            const cells = row.querySelectorAll('td');
-                            const textContent = Array.from(cells).map(cell => cell.textContent.toLowerCase()).join(' ');
-                            row.style.display = textContent.includes(query) ? '' : 'none';
-                        });
-                    });
-                </script>
-                <script>
-                    function printProductDetails() {
-                        // Fill in the printable table dynamically
-                        document.getElementById('orderIdTable').textContent = document.getElementById('orderId').textContent;
-                        document.getElementById('orderStatusTable').textContent = document.getElementById('orderStatus').textContent;
-                        document.getElementById('createdAtTable').textContent = document.getElementById('createdAt').textContent;
-                        document.getElementById('paymentTypeTable').textContent = document.getElementById('paymentType').textContent;
-                        document.getElementById('totalAmountTable').textContent = document.getElementById('totalAmount').textContent;
-                        document.getElementById('shippingAddressTable').textContent = document.getElementById('shippingAddress').textContent;
-                        document.getElementById('billingAddressTable').textContent = document.getElementById('billingAddress').textContent;
+                rows.forEach((row) => {
+                  const cells = row.querySelectorAll("td");
+                  const textContent = Array.from(cells)
+                    .map((cell) => cell.textContent.toLowerCase())
+                    .join(" ");
+                  row.style.display = textContent.includes(query) ? "" : "none";
+                });
+              });
+          </script>
+          <script>
+            function printProductDetails() {
+              // Fill in the printable table dynamically
+              document.getElementById("orderIdTable").textContent =
+                document.getElementById("orderId").textContent;
+              document.getElementById("orderStatusTable").textContent =
+                document.getElementById("orderStatus").textContent;
+              document.getElementById("createdAtTable").textContent =
+                document.getElementById("createdAt").textContent;
+              document.getElementById("paymentTypeTable").textContent =
+                document.getElementById("paymentType").textContent;
+              document.getElementById("totalAmountTable").textContent =
+                document.getElementById("totalAmount").textContent;
+              document.getElementById("shippingAddressTable").textContent =
+                document.getElementById("shippingAddress").textContent;
+              document.getElementById("billingAddressTable").textContent =
+                document.getElementById("billingAddress").textContent;
 
-                        // Order Items
-                        const orderItemsList = document.getElementById('orderItemsList').querySelectorAll('li');
-                        const itemsTable = document.getElementById('orderItemsTable');
-                        itemsTable.innerHTML = '';
-                        orderItemsList.forEach(li => {
-                            const [name, qtyPart, pricePart] = li.textContent.split(' - ');
-                            const qty = qtyPart.replace('Qty: ', '');
-                            const price = pricePart.replace('Price: ', '');
-                            const row = `<tr><td>${name}</td><td>${qty}</td><td>${price}</td></tr>`;
-                            itemsTable.innerHTML += row;
-                        });
+              // Order Items
+              const orderItemsList = document
+                .getElementById("orderItemsList")
+                .querySelectorAll("li");
+              const itemsTable = document.getElementById("orderItemsTable");
+              itemsTable.innerHTML = "";
+              orderItemsList.forEach((li) => {
+                const [name, qtyPart, pricePart] = li.textContent.split(" - ");
+                const qty = qtyPart.replace("Qty: ", "");
+                const price = pricePart.replace("Price: ", "");
+                const row = `<tr><td>${name}</td><td>${qty}</td><td>${price}</td></tr>`;
+                itemsTable.innerHTML += row;
+              });
 
-                        const printContent = document.getElementById('printableOrderTable').innerHTML;
-                        const originalContent = document.body.innerHTML;
-                        document.body.innerHTML = printContent;
-                        window.print();
-                        document.body.innerHTML = originalContent;
-                        window.location.reload(); // Optional restore
-                    }
+              const printContent = document.getElementById(
+                "printableOrderTable"
+              ).innerHTML;
+              const originalContent = document.body.innerHTML;
+              document.body.innerHTML = printContent;
+              window.print();
+              document.body.innerHTML = originalContent;
+              window.location.reload(); // Optional restore
+            }
+          </script>
 
-                </script>
-            </div>
+          <script src="https://unpkg.com/@phosphor-icons/web"></script>
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const toggle = document.querySelector(".orders-toggle");
+              const submenu = document.getElementById("ordersMenu");
+              const arrow = toggle.querySelector(".arrow-icon");
+
+              toggle.addEventListener("click", () => {
+                submenu.classList.toggle("show");
+                arrow.classList.toggle("rotate");
+              });
+            });
+          </script>
+
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const purchasesToggle = document.querySelector(
+                ".purchases-toggle-custom"
+              );
+              const purchasesMenu =
+                document.getElementById("purchaseMenuCustom");
+              const purchasesArrow =
+                purchasesToggle.querySelector(".arrow-icon");
+
+              purchasesToggle.addEventListener("click", () => {
+                purchasesMenu.classList.toggle("show");
+                purchasesArrow.classList.toggle("rotate");
+              });
+            });
+          </script>
         </div>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
