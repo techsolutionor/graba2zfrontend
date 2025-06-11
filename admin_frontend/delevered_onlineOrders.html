@@ -435,7 +435,7 @@
                     <div class="card-body">
                         <h5 class="card-title fw-semibold mb-4">Dashboard / Online Orders</h5>
                         <div class="container">
-                            <h5>Delevered Orders</h5>
+                            <h5>Delivered Orders</h5>
                             <div
                                 class="actions-bar d-flex flex-column flex-md-row align-items-center align-items-lg-end justify-content-center justify-content-md-center justify-content-lg-end">
                                 <input type="text" class="form-control" id="filterInput" placeholder="Search orders...">
@@ -447,7 +447,7 @@
                                     <option value="Inprogress Order">Inprogress Order</option>
                                     <option value="Ready for Shipment">Ready for Shipment</option>
                                     <option value="On the Way">On the Way</option>
-                                    <option value="Delevered">Delevered</option>
+                                    <option value="Delivered">Delivered</option>
                                     <option value="On Hold">On Hold</option>
                                     <option value="Rejected">Rejected</option>
                                 </select>
@@ -495,7 +495,7 @@
                                                         <option value="Inprogress Order">Inprogress Order</option>
                                                         <option value="Ready for Shipment">Ready for Shipment</option>
                                                         <option value="On the Way">On the Way</option>
-                                                        <option value="Delevered">Delevered</option>
+                                                        <option value="Delivered">Delivered</option>
                                                         <option value="On Hold">On Hold</option>
                                                         <option value="Rejected">Rejected</option>
                                                     </select>
@@ -591,7 +591,7 @@
                                     <option value="Inprogress Order">Inprogress Order</option>
                                     <option value="Ready for Shipment">Ready for Shipment</option>
                                     <option value="On the Way">On the Way</option>
-                                    <option value="Delevered">Delevered</option>
+                                    <option value="Delivered">Delivered</option>
                                     <option value="On Hold">On Hold</option>
                                     <option value="Rejected">Rejected</option>
                                 </select>
@@ -689,7 +689,7 @@
                             // Cache the data
                             ordersCache = orders;
                             lastFetchTime = currentTime;
-                            const receivedOrders = orders.filter(order => order.order_status === 'Delevered');
+                            const receivedOrders = orders.filter(order => order.order_status === 'Delivered');
                             populateTable(receivedOrders);
 
                         } catch (error) {
