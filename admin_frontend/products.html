@@ -30,39 +30,45 @@
     }
 
     .sidebar-submenu {
-    padding-left: 40px; /* indent submenu */
-    list-style-type: disc; /* bullet points */
-  }
-  .sidebar-submenu li {
-    padding: 5px 0;
-  }
-  .sidebar-submenu li a {
-    color: #000000; /* submenu link color */
-    text-decoration: none;
-  }
+      padding-left: 40px;
+      /* indent submenu */
+      list-style-type: disc;
+      /* bullet points */
+    }
+
+    .sidebar-submenu li {
+      padding: 5px 0;
+    }
+
+    .sidebar-submenu li a {
+      color: #000000;
+      /* submenu link color */
+      text-decoration: none;
+    }
 
 
-  .nav-link.active,
-.nav-link:hover {
-  background-color: #f0f0f0;
-  color: #000;
-  border-radius: 8px;
-  font-weight: 600;
-}
+    .nav-link.active,
+    .nav-link:hover {
+      background-color: #f0f0f0;
+      color: #000;
+      border-radius: 8px;
+      font-weight: 600;
+    }
 
-.sidebar-submenu .nav-link.active {
-  background-color: #e0e0e0;
-}
+    .sidebar-submenu .nav-link.active {
+      background-color: #e0e0e0;
+    }
 
 
-/* for dropdown arrow reverse */
-.toggle-arrow {
-  transition: transform 0.3s ease;
-}
+    /* for dropdown arrow reverse */
+    .toggle-arrow {
+      transition: transform 0.3s ease;
+    }
 
-.nav-link[aria-expanded="true"] .toggle-arrow {
-  transform: rotate(180deg);
-}
+    .nav-link[aria-expanded="true"] .toggle-arrow {
+      transform: rotate(180deg);
+    }
+
     .left-sidebar {
       width: 260px;
       height: 100vh;
@@ -71,12 +77,14 @@
       overflow-y: auto;
       border-right: 1px solid #ddd;
     }
+
     .section-title {
       padding: 10px 20px;
       font-weight: bold;
       font-size: 12px;
       color: #6c757d;
     }
+
     .nav-link {
       display: block;
       padding: 10px 20px;
@@ -84,9 +92,11 @@
       text-decoration: none;
       transition: all 0.2s ease;
     }
+
     .nav-link:hover {
       background-color: #f0f0f0;
     }
+
     .nav-link.active {
       background-color: #000;
       color: #fff !important;
@@ -94,6 +104,7 @@
       border-radius: 8px;
       position: relative;
     }
+
     .nav-link.active::before {
       content: '';
       position: absolute;
@@ -105,14 +116,17 @@
       background-color: #8FC208;
       border-radius: 50%;
     }
+
     .sidebar-submenu {
       padding-left: 30px;
       list-style: none;
     }
+
     .sidebar-submenu .nav-link {
       font-size: 14px;
       padding: 6px 20px;
     }
+
     .body-wrapper {
       margin-left: 260px;
       padding: 30px;
@@ -120,45 +134,41 @@
 
 
     .sidebar-submenu {
-  display: none;
-  list-style: none;
-  padding-left: 20px;
-  transition: all 0.3s ease;
-}
+      display: none;
+      list-style: none;
+      padding-left: 20px;
+      transition: all 0.3s ease;
+    }
 
-.sidebar-submenu.show {
-  display: block;
-}
+    .sidebar-submenu.show {
+      display: block;
+    }
 
-.rotate-icon {
-  transition: transform 0.3s ease;
-}
+    .rotate-icon {
+      transition: transform 0.3s ease;
+    }
 
-.rotate-icon.rotate {
-  transform: rotate(180deg);
-}
-
-
-
-  
+    .rotate-icon.rotate {
+      transform: rotate(180deg);
+    }
   </style>
   <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const currentPath = window.location.pathname.split("/").pop();
-          const navLinks = document.querySelectorAll(".left-sidebar .nav-link");
-    
-          navLinks.forEach((link) => {
-            const href = link.getAttribute("href");
-            if (href && href.endsWith(".html") && href === currentPath) {
-              link.classList.add("active");
-              const parentCollapse = link.closest(".collapse");
-              if (parentCollapse) {
-                new bootstrap.Collapse(parentCollapse, { toggle: false }).show();
-              }
-            }
-          });
-        });
-      </script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const currentPath = window.location.pathname.split("/").pop();
+      const navLinks = document.querySelectorAll(".left-sidebar .nav-link");
+
+      navLinks.forEach((link) => {
+        const href = link.getAttribute("href");
+        if (href && href.endsWith(".html") && href === currentPath) {
+          link.classList.add("active");
+          const parentCollapse = link.closest(".collapse");
+          if (parentCollapse) {
+            new bootstrap.Collapse(parentCollapse, { toggle: false }).show();
+          }
+        }
+      });
+    });
+  </script>
   <script>
     ////(function() {
     //     let(function() {
@@ -190,126 +200,151 @@
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
-      <!-- Sidebar Start -->
+    <!-- Sidebar Start -->
     <aside class="left-sidebar">
-        <div class="logo-img text-center p-3">
-          <a href="index.html">
-            <img src="./assets/images/logos/logo1.svg" width="180" alt="Logo" />
+      <div class="logo-img text-center p-3">
+        <a href="index.html">
+          <img src="./assets/images/logos/logo1.svg" width="180" alt="Logo" />
+        </a>
+      </div>
+      <ul class="nav flex-column">
+        <!-- HOME -->
+        <li class="section-title">HOME</li>
+        <li class="nav-item"><a class="nav-link" href="index.html"><i class="ti ti-layout-dashboard"></i> Dashboard</a>
+        </li>
+
+        <!-- PRODUCTS & STOCK -->
+        <li class="section-title">PRODUCTS & STOCK</li>
+        <li class="nav-item"><a class="nav-link" href="products.html"><i class="fas fa-box"></i> Products</a></li>
+        <li class="nav-item">
+          <a href="javascript:void(0);"
+            class="nav-link d-flex justify-content-between align-items-center purchases-toggle-custom">
+            <span><i class="fas fa-shopping-cart me-1"></i> Purchases</span>
+            <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
           </a>
-        </div>
-        <ul class="nav flex-column">
-          <!-- HOME -->
-          <li class="section-title">HOME</li>
-          <li class="nav-item"><a class="nav-link" href="index.html"><i class="ti ti-layout-dashboard"></i> Dashboard</a></li>
-      
-          <!-- PRODUCTS & STOCK -->
-          <li class="section-title">PRODUCTS & STOCK</li>
-          <li class="nav-item"><a class="nav-link" href="products.html"><i class="fas fa-box"></i> Products</a></li>
-         <li class="nav-item">
-  <a href="javascript:void(0);" class="nav-link d-flex justify-content-between align-items-center purchases-toggle-custom">
-    <span><i class="fas fa-shopping-cart me-1"></i> Purchases</span>
-    <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
-  </a>
 
-  <ul class="sidebar-submenu" id="purchaseMenuCustom">
-    <li><a class="nav-link" href="purchases.html">List Purchase</a></li>
-    <li><a class="nav-link" href="add-purchase.html">Add Purchase</a></li>
-    <li><a class="nav-link" href="return-purchase.html">Purchase Return</a></li>
-  </ul>
-</li>
-          <li class="nav-item"><a class="nav-link" href="damages.html"><i class="fas fa-exclamation-circle"></i> Damages</a></li>
-          <li class="nav-item"><a class="nav-link" href="stock.html"><i class="fas fa-archive"></i> Stock</a></li>
-      
-          <!-- POS & ORDERS -->
-          <li class="section-title">POS & ORDERS</li>
-          <li class="nav-item"><a class="nav-link" href="pos.html"><i class="fas fa-cash-register"></i> POS</a></li>
-          <li class="nav-item"><a class="nav-link" href="pos-orders.html"><i class="fas fa-receipt"></i> POS Orders</a></li>
-          
-                <li class="nav-item">
-  <a 
-    href="javascript:void(0);" 
-    class="nav-link d-flex justify-content-between align-items-center orders-toggle" 
-  >
-    <span><i class="fas fa-shopping-basket me-1"></i> Orders</span>
-    <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
-  </a>
+          <ul class="sidebar-submenu" id="purchaseMenuCustom">
+            <li><a class="nav-link" href="purchases.html">List Purchase</a></li>
+            <li><a class="nav-link" href="add-purchase.html">Add Purchase</a></li>
+            <li><a class="nav-link" href="return-purchase.html">Purchase Return</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="damages.html"><i class="fas fa-exclamation-circle"></i>
+            Damages</a></li>
+        <li class="nav-item"><a class="nav-link" href="stock.html"><i class="fas fa-archive"></i> Stock</a></li>
 
-    <ul class="sidebar-submenu" id="ordersMenu">
-    <li><a class="nav-link" href="online-orders.html">Online Orders</a></li>
-    <li><a class="nav-link" href="received_onlineOrders.html">Received Orders</a></li>
-    <li><a class="nav-link" href="inprogress_onlineOrders.html">Inprogress Orders</a></li>
-    <li><a class="nav-link" href="readyForShipment_onlineOrders.html">Ready for Shipment</a></li>
-    <li><a class="nav-link" href="ontheWay_onlineOrders.html">On the Way</a></li>
-    <li><a class="nav-link" href="delevered_onlineOrders.html">Delivered</a></li>
-    <li><a class="nav-link" href="onhold_onlineOrders.html">On Hold</a></li>
-    <li><a class="nav-link" href="rejected_onlineOrders.html">Rejected</a></li>
-  </ul>
-</li>
+        <!-- POS & ORDERS -->
+        <li class="section-title">POS & ORDERS</li>
+        <li class="nav-item"><a class="nav-link" href="pos.html"><i class="fas fa-cash-register"></i> POS</a></li>
+        <li class="nav-item"><a class="nav-link" href="pos-orders.html"><i class="fas fa-receipt"></i> POS Orders</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="javascript:void(0);"
+            class="nav-link d-flex justify-content-between align-items-center orders-toggle">
+            <span><i class="fas fa-shopping-basket me-1"></i> Orders</span>
+            <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
+          </a>
+
+          <ul class="sidebar-submenu" id="ordersMenu">
+            <li><a class="nav-link" href="online-orders.html">Online Orders</a></li>
+            <li><a class="nav-link" href="received_onlineOrders.html">Received Orders</a></li>
+            <li><a class="nav-link" href="inprogress_onlineOrders.html">Inprogress Orders</a></li>
+            <li><a class="nav-link" href="readyForShipment_onlineOrders.html">Ready for Shipment</a></li>
+            <li><a class="nav-link" href="ontheWay_onlineOrders.html">On the Way</a></li>
+            <li><a class="nav-link" href="delevered_onlineOrders.html">Delivered</a></li>
+            <li><a class="nav-link" href="onhold_onlineOrders.html">On Hold</a></li>
+            <li><a class="nav-link" href="rejected_onlineOrders.html">Rejected</a></li>
+          </ul>
+        </li>
 
 
 
-      
-          <!-- PROMO -->
-          <li class="section-title">PROMO</li>
-          <li class="nav-item"><a class="nav-link" href="coupons.html"><i class="fas fa-tags"></i> Coupons</a></li>
-          <li class="nav-item"><a class="nav-link" href="promotions.html"><i class="fas fa-bullhorn"></i> Promotions</a></li>
-          <li class="nav-item"><a class="nav-link" href="product-sections.html"><i class="fas fa-cube"></i> Product Sections</a></li>
-      
-          <!-- COMMUNICATIONS -->
-          <li class="section-title">COMMUNICATIONS</li>
-          <li class="nav-item"><a class="nav-link" href="push-notifications.html"><i class="fas fa-bell"></i> Push Notifications</a></li>
-          <li class="nav-item"><a class="nav-link" href="subscribers.html"><i class="fas fa-users"></i> Subscribers</a></li>
-      
-          <!-- USERS -->
-          <li class="section-title">USERS</li>
-          <li class="nav-item"><a class="nav-link" href="admin.html"><i class="fas fa-user"></i> Administrators</a></li>
-          <li class="nav-item"><a class="nav-link" href="customer.html"><i class="fas fa-users"></i> Customers</a></li>
-          <li class="nav-item"><a class="nav-link" href="employee.html"><i class="fas fa-user-tie"></i> Employees</a></li>
-      
-          <!-- ACCOUNTS -->
-          <li class="section-title">ACCOUNTS</li>
-          <li class="nav-item"><a class="nav-link" href="transactions.html"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
-      
-          <!-- REPORTS -->
-          <li class="section-title">REPORTS</li>
-          <li class="nav-item"><a class="nav-link" href="sales-report.html"><i class="fas fa-chart-line"></i> Sales Report</a></li>
-          <li class="nav-item"><a class="nav-link" href="products-report.html"><i class="fas fa-file-alt"></i> Products Report</a></li>
-          <li class="nav-item"><a class="nav-link" href="credit-balance-report.html"><i class="fas fa-credit-card"></i> Credit Balance Report</a></li>
-      
-          <!-- SETUP -->
-          <li class="section-title">SETUP</li>
-          <li class="nav-item"><a class="nav-link" href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
-          <li class="nav-item"><a class="nav-link" href="site.html"><i class="fas fa-globe"></i> Site</a></li>
-          <li class="nav-item"><a class="nav-link" href="mail.html"><i class="fas fa-envelope"></i> Mail</a></li>
-          <li class="nav-item"><a class="nav-link" href="location-setup.html"><i class="fas fa-map-marker-alt"></i> Location Setup</a></li>
-          <li class="nav-item"><a class="nav-link" href="shipping-setup.html"><i class="fas fa-truck"></i> Shipping Setup</a></li>
-          <li class="nav-item"><a class="nav-link" href="otp.html"><i class="fas fa-lock"></i> OTP</a></li>
-          <li class="nav-item"><a class="nav-link" href="notification.html"><i class="fas fa-bell"></i> Notification</a></li>
-          <li class="nav-item"><a class="nav-link" href="notification-alert.html"><i class="fas fa-bell"></i> Notification Alert</a></li>
-          <li class="nav-item"><a class="nav-link" href="social-media.html"><i class="fas fa-share-alt"></i> Social Media</a></li>
-          <li class="nav-item"><a class="nav-link" href="cookies.html"><i class="fas fa-cookie-bite"></i> Cookies</a></li>
-          <li class="nav-item"><a class="nav-link" href="analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
-          <li class="nav-item"><a class="nav-link" href="theme.html"><i class="fas fa-paint-brush"></i> Theme</a></li>
-          <li class="nav-item"><a class="nav-link" href="sliders.html"><i class="fas fa-sliders-h"></i> Sliders</a></li>
-          <li class="nav-item"><a class="nav-link" href="currencies.html"><i class="fas fa-money-bill-wave"></i> Currencies</a></li>
-          <li class="nav-item"><a class="nav-link" href="product-categories.html"><i class="fas fa-tags"></i> Product Categories</a></li>
-          <li class="nav-item"><a class="nav-link" href="product-attributes.html"><i class="fas fa-cube"></i> Product Attributes</a></li>
-          <li class="nav-item"><a class="nav-link" href="product-brands.html"><i class="fas fa-tag"></i> Product Brands</a></li>
-          <li class="nav-item"><a class="nav-link" href="supplier.html"><i class="fas fa-industry"></i> Suppliers</a></li>
-          <li class="nav-item"><a class="nav-link" href="outlets.html"><i class="fas fa-store"></i> Outlets</a></li>
-          <li class="nav-item"><a class="nav-link" href="benefits.html"><i class="fas fa-gift"></i> Benefits</a></li>
-          <li class="nav-item"><a class="nav-link" href="units.html"><i class="fas fa-balance-scale"></i> Units</a></li>
-          <li class="nav-item"><a class="nav-link" href="taxes.html"><i class="fas fa-percent"></i> Taxes</a></li>
-          <li class="nav-item"><a class="nav-link" href="page.html"><i class="fas fa-file-alt"></i> Pages</a></li>
-          <li class="nav-item"><a class="nav-link" href="role & permissions.html"><i class="fas fa-user-shield"></i> Role & Permissions</a></li>
-          <li class="nav-item"><a class="nav-link" href="languages-list.html"><i class="fas fa-globe"></i> Languages</a></li>
-          <li class="nav-item"><a class="nav-link" href="sms-gateway.html"><i class="fas fa-comments"></i> SMS Gateway</a></li>
-          <li class="nav-item"><a class="nav-link" href="payment-gateway.html"><i class="fas fa-credit-card"></i> Payment Gateway</a></li>
-          <li class="nav-item"><a class="nav-link" href="license.html"><i class="fas fa-file-contract"></i> License</a></li>
-        </ul>
-      </aside>
-      
-      <!--  Sidebar End -->
+
+        <!-- PROMO -->
+        <li class="section-title">PROMO</li>
+        <li class="nav-item"><a class="nav-link" href="coupons.html"><i class="fas fa-tags"></i> Coupons</a></li>
+        <li class="nav-item"><a class="nav-link" href="promotions.html"><i class="fas fa-bullhorn"></i> Promotions</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="product-sections.html"><i class="fas fa-cube"></i> Product
+            Sections</a></li>
+
+        <!-- COMMUNICATIONS -->
+        <li class="section-title">COMMUNICATIONS</li>
+        <li class="nav-item"><a class="nav-link" href="push-notifications.html"><i class="fas fa-bell"></i> Push
+            Notifications</a></li>
+        <li class="nav-item"><a class="nav-link" href="subscribers.html"><i class="fas fa-users"></i> Subscribers</a>
+        </li>
+
+        <!-- USERS -->
+        <li class="section-title">USERS</li>
+        <li class="nav-item"><a class="nav-link" href="admin.html"><i class="fas fa-user"></i> Administrators</a></li>
+        <li class="nav-item"><a class="nav-link" href="customer.html"><i class="fas fa-users"></i> Customers</a></li>
+        <li class="nav-item"><a class="nav-link" href="employee.html"><i class="fas fa-user-tie"></i> Employees</a></li>
+
+        <!-- ACCOUNTS -->
+        <li class="section-title">ACCOUNTS</li>
+        <li class="nav-item"><a class="nav-link" href="transactions.html"><i class="fas fa-exchange-alt"></i>
+            Transactions</a></li>
+
+        <!-- REPORTS -->
+        <li class="section-title">REPORTS</li>
+        <li class="nav-item"><a class="nav-link" href="sales-report.html"><i class="fas fa-chart-line"></i> Sales
+            Report</a></li>
+        <li class="nav-item"><a class="nav-link" href="products-report.html"><i class="fas fa-file-alt"></i> Products
+            Report</a></li>
+        <li class="nav-item"><a class="nav-link" href="credit-balance-report.html"><i class="fas fa-credit-card"></i>
+            Credit Balance Report</a></li>
+
+        <!-- SETUP -->
+        <li class="section-title">SETUP</li>
+        <li class="nav-item"><a class="nav-link" href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+        <li class="nav-item"><a class="nav-link" href="site.html"><i class="fas fa-globe"></i> Site</a></li>
+        <li class="nav-item"><a class="nav-link" href="mail.html"><i class="fas fa-envelope"></i> Mail</a></li>
+        <li class="nav-item"><a class="nav-link" href="location-setup.html"><i class="fas fa-map-marker-alt"></i>
+            Location Setup</a></li>
+        <li class="nav-item"><a class="nav-link" href="shipping-setup.html"><i class="fas fa-truck"></i> Shipping
+            Setup</a></li>
+        <li class="nav-item"><a class="nav-link" href="otp.html"><i class="fas fa-lock"></i> OTP</a></li>
+        <li class="nav-item"><a class="nav-link" href="notification.html"><i class="fas fa-bell"></i> Notification</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="notification-alert.html"><i class="fas fa-bell"></i> Notification
+            Alert</a></li>
+        <li class="nav-item"><a class="nav-link" href="social-media.html"><i class="fas fa-share-alt"></i> Social
+            Media</a></li>
+        <li class="nav-item"><a class="nav-link" href="cookies.html"><i class="fas fa-cookie-bite"></i> Cookies</a></li>
+        <li class="nav-item"><a class="nav-link" href="analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="theme.html"><i class="fas fa-paint-brush"></i> Theme</a></li>
+        <li class="nav-item"><a class="nav-link" href="sliders.html"><i class="fas fa-sliders-h"></i> Sliders</a></li>
+        <li class="nav-item"><a class="nav-link" href="currencies.html"><i class="fas fa-money-bill-wave"></i>
+            Currencies</a></li>
+        <li class="nav-item"><a class="nav-link" href="product-categories.html"><i class="fas fa-tags"></i> Product
+            Categories</a></li>
+        <li class="nav-item"><a class="nav-link" href="product-attributes.html"><i class="fas fa-cube"></i> Product
+            Attributes</a></li>
+        <li class="nav-item"><a class="nav-link" href="product-brands.html"><i class="fas fa-tag"></i> Product
+            Brands</a></li>
+        <li class="nav-item"><a class="nav-link" href="supplier.html"><i class="fas fa-industry"></i> Suppliers</a></li>
+        <li class="nav-item"><a class="nav-link" href="outlets.html"><i class="fas fa-store"></i> Outlets</a></li>
+        <li class="nav-item"><a class="nav-link" href="benefits.html"><i class="fas fa-gift"></i> Benefits</a></li>
+        <li class="nav-item"><a class="nav-link" href="units.html"><i class="fas fa-balance-scale"></i> Units</a></li>
+        <li class="nav-item"><a class="nav-link" href="taxes.html"><i class="fas fa-percent"></i> Taxes</a></li>
+        <li class="nav-item"><a class="nav-link" href="page.html"><i class="fas fa-file-alt"></i> Pages</a></li>
+        <li class="nav-item"><a class="nav-link" href="role & permissions.html"><i class="fas fa-user-shield"></i> Role
+            & Permissions</a></li>
+        <li class="nav-item"><a class="nav-link" href="languages-list.html"><i class="fas fa-globe"></i> Languages</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="sms-gateway.html"><i class="fas fa-comments"></i> SMS Gateway</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="payment-gateway.html"><i class="fas fa-credit-card"></i> Payment
+            Gateway</a></li>
+        <li class="nav-item"><a class="nav-link" href="license.html"><i class="fas fa-file-contract"></i> License</a>
+        </li>
+      </ul>
+    </aside>
+
+    <!--  Sidebar End -->
 
     <!--  Main wrapper -->
     <div class="body-wrapper">
@@ -859,6 +894,27 @@
                             </select>
                           </div>
                         </div>
+
+
+
+
+                        <div class="row mb-3">
+                          <div class="col-md-6">
+                            <input type="file" id="update_image1" name="images" class="form-control" accept="image/*">
+                          </div>
+                          <div class="col-md-6">
+                            <input type="file" id="update_image2" name="images" class="form-control" accept="image/*">
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <div class="col-md-6">
+                            <input type="file" id="update_image3" name="images" class="form-control" accept="image/*">
+                          </div>
+                          <div class="col-md-6">
+                            <input type="file" id="update_image4" name="images" class="form-control" accept="image/*">
+                          </div>
+                        </div>
+
                         <div class="mb-3">
                           <label class="form-label">Status:</label>
                           <div>
@@ -1000,21 +1056,21 @@
         <script src="./apiConfig/apiConfig.js"></script>
         <script>
           function truncateWords(text, wordLimit) {
-  if (!text) return '';
-  const words = text.trim().split(/\s+/);
-  return words.length > wordLimit ? words.slice(0, wordLimit).join(" ") + "..." : text;
-}
+            if (!text) return '';
+            const words = text.trim().split(/\s+/);
+            return words.length > wordLimit ? words.slice(0, wordLimit).join(" ") + "..." : text;
+          }
 
-function toggleFullName(element) {
-  const fullName = element.getAttribute("data-full-name");
-  const currentText = element.textContent;
+          function toggleFullName(element) {
+            const fullName = element.getAttribute("data-full-name");
+            const currentText = element.textContent;
 
-  if (currentText.endsWith("...")) {
-    element.textContent = fullName;
-  } else {
-    element.textContent = truncateWords(fullName, 3);
-  }
-}
+            if (currentText.endsWith("...")) {
+              element.textContent = fullName;
+            } else {
+              element.textContent = truncateWords(fullName, 3);
+            }
+          }
 
         </script>
         <script>
@@ -1317,7 +1373,7 @@ function toggleFullName(element) {
             }
           }
 
-        
+
 
           // Initialize event listener
           async function loadCategorySpecifications() {
@@ -1422,7 +1478,7 @@ function toggleFullName(element) {
 
           });
 
-        
+
           async function fetchProducts() {
             const token = localStorage.getItem('token') || 'your_default_token'; // Replace with actual token logic
 
@@ -1471,7 +1527,7 @@ function toggleFullName(element) {
               console.error('Error fetching products:', error);
             }
           }
-          
+
           async function populateCategoryAndBrandSelects() {
             const token = localStorage.getItem('token');
 
@@ -1587,53 +1643,109 @@ function toggleFullName(element) {
               return;
             }
             // Prepare the updated product data
-            const updatedData = {
-              name: document.getElementById('update_name').value,
-              slug: document.getElementById('update_slug').value,
-              sku: document.getElementById('update_sku').value,
-              category: categoryId, // Category ID
-              barcode: document.getElementById('update_barcode').value,
-              buying_price: document.getElementById('update_buying_price').value,
-              selling_price: document.getElementById('update_selling_price').value,
-              tax: document.getElementById('update_tax').value,
-              brand: brandId, // Brand ID instead of name
-              status: document.querySelector('input[name="update_status"]:checked').value,
-              can_purchasable: document.querySelector('input[name="update_can_purchasable"]:checked').value,
-              show_stock_out: document.querySelector('input[name="update_show_stock_out"]:checked').value,
-              refundable: document.querySelector('input[name="update_refundable"]:checked').value,
-              max_purchase_quantity: document.getElementById('update_max_purchase_quantity').value,
-              low_stock_warning: document.getElementById('update_low_stock_warning').value,
-              unit: document.getElementById('update_unit').value,
-              weight: document.getElementById('update_weight').value,
-              tags: document.getElementById('update_tags').value,
-              short_description: document.getElementById('update_short_description').value,
-              description: document.getElementById('update_description').value,
-            };
+          //   const updatedData = {
+          //     name: document.getElementById('update_name').value,
+          //     slug: document.getElementById('update_slug').value,
+          //     sku: document.getElementById('update_sku').value,
+          //     category: categoryId, // Category ID
+          //     barcode: document.getElementById('update_barcode').value,
+          //     buying_price: document.getElementById('update_buying_price').value,
+          //     selling_price: document.getElementById('update_selling_price').value,
+          //     tax: document.getElementById('update_tax').value,
+          //     brand: brandId, // Brand ID instead of name
+          //     status: document.querySelector('input[name="update_status"]:checked').value,
+          //     can_purchasable: document.querySelector('input[name="update_can_purchasable"]:checked').value,
+          //     show_stock_out: document.querySelector('input[name="update_show_stock_out"]:checked').value,
+          //     refundable: document.querySelector('input[name="update_refundable"]:checked').value,
+          //     max_purchase_quantity: document.getElementById('update_max_purchase_quantity').value,
+          //     low_stock_warning: document.getElementById('update_low_stock_warning').value,
+          //     unit: document.getElementById('update_unit').value,
+          //     weight: document.getElementById('update_weight').value,
+          //     tags: document.getElementById('update_tags').value,
+          //     short_description: document.getElementById('update_short_description').value,
+          //     description: document.getElementById('update_description').value,
+          //   };
 
-            try {
-              const response = await fetch(`${API_ADMINGRAB_URL}/api/products/${productId}`, {
-                method: 'PUT',
-                headers: {
-                  'Authorization': token,
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(updatedData),
-              });
+          //   try {
+          //     const response = await fetch(`${API_ADMINGRAB_URL}/api/products/${productId}`, {
+          //       method: 'PUT',
+          //       headers: {
+          //         'Authorization': token,
+          //         'Content-Type': 'application/json',
+          //       },
+          //       body: JSON.stringify(updatedData),
+          //     });
 
-              if (!response.ok) throw new Error('Failed to update product');
+          //     if (!response.ok) throw new Error('Failed to update product');
 
-              console.log('Product updated successfully');
-              showSuccessMessage('Product updated successfully');
+          //     console.log('Product updated successfully');
+          //     showSuccessMessage('Product updated successfully');
 
-              const modalElement = document.getElementById('updateProductModal');
-              const modalInstance = bootstrap.Modal.getInstance(modalElement);
-              modalInstance.hide();
+          //     const modalElement = document.getElementById('updateProductModal');
+          //     const modalInstance = bootstrap.Modal.getInstance(modalElement);
+          //     modalInstance.hide();
 
-              fetchProducts();
-            } catch (error) {
-              console.error('Error updating product:', error);
-              showErrorMessage('Error updating product');
-            }
+          //     fetchProducts();
+          //   } catch (error) {
+          //     console.error('Error updating product:', error);
+          //     showErrorMessage('Error updating product');
+          //   }
+          // }
+const formData = new FormData();
+formData.append('name', document.getElementById('update_name').value);
+formData.append('slug', document.getElementById('update_slug').value);
+formData.append('sku', document.getElementById('update_sku').value);
+formData.append('category', categoryId);
+formData.append('barcode', document.getElementById('update_barcode').value);
+formData.append('buying_price', document.getElementById('update_buying_price').value);
+formData.append('selling_price', document.getElementById('update_selling_price').value);
+formData.append('tax', document.getElementById('update_tax').value);
+formData.append('brand', brandId);
+formData.append('status', document.querySelector('input[name="update_status"]:checked').value);
+formData.append('can_purchasable', document.querySelector('input[name="update_can_purchasable"]:checked').value);
+formData.append('show_stock_out', document.querySelector('input[name="update_show_stock_out"]:checked').value);
+formData.append('refundable', document.querySelector('input[name="update_refundable"]:checked').value);
+formData.append('max_purchase_quantity', document.getElementById('update_max_purchase_quantity').value);
+formData.append('low_stock_warning', document.getElementById('update_low_stock_warning').value);
+formData.append('unit', document.getElementById('update_unit').value);
+formData.append('weight', document.getElementById('update_weight').value);
+formData.append('tags', document.getElementById('update_tags').value);
+formData.append('short_description', document.getElementById('update_short_description').value);
+formData.append('description', document.getElementById('update_description').value);
+
+// Append images
+for (let i = 1; i <= 4; i++) {
+    const fileInput = document.getElementById(`update_image${i}`);
+    if (fileInput?.files[0]) {
+        formData.append('images', fileInput.files[0]);
+    }
+}
+
+// Send the FormData
+try {
+    const response = await fetch(`${API_ADMINGRAB_URL}/api/products/${productId}`, {
+        method: 'PUT',
+        headers: {
+            'Authorization': token,
+            // No Content-Type — browser will handle it for FormData
+        },
+        body: formData,
+    });
+
+    if (!response.ok) throw new Error('Failed to update product');
+
+    console.log('Product updated successfully');
+    showSuccessMessage('Product updated successfully');
+
+    const modalElement = document.getElementById('updateProductModal');
+    const modalInstance = bootstrap.Modal.getInstance(modalElement);
+    modalInstance.hide();
+
+    fetchProducts();
+} catch (error) {
+    console.error('Error updating product:', error);
+    showErrorMessage('Error updating product');
+}
           }
 
           // Show the confirmation dialog
@@ -1917,7 +2029,7 @@ function toggleFullName(element) {
             // Removed: document.getElementById('dropdownSearch').classList.add('d-none');
           }
 
-         
+
           // Submit Product Form
           async function submitProductForm(event) {
             event.preventDefault();
@@ -2000,7 +2112,7 @@ function toggleFullName(element) {
             }
           }
 
-       
+
 
           // View Product Details
           async function showViewForm(productId) {
@@ -2122,7 +2234,7 @@ function toggleFullName(element) {
               });
             });
           });
-          
+
 
 
           document.getElementById('saveButton').addEventListener('click', async () => {
@@ -2182,58 +2294,58 @@ function toggleFullName(element) {
         </script>
 
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const currentFile = window.location.pathname.split("/").pop();
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            const currentFile = window.location.pathname.split("/").pop();
 
-    // Remove all active classes first
-    document.querySelectorAll(".nav-link").forEach(link => {
-      const href = link.getAttribute("href");
-      if (href && href.includes(currentFile)) {
-        link.classList.add("active");
+            // Remove all active classes first
+            document.querySelectorAll(".nav-link").forEach(link => {
+              const href = link.getAttribute("href");
+              if (href && href.includes(currentFile)) {
+                link.classList.add("active");
 
-        // If inside a collapse menu (like Orders or Purchases), open it
-        const parentCollapse = link.closest(".collapse");
-        if (parentCollapse) {
-          parentCollapse.classList.add("show");
-          const parentToggle = parentCollapse.previousElementSibling;
-          if (parentToggle && parentToggle.classList.contains("nav-link")) {
-            parentToggle.classList.add("active");
-          }
-        }
-      } else {
-        link.classList.remove("active");
-      }
-    });
-  });
-</script>
+                // If inside a collapse menu (like Orders or Purchases), open it
+                const parentCollapse = link.closest(".collapse");
+                if (parentCollapse) {
+                  parentCollapse.classList.add("show");
+                  const parentToggle = parentCollapse.previousElementSibling;
+                  if (parentToggle && parentToggle.classList.contains("nav-link")) {
+                    parentToggle.classList.add("active");
+                  }
+                }
+              } else {
+                link.classList.remove("active");
+              }
+            });
+          });
+        </script>
 
-<script src="https://unpkg.com/@phosphor-icons/web"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const toggle = document.querySelector('.orders-toggle');
-    const submenu = document.getElementById('ordersMenu');
-    const arrow = toggle.querySelector('.arrow-icon');
+        <script src="https://unpkg.com/@phosphor-icons/web"></script>
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.querySelector('.orders-toggle');
+            const submenu = document.getElementById('ordersMenu');
+            const arrow = toggle.querySelector('.arrow-icon');
 
-    toggle.addEventListener('click', () => {
-      submenu.classList.toggle('show');
-      arrow.classList.toggle('rotate');
-    });
-  });
-</script>
+            toggle.addEventListener('click', () => {
+              submenu.classList.toggle('show');
+              arrow.classList.toggle('rotate');
+            });
+          });
+        </script>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const purchasesToggle = document.querySelector('.purchases-toggle-custom');
-    const purchasesMenu = document.getElementById('purchaseMenuCustom');
-    const purchasesArrow = purchasesToggle.querySelector('.arrow-icon');
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            const purchasesToggle = document.querySelector('.purchases-toggle-custom');
+            const purchasesMenu = document.getElementById('purchaseMenuCustom');
+            const purchasesArrow = purchasesToggle.querySelector('.arrow-icon');
 
-    purchasesToggle.addEventListener('click', () => {
-      purchasesMenu.classList.toggle('show');
-      purchasesArrow.classList.toggle('rotate');
-    });
-  });
-</script>
+            purchasesToggle.addEventListener('click', () => {
+              purchasesMenu.classList.toggle('show');
+              purchasesArrow.classList.toggle('rotate');
+            });
+          });
+        </script>
 
 </body>
 
