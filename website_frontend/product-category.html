@@ -1990,7 +1990,7 @@
                 localStorage.setItem('cart', JSON.stringify(cart));
                 // Update the cart item count in localStorage
                 updateCartCount();
-                showSuccessMessage(`${product.name} added to cart.`);
+                showSuccessMessage(`Item added to cart.`);
             }
             function updateCartCount() {
                 const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -2502,7 +2502,7 @@
 
             function handleAddToCart(product) {
                 addToCart(product); // Add product to cart
-                window.location.href = 'cart'; // Navigate to cart
+                window.location.href = 'https://graba2z.netlify.app/cart'; // Navigate to cart
             }
 
 
