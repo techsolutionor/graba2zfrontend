@@ -553,7 +553,7 @@
 
         /* first dropdown */
         /* Custom Dropdown Styles */
-        /* .magnifier-lens {
+        .magnifier-lens {
             position: absolute;
             border: 2px solid #000;
             width: 150px;
@@ -564,7 +564,7 @@
             background-repeat: no-repeat;
             background-size: 200% 200%;
             z-index: 999;
-        } */
+        }
 
         .cross-button:hover {
             filter: invert(17%) sepia(97%) saturate(7472%) hue-rotate(357deg) brightness(98%) contrast(115%);
@@ -576,20 +576,19 @@
         }
 
         .magnifier-lens {
-    position: absolute;
-    border: 3px solid #000;
-    border-radius: 50%;
-    cursor: none;
-    width: 100px;
-    height: 100px;
-    visibility: hidden;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    pointer-events: none;
-    z-index: 9999;
-}
-
+            position: absolute;
+            border: 2px solid #000;
+            width: 200px;
+            /* Increased from 120px */
+            height: 200px;
+            border-radius: 50%;
+            pointer-events: none;
+            visibility: hidden;
+            background-repeat: no-repeat;
+            background-size: 300% 300%;
+            /* Adjust as needed */
+            z-index: 999;
+        }
 
         /* cart circle css start  */
         .cart-item-count {
@@ -1118,41 +1117,50 @@
 
                                 <!-- <div class="product-details__thumb flex-center h-100">
   <img id="specific-product-image" class="py-10"  style="cursor: zoom-in;" />
-</div> --><div class="product-details__thumb flex-center h-100 border rounded-8 mb-10"
-    style="min-width: 300px !important; min-height: 100% !important;">
-    <img id="specific-product-image" class="py-10" data-bs-toggle="modal"
-        data-bs-target="#imageModal" src="assets/images/white-placeholder.png"
-        style="cursor: zoom-in; min-width: 300px !important; min-height: 400px !important; border: 5px solid white;"
-        alt="Product Image">
-</div>
+</div> -->
+                                <div class="product-details__thumb flex-center h-100 border rounded-8 mb-10"
+                                    style="min-width: 300px !important; min-height: 100% !important;">
+                                    <img id="specific-product-image" class="py-10" data-bs-toggle="modal"
+                                        data-bs-target="#imageModal" src="assets/images/white-placeholder.png"
+                                        style="cursor: zoom-in; min-width: 300px !important; min-height: 400px !important; border: 5px solid white;"
+                                        alt="Product Image">
+                                </div>
+                                <!-- <div class="product-details__thumb flex-center h-100">
+  <img id="specific-product-image" src="your-image.jpg" class="py-10" style="cursor: zoom-in;" />
+</div> -->
+                                <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                        <div class="modal-content bg-transparent border-0">
 
-<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-transparent border-0">
-            <div class="position-relative d-inline-block mx-auto">
-                <img id="modal-product-image" src="" alt="Enlarged Product Image"
-                    class="img-fluid rounded-3" style="max-height: 80vh; width: auto;">
-                <button type="button" class="btn-close cross-button position-absolute"
-                    style="top: 10px; right: 10px; z-index: 10; filter: invert(1);"
-                    data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-        </div>
-    </div>
-</div>
+                                            <!-- Relative wrapper for positioning the button on the image -->
+                                            <div class="position-relative d-inline-block mx-auto">
 
-<div style="padding-bottom:20px;">
-    <div class="swiper mySwiper" style="width: 100%; max-width: 520px;">
-        <div class="swiper-wrapper" id="product-thumbnails">
-            <!-- Thumbnails will be added here dynamically -->
-        </div>
-        <div class="swiper-button-next"
-            style="background-color: #0c0c0b; height: 60px;width: 22px; border-radius: 5%;"></div>
-        <div class="swiper-button-prev"
-            style="background-color: #0c0c0b; height: 60px;width: 22px; border-radius: 5%;"></div>
-    </div>
-</div>
+                                                <!-- The image -->
+                                                <img id="modal-product-image" src="" alt="Enlarged Product Image"
+                                                    class="img-fluid rounded-3" style="max-height: 80vh; width: auto;">
 
-
+                                                <!-- Close button OVER the image, inside top-right corner -->
+                                                <button type="button" class="btn-close cross-button position-absolute"
+                                                    style="top: 10px; right: 10px; z-index: 10; filter: invert(1);"
+                                                    data-bs-dismiss="modal" aria-label="Close">
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom:20px;">
+                                    <div class="swiper mySwiper" style="width: 100%; max-width: 520px;">
+                                        <div class="swiper-wrapper" id="product-thumbnails">
+                                        </div>
+                                        <div class="swiper-button-next"
+                                            style="background-color: #0c0c0b; height: 60px;width: 22px; border-radius: 5%;">
+                                        </div>
+                                        <div class="swiper-button-prev"
+                                            style="background-color: #0c0c0b; height: 60px;width: 22px; border-radius: 5%;">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xl-7 p-6">
@@ -2294,61 +2302,77 @@ if (itemInCart) {
   </a>`;
 updateWishlistBadge();
 
-//                 // Main display image
-// const mainImage = document.getElementById('specific-product-image');
-// mainImage.src = cartImage;
-// mainImage.alt = 'Main Product Image';
+                // Main display image
+                const mainImage = document.getElementById('specific-product-image');
+                mainImage.src = cartImage;
+                mainImage.alt = 'Main Product Image';
+                const thumbnailsContainer = document.getElementById('product-thumbnails');
+                thumbnailsContainer.innerHTML = '';
+                imagePaths.forEach((imgPath, index) => {
+                    const fullPath = `${API_ADMINGRAB_URL}/${imgPath}`;
+                    const slide = document.createElement('div');
+                    slide.className = 'swiper-slide';
+                    slide.innerHTML = `
+    <div class="border border-gray-200 rounded p-2" style="width: 120px; height: 120px; cursor: pointer;">
+      <img src="${fullPath}" alt="image" style="width: 80%; height: 80%; object-fit: cover;" />
+    </div>
+  `;
+                    const modalImage = document.getElementById('modal-product-image');
 
-// const modalImage = document.getElementById('modal-product-image');
-// modalImage.src = cartImage;
+                    // Initial load
+                    mainImage.src = cartImage;
+                    mainImage.alt = 'Main Product Image';
+                    modalImage.src = cartImage;
 
-// const thumbnailsContainer = document.getElementById('product-thumbnails');
-// thumbnailsContainer.innerHTML = '';
+                    // On thumbnail click, update modal too
+                    imagePaths.forEach((imgPath, index) => {
+                        const fullPath = `${API_ADMINGRAB_URL}/${imgPath}`;
+                        const slide = document.createElement('div');
+                        slide.className = 'swiper-slide';
+                        slide.innerHTML = `
+    <div class="border border-gray-200 rounded p-2" style="width: 120px; height: 120px; cursor: pointer;">
+      <img src="${fullPath}" alt="image" style="width: 100%; height: 100%; object-fit: cover;" />
+    </div>
+  `;
+                        slide.querySelector('img').addEventListener('click', () => {
+                            mainImage.src = fullPath;
+                            mainImage.alt = `Product Image ${index + 1}`;
+                            modalImage.src = fullPath;
+                        });
 
-// imagePaths.forEach((imgPath, index) => {
-//     const fullPath = `${API_ADMINGRAB_URL}/${imgPath}`;
-//     const slide = document.createElement('div');
-//     slide.className = 'swiper-slide';
-//     slide.innerHTML = `
-//         <div class="border border-gray-200 rounded p-2" style="width: 120px; height: 120px; cursor: pointer;">
-//             <img src="${fullPath}" alt="image" style="width: 100%; height: 100%; object-fit: cover;" />
-//         </div>
-//     `;
+                        thumbnailsContainer.appendChild(slide);
+                    });
 
-//     slide.querySelector('img').addEventListener('click', () => {
-//         mainImage.src = fullPath;
-//         mainImage.alt = `Product Image ${index + 1}`;
-//         modalImage.src = fullPath;
-//     });
 
-//     thumbnailsContainer.appendChild(slide);
-// });
 
-// // Initialize Swiper (optionally destroy previous instance first)
-// if (window.thumbnailSwiper) {
-//     window.thumbnailSwiper.destroy(true, true);
-// }
+                    slide.querySelector('img').addEventListener('click', () => {
+                        mainImage.src = fullPath;
+                        mainImage.alt = `Product Image ${index + 1}`;
+                    });
 
-// window.thumbnailSwiper = new Swiper('.mySwiper', {
-//     slidesPerView: 3,
-//     spaceBetween: 13,
-//     navigation: {
-//         nextEl: '.swiper-button-next',
-//         prevEl: '.swiper-button-prev'
-//     },
-//     breakpoints: {
-//         0: {
-//             slidesPerView: 3
-//         },
-//         640: {
-//             slidesPerView: 3
-//         },
-//         1024: {
-//             slidesPerView: 3
-//         }
-//     }
-// });
+                    thumbnailsContainer.appendChild(slide);
+                });
 
+                // Init Swiper
+                const swiper = new Swiper('.mySwiper', {
+                    slidesPerView: 3,
+                    spaceBetween: 13,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev'
+                    },
+                    breakpoints: {
+                        0: {
+                            slidesPerView: 3
+                        },
+                        640: {
+                            slidesPerView: 3
+                        },
+                        1024: {
+                            slidesPerView: 3
+                        }
+                    }
+                });
                 // === ✅ Product Specifications Table ===
                 const specifications = JSON.parse(product.specifications || "[]");
                 const details = JSON.parse(product.details || "[]");
@@ -2679,153 +2703,46 @@ function changeQty(change) {
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-    // Example: your imagePaths from backend
-    console.log('imagePaths:', imagePaths);
-    console.log('API_ADMINGRAB_URL:', API_ADMINGRAB_URL);
+            const img = document.getElementById("specific-product-image");
 
-    const mainImage = document.getElementById('specific-product-image');
-    const modalImage = document.getElementById('modal-product-image');
-    const thumbnailsContainer = document.getElementById('product-thumbnails');
+            // Create magnifier lens
+            const lens = document.createElement("div");
+            lens.className = "magnifier-lens";
+            document.body.appendChild(lens);
 
-    // Set main image (first image)
-    if (imagePaths.length > 0) {
-        const firstFullPath = `${API_ADMINGRAB_URL}/${imagePaths[0]}`;
-        mainImage.src = firstFullPath;
-        mainImage.alt = 'Main Product Image';
-        modalImage.src = firstFullPath;
-    }
+            img.addEventListener("mouseenter", function (e) {
+                lens.style.visibility = "visible";
+                lens.style.backgroundImage = `url('${img.src}')`;
+            });
 
-    // Clear thumbnails first
-    thumbnailsContainer.innerHTML = '';
+            img.addEventListener("mousemove", function (e) {
+                moveLens(e);
+            });
 
-    // Populate thumbnails
-    imagePaths.forEach((imgPath, index) => {
-        const fullPath = `${API_ADMINGRAB_URL}/${imgPath}`;
-        const slide = document.createElement('div');
-        slide.className = 'swiper-slide';
-        slide.innerHTML = `
-            <div class="border border-gray-200 rounded p-2" style="width: 120px; height: 120px; cursor: pointer;">
-                <img src="${fullPath}" alt="Thumbnail ${index + 1}" style="width: 100%; height: 100%; object-fit: cover;" />
-            </div>
-        `;
+            img.addEventListener("mouseleave", function () {
+                lens.style.visibility = "hidden";
+            });
 
-        slide.querySelector('img').addEventListener('click', () => {
-            mainImage.src = fullPath;
-            mainImage.alt = `Product Image ${index + 1}`;
-            modalImage.src = fullPath;
-        });
+            function moveLens(e) {
+                const rect = img.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
 
-        thumbnailsContainer.appendChild(slide);
-    });
+                const lensSize = lens.offsetWidth / 2;
 
-    // Initialize Swiper (destroy previous if needed)
-    if (window.thumbnailSwiper) {
-        window.thumbnailSwiper.destroy(true, true);
-    }
+                let posX = e.pageX - lensSize;
+                let posY = e.pageY - lensSize;
 
-    window.thumbnailSwiper = new Swiper('.mySwiper', {
-        slidesPerView: 3,
-        spaceBetween: 13,
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-        },
-        breakpoints: {
-            0: {
-                slidesPerView: 3
-            },
-            640: {
-                slidesPerView: 3
-            },
-            1024: {
-                slidesPerView: 3
+                lens.style.left = `${posX}px`;
+                lens.style.top = `${posY}px`;
+
+                const bgX = (x / img.width) * 100;
+                const bgY = (y / img.height) * 100;
+
+                lens.style.backgroundSize = `${img.width * 1.5}px ${img.height * 1.5}px`;
+                lens.style.backgroundPosition = `${bgX}% ${bgY}%`;
             }
-        }
-    });
-
-    // === Magnifier Effect ===
-    const img = mainImage;
-
-    // Create magnifier lens
-    const lens = document.createElement("div");
-    lens.className = "magnifier-lens";
-    document.body.appendChild(lens);
-
-    img.addEventListener("mouseenter", function (e) {
-        lens.style.visibility = "visible";
-        lens.style.backgroundImage = `url('${img.src}')`;
-    });
-
-    img.addEventListener("mousemove", function (e) {
-        moveLens(e);
-    });
-
-    img.addEventListener("mouseleave", function () {
-        lens.style.visibility = "hidden";
-    });
-
-    function moveLens(e) {
-        const rect = img.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        const lensSize = lens.offsetWidth / 2;
-
-        let posX = e.pageX - lensSize;
-        let posY = e.pageY - lensSize;
-
-        lens.style.left = `${posX}px`;
-        lens.style.top = `${posY}px`;
-
-        const bgX = (x / img.width) * 100;
-        const bgY = (y / img.height) * 100;
-
-        lens.style.backgroundSize = `${img.width * 1.5}px ${img.height * 1.5}px`;
-        lens.style.backgroundPosition = `${bgX}% ${bgY}%`;
-    }
-});
-
-        // document.addEventListener("DOMContentLoaded", function () {
-        //     const img = document.getElementById("specific-product-image");
-
-        //     // Create magnifier lens
-        //     const lens = document.createElement("div");
-        //     lens.className = "magnifier-lens";
-        //     document.body.appendChild(lens);
-
-        //     img.addEventListener("mouseenter", function (e) {
-        //         lens.style.visibility = "visible";
-        //         lens.style.backgroundImage = `url('${img.src}')`;
-        //     });
-
-        //     img.addEventListener("mousemove", function (e) {
-        //         moveLens(e);
-        //     });
-
-        //     img.addEventListener("mouseleave", function () {
-        //         lens.style.visibility = "hidden";
-        //     });
-
-        //     function moveLens(e) {
-        //         const rect = img.getBoundingClientRect();
-        //         const x = e.clientX - rect.left;
-        //         const y = e.clientY - rect.top;
-
-        //         const lensSize = lens.offsetWidth / 2;
-
-        //         let posX = e.pageX - lensSize;
-        //         let posY = e.pageY - lensSize;
-
-        //         lens.style.left = `${posX}px`;
-        //         lens.style.top = `${posY}px`;
-
-        //         const bgX = (x / img.width) * 100;
-        //         const bgY = (y / img.height) * 100;
-
-        //         lens.style.backgroundSize = `${img.width * 1.5}px ${img.height * 1.5}px`;
-        //         lens.style.backgroundPosition = `${bgX}% ${bgY}%`;
-        //     }
-        // });
+        });
     </script>
     <script>
         function toggleSidebar() {
