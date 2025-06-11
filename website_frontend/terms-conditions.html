@@ -1583,7 +1583,7 @@
                 }
             }
         </script>
-        <script>
+        <!-- <script>
             document.addEventListener('DOMContentLoaded', async function () {
                 const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/product-categories';
 
@@ -1618,7 +1618,243 @@
                     return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
                 }
             });
-        </script>
+        </script> -->
+
+<!-- <script>
+document.addEventListener('DOMContentLoaded', async function () {
+    try {
+        // Load categories for header dropdown
+        await loadCategoriesForHeader();
+        
+        // Load categories for footer
+        await loadCategoriesForFooter();
+    } catch (err) {
+        console.error('Failed to load categories:', err);
+    }
+});
+
+async function loadCategoriesForHeader() {
+    const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/product-categories';
+    const response = await fetch(API_URL);
+    const data = await response.json();
+    const categories = data.categories || [];
+    
+    // Filter only parent categories
+    const parentCategories = categories.filter(cat => cat.parent_category === null);
+    
+    // Render main menu
+    renderMainMenu(parentCategories);
+    
+    // Render category dropdown
+    renderCategoryDropdown(parentCategories);
+}
+
+async function loadCategoriesForFooter() {
+    const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/product-categories';
+    const response = await fetch(API_URL);
+    const data = await response.json();
+    const categories = data.categories || [];
+    
+    // Filter only parent categories
+    const parentCategories = categories.filter(cat => cat.parent_category === null);
+    
+    // Render footer categories
+    renderFooterCategories(parentCategories);
+}
+
+function renderMainMenu(categories) {
+    const menuContainer = document.getElementById('mainMenu');
+    if (!menuContainer) return;
+    
+    menuContainer.innerHTML = categories.map(cat => `
+        <li class="on-hover-item nav-menu__item">
+            <a href="/product-category/${slugify(cat.name)}" class="nav-menu__link">${cat.name}</a>
+        </li>
+    `).join('');
+}
+
+function renderCategoryDropdown(categories) {
+    const dropdownContainer = document.getElementById('categoryDropdown');
+    if (!dropdownContainer) return;
+    
+    dropdownContainer.innerHTML = categories.map(cat => `
+        <li>
+            <a href="/product-category/${slugify(cat.name)}" 
+               class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                <span>${cat.name}</span>
+            </a>
+        </li>
+    `).join('');
+}
+
+function renderFooterCategories(categories) {
+    const topList = document.getElementById('top-categories');
+    const moreList = document.getElementById('more-categories');
+    
+    if (!topList || !moreList) return;
+    
+    topList.innerHTML = '';
+    moreList.innerHTML = '';
+    
+    categories.forEach((cat, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="/product-category/${slugify(cat.name)}">${cat.name}</a>`;
+        
+        if (index < 6) {
+            topList.appendChild(li);
+        } else {
+            moreList.appendChild(li);
+        }
+    });
+}
+
+function slugify(text) {
+    return text.toString().toLowerCase().trim()
+        .replace(/\s+/g, '-')
+        .replace(/[^\w\-]+/g, '')
+        .replace(/\-\-+/g, '-');
+}
+</script> -->
+<script>
+document.addEventListener('DOMContentLoaded', async function () {
+    try {
+        const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/product-categories';
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        const categories = data.categories || [];
+
+        // Organize categories into parent-child relationships
+        const organizedCategories = organizeCategories(categories);
+
+        // Render all category sections
+        renderMainMenu(organizedCategories);
+        renderCategoryDropdown(organizedCategories);
+        renderFooterCategories(organizedCategories.parentCategories);
+    } catch (err) {
+        console.error('Failed to load categories:', err);
+    }
+});
+
+// Organize categories into hierarchical structure
+function organizeCategories(categories) {
+    const result = {
+        parentCategories: [],
+        childCategories: {}
+    };
+
+    // First pass: identify parent categories
+    categories.forEach(category => {
+        if (!category.parent_category) {
+            result.parentCategories.push(category);
+            result.childCategories[category.id] = [];
+        }
+    });
+
+    // Second pass: assign child categories
+    categories.forEach(category => {
+        if (category.parent_category) {
+            const parentId = category.parent_category;
+            if (result.childCategories[parentId]) {
+                result.childCategories[parentId].push(category);
+            }
+        }
+    });
+
+    return result;
+}
+
+// Render main navigation menu
+function renderMainMenu(organizedCategories) {
+    const menuContainer = document.getElementById('mainMenu');
+    if (!menuContainer) return;
+
+    menuContainer.innerHTML = organizedCategories.parentCategories.map(parent => {
+        const hasChildren = organizedCategories.childCategories[parent.id]?.length > 0;
+        
+        return `
+            <li class="on-hover-item nav-menu__item ${hasChildren ? 'has-submenu' : ''}">
+                <a href="/product-category/${slugify(parent.name)}" class="nav-menu__link">${parent.name}</a>
+                ${hasChildren ? `
+                    <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                        ${organizedCategories.childCategories[parent.id].map(child => `
+                            <li class="common-dropdown__item nav-submenu__item">
+                                <a href="/product-category/${slugify(child.name)}" 
+                                   class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">
+                                    ${child.name}
+                                </a>
+                            </li>
+                        `).join('')}
+                    </ul>
+                ` : ''}
+            </li>
+        `;
+    }).join('');
+}
+
+// Render category dropdown with child categories
+function renderCategoryDropdown(organizedCategories) {
+    const dropdownContainer = document.getElementById('categoryDropdown');
+    if (!dropdownContainer) return;
+
+    dropdownContainer.innerHTML = organizedCategories.parentCategories.map(parent => {
+        const hasChildren = organizedCategories.childCategories[parent.id]?.length > 0;
+        
+        return `
+            <li class="${hasChildren ? 'has-submenus-submenu' : ''}">
+                <a href="/product-category/${slugify(parent.name)}" 
+                   class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                    <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                    <span>${parent.name}</span>
+                    ${hasChildren ? '<span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>' : ''}
+                </a>
+                ${hasChildren ? `
+                    <div class="submenus-submenu py-16">
+                        <h6 class="text-lg px-16 submenus-submenu__title">${parent.name}</h6>
+                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                            ${organizedCategories.childCategories[parent.id].map(child => `
+                                <li>
+                                    <a href="/product-category/${slugify(child.name)}">${child.name}</a>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                ` : ''}
+            </li>
+        `;
+    }).join('');
+}
+
+// Render footer categories (only parent categories)
+function renderFooterCategories(parentCategories) {
+    const topList = document.getElementById('top-categories');
+    const moreList = document.getElementById('more-categories');
+    
+    if (!topList || !moreList) return;
+    
+    topList.innerHTML = '';
+    moreList.innerHTML = '';
+    
+    parentCategories.forEach((cat, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="/product-category/${slugify(cat.name)}">${cat.name}</a>`;
+        
+        if (index < 6) {
+            topList.appendChild(li);
+        } else {
+            moreList.appendChild(li);
+        }
+    });
+}
+
+function slugify(text) {
+    return text.toString().toLowerCase().trim()
+        .replace(/\s+/g, '-')
+        .replace(/[^\w\-]+/g, '')
+        .replace(/\-\-+/g, '-');
+}
+</script>   
+
 </body>
 
 </html>
