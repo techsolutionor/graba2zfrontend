@@ -405,11 +405,11 @@
     <!--==================== Sidebar Overlay End ====================-->
 
     <!-- ==================== Scroll to Top End Here ==================== -->
-    <div class="progress-wrap">
+    <!-- <div class="progress-wrap">
         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
             <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
         </svg>
-    </div>
+    </div> -->
     <!-- ==================== Scroll to Top End Here ==================== -->
 
     <!-- ==================== Search Box Start Here ==================== -->
@@ -783,7 +783,7 @@
                     <li class="d-flex align-items-center">
                         <i class="ph ph-caret-right"></i>
                     </li>
-                    <li class="text-sm text-main-600">Shipping Address</li>
+                    <li class="text-sm text-main-600" >Shipping Address</li>
                 </ul>
             </div>
         </div>
@@ -792,17 +792,17 @@
     <div class="container mt-5">
         <!-- Step Indicator -->
         <div class="d-flex align-items-center mb-4">
-            <span id="step1" class="fw-bold border border-dark rounded-circle px-6 py-2 me-2">01</span>
-            <span class="fw-bold">Shipping Details</span>
-            <span class="mx-2">—</span>
-            <span id="step2" class="text-secondary border border-dark rounded-circle px-5 py-2 me-2">02</span>
-            <span class="text-secondary">Summary</span>
-            <span class="mx-2">—</span>
-            <span id="step3" class="text-secondary border border-dark rounded-circle px-5 py-2 me-2">03</span>
-            <span class="text-secondary">Payment Method</span>
+            <span id="step1" class="fw-bold border border-dark rounded-circle px-6 py-2 me-2" style="color: black !important;">01</span>
+            <span class="fw-bold" style="color: black !important;">Shipping Details</span>
+            <span class="mx-2" style="color: black !important;">—</span>
+            <span id="step2" class="text-secondary border border-dark rounded-circle px-5 py-2 me-2" style="color: black !important;">02</span>
+            <span class="text-secondary" style="color: black !important;">Summary</span>
+            <span class="mx-2" style="color: black !important;">—</span>
+            <span id="step3" class="text-secondary border border-dark rounded-circle px-5 py-2 me-2"style="color: black !important;">03</span>
+            <span class="text-secondary" style="color: black !important;">Payment Method</span>
         </div>
         <div class="mb-3">
-            <label class="form-label fw-bold">Guest ID</label>
+            <label class="form-label fw-bold" style="color: black !important;">Guest ID</label>
             <input type="text" id="guestId" class="form-control" readonly>
         </div>
         <div class="row">
@@ -812,7 +812,7 @@
 
                 </div>
                 <div class="mt-4">
-                    <h6 class="fw-bold">Shipping Address</h6>
+                    <h6 class="fw-bold" style="color: black !important;">Shipping Address</h6>
                     <input type="text" id="summaryShippingAddress" class="form-control" readonly>
 
                     <!-- <div id="summaryShippingAddress"
@@ -823,7 +823,7 @@
                 <hr>
                 <!-- Order Summary -->
                 <!-- Order Items Section -->
-                <h5 class="fw-bold mt-24" style="font-size: 23px;">Order Items</h5>
+                <h5 class="fw-bold mt-24" style="font-size: 23px; color:black !important;">Order Items</h5>
                 <div class="card p-3 shadow-sm">
                     <div id="cartItemsContainer"></div>
                     <hr>
@@ -833,7 +833,7 @@
                             <span id="cartSubtotal" class="text-dark fw-semibold">AED 0.00</span>
                         </div>
                         <div class="mb-3 d-flex justify-content-between">
-                            <span class="text-muted">Shipping</span>
+                            <span class="text-muted" style="color: black !important;">Shipping</span>
                             <span id="shippingCost" class="text-muted">AED 00.00</span>
                         </div>
                     </div>
@@ -1301,7 +1301,7 @@
                         subtotal += itemTotal;
 
                         cartItemsContainer.append(`
-                    <div class="d-flex align-items-center mb-3">
+                    <div class="d-flex align-items-center mb-3 pt-15">
                         <img src="http://grabatoz-production.up.railway.app/${item.image_path}" class="me-3 rounded" width="50" >
                         <div>
                             <p class="mb-0 fw-bold">${item.name}</p>
