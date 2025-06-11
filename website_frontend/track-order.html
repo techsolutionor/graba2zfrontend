@@ -7,26 +7,26 @@
     <!-- Title -->
     <title> Graba2z- E-commerce website</title>
     <!-- Favicon -->
-  <link rel="shortcut icon" href="assets/images/icon/favicon.png">
+  <link rel="shortcut icon" href="https://graba2z.netlify.app/assets/images/icon/favicon.png">
     
-    <link rel="stylesheet" href="assets/css/footer.css" />
+    <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/footer.css" />
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/bootstrap.min.css">
     <!-- select 2 -->
-    <link rel="stylesheet" href="assets/css/select2.min.css">
+    <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/select2.min.css">
     <!-- Slick -->
-    <link rel="stylesheet" href="assets/css/slick.css">
+    <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/slick.css">
 
 
 
     <!-- Jquery Ui -->
-    <link rel="stylesheet" href="assets/css/jquery-ui.css">
+    <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/jquery-ui.css">
     <!-- animate -->
-    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/animate.css">
     <!-- AOS Animation -->
-    <link rel="stylesheet" href="assets/css/aos.css">
+    <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/aos.css">
     <!-- Main css -->
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <script src="/assets/js/wishlist.js"></script>
 <script src="/assets/js/cart.js"></script>
@@ -608,7 +608,7 @@ ul {
               <!-- Logo Start -->
               <div class="logo">
                   <a href="index" class="link">
-                      <img src="assets/images/logo/logo1.svg" style="width: 170px; height: 70px;" alt="Logo">
+                      <img src="https://graba2z.netlify.app/assets/images/logo/logo1.svg" style="width: 170px; height: 70px;" alt="Logo">
                   </a>
               </div>
               <!-- Logo End  -->
@@ -863,7 +863,7 @@ ul {
                             <!-- Logo Start -->
                             <div class="logo px-16 d-lg-none d-block">
                                 <a href="index" class="link">
-                                    <img src="assets/images/logo/logo.png" alt="Logo">
+                                    <img src="https://graba2z.netlify.app/assets/images/logo/logo.png" alt="Logo">
                                 </a>
                             </div>
                             <!-- Logo End -->
@@ -1077,82 +1077,147 @@ ul {
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     // Attach submit handler for order tracking
-    document.getElementById('orderTrackingForm').addEventListener('submit', async function (e) {
-      e.preventDefault();
+//     document.getElementById('orderTrackingForm').addEventListener('submit', async function (e) {
+//       e.preventDefault();
 
-      const orderIdInput = document.getElementById('order-id');
-      const orderId = orderIdInput.value.trim();
-      console.log('Order ID input value:', orderId);
+//       const orderIdInput = document.getElementById('order-id');
+//       const orderId = orderIdInput.value.trim();
+//       console.log('Order ID input value:', orderId);
 
-      if (!orderId) {
-        alert('Please enter an Order ID');
-        return;
-      }
+//       if (!orderId) {
+//         alert('Please enter an Order ID');
+//         return;
+//       }
 
-      clearModalError();
-      showLoader();
+//       clearModalError();
+//       showLoader();
 
-      try {
-        const response = await fetch(`https://grabatoz-production.up.railway.app/api/onlineordertrack/search?query=${orderId}`);
+//       try {
+//         const response = await fetch(`https://grabatoz-production.up.railway.app/api/onlineordertrack/search?query=${orderId}`);
 
-        if (!response.ok) {
-          showModalError('Order ID not found. Please check and try again.');
-          return;
-        }
+//         if (!response.ok) {
+//           showModalError('Order ID not found. Please check and try again.');
+//           return;
+//         }
 
-        const orders = await response.json();
-        const order = orders[0]; // ✅ Fix: Handle array result
+//         const orders = await response.json();
+//         const order = orders[0]; // ✅ Fix: Handle array result
 
-        if (!order) {
-          showModalError('Order not found. Please check the ID.');
-          return;
-        }
+//         if (!order) {
+//           showModalError('Order not found. Please check the ID.');
+//           return;
+//         }
 
-        // Fill modal fields
-        document.getElementById('modalOrderId').textContent = order.order_id || 'N/A';
-        document.getElementById('modalOrderStatus').textContent = order.order_status || 'N/A';
-        document.getElementById('modalOrderDate').textContent = order.created_at
-          ? new Date(order.created_at).toLocaleString()
-          : 'N/A';
+//         // Fill modal fields
+//         document.getElementById('modalOrderId').textContent = order.order_id || 'N/A';
+//         document.getElementById('modalOrderStatus').textContent = order.order_status || 'N/A';
+//         document.getElementById('modalOrderDate').textContent = order.created_at
+//           ? new Date(order.created_at).toLocaleString()
+//           : 'N/A';
 
-        // Render products
-        const productsList = document.getElementById('modalOrderProducts');
-        productsList.innerHTML = '';
+//         // Render products
+//         const productsList = document.getElementById('modalOrderProducts');
+//         productsList.innerHTML = '';
 
-        if (order.card_info) {
-          let products = [];
-          try {
-            products = JSON.parse(order.card_info);
-          } catch (err) {
-            console.error('Failed to parse card_info:', err);
-          }
+//         if (order.card_info) {
+//           let products = [];
+//           try {
+//             products = JSON.parse(order.card_info);
+//           } catch (err) {
+//             console.error('Failed to parse card_info:', err);
+//           }
 
-          if (products.length) {
-            products.forEach(prod => {
-              const li = document.createElement('li');
-              li.style.marginBottom = '8px';
-              li.textContent = `${prod.name || 'Product'} - Qty: ${prod.quantity || 1} - Price: $${parseFloat(prod.selling_price || 0).toFixed(2)}`;
-              productsList.appendChild(li);
-            });
-          } else {
-            productsList.innerHTML = '<li>No products found in this order.</li>';
-          }
-        } else {
-          productsList.innerHTML = '<li>No products found in this order.</li>';
-        }
+//           if (products.length) {
+//             products.forEach(prod => {
+//               const li = document.createElement('li');
+//               li.style.marginBottom = '8px';
+//               li.textContent = `${prod.name || 'Product'} - Qty: ${prod.quantity || 1} - Price: $${parseFloat(prod.selling_price || 0).toFixed(2)}`;
+//               productsList.appendChild(li);
+//             });
+//           } else {
+//             productsList.innerHTML = '<li>No products found in this order.</li>';
+//           }
+//         } else {
+//           productsList.innerHTML = '<li>No products found in this order.</li>';
+//         }
 
-        clearModalError();
-        document.getElementById('orderDetailsModal').style.display = 'flex';
+//         clearModalError();
+//         document.getElementById('orderDetailsModal').style.display = 'flex';
 
-      } catch (err) {
-        console.error(err);
-        showModalError('An error occurred while fetching order details.');
-      } finally {
-        hideLoader();
-      }
+//       } catch (err) {
+//         console.error(err);
+//         showModalError('An error occurred while fetching order details.');
+//       } finally {
+//         hideLoader();
+//       }
+//     });
+//   });
+
+document.getElementById('orderTrackingForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const orderIdInput = document.getElementById('order-id');
+  const orderId = orderIdInput.value.trim();
+
+  if (!orderId) {
+    alert('Please enter an Order ID');
+    return;
+  }
+
+  clearModalError();
+  showLoader();
+
+  try {
+    const response = await fetch(`https://grabatoz-production.up.railway.app/api/onlineordertrack/${orderId}`);
+
+    if (!response.ok) {
+      showModalError('Order ID not found. Please check and try again.');
+      return;
+    }
+
+    const order = await response.json();
+
+    // Fill modal fields
+    document.getElementById('modalOrderId').textContent = order.order_id || 'N/A';
+    document.getElementById('modalOrderStatus').textContent = order.order_status || 'N/A';
+    document.getElementById('modalOrderDate').textContent = order.created_at
+      ? new Date(order.created_at).toLocaleString()
+      : 'N/A';
+
+    // Handle card_info (products)
+    const productsList = document.getElementById('modalOrderProducts');
+    productsList.innerHTML = '';
+
+    let products = [];
+    try {
+      products = JSON.parse(order.card_info);
+    } catch (err) {
+      productsList.innerHTML = '<li>Error parsing product data.</li>';
+      console.error("Failed to parse card_info:", err);
+    }
+
+    if (products.length > 0) {
+      products.forEach(prod => {
+        const li = document.createElement('li');
+        li.style.marginBottom = '8px';
+        li.textContent = `${prod.name || 'Product'} - Qty: ${prod.quantity || 1} - Price: $${parseFloat(prod.selling_price || 0).toFixed(2)}`;
+        productsList.appendChild(li);
+      });
+    } else {
+      productsList.innerHTML = '<li>No products found in this order.</li>';
+    }
+
+    clearModalError();
+    document.getElementById('orderDetailsModal').style.display = 'flex';
+
+  } catch (err) {
+    console.error(err);
+    showModalError('An error occurred while fetching order details.');
+  } finally {
+    hideLoader();
+  }
+});
     });
-  });
-
   function closeOrderModal() {
     document.getElementById('orderDetailsModal').style.display = 'none';
     clearModalError();
@@ -1190,31 +1255,31 @@ ul {
 
     
     <!-- Jquery js -->
-    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="https://graba2z.netlify.app/assets/js/jquery-3.7.1.min.js"></script>
     <!-- Bootstrap Bundle Js -->
-    <script src="assets/js/boostrap.bundle.min.js"></script>
+    <script src="https://graba2z.netlify.app/assets/js/boostrap.bundle.min.js"></script>
     <!-- Bootstrap Bundle Js -->
-    <script src="assets/js/phosphor-icon.js"></script>
+    <script src="https://graba2z.netlify.app/assets/js/phosphor-icon.js"></script>
     <!-- Select 2 -->
-    <script src="assets/js/select2.min.js"></script>
+    <script src="https://graba2z.netlify.app/assets/js/select2.min.js"></script>
     <!-- Slick js -->
-    <script src="assets/js/slick.min.js"></script>
+    <script src="https://graba2z.netlify.app/assets/js/slick.min.js"></script>
     
     
     <!-- Slick js -->
-    <script src="assets/js/count-down.js"></script>
+    <script src="https://graba2z.netlify.app/assets/js/count-down.js"></script>
     <!-- jquery UI js -->
-    <script src="assets/js/jquery-ui.js"></script>
+    <script src="https://graba2z.netlify.app/assets/js/jquery-ui.js"></script>
     <!-- wow js -->
-    <script src="assets/js/wow.min.js"></script>
+    <script src="https://graba2z.netlify.app/assets/js/wow.min.js"></script>
     <!-- AOS Animation -->
-    <script src="assets/js/aos.js"></script>
+    <script src="https://graba2z.netlify.app/assets/js/aos.js"></script>
     <!-- marque -->
-    <script src="assets/js/marque.min.js"></script>
+    <script src="https://graba2z.netlify.app/assets/js/marque.min.js"></script>
     <!-- marque -->
-    <script src="assets/js/vanilla-tilt.min.js"></script>
+    <script src="https://graba2z.netlify.app/assets/js/vanilla-tilt.min.js"></script>
     <!-- main js -->
-    <script src="assets/js/main.js"></script>
+    <script src="https://graba2z.netlify.app/assets/js/main.js"></script>
 
 <script>
         document.addEventListener('DOMContentLoaded', function () {
