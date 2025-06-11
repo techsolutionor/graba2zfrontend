@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Related Products Slider - Test Page</title>
+
+  <!-- Bootstrap CSS (optional but nice) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <style>
+    .related-products-wrapper {
+      position: relative;
+      overflow: hidden;
+      padding: 10px 0;
+    }
+
+    .related-products-slider {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 10px;
+    }
+
+    .related-products-slider::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 10;
+    }
+
+    .slider-arrow.left {
+      left: 0;
+    }
+
+    .slider-arrow.right {
+      right: 0;
+    }
+
+    .related-products-slider .card {
+      flex: 0 0 200px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container py-5">
+    <h1 class="mb-4 text-center">Related Products Slider (Test Page)</h1>
+
+    <!-- Related Products Section -->
+    <section class="new-arrival py-30">
+      <div class="section-heading mb-3">
+        <h5 class="mb-0 text-dark">Related Products</h5>
+      </div>
+
+      <div class="related-products-wrapper">
+        <button class="slider-arrow left" id="related-prev">&#10094;</button>
+        <div class="related-products-slider" id="related-slider">
+          <!-- Products will be inserted here -->
+        </div>
+        <button class="slider-arrow right" id="related-next">&#10095;</button>
+      </div>
+    </section>
+    <!-- Related Products Section End -->
+
+  </div>
+
+  <!-- Bootstrap JS (optional) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Arrow controls
+    document.getElementById('related-prev').addEventListener('click', function() {
+      document.getElementById('related-slider').scrollBy({
+        left: -300,
+        behavior: 'smooth'
+      });
+    });
+
+    document.getElementById('related-next').addEventListener('click', function() {
+      document.getElementById('related-slider').scrollBy({
+        left: 300,
+        behavior: 'smooth'
+      });
+    });
+
+    // Fetch related products
+    async function fetchRelatedProducts(categoryId, excludeProductId) {
+      function limitWords(text, wordLimit) {
+        const words = text.trim().split(/\s+/);
+        if (words.length <= wordLimit) return text;
+        return words.slice(0, wordLimit).join(' ') + '...';
+      }
+
+      try {
+        // TEST API URL — replace with your real API URL:
+        const API_CUSTOMER_URL = 'https://websitegrabatoz-production.up.railway.app/';  // 👈 change this
+        const API_ADMINGRAB_URL = 'http://grabatoz-production.up.railway.app';  // 👈 change this
+
+        const response = await fetch(`${API_CUSTOMER_URL}/api/products?category_id=${categoryId}&exclude=${excludeProductId}`);
+        const data = await response.json();
+
+        const container = document.getElementById('related-slider');
+        container.innerHTML = ''; // clear
+
+        const products = Array.isArray(data) ? data : data.products;
+
+        if (!products || products.length === 0) {
+          container.innerHTML = '<p class="text-center w-100">No related products found.</p>';
+          return;
+        }
+
+        products.forEach(product => {
+          const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
+
+          const card = `
+            <div class="card h-100 border border-gray-100 rounded-16 position-relative" style="flex: 0 0 200px; height: 400px; overflow: hidden;">
+              <a href="product?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
+                <!-- Image -->
+                <div class="position-relative" style="height: 200px;">
+                  <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
+                </div>
+                <!-- Info -->
+                <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px;">
+                  <div class="d-flex justify-content-between mb-1">
+                    <span class="badge bg-success">In stock</span>
+                    <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+                  </div>
+                  <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
+                    ${limitWords(product.name, 13)}
+                  </h6>
+                  <div class="mt-auto">
+                    <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>
+                    <del class="text-muted fs-6">${product.selling_price} AED</del>
+                  </div>
+                </div>
+              </a>
+            </div>
+          `;
+
+          container.insertAdjacentHTML('beforeend', card);
+        });
+
+      } catch (error) {
+        console.error('Error fetching related products:', error);
+        document.getElementById('related-slider').innerHTML = '<p class="text-danger text-center">Error loading related products.</p>';
+      }
+    }
+
+    // Example call — replace with your real category ID and product ID:
+    fetchRelatedProducts('YOUR_CATEGORY_ID', 'YOUR_PRODUCT_ID');
+
+  </script>
+</body>
+</html>
