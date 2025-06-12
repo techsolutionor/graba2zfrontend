@@ -1280,14 +1280,14 @@ async function fetchProductImages(productId) {
 // Get the product ID from the URL
 const productId = window.location.pathname.split('/').pop(); // Assuming URL structure is like /product/{productId}
 
-// Call the function with the product ID (when DOM is ready)
-document.addEventListener("DOMContentLoaded", function () {
-  if (productId) {
-    fetchProductImages(productId);
-  } else {
-    console.error("Invalid Product ID in URL.");
-  }
-});
+// // Call the function with the product ID (when DOM is ready)
+// document.addEventListener("DOMContentLoaded", function () {
+//   if (productId) {
+//     fetchProductImages(productId);
+//   } else {
+//     console.error("Invalid Product ID in URL.");
+//   }
+// });
 </script>
 
 
@@ -2494,7 +2494,7 @@ function slugify(text) {
                 // Parse image_paths safely
                 let imagePaths = [];
                 try {
-                    imagePaths = JSON.parse(product.image_paths || '[]').map(path => path.replace(/\\/g, '/'));
+imagePaths = Array.isArray(product.image_paths) ? product.image_paths.map(path => path.replace(/\\/g, '/')) : [];
                 } catch (e) {
                     console.error('Invalid image_paths JSON:', e);
                 }
