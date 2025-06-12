@@ -68,7 +68,8 @@
     }
     .body-wrapper {
       margin-left: 260px;
-      padding: 30px;
+      padding: 5px;
+       
     }
 
 
@@ -98,6 +99,39 @@
 .rotate-icon.rotate {
   transform: rotate(180deg);
 }
+
+
+/* .app-header {
+    position: relative;  
+    top: auto;
+    z-index: auto;
+} */
+
+/* .app-header {
+    position: sticky;
+    top: 0;
+} */
+ /* .app-header {
+    position: fixed;
+    top: 0;
+} */
+/* .app-header {
+    box-shadow: none !important;
+    
+}
+.app-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  
+    background: #FFFFFF;
+} */
+
+
+
+
+
+
 
   </style>
   
@@ -273,45 +307,50 @@ let allOrders = []; // to store unfiltered full API response
         <li class="nav-item"><a class="nav-link" href="license.html"><i class="fas fa-file-contract"></i> License</a></li>
       </ul>
     </aside>
+
+    
     
     <!--  Sidebar End -->
     <!--  Main wrapper -->
     <div class="body-wrapper">
       <!--  Header Start -->
         
-        <header class="app-header">
-          <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
-              <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                <li class="nav-item dropdown">
-                  <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="./assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
-                    <div class="message-body">
-                      <!-- <a href="http://127.0.0.1:5502/Office_Project/src/html/my-profile.html" class="d-flex align-items-center gap-2 dropdown-item"> -->
-                        <a href="./my-profile.html" class="d-flex align-items-center gap-2 dropdown-item">
-                        <i class="ti ti-user fs-6"></i>
-                        <p class="mb-0 fs-3">My Profile</p>
-                      </a>
-                      <span id="auth">
-                        <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Logout</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </header>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        
+       <!-- HEADER -->
+<header class="app-header" style="position: relative; top: auto; z-index: auto;">
+  <nav class="navbar navbar-expand-lg navbar-light px-0">
+    <div class="container-fluid">
+      <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+        <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+          <!-- You can keep other nav items here if needed -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- PROFILE ICON FIXED ON PAGE -->
+<div class="profile-icon" style="position:absolute; top: 10px; right: 5px; z-index: 9999;">
+  <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+    <img src="./assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+  </a>
+  <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+    <div class="message-body">
+      <a href="./my-profile.html" class="d-flex align-items-center gap-2 dropdown-item">
+        <i class="ti ti-user fs-6"></i>
+        <p class="mb-0 fs-3">My Profile</p>
+      </a>
+      <span id="auth">
+        <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Logout</a>
+      </span>
+    </div>
+  </div>
+</div>
+</nav>
+</header>
+  
         <!-- FILTER TOGGLE BUTTON + TITLE -->
 <div class="d-flex justify-content-between align-items-center mb-2">
+  
   <h5 class="mb-0">Overview</h5>
   <button id="toggleFilter" class="btn btn-outline-dark">
     <i class="fas fa-filter"></i> Filter
@@ -540,17 +579,7 @@ let allOrders = []; // to store unfiltered full API response
             </div>
           </div>
         </section>
-        <!-- <div class="container my-5">
-          <h3>Raw Orders Debug</h3>
-          <pre id="orderDebug" style="max-height: 400px; overflow-y: auto; background-color: #f8f9fa; padding: 10px; border: 1px solid #ddd;"></pre>
-        </div>
-
-        <div class="row" style="width: 90%; margin: 0px auto 0 auto;">
-          <div class="col-12 col-md-6">
-        <div id="thirdgraph"></div>
-        </div>
-        <div class="col-12 col-md-6">
-        <div id="fourthgraph"></div> -->
+      
       </div>
       </div>
     
@@ -894,7 +923,7 @@ function renderOrderStatusChart(data) {
     if (!order.createdAt) return;
 
     const status = (order.order_status || "").toLowerCase();
-    if (!status.includes("delivered")) return; // Count only delivered orders
+    if (!status.includes("delivered")) return; 
 
     const date = new Date(order.createdAt);
     const month = date.getMonth(); // 0–11
@@ -916,7 +945,7 @@ function renderOrderStatusChart(data) {
       toolbar: {
         show: true,
         tools: {
-          download: true, // ✅ Export options enabled
+          download: true, 
           selection: true,
           zoom: true,
           zoomin: true,
@@ -1014,16 +1043,6 @@ function checkTokenExpiration() {
 // Call checkTokenExpiration() on page load or on regular intervals (e.g., every 5 minutes)
 checkTokenExpiration();
 
-// document.addEventListener('DOMContentLoaded', function() {
-//         const settingsToggle = document.getElementById('settingsToggle');
-//         const settingsSubmenu = document.getElementById('settingsSubmenu');
-
-//         settingsToggle.addEventListener('click', function(event) {
-//             event.preventDefault();
-//             settingsSubmenu.style.display = (settingsSubmenu.style.display === 'block') ? 'none' : 'block';
-//         });
-
-//     });
 
 
 document.addEventListener('DOMContentLoaded', function () {
