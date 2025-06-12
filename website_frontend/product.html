@@ -1193,7 +1193,6 @@
 }
 </style>
 
-<!-- Related Products JS -->
 <script>
 document.getElementById('product-details-slider-thumbnail-prev').addEventListener('click', function() {
   document.getElementById('product-details-slider-thumbnail-slider').scrollBy({
@@ -1209,48 +1208,67 @@ document.getElementById('product-details-slider-thumbnail-next').addEventListene
   });
 });
 
-// Fetch product images from API
+// Fetch product details (including images) from API
 async function fetchProductImages(productId) {
   try {
     const API_CUSTOMER_URL = 'https://websitegrabatoz-production.up.railway.app'; // Your API URL
-    const API_ADMINGRAB_URL = 'http://grabatoz-production.up.railway.app';  // Your API image URL
+    const API_ADMINGRAB_URL = 'https://grabatoz-production.up.railway.app';  // Use HTTPS to avoid Mixed Content
 
-    const response = await fetch(`${API_CUSTOMER_URL}/api/products/${productId}/images`);
-    const data = await response.json();
+    const response = await fetch(`${API_CUSTOMER_URL}/api/products/${productId}`);
+    const product = await response.json();
 
+    // Debug: Check the API response
+    console.log("Product Details:", product);
+
+    // Prepare container for thumbnails
     const container = document.getElementById('product-details-slider-thumbnail-slider');
     container.innerHTML = ''; // Clear previous thumbnails
 
-    const productImages = Array.isArray(data) ? data : data.images;
+    // Safe parsing of image_paths
+    let imagePaths = product.image_paths;
+    try {
+      if (typeof imagePaths === 'string') {
+        imagePaths = JSON.parse(imagePaths);
+      }
+    } catch (e) {
+      console.error("Invalid image_paths JSON:", e);
+      imagePaths = []; // fallback
+    }
 
-    if (!productImages || productImages.length === 0) {
-      container.innerHTML = '<p class="text-center w-100">No related products found.</p>';
+    // If no images, show message
+    if (!imagePaths || imagePaths.length === 0) {
+      container.innerHTML = '<p class="text-center w-100">No product images found.</p>';
       return;
     }
 
-    // Update main image and modal image
+    // Update main image and modal image with first image
     const mainImage = document.getElementById('product-details-slider-main-image');
     const modalImage = document.getElementById('product-details-slider-modal-image');
 
-    productImages.forEach((image, index) => {
-      const imagePath = image.path ? image.path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
-const fullPath = `${API_ADMINGRAB_URL}/${imagePath}`;
+    const firstImagePath = `${API_ADMINGRAB_URL}/${imagePaths[0].replace(/\\/g, '/')}`;
+    mainImage.src = firstImagePath;
+    mainImage.alt = 'Product Image';
+    modalImage.src = firstImagePath;
 
-const slide = document.createElement('div');
-slide.className = 'product-details-slider-thumbnail-slide';
-slide.innerHTML = `
-  <img src="${fullPath}" alt="Thumbnail ${index + 1}" />
-`;
+    // Create thumbnails
+    imagePaths.forEach((path, index) => {
+      const imagePath = path.replace(/\\/g, '/');
+      const fullPath = `${API_ADMINGRAB_URL}/${imagePath}`;
 
-// When thumbnail is clicked, update the main and modal images
-slide.querySelector('img').addEventListener('click', () => {
-  mainImage.src = fullPath;
-  mainImage.alt = `Product Image ${index + 1}`;
-  modalImage.src = fullPath;
-});
+      const slide = document.createElement('div');
+      slide.className = 'product-details-slider-thumbnail-slide';
+      slide.innerHTML = `
+        <img src="${fullPath}" alt="Thumbnail ${index + 1}" />
+      `;
 
-container.appendChild(slide);
+      // When thumbnail is clicked, update main and modal images
+      slide.querySelector('img').addEventListener('click', () => {
+        mainImage.src = fullPath;
+        mainImage.alt = `Product Image ${index + 1}`;
+        modalImage.src = fullPath;
+      });
 
+      container.appendChild(slide);
     });
 
   } catch (error) {
@@ -1262,9 +1280,16 @@ container.appendChild(slide);
 // Get the product ID from the URL
 const productId = window.location.pathname.split('/').pop(); // Assuming URL structure is like /product/{productId}
 
-// Call the function with the product ID
-fetchProductImages(productId);  // Fetch product images by the product ID
+// Call the function with the product ID (when DOM is ready)
+document.addEventListener("DOMContentLoaded", function () {
+  if (productId) {
+    fetchProductImages(productId);
+  } else {
+    console.error("Invalid Product ID in URL.");
+  }
+});
 </script>
+
 
                         </div>
                         <div class="col-xl-7 p-6">
