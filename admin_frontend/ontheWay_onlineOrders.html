@@ -1284,6 +1284,34 @@
     });
   });
 </script>
+
+ <script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const currentFile = window.location.pathname.split("/").pop();
+
+  document.querySelectorAll(".nav-link").forEach(link => {
+    const href = link.getAttribute("href");
+    if (href && href === currentFile) {
+      link.classList.add("active");
+
+      // If inside a sidebar-submenu (Purchases, Orders etc.)
+      const sidebarSubmenu = link.closest(".sidebar-submenu");
+      if (sidebarSubmenu) {
+        sidebarSubmenu.classList.add("show");
+
+        // Rotate the arrow icon of the parent toggle
+        const parentToggle = sidebarSubmenu.previousElementSibling;
+        if (parentToggle && parentToggle.classList.contains("purchases-toggle-custom")) {
+          parentToggle.querySelector('.arrow-icon').classList.add('rotate');
+        }
+      }
+    } else {
+      link.classList.remove("active");
+    }
+  });
+});
+
+</script>
             </div>
         </div>
     </div>
