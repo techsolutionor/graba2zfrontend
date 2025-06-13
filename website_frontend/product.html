@@ -82,6 +82,41 @@
             }
         }
 
+                  .zoom-container {
+    cursor: zoom-in;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .zoomed {
+    cursor: zoom-out;
+  }
+
+  .zoomed img {
+    transform: scale(2);
+    transition: transform 0.3s ease;
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal img {
+    max-width: 90%;
+    max-height: 90%;
+  }
+
+  .modal.show {
+    display: flex;
+  }
+
         /* Animation */
         .slide-in {
             opacity: 0;
@@ -1105,9 +1140,9 @@
                             <div class="product-details-slider__left">
   <!-- Main product image -->
   <div class="product-details-slider__thumb flex-center h-100 border rounded-8 mb-10"
-      style="min-width: 300px !important; min-height: 100% !important;">
+      style="min-width: 300px !important; min-height: 100% !important;" id="product-details-slider-main-container">
       <img id="product-details-slider-main-image" class="py-10" data-bs-toggle="modal" data-bs-target="#product-details-slider-image-modal"
-          src="assets/images/white-placeholder.png" style="cursor: zoom-in; min-width: 300px !important; min-height: 400px !important; border: 5px solid white;"
+          src="assets/images/white-placeholder.png" style="cursor: zoom-in; min-width: 300px !important; min-height: 389px !important; border: 5px solid white;"
           alt="Product Image">
   </div>
 
@@ -1118,7 +1153,7 @@
               <div class="position-relative d-inline-block mx-auto">
                   <img id="product-details-slider-modal-image" src="" alt="Enlarged Product Image" class="img-fluid rounded-3"
                       style="max-height: 80vh; width: auto;">
-                  <button type="button" class="btn-close cross-button position-absolute"
+                  <button type="button" id="close-image-modal" class="btn-close cross-button position-absolute"
                       style="top: 10px; right: 10px; z-index: 10; filter: invert(1);" data-bs-dismiss="modal"
                       aria-label="Close">
                   </button>
@@ -1139,10 +1174,15 @@
 
 <!-- Related Products Styles -->
 <style>
+    .swiper-slide {
+        display: flex;
+        justify-content: center;
+        width: auto;
+    }
 .product-details-slider-thumbnail-container {
   position: relative;
   overflow: hidden;
-  padding: 10px 0;
+  /* padding: 10px 0; */
 }
 
 .product-details-slider-thumbnail-slider {
@@ -1151,6 +1191,7 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   padding: 10px;
+  /* padding: 52px; */
 }
 
 .product-details-slider-thumbnail-slider::-webkit-scrollbar {
@@ -1194,16 +1235,19 @@
 </style>
 
 <script>
-document.getElementById('product-details-slider-thumbnail-prev').addEventListener('click', function() {
-  document.getElementById('product-details-slider-thumbnail-slider').scrollBy({
-    left: -300,
+const slider = document.getElementById("product-details-slider-thumbnail-slider");
+document.getElementById('product-details-slider-thumbnail-prev').addEventListener('click', function () {
+  const scrollAmount = slider.clientWidth; // or slider.offsetWidth
+  slider.scrollBy({
+    left: -scrollAmount,
     behavior: 'smooth'
   });
 });
 
-document.getElementById('product-details-slider-thumbnail-next').addEventListener('click', function() {
-  document.getElementById('product-details-slider-thumbnail-slider').scrollBy({
-    left: 300,
+document.getElementById('product-details-slider-thumbnail-next').addEventListener('click', function () {
+  const scrollAmount = slider.clientWidth; // or slider.offsetWidth
+  slider.scrollBy({
+    left: scrollAmount,
     behavior: 'smooth'
   });
 });
@@ -2427,7 +2471,7 @@ function slugify(text) {
                 }
             }
 
-            updateCartCount();
+            // updateCartCount();
         });
         // Extract product ID from the URL
         document.addEventListener('DOMContentLoaded', function () {
@@ -2441,11 +2485,10 @@ function slugify(text) {
         } else {
             console.error('Product ID not found in the URL');
         }
-        async function fetchProductDetails(productId) {
+                async function fetchProductDetails(productId) {
             try {
                 const response = await fetch(`https://websitegrabatoz-production.up.railway.app/api/products/${productId}`);
                 if (!response.ok) throw new Error('Failed to fetch product details');
-                console.log('response:', response);
 
                 const product = await response.json();
                 console.log('Product Details:', product);
@@ -2495,7 +2538,7 @@ function slugify(text) {
                 // Parse image_paths safely
                 let imagePaths = [];
                 try {
-                    imagePaths = JSON.parse(product.image_paths || '[]').map(path => path.replace(/\\/g, '/'));
+                    imagePaths = product.image_paths.map(path => path.replace(/\\/g, '/'));
                 } catch (e) {
                     console.error('Invalid image_paths JSON:', e);
                 }
@@ -2557,29 +2600,29 @@ if (itemInCart) {
 
                 // Wishlist
                 document.getElementById('favourite').innerHTML = `
-  <a href="javascript:void(0)" id="wishlist-btn" onclick='toggleWishlist({ 
-      id: ${product.id},
-      slug: "${product.slug?.replace(/"/g, '\\"')}",
-      name: "${product.name?.replace(/"/g, '\\"')}",
-      selling_price: ${product.selling_price},
-       offer_price: ${product.offer_price},            // ✅ add this
-  discount: ${product.discount},                  // ✅ add this
-      image_path: "${cartImage}"
-  })' class="w-52 h-52 bg-main-50 text-main-600 text-xl hover-bg-main-600 hover-text-white flex-center rounded-circle">
-      <i class="ph ph-heart" id="heart-icon" style="color: ${isInWishlist ? 'red' : 'inherit'}"></i>
-  </a>`;
-updateWishlistBadge();
+            <a href="javascript:void(0)" id="wishlist-btn" onclick='toggleWishlist({ 
+                id: ${product.id},
+                slug: "${product.slug?.replace(/"/g, '\\"')}",
+                name: "${product.name?.replace(/"/g, '\\"')}",
+                selling_price: ${product.selling_price},
+                offer_price: ${product.offer_price},            // ✅ add this
+            discount: ${product.discount},                  // ✅ add this
+                image_path: "${cartImage}"
+            })' class="w-52 h-52 bg-main-50 text-main-600 text-xl hover-bg-main-600 hover-text-white flex-center rounded-circle">
+                <i class="ph ph-heart" id="heart-icon" style="color: ${isInWishlist ? 'red' : 'inherit'}"></i>
+            </a>`;
+        // updateWishlistBadge();
 
-                const mainImage = document.getElementById('specific-product-image');
-mainImage.src = cartImage;
-mainImage.alt = 'Main Product Image';
-const modalImage = document.getElementById('modal-product-image');
-modalImage.src = cartImage;
+        const mainImage = document.getElementById('product-details-slider-main-image');
+        mainImage.src = `${API_ADMINGRAB_URL}/${product.image_path}`;
+        mainImage.alt = 'Main Product Image';
+        // const modalImage = document.getElementById('modal-product-image');
+        // modalImage.src = cartImage;
 
-const thumbnailsContainer = document.getElementById('product-thumbnails');
-thumbnailsContainer.innerHTML = '';
+        const thumbnailsContainer = document.getElementById('product-details-slider-thumbnail-slider');
+        thumbnailsContainer.innerHTML = '';
 
-imagePaths.forEach((imgPath, index) => {
+        imagePaths.forEach((imgPath, index) => {
     const fullPath = `${API_ADMINGRAB_URL}/${imgPath}`;
     const slide = document.createElement('div');
     slide.className = 'swiper-slide';
@@ -2835,7 +2878,7 @@ function changeQty(change) {
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const img = document.getElementById("specific-product-image");
+            const img = document.getElementById("product-details-slider-main-image");
 
             // Create magnifier lens
             const lens = document.createElement("div");
@@ -3047,4 +3090,42 @@ addToCart(productObject); // From cart.js
             }
         });
     </script>
+        <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    console.log("Product details slider script loaded");
+    const mainContainer = document.getElementById('product-details-slider-main-container');
+    const mainImage = document.getElementById('product-details-slider-main-image');
+    const modal = document.getElementById('product-details-slider-image-modal');
+    const modalImage = document.getElementById('product-details-slider-modal-image');
+    const closeImageModal = document.getElementById('close-image-modal');
+
+//   // Enable zoom and pan on hover
+//   mainContainer.addEventListener('mouseenter', () => {
+//     mainContainer.classList.add('zoomed');
+//   });
+
+//   mainContainer.addEventListener('mouseleave', () => {
+//     mainContainer.classList.remove('zoomed');
+//     mainImage.style.transformOrigin = 'center center';
+//   });
+
+//   mainContainer.addEventListener('mousemove', (e) => {
+//     if (!mainContainer.classList.contains('zoomed')) return;
+
+//     const rect = mainContainer.getBoundingClientRect();
+//     const x = ((e.clientX - rect.left) / rect.width) * 100;
+//     const y = ((e.clientY - rect.top) / rect.height) * 100;
+//     mainImage.style.transformOrigin = `${x}% ${y}%`;
+//   });
+
+  // Open modal on click
+  mainContainer.addEventListener('click', () => {
+    modalImage.src = mainImage.src;
+    modal.classList.add('show');
+  });
+  closeImageModal.addEventListener('click', () => {
+    modal.classList.remove('show');
+  })
+  });
+</script>
 </body>
