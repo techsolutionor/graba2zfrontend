@@ -9686,7 +9686,8 @@ font-size: 14px !important;
 .icon {
   color: #ffffff;
   font-size: 35px;
-  margin-left: 96px;
+  margin-left: 2px !important;
+
 }
 .text_2 {
   font-size: 14px;

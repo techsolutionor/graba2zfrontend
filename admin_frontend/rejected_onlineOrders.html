@@ -638,58 +638,35 @@
       <!--  Main wrapper -->
       <div class="body-wrapper">
         <!--  Header Start -->
-        <header class="app-header">
-          <nav class="navbar navbar-expand-lg navbar-light">
-            <div
-              class="navbar-collapse justify-content-end px-0"
-              id="navbarNav"
-            >
-              <ul
-                class="navbar-nav flex-row ms-auto align-items-center justify-content-end"
-              >
-                <li class="nav-item dropdown">
-                  <a
-                    class="nav-link nav-icon-hover"
-                    href="javascript:void(0)"
-                    id="drop2"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <img
-                      src="./assets//images/profile/user-1.jpg"
-                      alt=""
-                      width="35"
-                      height="35"
-                      class="rounded-circle"
-                    />
-                  </a>
-                  <div
-                    class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
-                    aria-labelledby="drop2"
-                  >
-                    <div class="message-body">
-                      <a
-                        href="./my-profile.html"
-                        class="d-flex align-items-center gap-2 dropdown-item"
-                      >
-                        <i class="ti ti-user fs-6"></i>
-                        <p class="mb-0 fs-3">My Profile</p>
-                      </a>
-                      <span id="auth">
-                        <a
-                          href="./login.html"
-                          class="btn btn-outline-primary mx-3 mt-2 d-block"
-                          id="loginButton"
-                          >Logout</a
-                        >
-                      </span>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </header>
+        <header class="app-header" style="position: relative; top: auto; z-index: auto;">
+  <!-- <nav class="navbar navbar-expand-lg navbar-light px-0"> -->
+    <div class="container-fluid">
+      <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+        <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+          <!-- You can keep other nav items here if needed -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<br>
+<!-- PROFILE ICON FIXED ON PAGE -->
+<div class="profile-icon" style="position:absolute; top: 10px; right: 5px; z-index: 9999;">
+  <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+    <img src="./assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+  </a>
+  <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+    <div class="message-body">
+      <a href="./my-profile.html" class="d-flex align-items-center gap-2 dropdown-item">
+        <i class="ti ti-user fs-6"></i>
+        <p class="mb-0 fs-3">My Profile</p>
+      </a>
+      <span id="auth">
+        <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Logout</a>
+      </span>
+    </div>
+  </div>
+</div>
 
         <div class="container-fluid">
           <div class="card">
@@ -1752,6 +1729,34 @@
               });
             });
           </script>
+
+           <script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const currentFile = window.location.pathname.split("/").pop();
+
+  document.querySelectorAll(".nav-link").forEach(link => {
+    const href = link.getAttribute("href");
+    if (href && href === currentFile) {
+      link.classList.add("active");
+
+      // If inside a sidebar-submenu (Purchases, Orders etc.)
+      const sidebarSubmenu = link.closest(".sidebar-submenu");
+      if (sidebarSubmenu) {
+        sidebarSubmenu.classList.add("show");
+
+        // Rotate the arrow icon of the parent toggle
+        const parentToggle = sidebarSubmenu.previousElementSibling;
+        if (parentToggle && parentToggle.classList.contains("purchases-toggle-custom")) {
+          parentToggle.querySelector('.arrow-icon').classList.add('rotate');
+        }
+      }
+    } else {
+      link.classList.remove("active");
+    }
+  });
+});
+
+</script>
         </div>
       </div>
     </div>

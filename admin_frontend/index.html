@@ -1094,28 +1094,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const currentFile = window.location.pathname.split("/").pop();
+  const currentFile = window.location.pathname.split("/").pop();
 
-    // Remove all active classes first
-    document.querySelectorAll(".nav-link").forEach(link => {
-      const href = link.getAttribute("href");
-      if (href && href === currentFile) {
-        link.classList.add("active");
+  document.querySelectorAll(".nav-link").forEach(link => {
+    const href = link.getAttribute("href");
+    if (href && href === currentFile) {
+      link.classList.add("active");
 
-        // If inside a collapse menu (like Orders or Purchases), open it
-        const parentCollapse = link.closest(".collapse");
-        if (parentCollapse) {
-          parentCollapse.classList.add("show");
-          const parentToggle = parentCollapse.previousElementSibling;
-          if (parentToggle && parentToggle.classList.contains("nav-link")) {
-            parentToggle.classList.add("active");
-          }
+      // If inside a sidebar-submenu (Purchases, Orders etc.)
+      const sidebarSubmenu = link.closest(".sidebar-submenu");
+      if (sidebarSubmenu) {
+        sidebarSubmenu.classList.add("show");
+
+        // Rotate the arrow icon of the parent toggle
+        const parentToggle = sidebarSubmenu.previousElementSibling;
+        if (parentToggle && parentToggle.classList.contains("purchases-toggle-custom")) {
+          parentToggle.querySelector('.arrow-icon').classList.add('rotate');
         }
-      } else {
-        link.classList.remove("active");
       }
-    });
+    } else {
+      link.classList.remove("active");
+    }
   });
+});
+
 </script>
 
 <script>
@@ -1160,6 +1162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 </script>
+
 
 
 

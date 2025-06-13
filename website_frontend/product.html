@@ -721,6 +721,61 @@
             color: #90c309;
         }
     </style>
+
+    <style>
+.product-details-slider-thumbnail-container {
+  position: relative;
+  overflow: hidden;
+  padding: 10px 0;
+}
+
+.product-details-slider-thumbnail-slider {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px;
+}
+
+.product-details-slider-thumbnail-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.product-details-slider-thumbnail-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 10;
+}
+
+.product-details-slider-thumbnail-arrow.left {
+  left: 0;
+}
+
+.product-details-slider-thumbnail-arrow.right {
+  right: 0;
+}
+
+.product-details-slider-thumbnail-slider .product-details-slider-thumbnail-slide {
+  flex: 0 0 120px;  /* Fixed size for each thumbnail */
+  cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid #ddd;
+}
+
+.product-details-slider-thumbnail-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+</style>
 </head>
 
 <body>
@@ -1142,7 +1197,7 @@
   <div class="product-details-slider__thumb flex-center h-100 border rounded-8 mb-10"
       style="min-width: 300px !important; min-height: 100% !important;" id="product-details-slider-main-container">
       <img id="product-details-slider-main-image" class="py-10" data-bs-toggle="modal" data-bs-target="#product-details-slider-image-modal"
-          src="assets/images/white-placeholder.png" style="cursor: zoom-in; min-width: 300px !important; min-height: 389px !important; border: 5px solid white;"
+          src="assets/images/white-placeholder.png" style="cursor: zoom-in; min-width: 300px !important; min-height: 400px !important; max-width: 300px !important; max-height: 400px !important; border: 5px solid white;"
           alt="Product Image">
   </div>
 
@@ -1174,15 +1229,10 @@
 
 <!-- Related Products Styles -->
 <style>
-    .swiper-slide {
-        display: flex;
-        justify-content: center;
-        width: auto;
-    }
 .product-details-slider-thumbnail-container {
   position: relative;
   overflow: hidden;
-  /* padding: 10px 0; */
+  padding: 10px 0;
 }
 
 .product-details-slider-thumbnail-slider {
@@ -1191,7 +1241,6 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   padding: 10px;
-  /* padding: 52px; */
 }
 
 .product-details-slider-thumbnail-slider::-webkit-scrollbar {
@@ -2102,8 +2151,8 @@ fetchRelatedProducts('10', '131');
                 <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="400">
                     <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
                         <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
-                            style="background-color: #ffffff !important;"><i class="ph-fill ph-car-profile"
-                                style="color: #90C309 !important;"></i></span>
+                            style="background-color: #ffffff;"><i class="ph-fill ph-car-profile"
+                                style="Color: #90C309;"></i></span>
                         <div class="">
                             <h6 class="mb-0 text-black">Free Shipping</h6>
                             <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over
@@ -2113,36 +2162,36 @@ fetchRelatedProducts('10', '131');
                 </div>
                 <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="600">
                     <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                        <span class="w-56 h-56 flex-center rounded-circle text-white text-32 flex-shrink-0"
-                            style="background-color: #ffffff !important;"><i class="ph-fill ph-hand-heart"
-                                style="color: #90C309 !important;"></i></span>
+                        <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
+                            style="background-color: #ffffff;"><i class="ph-fill ph-hand-heart"
+                                style="Color: #90C309;"></i></span>
                         <div class="">
                             <h6 class="mb-0 text-black"> 100% Satisfaction</h6>
-                            <span class="text-sm text-heading text-black" style="color: #000 !important;">Free shipping
-                                all over the US</span>
+                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over
+                                the US</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="800">
                     <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
                         <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
-                            style="background-color: #ffffff !important;"><i class="ph-fill ph-credit-card"
-                                style="color: #90C309 !important;"></i></span>
+                            style="background-color: #ffffff;"><i class="ph-fill ph-credit-card"
+                                style="Color: #90C309;"></i></span>
                         <div class="">
                             <h6 class="mb-0 text-black"> Secure Payments</h6>
-                            <span class="text-sm text-heading text-black" style="color: #000 !important;">Free shipping
-                                all over the US</span>
+                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over
+                                the US</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1000">
                     <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                        <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
-                            style="background-color: #ffffff !important;"><i class="ph-fill ph-chats"
-                                style="color: #90C309 !important;"></i></span>
+                        <span class="w-56 h-56 flex-center rounded-circle text-white text-32 flex-shrink-0"
+                            style="background-color: #ffffff;"><i class="ph-fill ph-chats"
+                                style="Color: #90C309;"></i></span>
                         <div class="">
                             <h6 class="mb-0 text-black"> 24/7 Support</h6>
-                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over
+                            <span class="text-sm text-heading" style="color: #000 !important;">Free shipping all over
                                 the US</span>
                         </div>
                     </div>
@@ -2150,8 +2199,6 @@ fetchRelatedProducts('10', '131');
             </div>
         </div>
     </section>
- 
-
     <!-- ========================== Shipping Section End ============================ -->
     <!-- <div id="footer"></div> -->
  <!-- Footer Start -->
