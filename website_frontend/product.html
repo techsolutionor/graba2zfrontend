@@ -1446,10 +1446,10 @@ document.addEventListener("DOMContentLoaded", function () {
                                         <div id="favourite">
 
                                         </div>
-                                        <a href="#"
-                                            class="w-52 h-52 bg-main-50 text-main-600 text-xl hover-bg-main-600 hover-text-white flex-center rounded-circle">
-                                            <i class="ph ph-shuffle"></i>
-                                        </a>
+                                       <a href="#" id="compareBtn" class="w-52 h-52 bg-main-50 text-main-600 text-xl hover-bg-main-600 hover-text-white flex-center rounded-circle">
+    <i class="ph ph-shuffle"></i>
+</a>
+
                                         <!-- Share Button -->
                                         <a href="javascript:void(0)"
                                             class="w-52 h-52 bg-main-50 text-main-600 text-xl hover-bg-main-600 hover-text-white flex-center rounded-circle"
@@ -1479,7 +1479,131 @@ document.addEventListener("DOMContentLoaded", function () {
                                     </div>
                                 </div>
 
+<!-- Comparison Modal -->
+<div class="modal fade" id="productComparisonModal" tabindex="-1" aria-labelledby="productComparisonModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="productComparisonModalLabel">Product Comparison</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Product 1 Details (Already selected) -->
+        <div id="product1" class="comparison-product">
+          <h5>Product 1</h5>
+          <div id="product1-details">
+            <img src="" alt="Product 1 Image" id="product1-img">
+            <p id="product1-name">Loading...</p>
+            <p id="product1-price">Price: $0.00</p>
+            <p id="product1-description">Description: Loading...</p>
+            <button id="selectProduct1" class="btn btn-info">Select Product 1</button>
+          </div>
+        </div>
 
+        <!-- Product 2 Search Section -->
+        <div id="product2" class="comparison-product">
+          <h5>Product 2</h5>
+          <input type="text" id="searchProduct2" class="form-control" placeholder="Search for Product">
+          <button id="selectProduct2" class="btn btn-info">Select Product 2</button>
+        </div>
+
+        <!-- Comparison Table -->
+        <div id="comparison-table" style="display:none;">
+          <h5>Comparison</h5>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Specification</th>
+                <th>Product 1</th>
+                <th>Product 2</th>
+                <th>Best</th>
+              </tr>
+            </thead>
+            <tbody id="comparison-tbody">
+              <!-- Comparison rows will be inserted here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    document.getElementById("compareBtn").addEventListener("click", function (event) {
+    event.preventDefault();  // Prevent default behavior of anchor tag
+    const modal = new bootstrap.Modal(document.getElementById("productComparisonModal"));
+    modal.show();  // Show the comparison modal
+});
+
+document.getElementById("selectProduct1").addEventListener("click", function () {
+  const productId1 = window.location.pathname.split('/').pop(); // This extracts the last part of the URL (assuming the ID is at the end)
+fetchProductDetailsForComparison(productId1, 1);
+
+});
+
+document.getElementById("selectProduct2").addEventListener("click", function () {
+  const productName = document.getElementById("searchProduct2").value;
+  fetchProductBySearch(productName);  // Fetch product by search term
+});
+
+async function fetchProductDetailsForComparison(productId, productNum) {
+  const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/products/';
+  try {
+    const response = await fetch(`${API_URL}${productId}`);
+    const product = await response.json();
+
+    if (productNum === 1) {
+      // Set Product 1 details in modal
+      document.getElementById('product1-img').src = `${product.image_path}`;
+      document.getElementById('product1-name').textContent = product.name;
+      document.getElementById('product1-price').textContent = `Price: $${product.price}`;
+      document.getElementById('product1-description').textContent = `Description: ${product.description}`;
+      // You can also call updateComparisonTable here to add this product to the comparison table
+    }
+
+  } catch (error) {
+    console.error("Error fetching product details", error);
+  }
+}
+
+async function fetchProductBySearch(productName) {
+  const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/products/search';
+  try {
+    const response = await fetch(`${API_URL}?name=${productName}`);
+    const data = await response.json();
+
+    if (data.products && data.products.length > 0) {
+      const productId2 = data.products[0].id;  // Select the first product found by search
+      fetchProductDetailsForComparison(productId2, 2);  // Fetch Product 2 details
+    } else {
+      alert("No products found.");
+    }
+
+  } catch (error) {
+    console.error("Error searching for product", error);
+  }
+}
+
+function updateComparisonTable(product1, product2) {
+  const tableBody = document.getElementById("comparison-tbody");
+  tableBody.innerHTML = ""; // Clear previous rows
+
+  const specifications = product1.specifications; // Assuming both products have the same specs
+  specifications.forEach((spec, index) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${spec.name}</td>
+      <td>${product1[spec.key]}</td>
+      <td>${product2[spec.key]}</td>
+      <td>${product1[spec.key] > product2[spec.key] ? 'Product 1' : 'Product 2'}</td>
+    `;
+    tableBody.appendChild(row);
+  });
+
+  document.getElementById("comparison-table").style.display = "block";  // Show the comparison table
+}
+
+    </script>
                                 <div class="mt-32 flex-align flex-wrap gap-32">
 
                                     <!-- <div style="display: flex; flex-direction: row; gap: 10px;">
