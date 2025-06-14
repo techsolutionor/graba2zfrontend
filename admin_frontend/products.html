@@ -2284,7 +2284,8 @@ try {
                 const modal = bootstrap.Modal.getInstance(document.getElementById('uploadModal'));
                 if (modal) modal.hide();
 
-                loader.classList.add('d-none'); // Hide spinner after everything
+                loader.classList.add('d-none');
+                 location.reload(); // Hide spinner after everything
               }, 500);
 
             } catch (err) {
