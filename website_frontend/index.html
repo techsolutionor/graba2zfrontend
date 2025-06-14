@@ -2844,7 +2844,7 @@
                             <div class="galleria-item">
                                 <div class="emblem-frame">
                                     <a href="/product-category/${slugify(category.name)}">
-                                        <img src="${API_ADMINGRAB_URL}/${imagePath}" alt="${category.name}">
+                                        <img src="${API_ADMINGRAB_URL}/${imagePath}" >
                                     </a>
                                 </div>
                                 <div class="label-inscription">${category.name} (${productCount})</div>
@@ -2912,7 +2912,7 @@
                                                 <button onclick="addToWishlist(this)" class="btn position-absolute top-0 end-0">
                                                     ♡
                                                 </button>
-                                                <img src="${imageUrl}" alt="${product.name}"">
+                                                <img src="${imageUrl}" ">
                                                 <div class="px-10">
                                                     <div class="d-flex justify-content-between px-10">
                                                         <span class="badge bg-success">In stock</span>
@@ -2982,7 +2982,7 @@
       <!-- Image section -->
       <div class="position-relative" style="height: 200px;">
         <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
-        <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
+        <img src="${API_ADMINGRAB_URL}/${image}"  class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
       </div>
 
       <!-- Description section -->
@@ -2992,7 +2992,7 @@
           <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
         </div>
         <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
-          ${limitWords(product.name, )}
+          ${limitWords(product.name, 11)}
         </h6>
         <div class="mt-auto">
           <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>
@@ -3060,7 +3060,7 @@
     <a href="product?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
       <div class="position-relative" style="height: 200px;">
         <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
-        <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
+        <img src="${API_ADMINGRAB_URL}/${image}"  class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
       </div>
       <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px;">
         <div class="d-flex justify-content-between mb-1">
@@ -3068,7 +3068,7 @@
           <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
         </div>
         <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
-          ${limitWords(product.name, 13)}
+          ${limitWords(product.name, 11)}
         </h6>
         <div class="mt-0">
           <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>
@@ -3136,7 +3136,7 @@
     <a href="product?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
       <div class="position-relative" style="height: 200px;">
         <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
-        <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
+        <img src="${API_ADMINGRAB_URL}/${image}"  class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
       </div>
       <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px;">
         <div class="d-flex justify-content-between mb-1">
@@ -3144,7 +3144,7 @@
           <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
         </div>
         <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
-          ${limitWords(product.name, 13)}
+          ${limitWords(product.name, 11)}
         </h6>
         <div class="mt-0">
           <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>
@@ -3212,7 +3212,7 @@
     <a href="product?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
       <div class="position-relative" style="height: 200px;">
         <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
-        <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
+        <img src="${API_ADMINGRAB_URL}/${image}"  class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
       </div>
       <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px;">
         <div class="d-flex justify-content-between mb-1">
@@ -3220,7 +3220,7 @@
           <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
         </div>
         <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
-          ${limitWords(product.name, 13)}
+          ${limitWords(product.name, 11)}
         </h6>
         <div class="mt-0">
           <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>
@@ -3288,7 +3288,7 @@
     <a href="product?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
       <div class="position-relative" style="height: 200px; width: 200px;">
         <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
-        <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
+        <img src="${API_ADMINGRAB_URL}/${image}"  class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
       </div>
       <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px; width: 200px;">
         <div class="d-flex justify-content-between mb-1">
@@ -3296,7 +3296,7 @@
           <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
         </div>
         <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
-          ${limitWords(product.name, 13)}
+          ${limitWords(product.name, 11)}
         </h6>
         <div class="mt-0">
           <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>
@@ -3360,7 +3360,7 @@
 
                             limitedProducts.forEach(product => {
                                 const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
-                                const displayName = limitWords(product.name, 13);
+                                const displayName = limitWords(product.name, 11);
 
                                 const card = `
 <div class="col-6 col-sm-4 col-md-3 col-lg-2">
@@ -3368,7 +3368,7 @@
     <a href="product?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
       <div class="position-relative" style="height: 200px;">
         <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
-        <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
+        <img src="${API_ADMINGRAB_URL}/${image}"  class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
       </div>
       <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px;">
         <div class="d-flex justify-content-between mb-1">
@@ -3438,14 +3438,14 @@
 
                             limitedProducts.forEach(product => {
                                 const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
-                                const displayName = limitWords(product.name, 13);
+                                const displayName = limitWords(product.name, 11);
 
                                 const card = `
 <div class="col-6 col-sm-4 col-md-3 col-lg-2">
   <div class="card position-relative border rounded h-100">
     <a href="product?slug=${product.slug}" class="text-decoration-none">
       <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
-      <img src="${API_ADMINGRAB_URL}/${image}" class="card-img-top" alt="${product.name}" style="height: 150px; object-fit: contain;">
+      <img src="${API_ADMINGRAB_URL}/${image}" class="card-img-top"  style="height: 150px; object-fit: contain;">
       <div class="card-body">
         <div class="mb-2 d-flex justify-content-between">
           <span class="badge bg-success">In stock</span>
@@ -3513,7 +3513,7 @@
     <a href="product?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
       <div class="position-relative" style="height: 200px;">
         <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
-        <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
+        <img src="${API_ADMINGRAB_URL}/${image}"  class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
       </div>
       <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px;">
         <div class="d-flex justify-content-between mb-1">
@@ -3521,7 +3521,7 @@
           <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
         </div>
         <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
-          ${limitWords(product.name, 13)}
+          ${limitWords(product.name, 11)}
         </h6>
         <div class="mt-0">
           <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>

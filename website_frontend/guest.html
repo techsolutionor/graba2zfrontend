@@ -423,11 +423,11 @@
     <!--==================== Sidebar Overlay End ====================-->
 
     <!-- ==================== Scroll to Top End Here ==================== -->
-    <div class="progress-wrap">
+    <!-- <div class="progress-wrap">
         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
             <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
         </svg>
-    </div>
+    </div> -->
     <!-- ==================== Scroll to Top End Here ==================== -->
 
     <!-- ==================== Search Box Start Here ==================== -->
@@ -569,12 +569,19 @@
                             role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             All Policy
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="policyDropdown">
-                            <a class="dropdown-item" href="https://graba2z.netlify.app/terms-conditions">Terms & Condition</a>
-                            <a class="dropdown-item" href="https://graba2z.netlify.app/refund-and-return">Refund and Returns</a>
-                            <a class="dropdown-item" href="https://graba2z.netlify.app/cookies-policy">Cookies Policies</a>
-                            <a class="dropdown-item" href="https://graba2z.netlify.app/refund-and-return">Exchange Policies</a>
-                            <a class="dropdown-item" href="https://graba2z.netlify.app/privacy-policy">Privacy Policies</a>
+                        <div class="dropdown-menu shadow-sm" aria-labelledby="policyDropdown">
+                            <a class="dropdown-item" href="./terms-conditions">
+                                <i class="ph ph-file-text me-10 text-sm"></i> Terms & Condition
+                            </a>
+                            <a class="dropdown-item" href="./refund-and-return">
+                                <i class="ph ph-arrow-counter-clockwise me-10 text-sm"></i> Refund and Returns
+                            </a>
+                            <a class="dropdown-item" href="./cookies-policy">
+                                <i class="ph ph-cookie me-10 text-sm"></i> Cookies Policies
+                            </a>
+                            <a class="dropdown-item" href="./privacy-policy">
+                                <i class="ph ph-shield-check me-10 text-sm"></i> Privacy Policies
+                            </a>
                         </div>
                     </li>
                 </ul>
@@ -605,38 +612,27 @@
                           <span class="hover-text-decoration-underline">My Account</span>
                        </a>
                   </li> -->
-                    <li class="border-right-item nav-item dropdown">
-                        <a href="account" class="text-white text-sm py-8 flex-align gap-6 nav-link dropdown-toggle"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class=" text-md d-flex"><i class="ph ph-user-circle"></i></span>
+                    <li class="nav-item user-menu position-relative w-auto">
+                        <a href="account" class="text-white text-sm py-8 flex-align gap-6 nav-link user-toggle"
+                            role="button" id="userMenuButton">
+                            <span><i class="ph ph-user-circle"></i></span>
                             <span class="hover-text-decoration-underline d-none d-md-inline">My Account</span>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
+                        <ul class="user-dropdown shadow-sm">
+                            <li><a class="user-item px-12 py-5" href="#"><i class="ph ph-user me-8"></i>Account</a></li>
+                            <!-- <li><hr class="user-divider my-4 mx-12"></li> -->
                             <li>
-                                <a class="dropdown-item" href="#">
-                                    <i class="ph ph-user me-2"></i>Account
+                                <a class="user-item px-12 py-5" href="#" id="auth-link">
+                                    <i class="ph ph-sign-in me-8" id="auth-icon"></i>
+                                    <span id="auth-text">Sign In</span>
                                 </a>
                             </li>
-                            <li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <a class="dropdown-item" href="account">
-                                <i class="ph ph-sign-in me-2"></i>Sign In
-                            </a>
+                            <li><a class="user-item px-12 py-5" href="track-order"><i class="ph ph-truck me-8"></i>Track
+                                    Order</a></li>
+                            <li><a class="user-item px-12 py-5" href="help-center"><i
+                                        class="ph ph-question me-8"></i>Help Center</a></li>
+                        </ul>
                     </li>
-                    <li>
-                        <a class="dropdown-item" href="track-order"> <!-- Update this line -->
-                            <i class="ph ph-truck me-2"></i>Track Order
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="help-center">
-                            <i class="ph ph-question me-2"></i>Help Center
-                        </a>
-                    </li>
-                </ul>
-                </li>
                 </ul>
             </div>
         </div>
@@ -690,15 +686,14 @@
                             </span>
                             <span class="text-md text-gray-500 item-hover__text d-none d-lg-flex">Wishlist</span>
                         </a>
-                        <a href="cart" class="flex-align gap-4 item-hover">
+                       <a href="cart" class="flex-align gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
                                 <i class="ph ph-shopping-cart-simple"></i>
-                                <span
-                                    class="w-16 h-16 flex-center rounded-circle text-white text-xs position-absolute top-n6 end-n4 cart-item-count"
-                                    style="background-color: #86c232;">0</span>
+                                <span class="cart-item-count">0</span>
                             </span>
                             <span class="text-md text-gray-500 item-hover__text d-none d-lg-flex">Cart</span>
                         </a>
+
                     </div>
                 </div>
                 <!-- Header Middle Right End  -->
@@ -790,7 +785,7 @@
                     </div>
                 </div>
                 <div id="guest" class="mt-5">
-                    <h5 class="mt-28">Continue as Guest</h5>
+                    <h5 class="mt-28 text-dark">Continue as Guest</h5>
                     <form id="guestForm">
                         <div class="form-group">
                             <label for="name" style="color: black;">Full Name</label>
