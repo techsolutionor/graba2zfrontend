@@ -154,22 +154,39 @@
     
   </style>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const currentPath = window.location.pathname.split("/").pop();
-      const navLinks = document.querySelectorAll(".left-sidebar .nav-link");
+  document.addEventListener("DOMContentLoaded", function () {
+    let currentPath = window.location.pathname;
 
-      navLinks.forEach((link) => {
-        const href = link.getAttribute("href");
-        if (href && href.endsWith(".html") && href === currentPath) {
+    // Normalize path by removing trailing slash and .html
+    currentPath = currentPath.replace(/\/$/, "").replace(/\.html$/, "");
+
+    document.querySelectorAll(".nav-link").forEach(link => {
+      let href = link.getAttribute("href");
+
+      if (href) {
+        // Normalize href too
+        let linkPath = href.replace(/\.html$/, "").replace(/\/$/, "");
+
+        if (currentPath.endsWith(linkPath)) {
           link.classList.add("active");
+
+          // Expand parent submenu if it's inside one
           const parentCollapse = link.closest(".collapse");
           if (parentCollapse) {
-            new bootstrap.Collapse(parentCollapse, { toggle: false }).show();
+            parentCollapse.classList.add("show");
+            const parentToggle = parentCollapse.previousElementSibling;
+            if (parentToggle && parentToggle.classList.contains("nav-link")) {
+              parentToggle.classList.add("active");
+            }
           }
+        } else {
+          link.classList.remove("active");
         }
-      });
+      }
     });
-  </script>
+  });
+</script>
+
   <script>
     ////(function() {
     //     let(function() {
