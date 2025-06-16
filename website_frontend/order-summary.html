@@ -1193,18 +1193,19 @@ ul {
 
         <!-- Step Indicator -->
         <div class="d-flex align-items-center mb-4">
-            <span id="step1" class="fw-bold border border-dark rounded-circle px-6 py-2 me-2">01</span>
-            <span class="fw-bold">Shipping Details</span>
-            <span class="mx-2">—</span>
-            <span id="step2" class="text-secondary border border-dark rounded-circle px-5 py-2 me-2">02</span>
-            <span class="text-secondary">Summary</span>
-            <span class="mx-2">—</span>
-            <span id="step3" class="text-secondary border border-dark rounded-circle px-5 py-2 me-2">03</span>
-            <span class="text-secondary">Payment Method</span>
+            <span id="step1" class="fw-bold border border-dark rounded-circle px-5 py-5 me-2" style="color: black !important;">01</span>
+            <span class="fw-bold" style="color: black !important;">Shipping Details</span>
+            <span class="mx-2" style="color: black !important;">—</span>
+            <span id="step2" class="text-secondary border border-dark rounded-circle px-5 py-5 me-2" style="color: black !important;">02</span>
+            <span class="text-secondary" style="color: black !important;">Summary</span>
+            <span class="mx-2" style="color: black !important;">—</span>
+            <span id="step3" class="text-secondary border border-dark rounded-circle px-5 py-5 me-2"style="color: black !important;">03</span>
+            <span class="text-secondary" style="color: black !important;">Payment Method</span>
         </div>
 
+
         <div class="mb-3">
-            <label class="form-label fw-bold">Guest ID</label>
+            <label class="form-label fw-bold text-dark">Guest ID</label>
             <input type="text" id="guestId" class="form-control" readonly>
         </div>
 
@@ -1318,7 +1319,7 @@ ul {
                     <p id="summaryShippingAddress"></p>
                 </div> -->
                     <div class="mt-4">
-                        <h6 class="fw-bold">Shipping Address</h6>
+                        <h6 class="fw-bold text-dark">Shipping Address</h6>
                         <div id="summaryShippingAddress"
                             style="border: 1px solid #ddd; border-radius: 6px; padding: 12px; background-color: #f9f9f9; max-width: 750px; font-family: Arial, sans-serif; color: #777;">
 
@@ -1330,17 +1331,17 @@ ul {
 
                     <!-- Order Summary -->
                     <!-- Order Items Section -->
-                    <h5 class="fw-bold mt-24" style="font-size: 23px;">Order Items</h5>
+                    <h5 class="fw-bold mt-24 text-dark" style="font-size: 23px;">Order Items</h5>
                     <div class="card p-3 shadow-sm">
                         <div id="cartItemsContainer"></div>
                         <hr>
                         <div class="p-3">
                             <div class="mb-3 d-flex justify-content-between">
-                                <span class="text-dark fw-bold">Subtotal</span>
-                                <span id="cartSubtotal" class="text-dark fw-semibold">AED 0.00</span>
+                                <span class="text-dark fw-bold text-dark">Subtotal</span>
+                                <span id="cartSubtotal" class="text-dark fw-semibold text-dark">AED 0.00</span>
                             </div>
                             <div class="mb-3 d-flex justify-content-between">
-                                <span class="text-muted">Shipping</span>
+                                <span class="text-muted text-dark" >Shipping</span>
                                 <span id="shippingCost" class="text-muted">AED 10.00</span>
                             </div>
                         </div>

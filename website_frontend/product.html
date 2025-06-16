@@ -10,6 +10,9 @@
 <!-- Bootstrap CSS (in the <head> section) -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
 
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+
+
 <!-- Bootstrap JS (just before </body>) -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
 
@@ -1898,7 +1901,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="tab-pane fade show active" id="pills-description" role="tabpanel"
                         aria-labelledby="pills-description-tab" tabindex="0">
                         <div id="product-description" class="mb-40">
-                            <h6 class="mb-24">Product Description</h6>
+                            <h6 class="mb-24" style="background-color: #F7F7F7 !important;">Product Description</h6>
                             <!-- <p>Wherever celebrations and good times happen, the LAY'S brand will be there just as it has been for more than 75 years. With flavors almost as rich as our history, we have a chip or crisp flavor guaranteed to bring a smile on your face. </p>
                                 <p>Morbi ut sapien vitae odio accumsan gravida. Morbi vitae erat auctor, eleifend nunc a, lobortis neque. Praesent aliquam dignissim viverra. Maecenas lacus odio, feugiat eu nunc sit amet, maximus sagittis dolor. Vivamus nisi sapien, elementum sit amet eros sit amet, ultricies cursus ipsum. Sed consequat luctus ligula. Curabitur laoreet rhoncus blandit. Aenean vel diam ut arcu pharetra dignissim ut sed leo. Vivamus faucibus, ipsum in vestibulum vulputate, lorem orci convallis quam, sit amet consequat nulla felis pharetra lacus. Duis semper erat mauris, sed egestas purus commodo vel.</p>     -->
                             <p>
@@ -2591,8 +2594,17 @@ function slugify(text) {
                 document.getElementById('product-categories').textContent = product.category_name || 'N/A';
                 document.getElementById('product-brand').textContent = product.brand_name || 'N/A';
                 document.getElementById('product-description').innerHTML = `
-            <h6 class="mb-24">Product Description</h6>
-            <p>${product.description || 'No description available.'}</p>
+            <h6 class="mb-24" style="background-color: #F7F7F7 !important;">Product Description</h6>
+           <p style="
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000;
+">
+  ${product.description || 'No description available.'}
+</p>
+
         `;
                 // Parse image_paths safely
                 let imagePaths = [];
