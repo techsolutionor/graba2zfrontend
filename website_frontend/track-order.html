@@ -890,42 +890,104 @@ ul {
     </header>
 
     <!-- ==================== category Header End Here ==================== -->
- <!-- Track Your Order Section -->
+  <!-- Custom Order Tracker Styles -->
+  <style>
+    .tracker-wrapper {
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .tracker-step {
+      flex: 1;
+      min-width: 110px;
+      text-align: center;
+      position: relative;
+    }
+
+    .tracker-icon {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 10px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      background-color: #ccc;
+      color: white;
+      transition: 0.3s ease;
+    }
+
+    .tracker-icon.active {
+      background-color: #90C309;
+    }
+
+    .tracker-icon.done {
+      background-color: #b7d771;
+    }
+
+    .tracker-label {
+      font-size: 12px;
+      max-width: 90px;
+      margin: 0 auto;
+    }
+
+    .tracker-line {
+      position: absolute;
+      top: 25px;
+      left: 50%;
+      width: 100%;
+      height: 4px;
+      z-index: 0;
+      background-color: #ccc;
+    }
+
+    @media (max-width: 768px) {
+      .tracker-label {
+        font-size: 10px;
+      }
+
+      .tracker-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Track Order Header -->
 <div class="container-fluid py-5">
   <div class="row justify-content-center">
     <div class="col-12 text-center">
-      <h1 class="fw-bold text-dark" style="font-size: 28px;">Track Your Order Now!</h1>
+      <h1 class="fw-bold text-dark">Track Your Order Now!</h1>
     </div>
   </div>
 </div>
 
-<!-- Form and Image Section -->
+<!-- Order Form -->
 <div class="container-fluid py-5" style="background-color: #f5f5f5;">
   <div class="row align-items-center">
     <div class="col-md-1"></div>
-
-    <!-- Order Tracking Form -->
     <div class="col-md-3">
       <form id="orderTrackingForm">
         <div class="mb-3">
-          <label for="order-id" class="form-label" style="color: #000;">Enter Order Id *</label>
-          <input type="text" id="order-id" class="form-control" required>
+          <label for="order-id" class="form-label" style="color: #000;">Enter Order ID *</label>
+          <input type="text" id="order-id" class="form-control" required />
         </div>
         <button type="submit" class="btn btn-success" style="background-color: #90C309;">Track Order</button>
       </form>
     </div>
-
     <div class="col-md-1"></div>
-
-    <!-- Image -->
     <div class="col-md-6 text-center">
-      <img src="./assets/images/thumbs/track-order.jpg" alt="Order Tracking" class="img-fluid">
+      <img src="./assets/images/thumbs/track-order.jpg" alt="Order Tracking" class="img-fluid" />
     </div>
+    <div class="col-md-1"></div>
   </div>
-  <div class="col-md-1"></div>
 </div>
 
-<!-- Order Details Display -->
+<!-- Order Detail & Progress -->
 <div id="orderDetailsContainer" class="container py-5" style="display:none;">
   <div class="card p-4 shadow-sm">
     <h3 class="mb-3">Order Details</h3>
@@ -936,40 +998,27 @@ ul {
     <h4 class="mt-4">Products</h4>
     <ul id="detailOrderProducts" class="list-unstyled"></ul>
 
-    <!-- Status Progress Graph -->
-    <div class="mt-5">
-      <h4>Order Progress</h4>
-      <div class="d-flex justify-content-between align-items-center" id="status-tracker"></div>
-    </div>
+    <!-- Tracker -->
+    <h4 class="mt-5">Order Progress</h4>
+    <div id="status-tracker" class="d-flex justify-content-between align-items-center flex-wrap gap-3 tracker-wrapper mt-3"></div>
   </div>
 </div>
 
-<!-- JS Script for Tracking Logic -->
+<!-- Scripts -->
 <script>
   document.getElementById('orderTrackingForm').addEventListener('submit', async function (e) {
     e.preventDefault();
-    const orderIdInput = document.getElementById('order-id');
-    const orderId = orderIdInput.value.trim();
-
-    if (!orderId) {
-      alert('Please enter an Order ID');
-      return;
-    }
+    const orderId = document.getElementById('order-id').value.trim();
+    if (!orderId) return alert('Please enter an Order ID');
 
     try {
-      const response = await fetch(`https://grabatoz-production.up.railway.app/api/onlineordertrack/${orderId}`);
-
-      if (!response.ok) {
-        alert('Order ID not found.');
-        return;
-      }
-
-      const order = await response.json();
+      const res = await fetch(`https://grabatoz-production.up.railway.app/api/onlineordertrack/${orderId}`);
+      if (!res.ok) return alert('Order ID not found');
+      const order = await res.json();
       displayOrderDetails(order);
-
-    } catch (error) {
-      console.error('Error fetching order:', error);
-      alert('Something went wrong while fetching your order.');
+    } catch (err) {
+      console.error(err);
+      alert('Error fetching order.');
     }
   });
 
@@ -977,63 +1026,57 @@ ul {
     document.getElementById('orderDetailsContainer').style.display = 'block';
     document.getElementById('detailOrderId').textContent = order.order_id || 'N/A';
     document.getElementById('detailOrderStatus').textContent = order.order_status || 'N/A';
-    document.getElementById('detailOrderDate').textContent = order.created_at
-      ? new Date(order.created_at).toLocaleString()
-      : 'N/A';
+    document.getElementById('detailOrderDate').textContent = order.created_at ? new Date(order.created_at).toLocaleString() : 'N/A';
 
-    // Products list
     const productsList = document.getElementById('detailOrderProducts');
     productsList.innerHTML = '';
-
     try {
       const products = JSON.parse(order.card_info || '[]');
-      if (products.length) {
-        products.forEach(p => {
-          const li = document.createElement('li');
-          li.textContent = `${p.name || 'Product'} - Qty: ${p.quantity || 1} - Price: $${parseFloat(p.selling_price || 0).toFixed(2)}`;
-          productsList.appendChild(li);
-        });
-      } else {
-        productsList.innerHTML = '<li>No products found.</li>';
-      }
+      products.forEach(p => {
+        const li = document.createElement('li');
+        li.textContent = `${p.name} - Qty: ${p.quantity} - Price: $${parseFloat(p.selling_price).toFixed(2)}`;
+        productsList.appendChild(li);
+      });
     } catch {
-      productsList.innerHTML = '<li>Error parsing products.</li>';
+      productsList.innerHTML = '<li>Error loading products.</li>';
     }
 
     renderStatusGraph(order.order_status);
   }
 
   function renderStatusGraph(currentStatus) {
-    const steps = ['Pending', 'Confirmed', 'Processing', 'Shipped', 'Delivered'];
+    const steps = [
+      { label: 'Received Order', icon: 'fa-cart-shopping' },
+      { label: 'In Progress Orders', icon: 'fa-gears' },
+      { label: 'Ready for Shipment', icon: 'fa-gift' },
+      { label: 'On the Way', icon: 'fa-truck' },
+      { label: 'Delivered', icon: 'fa-box' },
+      { label: 'On Hold', icon: 'fa-pause-circle' },
+      { label: 'Rejected', icon: 'fa-xmark-circle' }
+    ];
+
     const tracker = document.getElementById('status-tracker');
     tracker.innerHTML = '';
+    const activeIndex = steps.findIndex(s => s.label.toLowerCase() === (currentStatus || '').toLowerCase());
 
-    steps.forEach((status, index) => {
-      const isActive = steps.indexOf(status) <= steps.indexOf(currentStatus);
+    steps.forEach((step, index) => {
+      const isActive = index <= activeIndex;
+      const isCurrent = index === activeIndex;
 
-      const step = document.createElement('div');
-      step.style.flex = '1';
-      step.style.textAlign = 'center';
-      step.innerHTML = `
-        <div style="
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          margin: 0 auto 6px;
-          background-color: ${isActive ? '#90C309' : '#ccc'};
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: white;
-          font-weight: bold;
-        ">${index + 1}</div>
-        <small>${status}</small>
+      const div = document.createElement('div');
+      div.className = 'tracker-step';
+
+      div.innerHTML = `
+        <div class="tracker-icon ${isCurrent ? 'active' : isActive ? 'done' : ''}">
+          <i class="fa-solid ${step.icon}"></i>
+        </div>
+        <div class="tracker-label">${step.label}</div>
       `;
-      tracker.appendChild(step);
+
+      tracker.appendChild(div);
     });
   }
 </script>
-
 <!-- Order Details Modal
 <div id="orderDetailsModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(0,0,0,0.6); z-index:10000; justify-content:center; align-items:center;">
   <div style="background:#fff; border-radius:8px; padding:20px; width:90%; max-width:500px; max-height:80vh; overflow-y:auto; position:relative;">
