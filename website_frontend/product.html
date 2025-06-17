@@ -10,7 +10,8 @@
 <!-- Bootstrap CSS (in the <head> section) -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
 
 
 <!-- Bootstrap JS (just before </body>) -->
@@ -2954,16 +2955,16 @@ function slugify(text) {
                 document.getElementById('product-categories').textContent = product.category_name || 'N/A';
                 document.getElementById('product-brand').textContent = product.brand_name || 'N/A';
                 document.getElementById('product-description').innerHTML = `
-            <h6 class="mb-24" style="background-color: #F7F7F7 !important;">Product Description</h6>
-           <p style="
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #000;
-">
-  ${product.description || 'No description available.'}
-</p>
+  <h6 class="mb-24" style="background-color: #F7F7F7 !important;">Product Description</h6>
+  <p style="
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 19px !important;
+    line-height: 24px  !important;
+    color: #000 !important;
+  ">
+    ${product.description || 'No description available.'}
+  </p>
 
         `;
                 // Parse image_paths safely
