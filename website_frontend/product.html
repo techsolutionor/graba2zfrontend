@@ -1593,6 +1593,30 @@
   margin: 0 auto;
   display: block;
 }
+.modal-thumbnails {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-thumbnails-slide {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.modal-thumbnails-slide img {
+  width: 100%;
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.modal-thumbnails-slide img:hover {
+  border-color: #007bff;
+}
+
+.border-primary {
+  border-color: #007bff !important;
+}
+
 </style>
 
 <script>
@@ -1666,9 +1690,19 @@ async function fetchProductImages(productId) {
       const thumb = document.createElement('div');
       thumb.classList.add('modal-thumbnails-slide');
       thumb.innerHTML = `<img src="${fullPath}" class="img-fluid rounded" alt="Thumbnail ${index + 1}" />`;
-      thumb.addEventListener('click', () => {
-        modalImage.src = fullPath;
-      });
+
+thumb.addEventListener('click', () => {
+  modalImage.src = fullPath;
+
+  // Remove active border from all
+  slickContainer.querySelectorAll('img').forEach(img => {
+    img.classList.remove('border-primary');
+  });
+
+  // Add active border to clicked one
+  thumb.querySelector('img').classList.add('border-primary');
+});
+
       slickContainer.appendChild(thumb);
     });
 
