@@ -1458,242 +1458,259 @@
         </div>
     </div>
     <!-- ========================= Breadcrumb End =============================== -->
-<section class="product-details py-10">
-  <div class="container container-lg">
-    <div class="row gy-4">
-      <div class="col-lg-9">
-        <div class="row gy-4">
-          <div class="col-xl-5">
-            <div class="product-details-slider__left">
-              <!-- Main product image -->
-              <div class="product-details-slider__thumb flex-center h-100 border rounded-8 mb-10"
-                   style="min-width: 300px !important; min-height: 100% !important;" id="product-details-slider-main-container">
-                <img id="product-details-slider-main-image" class="py-10" data-bs-toggle="modal" data-bs-target="#product-details-slider-image-modal"
-                     src="assets/images/white-placeholder.png" style="cursor: zoom-in; min-width: 300px !important; min-height: 400px !important; border: 5px solid white;"
-                     alt="Product Image">
-              </div>
+    <section class="product-details py-10">
+        <div class="container container-lg">
+            <div class="row gy-4">
+                <div class="col-lg-9">
+                    <div class="row gy-4">
+                        <div class="col-xl-5">
+                            <div class="product-details-slider__left">
+  <!-- Main product image -->
+  <div class="product-details-slider__thumb flex-center h-100 border rounded-8 mb-10"
+      style="min-width: 300px !important; min-height: 100% !important;" id="product-details-slider-main-container">
+      <img id="product-details-slider-main-image" class="py-10" data-bs-toggle="modal" data-bs-target="#product-details-slider-image-modal"
+          src="assets/images/white-placeholder.png" style="cursor: zoom-in; min-width: 300px !important; min-height: 400px !important;  border: 5px solid white;"
+          alt="Product Image">
+  </div>
 
-              <!-- Modal for enlarged product image -->
-              <div class="modal fade" id="product-details-slider-image-modal" tabindex="-1" aria-labelledby="product-details-slider-image-modal-label" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-xl">
-                  <div class="modal-content bg-transparent border-0 position-relative">
-                    <div class="d-flex flex-row align-items-center">
-                      <!-- Vertical Thumbnail Slider -->
-                      <div class="modal-thumbnails me-3" style="width: 100px;">
-                        <div class="slick-vertical-slider">
-                          <!-- Dynamically insert vertical thumbnails -->
-                        </div>
-                      </div>
+  <!-- Modal for enlarged product image -->
+<div class="modal fade" id="product-details-slider-image-modal" tabindex="-1" aria-labelledby="product-details-slider-image-modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content bg-transparent border-0 position-relative">
+      <div class="d-flex flex-row align-items-center">
+        <!-- Vertical Thumbnail Slider -->
+        <div class="modal-thumbnails me-3" style="width: 100px;">
+          <div class="slick-vertical-slider">
+            <!-- Dynamically insert vertical thumbnails -->
+          </div>
+        </div>
 
-                      <!-- Enlarged Image with Zoom -->
-                      <div class="position-relative w-100 text-center">
-                        <img id="product-details-slider-modal-image" src="" alt="Enlarged Product Image"
-                             class="img-fluid rounded-3" style="max-height: 80vh; max-width: 100%; cursor: zoom-in;" />
+        <!-- Enlarged Image with Zoom -->
+        <div class="position-relative w-100 text-center">
+          <img id="product-details-slider-modal-image" src="" alt="Enlarged Product Image"
+               class="img-fluid rounded-3" style="max-height: 80vh; max-width: 100%; cursor: zoom-in;" />
 
-                        <!-- Zoom & Fullscreen Controls -->
-                        <div class="position-absolute top-0 end-0 m-2 z-2 d-flex gap-2">
-                          <button class="btn btn-light btn-sm" id="zoom-toggle"><i class="fas fa-search-plus"></i></button>
-                          <button class="btn btn-light btn-sm" id="fullscreen-toggle"><i class="fas fa-expand"></i></button>
-                          <button class="btn-close cross-button" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Thumbnail slider -->
-              <div class="product-details-slider-thumbnail-container" style="padding-bottom: 20px;">
-                <button class="product-details-slider-thumbnail-arrow left" id="product-details-slider-thumbnail-prev">&#10094;</button>
-                <div class="product-details-slider-thumbnail-slider" id="product-details-slider-thumbnail-slider">
-                  <!-- Thumbnails will be inserted here dynamically -->
-                </div>
-                <button class="product-details-slider-thumbnail-arrow right" id="product-details-slider-thumbnail-next">&#10095;</button>
-              </div>
-            </div>
+          <!-- Zoom & Fullscreen Controls -->
+          <div class="position-absolute top-0 end-0 m-2 z-2 d-flex gap-2">
+            <button class="btn btn-light btn-sm" id="zoom-toggle"><i class="fas fa-search-plus"></i></button>
+            <button class="btn btn-light btn-sm" id="fullscreen-toggle"><i class="fas fa-expand"></i></button>
+            <button class="btn-close cross-button" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Related Products Styles -->
-  <style>
-    .product-details-slider-thumbnail-container {
-      position: relative;
-      overflow: hidden;
-      padding: 10px 0;
-    }
+  <!-- Thumbnail slider -->
+  <div class="product-details-slider-thumbnail-container" style="padding-bottom: 20px;">
+      <button class="product-details-slider-thumbnail-arrow left" id="product-details-slider-thumbnail-prev">&#10094;</button>
+      <div class="product-details-slider-thumbnail-slider" id="product-details-slider-thumbnail-slider">
+          <!-- Thumbnails will be inserted here dynamically -->
+      </div>
+      <button class="product-details-slider-thumbnail-arrow right" id="product-details-slider-thumbnail-next">&#10095;</button>
+  </div>
+</div>
 
-    .product-details-slider-thumbnail-slider {
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      padding: 10px;
-    }
+<!-- Related Products Styles -->
+<style>
+.product-details-slider-thumbnail-container {
+  position: relative;
+  overflow: hidden;
+  padding: 10px 0;
+}
 
-    .product-details-slider-thumbnail-slider::-webkit-scrollbar {
-      display: none;
-    }
+.product-details-slider-thumbnail-slider {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px;
+}
 
-    .product-details-slider-thumbnail-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.5);
-      color: white;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      padding: 10px;
-      z-index: 10;
-    }
+.product-details-slider-thumbnail-slider::-webkit-scrollbar {
+  display: none;
+}
 
-    .product-details-slider-thumbnail-arrow.left {
-      left: 0;
-    }
+.product-details-slider-thumbnail-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 10;
+}
 
-    .product-details-slider-thumbnail-arrow.right {
-      right: 0;
-    }
+.product-details-slider-thumbnail-arrow.left {
+  left: 0;
+}
 
-    .product-details-slider-thumbnail-slider .product-details-slider-thumbnail-slide {
-      flex: 0 0 120px;
-      cursor: pointer;
-      border-radius: 5px;
-      border: 2px solid #ddd;
-    }
+.product-details-slider-thumbnail-arrow.right {
+  right: 0;
+}
 
-    .product-details-slider-thumbnail-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 5px;
-    }
-  </style>
+.product-details-slider-thumbnail-slider .product-details-slider-thumbnail-slide {
+  flex: 0 0 120px;  /* Fixed size for each thumbnail */
+  cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid #ddd;
+}
 
-  <script>
-    const slider = document.getElementById("product-details-slider-thumbnail-slider");
-    document.getElementById('product-details-slider-thumbnail-prev').addEventListener('click', function () {
-      const scrollAmount = slider.clientWidth;
-      slider.scrollBy({
-        left: -scrollAmount,
-        behavior: 'smooth'
-      });
-    });
+.product-details-slider-thumbnail-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+</style>
 
-    document.getElementById('product-details-slider-thumbnail-next').addEventListener('click', function () {
-      const scrollAmount = slider.clientWidth;
-      slider.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth'
-      });
-    });
+<script>
+const slider = document.getElementById("product-details-slider-thumbnail-slider");
+document.getElementById('product-details-slider-thumbnail-prev').addEventListener('click', function () {
+  const scrollAmount = slider.clientWidth; // or slider.offsetWidth
+  slider.scrollBy({
+    left: -scrollAmount,
+    behavior: 'smooth'
+  });
+});
 
-    // Fetch product details (including images) from API
-    async function fetchProductImages(productId) {
+document.getElementById('product-details-slider-thumbnail-next').addEventListener('click', function () {
+  const scrollAmount = slider.clientWidth; // or slider.offsetWidth
+  slider.scrollBy({
+    left: scrollAmount,
+    behavior: 'smooth'
+  });
+});
+
+// Fetch product details (including images) from API
+async function fetchProductImages(productId) {
+  try {
+    const API_CUSTOMER_URL = 'https://websitegrabatoz-production.up.railway.app'; // Your API URL
+    const API_ADMINGRAB_URL = 'https://grabatoz-production.up.railway.app';  // Use HTTPS to avoid Mixed Content
+
+    const response = await fetch(`${API_CUSTOMER_URL}/api/products/${productId}`);
+    const product = await response.json();
+
+    let imagePaths = product.image_paths;
+    if (typeof imagePaths === 'string') {
       try {
-        const API_CUSTOMER_URL = 'https://websitegrabatoz-production.up.railway.app'; // Your API URL
-        const API_ADMINGRAB_URL = 'https://grabatoz-production.up.railway.app';  // Use HTTPS to avoid Mixed Content
-
-        const response = await fetch(`${API_CUSTOMER_URL}/api/products/${productId}`);
-        const product = await response.json();
-
-        let imagePaths = product.image_paths;
-        if (typeof imagePaths === 'string') {
-          try {
-            imagePaths = JSON.parse(imagePaths);
-          } catch {
-            imagePaths = [];
-          }
-        }
-
-        if (!imagePaths || imagePaths.length === 0) {
-          document.getElementById('product-details-slider-thumbnail-slider').innerHTML = '<p class="text-center w-100">No product images found.</p>';
-          return;
-        }
-
-        const mainImage = document.getElementById('product-details-slider-main-image');
-        const modalImage = document.getElementById('product-details-slider-modal-image');
-
-        const firstImagePath = `${API_ADMINGRAB_URL}/${imagePaths[0].replace(/\\/g, '/')}`;
-        mainImage.src = firstImagePath;
-        modalImage.src = firstImagePath;
-
-        const sliderContainer = document.getElementById('product-details-slider-thumbnail-slider');
-        const slickContainer = document.querySelector('.slick-vertical-slider');
-        sliderContainer.innerHTML = ''; // Clear previous thumbnails
-        slickContainer.innerHTML = '';  // Clear the vertical thumbnails
-
-        imagePaths.forEach((path, index) => {
-          const fullPath = `${API_ADMINGRAB_URL}/${path.replace(/\\/g, '/')}`;
-
-          // Add thumbnails for the main slider
-          const slide = document.createElement('div');
-          slide.className = 'product-details-slider-thumbnail-slide';
-          slide.innerHTML = `<img src="${fullPath}" alt="Thumbnail ${index + 1}" />`;
-          slide.querySelector('img').addEventListener('click', () => {
-            mainImage.src = fullPath;
-            modalImage.src = fullPath;
-          });
-          sliderContainer.appendChild(slide);
-
-          // Add thumbnails for the modal
-          const thumb = document.createElement('div');
-          thumb.classList.add('modal-thumbnails-slide');
-          thumb.innerHTML = `<img src="${fullPath}" class="img-fluid rounded" alt="Thumbnail ${index + 1}" />`;
-          thumb.addEventListener('click', () => {
-            modalImage.src = fullPath;
-          });
-          slickContainer.appendChild(thumb);
-        });
-
-        // Initialize slick for vertical thumbnails
-        $(slickContainer).slick({
-          vertical: true,
-          slidesToShow: 4,
-          slidesToScroll: 1,
-          arrows: true,
-          infinite: false,
-          verticalSwiping: true
-        });
-
-      } catch (error) {
-        console.error('Error fetching product images:', error);
-        document.getElementById('product-details-slider-thumbnail-slider').innerHTML = '<p class="text-danger text-center">Error loading product images.</p>';
+        imagePaths = JSON.parse(imagePaths);
+      } catch {
+        imagePaths = [];
       }
     }
 
-    // Zoom toggle functionality
-    let isZoomed = false;
-    document.getElementById('zoom-toggle').addEventListener('click', function () {
-      const img = document.getElementById('product-details-slider-modal-image');
-      isZoomed = !isZoomed;
-      img.style.transform = isZoomed ? "scale(2)" : "scale(1)";
-      img.style.transition = "transform 0.3s ease";
-      this.innerHTML = isZoomed ? '<i class="fas fa-search-minus"></i>' : '<i class="fas fa-search-plus"></i>';
+    if (!imagePaths || imagePaths.length === 0) {
+      document.getElementById('product-details-slider-thumbnail-slider').innerHTML = '<p class="text-center w-100">No product images found.</p>';
+      return;
+    }
+
+    const mainImage = document.getElementById('product-details-slider-main-image');
+    const modalImage = document.getElementById('product-details-slider-modal-image');
+
+    const firstImagePath = `${API_ADMINGRAB_URL}/${imagePaths[0].replace(/\\/g, '/')}`;
+    mainImage.src = firstImagePath;
+    modalImage.src = firstImagePath;
+
+    // Create thumbnails for the modal and the slider
+    const sliderContainer = document.getElementById('product-details-slider-thumbnail-slider');
+    const slickContainer = document.querySelector('.slick-vertical-slider');
+    sliderContainer.innerHTML = ''; // Clear old thumbnails
+    slickContainer.innerHTML = '';  // Clear the vertical thumbnails
+
+    imagePaths.forEach((path, index) => {
+      const fullPath = `${API_ADMINGRAB_URL}/${path.replace(/\\/g, '/')}`;
+      
+      // Add thumbnails for the main slider
+      const slide = document.createElement('div');
+      slide.className = 'product-details-slider-thumbnail-slide';
+      slide.innerHTML = `<img src="${fullPath}" alt="Thumbnail ${index + 1}" />`;
+      slide.querySelector('img').addEventListener('click', () => {
+        mainImage.src = fullPath;
+        modalImage.src = fullPath;
+      });
+      sliderContainer.appendChild(slide);
+
+      // Add thumbnails for the modal
+      const thumb = document.createElement('div');
+      thumb.classList.add('modal-thumbnails-slide');
+      thumb.innerHTML = `<img src="${fullPath}" class="img-fluid rounded" alt="Thumbnail ${index + 1}" />`;
+      thumb.addEventListener('click', () => {
+        modalImage.src = fullPath;
+      });
+      slickContainer.appendChild(thumb);
     });
 
-    // Fullscreen toggle functionality
-    document.getElementById('fullscreen-toggle').addEventListener('click', function () {
-      const modalImg = document.getElementById('product-details-slider-modal-image');
-      if (!document.fullscreenElement) {
-        modalImg.requestFullscreen().catch(err => console.error(err));
-      } else {
-        document.exitFullscreen();
-      }
+    // Initialize slick for vertical thumbnails
+    $(slickContainer).slick({
+      vertical: true,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      arrows: true,
+      infinite: false,
+      verticalSwiping: true
     });
 
-    const productId = window.location.pathname.split('/').pop();
+  } catch (error) {
+    console.error('Error fetching product images:', error);
+    document.getElementById('product-details-slider-thumbnail-slider').innerHTML = '<p class="text-danger text-center">Error loading product images.</p>';
+  }
+}
 
-    document.addEventListener("DOMContentLoaded", function () {
-      if (productId) {
-        fetchProductImages(productId);
-      }
+</script>
+
+<script>
+// Zoom toggle
+let isZoomed = false;
+document.getElementById('zoom-toggle').addEventListener('click', function () {
+  const img = document.getElementById('product-details-slider-modal-image');
+  isZoomed = !isZoomed;
+  img.style.transform = isZoomed ? "scale(2)" : "scale(1)";
+  img.style.transition = "transform 0.3s ease";
+  this.innerHTML = isZoomed ? '<i class="fas fa-search-minus"></i>' : '<i class="fas fa-search-plus"></i>';
+});
+
+document.getElementById('fullscreen-toggle').addEventListener('click', function () {
+  const modalImg = document.getElementById('product-details-slider-modal-image');
+  if (!document.fullscreenElement) {
+    modalImg.requestFullscreen().catch(err => console.error(err));
+  } else {
+    document.exitFullscreen();
+  }
+});
+
+
+// Append thumbnails to slick vertical slider
+function updateModalThumbnails(imagePaths, baseUrl) {
+  const slickContainer = document.querySelector('.slick-vertical-slider');
+  slickContainer.innerHTML = '';  // Clear old thumbnails
+
+  imagePaths.forEach((path, index) => {
+    const fullPath = `${baseUrl}/${path.replace(/\\/g, '/')}`;
+    const thumb = document.createElement('div');
+    thumb.innerHTML = `<img src="${fullPath}" class="img-fluid rounded" alt="Thumb ${index + 1}" />`;
+    thumb.addEventListener('click', () => {
+      document.getElementById('product-details-slider-modal-image').src = fullPath;
     });
-  </script>
+    slickContainer.appendChild(thumb);
+  });
 
+  // Initialize slick vertical
+  $(slickContainer).slick({
+    vertical: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: true,
+    infinite: false,
+    verticalSwiping: true
+  });
+}
+
+</script>
 
                         </div>
                         <div class="col-xl-7 p-6">
