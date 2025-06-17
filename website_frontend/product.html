@@ -1745,17 +1745,125 @@ document.addEventListener("DOMContentLoaded", function () {
                                                 style="margin-left: 5px;">
                                         </a>
 
-                                        <!-- Request a Callback -->
-                                        <a href="https://graba2z.netlify.app/contact" class="btn d-flex align-items-center rounded"
-                                            style="border: 1px solid black; padding: 10px 15px; text-decoration: none;"
-                                            onmouseover="this.children[0].style.color='#34A853'; this.children[1].src='https://img.icons8.com/ios-filled/20/34A853/phone.png';"
-                                            onmouseout="this.children[0].style.color='black'; this.children[1].src='https://img.icons8.com/ios-filled/20/000000/phone.png';"
-                                            onmousedown="this.children[0].style.color='#34A853'; this.children[1].src='https://img.icons8.com/ios-filled/20/34A853/phone.png';"
-                                            onmouseup="this.children[0].style.color='black'; this.children[1].src='https://img.icons8.com/ios-filled/20/000000/phone.png';">
-                                            <span style="color: black;">Request a Callback</span>
-                                            <img src="https://img.icons8.com/ios-filled/20/000000/phone.png"
-                                                style="margin-left: 5px;">
-                                        </a>
+                                       <!-- Request a Callback Button -->
+<a href="#" id="requestCallbackBtn" class="btn d-flex align-items-center rounded"
+    style="border: 1px solid black; padding: 10px 15px; text-decoration: none;"
+    onmouseover="this.children[0].style.color='#34A853'; this.children[1].src='https://img.icons8.com/ios-filled/20/34A853/phone.png';"
+    onmouseout="this.children[0].style.color='black'; this.children[1].src='https://img.icons8.com/ios-filled/20/000000/phone.png';">
+    <span style="color: black;">Request a Callback</span>
+    <img src="https://img.icons8.com/ios-filled/20/000000/phone.png" style="margin-left: 5px;">
+</a>
+
+<!-- Callback Modal -->
+<div id="callbackModal" class="callback-modal">
+  <div class="callback-modal-content">
+    <span class="callback-close">&times;</span>
+    <h2><span style="color: #7ac943; font-weight: bold;">REQUEST</span> A CALL BACK</h2>
+    <p>Please enable JavaScript in your browser to complete this form.</p>
+    <form id="callbackForm">
+      <label for="callbackName">Name</label>
+      <input type="text" id="callbackName" placeholder="Enter your name">
+
+      <label for="callbackPhone">Your Phone No. *</label>
+      <input type="tel" id="callbackPhone" placeholder="Enter your phone number" required>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<!-- Styles -->
+<style>
+  .callback-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .callback-modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    text-align: left;
+    font-family: Arial, sans-serif;
+  }
+
+  .callback-modal-content h2 {
+    margin-top: 0;
+  }
+
+  .callback-close {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+  }
+
+  #callbackForm {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #callbackForm label {
+    margin-top: 15px;
+    font-weight: bold;
+  }
+
+  #callbackForm input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  #callbackForm button {
+    margin-top: 20px;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #7ac943;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  #callbackForm button:hover {
+    background-color: #69b338;
+  }
+</style>
+
+<!-- JavaScript -->
+<script>
+  const modal = document.getElementById("callbackModal");
+  const btn = document.getElementById("requestCallbackBtn");
+  const closeBtn = document.querySelector(".callback-close");
+
+  btn.onclick = function (e) {
+    e.preventDefault();
+    modal.style.display = "block";
+  }
+
+  closeBtn.onclick = function () {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+
 
                                         <!-- Request Bulk Purchase -->
                                         <a href="https://graba2z.netlify.app/bulk-purchase" class="btn d-flex align-items-center rounded"
