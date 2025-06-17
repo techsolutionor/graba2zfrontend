@@ -12,11 +12,19 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 
 <!-- Bootstrap JS (just before </body>) -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
 
+<!-- LightGallery CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery-bundle.min.css" />
+
+<!-- LightGallery JS -->
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script>
 <!-- Stylesheets -->
 <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/footer.css">
 <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/bootstrap.min.css">
@@ -1587,58 +1595,64 @@ async function fetchProductImages(productId) {
     const response = await fetch(`${API_CUSTOMER_URL}/api/products/${productId}`);
     const product = await response.json();
 
-    // Debug: Check the API response
-    console.log("Product Details:", product);
-
-    // Prepare container for thumbnails
-    const container = document.getElementById('product-details-slider-thumbnail-slider');
-    container.innerHTML = ''; // Clear previous thumbnails
-
-    // Safe parsing of image_paths
     let imagePaths = product.image_paths;
-    try {
-      if (typeof imagePaths === 'string') {
+    if (typeof imagePaths === 'string') {
+      try {
         imagePaths = JSON.parse(imagePaths);
+      } catch {
+        imagePaths = [];
       }
-    } catch (e) {
-      console.error("Invalid image_paths JSON:", e);
-      imagePaths = []; // fallback
     }
 
-    // If no images, show message
     if (!imagePaths || imagePaths.length === 0) {
-      container.innerHTML = '<p class="text-center w-100">No product images found.</p>';
+      document.getElementById('product-details-slider-thumbnail-slider').innerHTML = '<p class="text-center w-100">No product images found.</p>';
       return;
     }
 
-    // Update main image and modal image with first image
     const mainImage = document.getElementById('product-details-slider-main-image');
     const modalImage = document.getElementById('product-details-slider-modal-image');
 
     const firstImagePath = `${API_ADMINGRAB_URL}/${imagePaths[0].replace(/\\/g, '/')}`;
     mainImage.src = firstImagePath;
-    mainImage.alt = 'Product Image';
     modalImage.src = firstImagePath;
 
-    // Create thumbnails
-    imagePaths.forEach((path, index) => {
-      const imagePath = path.replace(/\\/g, '/');
-      const fullPath = `${API_ADMINGRAB_URL}/${imagePath}`;
+    // Create thumbnails for the modal and the slider
+    const sliderContainer = document.getElementById('product-details-slider-thumbnail-slider');
+    const slickContainer = document.querySelector('.slick-vertical-slider');
+    sliderContainer.innerHTML = ''; // Clear old thumbnails
+    slickContainer.innerHTML = '';  // Clear the vertical thumbnails
 
+    imagePaths.forEach((path, index) => {
+      const fullPath = `${API_ADMINGRAB_URL}/${path.replace(/\\/g, '/')}`;
+      
+      // Add thumbnails for the main slider
       const slide = document.createElement('div');
       slide.className = 'product-details-slider-thumbnail-slide';
-      slide.innerHTML = `
-        <img src="${fullPath}" alt="Thumbnail ${index + 1}" />
-      `;
-
-      // When thumbnail is clicked, update main and modal images
+      slide.innerHTML = `<img src="${fullPath}" alt="Thumbnail ${index + 1}" />`;
       slide.querySelector('img').addEventListener('click', () => {
         mainImage.src = fullPath;
-        mainImage.alt = `Product Image ${index + 1}`;
         modalImage.src = fullPath;
       });
+      sliderContainer.appendChild(slide);
 
-      container.appendChild(slide);
+      // Add thumbnails for the modal
+      const thumb = document.createElement('div');
+      thumb.classList.add('modal-thumbnails-slide');
+      thumb.innerHTML = `<img src="${fullPath}" class="img-fluid rounded" alt="Thumbnail ${index + 1}" />`;
+      thumb.addEventListener('click', () => {
+        modalImage.src = fullPath;
+      });
+      slickContainer.appendChild(thumb);
+    });
+
+    // Initialize slick for vertical thumbnails
+    $(slickContainer).slick({
+      vertical: true,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      arrows: true,
+      infinite: false,
+      verticalSwiping: true
     });
 
   } catch (error) {
@@ -1647,17 +1661,6 @@ async function fetchProductImages(productId) {
   }
 }
 
-// Get the product ID from the URL
-const productId = window.location.pathname.split('/').pop(); // Assuming URL structure is like /product/{productId}
-
-// Call the function with the product ID (when DOM is ready)
-document.addEventListener("DOMContentLoaded", function () {
-  if (productId) {
-    fetchProductImages(productId);
-  } else {
-    console.error("Invalid Product ID in URL.");
-  }
-});
 </script>
 
 <script>
@@ -1671,7 +1674,6 @@ document.getElementById('zoom-toggle').addEventListener('click', function () {
   this.innerHTML = isZoomed ? '<i class="fas fa-search-minus"></i>' : '<i class="fas fa-search-plus"></i>';
 });
 
-// Fullscreen toggle
 document.getElementById('fullscreen-toggle').addEventListener('click', function () {
   const modalImg = document.getElementById('product-details-slider-modal-image');
   if (!document.fullscreenElement) {
@@ -1681,32 +1683,33 @@ document.getElementById('fullscreen-toggle').addEventListener('click', function 
   }
 });
 
+
 // Append thumbnails to slick vertical slider
-function updateModalThumbnails(imagePaths, mainPath, baseUrl) {
+function updateModalThumbnails(imagePaths, baseUrl) {
   const slickContainer = document.querySelector('.slick-vertical-slider');
-  slickContainer.innerHTML = '';
+  slickContainer.innerHTML = '';  // Clear old thumbnails
 
   imagePaths.forEach((path, index) => {
     const fullPath = `${baseUrl}/${path.replace(/\\/g, '/')}`;
-    const img = document.createElement('img');
-    img.src = fullPath;
-    img.classList.add('img-thumbnail', 'mb-2');
-    img.style.cursor = 'pointer';
-    img.addEventListener('click', () => {
-      const modalImg = document.getElementById('product-details-slider-modal-image');
-      modalImg.src = fullPath;
+    const thumb = document.createElement('div');
+    thumb.innerHTML = `<img src="${fullPath}" class="img-fluid rounded" alt="Thumb ${index + 1}" />`;
+    thumb.addEventListener('click', () => {
+      document.getElementById('product-details-slider-modal-image').src = fullPath;
     });
-    slickContainer.appendChild(img);
+    slickContainer.appendChild(thumb);
   });
 
-  $('.slick-vertical-slider').slick({
+  // Initialize slick vertical
+  $(slickContainer).slick({
     vertical: true,
     slidesToShow: 4,
     slidesToScroll: 1,
     arrows: true,
-    infinite: false
+    infinite: false,
+    verticalSwiping: true
   });
 }
+
 </script>
 
                         </div>
