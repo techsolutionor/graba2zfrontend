@@ -999,6 +999,22 @@
   }
 
 
+/* description table  */
+.table-custom thead th {
+  background-color: #f5f5f5; /* Light gray background */
+  border: 1px solid #ccc;
+  font-weight: 600;
+}
+
+.table-custom td, .table-custom th {
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.table-custom tbody td {
+  background-color: #fff;
+}
 
 
 
@@ -2129,66 +2145,78 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         </div>
                        <!-- start section  -->
-  <div class="table-wrapper">
-        <h6 class="mb-24">Product Specifications</h6>
-        <div class="table-responsive" style="overflow-x: auto;">
-            <table class="responsive-table">
-                <thead>
-                    <tr>
-                        <th>Specification</th>
-                        <th>Details</th>
-                    </tr>
-                </thead>
-                <tbody id="specifications-table-body">
-                    <!-- JS inserts rows -->
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- Reviews Section -->
-
-        
-    <!-- Reviews Section -->
-    <div class="reviews-section-apple">
-      <!-- Left Column: Ratings -->
-      <div class="ratings-box-apple">
-        <div class="overall-rating">5.0</div>
-        <div class="stars-apple">★★★★★</div>
-        <div>1 Product Rating</div>
-
-        <div class="rating-bars-apple">
-          <div><span>5★</span> <div class="bar-apple"><div class="bar-fill-apple" style="width: 100%;"></div></div> 1</div>
-          <div><span>4★</span> <div class="bar-apple"><div class="bar-fill-apple" style="width: 0%;"></div></div> 0</div>
-          <div><span>3★</span> <div class="bar-apple"><div class="bar-fill-apple" style="width: 0%;"></div></div> 0</div>
-          <div><span>2★</span> <div class="bar-apple"><div class="bar-fill-apple" style="width: 0%;"></div></div> 0</div>
-          <div><span>1★</span> <div class="bar-apple"><div class="bar-fill-apple" style="width: 0%;"></div></div> 0</div>
-        </div>
-
-        <div class="review-button-apple">
-          <button onclick="openModal()">Write a review</button>
+ <div class="container-fluid px-4">
+  <div class="row">
+    <!-- Product Specifications - Left Column -->
+    <div class="col-12 col-md-6">
+      <div class="table-wrapper">
+        <h6 class="mb-3 fw-bold">Product Specifications</h6>
+        <div class="table-responsive">
+          <table class="table-custom w-100">
+            <thead>
+              <tr>
+                <th>Specification</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody id="specifications-table-body">
+              <!-- JS inserts rows -->
+            </tbody>
+          </table>
         </div>
       </div>
+    </div>
 
-      <!-- Right Column: Customer Reviews -->
-      <div class="customer-reviews-apple">
-        <h3>Customer Reviews (1)</h3>
-        <div class="review-card-apple">
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <div style="display: flex; align-items: center;">
-              <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" alt="User Avatar" class="avatar-apple">
-              <div style="margin-left: 10px;">
-                <div class="user">admin</div>
-                <div class="date">May 11, 2024</div>
+
+    <!-- Reviews Section - Right Column -->
+    <div class="col-12 col-md-6">
+      <div class="reviews-section-apple">
+        <!-- Rating Info -->
+        <div class="ratings-box-apple mb-3">
+          <div class="h1 mb-2">5.0</div>
+          <div class="stars-apple text-warning mb-2 fs-5">★★★★★</div>
+          <div class="mb-3">1 Product Rating</div>
+
+          <div class="rating-bars-apple mb-3">
+            <div class="d-flex align-items-center mb-1">
+              <span class="me-2">5★</span>
+              <div class="flex-grow-1 bg-light" style="height: 8px; border-radius: 4px; overflow: hidden;">
+                <div class="bg-warning" style="width: 100%; height: 100%;"></div>
               </div>
+              <span class="ms-2">1</span>
             </div>
-            <div class="stars-apple">★★★★★</div>
+            <!-- Repeat for other stars -->
+            <div class="d-flex align-items-center mb-1"><span class="me-2">4★</span><div class="flex-grow-1 bg-light" style="height: 8px;"></div><span class="ms-2">0</span></div>
+            <div class="d-flex align-items-center mb-1"><span class="me-2">3★</span><div class="flex-grow-1 bg-light" style="height: 8px;"></div><span class="ms-2">0</span></div>
+            <div class="d-flex align-items-center mb-1"><span class="me-2">2★</span><div class="flex-grow-1 bg-light" style="height: 8px;"></div><span class="ms-2">0</span></div>
+            <div class="d-flex align-items-center mb-1"><span class="me-2">1★</span><div class="flex-grow-1 bg-light" style="height: 8px;"></div><span class="ms-2">0</span></div>
           </div>
-          <div class="text">Great One</div>
+
+          <button class="btn btn-primary" onclick="openModal()">Write a Review</button>
+        </div>
+
+        <!-- Customer Review Card -->
+        <div class="customer-reviews-apple">
+          <h5>Customer Reviews (1)</h5>
+          <div class="review-card-apple border p-3 rounded">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <div class="d-flex align-items-center">
+                <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" alt="User Avatar" class="me-2 rounded-circle" width="40" height="40">
+                <div>
+                  <div class="fw-bold">admin</div>
+                  <small class="text-muted">May 11, 2024</small>
+                </div>
+              </div>
+              <div class="text-warning">★★★★★</div>
+            </div>
+            <p class="mb-0">Great One</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
 
   <!-- Modal Review Form -->
   <div class="modal-overlay-apple" id="modalOverlay" onclick="closeModal(event)">
