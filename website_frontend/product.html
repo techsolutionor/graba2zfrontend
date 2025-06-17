@@ -786,7 +786,226 @@
   object-fit: cover;
   border-radius: 5px;
 }
+
+
+
+
+
+
+
+
+ h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  /* Renamed container class */
+  .container-apple {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .reviews-section-apple {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+
+  .ratings-box-apple, .customer-reviews-apple {
+    flex: 1;
+    min-width: 280px;
+  }
+
+  .ratings-box-apple .overall-rating {
+    font-size: 48px;
+    font-weight: bold;
+  }
+
+  .stars-apple {
+    color: orange;
+    font-size: 20px;
+  }
+
+  .rating-bars-apple {
+    margin: 20px 0;
+  }
+
+  .rating-bars-apple div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .rating-bars-apple span {
+    width: 20px;
+  }
+
+  .bar-apple {
+    flex: 1;
+    background: #f1f1f1;
+    height: 6px;
+    margin: 0 10px;
+    position: relative;
+  }
+
+  .bar-fill-apple {
+    height: 100%;
+    background: orange;
+  }
+
+  .review-button-apple {
+    margin-top: 20px;
+  }
+
+  .review-button-apple button {
+    background-color: #111;
+    color: #fff;
+    padding: 10px 25px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .review-card-apple {
+    border-bottom: 1px solid #eee;
+    padding: 20px 0;
+  }
+
+  .review-card-apple .user {
+    font-weight: bold;
+  }
+
+  .review-card-apple .date {
+    color: gray;
+    font-size: 14px;
+  }
+
+  .review-card-apple .text {
+    margin: 10px 0;
+  }
+
+  .review-card-apple .stars-apple {
+    color: orange;
+    font-size: 16px;
+  }
+
+  .avatar-apple {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  /* === Modal Popup Styles === */
+  .modal-overlay-apple {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+  }
+
+  .modal-content-apple {
+    background: #fff;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 40px;
+    border-radius: 8px;
+    position: relative;
+  }
+
+  .close-btn-apple {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .modal-content-apple h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+
+  .modal-content-apple p {
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .modal-content-apple label {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+
+  .modal-content-apple .stars-apple {
+    display: flex;
+    gap: 8px;
+    font-size: 34px;
+    color: #ccc;
+    cursor: pointer;
+  }
+
+  .modal-content-apple .star.selected {
+    color: #ffc107;
+  }
+
+  .modal-content-apple textarea,
+  .modal-content-apple input[type="text"],
+  .modal-content-apple input[type="email"] {
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+  }
+
+  .input-row-apple {
+    display: flex;
+    gap: 15px;
+  }
+
+  .checkbox-container-apple {
+    margin: 15px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .submit-button-apple {
+    background-color: #111;
+    color: white;
+    border: none;
+    padding: 16px;
+    width: 100%;
+    font-size: 17px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+
+
+
+
 </style>
+
+
+
 </head>
 
 <body>
@@ -1900,7 +2119,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-description" role="tabpanel"
                         aria-labelledby="pills-description-tab" tabindex="0">
-                        <div id="product-description" class="mb-40">
+                        <div id="product-description" class="mb-40" ;>
                             <h6 class="p-20" style="font-size: 19px !important; font-weight: 600px !important; font-family: Poppins, sans-serif !important;">Product Description</h6>
                             <!-- <p>Wherever celebrations and good times happen, the LAY'S brand will be there just as it has been for more than 75 years. With flavors almost as rich as our history, we have a chip or crisp flavor guaranteed to bring a smile on your face. </p>
                                 <p>Morbi ut sapien vitae odio accumsan gravida. Morbi vitae erat auctor, eleifend nunc a, lobortis neque. Praesent aliquam dignissim viverra. Maecenas lacus odio, feugiat eu nunc sit amet, maximus sagittis dolor. Vivamus nisi sapien, elementum sit amet eros sit amet, ultricies cursus ipsum. Sed consequat luctus ligula. Curabitur laoreet rhoncus blandit. Aenean vel diam ut arcu pharetra dignissim ut sed leo. Vivamus faucibus, ipsum in vestibulum vulputate, lorem orci convallis quam, sit amet consequat nulla felis pharetra lacus. Duis semper erat mauris, sed egestas purus commodo vel.</p>     -->
@@ -1909,29 +2128,142 @@ document.addEventListener("DOMContentLoaded", function () {
                             </p>
 
                         </div>
-                       <div class="mb-40">
-  <h6 class="mb-24">Product Specifications</h6>
-  <div class="table-wrapper" style="width: 50%;">
-    <div class="table-responsive" style="overflow-x: auto;">
-      <div class="responsive-table-wrapper">
-        <table class="responsive-table">
-          <thead>
-            <tr>
-              <th>Specification</th>
-              <th>Details</th>
-            </tr>
-          </thead>
-          <tbody id="specifications-table-body">
-            <!-- JS inserts rows -->
-          </tbody>
-        </table>
+                       <!-- start section  -->
+  <div class="table-wrapper">
+        <h6 class="mb-24">Product Specifications</h6>
+        <div class="table-responsive" style="overflow-x: auto;">
+            <table class="responsive-table">
+                <thead>
+                    <tr>
+                        <th>Specification</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody id="specifications-table-body">
+                    <!-- JS inserts rows -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Reviews Section -->
+
+        
+    <!-- Reviews Section -->
+    <div class="reviews-section-apple">
+      <!-- Left Column: Ratings -->
+      <div class="ratings-box-apple">
+        <div class="overall-rating">5.0</div>
+        <div class="stars-apple">★★★★★</div>
+        <div>1 Product Rating</div>
+
+        <div class="rating-bars-apple">
+          <div><span>5★</span> <div class="bar-apple"><div class="bar-fill-apple" style="width: 100%;"></div></div> 1</div>
+          <div><span>4★</span> <div class="bar-apple"><div class="bar-fill-apple" style="width: 0%;"></div></div> 0</div>
+          <div><span>3★</span> <div class="bar-apple"><div class="bar-fill-apple" style="width: 0%;"></div></div> 0</div>
+          <div><span>2★</span> <div class="bar-apple"><div class="bar-fill-apple" style="width: 0%;"></div></div> 0</div>
+          <div><span>1★</span> <div class="bar-apple"><div class="bar-fill-apple" style="width: 0%;"></div></div> 0</div>
+        </div>
+
+        <div class="review-button-apple">
+          <button onclick="openModal()">Write a review</button>
+        </div>
+      </div>
+
+      <!-- Right Column: Customer Reviews -->
+      <div class="customer-reviews-apple">
+        <h3>Customer Reviews (1)</h3>
+        <div class="review-card-apple">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center;">
+              <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" alt="User Avatar" class="avatar-apple">
+              <div style="margin-left: 10px;">
+                <div class="user">admin</div>
+                <div class="date">May 11, 2024</div>
+              </div>
+            </div>
+            <div class="stars-apple">★★★★★</div>
+          </div>
+          <div class="text">Great One</div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <!-- Modal Review Form -->
+  <div class="modal-overlay-apple" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal-content-apple" onclick="event.stopPropagation()">
+      <div class="close-btn-apple" onclick="closeModal(event)">×</div>
+      <h2>Write a product review</h2>
+      <p>Please complete all the fields below to tell us about your experience with this product.</p>
+
+      <label>Your Rating *</label>
+      <div class="stars-apple" id="stars">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+      </div>
+
+      <label>Your Review *</label>
+      <textarea id="reviewText" placeholder=""></textarea>
+
+      <div class="input-row-apple">
+        <input type="text" id="name" placeholder="Name *">
+        <input type="email" id="email" placeholder="Email *">
+      </div>
+
+      <div class="checkbox-container-apple">
+        <input type="checkbox" id="saveInfo">
+        <label for="saveInfo">Save my name, email, and website in this browser for the next time I comment.</label>
+      </div>
+
+      <button class="submit-button-apple" onclick="submitReview()">Submit Review</button>
+    </div>
+  </div>
+
+  <script>
+    let selectedRating = 0;
+    const stars = document.querySelectorAll("#stars .star");
+
+    stars.forEach((star, index) => {
+      star.addEventListener("click", () => {
+        selectedRating = index + 1;
+        stars.forEach((s, i) => {
+          s.classList.toggle("selected", i < selectedRating);
+        });
+      });
+    });
+
+    function openModal() {
+      document.getElementById("modalOverlay").style.display = "block";
+    }
+
+    function closeModal(e) {
+      document.getElementById("modalOverlay").style.display = "none";
+    }
+
+    function submitReview() {
+      const review = document.getElementById("reviewText").value.trim();
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+
+      if (!selectedRating || !review || !name || !email) {
+        alert("Please fill all required fields.");
+        return;
+      }
+
+      alert("Review submitted. Thank you!");
+      closeModal();
+    }
+  </script>
+
+                        <!-- start section  -->
 
 
                     </div>
+                        
                     <div class="tab-pane fade"  role="tabpanel" aria-labelledby="pills-reviews-tab"
                         tabindex="0">
                         <div class="row g-4">
