@@ -22,6 +22,13 @@
 <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/select2.min.css">
 <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/slick.css">
+<!-- Slick CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+
+<!-- Slick JS -->
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
 <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/jquery-ui.css">
 <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/animate.css">
 <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/aos.css">
@@ -1450,20 +1457,33 @@
   </div>
 
   <!-- Modal for enlarged product image -->
-  <div class="modal fade" id="product-details-slider-image-modal" tabindex="-1" aria-labelledby="product-details-slider-image-modal-label" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-          <div class="modal-content bg-transparent border-0">
-              <div class="position-relative d-inline-block mx-auto">
-                  <img id="product-details-slider-modal-image" src="" alt="Enlarged Product Image" class="img-fluid rounded-3"
-                      style="max-height: 80vh; width: auto;">
-                  <button type="button" id="close-image-modal" class="btn-close cross-button position-absolute"
-                      style="top: 10px; right: 10px; z-index: 10; filter: invert(1);" data-bs-dismiss="modal"
-                      aria-label="Close">
-                  </button>
-              </div>
+<div class="modal fade" id="product-details-slider-image-modal" tabindex="-1" aria-labelledby="product-details-slider-image-modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content bg-transparent border-0 position-relative">
+      <div class="d-flex flex-row align-items-center">
+        <!-- Vertical Thumbnail Slider -->
+        <div class="modal-thumbnails me-3" style="width: 100px;">
+          <div class="slick-vertical-slider">
+            <!-- Dynamically insert vertical thumbnails -->
           </div>
+        </div>
+
+        <!-- Enlarged Image with Zoom -->
+        <div class="position-relative w-100 text-center">
+          <img id="product-details-slider-modal-image" src="" alt="Enlarged Product Image"
+               class="img-fluid rounded-3" style="max-height: 80vh; max-width: 100%; cursor: zoom-in;" />
+
+          <!-- Zoom & Fullscreen Controls -->
+          <div class="position-absolute top-0 end-0 m-2 z-2 d-flex gap-2">
+            <button class="btn btn-light btn-sm" id="zoom-toggle"><i class="fas fa-search-plus"></i></button>
+            <button class="btn btn-light btn-sm" id="fullscreen-toggle"><i class="fas fa-expand"></i></button>
+            <button class="btn-close cross-button" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+        </div>
       </div>
+    </div>
   </div>
+</div>
 
   <!-- Thumbnail slider -->
   <div class="product-details-slider-thumbnail-container" style="padding-bottom: 20px;">
@@ -1631,6 +1651,54 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+<script>
+// Zoom toggle
+let isZoomed = false;
+document.getElementById('zoom-toggle').addEventListener('click', function () {
+  const img = document.getElementById('product-details-slider-modal-image');
+  isZoomed = !isZoomed;
+  img.style.transform = isZoomed ? "scale(2)" : "scale(1)";
+  img.style.transition = "transform 0.3s ease";
+  this.innerHTML = isZoomed ? '<i class="fas fa-search-minus"></i>' : '<i class="fas fa-search-plus"></i>';
+});
+
+// Fullscreen toggle
+document.getElementById('fullscreen-toggle').addEventListener('click', function () {
+  const modalImg = document.getElementById('product-details-slider-modal-image');
+  if (!document.fullscreenElement) {
+    modalImg.requestFullscreen().catch(err => console.error(err));
+  } else {
+    document.exitFullscreen();
+  }
+});
+
+// Append thumbnails to slick vertical slider
+function updateModalThumbnails(imagePaths, mainPath, baseUrl) {
+  const slickContainer = document.querySelector('.slick-vertical-slider');
+  slickContainer.innerHTML = '';
+
+  imagePaths.forEach((path, index) => {
+    const fullPath = `${baseUrl}/${path.replace(/\\/g, '/')}`;
+    const img = document.createElement('img');
+    img.src = fullPath;
+    img.classList.add('img-thumbnail', 'mb-2');
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', () => {
+      const modalImg = document.getElementById('product-details-slider-modal-image');
+      modalImg.src = fullPath;
+    });
+    slickContainer.appendChild(img);
+  });
+
+  $('.slick-vertical-slider').slick({
+    vertical: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: true,
+    infinite: false
+  });
+}
+</script>
 
                         </div>
                         <div class="col-xl-7 p-6">
