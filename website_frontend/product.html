@@ -1566,6 +1566,33 @@
   object-fit: cover;
   border-radius: 5px;
 }
+#product-details-slider-image-modal .modal-content {
+  background: transparent;
+  border: none;
+}
+
+#product-details-slider-image-modal .modal-dialog {
+  max-width: 90%;
+  margin: auto;
+}
+
+#product-details-slider-image-modal .modal-body {
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.modal-thumbnails {
+  width: 100px;
+  margin-right: 20px;
+}
+
+#product-details-slider-modal-image {
+  max-height: 80vh;
+  width: auto;
+  margin: 0 auto;
+  display: block;
+}
 </style>
 
 <script>
@@ -1645,16 +1672,20 @@ async function fetchProductImages(productId) {
       slickContainer.appendChild(thumb);
     });
 
-    // Initialize slick for vertical thumbnails
-    $(slickContainer).slick({
-      vertical: true,
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      arrows: true,
-      infinite: false,
-      verticalSwiping: true
-    });
+   $('#product-details-slider-image-modal').modal({
+  backdrop: 'static',
+  keyboard: false
+});
 
+// Make sure the vertical thumbnail slider is properly initialized
+$('.slick-vertical-slider').slick({
+  vertical: true,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  arrows: true,
+  infinite: false,
+  verticalSwiping: true
+});
   } catch (error) {
     console.error('Error fetching product images:', error);
     document.getElementById('product-details-slider-thumbnail-slider').innerHTML = '<p class="text-danger text-center">Error loading product images.</p>';
