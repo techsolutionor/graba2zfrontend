@@ -1918,6 +1918,21 @@ $('.slick-vertical-slider').slick({
   }
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  const productId = getProductIdFromURL(); // Or however you get the ID
+  if (productId) {
+    fetchProductImages(productId);
+  } else {
+    console.warn("❌ No product ID found.");
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const productId = getProductIdFromURL();
+  fetchProductImages(productId);
+});
+
+
 </script>
 
 <script>
