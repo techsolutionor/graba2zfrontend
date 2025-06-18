@@ -1475,35 +1475,35 @@
           src="assets/images/white-placeholder.png" style="cursor: zoom-in; min-width: 300px !important; min-height: 400px !important;  border: 5px solid white;"
           alt="Product Image">
   </div>
+<div id="lightgallery" class="d-none"></div>
+<script>
+let lightGalleryInstance = null;
 
-  <!-- Modal for enlarged product image -->
-<div class="modal fade" id="product-details-slider-image-modal" tabindex="-1" aria-labelledby="product-details-slider-image-modal-label" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-xl">
-    <div class="modal-content bg-transparent border-0 position-relative">
-      <div class="d-flex flex-row align-items-center">
-        <!-- Vertical Thumbnail Slider -->
-        <div class="modal-thumbnails me-3" style="width: 100px;">
-          <div class="slick-vertical-slider">
-            <!-- Dynamically insert vertical thumbnails -->
-          </div>
-        </div>
+function openLightGallery(images, startIndex = 0) {
+  const galleryContainer = document.getElementById('lightgallery');
+  galleryContainer.innerHTML = ''; // clear previous
 
-        <!-- Enlarged Image with Zoom -->
-        <div class="position-relative w-100 text-center">
-          <img id="product-details-slider-modal-image" src="" alt="Enlarged Product Image"
-               class="img-fluid rounded-3" style="max-height: 80vh; max-width: 100%; cursor: zoom-in;" />
+  images.forEach((src, index) => {
+    const item = document.createElement('a');
+    item.href = src;
+    item.dataset.subHtml = `<h4>Image ${index + 1}</h4>`;
+    item.innerHTML = `<img src="${src}" style="display:none;" />`; // hidden preview
+    galleryContainer.appendChild(item);
+  });
 
-          <!-- Zoom & Fullscreen Controls -->
-          <div class="position-absolute top-0 end-0 m-2 z-2 d-flex gap-2">
-            <button class="btn btn-light btn-sm" id="zoom-toggle"><i class="fas fa-search-plus"></i></button>
-            <button class="btn btn-light btn-sm" id="fullscreen-toggle"><i class="fas fa-expand"></i></button>
-            <button class="btn-close cross-button" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  lightGallery(galleryContainer, {
+    dynamic: true,
+    dynamicEl: images.map(src => ({ src })),
+    index: startIndex,
+    plugins: [lgZoom, lgFullscreen],
+    speed: 500,
+    download: false,
+    licenseKey: '0000-0000-000-0000', // dummy key is fine for free use
+  });
+}
+</script>
+
+
 
   <!-- Thumbnail slider -->
   <div class="product-details-slider-thumbnail-container" style="padding-bottom: 20px;">
@@ -1684,9 +1684,10 @@ async function fetchProductImages(productId) {
       slide.className = 'product-details-slider-thumbnail-slide';
       slide.innerHTML = `<img src="${fullPath}" alt="Thumbnail ${index + 1}" />`;
       slide.querySelector('img').addEventListener('click', () => {
-        mainImage.src = fullPath;
-        modalImage.src = fullPath;
-      });
+  const allImageUrls = imagePaths.map(p => `${API_ADMINGRAB_URL}/${p.replace(/\\/g, '/')}`);
+  openLightGallery(allImageUrls, index);
+});
+
       sliderContainer.appendChild(slide);
 
       // Add thumbnails for the modal
@@ -1699,10 +1700,7 @@ async function fetchProductImages(productId) {
       slickContainer.appendChild(thumb);
     });
 
-   $('#product-details-slider-image-modal').modal({
-  backdrop: 'static',
-  keyboard: false
-});
+ 
 
 // Make sure the vertical thumbnail slider is properly initialized
 $('.slick-vertical-slider').slick({
@@ -1722,24 +1720,9 @@ $('.slick-vertical-slider').slick({
 </script>
 
 <script>
-// Zoom toggle
-let isZoomed = false;
-document.getElementById('zoom-toggle').addEventListener('click', function () {
-  const img = document.getElementById('product-details-slider-modal-image');
-  isZoomed = !isZoomed;
-  img.style.transform = isZoomed ? "scale(2)" : "scale(1)";
-  img.style.transition = "transform 0.3s ease";
-  this.innerHTML = isZoomed ? '<i class="fas fa-search-minus"></i>' : '<i class="fas fa-search-plus"></i>';
-});
 
-document.getElementById('fullscreen-toggle').addEventListener('click', function () {
-  const modalImg = document.getElementById('product-details-slider-modal-image');
-  if (!document.fullscreenElement) {
-    modalImg.requestFullscreen().catch(err => console.error(err));
-  } else {
-    document.exitFullscreen();
-  }
-});
+
+
 
 
 // Append thumbnails to slick vertical slider
