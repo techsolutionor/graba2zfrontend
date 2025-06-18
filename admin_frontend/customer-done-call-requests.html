@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call Request Management</title>
+    <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+    <link rel="stylesheet" href="./assets/css/styles.min.css" />
+    <link rel="stylesheet" href="./assets/css/navbar.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/order.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./popupMessages.js"></script>
+    <style>
+        .input-group-text {
+            border-top-right-radius: 0px !important;
+            border-bottom-right-radius: 0px !important;
+            padding-right: 0px !important;
+            background-color: transparent !important;
+            border-color: #DFE5EF !important;
+            border-right: 0px !important;
+        }
+
+        .slug-input {
+            border-left: 0px !important;
+            padding-left: 0px !important;
+        }
+
+        .slug-input:focus {
+            border-color: #DFE5EF !important;
+        }
+
+        .sidebar-submenu {
+            padding-left: 40px;
+            list-style-type: disc;
+        }
+
+        .sidebar-submenu li {
+            padding: 5px 0;
+        }
+
+        .sidebar-submenu li a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        .nav-link.active,
+        .nav-link:hover {
+            background-color: #f0f0f0;
+            color: #000;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .sidebar-submenu .nav-link.active {
+            background-color: #e0e0e0;
+        }
+
+        .toggle-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link[aria-expanded="true"] .toggle-arrow {
+            transform: rotate(180deg);
+        }
+
+        .left-sidebar {
+            width: 260px;
+            height: 100vh;
+            background-color: #ffffff;
+            position: fixed;
+            overflow-y: auto;
+            border-right: 1px solid #ddd;
+        }
+
+        .section-title {
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 12px;
+            color: #6c757d;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 10px 20px;
+            color: #000;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            background-color: #f0f0f0;
+        }
+
+        .nav-link.active {
+            background-color: #000;
+            color: #fff !important;
+            font-weight: bold;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .nav-link.active::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: #8FC208;
+            border-radius: 50%;
+        }
+
+        .sidebar-submenu {
+            padding-left: 30px;
+            list-style: none;
+        }
+
+        .sidebar-submenu .nav-link {
+            font-size: 14px;
+            padding: 6px 20px;
+        }
+
+        .body-wrapper {
+            margin-left: 260px;
+            padding: 30px;
+        }
+
+        .sidebar-submenu {
+            display: none;
+            list-style: none;
+            padding-left: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-submenu.show {
+            display: block;
+        }
+
+        .rotate-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .rotate-icon.rotate {
+            transform: rotate(180deg);
+        }
+
+        @media print {
+
+            .actions-bar,
+            .btn,
+            .no-print {
+                display: none !important;
+            }
+
+            table {
+                width: 100% !important;
+                border-collapse: collapse !important;
+            }
+
+            th,
+            td {
+                border: 1px solid #000 !important;
+                padding: 6px !important;
+            }
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const currentPath = window.location.pathname.split("/").pop();
+            const navLinks = document.querySelectorAll(".left-sidebar .nav-link");
+            navLinks.forEach((link) => {
+                const href = link.getAttribute("href");
+                if (href && href.endsWith(".html") && href === currentPath) {
+                    link.classList.add("active");
+                    const parentCollapse = link.closest(".collapse");
+                    if (parentCollapse) {
+                        new bootstrap.Collapse(parentCollapse, { toggle: false }).show();
+                    }
+                }
+            });
+        });
+
+        (function checkAuth() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.replace('./login.html');
+            }
+        })();
+
+        window.onload = function () {
+            const token = localStorage.getItem('token');
+            const authContainer = document.getElementById('auth');
+            if (token) {
+                authContainer.innerHTML = `
+                    <a href="#" class="btn btn-outline-danger mx-3 mt-2 d-block" id="logoutButton">Logout</a>
+                `;
+                document.getElementById('logoutButton').addEventListener('click', logout);
+            } else {
+                authContainer.innerHTML = `
+                    <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Login</a>
+                `;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            window.location.href = './login.html';
+        }
+    </script>
+</head>
+
+<body>
+    <div id="loader" class="loader-container">
+        <div class="loader"></div>
+    </div>
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+        <aside class="left-sidebar">
+            <div class="logo-img text-center p-3">
+                <a href="index.html">
+                    <img src="./assets/images/logos/logo1.svg" width="180" alt="Logo" />
+                </a>
+            </div>
+            <ul class="nav flex-column">
+                <li class="section-title">HOME</li>
+                <li class="nav-item"><a class="nav-link" href="index.html"><i class="ti ti-layout-dashboard"></i>
+                        Dashboard</a></li>
+                <li class="section-title">PRODUCTS & STOCK</li>
+                <li class="nav-item"><a class="nav-link" href="products.html"><i class="fas fa-box"></i> Products</a>
+                </li>
+                <li class="nav-item">
+                    <a href="javascript:void(0);"
+                        class="nav-link d-flex justify-content-between align-items-center purchases-toggle-custom">
+                        <span><i class="fas fa-shopping-cart me-1"></i> Purchases</span>
+                        <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
+                    </a>
+                    <ul class="sidebar-submenu" id="purchaseMenuCustom">
+                        <li><a class="nav-link" href="purchases.html">List Purchase</a></li>
+                        <li><a class="nav-link" href="add-purchase.html">Add Purchase</a></li>
+                        <li><a class="nav-link" href="return-purchase.html">Purchase Return</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="damages.html"><i class="fas fa-exclamation-circle"></i>
+                        Damages</a></li>
+                <li class="nav-item"><a class="nav-link" href="stock.html"><i class="fas fa-archive"></i> Stock</a></li>
+                <li class="section-title">POS & ORDERS</li>
+                <li class="nav-item"><a class="nav-link" href="pos.html"><i class="fas fa-cash-register"></i> POS</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="pos-orders.html"><i class="fas fa-receipt"></i> POS
+                        Orders</a></li>
+                <li class="nav-item">
+                    <a href="javascript:void(0);"
+                        class="nav-link d-flex justify-content-between align-items-center orders-toggle">
+                        <span><i class="fas fa-shopping-basket me-1"></i> Orders</span>
+                        <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
+                    </a>
+                    <ul class="sidebar-submenu" id="ordersMenu">
+                        <li><a class="nav-link" href="online-orders.html">Online Orders</a></li>
+                        <li><a class="nav-link" href="received_onlineOrders.html">Received Orders</a></li>
+                        <li><a class="nav-link" href="inprogress_onlineOrders.html">Inprogress Orders</a></li>
+                        <li><a class="nav-link" href="readyForShipment_onlineOrders.html">Ready for Shipment</a></li>
+                        <li><a class="nav-link" href="ontheWay_onlineOrders.html">On the Way</a></li>
+                        <li><a class="nav-link" href="delevered_onlineOrders.html">Delivered</a></li>
+                        <li><a class="nav-link" href="onhold_onlineOrders.html">On Hold</a></li>
+                        <li><a class="nav-link" href="rejected_onlineOrders.html">Rejected</a></li>
+                    </ul>
+                </li>
+                <li class="section-title">COMMUNICATIONS</li>
+                <li class="nav-item"><a class="nav-link" href="call-requests.html"><i class="fas fa-phone"></i> Call
+                        Requests</a></li>
+                <li class="nav-item"><a class="nav-link" href="push-notifications.html"><i class="fas fa-bell"></i> Push
+                        Notifications</a></li>
+                <li class="nav-item"><a class="nav-link" href="subscribers.html"><i class="fas fa-users"></i>
+                        Subscribers</a></li>
+                <!-- Other sections remain the same -->
+                <li class="section-title">PROMO</li>
+                <li class="nav-item"><a class="nav-link" href="coupons.html"><i class="fas fa-tags"></i> Coupons</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="promotions.html"><i class="fas fa-bullhorn"></i>
+                        Promotions</a></li>
+                <li class="nav-item"><a class="nav-link" href="product-sections.html"><i class="fas fa-cube"></i>
+                        Product Sections</a></li>
+                <li class="section-title">USERS</li>
+                <li class="nav-item"><a class="nav-link" href="admin.html"><i class="fas fa-user"></i>
+                        Administrators</a></li>
+                <li class="nav-item"><a class="nav-link" href="customer.html"><i class="fas fa-users"></i> Customers</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="employee.html"><i class="fas fa-user-tie"></i>
+                        Employees</a></li>
+                <li class="section-title">ACCOUNTS</li>
+                <li class="nav-item"><a class="nav-link" href="transactions.html"><i class="fas fa-exchange-alt"></i>
+                        Transactions</a></li>
+                <li class="section-title">REPORTS</li>
+                <li class="nav-item"><a class="nav-link" href="sales-report.html"><i class="fas fa-chart-line"></i>
+                        Sales Report</a></li>
+                <li class="nav-item"><a class="nav-link" href="products-report.html"><i class="fas fa-file-alt"></i>
+                        Products Report</a></li>
+                <li class="nav-item"><a class="nav-link" href="credit-balance-report.html"><i
+                            class="fas fa-credit-card"></i> Credit Balance Report</a></li>
+                <li class="section-title">SETUP</li>
+                <li class="nav-item"><a class="nav-link" href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="site.html"><i class="fas fa-globe"></i> Site</a></li>
+                <li class="nav-item"><a class="nav-link" href="mail.html"><i class="fas fa-envelope"></i> Mail</a></li>
+                <li class="nav-item"><a class="nav-link" href="location-setup.html"><i
+                            class="fas fa-map-marker-alt"></i> Location Setup</a></li>
+                <li class="nav-item"><a class="nav-link" href="shipping-setup.html"><i class="fas fa-truck"></i>
+                        Shipping Setup</a></li>
+                <li class="nav-item"><a class="nav-link" href="otp.html"><i class="fas fa-lock"></i> OTP</a></li>
+                <li class="nav-item"><a class="nav-link" href="notification.html"><i class="fas fa-bell"></i>
+                        Notification</a></li>
+                <li class="nav-item"><a class="nav-link" href="notification-alert.html"><i class="fas fa-bell"></i>
+                        Notification Alert</a></li>
+                <li class="nav-item"><a class="nav-link" href="social-media.html"><i class="fas fa-share-alt"></i>
+                        Social Media</a></li>
+                <li class="nav-item"><a class="nav-link" href="cookies.html"><i class="fas fa-cookie-bite"></i>
+                        Cookies</a></li>
+                <li class="nav-item"><a class="nav-link" href="analytics.html"><i class="fas fa-chart-bar"></i>
+                        Analytics</a></li>
+                <li class="nav-item"><a class="nav-link" href="theme.html"><i class="fas fa-paint-brush"></i> Theme</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="sliders.html"><i class="fas fa-sliders-h"></i>
+                        Sliders</a></li>
+                <li class="nav-item"><a class="nav-link" href="currencies.html"><i class="fas fa-money-bill-wave"></i>
+                        Currencies</a></li>
+                <li class="nav-item"><a class="nav-link" href="product-categories.html"><i class="fas fa-tags"></i>
+                        Product Categories</a></li>
+                <li class="nav-item"><a class="nav-link" href="product-attributes.html"><i class="fas fa-cube"></i>
+                        Product Attributes</a></li>
+                <li class="nav-item"><a class="nav-link" href="product-brands.html"><i class="fas fa-tag"></i> Product
+                        Brands</a></li>
+                <li class="nav-item"><a class="nav-link" href="supplier.html"><i class="fas fa-industry"></i>
+                        Suppliers</a></li>
+                <li class="nav-item"><a class="nav-link" href="outlets.html"><i class="fas fa-store"></i> Outlets</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="benefits.html"><i class="fas fa-gift"></i> Benefits</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="units.html"><i class="fas fa-balance-scale"></i>
+                        Units</a></li>
+                <li class="nav-item"><a class="nav-link" href="taxes.html"><i class="fas fa-percent"></i> Taxes</a></li>
+                <li class="nav-item"><a class="nav-link" href="page.html"><i class="fas fa-file-alt"></i> Pages</a></li>
+                <li class="nav-item"><a class="nav-link" href="role & permissions.html"><i
+                            class="fas fa-user-shield"></i> Role & Permissions</a></li>
+                <li class="nav-item"><a class="nav-link" href="languages-list.html"><i class="fas fa-globe"></i>
+                        Languages</a></li>
+                <li class="nav-item"><a class="nav-link" href="sms-gateway.html"><i class="fas fa-comments"></i> SMS
+                        Gateway</a></li>
+                <li class="nav-item"><a class="nav-link" href="payment-gateway.html"><i class="fas fa-credit-card"></i>
+                        Payment Gateway</a></li>
+                <li class="nav-item"><a class="nav-link" href="license.html"><i class="fas fa-file-contract"></i>
+                        License</a></li>
+            </ul>
+        </aside>
+        <div class="body-wrapper">
+            <header class="app-header" style="position: relative; top: auto; z-index: auto;">
+                <div class="container-fluid">
+                    <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+                        <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end"></ul>
+                    </div>
+                </div>
+            </header>
+            <br>
+            <div class="profile-icon" style="position:absolute; top: 10px; right: 5px; z-index: 9999;">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="./assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                    <div class="message-body">
+                        <a href="./my-profile.html" class="d-flex align-items-center gap-2 dropdown-item">
+                            <i class="ti ti-user fs-6"></i>
+                            <p class="mb-0 fs-3">My Profile</p>
+                        </a>
+                        <span id="auth">
+                            <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block"
+                                id="loginButton">Logout</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title fw-semibold mb-4">Dashboard / Call Requests</h5>
+                        <div class="container">
+                            <h5>Call Requests</h5>
+                            <div
+                                class="actions-bar d-flex flex-column flex-md-row align-items-center align-items-lg-end justify-content-center justify-content-md-center justify-content-lg-end">
+                                <input type="text" class="form-control" id="filterInput"
+                                    placeholder="Search call requests...">
+                                <select id="statusFilter" class="form-select ms-3 w-auto">
+                                    <option value="">All Requests</option>
+                                    <option value="Request a call">Request a call</option>
+                                    <option value="Call Done">Call Done</option>
+                                    <option value="Spam Call">Spam Call</option>
+                                </select>
+                                <div class="dropdown w-100 ms-2">
+                                    <button onclick="printOnlyTable()" class="btn btn-secondary px-5">Print</button>
+                                </div>
+                                <!-- <div class="dropdown w-100 ms-2">
+                                    <button type="button" class="btn btn-primary px-3" data-bs-toggle="modal" data-bs-target="#addCallRequestModal">➕ Add Call Request</button>
+                                </div> -->
+                            </div>
+                            <div class="modal fade" id="addCallRequestModal" tabindex="-1"
+                                aria-labelledby="addCallRequestModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="addCallRequestModalLabel">Add New Call Request
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <label for="addCustomerName" class="form-label">Customer Name</label>
+                                            <input type="text" id="addCustomerName" class="form-control mb-2"
+                                                placeholder="Customer Name">
+                                            <label for="addPhoneNumber" class="form-label">Phone Number</label>
+                                            <input type="text" id="addPhoneNumber" class="form-control mb-2"
+                                                placeholder="Phone Number">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancel</button>
+                                            <button type="button" id="saveAddCallRequestBtn"
+                                                class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="updateCallRequestModal" tabindex="-1"
+                                aria-labelledby="updateCallRequestModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="updateCallRequestModalLabel">Update Call Request
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input type="hidden" id="updateCallRequestId">
+                                            <label for="updateCustomerName" class="form-label">Customer Name</label>
+                                            <input type="text" id="updateCustomerName" class="form-control mb-2"
+                                                placeholder="Customer Name">
+                                            <label for="updatePhoneNumber" class="form-label">Phone Number</label>
+                                            <input type="text" id="updatePhoneNumber" class="form-control mb-2"
+                                                placeholder="Phone Number">
+                                            <label for="updateRequestType" class="form-label">Request Type</label>
+                                            <select id="updateRequestType" class="form-select mb-2">
+                                                <option value="Request a call">Request a call</option>
+                                                <option value="Call Done">Call Done</option>
+                                                <option value="Spam Call">Spam Call</option>
+                                            </select>
+                                            <label for="updateDescription" class="form-label">Description</label>
+                                            <textarea id="updateDescription" class="form-control mb-2"
+                                                placeholder="Description"></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancel</button>
+                                            <button type="button" id="saveUpdateCallRequestBtn"
+                                                class="btn btn-primary">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="callRequestViewOverlay" class="overlay">
+                                <div class="overlay-content">
+                                    <span class="close-btn" onclick="closeOverlay()">×</span>
+                                    <div class="mb-4">
+                                        <h3>Dashboard / Call Requests / View</h3>
+                                    </div>
+                                    <div class="box">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p><strong>Customer Name:</strong> <span
+                                                        id="callRequestCustomerName"></span></p>
+                                                <p><strong>Phone Number:</strong> <span
+                                                        id="callRequestPhoneNumber"></span></p>
+                                                <p><strong>Request Type:</strong> <span id="callRequestType"></span></p>
+                                                <p><strong>Description:</strong> <span
+                                                        id="callRequestDescription"></span></p>
+                                                <p><strong>Request Date:</strong> <span
+                                                        id="callRequestCreatedAt"></span></p>
+                                            </div>
+                                            <div class="col-md-6 text-end">
+                                                <button class="btn btn-primary"
+                                                    onclick="printCallRequestDetails()">Print</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="printableCallRequestTable" style="display: none;">
+                                <table border="1" cellpadding="8" cellspacing="0"
+                                    style="width: 100%; border-collapse: collapse;">
+                                    <tbody>
+                                        <tr>
+                                            <th align="left">Customer Name</th>
+                                            <td id="callRequestCustomerNameTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Phone Number</th>
+                                            <td id="callRequestPhoneNumberTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Request Type</th>
+                                            <td id="callRequestTypeTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Description</th>
+                                            <td id="callRequestDescriptionTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Request Date</th>
+                                            <td id="callRequestCreatedAtTable"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="d-flex gap-3 align-items-center mb-3" style="margin-top: 10px;">
+                                <select id="bulkStatusSelect" class="form-select w-auto">
+                                    <option value="Request a call">Request a call</option>
+                                    <option value="Call Done">Call Done</option>
+                                    <option value="Spam Call">Spam Call</option>
+                                </select>
+                                <button class="btn btn-primary" id="bulkUpdateBtn"
+                                    style="display: none;">Update</button>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div>
+                                    <span class="fw-bold">Total Call Requests:</span> <span
+                                        id="totalCallRequestsCount">0</span>
+                                </div>
+                            </div>
+                            <div class="table-container mt-4">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th class="no-print"><input type="checkbox" id="selectAllCheckbox" />
+                                                </th>
+                                                <th style="font-size: 10px;">Customer Name</th>
+                                                <th style="font-size: 10px;">Phone Number</th>
+                                                <th style="font-size: 10px;">Request Type</th>
+                                                <th style="font-size: 10px;">Description</th>
+                                                <th style="font-size: 10px;">Request Date</th>
+                                                <th style="font-size: 10px;" class="no-print">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="callRequestsTableBody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+                <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+                <script src="./assets/js/sidebarmenu.js"></script>
+                <script src="./assets/js/app.min.js"></script>
+                <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+                <script src="./apiConfig/apiConfig.js"></script>
+                <script>
+                    let callRequestsCache = null;
+                    let currentCallRequestId = null;
+
+                    document.addEventListener('DOMContentLoaded', function () {
+                        fetchCallRequests();
+
+                        const addCallRequestModal = document.getElementById('addCallRequestModal');
+                        addCallRequestModal.addEventListener('hidden.bs.modal', function () {
+                            document.getElementById('addCustomerName').value = '';
+                            document.getElementById('addPhoneNumber').value = '';
+                        });
+
+                        const updateCallRequestModal = document.getElementById('updateCallRequestModal');
+                        updateCallRequestModal.addEventListener('hidden.bs.modal', function () {
+                            document.getElementById('updateCallRequestId').value = '';
+                            document.getElementById('updateCustomerName').value = '';
+                            document.getElementById('updatePhoneNumber').value = '';
+                            document.getElementById('updateRequestType').value = 'Request a call';
+                            document.getElementById('updateDescription').value = '';
+                            currentCallRequestId = null;
+                        });
+
+                        document.getElementById('saveUpdateCallRequestBtn').addEventListener('click', saveUpdateCallRequestModal);
+                        document.getElementById('saveAddCallRequestBtn').addEventListener('click', addCallRequest);
+                    });
+
+                    function showLoader() {
+                        document.getElementById('loader').style.display = 'flex';
+                    }
+
+                    function hideLoader() {
+                        document.getElementById('loader').style.display = 'none';
+                    }
+
+                    async function fetchCallRequests() {
+                        const token = localStorage.getItem('token');
+                        showLoader();
+                        try {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/call-requests`, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': token,
+                                },
+                            });
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status}`);
+                            }
+                            const data = await response.json();
+                            console.log("✅ Fetched Call Requests:", data);
+                            callRequestsCache = data;
+
+                            // ✅ Only show requests with "Request a call" type
+                            const filteredData = data.data.filter(item => item.request_type === "Call Done");
+
+                            populateTable(filteredData);
+                        } catch (error) {
+                            console.error('❌ Error fetching call requests:', error);
+                            showErrorMessage('Failed to fetch call requests. Please try again.');
+                            if (!callRequestsCache) {
+                                document.getElementById('callRequestsTableBody').innerHTML = `
+                <tr>
+                    <td colspan="7" class="text-center text-danger">
+                        Failed to load data. Please check your connection and try again.
+                    </td>
+                </tr>
+            `;
+                            }
+                        } finally {
+                            hideLoader();
+                        }
+                    }
+
+                    function populateTable(callRequests) {
+                        const callRequestsTableBody = document.getElementById('callRequestsTableBody');
+                        document.getElementById("totalCallRequestsCount").textContent = callRequests.length;
+                        callRequestsTableBody.innerHTML = '';
+                        if (!callRequests || callRequests.length === 0) {
+                            callRequestsTableBody.innerHTML = `
+                                <tr>
+                                    <td colspan="7" class="text-center">No call requests found</td>
+                                </tr>
+                            `;
+                            return;
+                        }
+                        callRequests.forEach(request => {
+                            const row = document.createElement('tr');
+                            row.setAttribute('data-id', request.id);
+                            row.innerHTML = `
+                                <td class="no-print"><input type="checkbox" class="callRequestCheckbox" value="${request.id}" /></td>
+                                <td>${request.customer_name || '—'}</td>
+                                <td>${request.phone_number || '—'}</td>
+                                <td>${request.request_type || 'Request a call'}</td>
+                                <td>${request.description || '—'}</td>
+                                <td>${request.created_at ? new Date(request.created_at).toLocaleDateString() : '—'}</td>
+                                <td class="no-print action-buttons">
+                                    <button class="btn" onclick="updateCallRequest('${request.id}')" data-bs-toggle="modal" data-bs-target="#updateCallRequestModal">✏️</button>
+                                    <button class="btn" onclick="deleteCallRequest('${request.id}')">🗑</button>
+                                </td>
+                            `;
+                            callRequestsTableBody.appendChild(row);
+                        });
+                    }
+
+                    async function addCallRequest() {
+                        const token = localStorage.getItem('token');
+                        const customer_name = document.getElementById('addCustomerName').value.trim();
+                        const phone_number = document.getElementById('addPhoneNumber').value.trim();
+                        if (!customer_name || !phone_number) {
+                            showErrorMessage('Please fill all fields correctly.');
+                            return;
+                        }
+                        showLoader();
+                        try {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/call-requests`, {
+                                method: 'POST',
+                                headers: {
+                                    'Authorization': token,
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ customer_name, phone_number }),
+                            });
+                            const result = await response.json();
+                            if (!response.ok) {
+                                throw new Error(result.message || 'Failed to add call request');
+                            }
+                            const addCallRequestModal = bootstrap.Modal.getInstance(document.getElementById('addCallRequestModal'));
+                            addCallRequestModal.hide();
+                            fetchCallRequests();
+                            showSuccessMessage(result.message);
+                        } catch (error) {
+                            console.error('❌ Error adding call request:', error);
+                            showErrorMessage(error.message);
+                        } finally {
+                            hideLoader();
+                        }
+                    }
+
+                    function viewCallRequest(requestId) {
+                        showLoader();
+                        const request = callRequestsCache?.data?.find(r => r.id == requestId);
+                        if (request) {
+                            populateCallRequestDetails(request);
+                            hideLoader();
+                        } else {
+                            fetchCallRequestDetails(requestId);
+                        }
+                    }
+
+                    function updateCallRequest(requestId) {
+                        currentCallRequestId = requestId;
+                        showLoader();
+                        const request = callRequestsCache?.data?.find(r => r.id == requestId);
+                        if (request) {
+                            populateUpdateModal(request);
+                            hideLoader();
+                        } else {
+                            fetchCallRequestDetailsForUpdate(requestId);
+                        }
+                    }
+
+                    async function fetchCallRequestDetails(requestId) {
+                        const token = localStorage.getItem('token');
+                        try {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/call-requests/${requestId}`, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': token,
+                                },
+                            });
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status}`);
+                            }
+                            const data = await response.json();
+                            populateCallRequestDetails(data.data[0]);
+                        } catch (error) {
+                            console.error('❌ Error fetching call request details:', error);
+                            showErrorMessage('Failed to fetch call request details. Please try again.');
+                        } finally {
+                            hideLoader();
+                        }
+                    }
+
+                    async function fetchCallRequestDetailsForUpdate(requestId) {
+                        const token = localStorage.getItem('token');
+                        try {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/call-requests/${requestId}`, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': token,
+                                },
+                            });
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status}`);
+                            }
+                            const data = await response.json();
+                            populateUpdateModal(data.data[0]);
+                        } catch (error) {
+                            console.error('❌ Error fetching call request details for update:', error);
+                            showErrorMessage('Failed to fetch call request details. Please try again.');
+                        } finally {
+                            hideLoader();
+                        }
+                    }
+
+                    function populateCallRequestDetails(request) {
+                        document.getElementById('callRequestCustomerName').textContent = request.customer_name || '—';
+                        document.getElementById('callRequestPhoneNumber').textContent = request.phone_number || '—';
+                        document.getElementById('callRequestType').textContent = request.request_type || 'Request a call';
+                        document.getElementById('callRequestDescription').textContent = request.description || '—';
+                        document.getElementById('callRequestCreatedAt').textContent = request.created_at ? new Date(request.created_at).toLocaleString() : '—';
+                        document.getElementById('callRequestViewOverlay').style.display = 'block';
+                    }
+
+                    function populateUpdateModal(request) {
+                        document.getElementById('updateCallRequestId').value = request.id;
+                        document.getElementById('updateCustomerName').value = request.customer_name || '';
+                        document.getElementById('updatePhoneNumber').value = request.phone_number || '';
+                        document.getElementById('updateRequestType').value = request.request_type || 'Request a call';
+                        document.getElementById('updateDescription').value = request.description || '';
+                    }
+
+                    async function saveUpdateCallRequestModal() {
+                        const token = localStorage.getItem('token');
+                        const requestId = document.getElementById('updateCallRequestId').value;
+                        const customer_name = document.getElementById('updateCustomerName').value.trim();
+                        const phone_number = document.getElementById('updatePhoneNumber').value.trim();
+                        const request_type = document.getElementById('updateRequestType').value;
+                        const description = document.getElementById('updateDescription').value.trim();
+                        if (!requestId || !customer_name || !phone_number) {
+                            showErrorMessage('Please fill all required fields correctly.');
+                            return;
+                        }
+                        showLoader();
+                        try {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/call-requests/${requestId}`, {
+                                method: 'PUT',
+                                headers: {
+                                    'Authorization': token,
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ request_type, description }),
+                            });
+                            const result = await response.json();
+                            if (!response.ok) {
+                                throw new Error(result.message || 'Failed to update call request');
+                            }
+                            const updateCallRequestModal = bootstrap.Modal.getInstance(document.getElementById('updateCallRequestModal'));
+                            updateCallRequestModal.hide();
+                            fetchCallRequests();
+                            showSuccessMessage(result.message);
+                        } catch (error) {
+                            console.error('❌ Error updating call request:', error);
+                            showErrorMessage(error.message);
+                        } finally {
+                            hideLoader();
+                        }
+                    }
+
+                    async function deleteCallRequest(requestId) {
+                        if (!confirm('Are you sure you want to delete this call request?')) return;
+                        const token = localStorage.getItem('token');
+                        showLoader();
+                        try {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/call-requests/${requestId}`, {
+                                method: 'DELETE',
+                                headers: {
+                                    'Authorization': token,
+                                },
+                            });
+                            const result = await response.json();
+                            if (!response.ok) {
+                                throw new Error(result.message || 'Failed to delete call request');
+                            }
+                            fetchCallRequests();
+                            showSuccessMessage(result.message);
+                        } catch (error) {
+                            console.error('❌ Error deleting call request:', error);
+                            showErrorMessage(error.message);
+                        } finally {
+                            hideLoader();
+                        }
+                    }
+
+                    function closeOverlay() {
+                        document.getElementById('callRequestViewOverlay').style.display = 'none';
+                    }
+
+                    document.getElementById('filterInput').addEventListener('input', function () {
+                        const query = this.value.toLowerCase().trim();
+                        const rows = document.querySelectorAll('#callRequestsTableBody tr');
+                        let visibleCount = 0;
+                        rows.forEach(row => {
+                            const cells = row.querySelectorAll('td');
+                            const textContent = Array.from(cells).map(cell => cell.textContent.toLowerCase()).join(' ');
+                            const isMatch = textContent.includes(query);
+                            row.style.display = isMatch ? '' : 'none';
+                            if (isMatch) visibleCount++;
+                        });
+                        document.getElementById("totalCallRequestsCount").textContent = visibleCount;
+                    });
+
+                    document.getElementById('statusFilter').addEventListener('change', function () {
+                        const selected = this.value.toLowerCase();
+                        const rows = document.querySelectorAll('#callRequestsTableBody tr');
+                        let visibleCount = 0;
+                        rows.forEach(row => {
+                            const status = row.children[3]?.textContent?.toLowerCase() || '';
+                            const isMatch = !selected || status.includes(selected);
+                            row.style.display = isMatch ? '' : 'none';
+                            if (isMatch) visibleCount++;
+                        });
+                        document.getElementById("totalCallRequestsCount").textContent = visibleCount;
+                    });
+
+                    document.getElementById('selectAllCheckbox').addEventListener('change', function () {
+                        const checkboxes = document.querySelectorAll('.callRequestCheckbox');
+                        checkboxes.forEach(cb => cb.checked = this.checked);
+                        toggleBulkActions();
+                    });
+
+                    document.addEventListener('change', function (e) {
+                        if (e.target.classList.contains('callRequestCheckbox')) {
+                            toggleBulkActions();
+                        }
+                    });
+
+                    function toggleBulkActions() {
+                        const anyChecked = document.querySelectorAll('.callRequestCheckbox:checked').length > 0;
+                        document.getElementById('bulkUpdateBtn').style.display = anyChecked ? 'inline-block' : 'none';
+                    }
+
+                    document.getElementById('bulkUpdateBtn').addEventListener('click', async function () {
+                        const selectedStatus = document.getElementById('bulkStatusSelect').value;
+                        const token = localStorage.getItem('token');
+                        const selectedIds = [...document.querySelectorAll('.callRequestCheckbox:checked')].map(cb => cb.value);
+                        if (!selectedStatus || selectedIds.length === 0) {
+                            alert('Please select at least one call request and a status.');
+                            return;
+                        }
+                        showLoader();
+                        for (let id of selectedIds) {
+                            try {
+                                const response = await fetch(`${API_ADMINGRAB_URL}/api/call-requests/${id}`, {
+                                    method: 'PUT',
+                                    headers: {
+                                        'Authorization': token,
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({ request_type: selectedStatus, description: '' }),
+                                });
+                                const result = await response.json();
+                                if (response.ok) {
+                                    const row = document.querySelector(`tr[data-id="${id}"]`);
+                                    if (row) {
+                                        row.children[3].textContent = selectedStatus;
+                                    }
+                                } else {
+                                    console.error('❌ Failed for ID:', id, result.message);
+                                }
+                            } catch (error) {
+                                console.error('❌ Error updating call request:', error);
+                            }
+                        }
+                        fetchCallRequests();
+                        showSuccessMessage('Status updated successfully.');
+                        hideLoader();
+                    });
+
+                    function printOnlyTable() {
+                        const printContent = document.querySelector('.table-container').innerHTML;
+                        const originalContent = document.body.innerHTML;
+                        const style = `
+                            <style>
+                                body { font-family: Arial, sans-serif; padding: 20px; }
+                                table { width: 100%; border-collapse: collapse; font-size: 12px; }
+                                th, td { border: 1px solid #000; padding: 6px; text-align: left; }
+                                th { background-color: #f2f2f2; }
+                            </style>
+                        `;
+                        document.body.innerHTML = style + '<h2>Call Requests</h2>' + printContent;
+                        window.print();
+                        document.body.innerHTML = originalContent;
+                        window.location.reload();
+                    }
+
+                    function printCallRequestDetails() {
+                        document.getElementById('callRequestCustomerNameTable').textContent = document.getElementById('callRequestCustomerName').textContent;
+                        document.getElementById('callRequestPhoneNumberTable').textContent = document.getElementById('callRequestPhoneNumber').textContent;
+                        document.getElementById('callRequestTypeTable').textContent = document.getElementById('callRequestType').textContent;
+                        document.getElementById('callRequestDescriptionTable').textContent = document.getElementById('callRequestDescription').textContent;
+                        document.getElementById('callRequestCreatedAtTable').textContent = document.getElementById('callRequestCreatedAt').textContent;
+                        const printContent = document.getElementById('printableCallRequestTable').innerHTML;
+                        const originalContent = document.body.innerHTML;
+                        document.body.innerHTML = printContent;
+                        window.print();
+                        document.body.innerHTML = originalContent;
+                        window.location.reload();
+                    }
+
+                    function showSuccessMessage(message) {
+                        alert(message);
+                    }
+
+                    function showErrorMessage(message) {
+                        alert(message);
+                    }
+                </script>
+                <script src="https://unpkg.com/@phosphor-icons/web"></script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const toggle = document.querySelector('.orders-toggle');
+                        const submenu = document.getElementById('ordersMenu');
+                        const arrow = toggle.querySelector('.arrow-icon');
+                        toggle.addEventListener('click', () => {
+                            submenu.classList.toggle('show');
+                            arrow.classList.toggle('rotate');
+                        });
+                    });
+
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const purchasesToggle = document.querySelector('.purchases-toggle-custom');
+                        const purchasesMenu = document.getElementById('purchaseMenuCustom');
+                        const purchasesArrow = purchasesToggle.querySelector('.arrow-icon');
+                        purchasesToggle.addEventListener('click', () => {
+                            purchasesMenu.classList.toggle('show');
+                            purchasesArrow.classList.toggle('rotate');
+                        });
+                    });
+
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const currentFile = window.location.pathname.split("/").pop();
+                        document.querySelectorAll(".nav-link").forEach(link => {
+                            const href = link.getAttribute("href");
+                            if (href && href === currentFile) {
+                                link.classList.add("active");
+                                const sidebarSubmenu = link.closest(".sidebar-submenu");
+                                if (sidebarSubmenu) {
+                                    sidebarSubmenu.classList.add("show");
+                                    const parentToggle = sidebarSubmenu.previousElementSibling;
+                                    if (parentToggle && parentToggle.classList.contains("purchases-toggle-custom")) {
+                                        parentToggle.querySelector('.arrow-icon').classList.add('rotate');
+                                    }
+                                }
+                            } else {
+                                link.classList.remove("active");
+                            }
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
