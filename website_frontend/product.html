@@ -9,6 +9,8 @@
 <link rel="shortcut icon" href="https://graba2z.netlify.app/assets/images/icon/favicon.png">
 <!-- Bootstrap CSS (in the <head> section) -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
+
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
 
@@ -2621,6 +2623,63 @@ function updateModalThumbnails(imagePaths, baseUrl) {
   </div>
 </section>
 <!-- ========================== Related Products Section End ============================= -->
+ <!-- ========================== Shipping Section Start ============================ -->
+    <section class="shipping mb-24" >
+        <div class="container container-lg">
+            <div class="row gy-4">
+                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="400">
+                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
+                        <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
+                            style="background-color: #ffffff;"><i class="ph-fill ph-car-profile"
+                                style="Color: #90C309;"></i></span>
+                        <div class="">
+                            <h6 class="mb-0 text-black">Free Shipping</h6>
+                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over
+                                the US</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="600">
+                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
+                        <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
+                            style="background-color: #ffffff;"><i class="ph-fill ph-hand-heart"
+                                style="Color: #90C309;"></i></span>
+                        <div class="">
+                            <h6 class="mb-0 text-black"> 100% Satisfaction</h6>
+                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over
+                                the US</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="800">
+                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
+                        <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
+                            style="background-color: #ffffff;"><i class="ph-fill ph-credit-card"
+                                style="Color: #90C309;"></i></span>
+                        <div class="">
+                            <h6 class="mb-0 text-black"> Secure Payments</h6>
+                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over
+                                the US</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1000">
+                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
+                        <span class="w-56 h-56 flex-center rounded-circle text-white text-32 flex-shrink-0"
+                            style="background-color: #ffffff;"><i class="ph-fill ph-chats"
+                                style="Color: #90C309;"></i></span>
+                        <div class="">
+                            <h6 class="mb-0 text-black"> 24/7 Support</h6>
+                            <span class="text-sm text-heading" style="color: #000 !important;">Free shipping all over
+                                the US</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================== Shipping Section End ============================ -->
+
 
 <!-- Related Products Styles -->
 <style>
@@ -2747,62 +2806,7 @@ async function fetchRelatedProducts(categoryId, excludeProductId) {
 fetchRelatedProducts('10', '131');
 </script>
 
-    <!-- ========================== Shipping Section Start ============================ -->
-    <section class="shipping mb-24" id="shipping">
-        <div class="container container-lg">
-            <div class="row gy-4">
-                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="400">
-                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                        <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
-                            style="background-color: #ffffff;"><i class="ph-fill ph-car-profile"
-                                style="Color: #90C309;"></i></span>
-                        <div class="">
-                            <h6 class="mb-0 text-black">Free Shipping</h6>
-                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over
-                                the US</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="600">
-                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                        <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
-                            style="background-color: #ffffff;"><i class="ph-fill ph-hand-heart"
-                                style="Color: #90C309;"></i></span>
-                        <div class="">
-                            <h6 class="mb-0 text-black"> 100% Satisfaction</h6>
-                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over
-                                the US</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="800">
-                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                        <span class="w-56 h-56 flex-center rounded-circle  text-white text-32 flex-shrink-0"
-                            style="background-color: #ffffff;"><i class="ph-fill ph-credit-card"
-                                style="Color: #90C309;"></i></span>
-                        <div class="">
-                            <h6 class="mb-0 text-black"> Secure Payments</h6>
-                            <span class="text-sm text-heading " style="color: #000 !important;">Free shipping all over
-                                the US</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1000">
-                    <div class="shipping-item flex-align gap-16 rounded-16 bg-main-50 hover-bg-main-100 transition-2">
-                        <span class="w-56 h-56 flex-center rounded-circle text-white text-32 flex-shrink-0"
-                            style="background-color: #ffffff;"><i class="ph-fill ph-chats"
-                                style="Color: #90C309;"></i></span>
-                        <div class="">
-                            <h6 class="mb-0 text-black"> 24/7 Support</h6>
-                            <span class="text-sm text-heading" style="color: #000 !important;">Free shipping all over
-                                the US</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ========================== Shipping Section End ============================ -->
+   
     <!-- <div id="footer"></div> -->
  <!-- Footer Start -->
     <footer class="footer">
