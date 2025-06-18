@@ -3207,7 +3207,7 @@ function slugify(text) {
                     saleBadge.style.display = 'none';
                 }
                 document.getElementById('product-name').textContent = product.name || 'N/A';
-                document.getElementById('product-price').textContent = `$${product.offer_price ?? product.selling_price ?? 0.00}`;
+                document.getElementById('product-price').textContent = `AED{product.offer_price ?? product.selling_price ?? 0.00}`;
                 document.getElementById('product-tax').textContent = product.tax || 'Inclusive VAT';
                 document.getElementById('product-sku').textContent = product.sku || 'N/A';
                 document.getElementById('product-categories').textContent = product.category_name || 'N/A';
