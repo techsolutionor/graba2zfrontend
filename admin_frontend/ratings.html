@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rating Management</title>
+    <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+    <link rel="stylesheet" href="./assets/css/styles.min.css" />
+    <link rel="stylesheet" href="./assets/css/navbar.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/order.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./popupMessages.js"></script>
+    <style>
+        .input-group-text {
+            border-top-right-radius: 0px !important;
+            border-bottom-right-radius: 0px !important;
+            padding-right: 0px !important;
+            background-color: transparent !important;
+            border-color: #DFE5EF !important;
+            border-right: 0px !important;
+        }
+
+        .slug-input {
+            border-left: 0px !important;
+            padding-left: 0px !important;
+        }
+
+        .slug-input:focus {
+            border-color: #DFE5EF !important;
+        }
+
+        .sidebar-submenu {
+            padding-left: 40px;
+            /* indent submenu */
+            list-style-type: disc;
+            /* bullet points */
+        }
+
+        .sidebar-submenu li {
+            padding: 5px 0;
+        }
+
+        .sidebar-submenu li a {
+            color: #000000;
+            /* submenu link color */
+            text-decoration: none;
+        }
+
+
+        .nav-link.active,
+        .nav-link:hover {
+            background-color: #f0f0f0;
+            color: #000;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .sidebar-submenu .nav-link.active {
+            background-color: #e0e0e0;
+        }
+
+
+        /* for dropdown arrow reverse */
+        .toggle-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link[aria-expanded="true"] .toggle-arrow {
+            transform: rotate(180deg);
+        }
+
+        .left-sidebar {
+            width: 260px;
+            height: 100vh;
+            background-color: #ffffff;
+            position: fixed;
+            overflow-y: auto;
+            border-right: 1px solid #ddd;
+        }
+
+        .section-title {
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 12px;
+            color: #6c757d;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 10px 20px;
+            color: #000;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            background-color: #f0f0f0;
+        }
+
+        .nav-link.active {
+            background-color: #000;
+            color: #fff !important;
+            font-weight: bold;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .nav-link.active::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: #8FC208;
+            border-radius: 50%;
+        }
+
+        .sidebar-submenu {
+            padding-left: 30px;
+            list-style: none;
+        }
+
+        .sidebar-submenu .nav-link {
+            font-size: 14px;
+            padding: 6px 20px;
+        }
+
+        .body-wrapper {
+            margin-left: 260px;
+            padding: 30px;
+        }
+
+
+        .sidebar-submenu {
+            display: none;
+            list-style: none;
+            padding-left: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-submenu.show {
+            display: block;
+        }
+
+        .rotate-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .rotate-icon.rotate {
+            transform: rotate(180deg);
+        }
+    </style>
+
+    <style>
+        @media print {
+
+            .actions-bar,
+            .btn,
+            .no-print {
+                display: none !important;
+            }
+
+            table {
+                width: 100% !important;
+                border-collapse: collapse !important;
+            }
+
+            th,
+            td {
+                border: 1px solid #000 !important;
+                padding: 6px !important;
+            }
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .sidebar-submenu {
+            padding-left: 40px;
+            list-style-type: disc;
+        }
+
+        .sidebar-submenu li {
+            padding: 5px 0;
+        }
+
+        .sidebar-submenu li a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        .left-sidebar {
+            width: 260px;
+            height: 100vh;
+            background-color: #ffffff;
+            position: fixed;
+            overflow-y: auto;
+            border-right: 1px solid #ddd;
+        }
+
+        .section-title {
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 12px;
+            color: #6c757d;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 10px 20px;
+            color: #000;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            background-color: #f0f0f0;
+        }
+
+        .nav-link.active {
+            background-color: #000;
+            color: #fff !important;
+            font-weight: bold;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .nav-link.active::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: #8fc208;
+            border-radius: 50%;
+        }
+
+        .sidebar-submenu {
+            padding-left: 30px;
+            list-style: none;
+        }
+
+        .sidebar-submenu .nav-link {
+            font-size: 14px;
+            padding: 6px 20px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const currentPath = window.location.pathname.split("/").pop();
+            const navLinks = document.querySelectorAll(".left-sidebar .nav-link");
+
+            navLinks.forEach((link) => {
+                const href = link.getAttribute("href");
+                if (href && href.endsWith(".html") && href === currentPath) {
+                    link.classList.add("active");
+                    const parentCollapse = link.closest(".collapse");
+                    if (parentCollapse) {
+                        new bootstrap.Collapse(parentCollapse, { toggle: false }).show();
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        (function checkAuth() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.replace('./login.html');
+            }
+        })();
+
+        window.onload = function () {
+            const token = localStorage.getItem('token');
+            const authContainer = document.getElementById('auth');
+
+            if (token) {
+                authContainer.innerHTML = `
+                    <a href="#" class="btn btn-outline-danger mx-3 mt-2 d-block" id="logoutButton">Logout</a>
+                `;
+                document.getElementById('logoutButton').addEventListener('click', logout);
+            } else {
+                authContainer.innerHTML = `
+                    <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Login</a>
+                `;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            window.location.href = './login.html';
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Loader -->
+    <div id="loader" class="loader-container">
+        <div class="loader"></div>
+    </div>
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+        <!-- Sidebar Start -->
+        <aside class="left-sidebar">
+            <div class="logo-img text-center p-3">
+                <a href="index.html">
+                    <img src="./assets/images/logos/logo1.svg" width="180" alt="Logo" />
+                </a>
+            </div>
+            <ul class="nav flex-column">
+                <!-- HOME -->
+                <li class="section-title">HOME</li>
+                <li class="nav-item"><a class="nav-link" href="index.html"><i class="ti ti-layout-dashboard"></i>
+                        Dashboard</a>
+                </li>
+
+                <!-- PRODUCTS & STOCK -->
+                <li class="section-title">PRODUCTS & STOCK</li>
+                <li class="nav-item"><a class="nav-link" href="products.html"><i class="fas fa-box"></i> Products</a>
+                </li>
+                <li class="nav-item">
+                    <a href="javascript:void(0);"
+                        class="nav-link d-flex justify-content-between align-items-center purchases-toggle-custom">
+                        <span><i class="fas fa-shopping-cart me-1"></i> Purchases</span>
+                        <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
+                    </a>
+
+                    <ul class="sidebar-submenu" id="purchaseMenuCustom">
+                        <li><a class="nav-link" href="purchases.html">List Purchase</a></li>
+                        <li><a class="nav-link" href="add-purchase.html">Add Purchase</a></li>
+                        <li><a class="nav-link" href="return-purchase.html">Purchase Return</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="damages.html"><i class="fas fa-exclamation-circle"></i>
+                        Damages</a></li>
+                <li class="nav-item"><a class="nav-link" href="stock.html"><i class="fas fa-archive"></i> Stock</a></li>
+
+                <!-- POS & ORDERS -->
+                <li class="section-title">POS & ORDERS</li>
+                <li class="nav-item"><a class="nav-link" href="pos.html"><i class="fas fa-cash-register"></i> POS</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="pos-orders.html"><i class="fas fa-receipt"></i> POS
+                        Orders</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="javascript:void(0);"
+                        class="nav-link d-flex justify-content-between align-items-center orders-toggle">
+                        <span><i class="fas fa-shopping-basket me-1"></i> Orders</span>
+                        <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
+                    </a>
+
+                    <ul class="sidebar-submenu" id="ordersMenu">
+                        <li><a class="nav-link" href="online-orders.html">Online Orders</a></li>
+                        <li><a class="nav-link" href="received_onlineOrders.html">Received Orders</a></li>
+                        <li><a class="nav-link" href="inprogress_onlineOrders.html">Inprogress Orders</a></li>
+                        <li><a class="nav-link" href="readyForShipment_onlineOrders.html">Ready for Shipment</a></li>
+                        <li><a class="nav-link" href="ontheWay_onlineOrders.html">On the Way</a></li>
+                        <li><a class="nav-link" href="delevered_onlineOrders.html">Delivered</a></li>
+                        <li><a class="nav-link" href="onhold_onlineOrders.html">On Hold</a></li>
+                        <li><a class="nav-link" href="rejected_onlineOrders.html">Rejected</a></li>
+                    </ul>
+                </li>
+
+
+
+
+                <!-- PROMO -->
+                <li class="section-title">PROMO</li>
+                <li class="nav-item"><a class="nav-link" href="coupons.html"><i class="fas fa-tags"></i> Coupons</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="promotions.html"><i class="fas fa-bullhorn"></i>
+                        Promotions</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="product-sections.html"><i class="fas fa-cube"></i>
+                        Product
+                        Sections</a></li>
+
+                <!-- COMMUNICATIONS -->
+                <li class="section-title">COMMUNICATIONS</li>
+                <li class="nav-item"><a class="nav-link" href="push-notifications.html"><i class="fas fa-bell"></i> Push
+                        Notifications</a></li>
+                <li class="nav-item"><a class="nav-link" href="subscribers.html"><i class="fas fa-users"></i>
+                        Subscribers</a>
+                </li>
+
+                <!-- USERS -->
+                <li class="section-title">USERS</li>
+                <li class="nav-item"><a class="nav-link" href="admin.html"><i class="fas fa-user"></i>
+                        Administrators</a></li>
+                <li class="nav-item"><a class="nav-link" href="customer.html"><i class="fas fa-users"></i> Customers</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="employee.html"><i class="fas fa-user-tie"></i>
+                        Employees</a></li>
+
+                <!-- ACCOUNTS -->
+                <li class="section-title">ACCOUNTS</li>
+                <li class="nav-item"><a class="nav-link" href="transactions.html"><i class="fas fa-exchange-alt"></i>
+                        Transactions</a></li>
+
+                <!-- REPORTS -->
+                <li class="section-title">REPORTS</li>
+                <li class="nav-item"><a class="nav-link" href="sales-report.html"><i class="fas fa-chart-line"></i>
+                        Sales
+                        Report</a></li>
+                <li class="nav-item"><a class="nav-link" href="products-report.html"><i class="fas fa-file-alt"></i>
+                        Products
+                        Report</a></li>
+                <li class="nav-item"><a class="nav-link" href="credit-balance-report.html"><i
+                            class="fas fa-credit-card"></i>
+                        Credit Balance Report</a></li>
+
+                <!-- SETUP -->
+                <li class="section-title">SETUP</li>
+                <li class="nav-item"><a class="nav-link" href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="site.html"><i class="fas fa-globe"></i> Site</a></li>
+                <li class="nav-item"><a class="nav-link" href="mail.html"><i class="fas fa-envelope"></i> Mail</a></li>
+                <li class="nav-item"><a class="nav-link" href="location-setup.html"><i
+                            class="fas fa-map-marker-alt"></i>
+                        Location Setup</a></li>
+                <li class="nav-item"><a class="nav-link" href="shipping-setup.html"><i class="fas fa-truck"></i>
+                        Shipping
+                        Setup</a></li>
+                <li class="nav-item"><a class="nav-link" href="otp.html"><i class="fas fa-lock"></i> OTP</a></li>
+                <li class="nav-item"><a class="nav-link" href="notification.html"><i class="fas fa-bell"></i>
+                        Notification</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="notification-alert.html"><i class="fas fa-bell"></i>
+                        Notification
+                        Alert</a></li>
+                <li class="nav-item"><a class="nav-link" href="social-media.html"><i class="fas fa-share-alt"></i>
+                        Social
+                        Media</a></li>
+                <li class="nav-item"><a class="nav-link" href="cookies.html"><i class="fas fa-cookie-bite"></i>
+                        Cookies</a></li>
+                <li class="nav-item"><a class="nav-link" href="analytics.html"><i class="fas fa-chart-bar"></i>
+                        Analytics</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="theme.html"><i class="fas fa-paint-brush"></i> Theme</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="sliders.html"><i class="fas fa-sliders-h"></i>
+                        Sliders</a></li>
+                <li class="nav-item"><a class="nav-link" href="currencies.html"><i class="fas fa-money-bill-wave"></i>
+                        Currencies</a></li>
+                <li class="nav-item"><a class="nav-link" href="product-categories.html"><i class="fas fa-tags"></i>
+                        Product
+                        Categories</a></li>
+                <li class="nav-item"><a class="nav-link" href="product-attributes.html"><i class="fas fa-cube"></i>
+                        Product
+                        Attributes</a></li>
+                <li class="nav-item"><a class="nav-link" href="product-brands.html"><i class="fas fa-tag"></i> Product
+                        Brands</a></li>
+                <li class="nav-item"><a class="nav-link" href="supplier.html"><i class="fas fa-industry"></i>
+                        Suppliers</a></li>
+                <li class="nav-item"><a class="nav-link" href="outlets.html"><i class="fas fa-store"></i> Outlets</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="benefits.html"><i class="fas fa-gift"></i> Benefits</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="units.html"><i class="fas fa-balance-scale"></i>
+                        Units</a></li>
+                <li class="nav-item"><a class="nav-link" href="taxes.html"><i class="fas fa-percent"></i> Taxes</a></li>
+                <li class="nav-item"><a class="nav-link" href="page.html"><i class="fas fa-file-alt"></i> Pages</a></li>
+                <li class="nav-item"><a class="nav-link" href="role & permissions.html"><i
+                            class="fas fa-user-shield"></i> Role
+                        & Permissions</a></li>
+                <li class="nav-item"><a class="nav-link" href="languages-list.html"><i class="fas fa-globe"></i>
+                        Languages</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="sms-gateway.html"><i class="fas fa-comments"></i> SMS
+                        Gateway</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="payment-gateway.html"><i class="fas fa-credit-card"></i>
+                        Payment
+                        Gateway</a></li>
+                <li class="nav-item"><a class="nav-link" href="license.html"><i class="fas fa-file-contract"></i>
+                        License</a>
+                </li>
+            </ul>
+        </aside>
+
+        <!--  Sidebar End -->
+
+        <!--  Main wrapper -->
+        <div class="body-wrapper">
+            <!--  Header Start -->
+            <header class="app-header" style="position: relative; top: auto; z-index: auto;">
+                <!-- <nav class="navbar navbar-expand-lg navbar-light px-0"> -->
+                <div class="container-fluid">
+                    <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+                        <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+                            <!-- You can keep other nav items here if needed -->
+                        </ul>
+                    </div>
+                </div>
+                </nav>
+            </header>
+            <br>
+
+            <!-- PROFILE ICON FIXED ON PAGE -->
+            <div class="profile-icon" style="position:absolute; top: 10px; right: 5px; z-index: 9999;">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="./assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                    <div class="message-body">
+                        <a href="./my-profile.html" class="d-flex align-items-center gap-2 dropdown-item">
+                            <i class="ti ti-user fs-6"></i>
+                            <p class="mb-0 fs-3">My Profile</p>
+                        </a>
+                        <span id="auth">
+                            <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block"
+                                id="loginButton">Logout</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            </nav>
+            </header>
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title fw-semibold mb-4">Dashboard / Rating</h5>
+                        <div class="container">
+                            <h5>Rating</h5>
+                            <div
+                                class="actions-bar d-flex flex-column flex-md-row align-items-center align-items-lg-end justify-content-center justify-content-md-center justify-content-lg-end">
+                                <input type="text" class="form-control" id="filterInput"
+                                    placeholder="Search ratings...">
+                                <select id="statusFilter" class="form-select ms-3 w-auto">
+                                    <option value="">All Ratings</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="approved">Approved</option>
+                                    <option value="rejected">Rejected</option>
+                                </select>
+                                <div class="dropdown w-100 ms-2">
+                                    <button onclick="printOnlyTable()" class="btn btn-secondary px-5">Print</button>
+                                </div>
+                                <div class="dropdown w-100 ms-2">
+                                    <button type="button" class="btn btn-primary px-3" data-bs-toggle="modal"
+                                        data-bs-target="#addRatingModal">➕ Add Rating</button>
+                                </div>
+                            </div>
+
+                            <!-- Add Rating Modal -->
+                            <div class="modal fade" id="addRatingModal" tabindex="-1"
+                                aria-labelledby="addRatingModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="addRatingModalLabel">Add New Rating</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- <input type="text" id="addSlug" class="form-control mb-2" placeholder="Product Slug"> -->
+                                            <div class="col-md-12">
+                                                <label for="slug" class="form-label">Product URL</label>
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"
+                                                            id="basic-addon3">https://graba2z.netlify.app/product/</span>
+                                                    </div>
+                                                    <input type="text" id="addSlug" class="form-control slug-input"
+                                                        required>
+                                                    <!-- <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"> -->
+                                                </div>
+
+                                            </div>
+                                            <label for="name" class="form-label">User Name</label>
+                                            <input type="text" id="addName" class="form-control mb-2"
+                                                placeholder="Name">
+                                                 <label for="name" class="form-label">User Email</label>
+                                            <input type="email" id="addEmail" class="form-control mb-2"
+                                                placeholder="Email">
+                                                 <label for="name" class="form-label">Rating</label>
+                                            <input type="number" id="addRating" class="form-control mb-2"
+                                                placeholder="Rating (1-5)" min="1" max="5">
+                                                <label for="name" class="form-label">Review</label>
+                                            <textarea id="addReview" class="form-control mb-2"
+                                                placeholder="Review"></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancel</button>
+                                            <button type="button" id="saveAddRatingBtn"
+                                                class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Update Rating Modal -->
+                            <div class="modal fade" id="updateRatingModal" tabindex="-1"
+                                aria-labelledby="updateRatingModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="updateRatingModalLabel">Update Rating</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input type="hidden" id="updateRatingId">
+
+<div class="col-md-12">
+                                                <label for="slug" class="form-label">Product URL</label>
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"
+                                                            id="basic-addon3">https://graba2z.netlify.app/product/</span>
+                                                    </div>
+                                                    <input type="text" id="updateSlug" class="form-control slug-input  mb-2"
+                                                        placeholder="Product Slug">
+                                                </div>
+
+                                            </div>
+                                             <label for="name" class="form-label">User Name</label>
+                                            <input type="text" id="updateName" class="form-control mb-2"
+                                                placeholder="Name">
+                                             <label for="email" class="form-label">Email</label>
+                                            <input type="email" id="updateEmail" class="form-control mb-2"
+                                                placeholder="Email">
+                                                <label for="rating" class="form-label">Rating</label>
+                                            <input type="number" id="updateRating" class="form-control mb-2"
+                                                placeholder="Rating (1-5)" min="1" max="5">
+                                                <label for="review" class="form-label">Review</label>
+                                            <textarea id="updateReview" class="form-control mb-2"
+                                                placeholder="Review"></textarea>
+                                            <select id="updateStatus" class="form-select mb-2">
+                                                <option value="pending">Pending</option>
+                                                <option value="approved">Approved</option>
+                                                <option value="rejected">Rejected</option>
+                                            </select>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancel</button>
+                                            <button type="button" id="saveUpdateRatingBtn"
+                                                class="btn btn-primary">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Rating View Overlay -->
+                            <div id="ratingViewOverlay" class="overlay">
+                                <div class="overlay-content">
+                                    <span class="close-btn" onclick="closeOverlay()">×</span>
+                                    <div class="mb-4">
+                                        <h3>Dashboard / Ratings / View</h3>
+                                    </div>
+                                    <div class="box">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p><strong>Name:</strong> <span id="ratingName"></span></p>
+                                                <p><strong>Email:</strong> <span id="ratingEmail"></span></p>
+                                                <p><strong>Product URL:</strong> <span id="ratingSlug"></span></p>
+                                                <p><strong>Rating:</strong> <span id="ratingValue"></span></p>
+                                                <p><strong>Status:</strong> <span id="ratingStatus"></span></p>
+                                                <p><strong>Created At:</strong> <span id="ratingCreatedAt"></span></p>
+                                                <p><strong>Review:</strong> <span id="ratingReview"></span></p>
+                                            </div>
+                                            <div class="col-md-6 text-end">
+                                                <button class="btn btn-primary"
+                                                    onclick="printRatingDetails()">Print</button>
+                                                <button id="approveBtn" class="btn btn-success me-2">Approve</button>
+                                                <button id="rejectBtn" class="btn btn-danger">Reject</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Printable Rating Table -->
+                            <div id="printableRatingTable" style="display: none;">
+                                <table border="1" cellpadding="8" cellspacing="0"
+                                    style="width: 100%; border-collapse: collapse;">
+                                    <tbody>
+                                        <tr>
+                                            <th align="left">Name</th>
+                                            <td id="ratingNameTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Email</th>
+                                            <td id="ratingEmailTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Product URL</th>
+                                            <td id="ratingSlugTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Rating</th>
+                                            <td id="ratingValueTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Status</th>
+                                            <td id="ratingStatusTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Created At</th>
+                                            <td id="ratingCreatedAtTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Review</th>
+                                            <td id="ratingReviewTable"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div id="backgroundContent"></div>
+                            <div class="d-flex gap-3 align-items-center mb-3" style="margin-top: 10px;">
+                                <select id="bulkStatusSelect" class="form-select w-auto">
+                                    <option value="pending">Pending</option>
+                                    <option value="approved">Approved</option>
+                                    <option value="rejected">Rejected</option>
+                                </select>
+                                <button class="btn btn-primary" id="bulkUpdateBtn"
+                                    style="display: none;">Update</button>
+                            </div>
+
+                            <!-- Total Ratings Count -->
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div>
+                                    <span class="fw-bold">Total Ratings:</span> <span id="totalRatingsCount">0</span>
+                                </div>
+                            </div>
+
+                            <div class="table-container mt-4">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th class="no-print"><input type="checkbox" id="selectAllCheckbox" />
+                                                </th>
+                                                <th style="font-size: 10px;">Name</th>
+                                                <th style="font-size: 10px;">Email</th>
+                                                <th style="font-size: 10px;">Product URL</th>
+                                                <th style="font-size: 10px;">Rating</th>
+                                                <th style="font-size: 10px;">Status</th>
+                                                <th style="font-size: 10px;">Review</th>
+                                                <th style="font-size: 10px;" class="no-print">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="ratingsTableBody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+                <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+                <script src="./assets/js/sidebarmenu.js"></script>
+                <script src="./assets/js/app.min.js"></script>
+                <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+                <script src="./apiConfig/apiConfig.js"></script>
+                <script>
+                    // Cache for ratings data
+                    let ratingsCache = null;
+                    let currentRatingId = null;
+
+                    document.addEventListener('DOMContentLoaded', function () {
+                        fetchRatings();
+                        // No periodic refresh to ensure real-time updates on actions
+
+                        // Reset modal forms when they are closed
+                        const addRatingModal = document.getElementById('addRatingModal');
+                        addRatingModal.addEventListener('hidden.bs.modal', function () {
+                            document.getElementById('addSlug').value = '';
+                            document.getElementById('addName').value = '';
+                            document.getElementById('addEmail').value = '';
+                            document.getElementById('addRating').value = '';
+                            document.getElementById('addReview').value = '';
+                        });
+
+                        const updateRatingModal = document.getElementById('updateRatingModal');
+                        updateRatingModal.addEventListener('hidden.bs.modal', function () {
+                            document.getElementById('updateRatingId').value = '';
+                            document.getElementById('updateSlug').value = '';
+                            document.getElementById('updateName').value = '';
+                            document.getElementById('updateEmail').value = '';
+                            document.getElementById('updateRating').value = '';
+                            document.getElementById('updateReview').value = '';
+                            document.getElementById('updateStatus').value = 'pending';
+                            currentRatingId = null;
+                        });
+
+                        // Attach event listener for update modal save button
+                        document.getElementById('saveUpdateRatingBtn').addEventListener('click', saveUpdateRatingModal);
+                    });
+
+                    function showLoader() {
+                        document.getElementById('loader').style.display = 'flex';
+                    }
+
+                    function hideLoader() {
+                        document.getElementById('loader').style.display = 'none';
+                    }
+
+                    async function fetchRatings() {
+                        const token = localStorage.getItem('token');
+                        showLoader();
+
+                        try {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/ratings`, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': token,
+                                },
+                            });
+
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status}`);
+                            }
+
+                            const data = await response.json();
+                            console.log("✅ Fetched Ratings:", data);
+
+                            ratingsCache = data;
+                            populateTable(data.ratings);
+                        } catch (error) {
+                            console.error('❌ Error fetching ratings:', error);
+                            showErrorMessage('Failed to fetch ratings. Please try again.');
+
+                            if (!ratingsCache) {
+                                document.getElementById('ratingsTableBody').innerHTML = `
+                                    <tr>
+                                        <td colspan="8" class="text-center text-danger">
+                                            Failed to load data. Please check your connection and try again.
+                                        </td>
+                                    </tr>
+                                `;
+                            }
+                        } finally {
+                            hideLoader();
+                        }
+                    }
+
+                    function populateTable(ratings) {
+                        const ratingsTableBody = document.getElementById('ratingsTableBody');
+                        document.getElementById("totalRatingsCount").textContent = ratings.length;
+
+                        ratingsTableBody.innerHTML = '';
+
+                        if (!ratings || ratings.length === 0) {
+                            ratingsTableBody.innerHTML = `
+                                <tr>
+                                    <td colspan="8" class="text-center">No ratings found</td>
+                                </tr>
+                            `;
+                            return;
+                        }
+
+                        ratings.forEach(rating => {
+                            const row = document.createElement('tr');
+                            row.setAttribute('data-id', rating.id);
+
+                            row.innerHTML = `
+                                <td class="no-print"><input type="checkbox" class="ratingCheckbox" value="${rating.id}" /></td>
+                                <td>${rating.name || '—'}</td>
+                                <td>${rating.email || '—'}</td>
+                                <td>
+                                    <a href="https://graba2z.netlify.app/product/${rating.slug || '—'}">https://graba2z.netlify.app/product/${rating.slug || '—'}</a>
+                                    </td>
+                                <td>${rating.rating || '—'}</td>
+                                <td>${rating.approved || 'pending'}</td>
+                                <td>${rating.review || '—'}</td>
+                                <td class="no-print action-buttons">
+                                    <button class="btn btn-view" onclick="viewRating('${rating.id}')">👁</button>
+                                    <button class="btn " onclick="updateRating('${rating.id}')" data-bs-toggle="modal" data-bs-target="#updateRatingModal">✏️</button>
+                                    <button class="btn " onclick="deleteRating('${rating.id}')">🗑</button>
+                                </td>
+                            `;
+
+                            ratingsTableBody.appendChild(row);
+                        });
+                    }
+
+                    async function addRating() {
+                        const token = localStorage.getItem('token');
+                        const slug = document.getElementById('addSlug').value.trim();
+                        const name = document.getElementById('addName').value.trim();
+                        const email = document.getElementById('addEmail').value.trim();
+                        const rating = document.getElementById('addRating').value;
+                        const review = document.getElementById('addReview').value.trim();
+
+                        if (!slug || !name || !email || !rating || rating < 1 || rating > 5) {
+                            showErrorMessage('Please fill all fields correctly (Rating must be 1-5).');
+                            return;
+                        }
+
+                        showLoader();
+
+                        try {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/ratings/dummy`, {
+                                method: 'POST',
+                                headers: {
+                                    'Authorization': token,
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ slug, name, email, rating, review }),
+                            });
+
+                            const result = await response.json();
+
+                            if (!response.ok) {
+                                throw new Error(result.message || 'Failed to add rating');
+                            }
+
+                            // Close the modal
+                            const addRatingModal = bootstrap.Modal.getInstance(document.getElementById('addRatingModal'));
+                            addRatingModal.hide();
+
+                            fetchRatings(); // Refresh table for real-time update
+                            showSuccessMessage(result.message);
+                        } catch (error) {
+                            console.error('❌ Error adding rating:', error);
+                            showErrorMessage(error.message);
+                        } finally {
+                            hideLoader();
+                        }
+                    }
+
+                    function viewRating(ratingId) {
+                        showLoader();
+                        const rating = ratingsCache?.ratings?.find(r => r.id == ratingId);
+                        if (rating) {
+                            populateRatingDetails(rating);
+                            hideLoader();
+                        } else {
+                            fetchRatingDetails(ratingId);
+                        }
+                    }
+
+                    function updateRating(ratingId) {
+                        currentRatingId = ratingId;
+                        showLoader();
+                        const rating = ratingsCache?.ratings?.find(r => r.id == ratingId);
+                        if (rating) {
+                            populateUpdateModal(rating);
+                            hideLoader();
+                        } else {
+                            fetchRatingDetailsForUpdate(ratingId);
+                        }
+                    }
+
+                    async function fetchRatingDetails(ratingId) {
+                        const token = localStorage.getItem('token');
+                        try {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/ratings/id/${ratingId}`, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': token,
+                                },
+                            });
+
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status}`);
+                            }
+
+                            const data = await response.json();
+                            populateRatingDetails(data.ratings[0]);
+                        } catch (error) {
+                            console.error('❌ Error fetching rating details:', error);
+                            showErrorMessage('Failed to fetch rating details. Please try again.');
+                        } finally {
+                            hideLoader();
+                        }
+                    }
+
+                    async function fetchRatingDetailsForUpdate(ratingId) {
+                        const token = localStorage.getItem('token');
+                        try {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/ratings/id/${ratingId}`, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': token,
+                                },
+                            });
+
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status}`);
+                            }
+
+                            const data = await response.json();
+                            populateUpdateModal(data.ratings[0]);
+                        } catch (error) {
+                            console.error('❌ Error fetching rating details for update:', error);
+                            showErrorMessage('Failed to fetch rating details. Please try again.');
+                        } finally {
+                            hideLoader();
+                        }
+                    }
+
+                    function populateRatingDetails(rating) {
+                        document.getElementById('ratingName').textContent = rating.name || '—';
+                        document.getElementById('ratingEmail').textContent = rating.email || '—';
+                        document.getElementById('ratingSlug').textContent = rating.slug || '—';
+                        document.getElementById('ratingValue').textContent = rating.rating || '—';
+                        document.getElementById('ratingStatus').textContent = rating.approved || 'pending';
+                        document.getElementById('ratingCreatedAt').textContent = rating.created_at ? new Date(rating.created_at).toLocaleString() : '—';
+                        document.getElementById('ratingReview').textContent = rating.review || '—';
+
+                        const approveBtn = document.getElementById('approveBtn');
+                        const rejectBtn = document.getElementById('rejectBtn');
+
+                        if (rating.approved === 'pending') {
+                            approveBtn.style.display = 'inline-block';
+                            rejectBtn.style.display = 'inline-block';
+                        } else if (rating.approved === 'rejected') {
+                            approveBtn.style.display = 'inline-block';
+                            rejectBtn.style.display = 'none';
+                        } else {
+                            approveBtn.style.display = 'none';
+                            rejectBtn.style.display = 'inline-block';
+                        }
+
+                        approveBtn.onclick = () => updateRatingStatus(rating.id, 'approved');
+                        rejectBtn.onclick = () => updateRatingStatus(rating.id, 'rejected');
+                        document.getElementById('ratingViewOverlay').style.display = 'block';
+                    }
+
+                    function populateUpdateModal(rating) {
+                        document.getElementById('updateRatingId').value = rating.id;
+                        document.getElementById('updateName').value = rating.name || '';
+                        document.getElementById('updateEmail').value = rating.email || '';
+                        document.getElementById('updateSlug').value = rating.slug || '';
+                        document.getElementById('updateRating').value = rating.rating || '';
+                        document.getElementById('updateReview').value = rating.review || '';
+                        document.getElementById('updateStatus').value = rating.approved || 'pending';
+                    }
+
+                    async function saveUpdateRatingModal() {
+                        const token = localStorage.getItem('token');
+                        const ratingId = document.getElementById('updateRatingId').value;
+                        const name = document.getElementById('updateName').value.trim();
+                        const email = document.getElementById('updateEmail').value.trim();
+                        const slug = document.getElementById('updateSlug').value.trim();
+                        const rating = document.getElementById('updateRating').value;
+                        const review = document.getElementById('updateReview').value.trim();
+                        const approved = document.getElementById('updateStatus').value;
+
+                        if (!ratingId || !slug || !name || !email || !rating || rating < 1 || rating > 5) {
+                            showErrorMessage('Please fill all fields correctly (Rating must be 1-5).');
+                            return;
+                        }
+
+                        showLoader();
+
+                        try {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/ratings/${ratingId}`, {
+                                method: 'PUT',
+                                headers: {
+                                    'Authorization': token,
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ slug, name, email, rating, review, approved }),
+                            });
+
+                            const result = await response.json();
+
+                            if (!response.ok) {
+                                throw new Error(result.message || 'Failed to update rating');
+                            }
+
+                            // Close the modal
+                            const updateRatingModal = bootstrap.Modal.getInstance(document.getElementById('updateRatingModal'));
+                            updateRatingModal.hide();
+
+                            fetchRatings(); // Refresh table for real-time update
+                            showSuccessMessage(result.message);
+                        } catch (error) {
+                            console.error('❌ Error updating rating:', error);
+                            showErrorMessage(error.message);
+                        } finally {
+                            hideLoader();
+                        }
+                    }
+
+                    async function updateRatingStatus(ratingId, newStatus) {
+                        const token = localStorage.getItem('token');
+                        showLoader();
+
+                        try {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/ratings/${ratingId}/approve`, {
+                                method: 'PUT',
+                                headers: {
+                                    'Authorization': token,
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ status: newStatus }),
+                            });
+
+                            const result = await response.json();
+
+                            if (!response.ok) {
+                                throw new Error(result.message || 'Failed to update status');
+                            }
+
+                            fetchRatings(); // Refresh table for real-time update
+                            showSuccessMessage(result.message);
+                        } catch (error) {
+                            console.error('❌ Error updating rating status:', error);
+                            showErrorMessage(error.message);
+                        } finally {
+                            hideLoader();
+                        }
+                    }
+
+                    async function deleteRating(ratingId) {
+                        if (!confirm('Are you sure you want to delete this rating?')) return;
+
+                        const token = localStorage.getItem('token');
+                        showLoader();
+
+                        try {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/ratings/${ratingId}`, {
+                                method: 'DELETE',
+                                headers: {
+                                    'Authorization': token,
+                                },
+                            });
+
+                            const result = await response.json();
+
+                            if (!response.ok) {
+                                throw new Error(result.message || 'Failed to delete rating');
+                            }
+
+                            fetchRatings(); // Refresh table for real-time update
+                            showSuccessMessage(result.message);
+                        } catch (error) {
+                            console.error('❌ Error deleting rating:', error);
+                            showErrorMessage(error.message);
+                        } finally {
+                            hideLoader();
+                        }
+                    }
+
+                    function closeOverlay() {
+                        document.getElementById('ratingViewOverlay').style.display = 'none';
+                    }
+
+                    document.getElementById('filterInput').addEventListener('input', function () {
+                        const query = this.value.toLowerCase().trim();
+                        const rows = document.querySelectorAll('#ratingsTableBody tr');
+
+                        let visibleCount = 0;
+
+                        rows.forEach(row => {
+                            const cells = row.querySelectorAll('td');
+                            const textContent = Array.from(cells).map(cell => cell.textContent.toLowerCase()).join(' ');
+
+                            const isMatch = textContent.includes(query);
+                            row.style.display = isMatch ? '' : 'none';
+
+                            if (isMatch) visibleCount++;
+                        });
+
+                        document.getElementById("totalRatingsCount").textContent = visibleCount;
+                    });
+
+                    document.getElementById('statusFilter').addEventListener('change', function () {
+                        const selected = this.value.toLowerCase();
+                        const rows = document.querySelectorAll('#ratingsTableBody tr');
+
+                        let visibleCount = 0;
+
+                        rows.forEach(row => {
+                            const status = row.children[5]?.textContent?.toLowerCase() || '';
+                            const isMatch = !selected || status.includes(selected);
+
+                            row.style.display = isMatch ? '' : 'none';
+
+                            if (isMatch) visibleCount++;
+                        });
+
+                        document.getElementById("totalRatingsCount").textContent = visibleCount;
+                    });
+
+                    document.getElementById('selectAllCheckbox').addEventListener('change', function () {
+                        const checkboxes = document.querySelectorAll('.ratingCheckbox');
+                        checkboxes.forEach(cb => cb.checked = this.checked);
+                        toggleBulkActions();
+                    });
+
+                    document.addEventListener('change', function (e) {
+                        if (e.target.classList.contains('ratingCheckbox')) {
+                            toggleBulkActions();
+                        }
+                    });
+
+                    function toggleBulkActions() {
+                        const anyChecked = document.querySelectorAll('.ratingCheckbox:checked').length > 0;
+                        document.getElementById('bulkUpdateBtn').style.display = anyChecked ? 'inline-block' : 'none';
+                    }
+
+                    document.getElementById('bulkUpdateBtn').addEventListener('click', async function () {
+                        const selectedStatus = document.getElementById('bulkStatusSelect').value;
+                        const token = localStorage.getItem('token');
+                        const selectedIds = [...document.querySelectorAll('.ratingCheckbox:checked')].map(cb => cb.value);
+
+                        if (!selectedStatus || selectedIds.length === 0) {
+                            alert('Please select at least one rating and a status.');
+                            return;
+                        }
+
+                        showLoader();
+
+                        for (let id of selectedIds) {
+                            try {
+                                const response = await fetch(`${API_ADMINGRAB_URL}/api/ratings/${id}/approve`, {
+                                    method: 'PUT',
+                                    headers: {
+                                        'Authorization': token,
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({ status: selectedStatus }),
+                                });
+
+                                const result = await response.json();
+                                if (response.ok) {
+                                    const row = document.querySelector(`tr[data-id="${id}"]`);
+                                    if (row) {
+                                        row.children[5].textContent = selectedStatus;
+                                    }
+                                } else {
+                                    console.error('❌ Failed for ID:', id, result.message);
+                                }
+                            } catch (error) {
+                                console.error('❌ Error updating rating:', error);
+                            }
+                        }
+
+                        fetchRatings(); // Refresh table for real-time update
+                        showSuccessMessage('Status updated successfully.');
+                        hideLoader();
+                    });
+
+                    document.getElementById('saveAddRatingBtn').addEventListener('click', addRating);
+
+                    function printOnlyTable() {
+                        const printContent = document.querySelector('.table-container').innerHTML;
+                        const originalContent = document.body.innerHTML;
+
+                        const style = `
+                            <style>
+                                body {
+                                    font-family: Arial, sans-serif;
+                                    padding: 20px;
+                                }
+                                table {
+                                    width: 100%;
+                                    border-collapse: collapse;
+                                    font-size: 12px;
+                                }
+                                th, td {
+                                    border: 1px solid #000;
+                                    padding: 6px;
+                                    text-align: left;
+                                }
+                                th {
+                                    background-color: #f2f2f2;
+                                }
+                            </style>
+                        `;
+
+                        document.body.innerHTML = style + '<h2>Ratings</h2>' + printContent;
+                        window.print();
+                        document.body.innerHTML = originalContent;
+                        window.location.reload();
+                    }
+
+                    function printRatingDetails() {
+                        document.getElementById('ratingNameTable').textContent = document.getElementById('ratingName').textContent;
+                        document.getElementById('ratingEmailTable').textContent = document.getElementById('ratingEmail').textContent;
+                        document.getElementById('ratingSlugTable').textContent = document.getElementById('ratingSlug').textContent;
+                        document.getElementById('ratingValueTable').textContent = document.getElementById('ratingValue').textContent;
+                        document.getElementById('ratingStatusTable').textContent = document.getElementById('ratingStatus').textContent;
+                        document.getElementById('ratingCreatedAtTable').textContent = document.getElementById('ratingCreatedAt').textContent;
+                        document.getElementById('ratingReviewTable').textContent = document.getElementById('ratingReview').textContent;
+
+                        const printContent = document.getElementById('printableRatingTable').innerHTML;
+                        const originalContent = document.body.innerHTML;
+                        document.body.innerHTML = printContent;
+                        window.print();
+                        document.body.innerHTML = originalContent;
+                        window.location.reload();
+                    }
+
+                    function showSuccessMessage(message) {
+                        alert(message); // Replace with your preferred notification system
+                    }
+
+                    function showErrorMessage(message) {
+                        alert(message); // Replace with your preferred notification system
+                    }
+                </script>
+                <script src="https://unpkg.com/@phosphor-icons/web"></script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const toggle = document.querySelector('.orders-toggle');
+                        const submenu = document.getElementById('ordersMenu');
+                        const arrow = toggle.querySelector('.arrow-icon');
+
+                        toggle.addEventListener('click', () => {
+                            submenu.classList.toggle('show');
+                            arrow.classList.toggle('rotate');
+                        });
+                    });
+                </script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const purchasesToggle = document.querySelector('.purchases-toggle-custom');
+                        const purchasesMenu = document.getElementById('purchaseMenuCustom');
+                        const purchasesArrow = purchasesToggle.querySelector('.arrow-icon');
+
+                        purchasesToggle.addEventListener('click', () => {
+                            purchasesMenu.classList.toggle('show');
+                            purchasesArrow.classList.toggle('rotate');
+                        });
+                    });
+                </script>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const currentFile = window.location.pathname.split("/").pop();
+
+                        document.querySelectorAll(".nav-link").forEach(link => {
+                            const href = link.getAttribute("href");
+                            if (href && href === currentFile) {
+                                link.classList.add("active");
+
+                                const sidebarSubmenu = link.closest(".sidebar-submenu");
+                                if (sidebarSubmenu) {
+                                    sidebarSubmenu.classList.add("show");
+                                    const parentToggle = sidebarSubmenu.previousElementSibling;
+                                    if (parentToggle && parentToggle.classList.contains("purchases-toggle-custom")) {
+                                        parentToggle.querySelector('.arrow-icon').classList.add('rotate');
+                                    }
+                                }
+                            } else {
+                                link.classList.remove("active");
+                            }
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const currentFile = window.location.pathname.split("/").pop();
+
+            // Remove all active classes first
+            document.querySelectorAll(".nav-link").forEach(link => {
+                const href = link.getAttribute("href");
+                if (href && href.includes(currentFile)) {
+                    link.classList.add("active");
+
+                    // If inside a collapse menu (like Orders or Purchases), open it
+                    const parentCollapse = link.closest(".collapse");
+                    if (parentCollapse) {
+                        parentCollapse.classList.add("show");
+                        const parentToggle = parentCollapse.previousElementSibling;
+                        if (parentToggle && parentToggle.classList.contains("nav-link")) {
+                            parentToggle.classList.add("active");
+                        }
+                    }
+                } else {
+                    link.classList.remove("active");
+                }
+            });
+        });
+    </script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.querySelector('.orders-toggle');
+            const submenu = document.getElementById('ordersMenu');
+            const arrow = toggle.querySelector('.arrow-icon');
+
+            toggle.addEventListener('click', () => {
+                submenu.classList.toggle('show');
+                arrow.classList.toggle('rotate');
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const purchasesToggle = document.querySelector('.purchases-toggle-custom');
+            const purchasesMenu = document.getElementById('purchaseMenuCustom');
+            const purchasesArrow = purchasesToggle.querySelector('.arrow-icon');
+
+            purchasesToggle.addEventListener('click', () => {
+                purchasesMenu.classList.toggle('show');
+                purchasesArrow.classList.toggle('rotate');
+            });
+        });
+    </script>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const currentPath = window.location.pathname.split("/").pop();
+            const navLinks = document.querySelectorAll(".left-sidebar .nav-link");
+
+            navLinks.forEach((link) => {
+                const href = link.getAttribute("href");
+                if (href && href.endsWith(".html") && href === currentPath) {
+                    link.classList.add("active");
+                    const parentCollapse = link.closest(".collapse");
+                    if (parentCollapse) {
+                        new bootstrap.Collapse(parentCollapse, { toggle: false }).show();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
