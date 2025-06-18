@@ -1478,7 +1478,190 @@
           src="assets/images/white-placeholder.png" style="cursor: zoom-in; min-width: 300px !important; min-height: 400px !important;  border: 5px solid white;"
           alt="Product Image">
   </div>
-<div id="lightgallery" class="d-none"></div>
+<!-- Add this to your existing Graba2z product-details page -->
+
+<!-- Include Font Awesome once in your head -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<!-- Popup Styles for Fancy Lightbox (custom built) -->
+<style>
+  .bestfancybox-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bestfancybox-lightbox-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-width: 90vw;
+    max-height: 90vh;
+  }
+
+  .bestfancybox-thumbs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    max-height: 80vh;
+  }
+
+  .bestfancybox-thumbs img {
+    width: 80px;
+    height: auto;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 6px;
+  }
+
+  .bestfancybox-thumbs img.active {
+    border-color: #00c6ff;
+  }
+
+  .bestfancybox-img {
+    max-height: 80vh;
+    max-width: 65vw;
+    transition: transform 0.2s ease;
+    border-radius: 6px;
+  }
+
+  .bestfancybox-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .bestfancybox-controls button {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  .bestfancybox-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .bestfancybox-nav button {
+    background: none;
+    font-size: 40px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    pointer-events: auto;
+    padding: 0 20px;
+  }
+</style>
+
+<!-- HTML Markup for Lightbox -->
+<div class="bestfancybox-lightbox" id="bestfancybox">
+  <div class="bestfancybox-controls">
+    <button onclick="zoomIn()" title="Zoom In"><i class="fas fa-magnifying-glass-plus"></i></button>
+    <button onclick="zoomOut()" title="Zoom Out"><i class="fas fa-magnifying-glass-minus"></i></button>
+    <button onclick="toggleFullscreen()" title="Fullscreen"><i class="fas fa-expand"></i></button>
+    <button onclick="closeBestfancybox()" title="Close"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="bestfancybox-nav">
+    <button onclick="prevImage()">&#10094;</button>
+    <button onclick="nextImage()">&#10095;</button>
+  </div>
+  <div class="bestfancybox-lightbox-content">
+    <div class="bestfancybox-thumbs" id="bestfancybox-thumbs"></div>
+    <img class="bestfancybox-img" id="bestfancybox-img" src="" alt="Preview">
+  </div>
+</div>
+
+<!-- Trigger with existing thumbnail JS -->
+<script>
+  let imageUrls = []; // to be set dynamically from API fetch
+  let currentIndex = 0;
+  let zoomLevel = 1;
+
+  const lightbox = document.getElementById('bestfancybox');
+  const lightboxImg = document.getElementById('bestfancybox-img');
+  const thumbsContainer = document.getElementById('bestfancybox-thumbs');
+
+  function openBestfancybox(index) {
+    currentIndex = index;
+    zoomLevel = 1;
+    lightboxImg.style.transform = `scale(${zoomLevel})`;
+    lightboxImg.src = imageUrls[currentIndex];
+    lightbox.style.display = 'flex';
+    renderThumbnails();
+  }
+
+  function closeBestfancybox() {
+    lightbox.style.display = 'none';
+    document.exitFullscreen?.();
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % imageUrls.length;
+    updateLightboxImage();
+  }
+
+  function prevImage() {
+    currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
+    updateLightboxImage();
+  }
+
+  function zoomIn() {
+    zoomLevel = Math.min(3, zoomLevel + 0.2);
+    lightboxImg.style.transform = `scale(${zoomLevel})`;
+  }
+
+  function zoomOut() {
+    zoomLevel = Math.max(0.5, zoomLevel - 0.2);
+    lightboxImg.style.transform = `scale(${zoomLevel})`;
+  }
+
+  function toggleFullscreen() {
+    const elem = document.documentElement;
+    if (!document.fullscreenElement) {
+      elem.requestFullscreen?.();
+    } else {
+      document.exitFullscreen?.();
+    }
+  }
+
+  function updateLightboxImage() {
+    zoomLevel = 1;
+    lightboxImg.src = imageUrls[currentIndex];
+    lightboxImg.style.transform = `scale(${zoomLevel})`;
+    renderThumbnails();
+  }
+
+  function renderThumbnails() {
+    thumbsContainer.innerHTML = '';
+    imageUrls.forEach((url, index) => {
+      const thumb = document.createElement('img');
+      thumb.src = url;
+      if (index === currentIndex) thumb.classList.add('active');
+      thumb.onclick = () => {
+        currentIndex = index;
+        updateLightboxImage();
+      };
+      thumbsContainer.appendChild(thumb);
+    });
+  }
+</script>
 <script>
 let lightGalleryInstance = null;
 
@@ -1707,6 +1890,19 @@ async function fetchProductImages(productId) {
 
  
 
+     // inside your fetchProductImages success block:
+  imageUrls = imagePaths.map(p => `${API_ADMINGRAB_URL}/${p.replace(/\\/g, '/')}`);
+
+  // and set first image and click listener
+  mainImage.src = imageUrls[0];
+
+document.getElementById('product-details-slider-main-image').addEventListener('click', () => {
+  if (imageUrls.length > 0) {
+    openBestfancybox(0);
+  } else {
+    console.warn("No images loaded yet");
+  }
+});
 // Make sure the vertical thumbnail slider is properly initialized
 $('.slick-vertical-slider').slick({
   vertical: true,
@@ -3809,5 +4005,22 @@ addToCart(productObject); // From cart.js
 //     modal.classList.remove('show');
 //   })
   });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const mainImage = document.getElementById("product-details-slider-main-image");
+  if (mainImage) {
+    mainImage.addEventListener("click", () => {
+      if (imageUrls && imageUrls.length > 0) {
+        console.log("Opening lightbox at index 0 with", imageUrls);
+        openBestfancybox(0);
+      } else {
+        console.warn("No imageUrls found.");
+      }
+    });
+  } else {
+    console.error("Main image element not found.");
+  }
+});
 </script>
 </body>
