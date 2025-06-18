@@ -1808,31 +1808,25 @@ function openLightGallery(images, startIndex = 0) {
 
 </style>
 
+
 <script>
+// 👇 Entire updated script from previous message
 const slider = document.getElementById("product-details-slider-thumbnail-slider");
 document.getElementById('product-details-slider-thumbnail-prev').addEventListener('click', function () {
-  const scrollAmount = slider.clientWidth; // or slider.offsetWidth
-  slider.scrollBy({
-    left: -scrollAmount,
-    behavior: 'smooth'
-  });
+  const scrollAmount = slider.clientWidth;
+  slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
 });
-
 document.getElementById('product-details-slider-thumbnail-next').addEventListener('click', function () {
-  const scrollAmount = slider.clientWidth; // or slider.offsetWidth
-  slider.scrollBy({
-    left: scrollAmount,
-    behavior: 'smooth'
-  });
+  const scrollAmount = slider.clientWidth;
+  slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
 });
 
-// Fetch product details (including images) from API
 async function fetchProductImages(productId) {
   try {
-    const API_CUSTOMER_URL = 'https://websitegrabatoz-production.up.railway.app'; // Your API URL
-    const API_ADMINGRAB_URL = 'https://grabatoz-production.up.railway.app';  // Use HTTPS to avoid Mixed Content
+    const API_CUSTOMER_URL = 'https://websitegrabatoz-production.up.railway.app';
+    const API_ADMINGRAB_URL = 'https://grabatoz-production.up.railway.app';
 
-    const response = await fetch(`${API_CUSTOMER_URL}/api/products/${productId}`);
+    const response = await fetch(`${API_CUSTOMER_URL}/api/products/slug/${productId}`);
     const product = await response.json();
 
     let imagePaths = product.image_paths;
@@ -1845,95 +1839,61 @@ async function fetchProductImages(productId) {
     }
 
     if (!imagePaths || imagePaths.length === 0) {
-      document.getElementById('product-details-slider-thumbnail-slider').innerHTML = '<p class="text-center w-100">No product images found.</p>';
+      const sliderContainer = document.getElementById('product-details-slider-thumbnail-slider');
+      if (sliderContainer) {
+        sliderContainer.innerHTML = '<p class="text-center w-100">No product images found.</p>';
+      }
+      console.warn("⚠️ No image paths returned.");
       return;
     }
 
     const mainImage = document.getElementById('product-details-slider-main-image');
-    // const modalImage = document.getElementById('product-details-slider-modal-image');
-
-    const firstImagePath = `${API_ADMINGRAB_URL}/${imagePaths[0].replace(/\\/g, '/')}`;
-    mainImage.src = firstImagePath;
-    // modalImage.src = firstImagePath;
-
-    // Create thumbnails for the modal and the slider
     const sliderContainer = document.getElementById('product-details-slider-thumbnail-slider');
-    const slickContainer = document.querySelector('.slick-vertical-slider');
-    sliderContainer.innerHTML = ''; // Clear old thumbnails
-    slickContainer.innerHTML = '';  // Clear the vertical thumbnails
+    sliderContainer.innerHTML = '';
+    
+    imageUrls = imagePaths.map(p => `${API_ADMINGRAB_URL}/${p.replace(/\\/g, '/')}`);
+    mainImage.src = imageUrls[0];
 
-    imagePaths.forEach((path, index) => {
-      const fullPath = `${API_ADMINGRAB_URL}/${path.replace(/\\/g, '/')}`;
-      
-      // Add thumbnails for the main slider
+    imageUrls.forEach((url, index) => {
       const slide = document.createElement('div');
       slide.className = 'product-details-slider-thumbnail-slide';
-      slide.innerHTML = `<img src="${fullPath}" alt="Thumbnail ${index + 1}" />`;
-      slide.querySelector('img').addEventListener('click', () => {
-  const allImageUrls = imagePaths.map(p => `${API_ADMINGRAB_URL}/${p.replace(/\\/g, '/')}`);
-  openLightGallery(allImageUrls, index);
-  console.log('Clicked thumbnail, opening gallery at index:', index);
-
-});
-
+      slide.innerHTML = `<img src="${url}" alt="Thumbnail ${index + 1}" />`;
+      slide.querySelector('img').addEventListener('click', () => openBestfancybox(index));
       sliderContainer.appendChild(slide);
-
-    //   // Add thumbnails for the modal
-    //   const thumb = document.createElement('div');
-    //   thumb.classList.add('modal-thumbnails-slide');
-    //   thumb.innerHTML = `<img src="${fullPath}" class="img-fluid rounded" alt="Thumbnail ${index + 1}" />`;
-    //   thumb.addEventListener('click', () => {
-    //     modalImage.src = fullPath;
-    //   });
-    //   slickContainer.appendChild(thumb);
     });
 
- 
+    document.getElementById('product-details-slider-main-image').addEventListener('click', () => {
+      if (imageUrls.length > 0) {
+        openBestfancybox(0);
+      } else {
+        console.warn("No imageUrls found.");
+      }
+    });
 
-     // inside your fetchProductImages success block:
-  imageUrls = imagePaths.map(p => `${API_ADMINGRAB_URL}/${p.replace(/\\/g, '/')}`);
-
-  // and set first image and click listener
-  mainImage.src = imageUrls[0];
-
-document.getElementById('product-details-slider-main-image').addEventListener('click', () => {
-  if (imageUrls.length > 0) {
-    openBestfancybox(0);
-  } else {
-    console.warn("No images loaded yet");
-  }
-});
-// Make sure the vertical thumbnail slider is properly initialized
-$('.slick-vertical-slider').slick({
-  vertical: true,
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  arrows: true,
-  infinite: false,
-  verticalSwiping: true
-});
   } catch (error) {
     console.error('Error fetching product images:', error);
-    document.getElementById('product-details-slider-thumbnail-slider').innerHTML = '<p class="text-danger text-center">Error loading product images.</p>';
+    const sliderContainer = document.getElementById('product-details-slider-thumbnail-slider');
+    if (sliderContainer) {
+      sliderContainer.innerHTML = '<p class="text-danger text-center">Error loading product images.</p>';
+    }
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const productId = getProductIdFromURL(); // Or however you get the ID
-  if (productId) {
-    fetchProductImages(productId);
-  } else {
-    console.warn("❌ No product ID found.");
-  }
-});
+function getProductIdFromURL() {
+  const parts = window.location.pathname.split('/');
+  return parts[parts.length - 1]; // slug from URL
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const productId = getProductIdFromURL();
-  fetchProductImages(productId);
+  if (productId) {
+    fetchProductImages(productId);
+  } else {
+    console.warn("❌ No product slug found in URL.");
+  }
 });
-
-
 </script>
+
 
 <script>
 
