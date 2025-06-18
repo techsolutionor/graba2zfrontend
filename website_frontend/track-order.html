@@ -975,40 +975,44 @@ ul {
   </div>
 </div>
 
-<!-- Order Form -->
+<!-- Order Tracking Section -->
 <div class="container-fluid py-5" style="background-color: #f5f5f5;">
-  <div class="row align-items-center">
-    <div class="col-md-1"></div>
-    <div class="col-md-3">
-      <form id="orderTrackingForm">
-        <div class="mb-3">
-          <label for="order-id" class="form-label" style="color: #000;">Enter Order ID *</label>
-          <input type="text" id="order-id" class="form-control" required />
+  <div class="container">
+    <div class="row">
+      <!-- Order Form -->
+      <div class="col-md-5">
+        <form id="orderTrackingForm">
+          <div class="mb-3">
+            <label for="order-id" class="form-label text-dark">Enter Order ID *</label>
+            <input type="text" id="order-id" class="form-control" required />
+          </div>
+          <button type="submit" class="btn btn-success" style="background-color: #90C309;">Track Order</button>
+        </form>
+      </div>
+
+      <!-- Order Details -->
+      <div class="col-md-7" id="orderDetailsContainer" style="display:none;">
+        <div class="card p-4 shadow-sm">
+          <h3 class="mb-3">Order Details</h3>
+          <p><strong>Order ID:</strong> <span id="detailOrderId"></span></p>
+          <p><strong>Status:</strong> <span id="detailOrderStatus"></span></p>
+          <p><strong>Date:</strong> <span id="detailOrderDate"></span></p>
+
+          <h4 class="mt-4">Products</h4>
+          <ul id="detailOrderProducts" class="list-unstyled"></ul>
         </div>
-        <button type="submit" class="btn btn-success" style="background-color: #90C309;">Track Order</button>
-      </form>
+      </div>
     </div>
-    <div class="col-md-1"></div>
-    <div class="col-md-6 text-center">
+
+    <!-- Order Progress (Bottom Full Width) -->
+    <div class="row mt-5">
+      <div class="col-12">
+        <div class="card p-4 shadow-sm" id="orderProgressCard" style="display:none;">
+          <h4>Order Progress</h4>
+          <div id="status-tracker" class="d-flex justify-content-between align-items-center flex-wrap gap-3 tracker-wrapper mt-3"></div>
+        </div>
+      </div>
     </div>
-    <div class="col-md-1"></div>
-  </div>
-</div>
-
-<!-- Order Detail & Progress -->
-<div id="orderDetailsContainer" class="container py-5" style="display:none;">
-  <div class="card p-4 shadow-sm">
-    <h3 class="mb-3">Order Details</h3>
-    <p><strong>Order ID:</strong> <span id="detailOrderId"></span></p>
-    <p><strong>Status:</strong> <span id="detailOrderStatus"></span></p>
-    <p><strong>Date:</strong> <span id="detailOrderDate"></span></p>
-
-    <h4 class="mt-4">Products</h4>
-    <ul id="detailOrderProducts" class="list-unstyled"></ul>
-
-    <!-- Tracker -->
-    <h4 class="mt-5">Order Progress</h4>
-    <div id="status-tracker" class="d-flex justify-content-between align-items-center flex-wrap gap-3 tracker-wrapper mt-3"></div>
   </div>
 </div>
 
