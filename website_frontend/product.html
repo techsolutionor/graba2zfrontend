@@ -1664,11 +1664,11 @@ async function fetchProductImages(productId) {
     }
 
     const mainImage = document.getElementById('product-details-slider-main-image');
-    const modalImage = document.getElementById('product-details-slider-modal-image');
+    // const modalImage = document.getElementById('product-details-slider-modal-image');
 
     const firstImagePath = `${API_ADMINGRAB_URL}/${imagePaths[0].replace(/\\/g, '/')}`;
     mainImage.src = firstImagePath;
-    modalImage.src = firstImagePath;
+    // modalImage.src = firstImagePath;
 
     // Create thumbnails for the modal and the slider
     const sliderContainer = document.getElementById('product-details-slider-thumbnail-slider');
@@ -1690,14 +1690,14 @@ async function fetchProductImages(productId) {
 
       sliderContainer.appendChild(slide);
 
-      // Add thumbnails for the modal
-      const thumb = document.createElement('div');
-      thumb.classList.add('modal-thumbnails-slide');
-      thumb.innerHTML = `<img src="${fullPath}" class="img-fluid rounded" alt="Thumbnail ${index + 1}" />`;
-      thumb.addEventListener('click', () => {
-        modalImage.src = fullPath;
-      });
-      slickContainer.appendChild(thumb);
+    //   // Add thumbnails for the modal
+    //   const thumb = document.createElement('div');
+    //   thumb.classList.add('modal-thumbnails-slide');
+    //   thumb.innerHTML = `<img src="${fullPath}" class="img-fluid rounded" alt="Thumbnail ${index + 1}" />`;
+    //   thumb.addEventListener('click', () => {
+    //     modalImage.src = fullPath;
+    //   });
+    //   slickContainer.appendChild(thumb);
     });
 
  
