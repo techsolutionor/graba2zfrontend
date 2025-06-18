@@ -861,6 +861,53 @@ ul {
 
 
       </header>
+    <!-- ======================= Middle Header End ========================= -->
+      <!-- ==================== category Header Start Here ==================== -->
+    <header class="header bg-white border-bottom border-gray-100">
+        <div class="container container-lg">
+            <nav class="header-inner d-flex justify-content-between gap-8">
+                <div class="flex-align menu-category-wrapper">
+
+
+                    <!-- Category Dropdown Start -->
+                    <div class="category on-hover-item">
+                        <div
+                            class="responsive-dropdown on-hover-dropdown common-dropdown nav-submenu p-0 submenus-submenu-wrapper">
+                            <button type="button"
+                                class="close-responsive-dropdown rounded-circle text-xl position-absolute inset-inline-end-0 inset-block-start-0 mt-4 me-8 d-lg-none d-flex">
+                                <i class="ph ph-x"></i>
+                            </button>
+
+                            <!-- Logo Start -->
+                            <div class="logo px-16 d-lg-none d-block">
+                                <a href="index" class="link">
+                                    <img src="assets/images/logo/logo.png" alt="Logo">
+                                </a>
+                            </div>
+                            <!-- Logo End -->
+
+                            <ul class="scroll-sm p-0 py-8 w-300 max-h-400 overflow-y-auto" id="categoryDropdown">
+                                <!-- Categories will be loaded dynamically here -->
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Category Dropdown End  -->
+
+                    <!-- Menu Start  -->
+                    <div class="header-menu d-lg-block d-none">
+                        <!-- Nav Menu Start -->
+                        <ul class="nav-menu flex-align" id="mainMenu">
+                            <!-- Main menu items will be loaded dynamically here -->
+                        </ul>
+                        <!-- Nav Menu End -->
+                    </div>
+                    <!-- Menu End  -->
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ==================== category Header End Here ==================== -->
    
   <section style="background-color: #ffffff; padding: 30px;">
         <div style="max-width: 1200px; margin: 0 auto;">
@@ -1022,6 +1069,185 @@ ul {
                 <span>Chat</span>
             </a>
         </div>
+<!-- foooter script -->
+
+         <script>
+                    document.addEventListener('DOMContentLoaded', async function () {
+                        const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/product-categories';
+
+                        try {
+                            const res = await fetch(API_URL);
+                            const data = await res.json();
+
+                            const categories = data.categories || [];
+
+                            // Filter only parent categories (parent_category is null)
+                            const parentCategories = categories.filter(cat => cat.parent_category === null);
+
+                            const topList = document.getElementById('top-categories');
+                            const moreList = document.getElementById('more-categories');
+
+                            parentCategories.forEach((cat, index) => {
+                                const li = document.createElement('li');
+                                li.innerHTML = `<a href="/product-category/${slugify(cat.name)}">${cat.name}</a>`;
+
+                                if (index < 6) {
+                                    topList.appendChild(li);
+                                } else {
+                                    moreList.appendChild(li);
+                                }
+                            });
+                        } catch (err) {
+                            console.error('Failed to load categories:', err);
+                        }
+
+                        // Helper to slugify category name
+                        function slugify(text) {
+                            return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
+                        }
+                    });
+                </script>
+
+
+
+ <script>
+document.addEventListener('DOMContentLoaded', async function () {
+    try {
+        const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/product-categories';
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        const categories = data.categories || [];
+
+        // Organize categories into parent-child relationships
+        const organizedCategories = organizeCategories(categories);
+
+        // Render all category sections
+        renderMainMenu(organizedCategories);
+        renderCategoryDropdown(organizedCategories);
+        renderFooterCategories(organizedCategories.parentCategories);
+    } catch (err) {
+        console.error('Failed to load categories:', err);
+    }
+});
+
+// Organize categories into hierarchical structure
+function organizeCategories(categories) {
+    const result = {
+        parentCategories: [],
+        childCategories: {}
+    };
+
+    // First pass: identify parent categories
+    categories.forEach(category => {
+        if (!category.parent_category) {
+            result.parentCategories.push(category);
+            result.childCategories[category.id] = [];
+        }
+    });
+
+    // Second pass: assign child categories
+    categories.forEach(category => {
+        if (category.parent_category) {
+            const parentId = category.parent_category;
+            if (result.childCategories[parentId]) {
+                result.childCategories[parentId].push(category);
+            }
+        }
+    });
+
+    return result;
+}
+
+// Render main navigation menu
+function renderMainMenu(organizedCategories) {
+    const menuContainer = document.getElementById('mainMenu');
+    if (!menuContainer) return;
+
+    menuContainer.innerHTML = organizedCategories.parentCategories.map(parent => {
+        const hasChildren = organizedCategories.childCategories[parent.id]?.length > 0;
+        
+        return `
+            <li class="on-hover-item nav-menu__item ${hasChildren ? 'has-submenu' : ''}">
+                <a href="/product-category/${slugify(parent.name)}" class="nav-menu__link">${parent.name}</a>
+                ${hasChildren ? `
+                    <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
+                        ${organizedCategories.childCategories[parent.id].map(child => `
+                            <li class="common-dropdown__item nav-submenu__item">
+                                <a href="/product-category/${slugify(child.name)}" 
+                                   class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">
+                                    ${child.name}
+                                </a>
+                            </li>
+                        `).join('')}
+                    </ul>
+                ` : ''}
+            </li>
+        `;
+    }).join('');
+}
+
+// Render category dropdown with child categories
+function renderCategoryDropdown(organizedCategories) {
+    const dropdownContainer = document.getElementById('categoryDropdown');
+    if (!dropdownContainer) return;
+
+    dropdownContainer.innerHTML = organizedCategories.parentCategories.map(parent => {
+        const hasChildren = organizedCategories.childCategories[parent.id]?.length > 0;
+        
+        return `
+            <li class="${hasChildren ? 'has-submenus-submenu' : ''}">
+                <a href="/product-category/${slugify(parent.name)}" 
+                   class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                    <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                    <span>${parent.name}</span>
+                    ${hasChildren ? '<span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>' : ''}
+                </a>
+                ${hasChildren ? `
+                    <div class="submenus-submenu py-16">
+                        <h6 class="text-lg px-16 submenus-submenu__title">${parent.name}</h6>
+                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                            ${organizedCategories.childCategories[parent.id].map(child => `
+                                <li>
+                                    <a href="/product-category/${slugify(child.name)}">${child.name}</a>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                ` : ''}
+            </li>
+        `;
+    }).join('');
+}
+
+// Render footer categories (only parent categories)
+function renderFooterCategories(parentCategories) {
+    const topList = document.getElementById('top-categories');
+    const moreList = document.getElementById('more-categories');
+    
+    if (!topList || !moreList) return;
+    
+    topList.innerHTML = '';
+    moreList.innerHTML = '';
+    
+    parentCategories.forEach((cat, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="/product-category/${slugify(cat.name)}">${cat.name}</a>`;
+        
+        if (index < 6) {
+            topList.appendChild(li);
+        } else {
+            moreList.appendChild(li);
+        }
+    });
+}
+
+function slugify(text) {
+    return text.toString().toLowerCase().trim()
+        .replace(/\s+/g, '-')
+        .replace(/[^\w\-]+/g, '')
+        .replace(/\-\-+/g, '-');
+}
+</script> 
 
 
     <!-- Search End -->
