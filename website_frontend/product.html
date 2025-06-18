@@ -1480,27 +1480,12 @@
 <div class="modal fade" id="product-details-slider-image-modal" tabindex="-1" aria-labelledby="product-details-slider-image-modal-label" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content bg-transparent border-0 position-relative">
-      <div class="d-flex flex-row align-items-center">
-        <!-- Vertical Thumbnail Slider -->
-        <div class="modal-thumbnails me-3" style="width: 100px;">
-          <div class="slick-vertical-slider">
-            <!-- Dynamically insert vertical thumbnails -->
-          </div>
-        </div>
-
-        <!-- Enlarged Image with Zoom -->
-        <div class="position-relative w-100 text-center">
-          <img id="product-details-slider-modal-image" src="" alt="Enlarged Product Image"
-               class="img-fluid rounded-3" style="max-height: 80vh; max-width: 100%; cursor: zoom-in;" />
-
-          <!-- Zoom & Fullscreen Controls -->
-          <div class="position-absolute top-0 end-0 m-2 z-2 d-flex gap-2">
-            <button class="btn btn-light btn-sm" id="zoom-toggle"><i class="fas fa-search-plus"></i></button>
-            <button class="btn btn-light btn-sm" id="fullscreen-toggle"><i class="fas fa-expand"></i></button>
-            <button class="btn-close cross-button" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-        </div>
-      </div>
+  <button id="close-image-modal">Close</button>
+  <div id="modal-slider-container">
+    <button id="prev-slide">⟨</button>
+    <img id="product-details-slider-modal-image" src="" />
+    <button id="next-slide">⟩</button>
+  </div>
     </div>
   </div>
 </div>
@@ -3689,18 +3674,6 @@ function changeQty(change) {
 
     <!-- footer  -->
         <script>
-            // document.addEventListener('DOMContentLoaded', () => {
-            //     updateCartIcon(); // Update the cart icon with the correct count
-            // });
-
-            // // index - Update the cart icon count based on localStorage
-            // function updateCartIcon() {
-            //     const cartItemCount = localStorage.getItem('cartItemCount') || 0; // Get the cart count from localStorage
-            //     const cartCountElement = document.querySelector('.cart-item-count'); // Get the element that holds the cart count
-
-            //     // Update the cart count in the UI
-            //     cartCountElement.innerText = cartItemCount; // Set the count to the number of items in the cart
-            // }
 
             document.getElementById('search-form').addEventListener('submit', (event) => {
                 event.preventDefault();
@@ -3708,7 +3681,7 @@ function changeQty(change) {
                 window.location.href = `shop?search=${encodeURIComponent(searchQuery)}`;
                 // await fetchFilteredProducts(searchQuery);
             });
-addToCart(productObject); // From cart.js
+            addToCart(productObject); // From cart.js
 
            
 
@@ -3783,41 +3756,46 @@ addToCart(productObject); // From cart.js
         });
     </script>
         <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    console.log("Product details slider script loaded");
-    const mainContainer = document.getElementById('product-details-slider-main-container');
-    const mainImage = document.getElementById('product-details-slider-main-image');
-    const modal = document.getElementById('product-details-slider-image-modal');
-    const modalImage = document.getElementById('product-details-slider-modal-image');
-    const closeImageModal = document.getElementById('close-image-modal');
+document.addEventListener("DOMContentLoaded", async () => {
+  const mainContainer = document.getElementById('product-details-slider-main-container');
+  const mainImage = document.getElementById('product-details-slider-main-image');
+  const modal = document.getElementById('product-details-slider-image-modal');
+  const modalImage = document.getElementById('product-details-slider-modal-image');
+  const closeImageModal = document.getElementById('close-image-modal');
+  const prevButton = document.getElementById('prev-slide');
+  const nextButton = document.getElementById('next-slide');
 
-//   // Enable zoom and pan on hover
-//   mainContainer.addEventListener('mouseenter', () => {
-//     mainContainer.classList.add('zoomed');
-//   });
+  const API_CUSTOMER_URL = 'https://websitegrabatoz-production.up.railway.app';
+  const response = await fetch(`${API_CUSTOMER_URL}/api/products/${productId}`);
+  const product = await response.json();
 
-//   mainContainer.addEventListener('mouseleave', () => {
-//     mainContainer.classList.remove('zoomed');
-//     mainImage.style.transformOrigin = 'center center';
-//   });
+  let imagePaths = product.image_paths || [];
+  let images = [mainImage.src, ...imagePaths.filter(path => path !== mainImage.src)];
+  let currentIndex = 0;
 
-//   mainContainer.addEventListener('mousemove', (e) => {
-//     if (!mainContainer.classList.contains('zoomed')) return;
-
-//     const rect = mainContainer.getBoundingClientRect();
-//     const x = ((e.clientX - rect.left) / rect.width) * 100;
-//     const y = ((e.clientY - rect.top) / rect.height) * 100;
-//     mainImage.style.transformOrigin = `${x}% ${y}%`;
-//   });
-
-  // Open modal on click
+  // Open modal with main image
   mainContainer.addEventListener('click', () => {
-    modalImage.src = mainImage.src;
     modal.classList.add('show');
+    currentIndex = 0;
+    modalImage.src = images[currentIndex];
   });
+
+  // Close modal
   closeImageModal.addEventListener('click', () => {
     modal.classList.remove('show');
-  })
   });
+
+  // Navigation
+  prevButton.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    modalImage.src = images[currentIndex];
+  });
+
+  nextButton.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    modalImage.src = images[currentIndex];
+  });
+});
+
 </script>
 </body>
