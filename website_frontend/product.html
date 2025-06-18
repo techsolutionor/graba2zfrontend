@@ -1734,9 +1734,9 @@ function updateModalThumbnails(imagePaths, baseUrl) {
     const fullPath = `${baseUrl}/${path.replace(/\\/g, '/')}`;
     const thumb = document.createElement('div');
     thumb.innerHTML = `<img src="${fullPath}" class="img-fluid rounded" alt="Thumb ${index + 1}" />`;
-    thumb.addEventListener('click', () => {
-      document.getElementById('product-details-slider-modal-image').src = fullPath;
-    });
+    // thumb.addEventListener('click', () => {
+    //   document.getElementById('product-details-slider-modal-image').src = fullPath;
+    // });
     slickContainer.appendChild(thumb);
   });
 
@@ -3768,11 +3768,11 @@ addToCart(productObject); // From cart.js
         <script>
   document.addEventListener("DOMContentLoaded", () => {
     console.log("Product details slider script loaded");
-    const mainContainer = document.getElementById('product-details-slider-main-container');
-    const mainImage = document.getElementById('product-details-slider-main-image');
-    const modal = document.getElementById('product-details-slider-image-modal');
-    const modalImage = document.getElementById('product-details-slider-modal-image');
-    const closeImageModal = document.getElementById('close-image-modal');
+    // const mainContainer = document.getElementById('product-details-slider-main-container');
+    // const mainImage = document.getElementById('product-details-slider-main-image');
+    // const modal = document.getElementById('product-details-slider-image-modal');
+    // const modalImage = document.getElementById('product-details-slider-modal-image');
+    // const closeImageModal = document.getElementById('close-image-modal');
 
 //   // Enable zoom and pan on hover
 //   mainContainer.addEventListener('mouseenter', () => {
@@ -3794,13 +3794,13 @@ addToCart(productObject); // From cart.js
 //   });
 
   // Open modal on click
-  mainContainer.addEventListener('click', () => {
-    modalImage.src = mainImage.src;
-    modal.classList.add('show');
-  });
-  closeImageModal.addEventListener('click', () => {
-    modal.classList.remove('show');
-  })
+//   mainContainer.addEventListener('click', () => {
+//     modalImage.src = mainImage.src;
+//     modal.classList.add('show');
+//   });
+//   closeImageModal.addEventListener('click', () => {
+//     modal.classList.remove('show');
+//   })
   });
 </script>
 </body>
