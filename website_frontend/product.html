@@ -26,9 +26,10 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery-bundle.min.css" />
 
 <!-- LightGallery JS -->
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/zoom/lg-zoom.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/fullscreen/lg-fullscreen.umd.min.js"></script>
+
 <!-- Stylesheets -->
 <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/footer.css">
 <link rel="stylesheet" href="https://graba2z.netlify.app/assets/css/bootstrap.min.css">
@@ -1473,7 +1474,7 @@
   <!-- Main product image -->
   <div class="product-details-slider__thumb flex-center h-100 border rounded-8 mb-10"
       style="min-width: 300px !important; min-height: 100% !important;" id="product-details-slider-main-container">
-      <img id="product-details-slider-main-image" class="py-10" data-bs-toggle="modal" data-bs-target="#product-details-slider-image-modal"
+      <img id="product-details-slider-main-image" class="py-10" data-bs-toggle="modal" 
           src="assets/images/white-placeholder.png" style="cursor: zoom-in; min-width: 300px !important; min-height: 400px !important;  border: 5px solid white;"
           alt="Product Image">
   </div>
@@ -1688,6 +1689,8 @@ async function fetchProductImages(productId) {
       slide.querySelector('img').addEventListener('click', () => {
   const allImageUrls = imagePaths.map(p => `${API_ADMINGRAB_URL}/${p.replace(/\\/g, '/')}`);
   openLightGallery(allImageUrls, index);
+  console.log('Clicked thumbnail, opening gallery at index:', index);
+
 });
 
       sliderContainer.appendChild(slide);
