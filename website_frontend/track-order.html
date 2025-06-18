@@ -1036,6 +1036,7 @@ ul {
 
   function displayOrderDetails(order) {
     document.getElementById('orderDetailsContainer').style.display = 'block';
+      document.getElementById('orderProgressCard').style.display = 'block'; 
     document.getElementById('detailOrderId').textContent = order.order_id || 'N/A';
     document.getElementById('detailOrderStatus').textContent = order.order_status || 'N/A';
     document.getElementById('detailOrderDate').textContent = order.created_at ? new Date(order.created_at).toLocaleString() : 'N/A';
