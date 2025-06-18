@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title> Graba2z - E-commerce Website</title>
 <link rel="shortcut icon" href="https://graba2z.netlify.app/assets/images/icon/favicon.png">
-<!-- Bootstrap CSS (in the <head> section) -->
+
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
@@ -17,7 +17,7 @@
 <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 
-<!-- Bootstrap JS (just before </body>) -->
+
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
 
 <!-- LightGallery CSS -->
@@ -1045,6 +1045,10 @@
   background-color: #fff;
 }
 
+/* Reverse the order of child items in flex */
+/* .reviews-section-apple {
+  flex-direction: row-reverse;
+} */
 
 
 </style>
@@ -1066,7 +1070,7 @@
                     <li class="border-right-item"><a href="https://graba2z.netlify.app/contact"
                             class="text-white text-sm hover-text-decoration-underline">Contact Us</a></li>
                     <li class="border-right-item dropdown hover-dropdown">
-                        <a href="https://graba2z.netlify.app/account"
+                        <a href="#"
                             class="text-white text-sm hover-text-decoration-underline" id="policyDropdown" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             All Policy
@@ -1108,17 +1112,17 @@
                         </ul>
                     </li>
                     <li class="nav-item user-menu position-relative w-auto">
-                        <a href="https://graba2z.netlify.app/account"
+                        <a href="#"
                             class="text-white text-sm py-8 flex-align gap-6 nav-link user-toggle" role="button"
                             id="userMenuButton">
                             <span><i class="ph ph-user-circle"></i></span>
                             <span class="hover-text-decoration-underline d-none d-md-inline">My Account</span>
                         </a>
                         <ul class="user-dropdown shadow-sm">
-                            <li><a class="user-item px-12 py-5" href="#"><i class="ph ph-user me-8"></i>Account</a></li>
+                            <li><a class="user-item px-12 py-5" href="https://graba2z.netlify.app/account"><i class="ph ph-user me-8"></i>Account</a></li>
                             <!-- <li><hr class="user-divider my-4 mx-12"></li> -->
                             <li>
-                                <a class="user-item px-12 py-5" href="#" id="auth-link">
+                                <a class="user-item px-12 py-5" href="register" id="auth-link">
                                     <i class="ph ph-sign-in me-8" id="auth-icon"></i>
                                     <span id="auth-text">Sign In</span>
                                 </a>
@@ -2410,29 +2414,53 @@ function updateModalThumbnails(imagePaths, baseUrl) {
         <div class="ratings-box-apple mb-3">
           <div class="h1 mb-2">5.0</div>
           <div class="stars-apple text-warning mb-2 fs-5">★★★★★</div>
-          <div class="mb-3">1 Product Rating</div>
+         
 
-          <div class="rating-bars-apple mb-3">
-            <div class="d-flex align-items-center mb-1">
-              <span class="me-2">5★</span>
-              <div class="flex-grow-1 bg-light" style="height: 8px; border-radius: 4px; overflow: hidden;">
-                <div class="bg-warning" style="width: 100%; height: 100%;"></div>
-              </div>
-              <span class="ms-2">1</span>
-            </div>
-            <!-- Repeat for other stars -->
-            <div class="d-flex align-items-center mb-1"><span class="me-2">4★</span><div class="flex-grow-1 bg-light" style="height: 8px;"></div><span class="ms-2">0</span></div>
-            <div class="d-flex align-items-center mb-1"><span class="me-2">3★</span><div class="flex-grow-1 bg-light" style="height: 8px;"></div><span class="ms-2">0</span></div>
-            <div class="d-flex align-items-center mb-1"><span class="me-2">2★</span><div class="flex-grow-1 bg-light" style="height: 8px;"></div><span class="ms-2">0</span></div>
-            <div class="d-flex align-items-center mb-1"><span class="me-2">1★</span><div class="flex-grow-1 bg-light" style="height: 8px;"></div><span class="ms-2">0</span></div>
-          </div>
+          
 
-          <button class="btn btn-dark" onclick="openModal()">Write a Review</button>
+          
         </div>
 
         <!-- Customer Review Card -->
         <div class="customer-reviews-apple">
-          <h5>Customer Reviews (1)</h5>
+
+
+            <div class="mb-3" style="color: black !important;">1 Product Rating</div>
+<div class="d-flex justify-content-between align-items-end" style="width: 200px;">
+  <div class="text-center">
+    <div class="mb-1">5★</div>
+    <div></div>
+    <div class="flex-grow-1 bg-light" style="height: 8px; border-radius: 4px; overflow: hidden; margin-top: 4px;">
+      <div class="bg-warning" style="width: 100%; height: 100%;"></div>
+    </div>
+  </div>
+  <div class="text-center">
+    <div class="mb-1">4★</div>
+    <div></div>
+    <div class="flex-grow-1 bg-light" style="height: 8px; border-radius: 4px; overflow: hidden; margin-top: 4px;"></div>
+  </div>
+  <div class="text-center">
+    <div class="mb-1">3★</div>
+    <div></div>
+    <div class="flex-grow-1 bg-light" style="height: 8px; border-radius: 4px; overflow: hidden; margin-top: 4px;"></div>
+  </div>
+  <div class="text-center">
+    <div class="mb-1">2★</div>
+    <div></div>
+    <div class="flex-grow-1 bg-light" style="height: 8px; border-radius: 4px; overflow: hidden; margin-top: 4px;"></div>
+  </div>
+  <div class="text-center">
+    <div class="mb-1">1★</div>
+    <div></div>
+    <div class="flex-grow-1 bg-light" style="height: 8px; border-radius: 4px; overflow: hidden; margin-top: 4px;"></div>
+  </div>
+</div>
+<button class="btn btn-dark mt-10"onclick="openModal()">Write a Review</button>
+         
+        </div>
+      </div>
+
+       <h5>Customer Reviews (1)</h5>
           <div class="review-card-apple border p-3 rounded">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <div class="d-flex align-items-center">
@@ -2446,8 +2474,6 @@ function updateModalThumbnails(imagePaths, baseUrl) {
             </div>
             <p class="mb-0">Great One</p>
           </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
@@ -2961,7 +2987,7 @@ fetchRelatedProducts('10', '131');
     <!-- marque -->
     <script src="https://graba2z.netlify.app/assets/js/vanilla-tilt.min.js"></script>
     <script src="https://graba2z.netlify.app/apiConfig/apiConfig.js"></script>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- Bootstrap JS -->
@@ -3779,6 +3805,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     currentIndex = 0;
     modalImage.src = images[currentIndex];
   });
+<<<<<<< Updated upstream
 
   // Close modal
   closeImageModal.addEventListener('click', () => {
@@ -3799,3 +3826,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 </script>
 </body>
+=======
+  closeImageModal.addEventListene
+>>>>>>> Stashed changes
