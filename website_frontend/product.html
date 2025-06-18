@@ -1848,8 +1848,13 @@ async function fetchProductImages(productId) {
     }
 
     const mainImage = document.getElementById('product-details-slider-main-image');
-    const sliderContainer = document.getElementById('product-details-slider-thumbnail-slider');
-    sliderContainer.innerHTML = '';
+   const sliderContainer = document.getElementById('product-details-slider-thumbnail-slider');
+if (!sliderContainer) {
+  console.warn("❌ Slider container not found in DOM");
+  return;
+}
+sliderContainer.innerHTML = '';
+
     
     imageUrls = imagePaths.map(p => `${API_ADMINGRAB_URL}/${p.replace(/\\/g, '/')}`);
     mainImage.src = imageUrls[0];
