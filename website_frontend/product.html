@@ -3807,55 +3807,31 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script> -->
 <script>
- function loadLightboxAndOpen(slug) {
+function loadLightboxAndOpen(slug) {
   fetch('/lightbox-popup.html')
     .then(res => res.text())
     .then(html => {
       const temp = document.createElement('div');
       temp.innerHTML = html;
-
       const template = temp.querySelector('#lightbox-template');
-      if (!template) {
-        console.error("❌ lightbox-template not found in HTML");
-        return;
-      }
+      if (!template) return console.error("❌ Template not found");
+      document.body.appendChild(template.content.cloneNode(true));
 
-      // Clone template content into DOM
-      const content = template.content.cloneNode(true);
-      document.body.appendChild(content);
-
-      // ✅ Manually extract and run the <script> inside the template
-      const scriptTags = template.content.querySelectorAll("script");
-      scriptTags.forEach(script => {
-        const newScript = document.createElement("script");
-        if (script.src) {
-          newScript.src = script.src;
-        } else {
-          newScript.textContent = script.textContent;
-        }
-        document.body.appendChild(newScript);
-      });
-
-      // Store slug to load correct images
       localStorage.setItem('grz_slug', slug);
 
-      // ✅ Wait until the lightbox function is ready
       let tries = 0;
-      const tryInit = setInterval(() => {
+      const retry = setInterval(() => {
         if (typeof initializeLightbox === 'function') {
-          initializeLightbox(); // ← call it once it's available
-          clearInterval(tryInit);
+          initializeLightbox();
+          clearInterval(retry);
         } else if (tries++ > 10) {
-          console.error("❌ initializeLightbox still not ready after retries");
-          clearInterval(tryInit);
+          console.error("❌ initializeLightbox not ready after retries");
+          clearInterval(retry);
         }
       }, 200);
     })
-    .catch(err => {
-      console.error("❌ Failed to load popup:", err);
-    });
+    .catch(err => console.error("❌ Failed to load lightbox:", err));
 }
-
 
 function getProductIdFromURL() {
   const parts = window.location.pathname.split('/');
@@ -3863,5 +3839,6 @@ function getProductIdFromURL() {
 }
 
 </script>
+<script src="/lightbox.js"></script>
 
 </body>
