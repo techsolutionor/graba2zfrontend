@@ -901,68 +901,85 @@ ul {
     <!-- ==================== category Header End Here ==================== -->
  <!-- Custom Order Tracker Styles -->
   <style>
-    .tracker-wrapper {
-      overflow-x: auto;
-      white-space: nowrap;
-    }
+  #status-tracker {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    gap: 0;
+    padding: 10px 0;
+  }
 
-    .tracker-step {
-      flex: 1;
-      min-width: 110px;
-      text-align: center;
-      position: relative;
-    }
+  .tracker-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 110px;
+    position: relative;
+    z-index: 1;
+  }
 
+  .tracker-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .tracker-icon.done {
+    background-color: #b7d771;
+  }
+
+  .tracker-icon.active {
+    background-color: #90C309;
+  }
+
+  .tracker-label {
+    font-size: 13px;
+    max-width: 100px;
+    word-break: break-word;
+  }
+
+  .tracker-connector {
+    width: 30px;
+    height: 5px;
+    background-color: #ccc;
+    border-radius: 5px;
+    margin: 0 10px;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease;
+  }
+
+  .tracker-connector.done {
+    background-color: #90C309;
+  }
+
+  @media (max-width: 768px) {
     .tracker-icon {
-      width: 50px;
-      height: 50px;
-      margin: 0 auto 10px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      background-color: #ccc;
-      color: white;
-      transition: 0.3s ease;
-    }
-
-    .tracker-icon.active {
-      background-color: #90C309;
-    }
-
-    .tracker-icon.done {
-      background-color: #b7d771;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
     }
 
     .tracker-label {
-      font-size: 12px;
-      max-width: 90px;
-      margin: 0 auto;
+      font-size: 11px;
+      max-width: 80px;
     }
 
-    .tracker-line {
-      position: absolute;
-      top: 25px;
-      left: 50%;
-      width: 100%;
-      height: 4px;
-      z-index: 0;
-      background-color: #ccc;
+    .tracker-connector {
+      width: 20px;
+      margin: 0 6px;
     }
+  }
+</style>
 
-    @media (max-width: 768px) {
-      .tracker-label {
-        font-size: 10px;
-      }
-
-      .tracker-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
-      }
-    }
-  </style>
 </head>
 <body>
 
@@ -1009,7 +1026,7 @@ ul {
       <div class="col-12">
         <div class="card p-4 shadow-sm" id="orderProgressCard" style="display:none;">
           <h4>Order Progress</h4>
-          <div id="status-tracker" class="d-flex justify-content-between align-items-center flex-wrap gap-3 tracker-wrapper mt-3"></div>
+<div id="status-tracker" class="d-flex justify-content-between align-items-center tracker-wrapper mt-3 position-relative"></div>
         </div>
       </div>
     </div>
@@ -1058,37 +1075,45 @@ ul {
   }
 
   function renderStatusGraph(currentStatus) {
-    const steps = [
-      { label: 'Received Order', icon: 'fa-cart-shopping' },
-      { label: 'In Progress Orders', icon: 'fa-gears' },
-      { label: 'Ready for Shipment', icon: 'fa-gift' },
-      { label: 'On the Way', icon: 'fa-truck' },
-      { label: 'Delivered', icon: 'fa-box' },
-      { label: 'On Hold', icon: 'fa-pause-circle' },
-      { label: 'Rejected', icon: 'fa-xmark-circle' }
-    ];
+  const steps = [
+    { label: 'Received Order', icon: 'fa-cart-shopping' },
+    { label: 'In Progress Orders', icon: 'fa-gears' },
+    { label: 'Ready for Shipment', icon: 'fa-gift' },
+    { label: 'On the Way', icon: 'fa-truck' },
+    { label: 'Delivered', icon: 'fa-box' },
+    { label: 'On Hold', icon: 'fa-pause-circle' },
+    { label: 'Rejected', icon: 'fa-xmark-circle' }
+  ];
 
-    const tracker = document.getElementById('status-tracker');
-    tracker.innerHTML = '';
-    const activeIndex = steps.findIndex(s => s.label.toLowerCase() === (currentStatus || '').toLowerCase());
+  const tracker = document.getElementById('status-tracker');
+  tracker.innerHTML = '';
+  const activeIndex = steps.findIndex(s => s.label.toLowerCase() === (currentStatus || '').toLowerCase());
 
-    steps.forEach((step, index) => {
-      const isActive = index <= activeIndex;
-      const isCurrent = index === activeIndex;
+  steps.forEach((step, index) => {
+    const isActive = index <= activeIndex;
+    const isCurrent = index === activeIndex;
 
-      const div = document.createElement('div');
-      div.className = 'tracker-step';
+    const div = document.createElement('div');
+    div.className = 'tracker-step';
 
-      div.innerHTML = `
-        <div class="tracker-icon ${isCurrent ? 'active' : isActive ? 'done' : ''}">
-          <i class="fa-solid ${step.icon}"></i>
-        </div>
-        <div class="tracker-label">${step.label}</div>
-      `;
+    div.innerHTML = `
+      <div class="tracker-icon ${isCurrent ? 'active' : isActive ? 'done' : ''}">
+        <i class="fa-solid ${step.icon}"></i>
+      </div>
+      <div class="tracker-label">${step.label}</div>
+    `;
 
-      tracker.appendChild(div);
-    });
-  }
+    tracker.appendChild(div);
+
+    // Add connecting line except for the last step
+    if (index < steps.length - 1) {
+      const connector = document.createElement('div');
+      connector.className = `tracker-connector ${index < activeIndex ? 'done' : ''}`;
+      tracker.appendChild(connector);
+    }
+  });
+}
+
 </script>
 
 
