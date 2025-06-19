@@ -47,11 +47,20 @@
           }
 
           const baseUrl = 'https://grabatoz-production.up.railway.app';
-          imageUrls = paths.map(p => `${baseUrl}/${p.replace(/\\/g, '/')}`);
+
+          // ✅ Placeholder fallback logic
+          if (!paths || paths.length === 0) {
+            imageUrls = ['https://via.placeholder.com/600x400?text=No+Image'];
+          } else {
+            imageUrls = paths.map(p => `${baseUrl}/${p.replace(/\\/g, '/')}`);
+          }
+
           openLightbox(0);
         })
         .catch(err => {
           console.error('Error loading product images in lightbox:', err);
+          imageUrls = ['https://via.placeholder.com/600x400?text=No+Image'];
+          openLightbox(0);
         });
     }
 
@@ -120,6 +129,7 @@
       lightboxImg = document.getElementById('lightbox-img');
       lightbox = document.getElementById('lightbox');
       thumbsContainer = document.getElementById('lightbox-thumbs');
+
       const slug = localStorage.getItem('grz_slug');
       if (slug) fetchProductImages(slug);
     }
