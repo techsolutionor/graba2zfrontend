@@ -905,8 +905,13 @@ ul {
     display: flex;
     align-items: center;
     overflow-x: auto;
-    gap: 0;
     padding: 10px 0;
+  }
+
+  .step-container {
+    display: flex;
+    align-items: center;
+    gap: 0;
   }
 
   .tracker-step {
@@ -914,8 +919,7 @@ ul {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    min-width: 110px;
-    position: relative;
+    min-width: 100px;
     z-index: 1;
   }
 
@@ -948,7 +952,7 @@ ul {
   }
 
   .tracker-connector {
-    width: 30px;
+    width: 40px;
     height: 5px;
     background-color: #ccc;
     border-radius: 5px;
@@ -980,6 +984,7 @@ ul {
   }
 </style>
 
+       
 </head>
 <body>
 
@@ -1093,9 +1098,11 @@ ul {
     const isActive = index <= activeIndex;
     const isCurrent = index === activeIndex;
 
+    const wrapper = document.createElement('div');
+    wrapper.className = 'step-container d-flex align-items-center';
+
     const div = document.createElement('div');
     div.className = 'tracker-step';
-
     div.innerHTML = `
       <div class="tracker-icon ${isCurrent ? 'active' : isActive ? 'done' : ''}">
         <i class="fa-solid ${step.icon}"></i>
@@ -1103,16 +1110,19 @@ ul {
       <div class="tracker-label">${step.label}</div>
     `;
 
-    tracker.appendChild(div);
+    wrapper.appendChild(div);
 
-    // Add connecting line except for the last step
+    // Add line after step except last
     if (index < steps.length - 1) {
       const connector = document.createElement('div');
       connector.className = `tracker-connector ${index < activeIndex ? 'done' : ''}`;
-      tracker.appendChild(connector);
+      wrapper.appendChild(connector);
     }
+
+    tracker.appendChild(wrapper);
   });
 }
+
 
 </script>
 
