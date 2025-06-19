@@ -8254,16 +8254,29 @@ input:focus-visible {
   position: relative;
 }
 
-.has-submenu > a::before {
+.has-submenu-header > a::before {
   position: absolute;
   content: "\e136";
-  inset-inline-end: 0;
+  inset-inline-end: -8px !important;
   inset-block-start: 50%;
   transform: translateY(-50%);
   font-family: "Phosphor";
   font-weight: 900;
   color: hsl(var(--heading-color) / 0.4);
   transition: 0.2s linear;
+}
+@media screen and (max-width: 1920px) {
+.has-submenu-header > a::before {
+  position: absolute;
+  content: "\e136";
+  inset-inline-end: -15px !important;
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+  font-family: "Phosphor";
+  font-weight: 900;
+  color: hsl(var(--heading-color) / 0.4);
+  transition: 0.2s linear;
+}
 }
 
 /* Submenu Start */
