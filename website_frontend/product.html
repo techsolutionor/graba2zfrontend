@@ -1649,13 +1649,14 @@ async function fetchProductImages(productId) {
       const slide = document.createElement('div');
       slide.className = 'product-details-slider-thumbnail-slide';
       slide.innerHTML = `<img src="${url}" alt="Thumbnail ${index + 1}" />`;
-      slide.querySelector('img').addEventListener('click', () => loadLightboxAndOpen(productId));
+      slide.querySelector('img').addEventListener('click', () => loadLightboxFromSlug(productId));
       sliderContainer.appendChild(slide);
     });
 
-    mainImage.addEventListener('click', () => {
-      loadLightboxAndOpen(productId);
-    });
+   mainImage.addEventListener('click', () => {
+  loadLightboxFromSlug(productId);
+});
+
 
   } catch (error) {
     console.error('❌ Error fetching product images:', error.message);
