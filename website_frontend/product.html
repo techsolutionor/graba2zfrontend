@@ -3816,28 +3816,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const template = temp.querySelector('#lightbox-template');
       if (!template) {
-        console.error("❌ lightbox-template not found in HTML");
+        console.error("❌ lightbox-template not found");
         return;
       }
 
       const content = template.content.cloneNode(true);
       document.body.appendChild(content);
-
-      // Load your new external JS file
-      const script = document.createElement('script');
-      script.src = '/lightbox.js'; // ✅ Adjust path if not in root
-      document.body.appendChild(script);
+      console.log("✅ Lightbox HTML appended");
 
       localStorage.setItem('grz_slug', slug);
 
-      // Wait for script to be loaded then call initialize
-      script.onload = () => {
+      let tries = 0;
+      const tryInit = setInterval(() => {
         if (typeof initializeLightbox === 'function') {
+          console.log("✅ initializeLightbox is ready");
           initializeLightbox();
-        } else {
-          console.error("❌ initializeLightbox not defined after loading lightbox.js");
+          clearInterval(tryInit);
+        } else if (tries++ > 10) {
+          console.error("❌ initializeLightbox still not ready");
+          clearInterval(tryInit);
         }
-      };
+      }, 200);
     })
     .catch(err => {
       console.error("❌ Failed to load popup:", err);
