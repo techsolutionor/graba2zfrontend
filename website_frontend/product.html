@@ -2361,35 +2361,22 @@ function updateModalThumbnails(imagePaths, baseUrl) {
 
 
     <!-- Reviews Section - Right Column -->
+    <!-- Reviews Section - Right Column -->
     <div class="col-12 col-md-6">
       <div class="reviews-section-apple">
         <!-- Rating Info -->
         <div class="ratings-box-apple mb-3">
           <div class="h1 mb-2">5.0</div>
           <div class="stars-apple text-warning mb-2 fs-5">★★★★★</div>
-          <div class="mb-3">1 Product Rating</div>
+         
 
-          <div class="rating-bars-apple mb-3">
-            <div class="d-flex align-items-center mb-1">
-              <span class="me-2">5★</span>
-              <div class="flex-grow-1 bg-light" style="height: 8px; border-radius: 4px; overflow: hidden;">
-                <div class="bg-warning" style="width: 100%; height: 100%;"></div>
-              </div>
-              <span class="ms-2">1</span>
-            </div>
-            <!-- Repeat for other stars -->
-            <div class="d-flex align-items-center mb-1"><span class="me-2">4★</span><div class="flex-grow-1 bg-light" style="height: 8px;"></div><span class="ms-2">0</span></div>
-            <div class="d-flex align-items-center mb-1"><span class="me-2">3★</span><div class="flex-grow-1 bg-light" style="height: 8px;"></div><span class="ms-2">0</span></div>
-            <div class="d-flex align-items-center mb-1"><span class="me-2">2★</span><div class="flex-grow-1 bg-light" style="height: 8px;"></div><span class="ms-2">0</span></div>
-            <div class="d-flex align-items-center mb-1"><span class="me-2">1★</span><div class="flex-grow-1 bg-light" style="height: 8px;"></div><span class="ms-2">0</span></div>
-          </div>
+          
 
-          <button class="btn btn-dark" onclick="openModal()">Write a Review</button>
+          
         </div>
 
         <!-- Customer Review Card -->
         <div class="customer-reviews-apple">
-          <h5>Customer Reviews (1)</h5>
 
 
             <div class="mb-3" style="color: black !important;">1 Product Rating</div>
@@ -2427,10 +2414,9 @@ function updateModalThumbnails(imagePaths, baseUrl) {
         </div>
       </div>
 
-      <h5 style="font-family: 'Outfit', Arial, sans-serif; font-style: normal; font-weight: 500; color: rgb(29, 33, 40); font-size: 18px; line-height: 18px;">
-  Customer Reviews (1)
+       <h5 style="font-family: 'Outfit', Arial, sans-serif; font-style: normal; font-weight: 500; color: rgb(29, 33, 40); font-size: 18px; line-height: 18px;">
+  Customer Reviews (1)
 </h5>
-
           <div class="review-card-apple border p-3 rounded">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <div class="d-flex align-items-center">
@@ -2444,8 +2430,6 @@ function updateModalThumbnails(imagePaths, baseUrl) {
             </div>
             <p class="mb-0">Great One</p>
           </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
@@ -3823,28 +3807,40 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script> -->
 <script>
-  function loadLightboxAndOpen(slug) {
-    fetch('lightbox-popup.html')
-      .then(res => res.text())
-      .then(html => {
-        const div = document.createElement('div');
-        div.innerHTML = html;
-        const lightboxTemplate = div.querySelector('#lightbox-template');
-        document.body.appendChild(lightboxTemplate.content.cloneNode(true));
+ function loadLightboxAndOpen(slug) {
+  fetch('lightbox-popup.html')
+    .then(res => res.text())
+    .then(html => {
+      // 1. Append HTML to page
+      const temp = document.createElement('div');
+      temp.innerHTML = html;
 
-        // Save slug temporarily
-        localStorage.setItem('grz_slug', slug);
+      const template = temp.querySelector('#lightbox-template');
+      const lightboxContent = template.content.cloneNode(true);
+      document.body.appendChild(lightboxContent);
+
+      // 2. Append script manually (browsers don't auto-run it from innerHTML)
+      const scripts = temp.querySelectorAll("script");
+      scripts.forEach(script => {
+        const newScript = document.createElement("script");
+        if (script.src) {
+          newScript.src = script.src;
+        } else {
+          newScript.textContent = script.textContent;
+        }
+        document.body.appendChild(newScript);
       });
-  }
 
-  // Bind main image click
-  document.addEventListener("DOMContentLoaded", () => {
-    const slug = getProductIdFromURL(); // your existing function
-    const mainImage = document.getElementById('product-details-slider-main-image');
-    if (mainImage && slug) {
-      mainImage.addEventListener('click', () => loadLightboxAndOpen(slug));
-    }
-  });
+      // 3. Store slug so popup knows what to load
+      localStorage.setItem('grz_slug', slug);
+    });
+}
+
+function getProductIdFromURL() {
+  const parts = window.location.pathname.split('/');
+  return parts[parts.length - 1];
+}
+
 </script>
 
 </body>
