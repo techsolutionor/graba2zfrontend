@@ -1699,34 +1699,7 @@ function renderCategoryDropdown(organizedCategories) {
     }).join('');
 }
 
-// Render footer categories (only parent categories)
-function renderFooterCategories(parentCategories) {
-    const topList = document.getElementById('top-categories');
-    const moreList = document.getElementById('more-categories');
-    
-    if (!topList || !moreList) return;
-    
-    topList.innerHTML = '';
-    moreList.innerHTML = '';
-    
-    parentCategories.forEach((cat, index) => {
-        const li = document.createElement('li');
-        li.innerHTML = `<a href="/product-category/${slugify(cat.name)}">${cat.name}</a>`;
-        
-        if (index < 6) {
-            topList.appendChild(li);
-        } else {
-            moreList.appendChild(li);
-        }
-    });
-}
 
-function slugify(text) {
-    return text.toString().toLowerCase().trim()
-        .replace(/\s+/g, '-')
-        .replace(/[^\w\-]+/g, '')
-        .replace(/\-\-+/g, '-');
-}
 </script>  
 
 <script>
@@ -1880,6 +1853,43 @@ function slugify(text) {
                             menuContainer.appendChild(menuItem);
                         });
                     }
+                </script>
+
+                 <script>
+                    document.addEventListener('DOMContentLoaded', async function () {
+                        const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/product-categories';
+
+                        try {
+                            const res = await fetch(API_URL);
+                            const data = await res.json();
+
+                            const categories = data.categories || [];
+
+                            // Filter only parent categories (parent_category is null)
+                            const parentCategories = categories.filter(cat => cat.parent_category === null);
+
+                            const topList = document.getElementById('top-categories');
+                            const moreList = document.getElementById('more-categories');
+
+                            parentCategories.forEach((cat, index) => {
+                                const li = document.createElement('li');
+                                li.innerHTML = `<a href="/product-category/${slugify(cat.name)}">${cat.name}</a>`;
+
+                                if (index < 6) {
+                                    topList.appendChild(li);
+                                } else {
+                                    moreList.appendChild(li);
+                                }
+                            });
+                        } catch (err) {
+                            console.error('Failed to load categories:', err);
+                        }
+
+                        // Helper to slugify category name
+                        function slugify(text) {
+                            return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
+                        }
+                    });
                 </script>
 
 

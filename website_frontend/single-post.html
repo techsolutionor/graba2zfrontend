@@ -1289,9 +1289,9 @@ ul {
             </a>
         </div>
 
-<script>
-    // Fetch the footer dynamically
-    fetch('./assets/includes/footer') // Go one level up and access includes/
+<!-- <script>
+   
+    fetch('./assets/includes/footer') 
         .then(response => response.text())
         .then(data => {
             document.getElementById('footer').innerHTML = data;
@@ -1299,7 +1299,7 @@ ul {
         .catch(error => console.error('Error loading footer:', error));
 
        
-</script>
+</script> -->
 
 
 <!-- foooter script -->
@@ -1452,34 +1452,7 @@ function renderCategoryDropdown(organizedCategories) {
     }).join('');
 }
 
-// Render footer categories (only parent categories)
-function renderFooterCategories(parentCategories) {
-    const topList = document.getElementById('top-categories');
-    const moreList = document.getElementById('more-categories');
-    
-    if (!topList || !moreList) return;
-    
-    topList.innerHTML = '';
-    moreList.innerHTML = '';
-    
-    parentCategories.forEach((cat, index) => {
-        const li = document.createElement('li');
-        li.innerHTML = `<a href="/product-category/${slugify(cat.name)}">${cat.name}</a>`;
-        
-        if (index < 6) {
-            topList.appendChild(li);
-        } else {
-            moreList.appendChild(li);
-        }
-    });
-}
 
-function slugify(text) {
-    return text.toString().toLowerCase().trim()
-        .replace(/\s+/g, '-')
-        .replace(/[^\w\-]+/g, '')
-        .replace(/\-\-+/g, '-');
-}
 </script> 
     <!-- Search End -->
     <!-- Js Plugins -->
