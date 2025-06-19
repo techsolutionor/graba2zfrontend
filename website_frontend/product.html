@@ -1647,24 +1647,18 @@ async function fetchProductImages(productId) {
     }
     sliderContainer.innerHTML = '';
 
-    imageUrls = imagePaths.map(p => `${API_CUSTOMER_URL}/${p.replace(/\\/g, '/')}`);
+    mainImage.src = `${API_CUSTOMER_URL}/${imagePaths[0].replace(/\\/g, '/')}`;
     mainImage.src = imageUrls[0];
 
     imageUrls.forEach((url, index) => {
       const slide = document.createElement('div');
       slide.className = 'product-details-slider-thumbnail-slide';
       slide.innerHTML = `<img src="${url}" alt="Thumbnail ${index + 1}" />`;
-      slide.querySelector('img').addEventListener('click', () => openBestfancybox(index));
+      slide.querySelector('img').addEventListener('click', () => loadLightboxAndOpen(productId));
       sliderContainer.appendChild(slide);
     });
 
-    mainImage.addEventListener('click', () => {
-      if (imageUrls.length > 0) {
-        openBestfancybox(0);
-      } else {
-        console.warn("No imageUrls found.");
-      }
-    });
+
 
   } catch (error) {
     console.error('❌ Error fetching product images:', error.message);
@@ -3811,30 +3805,47 @@ document.addEventListener("DOMContentLoaded", function () {
   fetch('lightbox-popup.html')
     .then(res => res.text())
     .then(html => {
-      // 1. Append HTML to page
       const temp = document.createElement('div');
       temp.innerHTML = html;
 
       const template = temp.querySelector('#lightbox-template');
-      const lightboxContent = template.content.cloneNode(true);
-      document.body.appendChild(lightboxContent);
+      if (!template) {
+        console.error("❌ lightbox-template not found in HTML");
+        return;
+      }
 
-      // 2. Append script manually (browsers don't auto-run it from innerHTML)
-      const scripts = temp.querySelectorAll("script");
-      scripts.forEach(script => {
-        const newScript = document.createElement("script");
+      const content = template.content.cloneNode(true);
+      document.body.appendChild(content);
+
+      // Inject scripts manually
+      temp.querySelectorAll("script").forEach(script => {
+        const s = document.createElement("script");
         if (script.src) {
-          newScript.src = script.src;
+          s.src = script.src;
         } else {
-          newScript.textContent = script.textContent;
+          s.textContent = script.textContent;
         }
-        document.body.appendChild(newScript);
+        document.body.appendChild(s);
       });
 
-      // 3. Store slug so popup knows what to load
       localStorage.setItem('grz_slug', slug);
-    });
+
+      // Retry a few times if function isn't ready
+      let attempts = 0;
+      const retryInit = setInterval(() => {
+        if (typeof initializeLightbox === 'function') {
+          initializeLightbox();
+          clearInterval(retryInit);
+        } else if (attempts > 5) {
+          console.error("❌ initializeLightbox not ready after multiple tries");
+          clearInterval(retryInit);
+        }
+        attempts++;
+      }, 200);
+    })
+    .catch(err => console.error("❌ Fetch failed:", err));
 }
+
 
 function getProductIdFromURL() {
   const parts = window.location.pathname.split('/');
