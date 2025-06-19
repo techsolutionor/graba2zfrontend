@@ -1045,21 +1045,33 @@ ul {
 
 <!-- Scripts -->
 <script>
-  document.getElementById('orderTrackingForm').addEventListener('submit', async function (e) {
-    e.preventDefault();
-    const orderId = document.getElementById('order-id').value.trim();
-    if (!orderId) return alert('Please enter an Order ID');
+ document.getElementById('orderTrackingForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
 
-    try {
-      const res = await fetch(`https://grabatoz-production.up.railway.app/api/onlineordertrack/${orderId}`);
-      if (!res.ok) return alert('Order ID not found');
-      const order = await res.json();
-      displayOrderDetails(order);
-    } catch (err) {
-      console.error(err);
-      alert('Error fetching order.');
+  const orderId = document.getElementById('order-id').value.trim();
+  const email = document.getElementById('email').value.trim();
+
+  if (!orderId || !email) {
+    return alert('Please enter both Order ID and Email.');
+  }
+
+  try {
+    const res = await fetch(`/api/online-order-track-by-email-id?orderId=${encodeURIComponent(orderId)}&email=${encodeURIComponent(email)}`);
+    
+    if (!res.ok) {
+      alert('Order not found. Please make sure both Order ID and Email are correct.');
+      return;
     }
-  });
+
+    const order = await res.json();
+    displayOrderDetails(order);
+
+  } catch (err) {
+    console.error(err);
+    alert('Something went wrong while tracking your order.');
+  }
+});
+
 
   function displayOrderDetails(order) {
     document.getElementById('orderDetailsContainer').style.display = 'block';
