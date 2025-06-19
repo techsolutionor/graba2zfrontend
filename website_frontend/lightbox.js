@@ -3,6 +3,15 @@ let imageUrls = [];
 let currentIndex = 0;
 let zoomLevel = 1;
 
+window.initializeLightbox = function () {
+  lightboxImg = document.getElementById('lightbox-img');
+  lightbox = document.getElementById('lightbox');
+  thumbsContainer = document.getElementById('lightbox-thumbs');
+
+  const slug = localStorage.getItem('grz_slug');
+  if (slug) fetchProductImages(slug);
+};
+
 function fetchProductImages(slug) {
   const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/products/' + slug;
 
@@ -92,13 +101,3 @@ function toggleFullscreen() {
     document.exitFullscreen?.();
   }
 }
-
-// ✅ MAKE THIS FUNCTION GLOBALLY ACCESSIBLE
-window.initializeLightbox = function () {
-  lightboxImg = document.getElementById('lightbox-img');
-  lightbox = document.getElementById('lightbox');
-  thumbsContainer = document.getElementById('lightbox-thumbs');
-
-  const slug = localStorage.getItem('grz_slug');
-  if (slug) fetchProductImages(slug);
-};

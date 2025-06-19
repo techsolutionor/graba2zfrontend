@@ -1,38 +1,11 @@
 <!-- lightbox-popup.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Lightbox Popup</title>
-</head>
-<style>
-    .lightbox-img {
-  max-height: 80vh;
-  object-fit: contain;
-}
-
-.thumbs-vertical img {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border: 2px solid transparent;
-  cursor: pointer;
-}
-
-.thumbs-vertical img.active {
-  border-color: #007bff;
-}
-
-</style>
-<body>
-
 <template id="lightbox-template">
   <div class="lightbox" id="lightbox" style="display: flex !important;">
     <div class="lightbox-controls">
-      <button onclick="zoomIn()" title="Zoom In"><i class="fas fa-magnifying-glass-plus"></i></button>
-      <button onclick="zoomOut()" title="Zoom Out"><i class="fas fa-magnifying-glass-minus"></i></button>
-      <button onclick="toggleFullscreen()" title="Fullscreen"><i class="fas fa-expand"></i></button>
-      <button onclick="closeLightbox()" title="Close"><i class="fas fa-times"></i></button>
+      <button onclick="zoomIn()" title="Zoom In">+</button>
+      <button onclick="zoomOut()" title="Zoom Out">-</button>
+      <button onclick="toggleFullscreen()" title="Fullscreen">[ ]</button>
+      <button onclick="closeLightbox()" title="Close">x</button>
     </div>
 
     <div class="nav-controls">
@@ -46,6 +19,3 @@
     </div>
   </div>
 </template>
-
-</body>
-</html>

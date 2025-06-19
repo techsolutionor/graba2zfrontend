@@ -3807,40 +3807,30 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script> -->
 <script>
- function loadLightboxAndOpen(slug) {
+function loadLightboxAndOpen(slug) {
   fetch('/lightbox-popup.html')
     .then(res => res.text())
     .then(html => {
       const temp = document.createElement('div');
       temp.innerHTML = html;
-
       const template = temp.querySelector('#lightbox-template');
-      if (!template) {
-        console.error("❌ lightbox-template not found");
-        return;
-      }
-
-      const content = template.content.cloneNode(true);
-      document.body.appendChild(content);
-      console.log("✅ Lightbox HTML appended");
+      if (!template) return console.error("❌ Template not found");
+      document.body.appendChild(template.content.cloneNode(true));
 
       localStorage.setItem('grz_slug', slug);
 
       let tries = 0;
-      const tryInit = setInterval(() => {
+      const retry = setInterval(() => {
         if (typeof initializeLightbox === 'function') {
-          console.log("✅ initializeLightbox is ready");
           initializeLightbox();
-          clearInterval(tryInit);
+          clearInterval(retry);
         } else if (tries++ > 10) {
-          console.error("❌ initializeLightbox still not ready");
-          clearInterval(tryInit);
+          console.error("❌ initializeLightbox not ready after retries");
+          clearInterval(retry);
         }
       }, 200);
     })
-    .catch(err => {
-      console.error("❌ Failed to load popup:", err);
-    });
+    .catch(err => console.error("❌ Failed to load lightbox:", err));
 }
 
 function getProductIdFromURL() {
