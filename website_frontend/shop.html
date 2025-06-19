@@ -1634,7 +1634,7 @@
                     const hasChildren = categoryMap.childCategories[parentCategory.id]?.length > 0;
 
                     const menuItem = document.createElement('li');
-                    menuItem.className = `on-hover-item nav-menu__item ${hasChildren ? 'has-submenu' : ''}`;
+                    menuItem.className = `on-hover-item nav-menu__item ${hasChildren ? 'has-submenu-header' : ''}`;
 
                     menuItem.innerHTML = `
   <a href="/product-category/${slugify(parentCategory.name)}" 
