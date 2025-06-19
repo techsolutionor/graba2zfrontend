@@ -1056,7 +1056,7 @@ ul {
   }
 
   try {
-    const res = await fetch(`/api/online-order-track-by-email-id?orderId=${encodeURIComponent(orderId)}&email=${encodeURIComponent(email)}`);
+    const res = await fetch(`https://grabatoz-production.up.railway.app/api/online-order-track-by-email-id?orderId=${encodeURIComponent(orderId)}&email=${encodeURIComponent(email)}`);
     
     if (!res.ok) {
       alert('Order not found. Please make sure both Order ID and Email are correct.');
