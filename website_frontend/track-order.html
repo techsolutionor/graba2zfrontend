@@ -1047,7 +1047,7 @@ ul {
       const products = JSON.parse(order.card_info || '[]');
       products.forEach(p => {
         const li = document.createElement('li');
-        li.textContent = `${p.name} - Qty: ${p.quantity} - Price: $${parseFloat(p.selling_price).toFixed(2)}`;
+        li.textContent = `${p.name} - Qty: ${p.quantity} - Price: AED ${parseFloat(p.selling_price).toFixed(2)}`;
         productsList.appendChild(li);
       });
     } catch {
@@ -1090,19 +1090,7 @@ ul {
     });
   }
 </script>
-<!-- Order Details Modal
-<div id="orderDetailsModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(0,0,0,0.6); z-index:10000; justify-content:center; align-items:center;">
-  <div style="background:#fff; border-radius:8px; padding:20px; width:90%; max-width:500px; max-height:80vh; overflow-y:auto; position:relative;">
-    <button onclick="closeOrderModal()" style="position:absolute; top:10px; right:10px; border:none; background:none; font-size:24px; cursor:pointer;">&times;</button>
-    <h3>Order Details</h3>
-    <p><strong>Order ID:</strong> <span id="modalOrderId"></span></p>
-    <p><strong>Status:</strong> <span id="modalOrderStatus"></span></p>
-    <p><strong>Date:</strong> <span id="modalOrderDate"></span></p>
-    <h4>Products:</h4>
-    <ul id="modalOrderProducts" style="list-style:none; padding-left:0;"></ul>
-    <p id="modalErrorMessage" style="color:red; font-weight:bold; margin-top:10px;"></p>
-  </div>
-</div> -->
+
 
    
    
