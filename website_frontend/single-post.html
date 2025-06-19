@@ -1400,7 +1400,7 @@ function renderMainMenu(organizedCategories) {
         const hasChildren = organizedCategories.childCategories[parent.id]?.length > 0;
         
         return `
-            <li class="on-hover-item nav-menu__item ${hasChildren ? 'has-submenu' : ''}">
+            <li class="on-hover-item nav-menu__item ${hasChildren ? 'has-submenu-header' : ''}">
                 <a href="/product-category/${slugify(parent.name)}" class="nav-menu__link">${parent.name}</a>
                 ${hasChildren ? `
                     <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
