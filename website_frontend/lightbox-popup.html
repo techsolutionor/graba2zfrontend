@@ -27,28 +27,30 @@
   let zoomLevel = 1;
 
   function fetchProductImages(slug) {
-    const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/products/slug/' + slug;
+  const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/products/' + slug;
 
-    fetch(API_URL)
-      .then(res => res.json())
-      .then(product => {
-        let paths = product.image_paths;
-        if (typeof paths === 'string') {
-          try {
-            paths = JSON.parse(paths);
-          } catch {
-            paths = [];
-          }
+  fetch(API_URL)
+    .then(res => res.json())
+    .then(product => {
+      let paths = product.image_paths;
+      if (typeof paths === 'string') {
+        try {
+          paths = JSON.parse(paths);
+        } catch {
+          paths = [];
         }
+      }
 
-        const baseUrl = 'https://grabatoz-production.up.railway.app';
-        imageUrls = paths.map(p => `${baseUrl}/${p.replace(/\\/g, '/')}`);
-        openLightbox(0);
-      })
-      .catch(err => {
-        console.error('Error loading product images in lightbox:', err);
-      });
-  }
+      const baseUrl = 'https://grabatoz-production.up.railway.app'; // ✅ For actual image hosting
+      imageUrls = paths.map(p => `${baseUrl}/${p.replace(/\\/g, '/')}`); // Windows-safe path fix
+
+      openLightbox(0); // 🚀 Start the lightbox with first image
+    })
+    .catch(err => {
+      console.error('Error loading product images in lightbox:', err);
+    });
+}
+
 
   function openLightbox(index) {
     currentIndex = index;
