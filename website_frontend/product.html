@@ -3820,42 +3820,29 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      // Clone template content into DOM
       const content = template.content.cloneNode(true);
       document.body.appendChild(content);
 
-      // ✅ Manually extract and run the <script> inside the template
-      const scriptTags = template.content.querySelectorAll("script");
-      scriptTags.forEach(script => {
-        const newScript = document.createElement("script");
-        if (script.src) {
-          newScript.src = script.src;
-        } else {
-          newScript.textContent = script.textContent;
-        }
-        document.body.appendChild(newScript);
-      });
+      // Load your new external JS file
+      const script = document.createElement('script');
+      script.src = '/lightbox.js'; // ✅ Adjust path if not in root
+      document.body.appendChild(script);
 
-      // Store slug to load correct images
       localStorage.setItem('grz_slug', slug);
 
-      // ✅ Wait until the lightbox function is ready
-      let tries = 0;
-      const tryInit = setInterval(() => {
+      // Wait for script to be loaded then call initialize
+      script.onload = () => {
         if (typeof initializeLightbox === 'function') {
-          initializeLightbox(); // ← call it once it's available
-          clearInterval(tryInit);
-        } else if (tries++ > 10) {
-          console.error("❌ initializeLightbox still not ready after retries");
-          clearInterval(tryInit);
+          initializeLightbox();
+        } else {
+          console.error("❌ initializeLightbox not defined after loading lightbox.js");
         }
-      }, 200);
+      };
     })
     .catch(err => {
       console.error("❌ Failed to load popup:", err);
     });
 }
-
 
 function getProductIdFromURL() {
   const parts = window.location.pathname.split('/');
