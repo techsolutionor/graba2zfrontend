@@ -3808,7 +3808,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </script> -->
 <script>
  function loadLightboxAndOpen(slug) {
-  fetch('lightbox-popup.html')
+  fetch('/lightbox-popup.html')
     .then(res => res.text())
     .then(html => {
       const temp = document.createElement('div');
@@ -3823,7 +3823,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const content = template.content.cloneNode(true);
       document.body.appendChild(content);
 
-      // Inject scripts manually
+      // Inject <script> content
       temp.querySelectorAll("script").forEach(script => {
         const s = document.createElement("script");
         if (script.src) {
@@ -3836,17 +3836,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
       localStorage.setItem('grz_slug', slug);
 
-      // Retry a few times if function isn't ready
-      let attempts = 0;
-      const retryInit = setInterval(() => {
+      // Wait and initialize
+      let tries = 0;
+      const retry = setInterval(() => {
         if (typeof initializeLightbox === 'function') {
           initializeLightbox();
-          clearInterval(retryInit);
-        } else if (attempts > 5) {
-          console.error("❌ initializeLightbox not ready after multiple tries");
-          clearInterval(retryInit);
+          clearInterval(retry);
+        } else if (tries++ > 5) {
+          console.error("❌ initializeLightbox not ready.");
+          clearInterval(retry);
         }
-        attempts++;
       }, 200);
     })
     .catch(err => console.error("❌ Fetch failed:", err));
