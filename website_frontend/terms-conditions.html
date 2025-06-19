@@ -812,13 +812,11 @@
         </div>
         <!-- Menu Button for Mobile/Tablet Only end-->
     </header>
-    <!-- ======================= Middle Header End ========================= -->
-
-    <!-- ==================== category Header Start Here ==================== -->
+     <!-- ==================== category Header Start Here ==================== -->
     <header class="header bg-white border-bottom border-gray-100">
         <div class="container container-lg">
-            <nav class="header-inner d-flex justify-content-between gap-8">
-                <div class="flex-align menu-category-wrapper">
+            <nav class="header-inner d-flex justify-content-center gap-8">
+                <div class="flex-align ">
 
 
                     <!-- Category Dropdown Start -->
@@ -848,7 +846,7 @@
                     <!-- Menu Start  -->
                     <div class="header-menu d-lg-block d-none">
                         <!-- Nav Menu Start -->
-                        <ul class="nav-menu flex-align" id="mainMenu">
+                        <ul class="nav-menu-header flex-align" id="mainMenu">
                             <!-- Main menu items will be loaded dynamically here -->
                         </ul>
                         <!-- Nav Menu End -->
@@ -860,6 +858,8 @@
     </header>
 
     <!-- ==================== category Header End Here ==================== -->
+
+    <!-- Header Section -->
 
 
 
@@ -1010,8 +1010,6 @@
                 <div class="col-md-2 mb-4">
                     <h5 style="color: white; font-size: 20px;">More Categories</h5>
                     <ul class="list-unstyled" id="more-categories">
-                          <li><a href="https://graba2z.netlify.app/product-category/storage-devices">Storage Devices</a></li>
-<li><a href="https://graba2z.netlify.app/product-category/bags">Bags</a></li>
                         <!-- <li><a href="/shop">Projector</a></li>
                     <li><a href="/shop">Monitors</a></li>
                     <li><a href="/shop">Scanners</a></li>
@@ -1301,7 +1299,7 @@
                     const hasChildren = categoryMap.childCategories[parentCategory.id]?.length > 0;
 
                     const menuItem = document.createElement('li');
-                    menuItem.className = `on-hover-item nav-menu__item ${hasChildren ? 'has-submenu-header' : ''}`;
+                    menuItem.className = `on-hover-item nav-menu__item ${hasChildren ? 'has-submenu' : ''}`;
 
                     menuItem.innerHTML = `
   <a href="/product-category/${slugify(parentCategory.name)}" 
@@ -1738,155 +1736,184 @@ function slugify(text) {
         .replace(/\-\-+/g, '-');
 }
 </script> -->
-<script>
-document.addEventListener('DOMContentLoaded', async function () {
-    try {
-        const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/product-categories';
-        const response = await fetch(API_URL);
-        const data = await response.json();
-        const categories = data.categories || [];
-
-        // Organize categories into parent-child relationships
-        const organizedCategories = organizeCategories(categories);
-
-        // Render all category sections
-        renderMainMenu(organizedCategories);
-        renderCategoryDropdown(organizedCategories);
-        renderFooterCategories(organizedCategories.parentCategories);
-    } catch (err) {
-        console.error('Failed to load categories:', err);
-    }
-});
-
-// Organize categories into hierarchical structure
-function organizeCategories(categories) {
-    const result = {
-        parentCategories: [],
-        childCategories: {}
-    };
-
-    // First pass: identify parent categories
-    categories.forEach(category => {
-        if (!category.parent_category) {
-            result.parentCategories.push(category);
-            result.childCategories[category.id] = [];
-        }
-    });
-
-    // Second pass: assign child categories
-    categories.forEach(category => {
-        if (category.parent_category) {
-            const parentId = category.parent_category;
-            if (result.childCategories[parentId]) {
-                result.childCategories[parentId].push(category);
-            }
-        }
-    });
-
-    return result;
-}
-
-// Render main navigation menu
-function renderMainMenu(organizedCategories) {
-    const menuContainer = document.getElementById('mainMenu');
-    if (!menuContainer) return;
-
-    menuContainer.innerHTML = organizedCategories.parentCategories.map(parent => {
-        const hasChildren = organizedCategories.childCategories[parent.id]?.length > 0;
-        
-        return `
-            <li class="on-hover-item nav-menu__item ${hasChildren ? 'has-submenu' : ''}">
-                <a href="/product-category/${slugify(parent.name)}" class="nav-menu__link">${parent.name}</a>
-                ${hasChildren ? `
-                    <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-                        ${organizedCategories.childCategories[parent.id].map(child => `
-                            <li class="common-dropdown__item nav-submenu__item">
-                                <a href="/product-category/${slugify(child.name)}" 
-                                   class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">
-                                    ${child.name}
-                                </a>
-                            </li>
-                        `).join('')}
-                    </ul>
-                ` : ''}
-            </li>
-        `;
-    }).join('');
-}
-
-// Render category dropdown with child categories
-function renderCategoryDropdown(organizedCategories) {
-    const dropdownContainer = document.getElementById('categoryDropdown');
-    if (!dropdownContainer) return;
-
-    dropdownContainer.innerHTML = organizedCategories.parentCategories.map(parent => {
-        const hasChildren = organizedCategories.childCategories[parent.id]?.length > 0;
-        
-        return `
-            <li class="${hasChildren ? 'has-submenus-submenu' : ''}">
-                <a href="/product-category/${slugify(parent.name)}" 
-                   class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
-                    <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
-                    <span>${parent.name}</span>
-                    ${hasChildren ? '<span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>' : ''}
-                </a>
-                ${hasChildren ? `
-                    <div class="submenus-submenu py-16">
-                        <h6 class="text-lg px-16 submenus-submenu__title">${parent.name}</h6>
-                        <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                            ${organizedCategories.childCategories[parent.id].map(child => `
-                                <li>
-                                    <a href="/product-category/${slugify(child.name)}">${child.name}</a>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    </div>
-                ` : ''}
-            </li>
-        `;
-    }).join('');
-}
+   <script src="assets/js/jquery-3.7.1.min.js"></script>
+        <!-- Bootstrap Bundle Js -->
+        <script src="assets/js/boostrap.bundle.min.js"></script>
+        <!-- Bootstrap Bundle Js -->
+        <script src="assets/js/phosphor-icon.js"></script>
+        <!-- Select 2 -->
+        <script src="assets/js/select2.min.js"></script>
+        <!-- Slick js -->
+        <script src="assets/js/slick.min.js"></script>
 
 
-</script>  
+        <!-- Slick js -->
+        <script src="assets/js/count-down.js"></script>
+        <!-- jquery UI js -->
+        <script src="assets/js/jquery-ui.js"></script>
+        <!-- wow js -->
+        <script src="assets/js/wow.min.js"></script>
+        <!-- AOS Animation -->
+        <script src="assets/js/aos.js"></script>
+        <!-- marque -->
+        <script src="assets/js/marque.min.js"></script>
+        <!-- marque -->
+        <script src="assets/js/vanilla-tilt.min.js"></script>
+        <!-- main js -->
+        <script src="assets/js/main.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Fetch categories from your API
+                fetchCategories();
+            });
 
- <script>
-            document.addEventListener('DOMContentLoaded', async function () {
-                const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/product-categories';
-
+            async function fetchCategories() {
                 try {
-                    const res = await fetch(API_URL);
-                    const data = await res.json();
+                    const response = await fetch(`${API_CUSTOMER_URL}/api/product-categories`);
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch categories');
+                    }
 
+                    const data = await response.json();
                     const categories = data.categories || [];
 
-                    // Filter only parent categories (parent_category is null)
-                    const parentCategories = categories.filter(cat => cat.parent_category === null);
+                    // Organize categories by parent-child relationship
+                    const categoryMap = organizeCategories(categories);
 
-                    const topList = document.getElementById('top-categories');
-                    const moreList = document.getElementById('more-categories');
+                    // Render the dropdown menu
+                    renderCategoryDropdown(categoryMap);
 
-                    parentCategories.forEach((cat, index) => {
-                        const li = document.createElement('li');
-                        li.innerHTML = `<a href="/product-category/${slugify(cat.name)}">${cat.name}</a>`;
+                    // Render the main menu
+                    renderMainMenu(categoryMap);
 
-                        if (index < 6) {
-                            topList.appendChild(li);
+                } catch (error) {
+                    console.error('Error loading categories:', error);
+                    // You might want to show a user-friendly error message here
+                }
+            }
+
+            function organizeCategories(categories) {
+                const categoryMap = {
+                    parentCategories: [],
+                    childCategories: {}
+                };
+
+                // First pass: identify all parent categories
+                categories.forEach(category => {
+                    if (!category.parent_category) {
+                        categoryMap.parentCategories.push(category);
+                        categoryMap.childCategories[category.id] = [];
+                    }
+                });
+
+                // Second pass: assign child categories to their parents
+                categories.forEach(category => {
+                    if (category.parent_category) {
+                        const parentId = category.parent_category;
+                        if (categoryMap.childCategories[parentId]) {
+                            categoryMap.childCategories[parentId].push(category);
                         } else {
-                            moreList.appendChild(li);
+                            // Handle case where parent category might not exist
+                            console.warn(`Parent category ${parentId} not found for child ${category.id}`);
                         }
-                    });
-                } catch (err) {
-                    console.error('Failed to load categories:', err);
-                }
+                    }
+                });
 
-                // Helper to slugify category name
-                function slugify(text) {
-                    return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
-                }
-            });
+                return categoryMap;
+            }
+            function slugify(text) {
+                return text.toString()
+                    .toLowerCase()
+                    .replace(/\s+/g, '-')           // Replace spaces with -
+                    .replace(/[^\w\-]+/g, '')       // Remove non-word chars
+                    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+                    .replace(/^-+/, '')             // Trim - from start
+                    .replace(/-+$/, '');            // Trim - from end
+            }
+            function renderCategoryDropdown(categoryMap) {
+                const dropdownContainer = document.getElementById('categoryDropdown');
+                dropdownContainer.innerHTML = '';
+
+                categoryMap.parentCategories.forEach(parentCategory => {
+                    const hasChildren = categoryMap.childCategories[parentCategory.id]?.length > 0;
+
+                    const listItem = document.createElement('li');
+                    listItem.className = hasChildren ? 'has-submenus-submenu' : '';
+
+                    listItem.innerHTML = `
+            <a href="/product-category/${slugify(parentCategory.name)}" 
+               class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                <span>${parentCategory.name}</span>
+                ${hasChildren ? '<span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>' : ''}
+            </a>
+        `;
+
+                    if (hasChildren) {
+                        const submenu = document.createElement('div');
+                        submenu.className = 'submenus-submenu py-16';
+
+                        const title = document.createElement('h6');
+                        title.className = 'text-lg px-16 submenus-submenu__title';
+                        title.textContent = parentCategory.name;
+
+                        const submenuList = document.createElement('ul');
+                        submenuList.className = 'submenus-submenu__list max-h-300 overflow-y-auto scroll-sm';
+
+                        categoryMap.childCategories[parentCategory.id].forEach(childCategory => {
+                            const childItem = document.createElement('li');
+                            childItem.innerHTML = `<a href="/product-category/${slugify(childCategory.name)}">${childCategory.name}</a>`;
+                            submenuList.appendChild(childItem);
+                        });
+
+                        submenu.appendChild(title);
+                        submenu.appendChild(submenuList);
+                        listItem.appendChild(submenu);
+                    }
+
+                    dropdownContainer.appendChild(listItem);
+                });
+            }
+
+            function renderMainMenu(categoryMap) {
+                const menuContainer = document.getElementById('mainMenu');
+                menuContainer.innerHTML = '';
+
+                categoryMap.parentCategories.forEach(parentCategory => {
+                    const hasChildren = categoryMap.childCategories[parentCategory.id]?.length > 0;
+
+                    const menuItem = document.createElement('li');
+                    menuItem.className = `on-hover-item nav-menu__item ${hasChildren ? 'has-submenu-header' : ''}`;
+
+                    menuItem.innerHTML = `
+  <a href="/product-category/${slugify(parentCategory.name)}" 
+     class="nav-menu__link">${parentCategory.name}</a>
+`;
+
+
+                    if (hasChildren) {
+                        const submenu = document.createElement('ul');
+                        submenu.className = 'on-hover-dropdown common-dropdown nav-submenu scroll-sm';
+
+                        categoryMap.childCategories[parentCategory.id].forEach(childCategory => {
+                            const submenuItem = document.createElement('li');
+                            submenuItem.className = 'common-dropdown__item nav-submenu__item';
+                            submenuItem.innerHTML = `
+                    <a href="/product-category/${slugify(childCategory.name)}" 
+                       class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">
+                        ${childCategory.name}
+                    </a>
+                `;
+                            submenu.appendChild(submenuItem);
+                        });
+
+                        menuItem.appendChild(submenu);
+                    }
+
+                    menuContainer.appendChild(menuItem);
+                });
+            }
         </script>
- 
 
 </body>
 
