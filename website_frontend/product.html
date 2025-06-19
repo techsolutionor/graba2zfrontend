@@ -1702,16 +1702,23 @@ function updateModalThumbnails(imagePaths, baseUrl) {
 
 </script>
 <script>
-  // Run this when page is fully loaded
+  function getProductIdFromURL() {
+    const parts = window.location.pathname.split('/');
+    return parts[parts.length - 1]; // e.g., if URL is /product/abc-123, it will return 'abc-123'
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
-    const slug = getProductIdFromURL();
-    if (slug) {
-      fetchProductImages(slug);
-    } else {
-      console.error("❌ Product slug not found in URL.");
-    }
-  });
+  const slug = getProductIdFromURL();
+  console.log("✅ Extracted slug:", slug); // ✅ This should now show the slug in console
+  if (slug) {
+    fetchProductImages(slug);
+  } else {
+    console.error("❌ Product slug not found in URL.");
+  }
+});
+
 </script>
+
 
                         </div>
                         <div class="col-xl-7 p-6">
