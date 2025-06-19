@@ -3820,35 +3820,40 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
+      // Clone template content into DOM
       const content = template.content.cloneNode(true);
       document.body.appendChild(content);
 
-      // Inject <script> content
-      temp.querySelectorAll("script").forEach(script => {
-        const s = document.createElement("script");
+      // ✅ Manually extract and run the <script> inside the template
+      const scriptTags = template.content.querySelectorAll("script");
+      scriptTags.forEach(script => {
+        const newScript = document.createElement("script");
         if (script.src) {
-          s.src = script.src;
+          newScript.src = script.src;
         } else {
-          s.textContent = script.textContent;
+          newScript.textContent = script.textContent;
         }
-        document.body.appendChild(s);
+        document.body.appendChild(newScript);
       });
 
+      // Store slug to load correct images
       localStorage.setItem('grz_slug', slug);
 
-      // Wait and initialize
+      // ✅ Wait until the lightbox function is ready
       let tries = 0;
-      const retry = setInterval(() => {
+      const tryInit = setInterval(() => {
         if (typeof initializeLightbox === 'function') {
-          initializeLightbox();
-          clearInterval(retry);
-        } else if (tries++ > 5) {
-          console.error("❌ initializeLightbox not ready.");
-          clearInterval(retry);
+          initializeLightbox(); // ← call it once it's available
+          clearInterval(tryInit);
+        } else if (tries++ > 10) {
+          console.error("❌ initializeLightbox still not ready after retries");
+          clearInterval(tryInit);
         }
       }, 200);
     })
-    .catch(err => console.error("❌ Fetch failed:", err));
+    .catch(err => {
+      console.error("❌ Failed to load popup:", err);
+    });
 }
 
 
