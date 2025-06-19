@@ -1615,7 +1615,7 @@ document.getElementById('product-details-slider-thumbnail-next').addEventListene
 async function fetchProductImages(productId) {
   try {
     const API_CUSTOMER_URL = 'https://grabatoz-production.up.railway.app';
-    const response = await fetch(`${API_CUSTOMER_URL}/api/products/slug/${productId}`);
+    const response = await fetch(`${API_CUSTOMER_URL}/api/products/${productId}`);
 
     if (!response.ok) throw new Error(`API Error: ${response.status}`);
     const product = await response.json();
