@@ -2199,7 +2199,7 @@
         </div>
         <!-- <div class="d-flex flex-wrap justify-content-center gap-4" id="accer-container">
         </div> -->
-        <div class="row g-3 justify-content-center" id="lenovo-container"></div>
+        <div class="row g-3 justify-content-center" id="Lenovo-container"></div>
         </div>
     </section>
     <!-- ===================== Lenovo Section End 1==============================  -->
@@ -3484,7 +3484,7 @@
 
                     // --------------accer Category product  End----------------------
                        // --------------lenovo Category product  Start----------------------
-                    async function fetchlenovo() {
+                    async function fetchLenovo() {
                         function limitWords(text, wordLimit) {
                             const words = text.trim().split(/\s+/);
                             if (words.length <= wordLimit) return text;
@@ -3497,10 +3497,10 @@
                         }
 
                         try {
-                            const response = await fetch(`${API_CUSTOMER_URL}/api/products?brand=lenovo`);
+                            const response = await fetch(`${API_CUSTOMER_URL}/api/products?brand=Lenovo`);
                             const data = await response.json();
 
-                            const container = document.getElementById('lenovo-container');
+                            const container = document.getElementById('Lenovo-container');
                             container.innerHTML = ''; // Clear existing
 
                             const products = Array.isArray(data) ? data : data.products;
@@ -3546,14 +3546,14 @@
 
                         } catch (error) {
                             console.error('Error fetching products:', error);
-                            document.getElementById('lenovo-container').innerHTML = '<p class="text-danger text-center">Error loading Lenovo products.</p>';
+                            document.getElementById('Lenovo-container').innerHTML = '<p class="text-danger text-center">Error loading Lenovo products.</p>';
                         }
                     }
 
                     document.addEventListener('DOMContentLoaded', () => {
-                        fetchAccer();
+                        fetchLenovo();
                         window.addEventListener('resize', () => {
-                            fetchAccer(); // Reload cards on screen resize
+                            fetchLenovo(); // Reload cards on screen resize
                         });
                     });
 
