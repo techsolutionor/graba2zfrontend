@@ -2408,80 +2408,110 @@
 
 
                         <!-- Modal Review Form -->
-                        <div class="modal-overlay-apple" id="modalOverlay" onclick="closeModal(event)">
-                            <div class="modal-content-apple" onclick="event.stopPropagation()">
-                                <div class="close-btn-apple" onclick="closeModal(event)">×</div>
-                                <h2>Write a product review</h2>
-                                <p>Please complete all the fields below to tell us about your experience with this
-                                    product.</p>
+<div class="modal-overlay-apple" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal-content-apple" onclick="event.stopPropagation()">
+        <div class="close-btn-apple" onclick="closeModal(event)">×</div>
+        <h2>Write a product review</h2>
+        <p>Please complete all the fields below to tell us about your experience with this product.</p>
 
-                                <label>Your Rating *</label>
-                                <div class="stars-apple" id="stars">
-                                    <span class="star" data-value="1">&#9733;</span>
-                                    <span class="star" data-value="2">&#9733;</span>
-                                    <span class="star" data-value="3">&#9733;</span>
-                                    <span class="star" data-value="4">&#9733;</span>
-                                    <span class="star" data-value="5">&#9733;</span>
-                                </div>
+        <label>Your Rating *</label>
+        <div class="stars-apple" id="stars">
+            <span class="star" data-value="1">&#9733;</span>
+            <span class="star" data-value="2">&#9733;</span>
+            <span class="star" data-value="3">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+            <span class="star" data-value="5">&#9733;</span>
+        </div>
 
-                                <label>Your Review *</label>
-                                <textarea id="reviewText" placeholder=""></textarea>
+        <label>Your Review *</label>
+        <textarea id="reviewText" placeholder=""></textarea>
 
-                                <div class="input-row-apple">
-                                    <input type="text" id="name" placeholder="Name *">
-                                    <input type="email" id="email" placeholder="Email *">
-                                </div>
+        <div class="input-row-apple">
+            <input type="text" id="name" placeholder="Name *">
+            <input type="email" id="email" placeholder="Email *">
+        </div>
 
-                                <div class="checkbox-container-apple">
-                                    <input type="checkbox" id="saveInfo">
-                                    <label for="saveInfo">Save my name, email, and website in this browser for the next
-                                        time I comment.</label>
-                                </div>
+        <div class="checkbox-container-apple">
+            <input type="checkbox" id="saveInfo">
+            <label for="saveInfo">Save my name, email, and website in this browser for the next time I comment.</label>
+        </div>
 
-                                <button class="submit-button-apple" onclick="submitReview()">Submit Review</button>
-                            </div>
-                        </div>
+        <button class="submit-button-apple" onclick="submitReview()">Submit Review</button>
+    </div>
+</div>
 
-                        <script>
-                            let selectedRating = 0;
-                            const stars = document.querySelectorAll("#stars .star");
+<script>
+    let selectedRating = 0;
+    const stars = document.querySelectorAll("#stars .star");
 
-                            stars.forEach((star, index) => {
-                                star.addEventListener("click", () => {
-                                    selectedRating = index + 1;
-                                    stars.forEach((s, i) => {
-                                        s.classList.toggle("selected", i < selectedRating);
-                                    });
-                                });
-                            });
+    stars.forEach((star, index) => {
+        star.addEventListener("click", () => {
+            selectedRating = index + 1;
+            stars.forEach((s, i) => {
+                s.classList.toggle("selected", i < selectedRating);
+            });
+        });
+    });
 
-                            function openModal() {
-                                document.getElementById("modalOverlay").style.display = "block";
-                            }
+    function openModal() {
+        document.getElementById("modalOverlay").style.display = "block";
+    }
 
-                            function closeModal(e) {
-                                document.getElementById("modalOverlay").style.display = "none";
-                            }
+    function closeModal(e) {
+        document.getElementById("modalOverlay").style.display = "none";
+    }
 
-                            function submitReview() {
-                                const review = document.getElementById("reviewText").value.trim();
-                                const name = document.getElementById("name").value.trim();
-                                const email = document.getElementById("email").value.trim();
+    function submitReview() {
+        const review = document.getElementById("reviewText").value.trim();
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
 
-                                if (!selectedRating || !review || !name || !email) {
-                                    alert("Please fill all required fields.");
-                                    return;
-                                }
+        if (!selectedRating || !review || !name || !email) {
+            alert("Please fill all required fields.");
+            return;
+        }
 
-                                alert("Review submitted. Thank you!");
-                                closeModal();
-                            }
-                        </script>
+        alert("Review submitted. Thank you!");
+        closeModal();
+    }
+</script>
 
-                        <!-- start section  -->
+<style>
+    /* Modal styling */
+    .modal-overlay-apple {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
 
+    .modal-content-apple {
+        background: white;
+        padding: 20px;
+        max-width: 500px;
+        width: 100%;
+        border-radius: 8px;
+        overflow-y: auto;
+        max-height: 80vh; /* This will enable scrolling */
+    }
 
-                    </div>
+    /* Ensure scrolling on smaller screens */
+    @media (max-width: 768px) {
+        .modal-content-apple {
+            max-height: 70vh;
+            padding-bottom: 20px; /* Add padding at the bottom for the button */
+        }
+
+        .submit-button-apple {
+            margin-top: 20px;
+        }
+    }
+</style>
 
                     <div class="tab-pane fade" role="tabpanel" aria-labelledby="pills-reviews-tab" tabindex="0">
                         <div class="row g-4">
