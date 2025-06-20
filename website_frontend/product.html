@@ -3448,21 +3448,25 @@
 
 
             // Handle Add to Cart button click
-            function handleAddToCart(product) {
-                const cart = getCart();
-                const existingProduct = cart.find(item => item.id === product.id);
+           function handleAddToCart(product) {
+    const cart = getCart();
+    const existingProduct = cart.find(item => item.id === product.id);
+    const qtyInput = document.getElementById("qty");
+    const qty = parseInt(qtyInput?.value || "1");
 
-                if (existingProduct) {
-                    showSuccessMessage("This product already in cart.");
-                    return;
-                }
+    if (existingProduct) {
+        // Update quantity if already in cart
+        existingProduct.quantity += qty;
+        showSuccessMessage(`Quantity updated to ${existingProduct.quantity}`);
+    } else {
+        // Add new product to cart
+        cart.push({ ...product, quantity: qty });
+        showSuccessMessage(`Item added to cart.`);
+    }
 
-                const qtyInput = document.getElementById("qty");
-                const qty = parseInt(qtyInput?.value || "1");
-
-                addToCart(product, qty); // from cart.js
-                updateAddToCartUI(product.id, qty);
-            }
+    saveCart(cart);
+    updateAddToCartUI(product.id, qty);
+}
 
             // Update UI when product is in cart
             function updateAddToCartUI(productId, quantity) {
