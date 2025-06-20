@@ -3214,40 +3214,39 @@
                         const fallbackImage = product.image_path ? `${API_ADMINGRAB_URL}/${product.image_path.replace(/\\/g, '/')}` : 'assets/images/thumbs/product-details-thumb1.png';
                         const cartImage = imagePaths[0] ? `${API_ADMINGRAB_URL}/${imagePaths[0]}` : fallbackImage;
                         document.getElementById('addToCart').innerHTML = `
-  <div class="product-toolbar d-flex flex-wrap align-items-center gap-14 mt-3">
+<div class="product-toolbar d-flex flex-wrap align-items-center gap-14 mt-3">
     <div class="qty-box d-flex align-items-center">
-      <button class="qty-btn" onclick="changeQty(-1)">−</button>
-      <input type="text" id="qty" class="qty-input" value="1" readonly data-product-id="${product.id}">
-      <button class="qty-btn" onclick="changeQty(1)">+</button>
+        <button class="qty-btn" onclick="changeQty(-1)">−</button>
+        <input type="text" id="qty" class="qty-input" value="1" readonly data-product-id="${product.id}">
+        <button class="qty-btn" onclick="changeQty(1)">+</button>
     </div>
     <button class="btn btn-warning d-inline-flex align-items-center gap-4 px-8 add-to-cart-btn" 
             style="background-color: #90c309;" 
-            onclick="handleAddToCart({ 
-                id: ${product.id}, 
-                slug: '${product.slug}', 
-                name: '${product.name}', 
-                offer_price: ${product.offer_price || product.selling_price},
-                selling_price: ${product.selling_price},
-                image_path: '${product.image_path || ''}' 
-            })">
-      <i class="ph ph-shopping-cart"></i> Add To Cart
+            onclick='handleAddToCart(${JSON.stringify({
+                id: product.id,
+                slug: product.slug,
+                name: product.name.replace(/'/g, "\\'"),
+                offer_price: product.offer_price || product.selling_price,
+                selling_price: product.selling_price,
+                image_path: product.image_path || ''
+            })})'>
+        <i class="ph ph-shopping-cart"></i> Add To Cart
     </button>
     
     <!-- Buy Now Button -->
     <button class="btn btn-warning d-inline-flex align-items-center gap-4 px-8" 
             style="background-color: #ffc107; color: black;" 
-            onclick='handleBuyNowDirect({
-                id: ${product.id},
-                slug: ${JSON.stringify(product.slug)},
-                name: ${JSON.stringify(product.name)},
-                offer_price: ${product.offer_price || product.selling_price},
-                selling_price: ${product.selling_price},
-                image_path: ${JSON.stringify(product.image_path || "")}
-            })'>
-      <i class="ph ph-credit-card"></i> Buy Now
+            onclick='handleBuyNowDirect(${JSON.stringify({
+                id: product.id,
+                slug: product.slug,
+                name: product.name.replace(/'/g, "\\'"),
+                offer_price: product.offer_price || product.selling_price,
+                selling_price: product.selling_price,
+                image_path: product.image_path || ""
+            })})'>
+        <i class="ph ph-credit-card"></i> Buy Now
     </button>
-  </div>
-    `;
+</div>`;
 
                         const cart = JSON.parse(localStorage.getItem('cart')) || [];
                         const itemInCart = cart.find(p => p.id === product.id);
