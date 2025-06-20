@@ -8157,30 +8157,72 @@ input:focus-visible {
   max-width: 200px;
 }
 
-@media screen and (max-width: 424px) {
+@media screen and (max-width: 1424px) {
   .logo img {
     max-width: 148px;
   }
 }
 /* Header Menu and Submenu Css Start */
 .nav-menu {
-  gap: 32px;
+  gap: 50px !important; /* Adjust the gap to 20px by default */
 }
+
+/* Default for all screens */
 .nav-menu-header {
-  gap: 35px !important;
+  gap: 50px !important; /* Apply 20px gap for all screen sizes */
 }
 
-@media screen and (max-width: 1399px) {
-  .nav-menu {
-    gap: 24px;
+/* Apply same spacing on larger screens (≥992px) */
+@media (min-width: 992px) {
+  .nav-menu-header {
+    gap: 50px !important; /* Maintain consistent gap on desktops */
   }
 }
 
-@media screen and (max-width: 1199px) {
-  .nav-menu {
-    gap: 16px;
+/* For tablets and mid-sized screens (≥768px and ≤991px) */
+@media (max-width: 768px) and (max-width: 991px) {
+  .nav-menu-header {
+    gap: 50px !important; /* Adjust for tablet view */
   }
 }
+
+/* For mobile screens (≤576px) */
+@media (max-width: 576px) {
+  .nav-menu-header {
+    gap: 50px !important; /* Slightly smaller gap for mobile */
+  }
+}
+
+/* Add adjustments for .one-fd class if used */
+.one-fd {
+  gap: 20px !important; /* Base gap for small screens */
+}
+
+/* Apply wider gap on tablets (≥768px and ≤991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .one-fd {
+    gap: 25px !important;
+  }
+}
+
+/* Apply the same gap on desktops (≥992px) */
+@media (min-width: 992px) {
+  .one-fd {
+    gap: 50px !important;
+  }
+}
+
+
+/* For mobile screens (≤576px) */
+@media (max-width: 576px) {
+  .one-fd {
+    gap: 16px !important;
+  }
+}
+
+
+
+
 
 .nav-menu__item.activePage > a {
   color: hsl(var(--main));
