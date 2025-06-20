@@ -20,7 +20,28 @@ function addToCart(product, qty = 1) {
     }
 
     saveCart(cart);
-showSuccessMessage(`Item added to cart.`);
+    showSuccessMessage(`Item added to cart.`);
+}
+
+// NEW FUNCTION - Add this to handle the Add to Cart button clicks
+function handleAddToCart(product) {
+    const cart = getCart();
+    const existingProduct = cart.find(item => item.id === product.id);
+    const qtyInput = document.getElementById("qty");
+    const qty = parseInt(qtyInput?.value || "1");
+
+    if (existingProduct) {
+        // Update quantity if already in cart
+        existingProduct.quantity += qty;
+        showSuccessMessage(`Quantity updated to ${existingProduct.quantity}`);
+    } else {
+        // Add new product to cart
+        cart.push({ ...product, quantity: qty });
+        showSuccessMessage(`Item added to cart.`);
+    }
+
+    saveCart(cart);
+    updateAddToCartUI(product.id, qty);
 }
 
 function changeCartQty(productId, change) {
@@ -60,6 +81,24 @@ function updateCartBadge() {
 
     // Optional: store it too
     localStorage.setItem('cartItemCount', totalItems);
+}
+
+// Add this function if not already present
+function updateAddToCartUI(productId, quantity) {
+    const addToCartBtn = document.querySelector('.add-to-cart-btn');
+    if (addToCartBtn) {
+        addToCartBtn.style.display = 'none';
+    }
+
+    const inCartMessage = document.querySelector('.in-cart-message');
+    if (inCartMessage) {
+        inCartMessage.style.display = 'block';
+    }
+
+    const qtyInput = document.getElementById("qty");
+    if (qtyInput) {
+        qtyInput.value = quantity;
+    }
 }
 
 function showSuccessMessage(message) {
