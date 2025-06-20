@@ -2214,7 +2214,7 @@
                 <a href="https://graba2z.netlify.app/product-brand/asus" class="text-dark text-decoration-underline">See All</a>
             </div>
 
-            <div class="row g-3 justify-content-center" id="dell-products"></div>
+            <div class="row g-3 justify-content-center" id="asus-products"></div>
 
             </div>
         </section>
@@ -2231,7 +2231,7 @@
                 <a href="https://graba2z.netlify.app/product-brand/msi" class="text-dark text-decoration-underline">See All</a>
             </div>
 
-            <div class="row g-3 justify-content-center" id="dell-products"></div>
+            <div class="row g-3 justify-content-center" id="msi-products"></div>
 
             </div>
         </section>
@@ -3331,6 +3331,82 @@
 
                     // --------------Dell Deveices Category product  End----------------------
 
+                     // --------------Dell Deveices Category product  Start----------------------
+                    async function fetchAsusDevices() {
+                        function limitWords(text, wordLimit) {
+                            const words = text.trim().split(/\s+/);
+                            if (words.length <= wordLimit) return text;
+                            return words.slice(0, wordLimit).join(' ') + '...';
+                        }
+
+                        function getDisplayLimit() {
+                            const screenWidth = window.innerWidth;
+                            return screenWidth < 768 ? 6 : 12; // Mobile vs Desktop limit
+                        }
+
+                        try {
+                            const response = await fetch(`${API_CUSTOMER_URL}/api/products?brand=Asus`);
+                            const data = await response.json();
+
+                            const container = document.getElementById('asus-products');
+                            container.innerHTML = '';
+
+                            const products = Array.isArray(data) ? data : data.products;
+
+                            if (!products || products.length === 0) {
+                                container.innerHTML = '<p class="text-center w-100">No products available in Asus brand.</p>';
+                                return;
+                            }
+
+                            const displayLimit = getDisplayLimit();
+                            const limitedProducts = products.slice(0, displayLimit);
+
+                            limitedProducts.forEach(product => {
+                                const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
+
+                                const card = `
+<div class="col-6 col-sm-4 col-md-3 col-lg-2">
+  <div class="card h-100 border border-gray-100 rounded-16 position-relative" style="height: 400px; overflow: hidden;">
+    <a href="product?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
+      <div class="position-relative" style="height: 200px;">
+        <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
+        <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
+      </div>
+      <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px;">
+        <div class="d-flex justify-content-between mb-1">
+          <span class="badge bg-success">In stock</span>
+          <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+        </div>
+        <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
+          ${limitWords(product.name, 11)}
+        </h6>
+        <div class="mt-0">
+          <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>
+          <del class="text-muted fs-6">${product.selling_price} AED</del>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+        `;
+                                container.insertAdjacentHTML('beforeend', card);
+                            });
+
+                        } catch (error) {
+                            console.error('Error fetching products:', error);
+                            document.getElementById('asus-products').innerHTML = '<p class="text-danger text-center">Error loading Asus products.</p>';
+                        }
+                    }
+
+                    document.addEventListener('DOMContentLoaded', () => {
+                        fetchAsusDevices();
+                        window.addEventListener('resize', () => {
+                            fetchAsusDevices(); // Reload cards on screen resize
+                        });
+                    });
+
+                    // --------------Asus Deveices Category product  End----------------------
+
                     // --------------accessories Category product  Start----------------------
                     async function fetchAccessories() {
                         function limitWords(text, wordLimit) {
@@ -3484,78 +3560,7 @@
 
                     // --------------accer Category product  End----------------------
                    // --------------lenovo Category product  Start----------------------
-// async function fetchLenovo() {
-//     function limitWords(text, wordLimit) {
-//         const words = text.trim().split(/\s+/);
-//         if (words.length <= wordLimit) return text;
-//         return words.slice(0, wordLimit).join(' ') + '...';
-//     }
 
-//     function getDisplayLimit() {
-//         const screenWidth = window.innerWidth;
-//         return screenWidth < 768 ? 6 : 12; // Mobile vs Desktop
-//     }
-
-//     try {
-//         const response = await fetch(`${API_CUSTOMER_URL}/api/products?brand=Lenovo`);
-//         const data = await response.json();
-
-//         const container = document.getElementById('lenovo-container'); // fixed
-//         container.innerHTML = '';
-
-//         const products = Array.isArray(data) ? data : data.products;
-
-//         if (!products || products.length === 0) {
-//             container.innerHTML = '<p class="text-center w-100">No products available in Lenovo.</p>';
-//             return;
-//         }
-
-//         const displayLimit = getDisplayLimit();
-//         const limitedProducts = products.slice(0, displayLimit);
-
-//         limitedProducts.forEach(product => {
-//             const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
-
-//             const card = `
-// <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-//   <div class="card h-100 border border-gray-100 rounded-16 position-relative" style="height: 400px; overflow: hidden;">
-//     <a href="product?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
-//       <div class="position-relative" style="height: 200px; width: 200px;">
-//         <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
-//         <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
-//       </div>
-//       <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px; width: 200px;">
-//         <div class="d-flex justify-content-between mb-1">
-//           <span class="badge bg-success">In stock</span>
-//           <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
-//         </div>
-//         <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
-//           ${limitWords(product.name, 11)}
-//         </h6>
-//         <div class="mt-0">
-//           <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>
-//           <del class="text-muted fs-6">${product.selling_price} AED</del>
-//         </div>
-//       </div>
-//     </a>
-//   </div>
-// </div>
-//             `;
-//             container.insertAdjacentHTML('beforeend', card);
-//         });
-
-//     } catch (error) {
-//         console.error('Error fetching products:', error);
-//         document.getElementById('lenovo-container').innerHTML = '<p class="text-danger text-center">Error loading Lenovo products.</p>';
-//     }
-// }
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     fetchLenovo();
-//     window.addEventListener('resize', () => {
-//         fetchLenovo();
-//     });
-// });
 
  async function fetchLenovoDevices() {
                         function limitWords(text, wordLimit) {
@@ -3630,6 +3635,162 @@
                         });
                     });
 // --------------lenovo Category product  End----------------------
+
+   
+ // --------------MSI Category product  Start----------------------
+
+
+ async function fetchMSIDevices() {
+                        function limitWords(text, wordLimit) {
+                            const words = text.trim().split(/\s+/);
+                            if (words.length <= wordLimit) return text;
+                            return words.slice(0, wordLimit).join(' ') + '...';
+                        }
+
+                        function getDisplayLimit() {
+                            const screenWidth = window.innerWidth;
+                            return screenWidth < 768 ? 6 : 12; // Correct breakpoint for mobile
+                        }
+
+                        try {
+                            const response = await fetch(`${API_CUSTOMER_URL}/api/products?brand=MSI`);
+                            const data = await response.json();
+
+                            const container = document.getElementById('msi-products');
+                            container.innerHTML = ''; // Clear previous cards
+
+                            const products = Array.isArray(data) ? data : data.products;
+
+                            if (!products || products.length === 0) {
+                                container.innerHTML = '<p class="text-center w-100">No products available in MSI brand.</p>';
+                                return;
+                            }
+
+                            const displayLimit = getDisplayLimit();
+                            const limitedProducts = products.slice(0, displayLimit);
+
+                            limitedProducts.forEach(product => {
+                                const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
+
+                                const card = `
+<div class="col-6 col-sm-4 col-md-3 col-lg-2">
+  <div class="card h-100 border border-gray-100 rounded-16 position-relative" style="height: 400px; overflow: hidden;">
+    <a href="product?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
+      <div class="position-relative" style="height: 200px;">
+        <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
+        <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
+      </div>
+      <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px;">
+        <div class="d-flex justify-content-between mb-1">
+          <span class="badge bg-success">In stock</span>
+          <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+        </div>
+        <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
+          ${limitWords(product.name, 11)}
+        </h6>
+        <div class="mt-0">
+          <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>
+          <del class="text-muted fs-6">${product.selling_price} AED</del>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+        `;
+                                container.insertAdjacentHTML('beforeend', card);
+                            });
+
+                        } catch (error) {
+                            console.error('Error fetching products:', error);
+                            document.getElementById('msi-products').innerHTML = '<p class="text-danger text-center">Error loading MSI products.</p>';
+                        }
+                    }
+
+                    document.addEventListener('DOMContentLoaded', () => {
+                        fetchMSIDevices();
+                        window.addEventListener('resize', () => {
+                            fetchMSIDevices(); // Reload cards on screen resize
+                        });
+                    });
+// --------------MSI Category product  End----------------------
+
+
+ // --------------MSI Category product  Start----------------------
+
+
+ async function fetchDellDevices() {
+                        function limitWords(text, wordLimit) {
+                            const words = text.trim().split(/\s+/);
+                            if (words.length <= wordLimit) return text;
+                            return words.slice(0, wordLimit).join(' ') + '...';
+                        }
+
+                        function getDisplayLimit() {
+                            const screenWidth = window.innerWidth;
+                            return screenWidth < 768 ? 6 : 12; // Correct breakpoint for mobile
+                        }
+
+                        try {
+                            const response = await fetch(`${API_CUSTOMER_URL}/api/products?brand=Dell`);
+                            const data = await response.json();
+
+                            const container = document.getElementById('dell-products');
+                            container.innerHTML = ''; // Clear previous cards
+
+                            const products = Array.isArray(data) ? data : data.products;
+
+                            if (!products || products.length === 0) {
+                                container.innerHTML = '<p class="text-center w-100">No products available in Dell brand.</p>';
+                                return;
+                            }
+
+                            const displayLimit = getDisplayLimit();
+                            const limitedProducts = products.slice(0, displayLimit);
+
+                            limitedProducts.forEach(product => {
+                                const image = product.image_path ? product.image_path.replace(/\\/g, '/') : 'assets/images/thumbs/default.png';
+
+                                const card = `
+<div class="col-6 col-sm-4 col-md-3 col-lg-2">
+  <div class="card h-100 border border-gray-100 rounded-16 position-relative" style="height: 400px; overflow: hidden;">
+    <a href="product?slug=${product.slug}" class="d-block h-100 text-decoration-none text-dark">
+      <div class="position-relative" style="height: 200px;">
+        <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;">&#9825;</span>
+        <img src="${API_ADMINGRAB_URL}/${image}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
+      </div>
+      <div class="px-10 d-flex flex-column justify-content-between" style="height: 120px;">
+        <div class="d-flex justify-content-between mb-1">
+          <span class="badge bg-success">In stock</span>
+          <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+        </div>
+        <h6 class="card-title mb-1" style="font-size: 14px; line-height: 1.2em;">
+          ${limitWords(product.name, 11)}
+        </h6>
+        <div class="mt-0">
+          <p class="card-price text-danger fs-6 fw-bold mb-0">${product.offer_price} AED</p>
+          <del class="text-muted fs-6">${product.selling_price} AED</del>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+        `;
+                                container.insertAdjacentHTML('beforeend', card);
+                            });
+
+                        } catch (error) {
+                            console.error('Error fetching products:', error);
+                            document.getElementById('dell-products').innerHTML = '<p class="text-danger text-center">Error loading Dell products.</p>';
+                        }
+                    }
+
+                    document.addEventListener('DOMContentLoaded', () => {
+                        fetchDellDevices();
+                        window.addEventListener('resize', () => {
+                            fetchDellDevices(); // Reload cards on screen resize
+                        });
+                    });
+// --------------Dell Category product  End----------------------
 
                     // --------------AllInOne Category product  Start----------------------
 
