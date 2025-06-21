@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>V Perfumes</title>
+   
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for icons -->
@@ -14,6 +12,38 @@
     <!-- Slick CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title -->
+    <title> Graba2z- E-commerce website</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/icon/favicon.png">
+
+    <link rel="stylesheet" href="assets/css/footer.css" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- select 2 -->
+    <link rel="stylesheet" href="assets/css/select2.min.css">
+    <!-- Slick -->
+    <link rel="stylesheet" href="assets/css/slick.css">
+
+
+
+    <!-- Jquery Ui -->
+    <link rel="stylesheet" href="assets/css/jquery-ui.css">
+    <!-- animate -->
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="assets/css/aos.css">
+    <!-- Main css -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet">
+    <script src="/assets/js/wishlist.js"></script>
+<script src="/assets/js/cart.js"></script>
   </head>
   <style>
     .slider-container {
@@ -152,8 +182,812 @@
       color: #F1618B;
     }
   </style>
+
+
+
+<style>
+
+
+
+/* Apply padding-bottom on mobile and tablet screens */
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 60px; /* Adjust based on your footer height */
+  }
+}
+        @media (min-width: 768px) {
+            #banner-prev {
+                margin-top: 80px;
+                /* Replace with your value */
+            }
+        }
+
+        @media (min-width: 768px) {
+            #banner-next {
+                margin-top: 80px;
+                /* Replace with your value */
+            }
+        }
+
+        /* Custom dropdown styling */
+        .dropdown-menu {
+            min-width: 220px;
+            border: 1px solid rgba(0, 0, 0, .15);
+        }
+
+        .dropdown-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .dropdown-item:hover {
+            color: #86c232;
+        }
+
+        @media (max-width: 768px) {
+            .border-right-item {
+                border-right: none !important;
+            }
+
+            .dropdown-menu {
+                position: fixed !important;
+                top: auto !important;
+                left: 50% !important;
+                transform: translateX(-50%);
+                width: 90%;
+                max-width: 300px;
+            }
+
+            .nav-link {
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        /* Animation */
+        .slide-in {
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: all 1s ease-in-out;
+        }
+
+        .slide-in.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .custom-heading {
+            padding-left: 10px;
+            box-shadow: none;
+            background-color: transparent;
+        }
+
+        /* mobile responsive start */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: auto;
+            background-color: #ffffff;
+            overflow-x: hidden;
+            transition: 0.3s ease;
+            padding-top: 60px;
+            z-index: 999;
+        }
+
+        /* Sidebar content scrollable */
+        .sidebar-inner {
+            max-height: 100%;
+            overflow-y: auto;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 12px 20px;
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            background: #fff4f4;
+            color: rgb(49, 136, 49);
+        }
+
+        /* Menu button */
+        .menu-btn {
+            display: none;
+            position: fixed;
+            top: 61px;
+            right: 31px;
+            font-size: 24px;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            padding: 10px;
+            z-index: 1000;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        /* Show on mobile and tablet only */
+        @media (max-width: 1024px) {
+            .menu-btn {
+                display: block;
+            }
+
+            .sidebar {
+                display: block;
+            }
+        }
+
+        /* Hide on larger screens */
+        @media (min-width: 1025px) {
+            .sidebar {
+                display: none !important;
+            }
+
+            .menu-btn {
+                display: none !important;
+            }
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* mobile responsive end */
+        /* first dropdown */
+        /* Custom Dropdown Styles */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            min-width: 180px;
+            z-index: 1000;
+            padding: 8px 0;
+            box-shadow: 0 4px 8px 0 rgba(59, 58, 58, 0.19), 0 6px 20px 0 rgba(59, 58, 58, 0.19) !important;
+
+        }
+
+        /* Hover effects for dropdown */
+        @media (min-width: 992px) {
+            .dropdown:hover .dropdown-menu {
+                display: block;
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            /* Smooth transition for dropdown items */
+            .dropdown-item {
+                transition: all 0.2s ease;
+                /* padding: 8px 16px !important; */
+            }
+
+            .dropdown-item:hover {
+                color: #90C309 !important;
+                background-color: #f8f9fa;
+            }
+        }
+
+        /* Dropdown items styling */
+        .dropdown-item {
+            color: #333 !important;
+            font-size: 14px !important;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        /* Icon spacing */
+        .dropdown-item i {
+            width: 20px;
+            text-align: center;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        /* Link hover effect */
+        .hover-text-decoration-underline:hover {
+            text-decoration: underline !important;
+        }
+
+        /*  */
+        /* drop panga */
+        /* Hover dropdown styles */
+        .user-dropdown.show {
+            display: block !important;
+        }
+
+
+        .user-menu {
+            position: relative;
+        }
+
+        .user-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            width: 140px;
+            z-index: 1000;
+            padding: 8px 0;
+            box-shadow: 0 4px 8px 0 rgba(59, 58, 58, 0.19), 0 6px 20px 0 rgba(59, 58, 58, 0.19) !important;
+        }
+
+        @media (min-width: 768px) {
+            .user-menu:hover .user-dropdown {
+                display: block;
+            }
+        }
+
+        .user-item {
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .user-item:hover {
+            color: #90c309;
+            background-color: #f8f9fa;
+        }
+
+        /* .user-divider {
+    border-top: 1px solid #eee;
+} */
+
+        .user-dropdown.show {
+            display: block !important;
+        }
+
+        /* Added spacing for icons */
+        .user-item i {
+            width: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        /* cart circle css start  */
+        .cart-item-count {
+            min-width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 12px;
+            color: #fff;
+            background-color: #A3D02C;
+            position: absolute;
+            top: -12px;
+            right: -11px;
+            padding: 0 6px;
+            /* Extra space for 2-3 digit numbers */
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* whislist circle css start  */
+        .wishlist-item-count {
+            min-width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 12px;
+            color: #fff;
+            background-color: #A3D02C;
+            position: absolute;
+            top: -12px;
+            right: -11px;
+            padding: 0 6px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+    </style>
+    <style>
+        @media (min-width: 768px) {
+            #banner-prev {
+                margin-top: 80px;
+                /* Replace with your value */
+            }
+        }
+
+        @media (min-width: 768px) {
+            #banner-next {
+                margin-top: 80px;
+                /* Replace with your value */
+            }
+        }
+
+        /* Custom dropdown styling */
+        .dropdown-menu {
+            min-width: 220px;
+            border: 1px solid rgba(0, 0, 0, .15);
+        }
+
+        /* .dropdown-item {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        } */
+
+        .dropdown-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .border-right-item {
+                border-right: none !important;
+            }
+
+            .dropdown-menu {
+                position: fixed !important;
+                top: auto !important;
+                left: 50% !important;
+                transform: translateX(-50%);
+                width: 90%;
+                max-width: 300px;
+            }
+
+            .nav-link {
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        /* mobile res start */
+        /* Sidebar container */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #ffffff;
+            overflow-x: hidden;
+            transition: 0.3s ease;
+            padding-top: 60px;
+            z-index: 999;
+        }
+
+        /* Open state */
+        .sidebar.open {
+            width: 250px;
+        }
+
+        /* Sidebar content scrollable */
+        .sidebar-inner {
+            max-height: 100%;
+            overflow-y: auto;
+        }
+
+        /* Sidebar links */
+        .sidebar a {
+            display: block;
+            padding: 12px 20px;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            background: #fff4f4;
+            color: rgb(49, 136, 49);
+        }
+
+        /* Open Button (☰) */
+        .menu-open-btn {
+            display: none;
+            position: absolute;
+            top: 61px;
+            right: 31px;
+            font-size: 24px;
+            background-color: #ffffff;
+            color: #000;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        /* Close Button (✖) inside Sidebar */
+        .menu-close-btn {
+            display: none;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            background: transparent;
+            border: none;
+            color: red;
+            z-index: 1001;
+            cursor: pointer;
+        }
+
+        /* Responsive Display Settings */
+        @media (max-width: 1024px) {
+            .menu-open-btn {
+                display: block;
+            }
+
+            .sidebar {
+                display: block;
+            }
+
+            .sidebar.open .menu-close-btn {
+                display: block;
+            }
+        }
+
+        @media (min-width: 1025px) {
+
+            .sidebar,
+            .menu-open-btn,
+            .menu-close-btn {
+                display: none !important;
+            }
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* hover effect on top navbar css start  */
+        #hover:hover {
+            color: #86c232 !important;
+        }
+
+        .dropdown-item:hover {
+            color: #86c232 !important;
+        }
+
+        /* first dropdown */
+        /* Custom Dropdown Styles */
+
+
+        /* cart circle css start  */
+        .cart-item-count {
+            min-width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 12px;
+            color: #fff;
+            background-color: #86c232;
+            position: absolute;
+            top: -12px;
+            right: -11px;
+            padding: 0 6px;
+            /* Extra space for 2-3 digit numbers */
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* whislist circle css start  */
+        .wishlist-item-count {
+            min-width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 12px;
+            color: #fff;
+            background-color: #86c232;
+            position: absolute;
+            top: -12px;
+            right: -11px;
+            padding: 0 6px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+    </style>
   <body>
-   
+     <!-- ======================= top Header Start ========================= -->
+    <div class="header-top flex-between" style="background-color: #a3d02c;">
+        <div class="container container-lg">
+            <div class="flex-between flex-wrap gap-8">
+                <ul class="flex-align flex-wrap d-none d-md-flex">
+                    <!-- <li class="border-right-item"><a href="#shipping" class="text-white text-sm hover-text-decoration-underline">Become A Seller</a></li> -->
+                    <li class="border-right-item"><a href="./about-us"
+                            class="text-white text-sm hover-text-decoration-underline">About Us</a></li>
+                    <li class="border-right-item"><a href="./contact"
+                            class="text-white text-sm hover-text-decoration-underline">Contact Us</a></li>
+                    <li class="border-right-item dropdown hover-dropdown">
+                        <a href="#" class="text-white text-sm hover-text-decoration-underline" id="policyDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            All Policy
+                        </a>
+                        <div class="dropdown-menu shadow-sm" aria-labelledby="policyDropdown">
+                            <a class="dropdown-item" href="./terms-conditions">
+                                <i class="ph ph-file-text me-10 text-sm"></i> Terms & Condition
+                            </a>
+                            <a class="dropdown-item" href="./refund-and-return">
+                                <i class="ph ph-arrow-counter-clockwise me-10 text-sm"></i> Refund and Returns
+                            </a>
+                            <a class="dropdown-item" href="./cookies-policy">
+                                <i class="ph ph-cookie me-10 text-sm"></i> Cookies Policies
+                            </a>
+                            <a class="dropdown-item" href="./privacy-policy">
+                                <i class="ph ph-shield-check me-10 text-sm"></i> Privacy Policies
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="header-top__right flex-align flex-wrap">
+                    <li class="on-hover-item border-right-item border-right-item-sm-space has-submenu arrow-white">
+                        <a href="javascript:void(0)" class="text-white text-sm py-8">Help Center</a>
+                        <ul class="on-hover-dropdown common-dropdown common-dropdown--sm max-h-200 scroll-sm px-0 py-8">
+                            <li class="nav-submenu__item">
+                                <a href="#"
+                                    class="nav-submenu__link hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0">
+                                    <span class="text-sm d-flex"><i class="ph ph-headset"></i></span>
+                                    Call Center
+                                </a>
+                            </li>
+                            <li class="nav-submenu__item">
+                                <a href="#"
+                                    class="nav-submenu__link hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0">
+                                    <span class="text-sm d-flex"><i class="ph ph-chat-circle-dots"></i></span>
+                                    Live Chat
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item user-menu position-relative w-auto">
+                        <a href="#" class="text-white text-sm py-8 flex-align gap-6 nav-link user-toggle"
+                            role="button" id="userMenuButton">
+                            <span><i class="ph ph-user-circle"></i></span>
+                            <span class="hover-text-decoration-underline d-none d-md-inline">My Account</span>
+                        </a>
+                        <ul class="user-dropdown shadow-sm">
+                            <li><a class="user-item px-12 py-5" href="account"><i class="ph ph-user me-8"></i>Account</a></li>
+                            <!-- <li><hr class="user-divider my-4 mx-12"></li> -->
+                            <li>
+                                <a class="user-item px-12 py-5" href="register" id="auth-link">
+                                    <i class="ph ph-sign-in me-8" id="auth-icon"></i>
+                                    <span id="auth-text">Sign In</span>
+                                </a>
+                            </li>
+                            <li><a class="user-item px-12 py-5" href="track-order"><i class="ph ph-truck me-8"></i>Track
+                                    Order</a></li>
+                            <li><a class="user-item px-12 py-5" href="help-center"><i
+                                        class="ph ph-question me-8"></i>Help Center</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- ======================= top Header Start ========================= -->
+    <!-- <div id="top-header"></div> -->
+
+    <!-- ======================= Middle Header Start ========================= -->
+    <header class="header-middle bg-white border-bottom border-gray-100">
+        <div class="container container-lg">
+            <nav class="header-inner flex-between">
+                <!-- Logo Start -->
+                <div class="logo">
+                    <a href="index" class="link">
+                        <img src="assets/images/logo/logo1.svg" style="width: 170px; height: 70px;" alt="Logo">
+                    </a>
+                </div>
+                <!-- Logo End  -->
+
+                <!-- form location Start -->
+                <form id="search-form" class="flex-align flex-wrap form-location-wrapper">
+                    <div
+                        class="search-category d-flex h-48 select-border-end-0 radius-end-0 search-form d-sm-flex d-none">
+                        <div class="search-form__wrapper position-relative">
+                            <input type="text" id="search-input"
+                                class="search-form__input common-input py-13 ps-16 pe-18 rounded-pill pe-44"
+                                placeholder="Search for a product or brand">
+                            <button type="submit"
+                                class="w-32 h-32 rounded-circle flex-center text-xl text-white position-absolute top-50 translate-middle-y inset-inline-end-0 me-8"
+                                style="background-color: #86c232;">
+                                <i class="ph ph-magnifying-glass"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+
+                <!-- form location start -->
+
+                <!-- Header Middle Right start -->
+                <div class="header-right flex-align d-lg-block d-none">
+                    <div class="flex-align flex-wrap gap-12">
+                        <button type="button" class="search-icon flex-align d-lg-none d-flex gap-4 item-hover">
+                            <span class="text-2xl text-gray-700 d-flex position-relative item-hover__text">
+                                <i class="ph ph-magnifying-glass"></i>
+                            </span>
+                        </button>
+                        <a href="wishlist" class="flex-align gap-4 item-hover">
+                            <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
+                                <i class="ph ph-heart"></i>
+                                <span id="wishlist-item-count" class="wishlist-item-count">0</span>
+                            </span>
+                            <span class="text-md text-gray-500 item-hover__text d-none d-lg-flex">Wishlist</span>
+                        </a>
+                        <a href="cart" class="flex-align gap-4 item-hover">
+                            <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
+                                <i class="ph ph-shopping-cart-simple"></i>
+                                <span class="cart-item-count">0</span>
+                            </span>
+                            <span class="text-md text-gray-500 item-hover__text d-none d-lg-flex">Cart</span>
+                        </a>
+
+                    </div>
+                </div>
+                <!-- Header Middle Right End  -->
+            </nav>
+        </div>
+
+
+        <!-- ===================mobile responsive design ==============================  -->
+
+        <!-- Open Sidebar Button -->
+        <div class="menu-open-btn" onclick="toggleSidebar()">☰</div>
+
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar">
+            <!-- Close Sidebar Button -->
+            <button class="menu-close-btn" onclick="toggleSidebar()">✖</button>
+            <div class="sidebar-inner">
+                <ul>
+
+                    <a href="https://graba2z.netlify.app/product-category/all-in-one">All In One </a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/apple-all-in-one"> Apple All In One</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/hp-all-in-one"> HP All In One</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/desktop"> Desktops </a>
+                    </li>
+                    
+                        <a href="https://graba2z.netlify.app/product-category/lenovo-desktops">  Lenovo Desktop</a>
+                    </li>
+                   
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/monitors"> Monitors</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/msi-monitors"> MSI Monitors</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/mobiles"> Mobiles</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/apple">Apple Mobile</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/laptops">Laptops</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/asus-laptops"> Asus Laptops</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/dell-laptops"> Dell Laptops</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/pirnters-copier">Pirnters Copier</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/hp-printers-copier"> Hp Printers Copier</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/routers"> Routers </a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/tp-link-routers"> Tp Link Routers</a>
+
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/projector">
+                            Projector</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/lg"> 
+                            LG Products</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/accessories"> Accessories</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/rams"> Rams</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/mouse"> Mouse
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/networking"> Networking</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/cables"> Cables</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/usb-dongles"> Usb Dongles</a>
+                    </li>
+                     <li><a href="https://graba2z.netlify.app/product-category/storage-devices">Storage Devices</a></li>
+                    <li><a href="https://graba2z.netlify.app/product-category/bags">Bags</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- ===================== mobile responsive end ==============================  -->
+
+    </header>
+    <!-- ======================= Middle Header End ========================= -->
+
+    <!-- ==================== category Header Start Here ==================== -->
+    <header class="header bg-white border-bottom border-gray-100">
+        <div class="container container-lg">
+            <nav class="header-inner d-flex justify-content-center gap-2">
+                <div class="flex-align ">
+
+
+                    <!-- Category Dropdown Start -->
+                    <div class="category on-hover-item">
+                        <div
+                            class="responsive-dropdown on-hover-dropdown common-dropdown nav-submenu p-0 submenus-submenu-wrapper">
+                            <button type="button"
+                                class="close-responsive-dropdown rounded-circle text-xl position-absolute inset-inline-end-0 inset-block-start-0 mt-4 me-8 d-lg-none d-flex">
+                                <i class="ph ph-x"></i>
+                            </button>
+
+                            <!-- Logo Start -->
+                            <div class="logo px-16 d-lg-none d-block">
+                                <a href="index" class="link">
+                                    <img src="assets/images/logo/logo.png" alt="Logo">
+                                </a>
+                            </div>
+                            <!-- Logo End -->
+
+                            <ul class="scroll-sm p-0 py-8 w-300 max-h-400 overflow-y-auto" id="categoryDropdown">
+                                <!-- Categories will be loaded dynamically here -->
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Category Dropdown End  -->
+
+                    <!-- Menu Start  -->
+                    <div class="header-menu d-lg-block d-none">
+                        <!-- Nav Menu Start -->
+                        <ul class="nav-menu-header  one-fd flex-align" id="mainMenu">
+                            <!-- Main menu items will be loaded dynamically here -->
+                        </ul>
+                        <!-- Nav Menu End -->
+                    </div>
+                    <!-- Menu End  -->
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ==================== category Header End Here ==================== -->
+
     <!-- Spring Slider Container -->
     <div class="container-fluid min-vh-40 d-flex p-0">
       <div class="spring-slider w-100 h-65">
@@ -482,5 +1316,721 @@
         });
       });
     </script>
+
+
+<!-- Footer -->
+
+
+    <!-- <div id="footer"></div> -->
+    <!-- Footer Start -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+
+                    <img alt="Graba2z logo with a shopping cart icon" class="mb-3"
+                        src="https://graba2z.netlify.app/assets/images/logo/logo.png"
+                        style="width: 200px; height: 70px;">
+                    <p style="color: white; margin-left: 7px;">Subscribe to our newsletter</p>
+                    <div class="subscribe d-flex">
+                        <input type="email" placeholder="Enter your email address">
+                        <button type="button">Subscribe</button>
+                    </div>
+                    <div class="social-icons mt-3">
+                        <a href="https://www.facebook.com/grabatoz"><i class="fab fa-facebook"></i></a>
+                        <a href="https://twitter.com/GrabAtoz"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/grabatoz/#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/grabatoz/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.pinterest.com/grabatoz/"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 style="color: white; font-size: 20px;">Top Categories</h5>
+                    <ul class="list-unstyled" id="top-categories">
+                        <!-- <li><a href="#">Laptops</a></li>
+                    <li><a href="#">Routers</a></li>
+                    <li><a href="#">Gaming Hub</a></li>
+                    <li><a href="#">Tablets</a></li>
+                    <li><a href="#">Desktop</a></li>
+                    <li><a href="#">Mobile</a></li> -->
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 style="color: white; font-size: 20px;">More Categories</h5>
+                    <ul class="list-unstyled" id="more-categories">
+                          <li><a href="https://graba2z.netlify.app/product-category/storage-devices">Storage Devices</a></li>
+<li><a href="https://graba2z.netlify.app/product-category/bags">Bags</a></li>
+                        <!-- <li><a href="/shop">Projector</a></li>
+                    <li><a href="/shop">Monitors</a></li>
+                    <li><a href="/shop">Scanners</a></li>
+                    <li><a href="/shop">Copier</a></li>
+                    <li><a href="/shop">Printers</a></li>
+                    <li><a href="/shop">Storage Solution</a></li> -->
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 style="color: white; font-size: 20px;">Legal</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="./terms-conditions">Terms & Condition</a></li>
+                        <li><a href="./refund-and-return">Refund and Returns</a></li>
+                        <li><a href="./cookies-policy">Cookies Policies</a></li>
+
+                        <li><a href="./privacy-policy">Privacy Policies</a></li>
+                        <li> <a href="./sitemap" data-bs-toggle="modal"
+                                            data-bs-target="#remoteDeliveryModal" style="color: #ffffff;">
+                                            Site Map
+                                        </a></li>
+                             <li><a href="./Blogs.html">Blogs</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 style="color: white; font-size: 20px;">Support</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="./about-us">About us</a></li>
+                        <li><a href="./contact">Contact us</a></li>
+                        <li><a href="./bulk-purchase">Bulk Purchase</a></li>
+                        <li><a href="./bulk-purchase">Corporate Deal</a></li>
+                    </ul>
+                    <p style="color: white; "><i class="fas fa-phone"></i> (+971) 4-354 0566</p>
+                    <p style="color: white;"><i class="fas fa-envelope"></i> Support@graba2z.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script></script>
+    <!-- Footer Bottom -->
+    <footer class="footer-bottom">
+        <div
+            class="container-fluid px-4 d-flex flex-column flex-md-row justify-content-between align-items-center text-center text-md-start">
+            <p class="mb-2 mb-md-0" style="
+                        font-family: 'Roboto', sans-serif !important;
+                        font-weight: 600 !important;
+                        font-size: 16px !important;
+                        line-height: 16px ;
+                        color: #000 !important;
+                        ">
+                        © 2025 Grabatoz Powered By Crown Excel
+                        </p>
+            <img src="https://graba2z.netlify.app/assets/images/thumbs/Color-Icon-1.svg" alt="Payment Methods">
+            <div>
+                <a href="https://www.apple.com/store" class="me-2">
+                    <img src="https://graba2z.netlify.app/assets/images/thumbs/app_store.png" alt="App Store">
+                </a>
+                <a href="https://play.google.com/store/apps?hl=en">
+                    <img src="https://graba2z.netlify.app/assets/images/thumbs/google_play.png" alt="Google Play">
+                </a>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+    </footer>
+    <div>
+        <!-- Mobile Nav -->
+        <div class="mobile-nav">
+            <a href="index">
+                <i class="ph ph-house"></i>
+                <span>Home</span>
+            </a>
+            <a href="/shop">
+                <i class="ph ph-grid-four icon-hover"></i>
+                <span>Shop</span>
+            </a>
+            <a href="cart" class="flex-align gap-4 item-hover">
+                <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
+                    <i class="ph ph-shopping-cart-simple"></i>
+
+                </span>
+                <span>Cart</span>
+            </a>
+            <a href="tel:+97143540566" target="_blank">
+                <i class="ph ph-whatsapp-logo icon-hover" style="color: #25D366;"></i>
+                <span>Chat</span>
+            </a>
+        </div>
+        <script>
+            fetch('./assets/includes/footer')
+                .then(res => res.text())
+                .then(data => document.getElementById('footer').innerHTML = data);
+        </script>
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery-3.7.1.min.js"></script>
+        <script src="assets/js/boostrap.bundle.min.js"></script>
+        <script src="assets/js/phosphor-icon.js"></script>
+        <script src="assets/js/select2.min.js"></script>
+        <script src="assets/js/slick.min.js"></script>
+        <script src="assets/js/count-down.js"></script>
+        <script src="assets/js/jquery-ui.js"></script>
+        <script src="assets/js/wow.min.js"></script>
+        <script src="assets/js/aos.js"></script>
+        <script src="assets/js/marque.min.js"></script>
+        <script src="assets/js/vanilla-tilt.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Fetch categories from your API
+                fetchCategories();
+            });
+
+            async function fetchCategories() {
+                try {
+                    const response = await fetch(`${API_CUSTOMER_URL}/api/product-categories`);
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch categories');
+                    }
+
+                    const data = await response.json();
+                    const categories = data.categories || [];
+
+                    // Organize categories by parent-child relationship
+                    const categoryMap = organizeCategories(categories);
+
+                    // Render the dropdown menu
+                    renderCategoryDropdown(categoryMap);
+
+                    // Render the main menu
+                    renderMainMenu(categoryMap);
+
+                } catch (error) {
+                    console.error('Error loading categories:', error);
+                    // You might want to show a user-friendly error message here
+                }
+            }
+
+            function organizeCategories(categories) {
+                const categoryMap = {
+                    parentCategories: [],
+                    childCategories: {}
+                };
+
+                // First pass: identify all parent categories
+                categories.forEach(category => {
+                    if (!category.parent_category) {
+                        categoryMap.parentCategories.push(category);
+                        categoryMap.childCategories[category.id] = [];
+                    }
+                });
+
+                // Second pass: assign child categories to their parents
+                categories.forEach(category => {
+                    if (category.parent_category) {
+                        const parentId = category.parent_category;
+                        if (categoryMap.childCategories[parentId]) {
+                            categoryMap.childCategories[parentId].push(category);
+                        } else {
+                            // Handle case where parent category might not exist
+                            console.warn(`Parent category ${parentId} not found for child ${category.id}`);
+                        }
+                    }
+                });
+
+                return categoryMap;
+            }
+            function slugify(text) {
+                return text.toString()
+                    .toLowerCase()
+                    .replace(/\s+/g, '-')           // Replace spaces with -
+                    .replace(/[^\w\-]+/g, '')       // Remove non-word chars
+                    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+                    .replace(/^-+/, '')             // Trim - from start
+                    .replace(/-+$/, '');            // Trim - from end
+            }
+            function renderCategoryDropdown(categoryMap) {
+                const dropdownContainer = document.getElementById('categoryDropdown');
+                dropdownContainer.innerHTML = '';
+
+                categoryMap.parentCategories.forEach(parentCategory => {
+                    const hasChildren = categoryMap.childCategories[parentCategory.id]?.length > 0;
+
+                    const listItem = document.createElement('li');
+                    listItem.className = hasChildren ? 'has-submenus-submenu' : '';
+
+                    listItem.innerHTML = `
+            <a href="/product-category/${slugify(parentCategory.name)}" 
+               class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
+                <span>${parentCategory.name}</span>
+                ${hasChildren ? '<span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>' : ''}
+            </a>
+        `;
+
+                    if (hasChildren) {
+                        const submenu = document.createElement('div');
+                        submenu.className = 'submenus-submenu py-16';
+
+                        const title = document.createElement('h6');
+                        title.className = 'text-lg px-16 submenus-submenu__title';
+                        title.textContent = parentCategory.name;
+
+                        const submenuList = document.createElement('ul');
+                        submenuList.className = 'submenus-submenu__list max-h-300 overflow-y-auto scroll-sm';
+
+                        categoryMap.childCategories[parentCategory.id].forEach(childCategory => {
+                            const childItem = document.createElement('li');
+                            childItem.innerHTML = `<a href="/product-category/${slugify(childCategory.name)}">${childCategory.name}</a>`;
+                            submenuList.appendChild(childItem);
+                        });
+
+                        submenu.appendChild(title);
+                        submenu.appendChild(submenuList);
+                        listItem.appendChild(submenu);
+                    }
+
+                    dropdownContainer.appendChild(listItem);
+                });
+            }
+
+            function renderMainMenu(categoryMap) {
+                const menuContainer = document.getElementById('mainMenu');
+                menuContainer.innerHTML = '';
+
+                categoryMap.parentCategories.forEach(parentCategory => {
+                    const hasChildren = categoryMap.childCategories[parentCategory.id]?.length > 0;
+
+                    const menuItem = document.createElement('li');
+                    menuItem.className = `on-hover-item nav-menu__item ${hasChildren ? 'has-submenu-header' : ''}`;
+
+                    menuItem.innerHTML = `
+  <a href="/product-category/${slugify(parentCategory.name)}" 
+     class="nav-menu__link">${parentCategory.name}</a>
+`;
+
+
+                    if (hasChildren) {
+                        const submenu = document.createElement('ul');
+                        submenu.className = 'on-hover-dropdown common-dropdown nav-submenu scroll-sm';
+
+                        categoryMap.childCategories[parentCategory.id].forEach(childCategory => {
+                            const submenuItem = document.createElement('li');
+                            submenuItem.className = 'common-dropdown__item nav-submenu__item';
+                            submenuItem.innerHTML = `
+                    <a href="/product-category/${slugify(childCategory.name)}" 
+                       class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">
+                        ${childCategory.name}
+                    </a>
+                `;
+                            submenu.appendChild(submenuItem);
+                        });
+
+                        menuItem.appendChild(submenu);
+                    }
+
+                    menuContainer.appendChild(menuItem);
+                });
+            }
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                displayWishlist();
+                updateWishlistBadge();
+            });
+
+            function limitWords(text, limit) {
+                const words = text.trim().split(/\s+/);
+                return words.length > limit ? words.slice(0, limit).join(" ") + "..." : text;
+            }
+
+            function displayWishlist() {
+                const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                const container = document.getElementById('wishlist-container');
+
+                if (wishlist.length === 0) {
+                    container.innerHTML = '<p class="text-center">Your wishlist is empty.</p>';
+                    return;
+                }
+
+                container.innerHTML = '';
+                wishlist.forEach(product => {
+                    const imgPath = product.image_path.replace(/\\/g, '/');
+                    const item = `
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+      <div class="card border border-gray-100 rounded-16 h-100 position-relative">
+<a href="/product/${product.slug}" class="d-block text-decoration-none text-dark h-100">
+    
+          <!-- Image Section -->
+          <div class="position-relative" style="height: 200px;">
+            <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;" onclick="removeFromWishlist(${product.id})">&#10084;</span>
+            <img src="${API_CUSTOMER_URL}/${imgPath}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
+          </div>
+
+          <!-- Description -->
+          <div class="p-2 d-flex flex-column justify-content-between" style="height: 80px;">
+            <div class="d-flex justify-content-between mb-1">
+              <span class="badge bg-success">In stock</span>
+              <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+            </div>
+            <h6 class="card-title mb-1" style="font-size: 13px; line-height: 1.3em; height: 2.6em; overflow: hidden;">
+              ${limitWords(product.name, 15)}
+            </h6>
+          </div>
+        </a>
+        <div class="card-footer text-center border-0">
+          <button class="btn btn-danger btn-sm" onclick="removeFromWishlist(${product.id})">Remove</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+      `;
+                    container.innerHTML += item;
+                });
+            }
+            function removeFromWishlist(id) {
+                let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                wishlist = wishlist.filter(item => item.id !== id);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                displayWishlist();
+                updateWishlistBadge();
+            }
+
+            // function updateWishlistBadge() {
+            //     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            //     const badge = document.getElementById('wishlist-item-count');
+            //     if (badge) badge.textContent = wishlist.length;
+            // }
+
+
+            // Call this function on page load to ensure the badge is updated dynamically 
+            // window.onload = updateWishlistBadge;
+
+
+            function toggleIcon(button) {
+                let icon = button.querySelector(".icon-toggle");
+                if (icon.classList.contains("bi-plus")) {
+                    icon.classList.remove("bi-plus");
+                    icon.classList.add("bi-dash");
+                } else {
+                    icon.classList.remove("bi-dash");
+                    icon.classList.add("bi-plus");
+                }
+            }
+        </script>
+        <script>
+            fetch('./topHeader')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('top-header').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading header:', error));
+        </script>
+        <script src="./apiConfig/apiConfig.js"></script>
+
+
+
+        <script>
+            function toggleSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                const menuBtn = document.querySelector('.menu-open-btn');
+
+                if (sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                    menuBtn.style.display = 'block';
+                } else {
+                    sidebar.classList.add('open');
+                    menuBtn.style.display = 'none';
+                }
+            }
+        </script>
+
+
+        <script>
+            // Toggle wishlist
+            function toggleWishlist(product) {
+                const heartIcon = document.getElementById('heart-icon');
+                let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                const index = wishlist.findIndex(p => p.id === product.id);
+
+                if (index === -1) {
+                    wishlist.push(product);
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    heartIcon.style.color = 'red';
+                    showSuccessMessage("Added to wishlist!");
+                } else {
+                    wishlist.splice(index, 1);
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    heartIcon.style.color = '';
+                    showSuccessMessage("Removed from wishlist!");
+                }
+
+                updateWishlistBadge();
+            }
+
+
+            // // Update badge in header
+            // function updateWishlistBadge() {
+            //     const count = (JSON.parse(localStorage.getItem('wishlist')) || []).length;
+            //     const badge = document.getElementById('wishlist-item-count'); // Make sure this exists in header
+            //     if (badge) badge.textContent = count;
+            // }
+
+            // Display message
+            function showSuccessMessage(msg) {
+                const box = document.createElement('div');
+                box.style.cssText = 'position:fixed;top:20px;right:20px;background:green;color:white;padding:10px;border-radius:5px;z-index:1000';
+                box.innerText = msg;
+                document.body.appendChild(box);
+                setTimeout(() => box.remove(), 3000);
+            }
+
+            // Call on page load
+            document.addEventListener('DOMContentLoaded', updateWishlistBadge);
+        </script>
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                updateCartIcon(); // Update the cart icon with the correct count
+            });
+
+            // index - Update the cart icon count based on localStorage
+            function updateCartIcon() {
+                const cartItemCount = localStorage.getItem('cartItemCount') || 0; // Get the cart count from localStorage
+                const cartCountElement = document.querySelector('.cart-item-count'); // Get the element that holds the cart count
+
+                // Update the cart count in the UI
+                cartCountElement.innerText = cartItemCount; // Set the count to the number of items in the cart
+            }
+
+            document.getElementById('search-form').addEventListener('submit', (event) => {
+                event.preventDefault();
+                const searchQuery = document.getElementById('search-input').value.trim();
+                window.location.href = `shop?search=${encodeURIComponent(searchQuery)}`;
+                // await fetchFilteredProducts(searchQuery);
+            });
+
+            function addToCart(product) {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingProduct = cart.find(item => item.id === product.id);
+
+                if (existingProduct) {
+                    existingProduct.quantity += 1; // Increment quantity if already in cart
+                } else {
+                    cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                // Update the cart item count in localStorage
+                updateCartCount();
+
+                showSuccessMessage(`${product.name} added to cart.`);
+            }
+
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const totalItems = cart.reduce((total, product) => total + product.quantity, 0); // Calculate total quantity
+
+                // Update the cart count in localStorage
+                localStorage.setItem('cartItemCount', totalItems);
+            }
+            function showSuccessMessage(message) {
+                const messageContainer = document.createElement('div');
+                messageContainer.style.position = 'fixed';
+                messageContainer.style.top = '20px';
+                messageContainer.style.right = '20px';
+                messageContainer.style.backgroundColor = 'green';
+                messageContainer.style.color = 'white';
+                messageContainer.style.padding = '10px 20px';
+                messageContainer.style.borderRadius = '5px';
+                messageContainer.style.zIndex = '1000';
+                messageContainer.textContent = message;
+
+                document.body.appendChild(messageContainer);
+
+                // Remove the message after 3 seconds
+                setTimeout(() => {
+                    document.body.removeChild(messageContainer);
+                }, 3000);
+            }
+
+            function handleAddToCart(product) {
+                addToCart(product); // Add product to cart
+                window.location.href = 'cart'; // Navigate to cart
+            }
+
+        </script>
+
+        <!-- footer  -->
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                updateCartIcon(); // Update the cart icon with the correct count
+            });
+
+            // index - Update the cart icon count based on localStorage
+            function updateCartIcon() {
+                const cartItemCount = localStorage.getItem('cartItemCount') || 0; // Get the cart count from localStorage
+                const cartCountElement = document.querySelector('.cart-item-count'); // Get the element that holds the cart count
+
+                // Update the cart count in the UI
+                cartCountElement.innerText = cartItemCount; // Set the count to the number of items in the cart
+            }
+
+            document.getElementById('search-form').addEventListener('submit', (event) => {
+                event.preventDefault();
+                const searchQuery = document.getElementById('search-input').value.trim();
+                window.location.href = `shop?search=${encodeURIComponent(searchQuery)}`;
+                // await fetchFilteredProducts(searchQuery);
+            });
+
+            function addToCart(product) {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingProduct = cart.find(item => item.id === product.id);
+
+                if (existingProduct) {
+                    existingProduct.quantity += 1; // Increment quantity if already in cart
+                } else {
+                    cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                // Update the cart item count in localStorage
+                updateCartCount();
+
+                showSuccessMessage(`${product.name} added to cart.`);
+            }
+
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const totalItems = cart.reduce((total, product) => total + product.quantity, 0); // Calculate total quantity
+
+                // Update the cart count in localStorage
+                localStorage.setItem('cartItemCount', totalItems);
+            }
+            function showSuccessMessage(message) {
+                const messageContainer = document.createElement('div');
+                messageContainer.style.position = 'fixed';
+                messageContainer.style.top = '20px';
+                messageContainer.style.right = '20px';
+                messageContainer.style.backgroundColor = 'green';
+                messageContainer.style.color = 'white';
+                messageContainer.style.padding = '10px 20px';
+                messageContainer.style.borderRadius = '5px';
+                messageContainer.style.zIndex = '1000';
+                messageContainer.textContent = message;
+
+                document.body.appendChild(messageContainer);
+
+                // Remove the message after 3 seconds
+                setTimeout(() => {
+                    document.body.removeChild(messageContainer);
+                }, 3000);
+            }
+
+            function handleAddToCart(product) {
+                addToCart(product); // Add product to cart
+                window.location.href = 'cart'; // Navigate to cart
+            }
+
+
+            // Function to toggle wishlist status
+            function toggleWishlist(product) {
+                // Get heart icon and current wishlist from localStorage
+                const heartIcon = document.getElementById('heart-icon');
+                let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+                // Check if product already exists in wishlist
+                const productIndex = wishlist.findIndex(item => item.id === product.id);
+
+                if (productIndex === -1) {
+                    // Product not in wishlist, add it and change icon color to red
+                    wishlist.push(product);
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Save to localStorage
+                    heartIcon.style.color = 'red'; // Change heart color to red
+                    showSuccessMessage('Product added to wishlist!');
+                } else {
+                    // Product already in wishlist, remove it and reset icon color
+                    wishlist.splice(productIndex, 1);
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Remove from localStorage
+                    heartIcon.style.color = ''; // Reset heart color
+                    showSuccessMessage('Product removed from wishlist!');
+                }
+            }
+
+            // function updateWishlistBadge() {
+            //     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            //     const wishlistBadge = document.getElementById('numberWishlist');
+
+            //     // Update the badge count
+            //     if (wishlistBadge) {
+            //         wishlistBadge.textContent = wishlist.length;
+            //     }
+            // }
+
+            // Call this function on page load to ensure the badge is updated dynamically 
+            // window.onload = updateWishlistBadge;
+
+
+            function toggleIcon(button) {
+                let icon = button.querySelector(".icon-toggle");
+                if (icon.classList.contains("bi-plus")) {
+                    icon.classList.remove("bi-plus");
+                    icon.classList.add("bi-dash");
+                } else {
+                    icon.classList.remove("bi-dash");
+                    icon.classList.add("bi-plus");
+                }
+            }
+        </script>
+        <script>
+            fetch('./topHeader')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('top-header').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading header:', error));
+        </script>
+        <script>
+            function toggleSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                const menuBtn = document.querySelector('.menu-open-btn');
+
+                if (sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                    menuBtn.style.display = 'block';
+                } else {
+                    sidebar.classList.add('open');
+                    menuBtn.style.display = 'none';
+                }
+            }
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', async function () {
+                const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/product-categories';
+
+                try {
+                    const res = await fetch(API_URL);
+                    const data = await res.json();
+
+                    const categories = data.categories || [];
+
+                    // Filter only parent categories (parent_category is null)
+                    const parentCategories = categories.filter(cat => cat.parent_category === null);
+
+                    const topList = document.getElementById('top-categories');
+                    const moreList = document.getElementById('more-categories');
+
+                    parentCategories.forEach((cat, index) => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<a href="/product-category/${slugify(cat.name)}">${cat.name}</a>`;
+
+                        if (index < 6) {
+                            topList.appendChild(li);
+                        } else {
+                            moreList.appendChild(li);
+                        }
+                    });
+                } catch (err) {
+                    console.error('Failed to load categories:', err);
+                }
+
+                // Helper to slugify category name
+                function slugify(text) {
+                    return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
+                }
+            });
+        </script>
   </body>
 </html>
