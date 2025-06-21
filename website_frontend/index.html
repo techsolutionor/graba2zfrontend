@@ -2164,21 +2164,14 @@
 
 /* Style for each card */
 .custom-card {
-  flex: 0 0 calc(33.33% - 7px); /* 3 cards with gap */
+  flex: 0 0 calc(33.33% - 7px); /* 3 cards on desktop (minus gap) */
   min-width: 0; /* Prevent flex items from growing beyond container */
 }
 
-/* Adjust for tablet screens (2 cards) */
+/* Adjust for tablet & mobile (2 cards) */
 @media (max-width: 1024px) {
   .custom-card {
-    flex: 0 0 calc(50% - 5px); /* 2 cards with gap */
-  }
-}
-
-/* Adjust for mobile screens (1 card) */
-@media (max-width: 600px) {
-  .custom-card {
-    flex: 0 0 100%; /* 1 card */
+    flex: 0 0 calc(50% - 5px); /* 2 cards (minus gap) */
   }
 }
 
@@ -2198,16 +2191,10 @@ const cards = document.querySelectorAll('.custom-card');
 const totalCards = cards.length;
 let startX = 0;
 let endX = 0;
-let cardsToShow = 3; // Default for desktop
+let cardsToShow = 3; // Default for desktop (3 cards)
 
 function updateCardsToShow() {
-  if (window.innerWidth <= 1024 && window.innerWidth > 600) {
-    cardsToShow = 2; // Tablet
-  } else if (window.innerWidth <= 600) {
-    cardsToShow = 1; // Mobile
-  } else {
-    cardsToShow = 3; // Desktop
-  }
+  cardsToShow = window.innerWidth <= 1024 ? 2 : 3; // 2 cards on mobile/tablet, 3 on desktop
 }
 
 function nextSlide() {
