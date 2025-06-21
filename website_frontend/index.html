@@ -2126,9 +2126,6 @@
 
     <!-- ===================== Lenovo/MSI/ASUS Section Start ==============================  -->
 <div class="custom-container-one">
-    <button id="custom-prevBtn" class="custom-button custom-prev">
-        <i class="fa fa-chevron-left"></i> <!-- Left arrow icon -->
-    </button>
     <div class="custom-card-grid">
         <!-- Lenovo Card -->
         <a href="" class="custom-card">
@@ -2146,14 +2143,8 @@
             <div class="custom-card-body"></div>
         </a>
     </div>
-    <button id="custom-nextBtn" class="custom-button custom-next">
-        <i class="fa fa-chevron-right"></i> <!-- Right arrow icon -->
-    </button>
 </div>
 <!-- ===================== Lenovo/MSI/ASUS Section End ==============================  -->
-
-<!-- Include Font Awesome CDN for icons -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
 <style>
  /* Style for the container holding the slider */
@@ -2183,50 +2174,15 @@
   }
 }
 
-/* Styling for circular navigation buttons positioned on the sides */
-.custom-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 15px;
-  cursor: pointer;
-  font-size: 20px; /* Adjust icon size */
-  border-radius: 50%; /* Makes the button circular */
-  width: 50px; /* Set button size */
-  height: 50px; /* Set button size */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.custom-prev {
-  left: 10px; /* Position on the left */
-}
-
-.custom-next {
-  right: 10px; /* Position on the right */
-}
-
-.custom-button:hover {
-  background-color: #0056b3;
-}
-
-/* Font Awesome icon styling */
-.fa {
-  font-size: 20px; /* Icon size */
-}
-
-
 
     </style>
     <script>
- // JavaScript to control the slider functionality
+// JavaScript to control the slider functionality with touch gestures
 let currentIndex = 0;
 const cards = document.querySelectorAll('.custom-card');
 const totalCards = cards.length;
+let startX = 0;
+let endX = 0;
 
 function nextSlide() {
   if (currentIndex < totalCards - 2) {
@@ -2252,9 +2208,34 @@ function updateSliderPosition() {
   cardGrid.style.transform = `translateX(${offset}%)`;
 }
 
-// Add event listeners for the navigation buttons
-document.querySelector('#custom-nextBtn').addEventListener('click', nextSlide);
-document.querySelector('#custom-prevBtn').addEventListener('click', prevSlide);
+// Touch event listeners
+document.querySelector('.custom-container-one').addEventListener('touchstart', function (e) {
+  startX = e.changedTouches[0].screenX;
+});
+
+document.querySelector('.custom-container-one').addEventListener('touchend', function (e) {
+  endX = e.changedTouches[0].screenX;
+  if (startX - endX > 50) {
+    nextSlide(); // Swiped left, move to the next slide
+  } else if (endX - startX > 50) {
+    prevSlide(); // Swiped right, move to the previous slide
+  }
+});
+
+// Optional: Mouse event listeners for desktop sliding
+document.querySelector('.custom-container-one').addEventListener('mousedown', function (e) {
+  startX = e.pageX;
+});
+
+document.querySelector('.custom-container-one').addEventListener('mouseup', function (e) {
+  endX = e.pageX;
+  if (startX - endX > 50) {
+    nextSlide(); // Swiped left, move to the next slide
+  } else if (endX - startX > 50) {
+    prevSlide(); // Swiped right, move to the previous slide
+  }
+});
+
 
     </script>
 
