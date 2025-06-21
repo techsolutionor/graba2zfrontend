@@ -365,7 +365,45 @@
       
           <!-- SETUP -->
           <li class="section-title">SETUP</li>
-          <li class="nav-item"><a class="nav-link" href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+           <li class="nav-item">
+  <a href="javascript:void(0);" class="nav-link d-flex justify-content-between align-items-center ratings-toggle-custom">
+    <span><i class="fas fa-star me-1"></i> Ratings</span>
+    <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
+  </a>
+
+  <ul class="sidebar-submenu" id="ratingsMenuCustom">
+    <li><a class="nav-link" href="./all-ratings.html">All Ratings</a></li>
+    <li><a class="nav-link" href="./pending-ratings.html">Pending Ratings</a></li>
+    <li><a class="nav-link" href="./approved-ratings.html">Approved Ratings</a></li>
+    <li><a class="nav-link" href="./rejected-ratings.html">Rejected Ratings</a></li>
+  </ul>
+</li>
+
+<li class="nav-item">
+  <a href="javascript:void(0);" class="nav-link d-flex justify-content-between align-items-center call-toggle-custom">
+    <span><i class="fas fa-phone-alt me-1"></i> Customer Call Requests</span>
+    <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
+  </a>
+
+  <ul class="sidebar-submenu" id="callMenuCustom">
+    <li><a class="nav-link" href="./customer-all-call-requests.html">All Call Requests</a></li>
+    <li><a class="nav-link" href="./customer-call-requests.html">Call Requests</a></li>
+    <li><a class="nav-link" href="./customer-done-call-requests.html">Done Call Requests</a></li>
+    <li><a class="nav-link" href="./customer-spam-call-requests.html">Spam Call Requests</a></li>
+  </ul>
+</li>
+<li class="nav-item">
+  <a href="javascript:void(0);" class="nav-link d-flex justify-content-between align-items-center blogs-toggle-custom">
+    <span><i class="fas fa-blog me-1"></i> Blogs</span>
+    <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
+  </a>
+
+  <ul class="sidebar-submenu" id="blogsMenuCustom">
+    <li><a class="nav-link" href="./blogs.html">Blogs</a></li>
+    <li><a class="nav-link" href="./blog-categories.html">Blog Categories</a></li>
+    <li><a class="nav-link" href="./blog-topics.html">Blog Topics</a></li>
+  </ul>
+</li>
           <li class="nav-item"><a class="nav-link" href="site.html"><i class="fas fa-globe"></i> Site</a></li>
           <li class="nav-item"><a class="nav-link" href="mail.html"><i class="fas fa-envelope"></i> Mail</a></li>
           <li class="nav-item"><a class="nav-link" href="location-setup.html"><i class="fas fa-map-marker-alt"></i> Location Setup</a></li>
@@ -1311,5 +1349,43 @@
         </div>
     </div>
 </body>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const ratingsToggle = document.querySelector('.ratings-toggle-custom');
+    const ratingsMenu = document.getElementById('ratingsMenuCustom');
+    const ratingsArrow = ratingsToggle.querySelector('.arrow-icon');
+
+    ratingsToggle.addEventListener('click', () => {
+      ratingsMenu.classList.toggle('show');
+      ratingsArrow.classList.toggle('rotate');
+    });
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const callToggle = document.querySelector('.call-toggle-custom');
+    const callMenu = document.getElementById('callMenuCustom');
+    const callArrow = callToggle.querySelector('.arrow-icon');
+
+    callToggle.addEventListener('click', () => {
+      callMenu.classList.toggle('show');
+      callArrow.classList.toggle('rotate');
+    });
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const blogsToggle = document.querySelector('.blogs-toggle-custom');
+    const blogsMenu = document.getElementById('blogsMenuCustom');
+    const blogsArrow = blogsToggle.querySelector('.arrow-icon');
+
+    blogsToggle.addEventListener('click', () => {
+      blogsMenu.classList.toggle('show');
+      blogsArrow.classList.toggle('rotate');
+    });
+  });
+</script>
 
 </html>
