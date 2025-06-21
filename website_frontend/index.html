@@ -2125,27 +2125,108 @@
     <!-- ===================== Category Slider Section End ==============================  -->
 
     <!-- ===================== Lenovo/MSI/ASUS Section Start ==============================  -->
-    <div class="container-one">
-        <div class="card-grid">
-            <!-- Lenovo Card -->
-            <a href="" class="card">
-                <img src="assets/images/bg/newbanner/lenovo-banner-1.png" alt="Lenovo Laptop">
-                <div class="card-body"></div>
-            </a>
-            <!-- MSI Card -->
-            <a href="" class="card">
-                <img src="assets/images/bg/newbanner/msi-lenovo-2.png" alt="MSI Laptop">
-                <div class="card-body"></div>
-            </a>
-            <!-- ASUS Card -->
-            <a href="#" class="card">
-                <img src="assets/images/bg/newbanner/asus-banner-2.png" alt="ASUS Laptop">
-                <div class="card-body">
-                </div>
-            </a>
-        </div>
+<div class="custom-container-one">
+    <div class="custom-card-grid">
+        <!-- Lenovo Card -->
+        <a href="" class="custom-card">
+            <img src="assets/images/bg/newbanner/lenovo-banner-1.png" alt="Lenovo Laptop">
+            <div class="custom-card-body"></div>
+        </a>
+        <!-- MSI Card -->
+        <a href="" class="custom-card">
+            <img src="assets/images/bg/newbanner/msi-lenovo-2.png" alt="MSI Laptop">
+            <div class="custom-card-body"></div>
+        </a>
+        <!-- ASUS Card -->
+        <a href="#" class="custom-card">
+            <img src="assets/images/bg/newbanner/asus-banner-2.png" alt="ASUS Laptop">
+            <div class="custom-card-body"></div>
+        </a>
     </div>
-    <!-- ===================== Lenovo/MSI/ASUS Section End ==============================  -->
+</div>
+<!-- ===================== Lenovo/MSI/ASUS Section End ==============================  -->
+
+<!-- Optional: Navigation buttons for slider -->
+<button id="custom-prevBtn">Previous</button>
+<button id="custom-nextBtn">Next</button>
+<style>
+    /* Style for the container holding the slider */
+.custom-container-one {
+  overflow: hidden; /* Hide the overflowing content */
+  width: 100%; /* Make sure it fits the screen */
+}
+
+/* Flexbox layout for card grid */
+.custom-card-grid {
+  display: flex; /* Align the cards horizontally */
+  gap: 10px; /* Space between cards */
+  transition: transform 0.5s ease-in-out; /* Smooth scrolling transition */
+}
+
+/* Style for each card */
+.custom-card {
+  width: 50%; /* Show two cards at a time */
+  flex-shrink: 0; /* Prevent the cards from shrinking */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .custom-card {
+    width: 50%; /* Adjust to show 2 banners on mobile */
+  }
+}
+
+/* Optional styling for navigation buttons */
+.custom-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: 5px;
+  font-size: 16px;
+}
+
+.custom-button:hover {
+  background-color: #0056b3;
+}
+
+    </style>
+    <script>
+        // JavaScript to control the slider functionality
+let currentIndex = 0;
+const cards = document.querySelectorAll('.custom-card');
+const totalCards = cards.length;
+
+function nextSlide() {
+  if (currentIndex < totalCards - 2) {
+    currentIndex++;
+  } else {
+    currentIndex = 0; // Loop back to the start
+  }
+  updateSliderPosition();
+}
+
+function prevSlide() {
+  if (currentIndex > 0) {
+    currentIndex--;
+  } else {
+    currentIndex = totalCards - 2; // Loop to the end
+  }
+  updateSliderPosition();
+}
+
+function updateSliderPosition() {
+  const cardGrid = document.querySelector('.custom-card-grid');
+  const offset = -(currentIndex * 50); // Shift the grid by 50% for each slide
+  cardGrid.style.transform = `translateX(${offset}%)`;
+}
+
+// Add event listeners for the navigation buttons
+document.querySelector('#custom-nextBtn').addEventListener('click', nextSlide);
+document.querySelector('#custom-prevBtn').addEventListener('click', prevSlide);
+
+    </script>
 
     <!-- ===================== BIG SALE Section Start ==============================  -->
 <section class="section-sale" style="background: url('https://grabatoz.ae/wp-content/uploads/2025/06/slider-2-2.png') no-repeat center center / cover;">
