@@ -1299,4 +1299,42 @@
     </div>
 </body>
 
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const ratingsToggle = document.querySelector('.ratings-toggle-custom');
+    const ratingsMenu = document.getElementById('ratingsMenuCustom');
+    const ratingsArrow = ratingsToggle.querySelector('.arrow-icon');
+
+    ratingsToggle.addEventListener('click', () => {
+      ratingsMenu.classList.toggle('show');
+      ratingsArrow.classList.toggle('rotate');
+    });
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const callToggle = document.querySelector('.call-toggle-custom');
+    const callMenu = document.getElementById('callMenuCustom');
+    const callArrow = callToggle.querySelector('.arrow-icon');
+
+    callToggle.addEventListener('click', () => {
+      callMenu.classList.toggle('show');
+      callArrow.classList.toggle('rotate');
+    });
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const blogsToggle = document.querySelector('.blogs-toggle-custom');
+    const blogsMenu = document.getElementById('blogsMenuCustom');
+    const blogsArrow = blogsToggle.querySelector('.arrow-icon');
+
+    blogsToggle.addEventListener('click', () => {
+      blogsMenu.classList.toggle('show');
+      blogsArrow.classList.toggle('rotate');
+    });
+  });
+</script>
+
 </html>
