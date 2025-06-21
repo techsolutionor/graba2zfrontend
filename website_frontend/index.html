@@ -2124,7 +2124,7 @@
     </div>
     <!-- ===================== Category Slider Section End ==============================  -->
 
-    <!-- ===================== Lenovo/MSI/ASUS Section Start ==============================  -->
+   <!-- ===================== Lenovo/MSI/ASUS Section Start ==============================  -->
 <div class="custom-container-one">
     <div class="custom-card-grid">
         <!-- Lenovo Card -->
@@ -2146,6 +2146,7 @@
 </div>
 <!-- ===================== Lenovo/MSI/ASUS Section End ==============================  -->
 
+
 <style>
  /* Style for the container holding the slider */
 .custom-container-one {
@@ -2163,14 +2164,21 @@
 
 /* Style for each card */
 .custom-card {
-  width: 50%; /* Show two cards at a time */
+  width: 33.33%; /* Show three cards at a time on large screens */
   flex-shrink: 0; /* Prevent the cards from shrinking */
 }
 
-/* Responsive adjustments for smaller screens */
+/* Adjust for smaller screens */
 @media (max-width: 768px) {
   .custom-card {
-    width: 50%; /* Adjust to show 2 banners on mobile */
+    width: 50%; /* Show two cards on mobile */
+  }
+}
+
+/* Further adjustments for very small screens (optional) */
+@media (max-width: 480px) {
+  .custom-card {
+    width: 100%; /* Show one card on extra small screens */
   }
 }
 
@@ -2185,7 +2193,7 @@ let startX = 0;
 let endX = 0;
 
 function nextSlide() {
-  if (currentIndex < totalCards - 2) {
+  if (currentIndex < totalCards - 3) {
     currentIndex++;
   } else {
     currentIndex = 0; // Loop back to the start
@@ -2197,14 +2205,14 @@ function prevSlide() {
   if (currentIndex > 0) {
     currentIndex--;
   } else {
-    currentIndex = totalCards - 2; // Loop to the end
+    currentIndex = totalCards - 3; // Loop to the end
   }
   updateSliderPosition();
 }
 
 function updateSliderPosition() {
   const cardGrid = document.querySelector('.custom-card-grid');
-  const offset = -(currentIndex * 50); // Shift the grid by 50% for each slide
+  const offset = -(currentIndex * 33.33); // Shift the grid by 33.33% for each slide (3 cards visible at once)
   cardGrid.style.transform = `translateX(${offset}%)`;
 }
 
