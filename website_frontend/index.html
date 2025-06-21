@@ -1392,8 +1392,8 @@
         }
 
         #brandLogo img {
-            width: 100px;
-            height: 100px;
+            width: 130px;
+            height: 218px;
             object-fit: contain;
             border-radius: 10px;
             transition: transform 0.3s;
@@ -3012,72 +3012,143 @@ updateSliderPosition();
         .replace(/-+$/, '');            // Trim - from end
 }
                     // --------------loadCateory slider Start----------------------
+                    // async function loadCategories() {
+                    //     try {
+                    //         const [categoriesRes, countsRes] = await Promise.all([
+                    //             fetch(`${API_CUSTOMER_URL}/api/product-categories`),
+                    //             fetch(`${API_CUSTOMER_URL}/api/product-counts`)
+                    //         ]);
+
+                    //         if (!categoriesRes.ok || !countsRes.ok) {
+                    //             throw new Error('Failed to fetch categories or product counts');
+                    //         }
+
+                    //         const { categories } = await categoriesRes.json();
+                    //         const { categoryCounts } = await countsRes.json();
+
+                    //         const swiperWrapper = document.getElementById('category-wrapper');
+                    //         swiperWrapper.innerHTML = '';
+
+                    //         categories.forEach(category => {
+                    //             const productCount = (categoryCounts.find(item => item.category === category.name)?.product_count) || 0;
+                    //             const imagePath = category.image_path ? category.image_path.replace(/\\/g, '/') : 'uploads/default.png';
+
+                    //             const slideHTML = `
+                    //     <div class="swiper-slide">
+                    //         <div class="galleria-item">
+                    //             <div class="emblem-frame">
+                    //                 <a href="/product-category/${slugify(category.name)}">
+                    //                     <img src="${API_ADMINGRAB_URL}/${imagePath}" alt="${category.name}">
+                    //                 </a>
+                    //             </div>
+                    //             <div class="label-inscription">${category.name} (${productCount})</div>
+                    //         </div>
+                    //     </div>
+                    // `;
+
+                    //             swiperWrapper.insertAdjacentHTML('beforeend', slideHTML);
+                    //         });
+
+                    //         const swiper = new Swiper('.carousel-hall', {
+                    //             slidesPerView: 'auto',
+                    //             navigation: {
+                    //                 nextEl: '.swiper-button-next',
+                    //                 prevEl: '.swiper-button-prev',
+                    //             },
+                    //             loop: false,
+                    //             observer: true,
+                    //             observeParents: true,
+                    //             spaceBetween: 10,
+                    //             speed: 400,
+                    //             breakpoints: {
+                    //                 1400: { slidesPerView: 8 },
+                    //                 1200: { slidesPerView: 7 },
+                    //                 992: { slidesPerView: 6 },
+                    //                 768: { slidesPerView: 5 },
+                    //                 576: { slidesPerView: 4 },
+                    //                 320: { slidesPerView: 3 }
+                    //             }
+                    //         });
+
+                    //         swiper.update();
+                    //         swiper.navigation.update();
+
+                    //     } catch (error) {
+                    //         console.error('Error loading categories:', error);
+                    //     }
+                    // }
+                    // document.addEventListener('DOMContentLoaded', loadCategories);
                     async function loadCategories() {
-                        try {
-                            const [categoriesRes, countsRes] = await Promise.all([
-                                fetch(`${API_CUSTOMER_URL}/api/product-categories`),
-                                fetch(`${API_CUSTOMER_URL}/api/product-counts`)
-                            ]);
+    try {
+        const [categoriesRes, countsRes] = await Promise.all([
+            fetch(`${API_CUSTOMER_URL}/api/product-categories`),
+            fetch(`${API_CUSTOMER_URL}/api/product-counts`)
+        ]);
 
-                            if (!categoriesRes.ok || !countsRes.ok) {
-                                throw new Error('Failed to fetch categories or product counts');
-                            }
+        if (!categoriesRes.ok || !countsRes.ok) {
+            throw new Error('Failed to fetch categories or product counts');
+        }
 
-                            const { categories } = await categoriesRes.json();
-                            const { categoryCounts } = await countsRes.json();
+        const { categories } = await categoriesRes.json();
+        const { categoryCounts } = await countsRes.json();
 
-                            const swiperWrapper = document.getElementById('category-wrapper');
-                            swiperWrapper.innerHTML = '';
+        const swiperWrapper = document.getElementById('category-wrapper');
+        swiperWrapper.innerHTML = '';
 
-                            categories.forEach(category => {
-                                const productCount = (categoryCounts.find(item => item.category === category.name)?.product_count) || 0;
-                                const imagePath = category.image_path ? category.image_path.replace(/\\/g, '/') : 'uploads/default.png';
+        // Filter only parent categories where parent_category is NULL
+        const parentCategories = categories.filter(category => category.parent_category === null);
 
-                                const slideHTML = `
-                        <div class="swiper-slide">
-                            <div class="galleria-item">
-                                <div class="emblem-frame">
-                                    <a href="/product-category/${slugify(category.name)}">
-                                        <img src="${API_ADMINGRAB_URL}/${imagePath}" alt="${category.name}">
-                                    </a>
-                                </div>
-                                <div class="label-inscription">${category.name} (${productCount})</div>
-                            </div>
+        parentCategories.forEach(parentCategory => {
+            const productCount = (categoryCounts.find(item => item.category === parentCategory.name)?.product_count) || 0;
+            const imagePath = parentCategory.image_path ? parentCategory.image_path.replace(/\\/g, '/') : 'uploads/default.png';
+
+            const slideHTML = `
+                <div class="swiper-slide">
+                    <div class="galleria-item">
+                        <div class="emblem-frame">
+                            <a href="/product-category/${slugify(parentCategory.name)}">
+                                <img src="${API_ADMINGRAB_URL}/${imagePath}" alt="${parentCategory.name}">
+                            </a>
                         </div>
-                    `;
+                        <div class="label-inscription">${parentCategory.name} (${productCount})</div>
+                    </div>
+                </div>
+            `;
 
-                                swiperWrapper.insertAdjacentHTML('beforeend', slideHTML);
-                            });
+            swiperWrapper.insertAdjacentHTML('beforeend', slideHTML);
+        });
 
-                            const swiper = new Swiper('.carousel-hall', {
-                                slidesPerView: 'auto',
-                                navigation: {
-                                    nextEl: '.swiper-button-next',
-                                    prevEl: '.swiper-button-prev',
-                                },
-                                loop: false,
-                                observer: true,
-                                observeParents: true,
-                                spaceBetween: 10,
-                                speed: 400,
-                                breakpoints: {
-                                    1400: { slidesPerView: 8 },
-                                    1200: { slidesPerView: 7 },
-                                    992: { slidesPerView: 6 },
-                                    768: { slidesPerView: 5 },
-                                    576: { slidesPerView: 4 },
-                                    320: { slidesPerView: 3 }
-                                }
-                            });
+        const swiper = new Swiper('.carousel-hall', {
+            slidesPerView: 'auto',
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            loop: false,
+            observer: true,
+            observeParents: true,
+            spaceBetween: 10,
+            speed: 400,
+            breakpoints: {
+                1400: { slidesPerView: 8 },
+                1200: { slidesPerView: 7 },
+                992: { slidesPerView: 6 },
+                768: { slidesPerView: 5 },
+                576: { slidesPerView: 4 },
+                320: { slidesPerView: 3 }
+            }
+        });
 
-                            swiper.update();
-                            swiper.navigation.update();
+        swiper.update();
+        swiper.navigation.update();
 
-                        } catch (error) {
-                            console.error('Error loading categories:', error);
-                        }
-                    }
-                    document.addEventListener('DOMContentLoaded', loadCategories);
+    } catch (error) {
+        console.error('Error loading categories:', error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', loadCategories);
+
                     // --------------loadCateory slider End----------------------
 
                     // --------------loadBIGSALE slider Start----------------------
