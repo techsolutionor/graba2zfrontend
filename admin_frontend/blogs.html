@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,39 +23,50 @@
             border-color: #DFE5EF !important;
             border-right: 0px !important;
         }
+
         .slug-input {
             border-left: 0px !important;
             padding-left: 0px !important;
         }
+
         .slug-input:focus {
             border-color: #DFE5EF !important;
         }
+
         .sidebar-submenu {
             padding-left: 40px;
             list-style-type: disc;
         }
+
         .sidebar-submenu li {
             padding: 5px 0;
         }
+
         .sidebar-submenu li a {
             color: #000000;
             text-decoration: none;
         }
-        .nav-link.active, .nav-link:hover {
+
+        .nav-link.active,
+        .nav-link:hover {
             background-color: #f0f0f0;
             color: #000;
             border-radius: 8px;
             font-weight: 600;
         }
+
         .sidebar-submenu .nav-link.active {
             background-color: #e0e0e0;
         }
+
         .toggle-arrow {
             transition: transform 0.3s ease;
         }
+
         .nav-link[aria-expanded="true"] .toggle-arrow {
             transform: rotate(180deg);
         }
+
         .left-sidebar {
             width: 260px;
             height: 100vh;
@@ -63,12 +75,14 @@
             overflow-y: auto;
             border-right: 1px solid #ddd;
         }
+
         .section-title {
             padding: 10px 20px;
             font-weight: bold;
             font-size: 12px;
             color: #6c757d;
         }
+
         .nav-link {
             display: block;
             padding: 10px 20px;
@@ -76,9 +90,11 @@
             text-decoration: none;
             transition: all 0.2s ease;
         }
+
         .nav-link:hover {
             background-color: #f0f0f0;
         }
+
         .nav-link.active {
             background-color: #000;
             color: #fff !important;
@@ -86,6 +102,7 @@
             border-radius: 8px;
             position: relative;
         }
+
         .nav-link.active::before {
             content: '';
             position: absolute;
@@ -97,49 +114,64 @@
             background-color: #8FC208;
             border-radius: 50%;
         }
+
         .sidebar-submenu {
             padding-left: 30px;
             list-style: none;
         }
+
         .sidebar-submenu .nav-link {
             font-size: 14px;
             padding: 6px 20px;
         }
+
         .body-wrapper {
             margin-left: 260px;
             padding: 30px;
         }
+
         .sidebar-submenu {
             display: none;
             list-style: none;
             padding-left: 20px;
             transition: all 0.3s ease;
         }
+
         .sidebar-submenu.show {
             display: block;
         }
+
         .rotate-icon {
             transition: transform 0.3s ease;
         }
+
         .rotate-icon.rotate {
             transform: rotate(180deg);
         }
+
         @media print {
-            .actions-bar, .btn, .no-print {
+            .actions-bar,
+            .btn,
+            .no-print {
                 display: none !important;
             }
+
             table {
                 width: 100% !important;
                 border-collapse: collapse !important;
             }
-            th, td {
+
+            th,
+            td {
                 border: 1px solid #000 !important;
                 padding: 6px !important;
             }
         }
+
         thead {
             display: table-header-group;
         }
+
         .loader-container {
             position: fixed;
             top: 0;
@@ -152,6 +184,7 @@
             align-items: center;
             z-index: 9999;
         }
+
         .loader {
             border: 5px solid #f3f3f3;
             border-top: 5px solid #3498db;
@@ -160,46 +193,27 @@
             height: 50px;
             animation: spin 1s linear infinite;
         }
+
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
+
         .blog-image {
             max-width: 100px;
             max-height: 100px;
             object-fit: cover;
         }
+
         .overlay-content img {
             max-width: 200px;
             max-height: 200px;
             object-fit: cover;
-        }
-        .content-section {
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            position: relative;
-        }
-        .add-content-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            font-size: 20px;
-            color: #28a745;
-        }
-        .remove-content-btn {
-            position: absolute;
-            top: 10px;
-            right: 40px;
-            cursor: pointer;
-            font-size: 20px;
-            color: #dc3545;
-        }
-        .additional-image-container {
-            display: none;
-            margin-top: 10px;
         }
     </style>
     <script>
@@ -246,6 +260,7 @@
         }
     </script>
 </head>
+
 <body>
     <div id="loader" class="loader-container">
         <div class="loader"></div>
@@ -260,11 +275,14 @@
             </div>
             <ul class="nav flex-column">
                 <li class="section-title">HOME</li>
-                <li class="nav-item"><a class="nav-link" href="index.html"><i class="ti ti-layout-dashboard"></i> Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html"><i class="ti ti-layout-dashboard"></i>
+                        Dashboard</a></li>
                 <li class="section-title">PRODUCTS & STOCK</li>
-                <li class="nav-item"><a class="nav-link" href="products.html"><i class="fas fa-box"></i> Products</a></li>
+                <li class="nav-item"><a class="nav-link" href="products.html"><i class="fas fa-box"></i> Products</a>
+                </li>
                 <li class="nav-item">
-                    <a href="javascript:void(0);" class="nav-link d-flex justify-content-between align-items-center purchases-toggle-custom">
+                    <a href="javascript:void(0);"
+                        class="nav-link d-flex justify-content-between align-items-center purchases-toggle-custom">
                         <span><i class="fas fa-shopping-cart me-1"></i> Purchases</span>
                         <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
                     </a>
@@ -274,13 +292,17 @@
                         <li><a class="nav-link" href="return-purchase.html">Purchase Return</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="damages.html"><i class="fas fa-exclamation-circle"></i> Damages</a></li>
+                <li class="nav-item"><a class="nav-link" href="damages.html"><i class="fas fa-exclamation-circle"></i>
+                        Damages</a></li>
                 <li class="nav-item"><a class="nav-link" href="stock.html"><i class="fas fa-archive"></i> Stock</a></li>
                 <li class="section-title">POS & ORDERS</li>
-                <li class="nav-item"><a class="nav-link" href="pos.html"><i class="fas fa-cash-register"></i> POS</a></li>
-                <li class="nav-item"><a class="nav-link" href="pos-orders.html"><i class="fas fa-receipt"></i> POS Orders</a></li>
+                <li class="nav-item"><a class="nav-link" href="pos.html"><i class="fas fa-cash-register"></i> POS</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="pos-orders.html"><i class="fas fa-receipt"></i> POS
+                        Orders</a></li>
                 <li class="nav-item">
-                    <a href="javascript:void(0);" class="nav-link d-flex justify-content-between align-items-center orders-toggle">
+                    <a href="javascript:void(0);"
+                        class="nav-link d-flex justify-content-between align-items-center orders-toggle">
                         <span><i class="fas fa-shopping-basket me-1"></i> Orders</span>
                         <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
                     </a>
@@ -296,54 +318,91 @@
                     </ul>
                 </li>
                 <li class="section-title">COMMUNICATIONS</li>
-                <li class="nav-item"><a class="nav-link" href="call-requests.html"><i class="fas fa-phone"></i> Call Requests</a></li>
-                <li class="nav-item"><a class="nav-link" href="push-notifications.html"><i class="fas fa-bell"></i> Push Notifications</a></li>
-                <li class="nav-item"><a class="nav-link" href="subscribers.html"><i class="fas fa-users"></i> Subscribers</a></li>
+                <li class="nav-item"><a class="nav-link" href="call-requests.html"><i class="fas fa-phone"></i> Call
+                        Requests</a></li>
+                <li class="nav-item"><a class="nav-link" href="push-notifications.html"><i class="fas fa-bell"></i> Push
+                        Notifications</a></li>
+                <li class="nav-item"><a class="nav-link" href="subscribers.html"><i class="fas fa-users"></i>
+                        Subscribers</a></li>
                 <li class="section-title">PROMO</li>
-                <li class="nav-item"><a class="nav-link" href="coupons.html"><i class="fas fa-tags"></i> Coupons</a></li>
-                <li class="nav-item"><a class="nav-link" href="promotions.html"><i class="fas fa-bullhorn"></i> Promotions</a></li>
-                <li class="nav-item"><a class="nav-link" href="product-sections.html"><i class="fas fa-cube"></i> Product Sections</a></li>
+                <li class="nav-item"><a class="nav-link" href="coupons.html"><i class="fas fa-tags"></i> Coupons</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="promotions.html"><i class="fas fa-bullhorn"></i>
+                        Promotions</a></li>
+                <li class="nav-item"><a class="nav-link" href="product-sections.html"><i class="fas fa-cube"></i>
+                        Product Sections</a></li>
                 <li class="section-title">USERS</li>
-                <li class="nav-item"><a class="nav-link" href="admin.html"><i class="fas fa-user"></i> Administrators</a></li>
-                <li class="nav-item"><a class="nav-link" href="customer.html"><i class="fas fa-users"></i> Customers</a></li>
-                <li class="nav-item"><a class="nav-link" href="employee.html"><i class="fas fa-user-tie"></i> Employees</a></li>
+                <li class="nav-item"><a class="nav-link" href="admin.html"><i class="fas fa-user"></i>
+                        Administrators</a></li>
+                <li class="nav-item"><a class="nav-link" href="customer.html"><i class="fas fa-users"></i> Customers</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="employee.html"><i class="fas fa-user-tie"></i>
+                        Employees</a></li>
                 <li class="section-title">ACCOUNTS</li>
-                <li class="nav-item"><a class="nav-link" href="transactions.html"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+                <li class="nav-item"><a class="nav-link" href="transactions.html"><i class="fas fa-exchange-alt"></i>
+                        Transactions</a></li>
                 <li class="section-title">REPORTS</li>
-                <li class="nav-item"><a class="nav-link" href="sales-report.html"><i class="fas fa-chart-line"></i> Sales Report</a></li>
-                <li class="nav-item"><a class="nav-link" href="products-report.html"><i class="fas fa-file-alt"></i> Products Report</a></li>
-                <li class="nav-item"><a class="nav-link" href="credit-balance-report.html"><i class="fas fa-credit-card"></i> Credit Balance Report</a></li>
+                <li class="nav-item"><a class="nav-link" href="sales-report.html"><i class="fas fa-chart-line"></i>
+                        Sales Report</a></li>
+                <li class="nav-item"><a class="nav-link" href="products-report.html"><i class="fas fa-file-alt"></i>
+                        Products Report</a></li>
+                <li class="nav-item"><a class="nav-link" href="credit-balance-report.html"><i
+                            class="fas fa-credit-card"></i> Credit Balance Report</a></li>
                 <li class="section-title">SETUP</li>
-                <li class="nav-item"><a class="nav-link" href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                <li class="nav-item"><a class="nav-link" href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                </li>
                 <li class="nav-item"><a class="nav-link" href="site.html"><i class="fas fa-globe"></i> Site</a></li>
                 <li class="nav-item"><a class="nav-link" href="mail.html"><i class="fas fa-envelope"></i> Mail</a></li>
-                <li class="nav-item"><a class="nav-link" href="location-setup.html"><i class="fas fa-map-marker-alt"></i> Location Setup</a></li>
-                <li class="nav-item"><a class="nav-link" href="shipping-setup.html"><i class="fas fa-truck"></i> Shipping Setup</a></li>
+                <li class="nav-item"><a class="nav-link" href="location-setup.html"><i
+                            class="fas fa-map-marker-alt"></i> Location Setup</a></li>
+                <li class="nav-item"><a class="nav-link" href="shipping-setup.html"><i class="fas fa-truck"></i>
+                        Shipping Setup</a></li>
                 <li class="nav-item"><a class="nav-link" href="otp.html"><i class="fas fa-lock"></i> OTP</a></li>
-                <li class="nav-item"><a class="nav-link" href="notification.html"><i class="fas fa-bell"></i> Notification</a></li>
-                <li class="nav-item"><a class="nav-link" href="notification-alert.html"><i class="fas fa-bell"></i> Notification Alert</a></li>
-                <li class="nav-item"><a class="nav-link" href="social-media.html"><i class="fas fa-share-alt"></i> Social Media</a></li>
-                <li class="nav-item"><a class="nav-link" href="cookies.html"><i class="fas fa-cookie-bite"></i> Cookies</a></li>
-                <li class="nav-item"><a class="nav-link" href="analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
-                <li class="nav-item"><a class="nav-link" href="theme.html"><i class="fas fa-paint-brush"></i> Theme</a></li>
-                <li class="nav-item"><a class="nav-link" href="sliders.html"><i class="fas fa-sliders-h"></i> Sliders</a></li>
-                <li class="nav-item"><a class="nav-link" href="currencies.html"><i class="fas fa-money-bill-wave"></i> Currencies</a></li>
-                <li class="nav-item"><a class="nav-link" href="product-categories.html"><i class="fas fa-tags"></i> Product Categories</a></li>
-                <li class="nav-item"><a class="nav-link" href="product-attributes.html"><i class="fas fa-cube"></i> Product Attributes</a></li>
-                <li class="nav-item"><a class="nav-link" href="product-brands.html"><i class="fas fa-tag"></i> Product Brands</a></li>
-                <li class="nav-item"><a class="nav-link" href="supplier.html"><i class="fas fa-industry"></i> Suppliers</a></li>
-                <li class="nav-item"><a class="nav-link" href="outlets.html"><i class="fas fa-store"></i> Outlets</a></li>
-                <li class="nav-item"><a class="nav-link" href="benefits.html"><i class="fas fa-gift"></i> Benefits</a></li>
-                <li class="nav-item"><a class="nav-link" href="units.html"><i class="fas fa-balance-scale"></i> Units</a></li>
+                <li class="nav-item"><a class="nav-link" href="notification.html"><i class="fas fa-bell"></i>
+                        Notification</a></li>
+                <li class="nav-item"><a class="nav-link" href="notification-alert.html"><i class="fas fa-bell"></i>
+                        Notification Alert</a></li>
+                <li class="nav-item"><a class="nav-link" href="social-media.html"><i class="fas fa-share-alt"></i>
+                        Social Media</a></li>
+                <li class="nav-item"><a class="nav-link" href="cookies.html"><i class="fas fa-cookie-bite"></i>
+                        Cookies</a></li>
+                <li class="nav-item"><a class="nav-link" href="analytics.html"><i class="fas fa-chart-bar"></i>
+                        Analytics</a></li>
+                <li class="nav-item"><a class="nav-link" href="theme.html"><i class="fas fa-paint-brush"></i> Theme</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="sliders.html"><i class="fas fa-sliders-h"></i>
+                        Sliders</a></li>
+                <li class="nav-item"><a class="nav-link" href="currencies.html"><i class="fas fa-money-bill-wave"></i>
+                        Currencies</a></li>
+                <li class="nav-item"><a class="nav-link" href="product-categories.html"><i class="fas fa-tags"></i>
+                        Product Categories</a></li>
+                <li class="nav-item"><a class="nav-link" href="product-attributes.html"><i class="fas fa-cube"></i>
+                        Product Attributes</a></li>
+                <li class="nav-item"><a class="nave-link" href="product-brands.html"><i class="fas fa-tag"></i> Product
+                        Brands</a></li>
+                <li class="nav-item"><a class="nav-link" href="supplier.html"><i class="fas fa-industry"></i>
+                        Suppliers</a></li>
+                <li class="nav-item"><a class="nav-link" href="outlets.html"><i class="fas fa-store"></i> Outlets</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="benefits.html"><i class="fas fa-gift"></i> Benefits</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="units.html"><i class="fas fa-balance-scale"></i>
+                        Units</a></li>
                 <li class="nav-item"><a class="nav-link" href="taxes.html"><i class="fas fa-percent"></i> Taxes</a></li>
                 <li class="nav-item"><a class="nav-link" href="page.html"><i class="fas fa-file-alt"></i> Pages</a></li>
-                <li class="nav-item"><a class="nav-link" href="role & permissions.html"><i class="fas fa-user-shield"></i> Role & Permissions</a></li>
-                <li class="nav-item"><a class="nav-link" href="languages-list.html"><i class="fas fa-globe"></i> Languages</a></li>
-                <li class="nav-item"><a class="nav-link" href="sms-gateway.html"><i class="fas fa-comments"></i> SMS Gateway</a></li>
-                <li class="nav-item"><a class="nav-link" href="payment-gateway.html"><i class="fas fa-credit-card"></i> Payment Gateway</a></li>
-                <li class="nav-item vend"><a class="nav-link" href="license.html"><i class="fas fa-file-contract"></i> License</a></li>
+                <li class="nav-item"><a class="nav-link" href="role & permissions.html"><i
+                            class="fas fa-user-shield"></i> Role & Permissions</a></li>
+                <li class="nav-item"><a class="nav-link" href="languages-list.html"><i class="fas fa-globe"></i>
+                        Languages</a></li>
+                <li class="nav-item"><a class="nav-link" href="sms-gateway.html"><i class="fas fa-comments"></i> SMS
+                        Gateway</a></li>
+                <li class="nav-item"><a class="nav-link" href="payment-gateway.html"><i class="fas fa-credit-card"></i>
+                        Payment Gateway</a></li>
+                <li class="nav-item vend"><a class="nav-link" href="license.html"><i class="fas fa-file-contract"></i>
+                        License</a></li>
                 <li class="section-title">CONTENT</li>
-                <li class="nav-item"><a class="nav-link" href="blog-topics.html"><i class="fas fa-book"></i> Blog Topics</a></li>
+                <li class="nav-item"><a class="nav-link" href="blog-topics.html"><i class="fas fa-book"></i> Blog
+                        Topics</a></li>
                 <li class="nav-item"><a class="nav-link" href="blogs.html"><i class="fas fa-blog"></i> Blogs</a></li>
             </ul>
         </aside>
@@ -357,7 +416,8 @@
             </header>
             <br>
             <div class="profile-icon" style="position:absolute; top: 10px; right: 5px; z-index: 9999;">
-                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                    aria-expanded="false">
                     <img src="./assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
@@ -367,7 +427,8 @@
                             <p class="mb-0 fs-3">My Profile</p>
                         </a>
                         <span id="auth">
-                            <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Logout</a>
+                            <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block"
+                                id="loginButton">Logout</a>
                         </span>
                     </div>
                 </div>
@@ -378,35 +439,47 @@
                         <h5 class="card-title fw-semibold mb-4">Dashboard / Blogs</h5>
                         <div class="container">
                             <h5>Blogs</h5>
-                            <div class="actions-bar d-flex flex-column flex-md-row align-items-center align-items-lg-end justify-content-center justify-content-md-center justify-content-lg-end">
-                                <input type="text" class="form-control" id="filterInput" placeholder="Search blogs...">
+                            <div
+                                class="actions-bar d-flex flex-column flex-md-row align-items-center align-items-lg-end justify-content-center justify-content-md-center justify-content-lg-end">
+                                <input type="text" class="form-control" id="filterInput"
+                                    placeholder="Search blogs...">
+                                <!-- <div class="dropdown w-100 ms-2">
+                                    <button class="btn btn-secondary px-5" type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">Export</button>
+                                    <ul class="dropdown-menu mt-2" aria-labelledby="exportButton">
+                                        <li><a class="dropdown-item" href="#" id="exportButton"><i
+                                                    class="fas fa-file-excel"></i> XLS</a></li>
+                                    </ul>
+                                </div> -->
                                 <div class="dropdown w-100 ms-2">
                                     <button onclick="printOnlyTable()" class="btn btn-secondary px-5">Print</button>
                                 </div>
                                 <div class="dropdown w-100 ms-2">
-                                    <button type="button" class="btn btn-primary px-3" data-bs-toggle="modal" data-bs-target="#addBlogModal">➕ Add Blog</button>
+                                    <button type="button" class="btn btn-primary px-3" data-bs-toggle="modal"
+                                        data-bs-target="#addBlogModal">➕ Add Blog</button>
                                 </div>
                             </div>
-                            <div class="modal fade" id="addBlogModal" tabindex="-1" aria-labelledby="addBlogModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="addBlogModal" tabindex="-1" aria-labelledby="addBlogModalLabel"
+                                aria-hidden="true">
                                 <div class="modal-dialog modal-lg modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="addBlogModalLabel">Add New Blog</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <form id="addBlogForm" enctype="multipart/form-data">
                                                 <div class="mb-3 row">
                                                     <div class="col-12 col-md-6">
                                                         <label for="addBlogName" class="form-label">Blog Name</label>
-                                                        <input type="text" id="addBlogName" name="blog_name" class="form-control" placeholder="Blog Name" required>
+                                                        <input type="text" id="addBlogName" name="blog_name"
+                                                            class="form-control" placeholder="Blog Name" required>
                                                     </div>
                                                     <div class="col-12 col-md-6">
                                                         <label for="addSlug" class="form-label">Slug</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-text">/</span>
-                                                            <input type="text" id="addSlug" name="slug" class="form-control slug-input" placeholder="Slug" required>
-                                                        </div>
+                                                        <input type="text" id="addSlug" name="slug" class="form-control"
+                                                            placeholder="Slug" required>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
@@ -418,17 +491,21 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-12 col-md-6">
-                                                        <label for="addMainCategory" class="form-label">Main Category</label>
-                                                        <select id="addMainCategory" name="parent_category_id" class="form-select">
-                                                            <option value="">Select Main Category</option>
+                                                        <label for="addParentCategory" class="form-label">Parent
+                                                            Category</label>
+                                                        <select id="addParentCategory" name="parent_category_id"
+                                                            class="form-select">
+                                                            <option value="">Select Parent Category</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <div class="col-12 col-md-6">
-                                                        <label for="addSubCategory" class="form-label">Sub Category</label>
-                                                        <select id="addSubCategory" name="child_category_id" class="form-select">
-                                                            <option value="">Select Sub Category</option>
+                                                        <label for="addChildCategory" class="form-label">Child
+                                                            Category</label>
+                                                        <select id="addChildCategory" name="child_category_id"
+                                                            class="form-select">
+                                                            <option value="">Select Child Category</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-12 col-md-6">
@@ -439,57 +516,63 @@
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="addMainImage" class="form-label">Main Image</label>
-                                                    <input type="file" id="addMainImage" name="main_image" class="form-control" accept="image/*" required>
+                                                    <label for="addPostTitle" class="form-label">Post Title</label>
+                                                    <input type="text" id="addPostTitle" name="post_title"
+                                                        class="form-control" placeholder="Post Title" required>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="addReadMinutes" class="form-label">Read Minutes</label>
-                                                    <input type="number" id="addReadMinutes" name="read_minutes" class="form-control" placeholder="Read Minutes">
+                                                    <label for="addMetaDescription" class="form-label">Meta
+                                                        Description</label>
+                                                    <textarea id="addMetaDescription" name="meta_description"
+                                                        class="form-control" placeholder="Meta Description"></textarea>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="addPostBy" class="form-label">Post By</label>
-                                                    <input type="text" id="addPostBy" name="post_by" class="form-control" readonly>
-                                                    <input type="hidden" id="addPostById" name="post_by_id">
+                                                    <select id="addPostBy" name="post_by" class="form-select">
+                                                        <option value="">Select Author</option>
+                                                    </select>
                                                 </div>
-                                                <div id="addContentSections">
-                                                    <div class="content-section">
-                                                        <i class="fas fa-plus-circle add-content-btn" onclick="addContentSection('add')"></i>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Blog Title</label>
-                                                            <input type="text" name="post_titles[]" class="form-control" placeholder="Blog Title">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Additional Image</label>
-                                                            <input type="file" name="additional_images[]" class="form-control additional-image-input" accept="image/*" onchange="toggleAdditionalFields(this, 'add')">
-                                                            <div class="additional-image-container">
-                                                                <div class="mb-3">
-                                                                    <label class="form-label">Image Caption</label>
-                                                                    <input type="text" name="image_captions[]" class="form-control" placeholder="Image Caption">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Description</label>
-                                                            <div class="description-editor" style="border: 1px solid #ddd; border-radius: 4px;"></div>
-                                                            <input type="hidden" name="descriptions[]">
-                                                        </div>
+                                                <div class="mb-3 row">
+                                                    <div class="col-12 col-md-6">
+                                                        <label for="addReadMinutes" class="form-label">Read
+                                                            Minutes</label>
+                                                        <input type="number" id="addReadMinutes" name="read_minutes"
+                                                            class="form-control" placeholder="Read Minutes">
                                                     </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <label for="addComments" class="form-label">Comments</label>
+                                                        <input type="text" id="addComments" name="comments"
+                                                            class="form-control" placeholder="Comments">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="addImage" class="form-label">Image</label>
+                                                    <input type="file" id="addImage" name="image" class="form-control"
+                                                        accept="image/*">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="addBlogHtml" class="form-label">Blog Content</label>
+                                                    <div id="addBlogEditor" class="description border rounded p-2"></div>
                                                 </div>
                                             </form>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                            <button type="button" id="saveAddBlogBtn" class="btn btn-primary">Save</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancel</button>
+                                            <button type="button" id="saveAddBlogBtn"
+                                                class="btn btn-primary">Save</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal fade" id="updateBlogModal" tabindex="-1" aria-labelledby="updateBlogModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="updateBlogModal" tabindex="-1"
+                                aria-labelledby="updateBlogModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="updateBlogModalLabel">Update Blog</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <form id="updateBlogForm" enctype="multipart/form-data">
@@ -497,36 +580,40 @@
                                                 <div class="mb-3 row">
                                                     <div class="col-12 col-md-6">
                                                         <label for="updateBlogName" class="form-label">Blog Name</label>
-                                                        <input type="text" id="updateBlogName" name="blog_name" class="form-control" placeholder="Blog Name" required>
+                                                        <input type="text" id="updateBlogName" name="blog_name"
+                                                            class="form-control" placeholder="Blog Name" required>
                                                     </div>
                                                     <div class="col-12 col-md-6">
                                                         <label for="updateSlug" class="form-label">Slug</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-text">/</span>
-                                                            <input type="text" id="updateSlug" name="slug" class="form-control slug-input" placeholder="Slug" required>
-                                                        </div>
+                                                        <input type="text" id="updateSlug" name="slug"
+                                                            class="form-control" placeholder="Slug" required>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <div class="col-12 col-md-6">
                                                         <label for="updateStatus" class="form-label">Status</label>
-                                                        <select id="updateStatus" name="status" class="form-select" required>
+                                                        <select id="updateStatus" name="status" class="form-select"
+                                                            required>
                                                             <option value="Draft">Draft</option>
                                                             <option value="Live">Live</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-12 col-md-6">
-                                                        <label for="updateMainCategory" class="form-label">Main Category</label>
-                                                        <select id="updateMainCategory" name="parent_category_id" class="form-select">
-                                                            <option value="">Select Main Category</option>
+                                                        <label for="updateParentCategory" class="form-label">Parent
+                                                            Category</label>
+                                                        <select id="updateParentCategory" name="parent_category_id"
+                                                            class="form-select">
+                                                            <option value="">Select Parent Category</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <div class="col-12 col-md-6">
-                                                        <label for="updateSubCategory" class="form-label">Sub Category</label>
-                                                        <select id="updateSubCategory" name="child_category_id" class="form-select">
-                                                            <option value="">Select Sub Category</option>
+                                                        <label for="updateChildCategory" class="form-label">Child
+                                                            Category</label>
+                                                        <select id="updateChildCategory" name="child_category_id"
+                                                            class="form-select">
+                                                            <option value="">Select Child Category</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-12 col-md-6">
@@ -537,49 +624,54 @@
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="updateMainImage" class="form-label">Main Image</label>
-                                                    <input type="file" id="updateMainImage" name="main_image" class="form-control" accept="image/*">
-                                                    <img id="currentMainImagePreview" class="blog-image mt-2" style="display: none;" alt="Current Main Image">
+                                                    <label for="updatePostTitle" class="form-label">Post Title</label>
+                                                    <input type="text" id="updatePostTitle" name="post_title"
+                                                        class="form-control" placeholder="Post Title" required>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="updateReadMinutes" class="form-label">Read Minutes</label>
-                                                    <input type="number" id="updateReadMinutes" name="read_minutes" class="form-control" placeholder="Read Minutes">
+                                                    <label for="updateMetaDescription" class="form-label">Meta
+                                                        Description</label>
+                                                    <textarea id="updateMetaDescription" name="meta_description"
+                                                        class="form-control" placeholder="Meta Description"></textarea>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="updatePostBy" class="form-label">Post By</label>
-                                                    <input type="text" id="updatePostBy" name="post_by" class="form-control" readonly>
-                                                    <input type="hidden" id="updatePostById" name="post_by_id">
+                                                    <select id="updatePostBy" name="post_by" class="form-select">
+                                                        <option value="">Select Author</option>
+                                                    </select>
                                                 </div>
-                                                <div id="updateContentSections">
-                                                    <div class="content-section">
-                                                        <i class="fas fa-plus-circle add-content-btn" onclick="addContentSection('update')"></i>
-                                                        <i class="fas fa-minus-circle remove-content-btn" onclick="removeContentSection(this)"></i>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Blog Title</label>
-                                                            <input type="text" name="post_titles[]" class="form-control" placeholder="Blog Title">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Additional Image</label>
-                                                            <input type="file" name="additional_images[]" class="form-control additional-image-input" accept="image/*" onchange="toggleAdditionalFields(this, 'update')">
-                                                            <div class="additional-image-container">
-                                                                <div class="mb-3">
-                                                                    <label class="form-label">Image Caption</label>
-                                                                    <input type="text" name="image_captions[]" class="form-control" placeholder="Image Caption">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Description</label>
-                                                            <div class="description-editor" style="border: 1px solid #ddd; border-radius: 4px;"></div>
-                                                            <input type="hidden" name="descriptions[]">
-                                                        </div>
+                                                <div class="mb-3 row">
+                                                    <div class="col-12 col-md-6">
+                                                        <label for="updateReadMinutes" class="form-label">Read
+                                                            Minutes</label>
+                                                        <input type="number" id="updateReadMinutes" name="read_minutes"
+                                                            class="form-control" placeholder="Read Minutes">
                                                     </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <label for="updateComments" class="form-label">Comments</label>
+                                                        <input type="text" id="updateComments" name="comments"
+                                                            class="form-control" placeholder="Comments">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="updateImage" class="form-label">Image</label>
+                                                    <input type="file" id="updateImage" name="image"
+                                                        class="form-control" accept="image/*">
+                                                    <img id="currentImagePreview" class="blog-image mt-2"
+                                                        style="display: none;" alt="Current Image">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="updateBlogHtml" class="form-label">Blog Content</label>
+                                                    <div id="updateBlogEditor"
+                                                        class="description border rounded p-2"></div>
                                                 </div>
                                             </form>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                            <button type="button" id="saveUpdateBlogBtn" class="btn btn-primary">Update</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancel</button>
+                                            <button type="button" id="saveUpdateBlogBtn"
+                                                class="btn btn-primary">Update</button>
                                         </div>
                                     </div>
                                 </div>
@@ -596,15 +688,21 @@
                                                 <p><strong>Blog Name:</strong> <span id="blogName"></span></p>
                                                 <p><strong>Slug:</strong> <span id="blogSlug"></span></p>
                                                 <p><strong>Status:</strong> <span id="blogStatus"></span></p>
-                                                <p><strong>Main Category:</strong> <span id="blogMainCategory"></span></p>
-                                                <p><strong>Sub Category:</strong> <span id="blogSubCategory"></span></p>
+                                                <p><strong>Parent Category:</strong> <span
+                                                        id="blogParentCategory"></span></p>
+                                                <p><strong>Child Category:</strong> <span
+                                                        id="blogChildCategory"></span></p>
                                                 <p><strong>Topic:</strong> <span id="blogTopic"></span></p>
-                                                <p><strong>Read Minutes:</strong> <span id="blogReadMinutes"></span></p>
+                                                <p><strong>Post Title:</strong> <span id="blogPostTitle"></span></p>
+                                                <p><strong>Meta Description:</strong> <span
+                                                        id="blogMetaDescription"></span></p>
                                                 <p><strong>Post By:</strong> <span id="blogPostBy"></span></p>
+                                                <p><strong>Read Minutes:</strong> <span id="blogReadMinutes"></span></p>
+                                                <p><strong>Comments:</strong> <span id="blogComments"></span></p>
                                                 <p><strong>Post Date:</strong> <span id="blogPostDate"></span></p>
-                                                <p><strong>Main Image:</strong></p>
-                                                <img id="blogMainImage" class="blog-image" alt="Blog Main Image" style="display: none;">
-                                                <div id="blogContentDetails"></div>
+                                                <p><strong>Image:</strong></p>
+                                                <img id="blogImage" class="blog-image" alt="Blog Image"
+                                                    style="display: none;">
                                             </div>
                                             <div class="col-md-6 text-end">
                                                 <button class="btn btn-primary" onclick="printBlogDetails()">Print</button>
@@ -614,18 +712,57 @@
                                 </div>
                             </div>
                             <div id="printableBlogTable" style="display: none;">
-                                <table border="1" cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+                                <table border="1" cellpadding="8" cellspacing="0"
+                                    style="width: 100%; border-collapse: collapse;">
                                     <tbody>
-                                        <tr><th align="left">Blog Name</th><td id="blogNameTable"></td></tr>
-                                        <tr><th align="left">Slug</th><td id="blogSlugTable"></td></tr>
-                                        <tr><th align="left">Status</th><td id="blogStatusTable"></td></tr>
-                                        <tr><th align="left">Main Category</th><td id="blogMainCategoryTable"></td></tr>
-                                        <tr><th align="left">Sub Category</th><td id="blogSubCategoryTable"></td></tr>
-                                        <tr><th align="left">Topic</th><td id="blogTopicTable"></td></tr>
-                                        <tr><th align="left">Read Minutes</th><td id="blogReadMinutesTable"></td></tr>
-                                        <tr><th align="left">Post By</th><td id="blogPostByTable"></td></tr>
-                                        <tr><th align="left">Post Date</th><td id="blogPostDateTable"></td></tr>
-                                        <tr><th align="left">Content</th><td id="blogContentTable"></td></tr>
+                                        <tr>
+                                            <th align="left">Blog Name</th>
+                                            <td id="blogNameTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Slug</th>
+                                            <td id="blogSlugTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Status</th>
+                                            <td id="blogStatusTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Parent Category</th>
+                                            <td id="blogParentCategoryTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Child Category</th>
+                                            <td id="blogChildCategoryTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Topic</th>
+                                            <td id="blogTopicTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Post Title</th>
+                                            <td id="blogPostTitleTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Meta Description</th>
+                                            <td id="blogMetaDescriptionTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Post By</th>
+                                            <td id="blogPostByTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Read Minutes</th>
+                                            <td id="blogReadMinutesTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Comments</th>
+                                            <td id="blogCommentsTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Post Date</th>
+                                            <td id="blogPostDateTable"></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -639,8 +776,9 @@
                                     <table class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
-                                                <th style="font-size: 10px;">Main Image</th>
+                                                <th style="font-size: 10px;">Image</th>
                                                 <th style="font-size: 10px;">Blog Name</th>
+                                                <th style="font-size: 10px;">Post Title</th>
                                                 <th style="font-size: 10px;">Status</th>
                                                 <th style="font-size: 10px;">Post Date</th>
                                                 <th style="font-size: 10px;" class="no-print">Actions</th>
@@ -663,65 +801,74 @@
                 <script>
                     let blogsCache = null;
                     let currentBlogId = null;
-                    let addQuillEditors = [];
-                    let updateQuillEditors = [];
+                    let addQuill = null;
+                    let updateQuill = null;
 
                     document.addEventListener('DOMContentLoaded', function () {
-                        initializeQuillEditors('add');
-                        initializeQuillEditors('update');
+                        addQuill = new Quill('#addBlogEditor', {
+                            theme: 'snow',
+                            modules: {
+                                toolbar: [
+                                    [{ 'font': [] }, { 'size': [] }],
+                                    ['bold', 'italic', 'underline', 'strike'],
+                                    [{ 'color': [] }, { 'background': [] }],
+                                    [{ 'script': 'sub' }, { 'script': 'super' }],
+                                    [{ 'header': '1' }, { 'header': '2' }, 'blockquote', 'code-block'],
+                                    [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'list': 'check' }],
+                                    [{ 'indent': '-1' }, { 'indent': '+1' }],
+                                    [{ 'direction': 'rtl' }],
+                                    [{ 'align': [] }],
+                                    ['link', 'image', 'video'],
+                                    ['clean']
+                                ]
+                            },
+                            placeholder: 'Enter blog content...',
+                        });
+
+                        updateQuill = new Quill('#updateBlogEditor', {
+                            theme: 'snow',
+                            modules: {
+                                toolbar: [
+                                    [{ 'font': [] }, { 'size': [] }],
+                                    ['bold', 'italic', 'underline', 'strike'],
+                                    [{ 'color': [] }, { 'background': [] }],
+                                    [{ 'script': 'sub' }, { 'script': 'super' }],
+                                    [{ 'header': '1' }, { 'header': '2' }, 'blockquote', 'code-block'],
+                                    [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'list': 'check' }],
+                                    [{ 'indent': '-1' }, { 'indent': '+1' }],
+                                    [{ 'direction': 'rtl' }],
+                                    [{ 'align': [] }],
+                                    ['link', 'image', 'video'],
+                                    ['clean']
+                                ]
+                            },
+                            placeholder: 'Enter blog content...',
+                        });
+
                         fetchBlogs();
                         fetchCategories();
                         fetchTopics();
-                        fetchUser();
+                        fetchUsers();
 
                         const addBlogModal = document.getElementById('addBlogModal');
                         addBlogModal.addEventListener('hidden.bs.modal', function () {
                             document.getElementById('addBlogForm').reset();
-                            document.getElementById('addContentSections').innerHTML = getContentSectionTemplate('add');
-                            initializeQuillEditors('add');
+                            addQuill.root.innerHTML = '';
                         });
 
                         const updateBlogModal = document.getElementById('updateBlogModal');
                         updateBlogModal.addEventListener('hidden.bs.modal', function () {
                             document.getElementById('updateBlogForm').reset();
-                            document.getElementById('updateContentSections').innerHTML = getContentSectionTemplate('update');
-                            initializeQuillEditors('update');
-                            document.getElementById('currentMainImagePreview').style.display = 'none';
+                            updateQuill.root.innerHTML = '';
+                            document.getElementById('currentImagePreview').style.display = 'none';
                             currentBlogId = null;
                         });
 
-                        document.getElementById('saveUpdateBlogBtn').addEventListener('click', saveUpdateBlogModal);
+                        document.getElementById('saveUpdateBlogBtn').addEventListener('click',
+                            saveUpdateBlogModal);
                         document.getElementById('saveAddBlogBtn').addEventListener('click', addBlog);
 
-                        document.getElementById('addBlogName').addEventListener('input', function () {
-                            const slugField = document.getElementById('addSlug');
-                            if (!slugField.dataset.manuallyEdited) {
-                                slugField.value = this.value.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
-                            }
-                        });
-
-                        document.getElementById('addSlug').addEventListener('input', function () {
-                            this.dataset.manuallyEdited = true;
-                        });
-
-                        document.getElementById('updateBlogName').addEventListener('input', function () {
-                            const slugField = document.getElementById('updateSlug');
-                            if (!slugField.dataset.manuallyEdited) {
-                                slugField.value = this.value.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
-                            }
-                        });
-
-                        document.getElementById('updateSlug').addEventListener('input', function () {
-                            this.dataset.manuallyEdited = true;
-                        });
-
-                        document.getElementById('addMainCategory').addEventListener('change', function () {
-                            updateChildCategories('add', this.value);
-                        });
-
-                        document.getElementById('updateMainCategory').addEventListener('change', function () {
-                            updateChildCategories('update', this.value);
-                        });
+                        document.getElementById('exportButton').addEventListener('click', exportBlogsToExcel);
                     });
 
                     function showLoader() {
@@ -732,104 +879,35 @@
                         document.getElementById('loader').style.display = 'none';
                     }
 
-                    function initializeQuillEditors(mode) {
-                        const editors = document.querySelectorAll(`#${mode}ContentSections .description-editor`);
-                        const quillArray = mode === 'add' ? addQuillEditors : updateQuillEditors;
-                        quillArray.forEach(quill => quill.destroy);
-                        quillArray.length = 0;
-
-                        editors.forEach((editor, index) => {
-                            const quill = new Quill(editor, {
-                                theme: 'snow',
-                                modules: {
-                                    toolbar: [
-                                        [{ 'font': [] }, { 'size': [] }],
-                                        ['bold', 'italic', 'underline', 'strike'],
-                                        [{ 'color': [] }, { 'background': [] }],
-                                        [{ 'script': 'sub' }, { 'script': 'super' }],
-                                        [{ 'header': '1' }, { 'header': '2' }, 'blockquote', 'code-block'],
-                                        [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'list': 'check' }],
-                                        [{ 'indent': '-1' }, { 'indent': '+1' }],
-                                        [{ 'direction': 'rtl' }],
-                                        [{ 'align': [] }],
-                                        ['link', 'image', 'video'],
-                                        ['clean']
-                                    ]
-                                },
-                                placeholder: 'Enter description...',
-                            });
-                            quillArray.push(quill);
-                            quill.on('text-change', function () {
-                                const hiddenInput = editor.parentElement.querySelector('input[type="hidden"]');
-                                hiddenInput.value = quill.root.innerHTML;
-                            });
-                        });
-                    }
-
-                    function getContentSectionTemplate(mode) {
-                        return `
-                            <div class="content-section">
-                                <i class="fas fa-plus-circle add-content-btn" onclick="addContentSection('${mode}')"></i>
-                                ${mode === 'update' ? `<i class="fas fa-minus-circle remove-content-btn" onclick="removeContentSection(this)"></i>` : ''}
-                                <div class="mb-3">
-                                    <label class="form-label">Blog Title</label>
-                                    <input type="text" name="post_titles[]" class="form-control" placeholder="Blog Title">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Additional Image</label>
-                                    <input type="file" name="additional_images[]" class="form-control additional-image-input" accept="image/*" onchange="toggleAdditionalFields(this, '${mode}')">
-                                    <div class="additional-image-container">
-                                        <div class="mb-3">
-                                            <label class="form-label">Image Caption</label>
-                                            <input type="text" name="image_captions[]" class="form-control" placeholder="Image Caption">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Description</label>
-                                    <div class="description-editor" style="border: 1px solid #ddd; border-radius: 4px;"></div>
-                                    <input type="hidden" name="descriptions[]">
-                                </div>
-                            </div>
-                        `;
-                    }
-
-                    function addContentSection(mode) {
-                        const container = document.getElementById(`${mode}ContentSections`);
-                        const newSection = document.createElement('div');
-                        newSection.innerHTML = getContentSectionTemplate(mode);
-                        container.appendChild(newSection);
-                        initializeQuillEditors(mode);
-                    }
-
-                    function removeContentSection(btn) {
-                        const section = btn.closest('.content-section');
-                        if (document.querySelectorAll('#updateContentSections .content-section').length > 1) {
-                            section.remove();
-                            initializeQuillEditors('update');
-                        }
-                    }
-
-                    function toggleAdditionalFields(input, mode) {
-                        const container = input.closest('.mb-3').querySelector('.additional-image-container');
-                        container.style.display = input.files.length > 0 ? 'block' : 'none';
-                    }
-
                     async function fetchBlogs() {
                         const token = localStorage.getItem('token');
                         showLoader();
                         try {
                             const response = await fetch(`${API_ADMINGRAB_URL}/api/blogs`, {
                                 method: 'GET',
-                                headers: { 'Authorization': token },
+                                headers: {
+                                    'Authorization': token,
+                                },
                             });
-                            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status}`);
+                            }
                             const data = await response.json();
+                            console.log("✅ Fetched Blogs:", data);
                             blogsCache = data;
                             populateTable(data);
                         } catch (error) {
-                            console.error('Error fetching blogs:', error);
+                            console.error('❌ Error fetching blogs:', error);
                             showErrorMessage('Failed to fetch blogs. Please try again.');
+                            if (!blogsCache) {
+                                document.getElementById('blogsTableBody').innerHTML = `
+                                    <tr>
+                                        <td colspan="6" class="text-center text-danger">
+                                            Failed to load data. Please check your connection and try again.
+                                        </td>
+                                    </tr>
+                                `;
+                            }
                         } finally {
                             hideLoader();
                         }
@@ -837,143 +915,141 @@
 
                     async function fetchCategories() {
                         const token = localStorage.getItem('token');
-                        showLoader();
                         try {
-                            const response = await fetch(`${API_ADMINGRAB_URL}/api/product-categories`, {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/blog-categories`, {
                                 method: 'GET',
-                                headers: { 'Authorization': token },
+                                headers: {
+                                    'Authorization': token,
+                                },
                             });
                             if (!response.ok) {
-                                const errorText = await response.text();
-                                throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+                                throw new Error(`HTTP error! status: ${response.status}`);
                             }
                             const categories = await response.json();
                             populateCategoryDropdowns(categories);
                         } catch (error) {
-                            console.error('Error fetching categories:', error);
-                            showErrorMessage('Failed to fetch categories. Please check your network or try again.');
-                        } finally {
-                            hideLoader();
+                            console.error('❌ Error fetching categories:', error);
+                            showErrorMessage('Failed to fetch categories. Please try again.');
                         }
                     }
 
                     async function fetchTopics() {
                         const token = localStorage.getItem('token');
-                        showLoader();
                         try {
                             const response = await fetch(`${API_ADMINGRAB_URL}/api/blog-topics`, {
                                 method: 'GET',
-                                headers: { 'Authorization': token },
+                                headers: {
+                                    'Authorization': token,
+                                },
                             });
                             if (!response.ok) {
-                                const errorText = await response.text();
-                                throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+                                throw new Error(`HTTP error! status: ${response.status}`);
                             }
                             const topics = await response.json();
                             populateTopicDropdowns(topics);
                         } catch (error) {
-                            console.error('Error fetching topics:', error);
-                            showErrorMessage('Failed to fetch topics. Please check your network or try again.');
-                        } finally {
-                            hideLoader();
+                            console.error('❌ Error fetching topics:', error);
+                            showErrorMessage('Failed to fetch topics. Please try again.');
                         }
                     }
 
-                    async function fetchUser() {
+                    async function fetchUsers() {
                         const token = localStorage.getItem('token');
-                        showLoader();
                         try {
-                            const response = await fetch(`${API_ADMINGRAB_URL}/user`, {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/users`, {
                                 method: 'GET',
-                                headers: { 'Authorization': token },
+                                headers: {
+                                    'Authorization': token,
+                                },
                             });
                             if (!response.ok) {
-                                const errorText = await response.text();
-                                throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+                                throw new Error(`HTTP error! status: ${response.status}`);
                             }
-                            const user = await response.json();
-                            populateUserFields(user);
+                            const users = await response.json();
+                            populateUserDropdowns(users);
                         } catch (error) {
-                            console.error('Error fetching user:', error);
-                            showErrorMessage('Failed to fetch user data. Please check your network or try again.');
-                        } finally {
-                            hideLoader();
-                        }
-                    }
-
-                    async function updateChildCategories(mode, parentId) {
-                        const token = localStorage.getItem('token');
-                        const childSelect = document.getElementById(`${mode}SubCategory`);
-                        childSelect.innerHTML = '<option value="">Select Sub Category</option>';
-                        if (!parentId) return;
-                        showLoader();
-                        try {
-                            const response = await fetch(`${API_ADMINGRAB_URL}/api/product-categories?parent_id=${parentId}`, {
-                                method: 'GET',
-                                headers: { 'Authorization': token },
-                            });
-                            if (!response.ok) {
-                                const errorText = await response.text();
-                                throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
-                            }
-                            const childCategories = await response.json();
-                            childCategories.forEach(category => {
-                                const option = document.createElement('option');
-                                option.value = category.id;
-                                option.textContent = category.category_name || 'Unknown';
-                                childSelect.appendChild(option);
-                            });
-                        } catch (error) {
-                            console.error('Error fetching child categories:', error);
-                            showErrorMessage('Failed to fetch sub categories. Please check your network or try again.');
-                        } finally {
-                            hideLoader();
+                            console.error('❌ Error fetching users:', error);
+                            // showErrorMessage('Failed to fetch users. Please try again.');
                         }
                     }
 
                     function populateCategoryDropdowns(categories) {
-                        const addMainCategory = document.getElementById('addMainCategory');
-                        const updateMainCategory = document.getElementById('updateMainCategory');
-                        addMainCategory.innerHTML = '<option value="">Select Main Category</option>';
-                        updateMainCategory.innerHTML = '<option value="">Select Main Category</option>';
-                        categories.filter(cat => !cat.parent_id).forEach(category => {
+                        const addParentCategory = document.getElementById('addParentCategory');
+                        const updateParentCategory = document.getElementById('updateParentCategory');
+                        const addChildCategory = document.getElementById('addChildCategory');
+                        const updateChildCategory = document.getElementById('updateChildCategory');
+
+                        addParentCategory.innerHTML = '<option value="">Select Parent Category</option>';
+                        updateParentCategory.innerHTML = '<option value="">Select Parent Category</option>';
+                        addChildCategory.innerHTML = '<option value="">Select Child Category</option>';
+                        updateChildCategory.innerHTML = '<option value="">Select Child Category</option>';
+
+                        const parentCategories = categories.filter(cat => !cat.parent_id);
+                        const childCategories = categories.filter(cat => cat.parent_id);
+
+                        parentCategories.forEach(category => {
                             const option1 = document.createElement('option');
                             option1.value = category.id;
-                            option1.textContent = category.category_name || 'Unknown';
-                            addMainCategory.appendChild(option1);
+                            option1.textContent = category.category_name;
+                            addParentCategory.appendChild(option1);
+
                             const option2 = document.createElement('option');
                             option2.value = category.id;
-                            option2.textContent = category.category_name || 'Unknown';
-                            updateMainCategory.appendChild(option2);
+                            option2.textContent = category.category_name;
+                            updateParentCategory.appendChild(option2);
+                        });
+
+                        childCategories.forEach(category => {
+                            const option1 = document.createElement('option');
+                            option1.value = category.id;
+                            option1.textContent = category.category_name;
+                            addChildCategory.appendChild(option1);
+
+                            const option2 = document.createElement('option');
+                            option2.value = category.id;
+                            option2.textContent = category.category_name;
+                            updateChildCategory.appendChild(option2);
                         });
                     }
 
                     function populateTopicDropdowns(topics) {
                         const addTopic = document.getElementById('addTopic');
                         const updateTopic = document.getElementById('updateTopic');
+
                         addTopic.innerHTML = '<option value="">Select Topic</option>';
                         updateTopic.innerHTML = '<option value="">Select Topic</option>';
+
                         topics.forEach(topic => {
                             const option1 = document.createElement('option');
                             option1.value = topic.id;
-                            option1.textContent = topic.topic_name || 'Unknown';
+                            option1.textContent = topic.topic_name;
                             addTopic.appendChild(option1);
+
                             const option2 = document.createElement('option');
                             option2.value = topic.id;
-                            option2.textContent = topic.topic_name || 'Unknown';
+                            option2.textContent = topic.topic_name;
                             updateTopic.appendChild(option2);
                         });
                     }
 
-                    function populateUserFields(user) {
+                    function populateUserDropdowns(users) {
                         const addPostBy = document.getElementById('addPostBy');
-                        const addPostById = document.getElementById('addPostById');
                         const updatePostBy = document.getElementById('updatePostBy');
-                        const updatePostById = document.getElementById('updatePostById');
-                        addPostBy.value = user.name || user.email || 'Unknown';
-                        addPostById.value = user.id || '';
-                        updatePostBy.value = user.name || user.email || 'Unknown';
-                        updatePostById.value = user.id || '';
+
+                        addPostBy.innerHTML = '<option value="">Select Author</option>';
+                        updatePostBy.innerHTML = '<option value="">Select Author</option>';
+
+                        users.forEach(user => {
+                            const option1 = document.createElement('option');
+                            option1.value = user.id;
+                            option1.textContent = user.name;
+                            addPostBy.appendChild(option1);
+
+                            const option2 = document.createElement('option');
+                            option2.value = user.id;
+                            option2.textContent = user.name;
+                            updatePostBy.appendChild(option2);
+                        });
                     }
 
                     function populateTable(blogs) {
@@ -981,15 +1057,22 @@
                         document.getElementById("totalBlogsCount").textContent = blogs.length;
                         blogsTableBody.innerHTML = '';
                         if (!blogs || blogs.length === 0) {
-                            blogsTableBody.innerHTML = `<tr><td colspan="5" class="text-center">No blogs found</td></tr>`;
+                            blogsTableBody.innerHTML = `
+                                <tr>
+                                    <td colspan="6" class="text-center">No blogs found</td>
+                                </tr>
+                            `;
                             return;
                         }
                         blogs.forEach(blog => {
                             const row = document.createElement('tr');
                             row.setAttribute('data-id', blog.id);
                             row.innerHTML = `
-                                <td>${blog.image ? `<img src="${API_ADMINGRAB_URL}/${blog.image}" class="blog-image" alt="Blog Image" style="width:50px;">` : '—'}</td>
+                                <td>
+                                    ${blog.image ? `<img src="${API_ADMINGRAB_URL}/${blog.image}" class="blog-image" alt="Blog Image" style="width:50px;">` : '—'}
+                                </td>
                                 <td>${blog.blog_name || '—'}</td>
+                                <td>${blog.post_title || '—'}</td>
                                 <td>${blog.status || '—'}</td>
                                 <td>${blog.post_date ? new Date(blog.post_date).toLocaleDateString() : '—'}</td>
                                 <td class="no-print action-buttons">
@@ -1005,21 +1088,27 @@
                     async function addBlog() {
                         const token = localStorage.getItem('token');
                         const formData = new FormData(document.getElementById('addBlogForm'));
+                        formData.append('blog_html', addQuill.root.innerHTML);
+
                         showLoader();
                         try {
                             const response = await fetch(`${API_ADMINGRAB_URL}/api/blogs`, {
                                 method: 'POST',
-                                headers: { 'Authorization': token },
+                                headers: {
+                                    'Authorization': token,
+                                },
                                 body: formData,
                             });
                             const result = await response.json();
-                            if (!response.ok) throw new Error(result.message || 'Failed to add blog');
+                            if (!response.ok) {
+                                throw new Error(result.message || 'Failed to add blog');
+                            }
                             const addBlogModal = bootstrap.Modal.getInstance(document.getElementById('addBlogModal'));
                             addBlogModal.hide();
                             fetchBlogs();
                             showSuccessMessage(result.message);
                         } catch (error) {
-                            console.error('Error adding blog:', error);
+                            console.error('❌ Error adding blog:', error);
                             showErrorMessage(error.message);
                         } finally {
                             hideLoader();
@@ -1051,21 +1140,21 @@
 
                     async function fetchBlogDetails(blogId) {
                         const token = localStorage.getItem('token');
-                        showLoader();
                         try {
                             const response = await fetch(`${API_ADMINGRAB_URL}/api/blogs/${blogId}`, {
                                 method: 'GET',
-                                headers: { 'Authorization': token },
+                                headers: {
+                                    'Authorization': token,
+                                },
                             });
                             if (!response.ok) {
-                                const errorText = await response.text();
-                                throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+                                throw new Error(`HTTP error! status: ${response.status}`);
                             }
                             const data = await response.json();
                             populateBlogDetails(data);
                         } catch (error) {
-                            console.error('Error fetching blog details:', error);
-                            showErrorMessage('Failed to fetch blog details. Please check your network or try again.');
+                            console.error('❌ Error fetching blog details:', error);
+                            showErrorMessage('Failed to fetch blog details. Please try again.');
                         } finally {
                             hideLoader();
                         }
@@ -1073,21 +1162,21 @@
 
                     async function fetchBlogDetailsForUpdate(blogId) {
                         const token = localStorage.getItem('token');
-                        showLoader();
                         try {
                             const response = await fetch(`${API_ADMINGRAB_URL}/api/blogs/${blogId}`, {
                                 method: 'GET',
-                                headers: { 'Authorization': token },
+                                headers: {
+                                    'Authorization': token,
+                                },
                             });
                             if (!response.ok) {
-                                const errorText = await response.text();
-                                throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+                                throw new Error(`HTTP error! status: ${response.status}`);
                             }
                             const data = await response.json();
                             populateUpdateModal(data);
                         } catch (error) {
-                            console.error('Error fetching blog details for update:', error);
-                            showErrorMessage('Failed to fetch blog details. Please check your network or try again.');
+                            console.error('❌ Error fetching blog details for update:', error);
+                            showErrorMessage('Failed to fetch blog details. Please try again.');
                         } finally {
                             hideLoader();
                         }
@@ -1097,32 +1186,22 @@
                         document.getElementById('blogName').textContent = blog.blog_name || '—';
                         document.getElementById('blogSlug').textContent = blog.slug || '—';
                         document.getElementById('blogStatus').textContent = blog.status || '—';
-                        document.getElementById('blogMainCategory').textContent = blog.parent_category || '—';
-                        document.getElementById('blogSubCategory').textContent = blog.child_category || '—';
+                        document.getElementById('blogParentCategory').textContent = blog.parent_category || '—';
+                        document.getElementById('blogChildCategory').textContent = blog.child_category || '—';
                         document.getElementById('blogTopic').textContent = blog.topic_name || '—';
+                        document.getElementById('blogPostTitle').textContent = blog.post_title || '—';
+                        document.getElementById('blogMetaDescription').textContent = blog.meta_description || '—';
+                        document.getElementById('blogPostBy').textContent = blog.post_by_user || '—';
                         document.getElementById('blogReadMinutes').textContent = blog.read_minutes || '—';
-                        document.getElementById('blogPostBy').textContent = blog.post_by_user_name || blog.post_by_user_email || '—';
+                        document.getElementById('blogComments').textContent = blog.comments || '—';
                         document.getElementById('blogPostDate').textContent = blog.post_date ? new Date(blog.post_date).toLocaleString() : '—';
-                        const blogMainImage = document.getElementById('blogMainImage');
+                        const blogImage = document.getElementById('blogImage');
                         if (blog.image) {
-                            blogMainImage.src = `${API_ADMINGRAB_URL}/${blog.image}`;
-                            blogMainImage.style.display = 'block';
+                            blogImage.src = `${API_ADMINGRAB_URL}/${blog.image}`;
+                            blogImage.style.display = 'block';
                         } else {
-                            blogMainImage.style.display = 'none';
+                            blogImage.style.display = 'none';
                         }
-                        const contentDetails = document.getElementById('blogContentDetails');
-                        contentDetails.innerHTML = '';
-                        const additionalImages = JSON.parse(blog.images || '[]');
-                        blog.post_titles?.forEach((title, index) => {
-                            const section = document.createElement('div');
-                            section.innerHTML = `
-                                <p><strong>Blog Title:</strong> ${title || '—'}</p>
-                                ${additionalImages[index] ? `<p><strong>Additional Image:</strong><br><img src="${API_ADMINGRAB_URL}/${additionalImages[index]}" class="blog-image" alt="Additional Image"></p>` : ''}
-                                <p><strong>Description:</strong></p>
-                                <div>${blog.descriptions[index] || '—'}</div>
-                            `;
-                            contentDetails.appendChild(section);
-                        });
                         document.getElementById('blogViewOverlay').style.display = 'block';
                     }
 
@@ -1131,79 +1210,49 @@
                         document.getElementById('updateBlogName').value = blog.blog_name || '';
                         document.getElementById('updateSlug').value = blog.slug || '';
                         document.getElementById('updateStatus').value = blog.status || 'Draft';
-                        document.getElementById('updateMainCategory').value = blog.parent_category_id || '';
-                        updateChildCategories('update', blog.parent_category_id);
-                        document.getElementById('updateSubCategory').value = blog.child_category_id || '';
+                        document.getElementById('updateParentCategory').value = blog.parent_category_id || '';
+                        document.getElementById('updateChildCategory').value = blog.child_category_id || '';
                         document.getElementById('updateTopic').value = blog.topic_id || '';
+                        document.getElementById('updatePostTitle').value = blog.post_title || '';
+                        document.getElementById('updateMetaDescription').value = blog.meta_description || '';
+                        document.getElementById('updatePostBy').value = blog.post_by || '';
                         document.getElementById('updateReadMinutes').value = blog.read_minutes || '';
-                        document.getElementById('updatePostBy').value = blog.post_by_user_name || blog.post_by_user_email || 'Unknown';
-                        document.getElementById('updatePostById').value = blog.post_by || '';
-                        const currentMainImagePreview = document.getElementById('currentMainImagePreview');
+                        document.getElementById('updateComments').value = blog.comments || '';
+                        updateQuill.root.innerHTML = blog.blog_html || '';
+                        const currentImagePreview = document.getElementById('currentImagePreview');
                         if (blog.image) {
-                            currentMainImagePreview.src = `${API_ADMINGRAB_URL}/${blog.image}`;
-                            currentMainImagePreview.style.display = 'block';
+                            currentImagePreview.src = `${API_ADMINGRAB_URL}/${blog.image}`;
+                            currentImagePreview.style.display = 'block';
                         } else {
-                            currentMainImagePreview.style.display = 'none';
+                            currentImagePreview.style.display = 'none';
                         }
-                        const contentSections = document.getElementById('updateContentSections');
-                        contentSections.innerHTML = '';
-                        const additionalImages = JSON.parse(blog.images || '[]');
-                        blog.post_titles?.forEach((title, index) => {
-                            const section = document.createElement('div');
-                            section.className = 'content-section';
-                            section.innerHTML = `
-                                <i class="fas fa-plus-circle add-content-btn" onclick="addContentSection('update')"></i>
-                                <i class="fas fa-minus-circle remove-content-btn" onclick="removeContentSection(this)"></i>
-                                <div class="mb-3">
-                                    <label class="form-label">Blog Title</label>
-                                    <input type="text" name="post_titles[]" class="form-control" value="${title || ''}" placeholder="Blog Title">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Additional Image</label>
-                                    <input type="file" name="additional_images[]" class="form-control additional-image-input" accept="image/*" onchange="toggleAdditionalFields(this, 'update')">
-                                    <div class="additional-image-container" style="display: ${additionalImages[index] ? 'block' : 'none'};">
-                                        <div class="mb-3">
-                                            <label class="form-label">Image Caption</label>
-                                            <input type="text" name="image_captions[]" class="form-control" value="${blog.image_captions?.[index] || ''}" placeholder="Image Caption">
-                                        </div>
-                                    </div>
-                                    ${additionalImages[index] ? `<img src="${API_ADMINGRAB_URL}/${additionalImages[index]}" class="blog-image mt-2" alt="Current Additional Image">` : ''}
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Description</label>
-                                    <div class="description-editor" style="border: 1px solid #ddd; border-radius: 4px;"></div>
-                                    <input type="hidden" name="descriptions[]" value="${blog.descriptions?.[index] || ''}">
-                                </div>
-                            `;
-                            contentSections.appendChild(section);
-                        });
-                        initializeQuillEditors('update');
-                        updateQuillEditors.forEach((quill, index) => {
-                            if (blog.descriptions?.[index]) {
-                                quill.root.innerHTML = blog.descriptions[index];
-                            }
-                        });
                     }
 
                     async function saveUpdateBlogModal() {
                         const token = localStorage.getItem('token');
                         const blogId = document.getElementById('updateBlogId').value;
                         const formData = new FormData(document.getElementById('updateBlogForm'));
+                        formData.append('blog_html', updateQuill.root.innerHTML);
+
                         showLoader();
                         try {
                             const response = await fetch(`${API_ADMINGRAB_URL}/api/blogs/${blogId}`, {
                                 method: 'PUT',
-                                headers: { 'Authorization': token },
+                                headers: {
+                                    'Authorization': token,
+                                },
                                 body: formData,
                             });
                             const result = await response.json();
-                            if (!response.ok) throw new Error(result.message || 'Failed to update blog');
+                            if (!response.ok) {
+                                throw new Error(result.message || 'Failed to update blog');
+                            }
                             const updateBlogModal = bootstrap.Modal.getInstance(document.getElementById('updateBlogModal'));
                             updateBlogModal.hide();
                             fetchBlogs();
                             showSuccessMessage(result.message);
                         } catch (error) {
-                            console.error('Error updating blog:', error);
+                            console.error('❌ Error updating blog:', error);
                             showErrorMessage(error.message);
                         } finally {
                             hideLoader();
@@ -1217,14 +1266,18 @@
                         try {
                             const response = await fetch(`${API_ADMINGRAB_URL}/api/blogs/${blogId}`, {
                                 method: 'DELETE',
-                                headers: { 'Authorization': token },
+                                headers: {
+                                    'Authorization': token,
+                                },
                             });
                             const result = await response.json();
-                            if (!response.ok) throw new Error(result.message || 'Failed to delete blog');
+                            if (!response.ok) {
+                                throw new Error(result.message || 'Failed to delete blog');
+                            }
                             fetchBlogs();
                             showSuccessMessage(result.message);
                         } catch (error) {
-                            console.error('Error deleting blog:', error);
+                            console.error('❌ Error deleting blog:', error);
                             showErrorMessage(error.message);
                         } finally {
                             hideLoader();
@@ -1271,19 +1324,61 @@
                         document.getElementById('blogNameTable').textContent = document.getElementById('blogName').textContent;
                         document.getElementById('blogSlugTable').textContent = document.getElementById('blogSlug').textContent;
                         document.getElementById('blogStatusTable').textContent = document.getElementById('blogStatus').textContent;
-                        document.getElementById('blogMainCategoryTable').textContent = document.getElementById('blogMainCategory').textContent;
-                        document.getElementById('blogSubCategoryTable').textContent = document.getElementById('blogSubCategory').textContent;
+                        document.getElementById('blogParentCategoryTable').textContent = document.getElementById('blogParentCategory').textContent;
+                        document.getElementById('blogChildCategoryTable').textContent = document.getElementById('blogChildCategory').textContent;
                         document.getElementById('blogTopicTable').textContent = document.getElementById('blogTopic').textContent;
-                        document.getElementById('blogReadMinutesTable').textContent = document.getElementById('blogReadMinutes').textContent;
+                        document.getElementById('blogPostTitleTable').textContent = document.getElementById('blogPostTitle').textContent;
+                        document.getElementById('blogMetaDescriptionTable').textContent = document.getElementById('blogMetaDescription').textContent;
                         document.getElementById('blogPostByTable').textContent = document.getElementById('blogPostBy').textContent;
+                        document.getElementById('blogReadMinutesTable').textContent = document.getElementById('blogReadMinutes').textContent;
+                        document.getElementById('blogCommentsTable').textContent = document.getElementById('blogComments').textContent;
                         document.getElementById('blogPostDateTable').textContent = document.getElementById('blogPostDate').textContent;
-                        document.getElementById('blogContentTable').innerHTML = document.getElementById('blogContentDetails').innerHTML;
                         const printContent = document.getElementById('printableBlogTable').innerHTML;
                         const originalContent = document.body.innerHTML;
                         document.body.innerHTML = printContent;
                         window.print();
                         document.body.innerHTML = originalContent;
                         window.location.reload();
+                    }
+
+                    async function exportBlogsToExcel() {
+                        try {
+                            const token = localStorage.getItem('token');
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/blogs`, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': token,
+                                },
+                            });
+                            if (!response.ok) {
+                                throw new Error('Failed to fetch blogs data');
+                            }
+                            const data = await response.json();
+                            const exportData = [
+                                ['Blog Name', 'Post Title', 'Status', 'Parent Category', 'Child Category', 'Topic', 'Post By', 'Read Minutes', 'Comments', 'Post Date']
+                            ];
+                            data.forEach(blog => {
+                                exportData.push([
+                                    blog.blog_name || '—',
+                                    blog.post_title || '—',
+                                    blog.status || '—',
+                                    blog.parent_category || '—',
+                                    blog.child_category || '—',
+                                    blog.topic_name || '—',
+                                    blog.post_by_user || '—',
+                                    blog.read_minutes || '—',
+                                    blog.comments || '—',
+                                    blog.post_date ? new Date(blog.post_date).toLocaleString() : '—'
+                                ]);
+                            });
+                            const wb = XLSX.utils.book_new();
+                            const ws = XLSX.utils.aoa_to_sheet(exportData);
+                            XLSX.utils.book_append_sheet(wb, ws, 'Blogs');
+                            XLSX.writeFile(wb, 'blogs.xlsx');
+                        } catch (error) {
+                            console.error('Error exporting file:', error);
+                            showErrorMessage('Failed to export blogs data. Please try again.');
+                        }
                     }
 
                     function showSuccessMessage(message) {
@@ -1315,9 +1410,869 @@
                             purchasesArrow.classList.toggle('rotate');
                         });
                     });
+
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const currentFile = window.location.pathname.split("/").pop();
+                        document.querySelectorAll(".nav-link").forEach(link => {
+                            const href = link.getAttribute("href");
+                            if (href && href === currentFile) {
+                                link.classList.add("active");
+                                const sidebarSubmenu = link.closest(".sidebar-submenu");
+                                if (sidebarSubmenu) {
+                                    sidebarSubmenu.classList.add("show");
+                                    const parentToggle = sidebarSubmenu.previousElementSibling;
+                                    if (parentToggle && parentToggle.classList.contains("purchases-toggle-custom")) {
+                                        parentToggle.querySelector('.arrow-icon').classList.add('rotate');
+                                    }
+                                }
+                            } else {
+                                link.classList.remove("active");
+                            }
+                        });
+                    });
                 </script>
             </div>
         </div>
     </div>
+<<<<<<< Updated upstream
+=======
+
+    <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/sidebarmenu.js"></script>
+    <script src="./assets/js/app.min.js"></script>
+    <script src="./assets/libs/simplebar/dist/simplebar.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="./apiConfig/apiConfig.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+      // Authentication check
+      (function checkAuth() {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          window.location.replace('./login.html');
+        }
+      })();
+
+      // Logout functionality
+      window.onload = function() {
+        const token = localStorage.getItem('token');
+        const authContainer = document.getElementById('auth');
+        if (token) {
+          authContainer.innerHTML = `
+            <a href="#" class="btn btn-outline-danger mx-3 mt-2 d-block" id="logoutButton">Logout</a>
+          `;
+          document.getElementById('logoutButton').addEventListener('click', logout);
+        } else {
+          authContainer.innerHTML = `
+            <a href="./login.html" class="btn btn-outline-primary mx-3 mt-2 d-block" id="loginButton">Login</a>
+          `;
+        }
+      }
+
+      function logout() {
+        localStorage.removeItem('token');
+        window.location.href = './login.html';
+      }
+
+      // Sidebar navigation
+     
+
+        const purchasesToggle = document.querySelector('.purchases-toggle-custom');
+        const purchasesMenu = document.getElementById('purchaseMenuCustom');
+        const purchasesArrow = purchasesToggle.querySelector('.arrow-icon');
+        purchasesToggle.addEventListener('click', () => {
+          purchasesMenu.classList.toggle('show');
+          purchasesArrow.classList.toggle('rotate');
+        });
+
+        // Fetch categories and topics when page loads
+        fetchCategories();
+        fetchTopics();
+     
+
+      // Quill Image Upload Handler
+      function imageHandler() {
+        const input = document.createElement('input');
+        input.setAttribute('type', 'file');
+        input.setAttribute('accept', 'image/*');
+        input.click();
+
+        input.onchange = async () => {
+          const file = input.files[0];
+          if (file) {
+            const formData = new FormData();
+            formData.append('image', file);
+
+            try {
+              const token = localStorage.getItem('token');
+              const response = await fetch(`${API_ADMINGRAB_URL}/api/upload_image`, {
+                method: 'POST',
+                headers: {
+                  'Authorization': `Bearer ${token}`,
+                },
+                body: formData,
+              });
+
+              if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Failed to upload image: ${response.status} ${response.statusText} - ${errorText}`);
+              }
+
+              const result = await response.json();
+              const imageUrl = result.image_url;
+              const range = this.quill.getSelection();
+              this.quill.insertEmbed(range.index, 'image', imageUrl);
+            } catch (error) {
+              console.error('Error uploading image:', error);
+              showErrorMessage(`Failed to upload image: ${error.message}`);
+            }
+          }
+        };
+      }
+
+      // Quill Editor for Blog Content
+      let quill = new Quill('#editor-container', {
+        theme: 'snow',
+        modules: {
+          toolbar: {
+            container: [
+              [{ 'font': [] }, { 'size': [] }],
+              ['bold', 'italic', 'underline', 'strike'],
+              [{ 'color': [] }, { 'background': [] }],
+              [{ 'script': 'sub' }, { 'script': 'super' }],
+              [{ 'header': '1' }, { 'header': '2' }, 'blockquote', 'code-block'],
+              [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'list': 'check' }],
+              [{ 'indent': '-1' }, { 'indent': '+1' }],
+              [{ 'direction': 'rtl' }],
+              [{ 'align': [] }],
+              ['link', 'image', 'video'],
+              ['clean']
+            ],
+            handlers: {
+              'image': imageHandler
+            }
+          }
+        },
+        placeholder: 'Enter blog content...',
+      });
+
+      let updateQuill = new Quill('#updateEditorContainer', {
+        theme: 'snow',
+        modules: {
+          toolbar: {
+            container: [
+              [{ 'font': [] }, { 'size': [] }],
+              ['bold', 'italic', 'underline', 'strike'],
+              [{ 'color': [] }, { 'background': [] }],
+              [{ 'script': 'sub' }, { 'script': 'super' }],
+              [{ 'header': '1' }, { 'header': '2' }, 'blockquote', 'code-block'],
+              [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'list': 'check' }],
+              [{ 'indent': '-1' }, { 'indent': '+1' }],
+              [{ 'direction': 'rtl' }],
+              [{ 'align': [] }],
+              ['link', 'image', 'video'],
+              ['clean']
+            ],
+            handlers: {
+              'image': imageHandler
+            }
+          }
+        },
+        placeholder: 'Enter blog content...',
+      });
+
+      // Fetch Blogs
+      async function fetchBlogs() {
+        try {
+          const token = localStorage.getItem('token');
+          if (!token) {
+            showErrorMessage('No authentication token found. Please log in.');
+            window.location.replace('./login.html');
+            return;
+          }
+
+          console.log('Fetching blogs with token:', token);
+          console.log('API URL:', `${API_ADMINGRAB_URL}/api/blogs`);
+
+          const response = await fetch(`${API_ADMINGRAB_URL}/api/blogs`, {
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          });
+
+          console.log('Response status:', response.status);
+          if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Failed to fetch blogs: ${response.status} ${response.statusText} - ${errorText}`);
+          }
+
+          const blogs = await response.json();
+          console.log('Fetched blogs:', blogs);
+
+          const blogsTableBody = document.getElementById('blogsTableBody');
+          if (!blogsTableBody) {
+            throw new Error('Table body element not found');
+          }
+
+          blogsTableBody.innerHTML = '';
+          if (!Array.isArray(blogs)) {
+            throw new Error('Unexpected response format: blogs data is not an array');
+          }
+
+          blogs.forEach(blog => {
+            const row = document.createElement('tr');
+            row.setAttribute('data-id', blog.id);
+            row.innerHTML = `
+              <td>${blog.post_title || 'N/A'}</td>
+              <td>${blog.parent_category || blog.child_category || 'N/A'}</td>
+              <td>${blog.status || 'N/A'}</td>
+              <td>${blog.post_by_user || 'N/A'}</td>
+              <td class="blog-content-preview">${blog.blog_html || ''}</td>
+              <td class="action-buttons">
+                <button class="btn btn-view" onclick="viewBlogDetails(${blog.id})">👁</button>
+                <button class="btn btn-edit" onclick="openUpdateForm(${blog.id})">✏️</button>
+                <button class="btn btn-delete" onclick="showDeleteFormModal(${blog.id})">🗑</button>
+              </td>
+            `;
+            blogsTableBody.appendChild(row);
+          });
+        } catch (error) {
+          console.error('Detailed error fetching blogs:', error);
+          showErrorMessage(`Failed to fetch blogs: ${error.message}`);
+        }
+      }
+
+      // Fetch Categories
+      async function fetchCategories() {
+        try {
+          if (!API_ADMINGRAB_URL) {
+            throw new Error('API_ADMINGRAB_URL is not defined. Check apiConfig.js.');
+          }
+
+          const token = localStorage.getItem('token');
+          if (!token) {
+            showErrorMessage('No authentication token found. Please log in.');
+            window.location.replace('./login.html');
+            return;
+          }
+
+          console.log('Fetching categories with token:', token);
+          console.log('API URL:', `${API_ADMINGRAB_URL}/api/blog_categories`);
+
+          const response = await fetch(`${API_ADMINGRAB_URL}/api/blog_categories`, {
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          });
+
+          console.log('Categories response status:', response.status);
+          console.log('Categories response headers:', Object.fromEntries(response.headers));
+
+          if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Failed to fetch categories: ${response.status} ${response.statusText} - ${errorText}`);
+          }
+
+          let categories;
+          try {
+            categories = await response.json();
+          } catch {
+            throw new Error('Failed to parse categories response as JSON');
+          }
+
+          console.log('Fetched categories:', categories);
+
+          const parentCategorySelect = document.getElementById('parentCategory');
+          const updateParentCategorySelect = document.getElementById('updateParentCategory');
+          const searchCategorySelect = document.getElementById('searchCategory');
+          const childCategorySelect = document.getElementById('childCategory');
+          const updateChildCategorySelect = document.getElementById('updateChildCategory');
+
+          if (!parentCategorySelect || !updateParentCategorySelect || !searchCategorySelect || !childCategorySelect || !updateChildCategorySelect) {
+            throw new Error('Category select elements not found in DOM');
+          }
+
+          parentCategorySelect.innerHTML = '<option value="">Select Parent Category</option>';
+          updateParentCategorySelect.innerHTML = '<option value="">Select Parent Category</option>';
+          searchCategorySelect.innerHTML = '<option value="">All Categories</option>';
+          childCategorySelect.innerHTML = '<option value="">Select Child Category</option>';
+          updateChildCategorySelect.innerHTML = '<option value="">Select Child Category</option>';
+
+          if (!Array.isArray(categories) || categories.length === 0) {
+            console.warn('No categories found or invalid response format.');
+            showWarningMessage('No categories available. Category selection is optional.');
+            return;
+          }
+
+          categories.forEach(category => {
+            const option1 = document.createElement('option');
+            option1.value = category.id;
+            option1.textContent = category.category_name || 'Unnamed Category';
+
+            const option2 = document.createElement('option');
+            option2.value = category.id;
+            option2.textContent = category.category_name || 'Unnamed Category';
+
+            const option3 = document.createElement('option');
+            option3.value = category.id;
+            option3.textContent = category.category_name || 'Unnamed Category';
+
+            if (!category.parent_id) {
+              parentCategorySelect.appendChild(option1);
+              updateParentCategorySelect.appendChild(option2);
+            }
+            searchCategorySelect.appendChild(option3);
+
+            if (category.parent_id) {
+              childCategorySelect.appendChild(option1.cloneNode(true));
+              updateChildCategorySelect.appendChild(option2.cloneNode(true));
+            }
+          });
+        } catch (error) {
+          console.error('Detailed error fetching categories:', error);
+          showErrorMessage(`Failed to fetch categories: ${error.message}`);
+          // Fallback
+          const parentCategorySelect = document.getElementById('parentCategory');
+          const updateParentCategorySelect = document.getElementById('updateParentCategory');
+          const searchCategorySelect = document.getElementById('searchCategory');
+          const childCategorySelect = document.getElementById('childCategory');
+          const updateChildCategorySelect = document.getElementById('updateChildCategory');
+
+          if (parentCategorySelect && updateParentCategorySelect && searchCategorySelect && childCategorySelect && updateChildCategorySelect) {
+            parentCategorySelect.innerHTML = '<option value="">Select Parent Category (Unavailable)</option>';
+            updateParentCategorySelect.innerHTML = '<option value="">Select Parent Category (Unavailable)</option>';
+            searchCategorySelect.innerHTML = '<option value="">All Categories (Unavailable)</option>';
+            childCategorySelect.innerHTML = '<option value="">Select Child Category (Unavailable)</option>';
+            updateChildCategorySelect.innerHTML = '<option value="">Select Child Category (Unavailable)</option>';
+            showWarningMessage('Category data unavailable. Functionality limited to non-categorized blogs.');
+          }
+        }
+      }
+
+      // Fetch Topics
+      async function fetchTopics() {
+        try {
+          if (!API_ADMINGRAB_URL) {
+            throw new Error('API_ADMINGRAB_URL is not defined. Check apiConfig.js.');
+          }
+
+          const token = localStorage.getItem('token');
+          if (!token) {
+            showErrorMessage('No authentication token found. Please log in.');
+            window.location.replace('./login.html');
+            return;
+          }
+
+          console.log('Fetching topics with token:', token);
+          console.log('API URL:', `${API_ADMINGRAB_URL}/api/blog_topics`);
+
+          const response = await fetch(`${API_ADMINGRAB_URL}/api/blog_topics`, {
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          });
+
+          console.log('Topics response status:', response.status);
+          console.log('Topics response headers:', Object.fromEntries(response.headers));
+
+          if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Failed to fetch topics: ${response.status} ${response.statusText} - ${errorText}`);
+          }
+
+          let topics;
+          try {
+            topics = await response.json();
+          } catch {
+            throw new Error('Failed to parse topics response as JSON');
+          }
+
+          console.log('Fetched topics:', topics);
+
+          const topicSelect = document.getElementById('topic');
+          const updateTopicSelect = document.getElementById('updateTopic');
+
+          if (!topicSelect || !updateTopicSelect) {
+            throw new Error('Topic select elements not found in DOM');
+          }
+
+          topicSelect.innerHTML = '<option value="">Select Topic</option>';
+          updateTopicSelect.innerHTML = '<option value="">Select Topic</option>';
+
+          if (!Array.isArray(topics) || topics.length === 0) {
+            console.warn('No topics found or invalid response format.');
+            showWarningMessage('No topics available. Topic selection is optional.');
+            return;
+          }
+
+          topics.forEach(topic => {
+            const option1 = document.createElement('option');
+            option1.value = topic.id;
+            option1.textContent = topic.topic_name || 'Unnamed Topic';
+
+            const option2 = document.createElement('option');
+            option2.value = topic.id;
+            option2.textContent = topic.topic_name || 'Unnamed Topic';
+
+            topicSelect.appendChild(option1);
+            updateTopicSelect.appendChild(option2);
+          });
+        } catch (error) {
+          console.error('Detailed error fetching topics:', error);
+          showErrorMessage(`Failed to fetch topics: ${error.message}`);
+          // Fallback
+          const topicSelect = document.getElementById('topic');
+          const updateTopicSelect = document.getElementById('updateTopic');
+          if (topicSelect && updateTopicSelect) {
+            topicSelect.innerHTML = '<option value="">Select Topic (Unavailable)</option>';
+            updateTopicSelect.innerHTML = '<option value="">Select Topic (Unavailable)</option>';
+            showWarningMessage('Topic data unavailable. Functionality limited to non-topic blogs.');
+          }
+        }
+      }
+
+      // Add Blog
+      document.getElementById('blogForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        formData.append('blog_html', quill.root.innerHTML);
+
+        // Set optional fields to null if empty
+        if (!formData.get('parent_category_id')) formData.set('parent_category_id', null);
+        if (!formData.get('child_category_id')) formData.set('child_category_id', null);
+        if (!formData.get('topic_id')) formData.set('topic_id', null);
+        if (!formData.get('meta_description')) formData.set('meta_description', '');
+        if (!formData.get('post_by')) formData.set('post_by', '');
+        if (!formData.get('read_minutes')) formData.set('read_minutes', '');
+
+        try {
+          const token = localStorage.getItem('token');
+          if (!token) {
+            showErrorMessage('No authentication token found. Please log in.');
+            window.location.replace('./login.html');
+            return;
+          }
+
+          const response = await fetch(`${API_ADMINGRAB_URL}/api/blogs`, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            },
+            body: formData,
+          });
+
+          if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Failed to create blog: ${response.status} ${response.statusText} - ${errorText}`);
+          }
+
+          const result = await response.json();
+          showSuccessMessage('Blog created successfully!');
+          document.getElementById('blogForm').reset();
+          quill.root.innerHTML = '';
+          const blogModal = new bootstrap.Modal(document.getElementById('blogModal'));
+          blogModal.hide();
+          fetchBlogs();
+        } catch (error) {
+          console.error('Error creating blog:', error);
+          showErrorMessage(`Failed to create blog: ${error.message}`);
+        }
+      });
+
+      // Update Blog
+      async function openUpdateForm(blogId) {
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch(`${API_ADMINGRAB_URL}/api/blogs/${blogId}`, {
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            },
+          });
+
+          if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Failed to fetch blog details: ${response.status} ${response.statusText} - ${errorText}`);
+          }
+
+          const blog = await response.json();
+          document.getElementById('updateBlogId').value = blog.id;
+          document.getElementById('updateBlogName').value = blog.blog_name;
+          document.getElementById('updateSlug').value = blog.slug;
+          document.getElementById('updateStatus').value = blog.status;
+          document.getElementById('updateParentCategory').value = blog.parent_category_id || '';
+          document.getElementById('updateChildCategory').value = blog.child_category_id || '';
+          document.getElementById('updateTopic').value = blog.topic_id || '';
+          document.getElementById('updatePostTitle').value = blog.post_title;
+          document.getElementById('updateMetaDescription').value = blog.meta_description || '';
+          document.getElementById('updatePostBy').value = blog.post_by || '';
+          document.getElementById('updateReadMinutes').value = blog.read_minutes || '';
+          updateQuill.root.innerHTML = blog.blog_html || '';
+
+          const updateModal = new bootstrap.Modal(document.getElementById('updateBlogModal'));
+          updateModal.show();
+        } catch (error) {
+          console.error('Error opening update form:', error);
+          showErrorMessage(`Failed to load blog details: ${error.message}`);
+        }
+      }
+
+      document.getElementById('updateBlogForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const blogId = document.getElementById('updateBlogId').value;
+        formData.append('blog_html', updateQuill.root.innerHTML);
+
+        // Set optional fields to null if empty
+        if (!formData.get('parent_category_id')) formData.set('parent_category_id', null);
+        if (!formData.get('child_category_id')) formData.set('child_category_id', null);
+        if (!formData.get('topic_id')) formData.set('topic_id', null);
+        if (!formData.get('meta_description')) formData.set('meta_description', '');
+        if (!formData.get('post_by')) formData.set('post_by', '');
+        if (!formData.get('read_minutes')) formData.set('read_minutes', '');
+
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch(`${API_ADMINGRAB_URL}/api/blogs/${blogId}`, {
+            method: 'PUT',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            },
+            body: formData,
+          });
+
+          if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Failed to update blog: ${response.status} ${response.statusText} - ${errorText}`);
+          }
+
+          const result = await response.json();
+          showSuccessMessage('Blog updated successfully!');
+          const updateModal = bootstrap.Modal.getInstance(document.getElementById('updateBlogModal'));
+          updateModal.hide();
+          fetchBlogs();
+        } catch (error) {
+          console.error('Error updating blog:', error);
+          showErrorMessage(`Failed to update blog: ${error.message}`);
+        }
+      });
+
+      // View Blog Details
+      async function viewBlogDetails(blogId) {
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch(`${API_ADMINGRAB_URL}/api/blogs/${blogId}`, {
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            },
+          });
+
+          if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Failed to fetch blog details: ${response.status} ${response.statusText} - ${errorText}`);
+          }
+
+          const blog = await response.json();
+          document.getElementById('viewBlogTitle').textContent = blog.post_title;
+          document.getElementById('viewBlogCategory').textContent = blog.parent_category || blog.child_category || 'N/A';
+          document.getElementById('viewBlogStatus').textContent = blog.status;
+          document.getElementById('viewBlogAuthor').textContent = blog.post_by_user || 'N/A';
+          document.getElementById('viewBlogMetaDescription').textContent = blog.meta_description || 'N/A';
+          document.getElementById('viewBlogReadMinutes').textContent = blog.read_minutes || 'N/A';
+          document.getElementById('viewBlogContent').innerHTML = blog.blog_html;
+          const imageElement = document.getElementById('viewBlogImage');
+          if (blog.image) {
+            imageElement.src = `${API_ADMINGRAB_URL}/${blog.image}`;
+            imageElement.style.display = 'block';
+          } else {
+            imageElement.style.display = 'none';
+          }
+
+          const viewModal = new bootstrap.Modal(document.getElementById('viewBlogModal'));
+          viewModal.show();
+        } catch (error) {
+          console.error('Error viewing blog:', error);
+          showErrorMessage(`Failed to load blog details: ${error.message}`);
+        }
+      }
+
+      // Delete Blog
+      async function deleteBlog(id) {
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch(`${API_ADMINGRAB_URL}/api/blogs/${id}`, {
+            method: 'DELETE',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            },
+          });
+
+          if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Failed to delete blog: ${response.status} ${response.statusText} - ${errorText}`);
+          }
+
+          showSuccessMessage('Blog deleted successfully!');
+          fetchBlogs();
+        } catch (error) {
+          console.error('Error deleting blog:', error);
+          showErrorMessage(`Failed to delete blog: ${error.message}`);
+        }
+      }
+
+      function showDeleteFormModal(id) {
+        const dialogOverlay = document.createElement('div');
+        dialogOverlay.style.position = 'fixed';
+        dialogOverlay.style.top = '0';
+        dialogOverlay.style.left = '0';
+        dialogOverlay.style.width = '100%';
+        dialogOverlay.style.height = '100%';
+        dialogOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        dialogOverlay.style.display = 'flex';
+        dialogOverlay.style.justifyContent = 'center';
+        dialogOverlay.style.alignItems = 'center';
+        dialogOverlay.style.zIndex = '1000';
+        dialogOverlay.setAttribute('id', 'confirmDialog');
+
+        const dialogBox = document.createElement('div');
+        dialogBox.style.backgroundColor = 'white';
+        dialogBox.style.padding = '60px';
+        dialogBox.style.borderRadius = '5px';
+        dialogBox.style.textAlign = 'center';
+        dialogBox.style.zIndex = '1001';
+
+        const warningIcon = document.createElement('div');
+        warningIcon.textContent = '!';
+        warningIcon.style.fontSize = '40px';
+        warningIcon.style.color = 'red';
+        warningIcon.style.marginBottom = '10px';
+
+        const title = document.createElement('h3');
+        title.textContent = 'Are you sure?';
+
+        const message = document.createElement('p');
+        message.textContent = 'You will not be able to recover the deleted blog!';
+
+        const confirmButton = document.createElement('button');
+        confirmButton.textContent = 'Yes, Delete it!';
+        confirmButton.style.marginRight = '10px';
+        confirmButton.style.backgroundColor = 'rgb(105, 108, 255)';
+        confirmButton.style.color = 'white';
+        confirmButton.style.border = 'none';
+        confirmButton.style.padding = '10px 20px';
+        confirmButton.style.cursor = 'pointer';
+
+        const cancelButton = document.createElement('button');
+        cancelButton.textContent = 'No, Cancel!';
+        cancelButton.style.backgroundColor = 'rgb(133, 146, 163)';
+        cancelButton.style.color = 'white';
+        cancelButton.style.border = 'none';
+        cancelButton.style.padding = '10px 20px';
+        cancelButton.style.cursor = 'pointer';
+
+        dialogBox.appendChild(warningIcon);
+        dialogBox.appendChild(title);
+        dialogBox.appendChild(message);
+        dialogBox.appendChild(confirmButton);
+        dialogBox.appendChild(cancelButton);
+        dialogOverlay.appendChild(dialogBox);
+        document.body.appendChild(dialogOverlay);
+
+        confirmButton.addEventListener('click', async function() {
+          await deleteBlog(id);
+          document.body.removeChild(dialogOverlay);
+        });
+
+        cancelButton.addEventListener('click', function() {
+          document.body.removeChild(dialogOverlay);
+        });
+      }
+
+      // Filter Table
+      window.filterTable = function() {
+        const title = document.getElementById('searchTitle').value.toLowerCase();
+        const category = document.getElementById('searchCategory').value;
+        const status = document.getElementById('searchStatus').value;
+        const author = document.getElementById('searchAuthor').value.toLowerCase();
+
+        const rows = document.querySelectorAll('#blogsTableBody tr');
+
+        rows.forEach(row => {
+          const rowTitle = row.querySelector('td:nth-child(1)')?.textContent.toLowerCase() || '';
+          const rowCategory = row.querySelector('td:nth-child(2)')?.textContent || '';
+          const rowStatus = row.querySelector('td:nth-child(3)')?.textContent || '';
+          const rowAuthor = row.querySelector('td:nth-child(4)')?.textContent.toLowerCase() || '';
+
+          const matchesTitle = title ? rowTitle.includes(title) : true;
+          const matchesCategory = category ? rowCategory.includes(category) : true;
+          const matchesStatus = status ? rowStatus === status : true;
+          const matchesAuthor = author ? rowAuthor.includes(author) : true;
+
+          if (matchesTitle && matchesCategory && matchesStatus && matchesAuthor) {
+            row.style.display = '';
+          } else {
+            row.style.display = 'none';
+          }
+        });
+      };
+
+      window.clearFilters = function() {
+        document.getElementById('searchTitle').value = '';
+        document.getElementById('searchCategory').value = '';
+        document.getElementById('searchStatus').value = '';
+        document.getElementById('searchAuthor').value = '';
+
+        const rows = document.querySelectorAll('#blogsTableBody tr');
+        rows.forEach(row => {
+          row.style.display = '';
+        });
+      };
+
+      // Export to XLS
+      document.getElementById('exportButton').addEventListener('click', async function() {
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch(`${API_ADMINGRAB_URL}/api/blogs`, {
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            },
+          });
+
+          if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Failed to fetch blogs: ${response.status} ${response.statusText} - ${errorText}`);
+          }
+
+          const blogs = await response.json();
+          const exportData = [
+            ['Title', 'Category', 'Status', 'Author', 'Content', 'Meta Description', 'Read Minutes']
+          ];
+
+          blogs.forEach(blog => {
+            exportData.push([
+              blog.post_title,
+              blog.parent_category || blog.child_category || 'N/A',
+              blog.status,
+              blog.post_by_user || 'N/A',
+              blog.blog_html.replace(/<[^>]+>/g, ''),
+              blog.meta_description || 'N/A',
+              blog.read_minutes || 'N/A'
+            ]);
+          });
+
+          const wb = XLSX.utils.book_new();
+          const ws = XLSX.utils.aoa_to_sheet(exportData);
+          XLSX.utils.book_append_sheet(wb, ws, 'Blogs');
+          XLSX.writeFile(wb, 'blogs.xlsx');
+        } catch (error) {
+          console.error('Error exporting blogs:', error);
+          showErrorMessage(`Failed to export blogs: ${error.message}`);
+        }
+      });
+
+      // Message Functions
+      function showSuccessMessage(message) {
+        const messageContainer = document.createElement('div');
+        messageContainer.style.position = 'fixed';
+        messageContainer.style.top = '20px';
+        messageContainer.style.right = '20px';
+        messageContainer.style.backgroundColor = 'green';
+        messageContainer.style.color = 'white';
+        messageContainer.style.padding = '10px 20px';
+        messageContainer.style.borderRadius = '5px';
+        messageContainer.style.zIndex = '1000';
+        messageContainer.style.maxWidth = '400px';
+        messageContainer.style.wordBreak = 'break-word';
+        messageContainer.textContent = message;
+
+        document.body.appendChild(messageContainer);
+        setTimeout(() => {
+          if (messageContainer.parentNode) {
+            document.body.removeChild(messageContainer);
+          }
+        }, 5000);
+      }
+
+      function showErrorMessage(message) {
+        const messageContainer = document.createElement('div');
+        messageContainer.style.position = 'fixed';
+        messageContainer.style.top = '20px';
+        messageContainer.style.right = '20px';
+        messageContainer.style.backgroundColor = 'red';
+        messageContainer.style.color = 'white';
+        messageContainer.style.padding = '10px 20px';
+        messageContainer.style.borderRadius = '5px';
+        messageContainer.style.zIndex = '1000';
+        messageContainer.style.maxWidth = '400px';
+        messageContainer.style.wordBreak = 'break-word';
+        messageContainer.textContent = message;
+
+        document.body.appendChild(messageContainer);
+        setTimeout(() => {
+          if (messageContainer.parentNode) {
+            document.body.removeChild(messageContainer);
+          }
+        }, 5000);
+      }
+
+      function showWarningMessage(message) {
+        const messageContainer = document.createElement('div');
+        messageContainer.style.position = 'fixed';
+        messageContainer.style.top = '20px';
+        messageContainer.style.right = '20px';
+        messageContainer.style.backgroundColor = '#ffc107';
+        messageContainer.style.color = 'black';
+        messageContainer.style.padding = '10px 20px';
+        messageContainer.style.borderRadius = '5px';
+        messageContainer.style.zIndex = '1000';
+        messageContainer.style.maxWidth = '400px';
+        messageContainer.style.wordBreak = 'break-word';
+        messageContainer.textContent = message;
+
+        document.body.appendChild(messageContainer);
+        setTimeout(() => {
+          if (messageContainer.parentNode) {
+            document.body.removeChild(messageContainer);
+          }
+        }, 5000);
+      }
+
+      // Initialize
+      fetchBlogs();
+    </script>
+
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const currentPath = window.location.pathname.split("/").pop();
+          const navLinks = document.querySelectorAll(".left-sidebar .nav-link");
+    
+          navLinks.forEach((link) => {
+            const href = link.getAttribute("href");
+            if (href && href.endsWith(".html") && href === currentPath) {
+              link.classList.add("active");
+              const parentCollapse = link.closest(".collapse");
+              if (parentCollapse) {
+                new bootstrap.Collapse(parentCollapse, { toggle: false }).show();
+              }
+            }
+          });
+        });
+      </script>
+
+  </div>
+>>>>>>> Stashed changes
 </body>
+
 </html>
