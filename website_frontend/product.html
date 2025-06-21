@@ -1731,58 +1731,48 @@
 
 
                         </div>
-                        <div class="col-xl-7 p-6">
-                            <!-- foe my self -->
-                            <div class="flex-align gap-8">
-                                <span id="product-off" class="badge badge-blue" style="display: none;">0% Off</span>
-                                <span id="product-off-label" class="badge badge-green" style="display: none;">On
-                                    Sale</span>
-                            </div>
-                            <div class="product-details__content">
-                                <!-- <h5 class="mb-12">Lay's Potato Chips Onion Flavored</h5> -->
-                                <h6 id="product-name" class="mb-12"
-                                    style="color: #000 !important; font-size: 18px !important; font-weight: 600 !important; line-height: 25px; font-family: 'Poppins', sans-serif;">
-                                    Loading...
-                                </h6>
+                       <div class="col-xl-7 p-6">
+    <!-- Stock and Discount Badges -->
+    <div class="flex-align gap-8">
+        <span id="product-stock" class="badge badge-green" style="background-color: #4aac6e !important; color: white !important; padding: 5px 10px !important; font-size: 14px !important; font-weight: bold !important;">In Stock</span>
+        <span id="product-off" class="badge badge-red" style="display: none !important; background-color: #f23e14 !important; color: white !important; padding: 5px 10px !important; font-size: 14px !important; font-weight: bold !important;">15% Off</span>
+    </div>
+    
+    <div class="product-details__content">
+        <h6 id="product-name" class="mb-12" style="color: #000 !important; font-size: 18px !important; font-weight: 600 !important; line-height: 25px !important; font-family: 'Poppins', sans-serif !important;">
+            Loading...
+        </h6>
 
-                                <div class="flex-align flex-wrap gap-12">
+        <div class="flex-align flex-wrap gap-12">
+        </div>
 
-                                </div>
+        <div class="flex-align flex-wrap gap-32">
+            <div class="flex-align gap-8">
+                <h6 id="product-price" class="mb-0" style="color: #000 !important;">AED 0.00</h6>
+                <span id="product-discount" class="text-md text-danger" style="text-decoration: line-through !important; font-size: 16px !important; color: #f23e14 !important;">4,000.00AED</span>
+                <span id="product-tax" class="text-md text-gray-500" style="font-size: 14px !important; color: gray !important;">Inclusive VAT</span>
+            </div>
+        </div>
+        <div class="gap-16 rounded-8 py-16">
+            <div class="flex-align gap-16">
+                <span style="font-size: 17px !important; font-weight: bold !important; color: #4aac6e !important;">Available in Stock</span>
+            </div>
 
-                                <!-- <p class="text-gray-700">Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada tincidunt. Class aptent taciti sociosqu ad litora torquent</p> -->
-                                <div class="flex-align flex-wrap gap-32">
-                                    <div class="flex-align gap-8">
-                                        <!-- <h4 class="mb-0">$25.00</h4> -->
-                                        <h6 id="product-price" class="mb-0" style="color: #000 !important;">AED 0.00
-                                        </h6>
-                                        <span id="product-discount" class="text-md text-danger"
-                                            style="text-decoration: line-through;"></span>
-                                        <!-- <span class="text-md text-gray-500">$38.00</span> -->
-                                        <!-- <span class="text-md text-gray-500">Inclusive VAT</span> -->
-                                        <span id="product-tax" class="text-md text-gray-500">Inclusive VAT</span>
-                                    </div>
-                                </div>
-                                <div class=" gap-16  rounded-8 py-16 ">
-                                    <div class="flex-align gap-16">
-                                        <span style="font-size: 17px; font-weight: bold; color:  #4aac6e;">Available in
-                                            Stock</span>
-                                    </div>
+            <div class="product-details mt-4 text-dark">
+                <div class="product-detail-line">
+                    <strong>SKU:</strong> <span id="product-sku" style="font-size: 14px !important;">Loading...</span>
+                </div>
+                <div class="product-detail-line">
+                    <strong>Categories:</strong> <span id="product-categories" style="color: #f23e14 !important; font-size: 14px !important;">Loading...</span>
+                </div>
+                <div class="product-detail-line">
+                    <strong>Brand:</strong> <span id="product-brand" style="color: #f23e14 !important; font-size: 14px !important;">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-                                    <div class="product-details mt-4 text-dark">
-                                        <div class="product-detail-line">
-                                            <!-- <strong>SKU:</strong> <span id="product-sku">123456</span> -->
-                                            <strong>SKU:</strong> <span id="product-sku">Loading...</span>
-                                        </div>
-                                        <div class="product-detail-line">
-                                            <!-- <strong>Categories:</strong> <span id="product-categories">Electronics, Gadgets</span> -->
-                                            <strong>Categories:</strong> <span id="product-categories" style="color: #f23e14;">Loading...</span>
-                                        </div>
-                                        <div class="product-detail-line">
-                                            <!-- <strong>Brand:</strong> <span id="product-brand">BrandName</span> -->
-                                            <strong>Brand:</strong> <span id="product-brand" style="color: #f23e14;">Loading...</span>
-                                        </div>
-                                    </div>
-                                </div>
                                 <!-- <span class="text-gray-900 d-block mb-8">Quantity:</span> -->
                                 <div class="flex-between gap-16 flex-wrap mt-3">
                                     <div class="flex-align flex-wrap gap-16" id="addToCart">
