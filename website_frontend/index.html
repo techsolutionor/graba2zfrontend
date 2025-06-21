@@ -2011,10 +2011,10 @@
     <!-- ======================= Middle Header End ========================= -->
 
     <!-- ==================== category Header Start Here ==================== -->
-   <header class="header bg-white border-bottom border-gray-100 custom-header">
-  <div class="container container-lg">
-    <nav class="header-inner custom-header-inner d-flex">
-      <div class="flex-align">
+    <header class="header bg-white border-bottom border-gray-100">
+        <div class="container container-lg">
+            <nav class="header-inner d-flex justify-content-center gap-2">
+                <div class="flex-align ">
 
 
                     <!-- Category Dropdown Start -->
@@ -2044,7 +2044,7 @@
                     <!-- Menu Start  -->
                     <div class="header-menu d-lg-block d-none">
                         <!-- Nav Menu Start -->
-                        <ul class="nav-menu-header flex-align" id="mainMenu">
+                        <ul class="nav-menu-header  one-fd flex-align" id="mainMenu">
                             <!-- Main menu items will be loaded dynamically here -->
                         </ul>
                         <!-- Nav Menu End -->
@@ -2123,8 +2123,7 @@
         </div>
     </div>
     <!-- ===================== Category Slider Section End ==============================  -->
-
-   <!-- ===================== Lenovo/MSI/ASUS Section Start ==============================  -->
+<!-- ===================== Lenovo/MSI/ASUS Section Start ==============================  -->
 <div class="custom-container-one">
     <div class="custom-card-grid">
         <!-- Lenovo Card -->
@@ -2146,54 +2145,74 @@
 </div>
 <!-- ===================== Lenovo/MSI/ASUS Section End ==============================  -->
 
-
 <style>
- /* Style for the container holding the slider */
+/* Style for the container holding the slider */
 .custom-container-one {
   position: relative;
-  overflow: hidden; /* Hide the overflowing content */
-  width: 100%; /* Make sure it fits the screen */
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
 }
 
 /* Flexbox layout for card grid */
 .custom-card-grid {
-  display: flex; /* Align the cards horizontally */
-  gap: 10px; /* Space between cards */
-  transition: transform 0.5s ease-in-out; /* Smooth scrolling transition */
+  display: flex;
+  gap: 10px;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
 }
 
 /* Style for each card */
 .custom-card {
-  width: 33.33%; /* Show three cards at a time on large screens */
-  flex-shrink: 0; /* Prevent the cards from shrinking */
+  flex: 0 0 calc(33.33% - 7px); /* 3 cards with gap */
+  min-width: 0; /* Prevent flex items from growing beyond container */
 }
 
-/* Adjust for smaller screens */
-@media (max-width: 768px) {
+/* Adjust for tablet screens (2 cards) */
+@media (max-width: 1024px) {
   .custom-card {
-    width: 50%; /* Show two cards on mobile */
+    flex: 0 0 calc(50% - 5px); /* 2 cards with gap */
   }
 }
 
-/* Further adjustments for very small screens (optional) */
-@media (max-width: 480px) {
+/* Adjust for mobile screens (1 card) */
+@media (max-width: 600px) {
   .custom-card {
-    width: 100%; /* Show one card on extra small screens */
+    flex: 0 0 100%; /* 1 card */
   }
 }
 
+/* Make images responsive */
+.custom-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+</style>
 
-    </style>
-    <script>
-// JavaScript to control the slider functionality with touch gestures
+<script>
+// JavaScript to control the slider functionality
 let currentIndex = 0;
+const cardGrid = document.querySelector('.custom-card-grid');
 const cards = document.querySelectorAll('.custom-card');
 const totalCards = cards.length;
 let startX = 0;
 let endX = 0;
+let cardsToShow = 3; // Default for desktop
+
+function updateCardsToShow() {
+  if (window.innerWidth <= 1024 && window.innerWidth > 600) {
+    cardsToShow = 2; // Tablet
+  } else if (window.innerWidth <= 600) {
+    cardsToShow = 1; // Mobile
+  } else {
+    cardsToShow = 3; // Desktop
+  }
+}
 
 function nextSlide() {
-  if (currentIndex < totalCards - 3) {
+  updateCardsToShow();
+  if (currentIndex < totalCards - cardsToShow) {
     currentIndex++;
   } else {
     currentIndex = 0; // Loop back to the start
@@ -2202,50 +2221,62 @@ function nextSlide() {
 }
 
 function prevSlide() {
+  updateCardsToShow();
   if (currentIndex > 0) {
     currentIndex--;
   } else {
-    currentIndex = totalCards - 3; // Loop to the end
+    currentIndex = totalCards - cardsToShow; // Loop to the end
   }
   updateSliderPosition();
 }
 
 function updateSliderPosition() {
-  const cardGrid = document.querySelector('.custom-card-grid');
-  const offset = -(currentIndex * 33.33); // Shift the grid by 33.33% for each slide (3 cards visible at once)
+  updateCardsToShow();
+  const cardWidth = 100 / cardsToShow;
+  const offset = -(currentIndex * cardWidth);
   cardGrid.style.transform = `translateX(${offset}%)`;
 }
 
-// Touch event listeners
-document.querySelector('.custom-container-one').addEventListener('touchstart', function (e) {
-  startX = e.changedTouches[0].screenX;
+// Handle touch events
+cardGrid.addEventListener('touchstart', function(e) {
+  startX = e.touches[0].clientX;
 });
 
-document.querySelector('.custom-container-one').addEventListener('touchend', function (e) {
-  endX = e.changedTouches[0].screenX;
+cardGrid.addEventListener('touchend', function(e) {
+  endX = e.changedTouches[0].clientX;
+  handleSwipe();
+});
+
+// Handle mouse events for desktop
+cardGrid.addEventListener('mousedown', function(e) {
+  startX = e.clientX;
+  document.addEventListener('mouseup', handleMouseUp);
+});
+
+function handleMouseUp(e) {
+  endX = e.clientX;
+  handleSwipe();
+  document.removeEventListener('mouseup', handleMouseUp);
+}
+
+function handleSwipe() {
   if (startX - endX > 50) {
-    nextSlide(); // Swiped left, move to the next slide
+    nextSlide(); // Swiped left
   } else if (endX - startX > 50) {
-    prevSlide(); // Swiped right, move to the previous slide
+    prevSlide(); // Swiped right
   }
+}
+
+// Update on window resize
+window.addEventListener('resize', function() {
+  updateCardsToShow();
+  updateSliderPosition();
 });
 
-// Optional: Mouse event listeners for desktop sliding
-document.querySelector('.custom-container-one').addEventListener('mousedown', function (e) {
-  startX = e.pageX;
-});
-
-document.querySelector('.custom-container-one').addEventListener('mouseup', function (e) {
-  endX = e.pageX;
-  if (startX - endX > 50) {
-    nextSlide(); // Swiped left, move to the next slide
-  } else if (endX - startX > 50) {
-    prevSlide(); // Swiped right, move to the previous slide
-  }
-});
-
-
-    </script>
+// Initialize
+updateCardsToShow();
+updateSliderPosition();
+</script>
 
     <!-- ===================== BIG SALE Section Start ==============================  -->
 <section class="section-sale" style="background: url('https://grabatoz.ae/wp-content/uploads/2025/06/slider-2-2.png') no-repeat center center / cover;">
