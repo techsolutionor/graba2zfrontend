@@ -104,19 +104,24 @@
             background-color: transparent;
         }
 
-        /* mobile responsive start */
+        /* mobile res start */
+        /* Sidebar container */
         .sidebar {
             height: 100%;
             width: 0;
             position: fixed;
             top: 0;
             right: 0;
-            left: auto;
             background-color: #ffffff;
             overflow-x: hidden;
             transition: 0.3s ease;
             padding-top: 60px;
             z-index: 999;
+        }
+
+        /* Open state */
+        .sidebar.open {
+            width: 250px;
         }
 
         /* Sidebar content scrollable */
@@ -125,10 +130,11 @@
             overflow-y: auto;
         }
 
+        /* Sidebar links */
         .sidebar a {
             display: block;
             padding: 12px 20px;
-            color: rgb(0, 0, 0);
+            color: #000;
             text-decoration: none;
         }
 
@@ -137,39 +143,55 @@
             color: rgb(49, 136, 49);
         }
 
-        /* Menu button */
-        .menu-btn {
+        /* Open Button (☰) */
+        .menu-open-btn {
             display: none;
-            position: fixed;
+            position: absolute;
             top: 61px;
             right: 31px;
             font-size: 24px;
             background-color: #ffffff;
-            color: rgb(0, 0, 0);
+            color: #000;
             padding: 10px;
-            z-index: 1000;
             border-radius: 5px;
-            text-align: left;
+            z-index: 1000;
+            cursor: pointer;
         }
 
-        /* Show on mobile and tablet only */
+        /* Close Button (✖) inside Sidebar */
+        .menu-close-btn {
+            display: none;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            background: transparent;
+            border: none;
+            color: red;
+            z-index: 1001;
+            cursor: pointer;
+        }
+
+        /* Responsive Display Settings */
         @media (max-width: 1024px) {
-            .menu-btn {
+            .menu-open-btn {
                 display: block;
             }
 
             .sidebar {
+                display: block;
+            }
+
+            .sidebar.open .menu-close-btn {
                 display: block;
             }
         }
 
-        /* Hide on larger screens */
         @media (min-width: 1025px) {
-            .sidebar {
-                display: none !important;
-            }
 
-            .menu-btn {
+            .sidebar,
+            .menu-open-btn,
+            .menu-close-btn {
                 display: none !important;
             }
         }
@@ -444,107 +466,7 @@
     <!-- ==================== Search Box End Here ==================== -->
 
     <!-- ==================== Mobile Menu Start Here ==================== -->
-    <div class="mobile-menu scroll-sm d-lg-none d-block">
-        <button type="button" class="close-button"> <i class="ph ph-x"></i> </button>
-        <div class="mobile-menu__inner">
-            <a href="index" class="mobile-menu__logo">
-                <img src="https://graba2z.netlify.app/assets/images/logo/logo.png" alt="Logo">
-            </a>
-            <div class="mobile-menu__menu">
-                <!-- Nav Menu Start -->
-                <ul class="nav-menu flex-align nav-menu--mobile">
-                    <li class="on-hover-item nav-menu__item has-submenu activePage">
-                        <a href="javascript:void(0)" class="nav-menu__link">All In one</a>
-                        <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-                            <li class="common-dropdown__item nav-submenu__item activePage">
-                                <a href="index" class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">
-                                    Home
-                                    Grocery</a>
-                            </li>
-                            <li class="common-dropdown__item nav-submenu__item">
-                                <a href="index-two"
-                                    class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"> Home
-                                    Electronics</a>
-                            </li>
-                            <li class="common-dropdown__item nav-submenu__item">
-                                <a href="blog" class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">
-                                    Home
-                                    Fashion</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="on-hover-item nav-menu__item has-submenu">
-                        <a href="javascript:void(0)" class="nav-menu__link">Shop</a>
-                        <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-                            <li class="common-dropdown__item nav-submenu__item">
-                                <a href="shop" class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">
-                                    Shop</a>
-                            </li>
-                            <li class="common-dropdown__item nav-submenu__item">
-                                <a href="product" class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">
-                                    Shop
-                                    Details</a>
-                            </li>
-                            <li class="common-dropdown__item nav-submenu__item">
-                                <a href="product-details-two"
-                                    class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"> Shop Details
-                                    Two</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="on-hover-item nav-menu__item has-submenu">
-                        <span
-                            class="badge-notification bg-warning-600 text-white text-sm py-2 px-8 rounded-4">New</span>
-                        <a href="javascript:void(0)" class="nav-menu__link">Pages</a>
-                        <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-                            <li class="common-dropdown__item nav-submenu__item">
-                                <a href="cart" class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">
-                                    Cart</a>
-                            </li>
-                            <li class="common-dropdown__item nav-submenu__item">
-                                <a href="checkout" class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">
-                                    Checkout </a>
-                            </li>
-                            <li class="common-dropdown__item nav-submenu__item">
-                                <a href="account" class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">
-                                    Account</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="on-hover-item nav-menu__item has-submenu">
-                        <span
-                            class="badge-notification bg-tertiary-600 text-white text-sm py-2 px-8 rounded-4">New</span>
-                        <a href="javascript:void(0)" class="nav-menu__link">Vendors</a>
-                        <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-                            <li class="common-dropdown__item nav-submenu__item">
-                                <a href="vendor-list"
-                                    class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"> Vendors List
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="on-hover-item nav-menu__item has-submenu">
-                        <a href="javascript:void(0)" class="nav-menu__link">Blog</a>
-                        <ul class="on-hover-dropdown common-dropdown nav-submenu scroll-sm">
-                            <li class="common-dropdown__item nav-submenu__item">
-                                <a href="blog" class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">
-                                    Blog</a>
-                            </li>
-                            <li class="common-dropdown__item nav-submenu__item">
-                                <a href="blog-details"
-                                    class="common-dropdown__link nav-submenu__link hover-bg-neutral-100"> Blog
-                                    Details</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-menu__item">
-                        <a href="contact" class="nav-menu__link">Contact Us</a>
-                    </li>
-                </ul>
-                <!-- Nav Menu End -->
-            </div>
-        </div>
-    </div>
+   
     <!-- ==================== Mobile Menu End Here ==================== -->
 
      <!-- ======================= top Header Start ========================= -->
@@ -682,6 +604,102 @@
                 <!-- Header Middle Right End  -->
             </nav>
         </div>
+
+
+        <!-- ===================mobile responsive design ==============================  -->
+
+        <!-- Open Sidebar Button -->
+        <div class="menu-open-btn" onclick="toggleSidebar()">☰</div>
+
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar">
+            <!-- Close Sidebar Button -->
+            <button class="menu-close-btn" onclick="toggleSidebar()">✖</button>
+            <div class="sidebar-inner">
+                <ul>
+
+                    <a href="https://graba2z.netlify.app/product-category/all-in-one">All In One </a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/apple-all-in-one"> Apple All In One</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/hp-all-in-one"> HP All In One</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/desktop"> Desktops </a>
+                    </li>
+                    
+                        <a href="https://graba2z.netlify.app/product-category/lenovo-desktops">  Lenovo Desktop</a>
+                    </li>
+                   
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/monitors"> Monitors</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/msi-monitors"> MSI Monitors</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/mobiles"> Mobiles</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/apple">Apple Mobile</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/laptops">Laptops</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/asus-laptops"> Asus Laptops</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/dell-laptops"> Dell Laptops</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/pirnters-copier">Pirnters Copier</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/hp-printers-copier"> Hp Printers Copier</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/routers"> Routers </a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/tp-link-routers"> Tp Link Routers</a>
+
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/projector">
+                            Projector</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/lg"> 
+                            LG Products</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/accessories"> Accessories</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/rams"> Rams</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/mouse"> Mouse
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/networking"> Networking</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/cables"> Cables</a>
+                    </li>
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/usb-dongles"> Usb Dongles</a>
+                    </li>
+                     <li><a href="https://graba2z.netlify.app/product-category/storage-devices">Storage Devices</a></li>
+                    <li><a href="https://graba2z.netlify.app/product-category/bags">Bags</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- ===================== mobile responsive end ==============================  -->
     </header>
     <!-- ======================= Middle Header End ========================= -->
     <!-- ==================== category Header Start Here ==================== -->

@@ -29,7 +29,7 @@
     <!-- Main css -->
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet">
     <script src="/assets/js/wishlist.js"></script>
 <script src="/assets/js/cart.js"></script>
     <style>
@@ -397,6 +397,7 @@
         }
 
         /* mobile res start */
+        /* Sidebar container */
         .sidebar {
             height: 100%;
             width: 0;
@@ -503,6 +504,7 @@
         }
 
         /* first dropdown */
+        /* Custom Dropdown Styles */
 
 
         /* cart circle css start  */
@@ -515,7 +517,7 @@
             border-radius: 50%;
             font-size: 12px;
             color: #fff;
-            background-color: #A3D02C;
+            background-color: #86c232;
             position: absolute;
             top: -12px;
             right: -11px;
@@ -535,7 +537,7 @@
             border-radius: 50%;
             font-size: 12px;
             color: #fff;
-            background-color: #A3D02C;
+            background-color: #86c232;
             position: absolute;
             top: -12px;
             right: -11px;
@@ -558,7 +560,7 @@
                     <li class="border-right-item"><a href="./contact"
                             class="text-white text-sm hover-text-decoration-underline">Contact Us</a></li>
                     <li class="border-right-item dropdown hover-dropdown">
-                         <a href="#" class="text-white text-sm hover-text-decoration-underline" id="policyDropdown"
+                        <a href="#" class="text-white text-sm hover-text-decoration-underline" id="policyDropdown"
                             role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             All Policy
                         </a>
@@ -599,22 +601,22 @@
                         </ul>
                     </li>
                     <li class="nav-item user-menu position-relative w-auto">
-                         <a href="#" class="text-white text-sm py-8 flex-align gap-6 nav-link user-toggle" role="button"
-                            id="userMenuButton">
+                        <a href="#" class="text-white text-sm py-8 flex-align gap-6 nav-link user-toggle"
+                            role="button" id="userMenuButton">
                             <span><i class="ph ph-user-circle"></i></span>
                             <span class="hover-text-decoration-underline d-none d-md-inline">My Account</span>
                         </a>
                         <ul class="user-dropdown shadow-sm">
-                            <li><a class="user-item px-12 py-5" href="./account"><i class="ph ph-user me-8"></i>Account</a></li>
+                            <li><a class="user-item px-12 py-5" href="account"><i class="ph ph-user me-8"></i>Account</a></li>
                             <!-- <li><hr class="user-divider my-4 mx-12"></li> -->
                             <li>
-                                <a class="user-item px-12 py-5" href="./register.html" id="auth-link">
+                                <a class="user-item px-12 py-5" href="register" id="auth-link">
                                     <i class="ph ph-sign-in me-8" id="auth-icon"></i>
                                     <span id="auth-text">Sign In</span>
                                 </a>
                             </li>
-                            <li><a class="user-item px-12 py-5" href="track-order"><i
-                                        class="ph ph-truck me-8"></i>Track Order</a></li>
+                            <li><a class="user-item px-12 py-5" href="track-order"><i class="ph ph-truck me-8"></i>Track
+                                    Order</a></li>
                             <li><a class="user-item px-12 py-5" href="help-center"><i
                                         class="ph ph-question me-8"></i>Help Center</a></li>
                         </ul>
@@ -627,6 +629,7 @@
     </div>
     <!-- ======================= top Header Start ========================= -->
     <!-- <div id="top-header"></div> -->
+
     <!-- ======================= Middle Header Start ========================= -->
     <header class="header-middle bg-white border-bottom border-gray-100">
         <div class="container container-lg">
@@ -674,7 +677,6 @@
                             </span>
                             <span class="text-md text-gray-500 item-hover__text d-none d-lg-flex">Wishlist</span>
                         </a>
-
                         <a href="cart" class="flex-align gap-4 item-hover">
                             <span class="text-2xl text-gray-700 d-flex position-relative me-6 mt-6 item-hover__text">
                                 <i class="ph ph-shopping-cart-simple"></i>
@@ -688,6 +690,7 @@
                 <!-- Header Middle Right End  -->
             </nav>
         </div>
+
 
         <!-- ===================mobile responsive design ==============================  -->
 
@@ -783,13 +786,14 @@
             </div>
         </div>
         <!-- ===================== mobile responsive end ==============================  -->
+
     </header>
     <!-- ======================= Middle Header End ========================= -->
 
     <!-- ==================== category Header Start Here ==================== -->
     <header class="header bg-white border-bottom border-gray-100">
         <div class="container container-lg">
-            <nav class="header-inner d-flex justify-content-center gap-8">
+            <nav class="header-inner d-flex justify-content-center gap-2">
                 <div class="flex-align ">
 
 
@@ -820,7 +824,7 @@
                     <!-- Menu Start  -->
                     <div class="header-menu d-lg-block d-none">
                         <!-- Nav Menu Start -->
-                        <ul class="nav-menu-header flex-align" id="mainMenu">
+                        <ul class="nav-menu-header  one-fd flex-align" id="mainMenu">
                             <!-- Main menu items will be loaded dynamically here -->
                         </ul>
                         <!-- Nav Menu End -->
@@ -833,82 +837,38 @@
 
     <!-- ==================== category Header End Here ==================== -->
 
-
-
-    <section class="account py-80">
-        <div class="container container-lg d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-            <form action="#" class="w-100" style="max-width: 400px;">
-                <div class="border border-gray-100 hover-border-main-600 transition-1 rounded-16 px-24 py-40">
-
-                    <!-- Logo -->
-                    <div class="text-center mb-24">
-                        <img src="/assets/images/logo3.svg" alt="Logo" style="max-width: 120px;">
-                    </div>
-
-                    <!-- Header -->
-                    <h6 class="text-xl mb-32 text-center text-dark">Login</h6>
-
-                    <!-- Email Field -->
-                    <div class="mb-24">
-                        <label for="email" class="text-neutral-900 text-lg mb-8 fw-medium">
-                            Email Address <span class="text-danger">*</span>
-                        </label>
-                        <input type="email" class="common-input form-control" id="email"
-                            placeholder="Enter Email Address" required>
-                    </div>
-
-                    <!-- Password Field -->
-                    <div class="mb-24">
-                        <label for="password" class="text-neutral-900 text-lg mb-8 fw-medium">
-                            Password <span class="text-danger">*</span>
-                        </label>
-                        <div class="position-relative">
-                            <input type="password" class="common-input form-control" id="password"
-                                placeholder="Enter Password" required>
-                            <span
-                                class="toggle-password position-absolute top-50 inset-inline-end-0 me-16 translate-middle-y cursor-pointer ph ph-eye-slash"
-                                id="#password"></span>
-                        </div>
-                    </div>
-
-                    <!-- Remember Me and Forgot Password -->
-                    <div class="d-flex justify-content-between align-items-center mb-24">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="rememberMe">
-                            <label for="rememberMe" class="form-check-label text-neutral-900">Remember Me</label>
-                        </div>
-                        <a href="#" class="text-danger-600 text-sm fw-semibold hover-text-decoration-underline">Forgot
-                            Password?</a>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <div class="mb-24 text-center">
-                        <button type="submit" class="btn btn-main py-18 px-40 w-100"
-                            style="color: #ffffff ; background-color: #90c309 !important;">Log in</button>
-                    </div>
-
-                    <!-- Register Now and Back to Home -->
-                    <div class="mt-24 text-center">
-                        <a href="register"
-                            class="text-neutral-900 text-sm fw-semibold hover-text-decoration-underline d-block">Register
-                            Now</a>
-                        <a href="index"
-                            class="text-neutral-900 text-sm fw-semibold hover-text-decoration-underline d-block mt-8">
-                            <i class="bi bi-arrow-left me-2"></i>Back to Home
+    <!-- ========================= Breadcrumb Start =============================== -->
+    <div class="breadcrumb py-26" style="background-color: #cdf19b;">
+        <div class="container container-lg">
+            <div class="breadcrumb-wrapper flex-between flex-wrap gap-16">
+                <h6 class="mb-0 text-black">Wishlist</h6>
+                <ul class="flex-align gap-8 flex-wrap">
+                    <li class="text-sm">
+                        <a href="index" class="text-gray-900 flex-align gap-8 hover-text-main-600">
+                            <i class="ph ph-house" style="color:#000;"></i>
+                            Home
                         </a>
-                    </div>
-                </div>
-            </form>
+                    </li>
+                    <li class="flex-align">
+                        <i class="ph ph-caret-right"></i>
+                    </li>
+                    <li class="text-sm text-main-600 text-black">Product Wishlist</li>
+                </ul>
+            </div>
         </div>
-    </section>
+    </div>
+    <!-- ========================= Breadcrumb End =============================== -->
 
-
-    <!-- =============================== Account Section End =========================== -->
-
+    <div class="container-lg  my-10">
+        <h2 class="text-center mb-4 text-black">Your Wishlist</h2>
+        <div class="row g-3 justify-content-start" id="wishlist-container">
+        </div>
+    </div>
+    <!-- Footer -->
 
 
     <!-- <div id="footer"></div> -->
-     <!-- Footer Start -->
+    <!-- Footer Start -->
     <footer class="footer">
         <div class="container-fluid">
             <div class="row">
@@ -933,7 +893,6 @@
                 <div class="col-md-2 mb-4">
                     <h5 style="color: white; font-size: 20px;">Top Categories</h5>
                     <ul class="list-unstyled" id="top-categories">
-
                         <!-- <li><a href="#">Laptops</a></li>
                     <li><a href="#">Routers</a></li>
                     <li><a href="#">Gaming Hub</a></li>
@@ -945,7 +904,7 @@
                 <div class="col-md-2 mb-4">
                     <h5 style="color: white; font-size: 20px;">More Categories</h5>
                     <ul class="list-unstyled" id="more-categories">
-                         <li><a href="https://graba2z.netlify.app/product-category/storage-devices">Storage Devices</a></li>
+                          <li><a href="https://graba2z.netlify.app/product-category/storage-devices">Storage Devices</a></li>
 <li><a href="https://graba2z.netlify.app/product-category/bags">Bags</a></li>
                         <!-- <li><a href="/shop">Projector</a></li>
                     <li><a href="/shop">Monitors</a></li>
@@ -963,11 +922,11 @@
                         <li><a href="./cookies-policy">Cookies Policies</a></li>
 
                         <li><a href="./privacy-policy">Privacy Policies</a></li>
-                       <li> <a href="./sitemap" data-bs-toggle="modal"
+                        <li> <a href="./sitemap" data-bs-toggle="modal"
                                             data-bs-target="#remoteDeliveryModal" style="color: #ffffff;">
                                             Site Map
                                         </a></li>
-                            <li><a href="./blogs">Blogs</a></li>
+                             <li><a href="./Blogs.html">Blogs</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -998,7 +957,6 @@
                         ">
                         © 2025 Grabatoz Powered By Crown Excel
                         </p>
-
             <img src="https://graba2z.netlify.app/assets/images/thumbs/Color-Icon-1.svg" alt="Payment Methods">
             <div>
                 <a href="https://www.apple.com/store" class="me-2">
@@ -1035,87 +993,106 @@
                 <span>Chat</span>
             </a>
         </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Fetch categories from your API
-            fetchCategories();
-        });
+        <script>
+            fetch('./assets/includes/footer')
+                .then(res => res.text())
+                .then(data => document.getElementById('footer').innerHTML = data);
+        </script>
 
-        async function fetchCategories() {
-            try {
-                const response = await fetch(`${API_CUSTOMER_URL}/api/product-categories`);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch categories');
-                }
-
-                const data = await response.json();
-                const categories = data.categories || [];
-
-                // Organize categories by parent-child relationship
-                const categoryMap = organizeCategories(categories);
-
-                // Render the dropdown menu
-                renderCategoryDropdown(categoryMap);
-
-                // Render the main menu
-                renderMainMenu(categoryMap);
-
-            } catch (error) {
-                console.error('Error loading categories:', error);
-                // You might want to show a user-friendly error message here
-            }
-        }
-
-        function organizeCategories(categories) {
-            const categoryMap = {
-                parentCategories: [],
-                childCategories: {}
-            };
-
-            // First pass: identify all parent categories
-            categories.forEach(category => {
-                if (!category.parent_category) {
-                    categoryMap.parentCategories.push(category);
-                    categoryMap.childCategories[category.id] = [];
-                }
+        <!-- Scripts -->
+        <script src="assets/js/jquery-3.7.1.min.js"></script>
+        <script src="assets/js/boostrap.bundle.min.js"></script>
+        <script src="assets/js/phosphor-icon.js"></script>
+        <script src="assets/js/select2.min.js"></script>
+        <script src="assets/js/slick.min.js"></script>
+        <script src="assets/js/count-down.js"></script>
+        <script src="assets/js/jquery-ui.js"></script>
+        <script src="assets/js/wow.min.js"></script>
+        <script src="assets/js/aos.js"></script>
+        <script src="assets/js/marque.min.js"></script>
+        <script src="assets/js/vanilla-tilt.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Fetch categories from your API
+                fetchCategories();
             });
 
-            // Second pass: assign child categories to their parents
-            categories.forEach(category => {
-                if (category.parent_category) {
-                    const parentId = category.parent_category;
-                    if (categoryMap.childCategories[parentId]) {
-                        categoryMap.childCategories[parentId].push(category);
-                    } else {
-                        // Handle case where parent category might not exist
-                        console.warn(`Parent category ${parentId} not found for child ${category.id}`);
+            async function fetchCategories() {
+                try {
+                    const response = await fetch(`${API_CUSTOMER_URL}/api/product-categories`);
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch categories');
                     }
+
+                    const data = await response.json();
+                    const categories = data.categories || [];
+
+                    // Organize categories by parent-child relationship
+                    const categoryMap = organizeCategories(categories);
+
+                    // Render the dropdown menu
+                    renderCategoryDropdown(categoryMap);
+
+                    // Render the main menu
+                    renderMainMenu(categoryMap);
+
+                } catch (error) {
+                    console.error('Error loading categories:', error);
+                    // You might want to show a user-friendly error message here
                 }
-            });
+            }
 
-            return categoryMap;
-        }
-   function slugify(text) {
-    return text.toString()
-        .toLowerCase()
-        .replace(/\s+/g, '-')           // Replace spaces with -
-        .replace(/[^\w\-]+/g, '')       // Remove non-word chars
-        .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-        .replace(/^-+/, '')             // Trim - from start
-        .replace(/-+$/, '');            // Trim - from end
-}
-        function renderCategoryDropdown(categoryMap) {
-            const dropdownContainer = document.getElementById('categoryDropdown');
-            dropdownContainer.innerHTML = '';
+            function organizeCategories(categories) {
+                const categoryMap = {
+                    parentCategories: [],
+                    childCategories: {}
+                };
 
-            categoryMap.parentCategories.forEach(parentCategory => {
-                const hasChildren = categoryMap.childCategories[parentCategory.id]?.length > 0;
+                // First pass: identify all parent categories
+                categories.forEach(category => {
+                    if (!category.parent_category) {
+                        categoryMap.parentCategories.push(category);
+                        categoryMap.childCategories[category.id] = [];
+                    }
+                });
 
-                const listItem = document.createElement('li');
-                listItem.className = hasChildren ? 'has-submenus-submenu' : '';
+                // Second pass: assign child categories to their parents
+                categories.forEach(category => {
+                    if (category.parent_category) {
+                        const parentId = category.parent_category;
+                        if (categoryMap.childCategories[parentId]) {
+                            categoryMap.childCategories[parentId].push(category);
+                        } else {
+                            // Handle case where parent category might not exist
+                            console.warn(`Parent category ${parentId} not found for child ${category.id}`);
+                        }
+                    }
+                });
 
-                listItem.innerHTML = `
-            <a href="href="/product-category/${slugify(parentCategory.name)}" 
+                return categoryMap;
+            }
+            function slugify(text) {
+                return text.toString()
+                    .toLowerCase()
+                    .replace(/\s+/g, '-')           // Replace spaces with -
+                    .replace(/[^\w\-]+/g, '')       // Remove non-word chars
+                    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+                    .replace(/^-+/, '')             // Trim - from start
+                    .replace(/-+$/, '');            // Trim - from end
+            }
+            function renderCategoryDropdown(categoryMap) {
+                const dropdownContainer = document.getElementById('categoryDropdown');
+                dropdownContainer.innerHTML = '';
+
+                categoryMap.parentCategories.forEach(parentCategory => {
+                    const hasChildren = categoryMap.childCategories[parentCategory.id]?.length > 0;
+
+                    const listItem = document.createElement('li');
+                    listItem.className = hasChildren ? 'has-submenus-submenu' : '';
+
+                    listItem.innerHTML = `
+            <a href="/product-category/${slugify(parentCategory.name)}" 
                class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
                 <span class="text-xl d-flex"><i class="ph ph-brandy"></i></span>
                 <span>${parentCategory.name}</span>
@@ -1123,362 +1100,305 @@
             </a>
         `;
 
-                if (hasChildren) {
-                    const submenu = document.createElement('div');
-                    submenu.className = 'submenus-submenu py-16';
+                    if (hasChildren) {
+                        const submenu = document.createElement('div');
+                        submenu.className = 'submenus-submenu py-16';
 
-                    const title = document.createElement('h6');
-                    title.className = 'text-lg px-16 submenus-submenu__title';
-                    title.textContent = parentCategory.name;
+                        const title = document.createElement('h6');
+                        title.className = 'text-lg px-16 submenus-submenu__title';
+                        title.textContent = parentCategory.name;
 
-                    const submenuList = document.createElement('ul');
-                    submenuList.className = 'submenus-submenu__list max-h-300 overflow-y-auto scroll-sm';
+                        const submenuList = document.createElement('ul');
+                        submenuList.className = 'submenus-submenu__list max-h-300 overflow-y-auto scroll-sm';
 
-                    categoryMap.childCategories[parentCategory.id].forEach(childCategory => {
-                        const childItem = document.createElement('li');
-                        childItem.innerHTML = `<a href="href="/product-category/${slugify(childCategory.name)}">${childCategory.name}</a>`;
-                        submenuList.appendChild(childItem);
-                    });
+                        categoryMap.childCategories[parentCategory.id].forEach(childCategory => {
+                            const childItem = document.createElement('li');
+                            childItem.innerHTML = `<a href="/product-category/${slugify(childCategory.name)}">${childCategory.name}</a>`;
+                            submenuList.appendChild(childItem);
+                        });
 
-                    submenu.appendChild(title);
-                    submenu.appendChild(submenuList);
-                    listItem.appendChild(submenu);
-                }
+                        submenu.appendChild(title);
+                        submenu.appendChild(submenuList);
+                        listItem.appendChild(submenu);
+                    }
 
-                dropdownContainer.appendChild(listItem);
-            });
-        }
+                    dropdownContainer.appendChild(listItem);
+                });
+            }
 
-        function renderMainMenu(categoryMap) {
-            const menuContainer = document.getElementById('mainMenu');
-            menuContainer.innerHTML = '';
+            function renderMainMenu(categoryMap) {
+                const menuContainer = document.getElementById('mainMenu');
+                menuContainer.innerHTML = '';
 
-            categoryMap.parentCategories.forEach(parentCategory => {
-                const hasChildren = categoryMap.childCategories[parentCategory.id]?.length > 0;
+                categoryMap.parentCategories.forEach(parentCategory => {
+                    const hasChildren = categoryMap.childCategories[parentCategory.id]?.length > 0;
 
-                const menuItem = document.createElement('li');
-                menuItem.className = `on-hover-item nav-menu__item ${hasChildren ? 'has-submenu-header' : ''}`;
+                    const menuItem = document.createElement('li');
+                    menuItem.className = `on-hover-item nav-menu__item ${hasChildren ? 'has-submenu-header' : ''}`;
 
-                menuItem.innerHTML = `
-            <a href="${hasChildren ? 'javascript:void(0)' : `href="/product-category/${slugify(parentCategory.name)}`}" 
-               class="nav-menu__link">${parentCategory.name}</a>
-        `;
+                    menuItem.innerHTML = `
+  <a href="/product-category/${slugify(parentCategory.name)}" 
+     class="nav-menu__link">${parentCategory.name}</a>
+`;
 
-                if (hasChildren) {
-                    const submenu = document.createElement('ul');
-                    submenu.className = 'on-hover-dropdown common-dropdown nav-submenu scroll-sm';
 
-                    categoryMap.childCategories[parentCategory.id].forEach(childCategory => {
-                        const submenuItem = document.createElement('li');
-                        submenuItem.className = 'common-dropdown__item nav-submenu__item';
-                        submenuItem.innerHTML = `
-                    <a href="href="/product-category/${slugify(childCategory.name)}" 
+                    if (hasChildren) {
+                        const submenu = document.createElement('ul');
+                        submenu.className = 'on-hover-dropdown common-dropdown nav-submenu scroll-sm';
+
+                        categoryMap.childCategories[parentCategory.id].forEach(childCategory => {
+                            const submenuItem = document.createElement('li');
+                            submenuItem.className = 'common-dropdown__item nav-submenu__item';
+                            submenuItem.innerHTML = `
+                    <a href="/product-category/${slugify(childCategory.name)}" 
                        class="common-dropdown__link nav-submenu__link hover-bg-neutral-100">
                         ${childCategory.name}
                     </a>
                 `;
-                        submenu.appendChild(submenuItem);
-                    });
+                            submenu.appendChild(submenuItem);
+                        });
 
-                    menuItem.appendChild(submenu);
-                }
+                        menuItem.appendChild(submenu);
+                    }
 
-                menuContainer.appendChild(menuItem);
-            });
-        }
-    </script>
-    <script>
-        // Fetch the footer dynamically
-        fetch('../assets/includes/footer') // Go one level up and access includes/
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer').innerHTML = data;
-            })
-            .catch(error => console.error('Error loading footer:', error));
-    </script>
-
-
-    <!-- Jquery js -->
-    <script src="assets/js/jquery-3.7.1.min.js"></script>
-    <!-- Bootstrap Bundle Js -->
-    <script src="assets/js/boostrap.bundle.min.js"></script>
-    <!-- Bootstrap Bundle Js -->
-    <script src="assets/js/phosphor-icon.js"></script>
-    <!-- Select 2 -->
-    <script src="assets/js/select2.min.js"></script>
-    <!-- Slick js -->
-    <script src="assets/js/slick.min.js"></script>
-    <!-- Slick js -->
-    <script src="assets/js/count-down.js"></script>
-    <!-- jquery UI js -->
-    <script src="assets/js/jquery-ui.js"></script>
-    <!-- wow js -->
-    <script src="assets/js/wow.min.js"></script>
-    <!-- AOS Animation -->
-    <script src="assets/js/aos.js"></script>
-    <!-- marque -->
-    <script src="assets/js/marque.min.js"></script>
-    <!-- marque -->
-    <script src="assets/js/vanilla-tilt.min.js"></script>
-    <!-- main js -->
-    <script src="assets/js/main.js"></script>
-
-    <script>
-
-        // Custom navigation function
-        function navigate(to) {
-            console.log(`Navigating to: ${to}`);
-            window.location.assign(to); // Use assign() for navigation
-        }
-        document.querySelector('form').addEventListener('submit', async function (event) {
-            event.preventDefault(); // Prevent the default form submission
-            console.log('Form submission prevented.');
-
-            // Capture user inputs
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            console.log('Captured email:', email);
-            console.log('Captured password:', password);
-
-            try {
-                console.log('Starting API call...');
-
-                // API call for login
-                const response = await fetch(`${API_CUSTOMER_URL}/login`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email, password }),
+                    menuContainer.appendChild(menuItem);
                 });
+            }
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                displayWishlist();
+                updateWishlistBadge();
+            });
 
-                console.log('API call completed.');
-                console.log('Response status:', response.status);
+            function limitWords(text, limit) {
+                const words = text.trim().split(/\s+/);
+                return words.length > limit ? words.slice(0, limit).join(" ") + "..." : text;
+            }
 
-                // Check if login is successful
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log('Response data:', data);
+            function displayWishlist() {
+                const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                const container = document.getElementById('wishlist-container');
 
-                    const token = data.token;
-                    console.log('Extracted token:', token);
-
-                    // Store the token (example using localStorage)
-                    localStorage.setItem('authToken', token);
-                    console.log('Token stored in localStorage.');
-
-                    // Redirect or show a success message
-                    alert('Login successful!');
-
-                    navigate('./index');
-                } else {
-                    // Handle login failure
-                    console.log('Login failed. Processing error...');
-                    const errorData = await response.json();
-                    console.log('Error data:', errorData);
-                    alert(errorData.message || 'Login failed. Please try again.');
+                if (wishlist.length === 0) {
+                    container.innerHTML = '<p class="text-center">Your wishlist is empty.</p>';
+                    return;
                 }
-            } catch (error) {
-                console.error('Error occurred during login process:', error);
-                alert('An error occurred. Please try again later.');
+
+                container.innerHTML = '';
+                wishlist.forEach(product => {
+                    const imgPath = product.image_path.replace(/\\/g, '/');
+                    const item = `
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+      <div class="card border border-gray-100 rounded-16 h-100 position-relative">
+<a href="/product/${product.slug}" class="d-block text-decoration-none text-dark h-100">
+    
+          <!-- Image Section -->
+          <div class="position-relative" style="height: 200px;">
+            <span class="wishlist-icon position-absolute" style="top: 10px; right: 10px;" onclick="removeFromWishlist(${product.id})">&#10084;</span>
+            <img src="${API_CUSTOMER_URL}/${imgPath}" alt="${product.name}" class="img-fluid w-100 h-100 rounded-top" style="object-fit: contain;">
+          </div>
+
+          <!-- Description -->
+          <div class="p-2 d-flex flex-column justify-content-between" style="height: 80px;">
+            <div class="d-flex justify-content-between mb-1">
+              <span class="badge bg-success">In stock</span>
+              <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+            </div>
+            <h6 class="card-title mb-1" style="font-size: 13px; line-height: 1.3em; height: 2.6em; overflow: hidden;">
+              ${limitWords(product.name, 15)}
+            </h6>
+          </div>
+        </a>
+        <div class="card-footer text-center border-0">
+          <button class="btn btn-danger btn-sm" onclick="removeFromWishlist(${product.id})">Remove</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+      `;
+                    container.innerHTML += item;
+                });
             }
-        });
-    </script>
-    <!-- cart add section -->
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            updateCartIcon(); // Update the cart icon with the correct count
-        });
-
-        // index - Update the cart icon count based on localStorage
-        function updateCartIcon() {
-            const cartItemCount = localStorage.getItem('cartItemCount') || 0; // Get the cart count from localStorage
-            const cartCountElement = document.querySelector('.cart-item-count'); // Get the element that holds the cart count
-
-            // Update the cart count in the UI
-            cartCountElement.innerText = cartItemCount; // Set the count to the number of items in the cart
-        }
-
-        document.getElementById('search-form').addEventListener('submit', (event) => {
-            event.preventDefault();
-            const searchQuery = document.getElementById('search-input').value.trim();
-            window.location.href = `shop?search=${encodeURIComponent(searchQuery)}`;
-            // await fetchFilteredProducts(searchQuery);
-        });
-
-        function addToCart(product) {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const existingProduct = cart.find(item => item.id === product.id);
-
-            if (existingProduct) {
-                existingProduct.quantity += 1; // Increment quantity if already in cart
-            } else {
-                cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
-            }
-
-            localStorage.setItem('cart', JSON.stringify(cart));
-
-            // Update the cart item count in localStorage
-            updateCartCount();
-
-            showSuccessMessage(`${product.name} added to cart.`);
-        }
-
-        function updateCartCount() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const totalItems = cart.reduce((total, product) => total + product.quantity, 0); // Calculate total quantity
-
-            // Update the cart count in localStorage
-            localStorage.setItem('cartItemCount', totalItems);
-        }
-        function showSuccessMessage(message) {
-            const messageContainer = document.createElement('div');
-            messageContainer.style.position = 'fixed';
-            messageContainer.style.top = '20px';
-            messageContainer.style.right = '20px';
-            messageContainer.style.backgroundColor = 'green';
-            messageContainer.style.color = 'white';
-            messageContainer.style.padding = '10px 20px';
-            messageContainer.style.borderRadius = '5px';
-            messageContainer.style.zIndex = '1000';
-            messageContainer.textContent = message;
-
-            document.body.appendChild(messageContainer);
-
-            // Remove the message after 3 seconds
-            setTimeout(() => {
-                document.body.removeChild(messageContainer);
-            }, 3000);
-        }
-
-        function handleAddToCart(product) {
-            addToCart(product); // Add product to cart
-            window.location.href = 'cart'; // Navigate to cart
-        }
-
-
-        // Function to toggle wishlist status
-        function toggleWishlist(product) {
-            // Get heart icon and current wishlist from localStorage
-            const heartIcon = document.getElementById('heart-icon');
-            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-
-            // Check if product already exists in wishlist
-            const productIndex = wishlist.findIndex(item => item.id === product.id);
-
-            if (productIndex === -1) {
-                // Product not in wishlist, add it and change icon color to red
-                wishlist.push(product);
-                localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Save to localStorage
-                heartIcon.style.color = 'red'; // Change heart color to red
-                showSuccessMessage('Product added to wishlist!');
-            } else {
-                // Product already in wishlist, remove it and reset icon color
-                wishlist.splice(productIndex, 1);
-                localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Remove from localStorage
-                heartIcon.style.color = ''; // Reset heart color
-                showSuccessMessage('Product removed from wishlist!');
-            }
-        }
-
-        function updateWishlistBadge() {
-            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            const wishlistBadge = document.getElementById('numberWishlist');
-
-            // Update the badge count
-            if (wishlistBadge) {
-                wishlistBadge.textContent = wishlist.length;
-            }
-        }
-
-        // Call this function on page load to ensure the badge is updated dynamically 
-        window.onload = updateWishlistBadge;
-
-
-        function toggleIcon(button) {
-            let icon = button.querySelector(".icon-toggle");
-            if (icon.classList.contains("bi-plus")) {
-                icon.classList.remove("bi-plus");
-                icon.classList.add("bi-dash");
-            } else {
-                icon.classList.remove("bi-dash");
-                icon.classList.add("bi-plus");
-            }
-        }
-
-    </script>
-    <script>
-        fetch('./topHeader')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('top-header').innerHTML = data;
-            })
-            .catch(error => console.error('Error loading header:', error));
-    </script>
-    <script src="./apiConfig/apiConfig.js"></script>
-
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const menuBtn = document.querySelector('.menu-open-btn');
-
-            if (sidebar.classList.contains('open')) {
-                sidebar.classList.remove('open');
-                menuBtn.style.display = 'block';
-            } else {
-                sidebar.classList.add('open');
-                menuBtn.style.display = 'none';
-            }
-        }
-    </script>
-
-
-    <script>
-        // Toggle wishlist
-        function toggleWishlist(product) {
-            const heartIcon = document.getElementById('heart-icon');
-            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            const index = wishlist.findIndex(p => p.id === product.id);
-
-            if (index === -1) {
-                wishlist.push(product);
+            function removeFromWishlist(id) {
+                let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                wishlist = wishlist.filter(item => item.id !== id);
                 localStorage.setItem('wishlist', JSON.stringify(wishlist));
-                heartIcon.style.color = 'red';
-                showSuccessMessage("Added to wishlist!");
-            } else {
-                wishlist.splice(index, 1);
-                localStorage.setItem('wishlist', JSON.stringify(wishlist));
-                heartIcon.style.color = '';
-                showSuccessMessage("Removed from wishlist!");
+                displayWishlist();
+                updateWishlistBadge();
             }
 
-            updateWishlistBadge();
-        }
+            // function updateWishlistBadge() {
+            //     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            //     const badge = document.getElementById('wishlist-item-count');
+            //     if (badge) badge.textContent = wishlist.length;
+            // }
 
 
-        // Update badge in header
-        function updateWishlistBadge() {
-            const count = (JSON.parse(localStorage.getItem('wishlist')) || []).length;
-            const badge = document.getElementById('wishlist-item-count'); // Make sure this exists in header
-            if (badge) badge.textContent = count;
-        }
-
-        // Display message
-        function showSuccessMessage(msg) {
-            const box = document.createElement('div');
-            box.style.cssText = 'position:fixed;top:20px;right:20px;background:green;color:white;padding:10px;border-radius:5px;z-index:1000';
-            box.innerText = msg;
-            document.body.appendChild(box);
-            setTimeout(() => box.remove(), 3000);
-        }
-
-        // Call on page load
-        document.addEventListener('DOMContentLoaded', updateWishlistBadge);
-    </script>
+            // Call this function on page load to ensure the badge is updated dynamically 
+            // window.onload = updateWishlistBadge;
 
 
-<!-- footer  -->
+            function toggleIcon(button) {
+                let icon = button.querySelector(".icon-toggle");
+                if (icon.classList.contains("bi-plus")) {
+                    icon.classList.remove("bi-plus");
+                    icon.classList.add("bi-dash");
+                } else {
+                    icon.classList.remove("bi-dash");
+                    icon.classList.add("bi-plus");
+                }
+            }
+        </script>
+        <script>
+            fetch('./topHeader')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('top-header').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading header:', error));
+        </script>
+        <script src="./apiConfig/apiConfig.js"></script>
+
+
+
+        <script>
+            function toggleSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                const menuBtn = document.querySelector('.menu-open-btn');
+
+                if (sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                    menuBtn.style.display = 'block';
+                } else {
+                    sidebar.classList.add('open');
+                    menuBtn.style.display = 'none';
+                }
+            }
+        </script>
+
+
+        <script>
+            // Toggle wishlist
+            function toggleWishlist(product) {
+                const heartIcon = document.getElementById('heart-icon');
+                let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                const index = wishlist.findIndex(p => p.id === product.id);
+
+                if (index === -1) {
+                    wishlist.push(product);
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    heartIcon.style.color = 'red';
+                    showSuccessMessage("Added to wishlist!");
+                } else {
+                    wishlist.splice(index, 1);
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    heartIcon.style.color = '';
+                    showSuccessMessage("Removed from wishlist!");
+                }
+
+                updateWishlistBadge();
+            }
+
+
+            // // Update badge in header
+            // function updateWishlistBadge() {
+            //     const count = (JSON.parse(localStorage.getItem('wishlist')) || []).length;
+            //     const badge = document.getElementById('wishlist-item-count'); // Make sure this exists in header
+            //     if (badge) badge.textContent = count;
+            // }
+
+            // Display message
+            function showSuccessMessage(msg) {
+                const box = document.createElement('div');
+                box.style.cssText = 'position:fixed;top:20px;right:20px;background:green;color:white;padding:10px;border-radius:5px;z-index:1000';
+                box.innerText = msg;
+                document.body.appendChild(box);
+                setTimeout(() => box.remove(), 3000);
+            }
+
+            // Call on page load
+            document.addEventListener('DOMContentLoaded', updateWishlistBadge);
+        </script>
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                updateCartIcon(); // Update the cart icon with the correct count
+            });
+
+            // index - Update the cart icon count based on localStorage
+            function updateCartIcon() {
+                const cartItemCount = localStorage.getItem('cartItemCount') || 0; // Get the cart count from localStorage
+                const cartCountElement = document.querySelector('.cart-item-count'); // Get the element that holds the cart count
+
+                // Update the cart count in the UI
+                cartCountElement.innerText = cartItemCount; // Set the count to the number of items in the cart
+            }
+
+            document.getElementById('search-form').addEventListener('submit', (event) => {
+                event.preventDefault();
+                const searchQuery = document.getElementById('search-input').value.trim();
+                window.location.href = `shop?search=${encodeURIComponent(searchQuery)}`;
+                // await fetchFilteredProducts(searchQuery);
+            });
+
+            function addToCart(product) {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingProduct = cart.find(item => item.id === product.id);
+
+                if (existingProduct) {
+                    existingProduct.quantity += 1; // Increment quantity if already in cart
+                } else {
+                    cart.push({ ...product, quantity: 1 }); // Add product with default quantity 1
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                // Update the cart item count in localStorage
+                updateCartCount();
+
+                showSuccessMessage(`${product.name} added to cart.`);
+            }
+
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const totalItems = cart.reduce((total, product) => total + product.quantity, 0); // Calculate total quantity
+
+                // Update the cart count in localStorage
+                localStorage.setItem('cartItemCount', totalItems);
+            }
+            function showSuccessMessage(message) {
+                const messageContainer = document.createElement('div');
+                messageContainer.style.position = 'fixed';
+                messageContainer.style.top = '20px';
+                messageContainer.style.right = '20px';
+                messageContainer.style.backgroundColor = 'green';
+                messageContainer.style.color = 'white';
+                messageContainer.style.padding = '10px 20px';
+                messageContainer.style.borderRadius = '5px';
+                messageContainer.style.zIndex = '1000';
+                messageContainer.textContent = message;
+
+                document.body.appendChild(messageContainer);
+
+                // Remove the message after 3 seconds
+                setTimeout(() => {
+                    document.body.removeChild(messageContainer);
+                }, 3000);
+            }
+
+            function handleAddToCart(product) {
+                addToCart(product); // Add product to cart
+                window.location.href = 'cart'; // Navigate to cart
+            }
+
+        </script>
+
+        <!-- footer  -->
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 updateCartIcon(); // Update the cart icon with the correct count
@@ -1575,18 +1495,18 @@
                 }
             }
 
-            function updateWishlistBadge() {
-                const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-                const wishlistBadge = document.getElementById('numberWishlist');
+            // function updateWishlistBadge() {
+            //     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            //     const wishlistBadge = document.getElementById('numberWishlist');
 
-                // Update the badge count
-                if (wishlistBadge) {
-                    wishlistBadge.textContent = wishlist.length;
-                }
-            }
+            //     // Update the badge count
+            //     if (wishlistBadge) {
+            //         wishlistBadge.textContent = wishlist.length;
+            //     }
+            // }
 
             // Call this function on page load to ensure the badge is updated dynamically 
-            window.onload = updateWishlistBadge;
+            // window.onload = updateWishlistBadge;
 
 
             function toggleIcon(button) {
@@ -1622,43 +1542,42 @@
                 }
             }
         </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', async function () {
-            const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/product-categories';
+        <script>
+            document.addEventListener('DOMContentLoaded', async function () {
+                const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/product-categories';
 
-            try {
-                const res = await fetch(API_URL);
-                const data = await res.json();
+                try {
+                    const res = await fetch(API_URL);
+                    const data = await res.json();
 
-                const categories = data.categories || [];
+                    const categories = data.categories || [];
 
-                // Filter only parent categories (parent_category is null)
-                const parentCategories = categories.filter(cat => cat.parent_category === null);
+                    // Filter only parent categories (parent_category is null)
+                    const parentCategories = categories.filter(cat => cat.parent_category === null);
 
-                const topList = document.getElementById('top-categories');
-                const moreList = document.getElementById('more-categories');
+                    const topList = document.getElementById('top-categories');
+                    const moreList = document.getElementById('more-categories');
 
-                parentCategories.forEach((cat, index) => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `<a href="/product-category/${slugify(cat.name)}">${cat.name}</a>`;
+                    parentCategories.forEach((cat, index) => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<a href="/product-category/${slugify(cat.name)}">${cat.name}</a>`;
 
-                    if (index < 6) {
-                        topList.appendChild(li);
-                    } else {
-                        moreList.appendChild(li);
-                    }
-                });
-            } catch (err) {
-                console.error('Failed to load categories:', err);
-            }
+                        if (index < 6) {
+                            topList.appendChild(li);
+                        } else {
+                            moreList.appendChild(li);
+                        }
+                    });
+                } catch (err) {
+                    console.error('Failed to load categories:', err);
+                }
 
-            // Helper to slugify category name
-            function slugify(text) {
-                return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
-            }
-        });
-    </script>
-
+                // Helper to slugify category name
+                function slugify(text) {
+                    return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
+                }
+            });
+        </script>
 
 </body>
 

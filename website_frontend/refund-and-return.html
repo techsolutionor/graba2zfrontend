@@ -141,39 +141,94 @@
             color: rgb(49, 136, 49);
         }
 
-        /* Menu button */
-        .menu-btn {
-            display: none;
+         /* mobile res start */
+        /* Sidebar container */
+        .sidebar {
+            height: 100%;
+            width: 0;
             position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #ffffff;
+            overflow-x: hidden;
+            transition: 0.3s ease;
+            padding-top: 60px;
+            z-index: 999;
+        }
+
+        /* Open state */
+        .sidebar.open {
+            width: 250px;
+        }
+
+        /* Sidebar content scrollable */
+        .sidebar-inner {
+            max-height: 100%;
+            overflow-y: auto;
+        }
+
+        /* Sidebar links */
+        .sidebar a {
+            display: block;
+            padding: 12px 20px;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            background: #fff4f4;
+            color: rgb(49, 136, 49);
+        }
+
+        /* Open Button (☰) */
+        .menu-open-btn {
+            display: none;
+            position: absolute;
             top: 61px;
             right: 31px;
             font-size: 24px;
             background-color: #ffffff;
-            color: rgb(0, 0, 0);
+            color: #000;
             padding: 10px;
-            z-index: 1000;
             border-radius: 5px;
-            text-align: left;
+            z-index: 1000;
+            cursor: pointer;
         }
 
-        /* Show on mobile and tablet only */
+        /* Close Button (✖) inside Sidebar */
+        .menu-close-btn {
+            display: none;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            background: transparent;
+            border: none;
+            color: red;
+            z-index: 1001;
+            cursor: pointer;
+        }
+
+        /* Responsive Display Settings */
         @media (max-width: 1024px) {
-            .menu-btn {
+            .menu-open-btn {
                 display: block;
             }
 
             .sidebar {
+                display: block;
+            }
+
+            .sidebar.open .menu-close-btn {
                 display: block;
             }
         }
 
-        /* Hide on larger screens */
         @media (min-width: 1025px) {
-            .sidebar {
-                display: none !important;
-            }
 
-            .menu-btn {
+            .sidebar,
+            .menu-open-btn,
+            .menu-close-btn {
                 display: none !important;
             }
         }
@@ -183,8 +238,6 @@
             padding: 0;
             margin: 0;
         }
-
-        /* mobile responsive end */
         /* first dropdown */
         /* Custom Dropdown Styles */
         .dropdown-menu {
@@ -680,186 +733,100 @@
                 <!-- Header Middle Right End  -->
             </nav>
         </div>
-        <!-- Menu Button for Mobile/Tablet Only start-->
-        <div class="menu-btn" onclick="toggleSidebar()">☰</div>
+         <!-- ===================mobile responsive design ==============================  -->
 
-        <!-- Sidebar Only For Mobile/Tablet -->
+        <!-- Open Sidebar Button -->
+        <div class="menu-open-btn" onclick="toggleSidebar()">☰</div>
+
+        <!-- Sidebar -->
         <div id="sidebar" class="sidebar">
+            <!-- Close Sidebar Button -->
+            <button class="menu-close-btn" onclick="toggleSidebar()">✖</button>
             <div class="sidebar-inner">
                 <ul>
 
-                    <a href="shop?category=Desktops&brand=Lenovo">Lenovo Desktops </a>
+                    <a href="https://graba2z.netlify.app/product-category/all-in-one">All In One </a>
                     </li>
                     <li>
-                        <a href="shop?category=Desktops&brand=Dell"> Dell Desktops</a>
+                        <a href="https://graba2z.netlify.app/product-category/apple-all-in-one"> Apple All In One</a>
                     </li>
                     <li>
-                        <a href="shop?category=Desktops&brand=Asus"> Asus Desktops</a>
+                        <a href="https://graba2z.netlify.app/product-category/hp-all-in-one"> HP All In One</a>
                     </li>
                     <li>
-                        <a href="shop?category=Desktops&brand=Acer"> Acer Desktops </a>
+                        <a href="https://graba2z.netlify.app/product-category/desktop"> Desktops </a>
+                    </li>
+                    
+                        <a href="https://graba2z.netlify.app/product-category/lenovo-desktops">  Lenovo Desktop</a>
+                    </li>
+                   
+                    <li>
+                        <a href="https://graba2z.netlify.app/product-category/monitors"> Monitors</a>
                     </li>
                     <li>
-                        <a href="shop?category=Desktops&brand=HP"> HP Desktops</a>
+                        <a href="https://graba2z.netlify.app/product-category/msi-monitors"> MSI Monitors</a>
                     </li>
                     <li>
-                        <a href="shop?category=Monitors&brand=Lenovo"> Lenovo Monitors</a>
+                        <a href="https://graba2z.netlify.app/product-category/mobiles"> Mobiles</a>
                     </li>
                     <li>
-                        <a href="shop?category=Monitors&brand=MSI"> MSI Monitors</a>
+                        <a href="https://graba2z.netlify.app/product-category/apple">Apple Mobile</a>
                     </li>
                     <li>
-                        <a href="shop?category=Monitors&brand=HP"> HP Monitors</a>
+                        <a href="https://graba2z.netlify.app/product-category/laptops">Laptops</a>
                     </li>
                     <li>
-                        <a href="shop?category=Monitors&brand=Dell"> Dell Monitors</a>
+                        <a href="https://graba2z.netlify.app/product-category/asus-laptops"> Asus Laptops</a>
                     </li>
                     <li>
-                        <a href="shop?category=Monitors&brand=Asus"> Asus Monitors</a>
+                        <a href="https://graba2z.netlify.app/product-category/dell-laptops"> Dell Laptops</a>
                     </li>
                     <li>
-                        <a href="shop?category=Monitors&brand=Acer"> Acer Monitors</a>
+                        <a href="https://graba2z.netlify.app/product-category/pirnters-copier">Pirnters Copier</a>
                     </li>
                     <li>
-                        <a href="shop?category=Monitors&brand=Samsung"> Samsung
-                            Monitors</a>
+                        <a href="https://graba2z.netlify.app/product-category/hp-printers-copier"> Hp Printers Copier</a>
                     </li>
                     <li>
-                        <a href="shop?category=Monitors&brand=AOC"> AOC Monitors</a>
+                        <a href="https://graba2z.netlify.app/product-category/routers"> Routers </a>
                     </li>
                     <li>
-                        <a href="shop?category=Monitors&brand=Viewsonic"> Viewsonic
-                            Monitors</a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Monitors&brand=LG"> LG Monitors</a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Laptops&brand=Lenovo"> Lenovo Laptops</a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Laptops&brand=MSI"> MSI Laptops</a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Laptops&brand=HP"> HP Laptops</a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Laptops&brand=Dell"> Dell Laptops</a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Laptops&brand=Asus"> Asus Laptops</a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Laptops&brand=Acer"> Acer Laptops</a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Laptops&brand=MI"> MI Laptops</a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Laptops&brand=Apple"> Apple Laptops</a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Laptops&brand=Microsoft"> Microsoft
-                            Laptops</a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Printers%20&%20Copier&brand=HR"> HR Printer
-                            & Copier </a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Printers%20&%20Copier&brand=Canon"> Canon
-                            Printer & Copier</a>
+                        <a href="https://graba2z.netlify.app/product-category/tp-link-routers"> Tp Link Routers</a>
 
                     <li>
-                        <a href="shop?category=Printers%20&%20Copier&brand=Brother">
-                            Brother Printer & Copier</a>
+                        <a href="https://graba2z.netlify.app/product-category/projector">
+                            Projector</a>
                     </li>
                     <li>
-                        <a href="shop?category=Printers%20&%20Copier&brand=Ricoh"> Ricoh
-                            Printer & Copier</a>
+                        <a href="https://graba2z.netlify.app/product-category/lg"> 
+                            LG Products</a>
                     </li>
                     <li>
-                        <a href="shop?category=Printers%20&%20Copier&brand=Epson"> Epson
-                            Printer & Copier</a>
+                        <a href="https://graba2z.netlify.app/product-category/accessories"> Accessories</a>
                     </li>
                     <li>
-                        <a href="shop?category=Printers%20&%20Copier&brand=Xerox"> Xerox
-                            Printer & Copier</a>
+                        <a href="https://graba2z.netlify.app/product-category/rams"> Rams</a>
                     </li>
                     <li>
-                        <a href="shop?category=Routers&brand=TP%20Link"> TP Link Routers
+                        <a href="https://graba2z.netlify.app/product-category/mouse"> Mouse
                         </a>
                     </li>
                     <li>
-                        <a href="shop?category=Projectors&brand=Optoma"> Optoma</a>
+                        <a href="https://graba2z.netlify.app/product-category/networking"> Networking</a>
                     </li>
                     <li>
-                        <a href="shop?category=Projectors&brand=BENQ"> BENQ</a>
+                        <a href="https://graba2z.netlify.app/product-category/cables"> Cables</a>
                     </li>
                     <li>
-                        <a href="shop?category=Projectors&brand=LG"> LG </a>
+                        <a href="https://graba2z.netlify.app/product-category/usb-dongles"> Usb Dongles</a>
                     </li>
-                    <li>
-                        <a href="shop?category=Bags"> Bags</a>
-                    </li>
-                    <li>
-                        <a href="shop?category=RAM"> RAMs</a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Mouse"> Mouse </a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Keyboard"> keyboard </a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Hard%20Drives"> Hard Drives</a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Headphones"> headphones </a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Storage%20Devices"> storage devices </a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Graphic%20Cards"> Graphic Cards </a>
-                    </li>
-                    <li>
-                        <a href="shop?categoryMotherboard"> Motherboard </a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Power%20Supply"> Power Supply </a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Cables"> cables</a>
-                    </li>
-                    <li>
-                        <a href="shop?category=HDMI"> HDMI</a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Adapter"> Adapters </a>
-                    </li>
-                    <li>
-                        <a href="shop?category=USB"> USB C HUB </a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Connectors"> Connectors </a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Display%20Port"> Display Port </a>
-                    </li>
-                    <li>
-                        <a href="shop?category=USB%20Dongles"> USB Dongles </a>
-                    </li>
-                    <li>
-                        <a href="shop?category=Wifi%20Dongles"> Wifi Dongles </a>
-                    </li>
+                     <li><a href="https://graba2z.netlify.app/product-category/storage-devices">Storage Devices</a></li>
+                    <li><a href="https://graba2z.netlify.app/product-category/bags">Bags</a></li>
+                    
                 </ul>
-
-
-
             </div>
         </div>
-        <!-- Menu Button for Mobile/Tablet Only end-->
+        <!-- ===================== mobile responsive end ==============================  -->
     </header>
     <!-- ======================= Middle Header End ========================= -->
 
