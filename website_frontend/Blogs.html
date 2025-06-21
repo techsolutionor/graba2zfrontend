@@ -4,19 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>V Perfumes</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-     <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Spring Slider CSS -->
-  <link rel="stylesheet" href="https://spring-slider.uiinitiative.com/assets/index.a155cde7.css" />
-  <link rel="modulepreload" href="https://spring-slider.uiinitiative.com/assets/vendor.0e76e1a6.js" />
-   <!-- Slick CSS -->
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Spring Slider CSS -->
+    <link rel="stylesheet" href="https://spring-slider.uiinitiative.com/assets/index.a155cde7.css" />
+    <link rel="modulepreload" href="https://spring-slider.uiinitiative.com/assets/vendor.0e76e1a6.js" />
+    <!-- Slick CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
   </head>
   <style>
-     .slider-container {
+    .slider-container {
       max-width: 1200px;
       margin: 50px auto;
       padding: 0 20px;
@@ -76,11 +76,9 @@
       position: relative;
     }
     .spring-slider .swiper-slide img {
-    /* width: 100%; */
-    /* height: 90%; */
-    display: block;
-    object-fit: cover;
-}
+      display: block;
+      object-fit: cover;
+    }
     .swiper-button-next,
     .swiper-button-prev {
       width: 32px;
@@ -103,9 +101,9 @@
       right: 10px;
     }
     .spring-slider .swiper-slide {
-    box-sizing: border-box;
-    padding: 0 0px;
-}
+      box-sizing: border-box;
+      padding: 0 0px;
+    }
     /* Overlay effect */
     .slide-overlay {
       position: absolute;
@@ -120,316 +118,369 @@
     .swiper-slide:hover .slide-overlay {
       opacity: 1;
     }
+    
+    /* Custom styles for cards */
+    .card-custom {
+      border: none;
+      margin-bottom: 30px;
+    }
+    .card-custom .card-img-top {
+      height: 256px;
+      object-fit: cover;
+    }
+    .card-content {
+      position: relative;
+      margin-top: -40px;
+      z-index: 10;
+      background: white;
+      margin-left: 20px;
+      margin-right: 20px;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+    .category-text {
+      color: #F1618B;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+    .social-icons a {
+      color: #6c757d;
+      margin: 0 5px;
+    }
+    .social-icons a:hover {
+      color: #F1618B;
+    }
   </style>
   <body>
    
-     <!-- Spring Slider Container -->
-     <div class="w-full min-h-[40vh] flex">
-        <div class="spring-slider w-full h-[65%]">
-          <div class="swiper h-full">
-            <div class="swiper-wrapper">
-              <!-- Slide 1 -->
-              <div class="swiper-slide">
-                <img src="assets/images/slide1.jpg" alt="Slide 1" />
-                <div class="slide-overlay">
-                  <h2 class="text-white text-[14px]  px-3 pb-3 font-semibold">Too Many Perfumes? These Versatile Fragrances Are All You Really Need</h2>
-                </div>
-              </div>
-              <!-- Slide 2 -->
-              <div class="swiper-slide">
-                <img src="assets/images/slide2.jpg" alt="Slide 2" />
-                <div class="slide-overlay">
-                  <h2 class="text-white text-[14px]  px-3 pb-3 font-semibold">Our 6 Favorite Perfumes by Versace in 2025</h2>
-                </div>
-              </div>
-              <!-- Slide 3 -->
-              <div class="swiper-slide">
-                <img src="assets/images/slide3.jpg" alt="Slide 3" />
-                <div class="slide-overlay">
-                  <h2 class="text-white text-[14px]  px-3 pb-3 font-semibold">Our Favorite Replicas by Maison Margiela</h2>
-                </div>
-              </div>
-              <!-- Slide 4 -->
-              <div class="swiper-slide">
-                <img src="assets/images/slide4.jpg" alt="Slide 4" />
-                <div class="slide-overlay">
-                  <h2 class="text-white text-[14px]  px-3 pb-3 font-semibold">We Tried Every YSL Libre Perfume — Here’s What Stood Out</h2>
-                </div>
-              </div>
-              <!-- Slide 5 -->
-              <div class="swiper-slide">
-                <img src="assets/images/slide5.jpg" alt="Slide 5" />
-                <div class="slide-overlay">
-                  <h2 class="text-white text-[14px]  px-3 pb-3 font-semibold">Fragrances Sweet as Honey, Golden as the Sunrise</h2>
-                </div>
+    <!-- Spring Slider Container -->
+    <div class="container-fluid min-vh-40 d-flex p-0">
+      <div class="spring-slider w-100 h-65">
+        <div class="swiper h-100">
+          <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="swiper-slide">
+              <img src="assets/images/slide1.jpg" alt="Slide 1" class="w-100 h-100"/>
+              <div class="slide-overlay">
+                <h2 class="text-white text-center px-3 pb-3 fw-semibold" style="font-size:14px;">Too Many Perfumes? These Versatile Fragrances Are All You Really Need</h2>
               </div>
             </div>
-    
-            <!-- Navigation Arrows -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+            <!-- Slide 2 -->
+            <div class="swiper-slide">
+              <img src="assets/images/slide2.jpg" alt="Slide 2" class="w-100 h-100"/>
+              <div class="slide-overlay">
+                <h2 class="text-white text-center px-3 pb-3 fw-semibold" style="font-size:14px;">Our 6 Favorite Perfumes by Versace in 2025</h2>
+              </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="swiper-slide">
+              <img src="assets/images/slide3.jpg" alt="Slide 3" class="w-100 h-100"/>
+              <div class="slide-overlay">
+                <h2 class="text-white text-center px-3 pb-3 fw-semibold" style="font-size:14px;">Our Favorite Replicas by Maison Margiela</h2>
+              </div>
+            </div>
+            <!-- Slide 4 -->
+            <div class="swiper-slide">
+              <img src="assets/images/slide4.jpg" alt="Slide 4" class="w-100 h-100"/>
+              <div class="slide-overlay">
+                <h2 class="text-white text-center px-3 pb-3 fw-semibold" style="font-size:14px;">We Tried Every YSL Libre Perfume — Here's What Stood Out</h2>
+              </div>
+            </div>
+            <!-- Slide 5 -->
+            <div class="swiper-slide">
+              <img src="assets/images/slide5.jpg" alt="Slide 5" class="w-100 h-100"/>
+              <div class="slide-overlay">
+                <h2 class="text-white text-center px-3 pb-3 fw-semibold" style="font-size:14px;">Fragrances Sweet as Honey, Golden as the Sunrise</h2>
+              </div>
+            </div>
           </div>
-    
-          <!-- Pagination Dots -->
-          <!-- <div class="swiper-pagination"></div> -->
+
+          <!-- Navigation Arrows -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
         </div>
       </div>
-      <div class="slider-container">
-        <div class="text-center pb-5">
-            <h1 class="text-2xl font-bold text-black">Perfumes Trending This Week</h1>
-        </div>
-
-        <div class="perfume-slider">
-          <!-- Slides -->
-          <div class="slide-box">
-            <div class="slide-image" style="background-image: url('./assets/images/slider\ 1.jpg')"></div>
-            <div class="slide-title">Perfume 1</div>
-          </div>
-          <div class="slide-box">
-            <div class="slide-image" style="background-image: url('./assets/images/slider2.jpg')"></div>
-            <div class="slide-title">Perfume 2</div>
-          </div>
-          <div class="slide-box">
-            <div class="slide-image" style="background-image: url('./assets/images/slider3.jpg')"></div>
-            <div class="slide-title">Perfume 3</div>
-          </div>
-          <div class="slide-box">
-            <div class="slide-image" style="background-image: url('./assets/images/slider\ 4.jpg')"></div>
-            <div class="slide-title">Perfume 4</div>
-          </div>
-          <div class="slide-box">
-            <div class="slide-image" style="background-image: url('./assets/images/slider\ 5.jpg')"></div>
-            <div class="slide-title">Perfume 5</div>
-          </div>
-  
-        </div>
-      </div>
-    
-  <section class="container mx-auto px-4 py-10">
-    <div class="grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-
-      <!-- Card 1 -->
-      <div class="bg-white shadow-md rounded-md overflow-hidden">
-        <img src="assets/images/img1.jpg" alt="Perfume 1" class="w-full h-64 object-cover">
-        <div class="p-5 -mt-8 relative z-10 bg-white mx-5 rounded shadow">
-          <span class="text-xs text-[#F1618B] block mb-2">Perfume News</span>
-          <p class="text-lg font-semibold text-black hover:text-gray-500 transition">
-            PERFUME LOVERS ARE ASKING <br> “WHAT HAPPENED TO ARAMIS?”
-          </p>
-          <div class="flex flex-wrap justify-center text-sm text-gray-500 py-3 gap-2">
-            <span>by <span class="hover:text-[#F1618B]">Hala Kaawach</span></span>
-            <span class="hidden sm:inline">|</span>
-            <span>June 20, 2025</span>
-            <span class="hidden sm:inline">|</span>
-            <span>3 minutes read</span>
-          </div>
-          <p class="text-sm text-black">
-            For generations, Aramis has defined scent for many men.
-            That masculine fragrance has been a fixture on dressing tables and in ...
-          </p>
-          <div class="flex justify-center gap-4 mt-4 text-gray-700">
-            <a href="#" class="hover:text-[#F1618B]"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="hover:text-[#F1618B]"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" class="hover:text-[#F1618B]"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="hover:text-[#F1618B]"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="hover:text-[#F1618B]"><i class="fab fa-telegram"></i></a>
-            <a href="#" class="hover:text-[#F1618B]"><i class="fab fa-tumblr"></i></a>
-            <a href="#" class="hover:text-[#F1618B]"><i class="fab fa-pinterest"></i></a>
-            <a href="#" class="hover:text-[#F1618B]"><i class="fab fa-reddit"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Repeat cards with different images -->
-
-      <!-- Card 2 -->
-      <div class="bg-white shadow-md rounded-md overflow-hidden">
-        <img src="assets/images/img2.jpg" alt="Perfume 2" class="w-full h-64 object-cover">
-        <div class="p-5 -mt-8 relative z-10 bg-white mx-5 rounded shadow">
-          <span class="text-xs text-[#F1618B] block mb-2">Perfume News</span>
-          <p class="text-lg font-semibold text-black hover:text-gray-500 transition">
-            INSIDE THE WORLD OF LUXURY FRAGRANCES
-          </p>
-          <div class="flex flex-wrap justify-center text-sm text-gray-500 py-3 gap-2">
-            <span>by <span class="hover:text-[#F1618B]">Sarah Bloom</span></span>
-            <span class="hidden sm:inline">|</span>
-            <span>June 18, 2025</span>
-            <span class="hidden sm:inline">|</span>
-            <span>4 minutes read</span>
-          </div>
-          <p class="text-sm text-black">
-            Discover the top luxury perfumes of the year and how they're made...
-          </p>
-          <div class="flex justify-center gap-4 mt-4 text-gray-700">
-            <!-- Same social icons -->
-            <a href="#" class="hover:text-[#F1618B]"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="hover:text-[#F1618B]"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" class="hover:text-[#F1618B]"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="hover:text-[#F1618B]"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="hover:text-[#F1618B]"><i class="fab fa-telegram"></i></a>
-            <a href="#" class="hover:text-[#F1618B]"><i class="fab fa-tumblr"></i></a>
-            <a href="#" class="hover:text-[#F1618B]"><i class="fab fa-pinterest"></i></a>
-            <a href="#" class="hover:text-[#F1618B]"><i class="fab fa-reddit"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="bg-white shadow-md rounded-md overflow-hidden">
-        <img src="assets/images/img3.jpg" alt="Perfume 3" class="w-full h-64 object-cover">
-        <div class="p-5 -mt-8 relative z-10 bg-white mx-5 rounded shadow">
-          <span class="text-xs text-[#F1618B] block mb-2">Perfume News</span>
-          <p class="text-lg font-semibold text-black hover:text-gray-500 transition">
-            THE SECRET NOTES IN YOUR FAVORITE SCENT
-          </p>
-          <div class="flex flex-wrap justify-center text-sm text-gray-500 py-3 gap-2">
-            <span>by <span class="hover:text-[#F1618B]">Jason Lee</span></span>
-            <span class="hidden sm:inline">|</span>
-            <span>June 17, 2025</span>
-            <span class="hidden sm:inline">|</span>
-            <span>2 minutes read</span>
-          </div>
-          <p class="text-sm text-black">
-            Dive into the olfactory world of hidden notes and mysterious blends...
-          </p>
-          <div class="flex justify-center gap-4 mt-4 text-gray-700">
-            <!-- Social icons -->
-            <!-- same as above -->
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="bg-white shadow-md rounded-md overflow-hidden">
-        <img src="assets/images/img4.jpg" alt="Perfume 4" class="w-full h-64 object-cover">
-        <div class="p-5 -mt-8 relative z-10 bg-white mx-5 rounded shadow">
-          <span class="text-xs text-[#F1618B] block mb-2">Perfume News</span>
-          <p class="text-lg font-semibold text-black hover:text-gray-500 transition">
-            ARABIAN OUD: A RISING GLOBAL TREND
-          </p>
-          <div class="flex flex-wrap justify-center text-sm text-gray-500 py-3 gap-2">
-            <span>by <span class="hover:text-[#F1618B]">Laila Farooq</span></span>
-            <span class="hidden sm:inline">|</span>
-            <span>June 15, 2025</span>
-            <span class="hidden sm:inline">|</span>
-            <span>3 minutes read</span>
-          </div>
-          <p class="text-sm text-black">
-            Why Arabian Oud is becoming the signature scent of influencers worldwide...
-          </p>
-          <div class="flex justify-center gap-4 mt-4 text-gray-700">
-            <!-- Social icons -->
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 5 -->
-      <div class="bg-white shadow-md rounded-md overflow-hidden">
-        <img src="assets/images/img5.jpg" alt="Perfume 5" class="w-full h-64 object-cover">
-        <div class="p-5 -mt-8 relative z-10 bg-white mx-5 rounded shadow">
-          <span class="text-xs text-[#F1618B] block mb-2">Perfume News</span>
-          <p class="text-lg font-semibold text-black hover:text-gray-500 transition">
-            SUMMER SCENTS YOU’LL LOVE IN 2025
-          </p>
-          <div class="flex flex-wrap justify-center text-sm text-gray-500 py-3 gap-2">
-            <span>by <span class="hover:text-[#F1618B]">Mina Shah</span></span>
-            <span class="hidden sm:inline">|</span>
-            <span>June 10, 2025</span>
-            <span class="hidden sm:inline">|</span>
-            <span>5 minutes read</span>
-          </div>
-          <p class="text-sm text-black">
-            Fresh, floral, or fruity—explore this summer’s must-have fragrance trends...
-          </p>
-          <div class="flex justify-center gap-4 mt-4 text-gray-700">
-            <!-- Social icons -->
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 6 -->
-      <div class="bg-white shadow-md rounded-md overflow-hidden">
-        <img src="assets/images/img6.jpg" alt="Perfume 6" class="w-full h-64 object-cover">
-        <div class="p-5 -mt-8 relative z-10 bg-white mx-5 rounded shadow">
-          <span class="text-xs text-[#F1618B] block mb-2">Perfume News</span>
-          <p class="text-lg font-semibold text-black hover:text-gray-500 transition">
-            CLASSIC VS MODERN: WHICH SCENT WINS?
-          </p>
-          <div class="flex flex-wrap justify-center text-sm text-gray-500 py-3 gap-2">
-            <span>by <span class="hover:text-[#F1618B]">Omar Malik</span></span>
-            <span class="hidden sm:inline">|</span>
-            <span>June 8, 2025</span>
-            <span class="hidden sm:inline">|</span>
-            <span>3 minutes read</span>
-          </div>
-          <p class="text-sm text-black">
-            We compare timeless classics with bold new fragrances. Which one suits you?
-          </p>
-          <div class="flex justify-center gap-4 mt-4 text-gray-700">
-            <!-- Social icons -->
-          </div>
-        </div>
-      </div>
-
     </div>
-  </section>
+    
+    <div class="slider-container">
+      <div class="text-center pb-5">
+        <h1 class="display-6 fw-bold text-dark">Perfumes Trending This Week</h1>
+      </div>
 
+      <div class="perfume-slider">
+        <!-- Slides -->
+        <div class="slide-box">
+          <div class="slide-image" style="background-image: url('./assets/images/slider\ 1.jpg')"></div>
+          <div class="slide-title">Perfume 1</div>
+        </div>
+        <div class="slide-box">
+          <div class="slide-image" style="background-image: url('./assets/images/slider2.jpg')"></div>
+          <div class="slide-title">Perfume 2</div>
+        </div>
+        <div class="slide-box">
+          <div class="slide-image" style="background-image: url('./assets/images/slider3.jpg')"></div>
+          <div class="slide-title">Perfume 3</div>
+        </div>
+        <div class="slide-box">
+          <div class="slide-image" style="background-image: url('./assets/images/slider\ 4.jpg')"></div>
+          <div class="slide-title">Perfume 4</div>
+        </div>
+        <div class="slide-box">
+          <div class="slide-image" style="background-image: url('./assets/images/slider\ 5.jpg')"></div>
+          <div class="slide-title">Perfume 5</div>
+        </div>
+      </div>
+    </div>
+    
+    <section class="container px-4 py-5">
+      <div class="row g-4">
+        <!-- Card 1 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card card-custom">
+            <img src="assets/images/img1.jpg" class="card-img-top" alt="Perfume 1">
+            <div class="card-content">
+              <span class="category-text">Perfume News</span>
+              <h5 class="card-title fw-semibold text-dark mb-3">PERFUME LOVERS ARE ASKING "WHAT HAPPENED TO ARAMIS?"</h5>
+              <div class="d-flex flex-wrap justify-content-center text-muted small mb-3 gap-2">
+                <span>by <a href="#" class="text-decoration-none" style="color:inherit;">Hala Kaawach</a></span>
+                <span class="d-none d-sm-inline">|</span>
+                <span>June 20, 2025</span>
+                <span class="d-none d-sm-inline">|</span>
+                <span>3 minutes read</span>
+              </div>
+              <p class="card-text text-dark small">
+                For generations, Aramis has defined scent for many men.
+                That masculine fragrance has been a fixture on dressing tables and in ...
+              </p>
+              <div class="social-icons text-center mt-3">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-tumblr"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-reddit"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card card-custom">
+            <img src="assets/images/img2.jpg" class="card-img-top" alt="Perfume 2">
+            <div class="card-content">
+              <span class="category-text">Perfume News</span>
+              <h5 class="card-title fw-semibold text-dark mb-3">INSIDE THE WORLD OF LUXURY FRAGRANCES</h5>
+              <div class="d-flex flex-wrap justify-content-center text-muted small mb-3 gap-2">
+                <span>by <a href="#" class="text-decoration-none" style="color:inherit;">Sarah Bloom</a></span>
+                <span class="d-none d-sm-inline">|</span>
+                <span>June 18, 2025</span>
+                <span class="d-none d-sm-inline">|</span>
+                <span>4 minutes read</span>
+              </div>
+              <p class="card-text text-dark small">
+                Discover the top luxury perfumes of the year and how they're made...
+              </p>
+              <div class="social-icons text-center mt-3">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-tumblr"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-reddit"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card card-custom">
+            <img src="assets/images/img3.jpg" class="card-img-top" alt="Perfume 3">
+            <div class="card-content">
+              <span class="category-text">Perfume News</span>
+              <h5 class="card-title fw-semibold text-dark mb-3">THE SECRET NOTES IN YOUR FAVORITE SCENT</h5>
+              <div class="d-flex flex-wrap justify-content-center text-muted small mb-3 gap-2">
+                <span>by <a href="#" class="text-decoration-none" style="color:inherit;">Jason Lee</a></span>
+                <span class="d-none d-sm-inline">|</span>
+                <span>June 17, 2025</span>
+                <span class="d-none d-sm-inline">|</span>
+                <span>2 minutes read</span>
+              </div>
+              <p class="card-text text-dark small">
+                Dive into the olfactory world of hidden notes and mysterious blends...
+              </p>
+              <div class="social-icons text-center mt-3">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-tumblr"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-reddit"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card card-custom">
+            <img src="assets/images/img4.jpg" class="card-img-top" alt="Perfume 4">
+            <div class="card-content">
+              <span class="category-text">Perfume News</span>
+              <h5 class="card-title fw-semibold text-dark mb-3">ARABIAN OUD: A RISING GLOBAL TREND</h5>
+              <div class="d-flex flex-wrap justify-content-center text-muted small mb-3 gap-2">
+                <span>by <a href="#" class="text-decoration-none" style="color:inherit;">Laila Farooq</a></span>
+                <span class="d-none d-sm-inline">|</span>
+                <span>June 15, 2025</span>
+                <span class="d-none d-sm-inline">|</span>
+                <span>3 minutes read</span>
+              </div>
+              <p class="card-text text-dark small">
+                Why Arabian Oud is becoming the signature scent of influencers worldwide...
+              </p>
+              <div class="social-icons text-center mt-3">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-tumblr"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-reddit"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card card-custom">
+            <img src="assets/images/img5.jpg" class="card-img-top" alt="Perfume 5">
+            <div class="card-content">
+              <span class="category-text">Perfume News</span>
+              <h5 class="card-title fw-semibold text-dark mb-3">SUMMER SCENTS YOU'LL LOVE IN 2025</h5>
+              <div class="d-flex flex-wrap justify-content-center text-muted small mb-3 gap-2">
+                <span>by <a href="#" class="text-decoration-none" style="color:inherit;">Mina Shah</a></span>
+                <span class="d-none d-sm-inline">|</span>
+                <span>June 10, 2025</span>
+                <span class="d-none d-sm-inline">|</span>
+                <span>5 minutes read</span>
+              </div>
+              <p class="card-text text-dark small">
+                Fresh, floral, or fruity—explore this summer's must-have fragrance trends...
+              </p>
+              <div class="social-icons text-center mt-3">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-tumblr"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-reddit"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card card-custom">
+            <img src="assets/images/img6.jpg" class="card-img-top" alt="Perfume 6">
+            <div class="card-content">
+              <span class="category-text">Perfume News</span>
+              <h5 class="card-title fw-semibold text-dark mb-3">CLASSIC VS MODERN: WHICH SCENT WINS?</h5>
+              <div class="d-flex flex-wrap justify-content-center text-muted small mb-3 gap-2">
+                <span>by <a href="#" class="text-decoration-none" style="color:inherit;">Omar Malik</a></span>
+                <span class="d-none d-sm-inline">|</span>
+                <span>June 8, 2025</span>
+                <span class="d-none d-sm-inline">|</span>
+                <span>3 minutes read</span>
+              </div>
+              <p class="card-text text-dark small">
+                We compare timeless classics with bold new fragrances. Which one suits you?
+              </p>
+              <div class="social-icons text-center mt-3">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-tumblr"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-reddit"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Spring Slider JS -->
-<script type="module" crossorigin src="https://spring-slider.uiinitiative.com/assets/index.8742a0a0.js"></script>
-  <!-- jQuery (Required for Slick) -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <!-- Slick JS -->
-  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>  
+    <script type="module" crossorigin src="https://spring-slider.uiinitiative.com/assets/index.8742a0a0.js"></script>
+    <!-- jQuery (Required for Slick) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Slick JS -->
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>  
 
-<!-- Enable Autoplay -->
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Wait for Spring Slider to initialize
-      setTimeout(() => {
-        const swiperInstance = document.querySelector('.swiper')?.swiper;
-        if (swiperInstance) {
-          swiperInstance.params.loop = true;
-          swiperInstance.params.autoplay = {
-            delay: 3000,
-            disableOnInteraction: false,
-          };
-          swiperInstance.loopCreate?.(); // Reinitialize loop
-          swiperInstance.autoplay?.start();
-        }
-      }, 500);
-    });
-
-    $(document).ready(function(){
-      $('.perfume-slider').slick({
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        speed: 500,
-        arrows: true,
-        dots: false,
-        responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 3
-            }
-          },
-          {
-            breakpoint: 768,
-            settings: {
-              slidesToShow: 2
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1
-            }
+    <!-- Enable Autoplay -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Wait for Spring Slider to initialize
+        setTimeout(() => {
+          const swiperInstance = document.querySelector('.swiper')?.swiper;
+          if (swiperInstance) {
+            swiperInstance.params.loop = true;
+            swiperInstance.params.autoplay = {
+              delay: 3000,
+              disableOnInteraction: false,
+            };
+            swiperInstance.loopCreate?.(); // Reinitialize loop
+            swiperInstance.autoplay?.start();
           }
-        ]
+        }, 500);
       });
-    });
- 
-  </script>
+
+      $(document).ready(function(){
+        $('.perfume-slider').slick({
+          infinite: true,
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          speed: 500,
+          arrows: true,
+          dots: false,
+          responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3
+              }
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 2
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1
+              }
+            }
+          ]
+        });
+      });
+    </script>
   </body>
 </html>
