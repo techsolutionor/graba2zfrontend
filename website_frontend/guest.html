@@ -894,83 +894,80 @@
 
                     </div>
                 </div>
-                <div id="guest" class="mt-5">
-                    <h5 class="mt-28 text-dark">Continue as Guest</h5>
-                    <form id="guestForm">
-                        <div class="form-group">
-                            <label for="name" style="color: black;">Full Name</label>
-                            <input type="text" class="form-control mt-5" id="guestname" placeholder="Enter your name"
-                                required style="font-size: 14px;">
-                        </div>
+<div id="guest" class="mt-5">
+    <h5 class="mt-28 text-dark">Continue as Guest</h5>
+    <form id="guestForm">
+        <div class="form-group">
+            <label for="name" style="color: black;">Full Name</label>
+            <input type="text" class="form-control mt-5" id="guestname" placeholder="Enter your name"
+                required style="font-size: 14px;">
+        </div>
 
-                        <div class="form-group">
-                            <label for="email" style="color: black; margin-top: 22px;">Email address</label>
-                            <input type="email" class="form-control mt-5" id="guestemail" placeholder="Email address"
-                                required style="font-size: 14px;">
-                        </div>
+        <div class="form-group">
+            <label for="email" style="color: black; margin-top: 22px;">Email address</label>
+            <input type="email" class="form-control mt-5" id="guestemail" placeholder="Email address"
+                required style="font-size: 14px;">
+        </div>
 
-                       <div class="form-group mt-16">
+      <div class="form-group mt-16">
     <label>Mobile Number</label><br>
-    <input type="tel" id="guestmobile" class="form-control"
-        placeholder="Enter your mobile number" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+    <div class="phone-input-container" style="position: relative;">
+        <input type="tel" id="guestmobile" class="form-control"
+               placeholder="+971 5X XXX XXXX"
+               required
+               style="padding-left: 60px;"> <!-- Increased padding for our custom flag -->
+        <div class="uae-flag" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;">
+            <img src="https://flagcdn.com/w20/ae.png" srcset="https://flagcdn.com/w40/ae.png 2x" width="20" alt="United Arab Emirates">
+        </div>
+    </div>
+    <small class="text-muted">Format: +971 5X XXX XXXX (mobile) or +971 X XXX XXXX (landline)</small>
 </div>
+        <!-- Hidden UAE country selection -->
+        <input type="hidden" id="guestcountry" value="AE">
 
+        <!-- Emirate (Region) Dropdown -->
+        <div class="form-group">
+            <label for="guestregion" style="color: black; margin-top: 22px;">Emirate</label>
+            <select class="form-control mt-5" id="guestregion" required style="font-size: 14px;">
+                <option value="">Select Emirate</option>
+            </select>
+        </div>
 
-                        <!-- New Address Fields -->
-                        <div class="form-group">
-                            <label for="guestcountry" style="color: black; margin-top: 22px;">Country</label>
-                            <select class="form-control mt-5" id="guestcountry" required style="font-size: 14px;">
-                                <option value="">Select Country</option>
-                                <option value="US">United States</option>
-                                <option value="AE">United Arab Emirates</option>
-                                <option value="PK">Pakistan</option>
-                                <option value="IN">India</option>
-                                <!-- Add more countries as needed -->
-                            </select>
-                        </div>
+        <!-- City Dropdown -->
+        <div class="form-group">
+            <label for="guestcity" style="color: black; margin-top: 22px;">City</label>
+            <select class="form-control mt-5" id="guestcity" required style="font-size: 14px;" disabled>
+                <option value="">Select City</option>
+            </select>
+        </div>
 
-                        <div class="form-group">
-                            <label for="guestregion" style="color: black; margin-top: 22px;">State/Region</label>
-                            <select class="form-control mt-5" id="guestregion" required style="font-size: 14px;"
-                                disabled>
-                                <option value="">Select State/Region</option>
-                            </select>
-                        </div>
+        <div class="form-group">
+            <label for="guestzip" style="color: black; margin-top: 22px;">Zip Code</label>
+            <input type="text" class="form-control mt-5" id="guestzip" placeholder="Enter zip code"
+                required style="font-size: 14px;">
+        </div>
 
-                        <div class="form-group">
-                            <label for="guestcity" style="color: black; margin-top: 22px;">City</label>
-                            <select class="form-control mt-5" id="guestcity" required style="font-size: 14px;" disabled>
-                                <option value="">Select City</option>
-                            </select>
-                        </div>
+        <div class="form-group">
+            <label for="guestaddress" style="color: black; margin-top: 22px;">Address</label>
+            <textarea class="form-control mt-5" id="guestaddress"
+                placeholder="Enter your complete Current address for Order Shiping" rows="3" required
+                style="font-size: 14px;"></textarea>
+        </div>
 
-                        <div class="form-group">
-                            <label for="guestzip" style="color: black; margin-top: 22px;">Zip Code</label>
-                            <input type="text" class="form-control mt-5" id="guestzip" placeholder="Enter zip code"
-                                required style="font-size: 14px;">
-                        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input mt-32" id="terms" required>
+            <label class="form-check-label mt-28" for="terms">
+                By creating an account, I agree to our
+                <a href="#" style="color: black; text-decoration: underline;">Terms of use</a>
+                and
+                <a href="https://graba2z.netlify.app/privacy-policy" style="color: black; text-decoration: underline;">Privacy
+                    Policy</a>.
+            </label>
+        </div>
 
-                        <div class="form-group">
-                            <label for="guestaddress" style="color: black; margin-top: 22px;">Address</label>
-                            <textarea class="form-control mt-5" id="guestaddress"
-                                placeholder="Enter your complete Current address for Order Shiping" rows="3" required
-                                style="font-size: 14px;"></textarea>
-                        </div>
-
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input mt-32" id="terms" required>
-                            <label class="form-check-label mt-28" for="terms">
-                                By creating an account, I agree to our
-                                <a href="#" style="color: black; text-decoration: underline;">Terms of use</a>
-                                and
-                                <a href="https://graba2z.netlify.app/privacy-policy" style="color: black; text-decoration: underline;">Privacy
-                                    Policy</a>.
-                            </label>
-                        </div>
-
-                        <button type="submit" class="btn btn-secondary mt-40 py-18 w-100 rounded-8">Continue</button>
-                    </form>
-                </div>
+        <button type="submit" class="btn btn-secondary mt-40 py-18 w-100 rounded-8">Continue</button>
+    </form>
+</div>
             </div>
         </div>
     </div>
@@ -1135,6 +1132,79 @@
         <script src="assets/js/vanilla-tilt.min.js"></script>
         <!-- main js -->
         <script src="assets/js/main.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.3.3/js/intlTelInput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.3.3/js/intlTelInput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.3.3/js/intlTelInput.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const phoneInput = document.querySelector("#guestmobile");
+    
+    // Initialize with UAE only and hide the default flag
+    const iti = window.intlTelInput(phoneInput, {
+        initialCountry: "ae",
+        onlyCountries: ["ae"],
+        separateDialCode: true,
+        autoPlaceholder: "off",
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.3.3/js/utils.js",
+        // Hide the default flag container
+        customContainer: "hidden-flag-container"
+    });
+
+    // Hide the default flag container completely
+    const defaultFlagContainer = document.querySelector(".iti__flag-container");
+    if (defaultFlagContainer) {
+        defaultFlagContainer.style.display = "none";
+    }
+
+    // Strict validation and formatting
+    phoneInput.addEventListener('input', function() {
+        let value = this.value.replace(/\D/g, '');
+        
+        // For UAE numbers:
+        // Mobile: 971 + 9 digits (starting with 5)
+        // Landline: 971 + 8 digits
+        const maxLength = value.startsWith('9715') ? 12 : 11;
+        value = value.substring(0, maxLength);
+        
+        // Format with single + and spaces
+        if (value.length > 3) {
+            const countryCode = value.substring(0, 3);
+            const rest = value.substring(3);
+            this.value = `+${countryCode} ${rest}`;
+        } else if (value.length > 0) {
+            this.value = `+${value}`;
+        } else {
+            this.value = '';
+        }
+    });
+
+    // Final validation
+    document.getElementById('guestForm').addEventListener('submit', function(e) {
+        const isValid = /^\+971(?:[25]\d{8}|[1-9]\d{7})$/.test(phoneInput.value);
+        if (!isValid) {
+            alert("Please enter a valid UAE number: +971 5X XXX XXXX (mobile) or +971 X XXX XXXX (landline)");
+            e.preventDefault();
+        }
+    });
+});
+</script>
+
+<style>
+/* Hide the default flag container completely */
+.iti__flag-container {
+    display: none !important;
+}
+
+/* Remove any dropdown arrow */
+.iti__arrow {
+    display: none !important;
+}
+
+/* Adjust input padding to accommodate our custom flag */
+#guestmobile {
+    padding-left: 60px !important;
+}
+</style>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 // Fetch categories from your API
@@ -1291,90 +1361,87 @@
 
         <script>
             // Initialize phone input
-            const phoneInputField = document.querySelector("#guestmobile");
-            const iti = window.intlTelInput(phoneInputField, {
-                initialCountry: "ae", // Default country set to UAE (+971)
-                preferredCountries: ["ae", "pk", "us", "in"],
-                separateDialCode: true,
-                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.3.3/js/utils.js",
-            });
+           // Initialize phone input - UAE only
+const phoneInputField = document.querySelector("#guestmobile");
+const iti = window.intlTelInput(phoneInputField, {
+    initialCountry: "ae", // UAE only
+    onlyCountries: ["ae"], // Only show UAE
+    separateDialCode: true,
+    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.3.3/js/utils.js",
+});
 
             // Fetch countries from backend
-            async function loadCountries() {
-                try {
-                    const response = await fetch(`${API_CUSTOMER_URL}/api/countries`);
-                    const countries = await response.json();
-
-                    const countrySelect = document.getElementById('guestcountry');
-                    countries.forEach(country => {
-                        const option = document.createElement('option');
-                        option.value = country.isoCode;
-                        option.textContent = country.name;
-                        countrySelect.appendChild(option);
-                    });
-                } catch (error) {
-                    console.error('Failed to load countries:', error);
-                }
-            }
+            // Fetch countries - only UAE
+async function loadCountries() {
+    const countrySelect = document.getElementById('guestcountry');
+    
+    // Clear existing options
+    countrySelect.innerHTML = '';
+    
+    // Only add UAE
+    const uaeOption = document.createElement('option');
+    uaeOption.value = "AE";
+    uaeOption.textContent = "United Arab Emirates";
+    countrySelect.appendChild(uaeOption);
+    
+    // Load UAE states immediately since it's the only option
+    loadStates("AE");
+}
 
             // Fetch states for selected country
             async function loadStates(countryCode) {
-                const regionSelect = document.getElementById('guestregion');
-                const citySelect = document.getElementById('guestcity');
+    const regionSelect = document.getElementById('guestregion');
+    const citySelect = document.getElementById('guestcity');
 
-                // Clear previous options
-                regionSelect.innerHTML = '<option value="">Select State/Region</option>';
-                citySelect.innerHTML = '<option value="">Select City</option>';
-                citySelect.disabled = true;
+    // Clear previous options
+    regionSelect.innerHTML = '<option value="">Select Emirate</option>';
+    citySelect.innerHTML = '<option value="">Select City</option>';
+    citySelect.disabled = true;
 
-                if (!countryCode) {
-                    regionSelect.disabled = true;
-                    return;
-                }
+    // UAE states (emirates)
+    const uaeEmirates = [
+        { isoCode: "DU", name: "Dubai" },
+        { isoCode: "SH", name: "Sharjah" },
+        { isoCode: "AJ", name: "Ajman" },
+        { isoCode: "FU", name: "Fujairah" },
+        { isoCode: "RK", name: "Ras Al Khaimah" },
+        { isoCode: "UA", name: "Umm Al Quwain" },
+        { isoCode: "AZ", name: "Abu Dhabi" }
+    ];
 
-                try {
-                    const response = await fetch(`${API_CUSTOMER_URL}/api/states?country=${countryCode}`);
-                    const states = await response.json();
-
-                    regionSelect.disabled = false;
-                    states.forEach(state => {
-                        const option = document.createElement('option');
-                        option.value = state.isoCode;
-                        option.textContent = state.name;
-                        regionSelect.appendChild(option);
-                    });
-                } catch (error) {
-                    console.error('Failed to load states:', error);
-                    regionSelect.disabled = true;
-                }
-            }
+    regionSelect.disabled = false;
+    uaeEmirates.forEach(emirate => {
+        const option = document.createElement('option');
+        option.value = emirate.isoCode;
+        option.textContent = emirate.name;
+        regionSelect.appendChild(option);
+    });
+}
 
             // Fetch cities for selected state
-            async function loadCities(countryCode, stateCode) {
-                const citySelect = document.getElementById('guestcity');
-                citySelect.innerHTML = '<option value="">Select City</option>';
+           async function loadCities(countryCode, stateCode) {
+    const citySelect = document.getElementById('guestcity');
+    citySelect.innerHTML = '<option value="">Select City</option>';
 
-                if (!countryCode || !stateCode) {
-                    citySelect.disabled = true;
-                    return;
-                }
+    // UAE cities by emirate
+    const uaeCities = {
+        "DU": ["Dubai", "Jebel Ali", "Hatta"],
+        "SH": ["Sharjah", "Khor Fakkan", "Kalba"],
+        "AJ": ["Ajman"],
+        "FU": ["Fujairah", "Dibba"],
+        "RK": ["Ras Al Khaimah", "Al Jazirah Al Hamra"],
+        "UA": ["Umm Al Quwain"],
+        "AZ": ["Abu Dhabi", "Al Ain", "Liwa Oasis"]
+    };
 
-                try {
-                    const response = await fetch(`${API_CUSTOMER_URL}/api/cities?country=${countryCode}&state=${stateCode}`);
-                    const cities = await response.json();
-
-                    citySelect.disabled = false;
-                    cities.forEach(city => {
-                        const option = document.createElement('option');
-                        option.value = city.name;
-                        option.textContent = city.name;
-                        citySelect.appendChild(option);
-                    });
-                } catch (error) {
-                    console.error('Failed to load cities:', error);
-                    citySelect.disabled = true;
-                }
-            }
+    citySelect.disabled = false;
+    uaeCities[stateCode].forEach(city => {
+        const option = document.createElement('option');
+        option.value = city;
+        option.textContent = city;
+        citySelect.appendChild(option);
+    });
+}
 
             // Event listeners
             document.getElementById('guestcountry').addEventListener('change', function () {
@@ -1392,6 +1459,13 @@
             // Form submission (same as before)
             document.getElementById('guestForm').addEventListener('submit', async (e) => {
                 e.preventDefault();
+
+                // Validate UAE phone number
+    const phoneNumber = iti.getNumber();
+    if (!phoneNumber.startsWith('+971')) {
+        alert("Please enter a valid UAE phone number");
+        return;
+    }
 
                 // Verify email first
                 const email = document.getElementById('guestemail').value.trim();
