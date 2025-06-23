@@ -1150,6 +1150,7 @@
                 <div class="col-xl-3 col-lg-4">
                     <div class="cart-sidebar border border-gray-100 rounded-8 px-4 py-4"
                         style="height: 505px; background-color: #f7f4f4;">
+                                <div id="coupon-message-container" class="mb-3"></div>
                         <h6 class="text-xl mb-3 mt-14 ms-2 text-black">Cart Totals</h6>
                         <p class="mt-12" style="color: black; font-size: 15px;">Enter Discount Code</p>
                         <div class="mb-3 input-group">
@@ -1776,29 +1777,25 @@
             });
 
 
-         function showCouponMessage(msg, isError) {
+        function showCouponMessage(msg, isError) {
+    const container = document.getElementById('coupon-message-container');
+    container.innerHTML = ''; // Clear previous messages
+    
     const alertBox = document.createElement('div');
     alertBox.innerText = msg;
-    alertBox.style.position = 'fixed';
-    alertBox.style.top = '20px'; // 20px from the top
-    alertBox.style.right = '20px'; // 20px from the right
     alertBox.style.backgroundColor = isError ? '#f44336' : '#28a745';
     alertBox.style.color = '#fff';
-    alertBox.style.padding = '12px 20px';
+    alertBox.style.padding = '8px 12px';
     alertBox.style.borderRadius = '4px';
-    alertBox.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
-    alertBox.style.zIndex = '99999';
     alertBox.style.fontSize = '14px';
-    alertBox.style.transition = 'opacity 0.5s ease';
-    alertBox.style.opacity = '1';
-    alertBox.style.maxWidth = '300px'; // Prevent too wide messages
-    alertBox.style.wordBreak = 'break-word'; // Ensure long text wraps
+    alertBox.style.marginBottom = '10px';
+    
+    container.appendChild(alertBox);
 
-    document.body.appendChild(alertBox);
-
+    // Auto-remove after 3 seconds
     setTimeout(() => {
         alertBox.style.opacity = '0';
-        setTimeout(() => alertBox.remove(), 500);
+        setTimeout(() => alertBox.remove(), 300);
     }, 3000);
 }
 
