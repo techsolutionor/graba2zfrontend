@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Confirmation</title>
     <style>
-        body {
+            body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -171,13 +172,13 @@
 </head>
 
 <body>
-
     <div class="container">
         <div class="header">
             <h1>Order #<span id="orderId"></span></h1>
             <p>Hi <span id="customerName"></span>, Thank you for your purchase.</p>
             <p>Order Date: <span id="orderDate"></span></p>
             <p>Payment Method: <span id="paymentMethod"></span></p>
+            <p>Order Status: <span id="orderStatus"></span></p>
         </div>
 
         <div class="order-details">
@@ -187,7 +188,6 @@
                         <th>Product</th>
                         <th>Quantity</th>
                         <th>Price</th>
-                        <th>Tax</th>
                         <th>Total</th>
                     </tr>
                 </thead>
@@ -196,16 +196,8 @@
                 </tbody>
                 <tfoot>
                     <tr class="total-row">
-                        <td colspan="4" style="text-align: right;">Subtotal</td>
-                        <td id="subtotal"></td>
-                    </tr>
-                    <tr class="total-row">
-                        <td colspan="4" style="text-align: right;">Shipping</td>
-                        <td id="shipping"></td>
-                    </tr>
-                    <tr class="total-row">
-                        <td colspan="4" style="text-align: right;">Total</td>
-                        <td id="total"></td>
+                        <td colspan="3" style="text-align: right;">Total Amount</td>
+                        <td id="totalAmount"></td>
                     </tr>
                 </tfoot>
             </table>
@@ -214,14 +206,15 @@
         <div class="buttons">
             <button class="back">Back To Store</button>
             <a href="https://graba2z.netlify.app/track-order">
-  <button class="track" >Track Your Order</button>
-</a>
+                <button class="track">Track Your Order</button>
+            </a>
         </div>
 
         <div class="customer-details">
             <div class="address">
-                <h3>Billing Address</h3>
-                <p id="billingAddress"></p>
+                <h3>Customer Details</h3>
+                <p id="customerEmail"></p>
+                <p id="customerPhone"></p>
             </div>
             <div class="address">
                 <h3>Shipping Address</h3>
@@ -231,41 +224,88 @@
     </div>
 
     <script>
-        // Fetch URL parameters to dynamically load order data
+        // Get order ID from URL parameters
         const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('order_id');
+        
+        if (!orderId) {
+            alert('Order ID not found in URL');
+            window.location.href = '/'; // Redirect to home if no order ID
+        }
 
-        // Order data populated from URL parameters
-        document.getElementById('orderId').textContent = urlParams.get('order_id') || '';
-        document.getElementById('customerName').textContent = urlParams.get('customer_name') || '';
-        document.getElementById('orderDate').textContent = urlParams.get('order_date') || '';
-        document.getElementById('paymentMethod').textContent = urlParams.get('payment_method') || '';
+        // Fetch order details from API
+        async function fetchOrderDetails(orderId) {
+            try {
+                const response = await fetch(`https://grabatoz-production.uprailway.app/api/orderfetchbyidonreciept/${orderId}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch order details');
+                }
+                const order = await response.json();
+                populateOrderDetails(order);
+            } catch (error) {
+                console.error('Error fetching order:', error);
+                alert('Failed to load order details. Please try again later.');
+            }
+        }
 
-        // Order details table dynamic insertion
-        let orderDetailsHTML = '';
-        const products = JSON.parse(urlParams.get('order_details') || '[]'); // Expecting a JSON array string
-        products.forEach(item => {
-            orderDetailsHTML += `
-                <tr>
-                    <td>${item.product}</td>
-                    <td>${item.quantity}</td>
-                    <td>${item.price}</td>
-                    <td>${item.tax}</td>
-                    <td>${item.total}</td>
-                </tr>
-            `;
-        });
-        document.getElementById('orderDetailsTable').innerHTML = orderDetailsHTML;
+        // Populate the page with order data
+        function populateOrderDetails(order) {
+            // Basic order info
+            document.getElementById('orderId').textContent = order.order_id;
+            document.getElementById('customerName').textContent = order.customer_name || 'Customer';
+            document.getElementById('orderDate').textContent = new Date(order.created_at).toLocaleDateString();
+            document.getElementById('paymentMethod').textContent = order.payment_type;
+            document.getElementById('orderStatus').textContent = order.order_status;
+            document.getElementById('totalAmount').textContent = `$${order.total_amount}`;
 
-        // Populate other total fields
-        document.getElementById('subtotal').textContent = urlParams.get('subtotal') || '';
-        document.getElementById('shipping').textContent = urlParams.get('shipping') || '';
-        document.getElementById('total').textContent = urlParams.get('total') || '';
+            // Parse and display card info if available
+            try {
+                const cardInfo = JSON.parse(order.card_info);
+                let productHTML = '';
+                if (Array.isArray(cardInfo)) {
+                    cardInfo.forEach(item => {
+                        productHTML += `
+                            <tr>
+                                <td>${item.V1v1 || 'Product'}</td>
+                                <td>${item.quantity || 1}</td>
+                                <td>$${item.V1sailing_pric || '0.00'}</td>
+                                <td>$${item.V1sailing_pric ? (item.V1sailing_pric * (item.quantity || 1)).toFixed(2) : '0.00'}</td>
+                            </tr>
+                        `;
+                    });
+                }
+                document.getElementById('orderDetailsTable').innerHTML = productHTML;
+            } catch (e) {
+                console.error('Error parsing card info:', e);
+                document.getElementById('orderDetailsTable').innerHTML = `
+                    <tr>
+                        <td colspan="4">Product information not available</td>
+                    </tr>
+                `;
+            }
 
-        // Customer addresses
-        document.getElementById('billingAddress').innerHTML = urlParams.get('billing_address') || '';
-        document.getElementById('shippingAddress').innerHTML = urlParams.get('shipping_address') || '';
+            // Customer contact info from shippingInfo
+            try {
+                const shippingInfo = JSON.parse(order.shippingInfo.replace(/\\"/g, '"'));
+                document.getElementById('customerEmail').textContent = shippingInfo.email || '';
+                document.getElementById('customerPhone').textContent = shippingInfo.contact || '';
+            } catch (e) {
+                console.error('Error parsing shipping info:', e);
+                document.getElementById('customerEmail').textContent = 'Email not available';
+                document.getElementById('customerPhone').textContent = 'Phone not available';
+            }
+
+            // Shipping address
+            document.getElementById('shippingAddress').textContent = order.shipping_address;
+
+            // Back button functionality
+            document.querySelector('.back').addEventListener('click', () => {
+                window.location.href = 'https://graba2z.netlify.app';
+            });
+        }
+
+        // Initialize the page
+        fetchOrderDetails(orderId);
     </script>
-
 </body>
-
 </html>
