@@ -236,7 +236,7 @@
         async function fetchOrderDetails(orderId) {
             try {
                 console.log(`Fetching order ${orderId}...`);
-                const apiUrl = `https://grabatoz-production.uprailway.app/api/orderfetchbyidourceiepv/${orderId}`;
+                const apiUrl = `https://grabatoz-production.up.railway.app/api/orderfetchbyidonreciept/${orderId}`;
                 console.log('API URL:', apiUrl);
                 
                 const response = await fetch(apiUrl, {
