@@ -222,98 +222,133 @@
             </div>
         </div>
     </div>
-
-  <script>
-    // Get order ID from URL parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const orderId = urlParams.get('order_id');
-    
-    if (!orderId) {
-        alert('Order ID not found in URL');
-        window.location.href = '/';
-    }
-
-    // Fetch order details from API
-    async function fetchOrderDetails(orderId) {
-        try {
-            console.log(`Fetching order ${orderId}...`);
-            const apiUrl = `https://grabatoz-production.uprailway.app/api/orderfetchbyidourceiepv/${orderId}`;
-            console.log('API URL:', apiUrl);
-            
-            const response = await fetch(apiUrl);
-            
-            console.log('Response status:', response.status);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            
-            const order = await response.json();
-            console.log('Order data:', order);
-            populateOrderDetails(order);
-        } catch (error) {
-            console.error('Error fetching order:', error);
-            alert(`Failed to load order details: ${error.message}`);
+ <script>
+        // Get order ID from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('order_id');
+        
+        if (!orderId) {
+            alert('Order ID not found in URL');
+            window.location.href = '/';
         }
-    }
 
-    // Populate the page with order data
-    function populateOrderDetails(order) {
-        // Basic order info
-        document.getElementById('orderId').textContent = order.order_id;
-        document.getElementById('customerName').textContent = order.customer_name || 'Customer';
-        document.getElementById('orderDate').textContent = new Date(order.created_at).toLocaleDateString();
-        document.getElementById('paymentMethod').textContent = order.payment_type;
-        document.getElementById('orderStatus').textContent = order.order_status;
-        document.getElementById('totalAmount').textContent = `$${order.total_amount}`;
-
-        // Parse and display card info if available
-        try {
-            const cardInfo = JSON.parse(order.card_info);
-            let productHTML = '';
-            if (Array.isArray(cardInfo)) {
-                cardInfo.forEach(item => {
-                    productHTML += `
-                        <tr>
-                            <td>${item.V1v1 || 'Product'}</td>
-                            <td>${item.quantity || 1}</td>
-                            <td>$${item.V1sailing_pric || '0.00'}</td>
-                            <td>$${item.V1sailing_pric ? (item.V1sailing_pric * (item.quantity || 1)).toFixed(2) : '0.00'}</td>
-                        </tr>
-                    `;
+        // Fetch order details from API
+        async function fetchOrderDetails(orderId) {
+            try {
+                console.log(`Fetching order ${orderId}...`);
+                const apiUrl = `https://grabatoz-production.uprailway.app/api/orderfetchbyidourceiepv/${orderId}`;
+                console.log('API URL:', apiUrl);
+                
+                const response = await fetch(apiUrl, {
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 });
+                
+                console.log('Response status:', response.status);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const order = await response.json();
+                console.log('Order data:', order);
+                populateOrderDetails(order);
+            } catch (error) {
+                console.error('Error fetching order:', error);
+                alert(`Failed to load order details: ${error.message}`);
             }
-            document.getElementById('orderDetailsTable').innerHTML = productHTML;
-        } catch (e) {
-            console.error('Error parsing card info:', e);
-            document.getElementById('orderDetailsTable').innerHTML = `
-                <tr>
-                    <td colspan="4">Product information not available</td>
-                </tr>
-            `;
         }
 
-        // Customer contact info from shippingInfo
-        try {
-            const shippingInfo = JSON.parse(order.shippingInfo.replace(/\\"/g, '"'));
-            document.getElementById('customerEmail').textContent = shippingInfo.email || '';
-            document.getElementById('customerPhone').textContent = shippingInfo.contact || '';
-        } catch (e) {
-            console.error('Error parsing shipping info:', e);
-            document.getElementById('customerEmail').textContent = 'Email not available';
-            document.getElementById('customerPhone').textContent = 'Phone not available';
+        // Populate the page with order data
+        function populateOrderDetails(order) {
+            // Basic order info
+            document.getElementById('orderId').textContent = order.order_id;
+            document.getElementById('customerName').textContent = order.customer_name || 'Customer';
+            document.getElementById('orderDate').textContent = formatDate(order.created_at);
+            document.getElementById('paymentMethod').textContent = order.payment_type;
+            document.getElementById('orderStatus').textContent = order.order_status;
+            document.getElementById('totalAmount').textContent = `$${order.total_amount}`;
+
+            // Parse and display card info
+            try {
+                // Fix malformed JSON in card_info
+                const fixedCardInfo = order.card_info
+                    .replace(/\\"/g, '"')
+                    .replace(/"\s*([{\[])/g, '$1')
+                    .replace(/([}\]])"\s*/g, '$1');
+                    
+                const cardInfo = JSON.parse(fixedCardInfo);
+                let productHTML = '';
+                
+                if (Array.isArray(cardInfo)) {
+                    cardInfo.forEach(item => {
+                        const productName = item.name || item.V1v1 || 'Product';
+                        const price = item.offer_price || item.V1sailing_pric || '0.00';
+                        const quantity = item.quantity || 1;
+                        const total = (parseFloat(price) * quantity).toFixed(2);
+                        
+                        productHTML += `
+                            <tr>
+                                <td>${productName}</td>
+                                <td>${quantity}</td>
+                                <td>$${price}</td>
+                                <td>$${total}</td>
+                            </tr>
+                        `;
+                    });
+                }
+                document.getElementById('orderDetailsTable').innerHTML = productHTML;
+            } catch (e) {
+                console.error('Error parsing card info:', e);
+                document.getElementById('orderDetailsTable').innerHTML = `
+                    <tr>
+                        <td colspan="4">Product information not available</td>
+                    </tr>
+                `;
+            }
+
+            // Customer contact info from shippingInfo
+            try {
+                // Fix malformed JSON in shippingInfo
+                const fixedShippingInfo = order.shippingInfo
+                    .replace(/\\"/g, '"')
+                    .replace(/"\s*([{\[])/g, '$1')
+                    .replace(/([}\]])"\s*/g, '$1');
+                    
+                const shippingInfo = JSON.parse(fixedShippingInfo);
+                document.getElementById('customerEmail').textContent = shippingInfo.email || '';
+                document.getElementById('customerPhone').textContent = shippingInfo.contact || '';
+            } catch (e) {
+                console.error('Error parsing shipping info:', e);
+                document.getElementById('customerEmail').textContent = 'Email not available';
+                document.getElementById('customerPhone').textContent = 'Phone not available';
+            }
+
+            // Shipping address
+            document.getElementById('shippingAddress').textContent = order.shipping_address;
+
+            // Back button functionality
+            document.querySelector('.back').addEventListener('click', () => {
+                window.location.href = 'https://graba2z.netlify.app';
+            });
         }
 
-        // Shipping address
-        document.getElementById('shippingAddress').textContent = order.shipping_address;
+        // Helper function to format date
+        function formatDate(dateString) {
+            try {
+                // Handle malformed date strings like "028:56-23T16:05159.8082"
+                const fixedDateString = dateString.replace(/(\d{2}):(\d{2})-(\d{2})T/, '$3-$2-$1T');
+                const date = new Date(fixedDateString);
+                return date.toLocaleDateString();
+            } catch (e) {
+                console.error('Error formatting date:', e);
+                return dateString; // Return original if we can't parse it
+            }
+        }
 
-        // Back button functionality
-        document.querySelector('.back').addEventListener('click', () => {
-            window.location.href = 'https://graba2z.netlify.app';
-        });
-    }
-
-    // Initialize the page
-    fetchOrderDetails(orderId);
-</script>
+        // Initialize the page
+        fetchOrderDetails(orderId);
+    </script>
 </body>
 </html>
