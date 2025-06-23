@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Themes</title>
+  <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/icon/favicon.png">
   <link rel="stylesheet" href="./assets/css/styles.min.css" />
   <link rel="stylesheet" href="./assets/css/style2.css" />
   <link rel="stylesheet" href="./assets/css/navbar.css" />
@@ -169,7 +171,18 @@ data-sidebar-position="fixed" data-header-position="fixed">
       
           <!-- PRODUCTS & STOCK -->
           <li class="section-title">PRODUCTS & STOCK</li>
-          <li class="nav-item"><a class="nav-link" href="products.html"><i class="fas fa-box"></i> Products</a></li>
+         <li class="nav-item">
+  <a href="javascript:void(0);" class="nav-link d-flex justify-content-between align-items-center products-toggle-custom">
+    <span><i class="fas fa-box me-1"></i> Products</span>
+    <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
+  </a>
+
+  <ul class="sidebar-submenu" id="productsMenuCustom">
+    <li><a class="nav-link" href="products.html"><i class="fas fa-box"></i> Product</a></li>
+    <li><a class="nav-link" href="product-brands.html"><i class="fas fa-tag"></i> Product Brands</a></li>
+    <li><a class="nav-link" href="product-categories.html"><i class="fas fa-tags"></i> Product Categories</a></li>
+  </ul>
+</li>
            <li class="nav-item">
   <a href="javascript:void(0);" class="nav-link d-flex justify-content-between align-items-center purchases-toggle-custom">
     <span><i class="fas fa-shopping-cart me-1"></i> Purchases</span>
@@ -242,7 +255,45 @@ data-sidebar-position="fixed" data-header-position="fixed">
       
           <!-- SETUP -->
           <li class="section-title">SETUP</li>
-          <li class="nav-item"><a class="nav-link" href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+          <li class="nav-item">
+  <a href="javascript:void(0);" class="nav-link d-flex justify-content-between align-items-center ratings-toggle-custom">
+    <span><i class="fas fa-star me-1"></i> Ratings</span>
+    <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
+  </a>
+
+  <ul class="sidebar-submenu" id="ratingsMenuCustom">
+    <li><a class="nav-link" href="./all-ratings.html">All Ratings</a></li>
+    <li><a class="nav-link" href="./pending-ratings.html">Pending Ratings</a></li>
+    <li><a class="nav-link" href="./approved-ratings.html">Approved Ratings</a></li>
+    <li><a class="nav-link" href="./rejected-ratings.html">Rejected Ratings</a></li>
+  </ul>
+</li>
+
+<li class="nav-item">
+  <a href="javascript:void(0);" class="nav-link d-flex justify-content-between align-items-center call-toggle-custom">
+    <span><i class="fas fa-phone-alt me-1"></i> Customer Call Requests</span>
+    <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
+  </a>
+
+  <ul class="sidebar-submenu" id="callMenuCustom">
+    <li><a class="nav-link" href="./customer-all-call-requests.html">All Call Requests</a></li>
+    <li><a class="nav-link" href="./customer-call-requests.html">Call Requests</a></li>
+    <li><a class="nav-link" href="./customer-done-call-requests.html">Done Call Requests</a></li>
+    <li><a class="nav-link" href="./customer-spam-call-requests.html">Spam Call Requests</a></li>
+  </ul>
+</li>
+<li class="nav-item">
+  <a href="javascript:void(0);" class="nav-link d-flex justify-content-between align-items-center blogs-toggle-custom">
+    <span><i class="fas fa-blog me-1"></i> Blogs</span>
+    <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
+  </a>
+
+  <ul class="sidebar-submenu" id="blogsMenuCustom">
+    <li><a class="nav-link" href="./blogs.html">Blogs</a></li>
+    <li><a class="nav-link" href="./blog-categories.html">Blog Categories</a></li>
+    <li><a class="nav-link" href="./blog-topics.html">Blog Topics</a></li>
+  </ul>
+</li>
           <li class="nav-item"><a class="nav-link" href="site.html"><i class="fas fa-globe"></i> Site</a></li>
           <li class="nav-item"><a class="nav-link" href="mail.html"><i class="fas fa-envelope"></i> Mail</a></li>
           <li class="nav-item"><a class="nav-link" href="location-setup.html"><i class="fas fa-map-marker-alt"></i> Location Setup</a></li>
@@ -256,9 +307,9 @@ data-sidebar-position="fixed" data-header-position="fixed">
           <li class="nav-item"><a class="nav-link" href="theme.html"><i class="fas fa-paint-brush"></i> Theme</a></li>
           <li class="nav-item"><a class="nav-link" href="sliders.html"><i class="fas fa-sliders-h"></i> Sliders</a></li>
           <li class="nav-item"><a class="nav-link" href="currencies.html"><i class="fas fa-money-bill-wave"></i> Currencies</a></li>
-          <li class="nav-item"><a class="nav-link" href="product-categories.html"><i class="fas fa-tags"></i> Product Categories</a></li>
+         
           <li class="nav-item"><a class="nav-link" href="product-attributes.html"><i class="fas fa-cube"></i> Product Attributes</a></li>
-          <li class="nav-item"><a class="nav-link" href="product-brands.html"><i class="fas fa-tag"></i> Product Brands</a></li>
+         
           <li class="nav-item"><a class="nav-link" href="supplier.html"><i class="fas fa-industry"></i> Suppliers</a></li>
           <li class="nav-item"><a class="nav-link" href="outlets.html"><i class="fas fa-store"></i> Outlets</a></li>
           <li class="nav-item"><a class="nav-link" href="benefits.html"><i class="fas fa-gift"></i> Benefits</a></li>
@@ -478,6 +529,58 @@ $(document).ready(function () {
     });
   });
 </script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const ratingsToggle = document.querySelector('.ratings-toggle-custom');
+    const ratingsMenu = document.getElementById('ratingsMenuCustom');
+    const ratingsArrow = ratingsToggle.querySelector('.arrow-icon');
+
+    ratingsToggle.addEventListener('click', () => {
+      ratingsMenu.classList.toggle('show');
+      ratingsArrow.classList.toggle('rotate');
+    });
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const callToggle = document.querySelector('.call-toggle-custom');
+    const callMenu = document.getElementById('callMenuCustom');
+    const callArrow = callToggle.querySelector('.arrow-icon');
+
+    callToggle.addEventListener('click', () => {
+      callMenu.classList.toggle('show');
+      callArrow.classList.toggle('rotate');
+    });
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const blogsToggle = document.querySelector('.blogs-toggle-custom');
+    const blogsMenu = document.getElementById('blogsMenuCustom');
+    const blogsArrow = blogsToggle.querySelector('.arrow-icon');
+
+    blogsToggle.addEventListener('click', () => {
+      blogsMenu.classList.toggle('show');
+      blogsArrow.classList.toggle('rotate');
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const productsToggle = document.querySelector('.products-toggle-custom');
+    const productsMenu = document.getElementById('productsMenuCustom');
+    const productsArrow = productsToggle.querySelector('.arrow-icon');
+
+    productsToggle.addEventListener('click', () => {
+      productsMenu.classList.toggle('show');
+      productsArrow.classList.toggle('rotate');
+    });
+  });
+</script>
+
   
 
   
