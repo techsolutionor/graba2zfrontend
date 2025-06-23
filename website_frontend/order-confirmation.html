@@ -260,80 +260,77 @@
             }
         }
 
-        // Populate the page with order data
-        function populateOrderDetails(order) {
-            // Basic order info
-            document.getElementById('orderId').textContent = order.order_id;
-            document.getElementById('customerName').textContent = order.customer_name || 'Customer';
-            document.getElementById('orderDate').textContent = formatDate(order.created_at);
-            document.getElementById('paymentMethod').textContent = order.payment_type;
-            document.getElementById('orderStatus').textContent = order.order_status;
-            document.getElementById('totalAmount').textContent = `$${order.total_amount}`;
+       // Replace your current populateOrderDetails function with this version
+function populateOrderDetails(order) {
+    // Basic order info
+    document.getElementById('orderId').textContent = order.order_id;
+    document.getElementById('customerName').textContent = order.customer_name || 'Customer';
+    document.getElementById('orderDate').textContent = formatDate(order.created_at);
+    document.getElementById('paymentMethod').textContent = order.payment_type;
+    document.getElementById('orderStatus').textContent = order.order_status;
+    document.getElementById('totalAmount').textContent = `$${order.total_amount}`;
 
-            // Parse and display card info
-            try {
-                // Fix malformed JSON in card_info
-                const fixedCardInfo = order.card_info
-                    .replace(/\\"/g, '"')
-                    .replace(/"\s*([{\[])/g, '$1')
-                    .replace(/([}\]])"\s*/g, '$1');
-                    
-                const cardInfo = JSON.parse(fixedCardInfo);
-                let productHTML = '';
+    // Parse and display card info
+    try {
+        // First, properly parse the JSON string
+        const cardInfo = JSON.parse(order.card_info);
+        let productHTML = '';
+        
+        if (Array.isArray(cardInfo)) {
+            cardInfo.forEach(item => {
+                const productName = item.name || 'Product';
+                const price = item.offer_price || item.selling_price || '0.00';
+                const quantity = item.quantity || 1;
+                const total = (parseFloat(price) * quantity).toFixed(2);
                 
-                if (Array.isArray(cardInfo)) {
-                    cardInfo.forEach(item => {
-                        const productName = item.name || item.V1v1 || 'Product';
-                        const price = item.offer_price || item.V1sailing_pric || '0.00';
-                        const quantity = item.quantity || 1;
-                        const total = (parseFloat(price) * quantity).toFixed(2);
-                        
-                        productHTML += `
-                            <tr>
-                                <td>${productName}</td>
-                                <td>${quantity}</td>
-                                <td>$${price}</td>
-                                <td>$${total}</td>
-                            </tr>
-                        `;
-                    });
-                }
-                document.getElementById('orderDetailsTable').innerHTML = productHTML;
-            } catch (e) {
-                console.error('Error parsing card info:', e);
-                document.getElementById('orderDetailsTable').innerHTML = `
+                productHTML += `
                     <tr>
-                        <td colspan="4">Product information not available</td>
+                        <td>${productName}</td>
+                        <td>${quantity}</td>
+                        <td>$${price}</td>
+                        <td>$${total}</td>
                     </tr>
                 `;
-            }
-
-            // Customer contact info from shippingInfo
-            try {
-                // Fix malformed JSON in shippingInfo
-                const fixedShippingInfo = order.shippingInfo
-                    .replace(/\\"/g, '"')
-                    .replace(/"\s*([{\[])/g, '$1')
-                    .replace(/([}\]])"\s*/g, '$1');
-                    
-                const shippingInfo = JSON.parse(fixedShippingInfo);
-                document.getElementById('customerEmail').textContent = shippingInfo.email || '';
-                document.getElementById('customerPhone').textContent = shippingInfo.contact || '';
-            } catch (e) {
-                console.error('Error parsing shipping info:', e);
-                document.getElementById('customerEmail').textContent = 'Email not available';
-                document.getElementById('customerPhone').textContent = 'Phone not available';
-            }
-
-            // Shipping address
-            document.getElementById('shippingAddress').textContent = order.shipping_address;
-
-            // Back button functionality
-            document.querySelector('.back').addEventListener('click', () => {
-                window.location.href = 'https://graba2z.netlify.app';
             });
+            document.getElementById('orderDetailsTable').innerHTML = productHTML;
+        } else {
+            throw new Error('Card info is not an array');
         }
+    } catch (e) {
+        console.error('Error parsing card info:', e);
+        console.log('Original card_info:', order.card_info);
+        document.getElementById('orderDetailsTable').innerHTML = `
+            <tr>
+                <td colspan="4">Product information not available</td>
+            </tr>
+        `;
+    }
 
+    // Rest of your function remains the same...
+    // Customer contact info from shippingInfo
+    try {
+        const fixedShippingInfo = order.shippingInfo
+            .replace(/\\"/g, '"')
+            .replace(/"\s*([{\[])/g, '$1')
+            .replace(/([}\]])"\s*/g, '$1');
+            
+        const shippingInfo = JSON.parse(fixedShippingInfo);
+        document.getElementById('customerEmail').textContent = shippingInfo.email || '';
+        document.getElementById('customerPhone').textContent = shippingInfo.contact || '';
+    } catch (e) {
+        console.error('Error parsing shipping info:', e);
+        document.getElementById('customerEmail').textContent = 'Email not available';
+        document.getElementById('customerPhone').textContent = 'Phone not available';
+    }
+
+    // Shipping address
+    document.getElementById('shippingAddress').textContent = order.shipping_address;
+
+    // Back button functionality
+    document.querySelector('.back').addEventListener('click', () => {
+        window.location.href = 'https://graba2z.netlify.app';
+    });
+}
         // Helper function to format date
         function formatDate(dateString) {
             try {
