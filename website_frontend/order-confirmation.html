@@ -268,7 +268,7 @@ function populateOrderDetails(order) {
     document.getElementById('orderDate').textContent = formatDate(order.created_at);
     document.getElementById('paymentMethod').textContent = order.payment_type;
     document.getElementById('orderStatus').textContent = order.order_status;
-    document.getElementById('totalAmount').textContent = `$${order.total_amount}`;
+    document.getElementById('totalAmount').textContent = `AED ${order.total_amount}`;
 
     // Parse and display card info
     try {
@@ -287,8 +287,8 @@ function populateOrderDetails(order) {
                     <tr>
                         <td>${productName}</td>
                         <td>${quantity}</td>
-                        <td>$${price}</td>
-                        <td>$${total}</td>
+                        <td>AED ${price}</td>
+                        <td>AED ${total}</td>
                     </tr>
                 `;
             });
