@@ -1036,122 +1036,130 @@
         </div>
       </div>
     </div>
- <style>
-  /* General Slider Container */
-  .slider-container {
-    width: 80% !important;
-    margin: 0 auto !important;
-    padding: 20px 0 !important;
+ 
+
+
+
+        
+    
+    <section class="container px-4 py-5">
+            <!-- Styles -->
+<style>
+  #newslider12345-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
   }
 
-  /* Slider Layout */
-  .slider22 {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important; /* 4 items per row on desktop */
-    gap: 20px !important; /* Space between items */
-    overflow: hidden !important;
+  .newslider12345-slider-container {
+    display: flex;
+    transition: transform 0.5s ease;
   }
 
-  /* Individual Slide */
-  .slider22-box {
-    position: relative !important;
-    text-align: center !important;
-    box-sizing: border-box !important;
+  .newslider12345-slider-item {
+    flex: 0 0 25%;
+    padding: 5px;
   }
 
-  /* Slide Image Styling */
-  .slider22-image {
-    background-size: cover !important;
-    background-position: center !important;
-    width: 100% !important;
-    height: 300px !important;
-    border-radius: 10px !important;
+  .newslider12345-slider-item img {
+    width: 100%;
+    aspect-ratio: 1170 / 785;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
   }
 
-  /* Title for Each Slide */
-  .slider22-title {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    color: white !important;
-    font-size: 24px !important;
-    font-weight: bold !important;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important;
+  .newslider12345-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1;
+    border-radius: 50%;
   }
 
-  /* Navigation Arrows */
-  .slider22-nav {
-    display: flex !important;
-    justify-content: space-between !important;
-    margin-top: 10px !important;
+  .newslider12345-arrow-left {
+    left: 10px;
   }
 
-  .slider22-prev, .slider22-next {
-    background-color: #000 !important;
-    color: #fff !important;
-    padding: 10px !important;
-    border: none !important;
-    border-radius: 50% !important;
-    font-size: 20px !important;
-    cursor: pointer !important;
+  .newslider12345-arrow-right {
+    right: 10px;
   }
 
-  /* Mobile View: 2 items per row */
   @media (max-width: 768px) {
-    .slider22 {
-      grid-template-columns: repeat(2, 1fr) !important; /* 2 items per row on mobile */
-    }
-  }
-
-  /* Tablet/Desktop View: 4 items per row */
-  @media (min-width: 769px) {
-    .slider22 {
-      grid-template-columns: repeat(4, 1fr) !important; /* 4 items per row on larger screens */
+    .newslider12345-slider-item {
+      flex: 0 0 50%;
     }
   }
 </style>
 
- <div id="newsider2" style="width: 100%; overflow: hidden; position: relative;">
-    <div class="slider-container" style="display: flex; transition: transform 0.5s ease; width: 500% !important;">
-      <div class="slider-item" style="flex: 1 0 20% !important; display: flex; justify-content: center; align-items: center; position: relative;">
-        <img src="https://blog.vperfumes.com/wp-content/uploads/2022/07/best-perfumes-men-1170x585.jpg" alt="Image 1" style="width: 100% !important; height: auto !important;">
-      </div>
-      <div class="slider-item" style="flex: 1 0 20% !important; display: flex; justify-content: center; align-items: center; position: relative;">
-        <img src="https://blog.vperfumes.com/wp-content/uploads/2022/07/best-perfumes-men-1170x585.jpg" alt="Image 2" style="width: 100% !important; height: auto !important;">
-      </div>
-      <div class="slider-item" style="flex: 1 0 20% !important; display: flex; justify-content: center; align-items: center; position: relative;">
-        <img src="https://blog.vperfumes.com/wp-content/uploads/2022/07/best-perfumes-men-1170x585.jpg" alt="Image 3" style="width: 100% !important; height: auto !important;">
-      </div>
-      <div class="slider-item" style="flex: 1 0 20% !important; display: flex; justify-content: center; align-items: center; position: relative;">
-        <img src="https://blog.vperfumes.com/wp-content/uploads/2022/07/best-perfumes-men-1170x585.jpg" alt="Image 4" style="width: 100% !important; height: auto !important;">
-      </div>
-      <div class="slider-item" style="flex: 1 0 20% !important; display: flex; justify-content: center; align-items: center; position: relative;">
-        <img src="https://blog.vperfumes.com/wp-content/uploads/2022/07/best-perfumes-men-1170x585.jpg" alt="Image 5" style="width: 100% !important; height: auto !important;">
-      </div>
-    </div>
-    <div class="arrow arrow-left" onclick="moveSlider(-1)" style="position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.5); color: white; padding: 10px; font-size: 1.5rem; cursor: pointer; left: 10px;">
-      &#10094;
-    </div>
-    <div class="arrow arrow-right" onclick="moveSlider(1)" style="position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.5); color: white; padding: 10px; font-size: 1.5rem; cursor: pointer; right: 10px;">
-      &#10095;
-    </div>
+<!-- Slider HTML -->
+<div id="newslider12345-container">
+  <div class="newslider12345-slider-container" id="newslider12345-slider">
+    <div class="newslider12345-slider-item"><img src="assets/images/blogs-category/laptop.png" alt="Slide 1"></div>
+    <div class="newslider12345-slider-item"><img src="assets/images/blogs-category/desktop.png" alt="Slide 2"></div>
+    <div class="newslider12345-slider-item"><img src="assets/images/blogs-category/all in one.png" alt="Slide 3"></div>
+    <div class="newslider12345-slider-item"><img src="assets/images/blogs-category/monitor.png" alt="Slide 4"></div>
+    <div class="newslider12345-slider-item"><img src="assets/images/blogs-category/printer.png" alt="Slide 5"></div>
+    <div class="newslider12345-slider-item"><img src="assets/images/blogs-category/router.png" alt="Slide 6"></div>
+    <div class="newslider12345-slider-item"><img src="assets/images/blogs-category/accessories.png" alt="Slide 7"></div>
+    <div class="newslider12345-slider-item"><img src="assets/images/blogs-category/networking.png" alt="Slide 8"></div>
   </div>
+  <div class="newslider12345-arrow newslider12345-arrow-left" onclick="newslider12345ManualMove(-1)">&#10094;</div>
+  <div class="newslider12345-arrow newslider12345-arrow-right" onclick="newslider12345ManualMove(1)">&#10095;</div>
+</div>
 
-  <script>
-    let currentIndex = 0;
+<!-- Slider Script -->
+<script>
+  const newslider12345Container = document.getElementById('newslider12345-slider');
+  const newslider12345Items = newslider12345Container.children;
+  let newslider12345CurrentIndex = 0;
 
-    function moveSlider(direction) {
-      const sliderContainer = document.querySelector('.slider-container');
-      const items = document.querySelectorAll('.slider-item');
-      currentIndex = (currentIndex + direction + items.length) % items.length;
-      sliderContainer.style.transform = `translateX(-${currentIndex * 20}%)`; /* 20% because we're showing 5 items */
+  function newslider12345VisibleSlides() {
+    return window.innerWidth <= 768 ? 2 : 4;
+  }
+
+  function newslider12345Update() {
+    const slideWidth = newslider12345Items[0].offsetWidth;
+    newslider12345Container.style.transform = `translateX(-${slideWidth * newslider12345CurrentIndex}px)`;
+  }
+
+  function newslider12345Move(step = 1) {
+    const totalItems = newslider12345Items.length;
+    const visible = newslider12345VisibleSlides();
+    const maxIndex = Math.ceil(totalItems - visible);
+
+    newslider12345CurrentIndex += step;
+    if (newslider12345CurrentIndex > maxIndex) {
+      newslider12345CurrentIndex = 0;
+    } else if (newslider12345CurrentIndex < 0) {
+      newslider12345CurrentIndex = maxIndex;
     }
-  </script>
-        
-    
-    <section class="container px-4 py-5">
+
+    newslider12345Update();
+  }
+
+  function newslider12345ManualMove(step) {
+    clearInterval(newslider12345AutoPlay);
+    newslider12345Move(step);
+    newslider12345AutoPlay = setInterval(() => newslider12345Move(1), 3000);
+  }
+
+  let newslider12345AutoPlay = setInterval(() => newslider12345Move(1), 3000);
+
+  window.addEventListener('resize', () => {
+    newslider12345CurrentIndex = 0;
+    newslider12345Update();
+  });
+</script>
       <div class="row g-4">
+        
         <!-- Card 1 -->
         <div class="col-md-6 col-lg-4">
           <div class="card card-custom">
@@ -1351,25 +1359,54 @@
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>  
 
     <!-- Enable Autoplay -->
- <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // Wait for Spring Slider to initialize
-    setTimeout(() => {
-      const swiperInstance = document.querySelector('.swiper')?.swiper;
-      if (swiperInstance) {
-        swiperInstance.params.loop = true;
-        swiperInstance.params.autoplay = {
-          delay: 3000,
-          disableOnInteraction: false,
-        };
-        swiperInstance.params.slidesPerView = 2; // Show 2 slides at a time
-        swiperInstance.loopCreate?.(); // Reinitialize loop
-        swiperInstance.autoplay?.start();
-      }
-    }, 500);
-  });
-</script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Wait for Spring Slider to initialize
+        setTimeout(() => {
+          const swiperInstance = document.querySelector('.swiper')?.swiper;
+          if (swiperInstance) {
+            swiperInstance.params.loop = true;
+            swiperInstance.params.autoplay = {
+              delay: 3000,
+              disableOnInteraction: false,
+            };
+            swiperInstance.loopCreate?.(); // Reinitialize loop
+            swiperInstance.autoplay?.start();
+          }
+        }, 500);
+      });
 
+      $(document).ready(function(){
+        $('.perfume-slider').slick({
+          infinite: true,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          speed: 500,
+          arrows: true,
+          dots: false,
+          responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3
+              }
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 2
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1
+              }
+            }
+          ]
+        });
+      });
+    </script>
 
 
 <!-- Footer -->
