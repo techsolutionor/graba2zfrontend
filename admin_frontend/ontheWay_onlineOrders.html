@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Orders</title>
+    <title>Ontheway OLine orders</title>
     <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="./assets/css/styles.min.css" />
     <link rel="stylesheet" href="./assets/css/navbar.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="./assets/css/order.css">
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/icon/favicon.png">
     <!-- Quill JS -->
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -295,7 +297,18 @@
       
           <!-- PRODUCTS & STOCK -->
           <li class="section-title">PRODUCTS & STOCK</li>
-          <li class="nav-item"><a class="nav-link" href="products.html"><i class="fas fa-box"></i> Products</a></li>
+         <li class="nav-item">
+  <a href="javascript:void(0);" class="nav-link d-flex justify-content-between align-items-center products-toggle-custom">
+    <span><i class="fas fa-box me-1"></i> Products</span>
+    <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
+  </a>
+
+  <ul class="sidebar-submenu" id="productsMenuCustom">
+    <li><a class="nav-link" href="products.html"><i class="fas fa-box"></i> Product</a></li>
+    <li><a class="nav-link" href="product-brands.html"><i class="fas fa-tag"></i> Product Brands</a></li>
+    <li><a class="nav-link" href="product-categories.html"><i class="fas fa-tags"></i> Product Categories</a></li>
+  </ul>
+</li>
            <li class="nav-item">
   <a href="javascript:void(0);" class="nav-link d-flex justify-content-between align-items-center purchases-toggle-custom">
     <span><i class="fas fa-shopping-cart me-1"></i> Purchases</span>
@@ -418,9 +431,9 @@
           <li class="nav-item"><a class="nav-link" href="theme.html"><i class="fas fa-paint-brush"></i> Theme</a></li>
           <li class="nav-item"><a class="nav-link" href="sliders.html"><i class="fas fa-sliders-h"></i> Sliders</a></li>
           <li class="nav-item"><a class="nav-link" href="currencies.html"><i class="fas fa-money-bill-wave"></i> Currencies</a></li>
-          <li class="nav-item"><a class="nav-link" href="product-categories.html"><i class="fas fa-tags"></i> Product Categories</a></li>
+          
           <li class="nav-item"><a class="nav-link" href="product-attributes.html"><i class="fas fa-cube"></i> Product Attributes</a></li>
-          <li class="nav-item"><a class="nav-link" href="product-brands.html"><i class="fas fa-tag"></i> Product Brands</a></li>
+          
           <li class="nav-item"><a class="nav-link" href="supplier.html"><i class="fas fa-industry"></i> Suppliers</a></li>
           <li class="nav-item"><a class="nav-link" href="outlets.html"><i class="fas fa-store"></i> Outlets</a></li>
           <li class="nav-item"><a class="nav-link" href="benefits.html"><i class="fas fa-gift"></i> Benefits</a></li>
@@ -1389,6 +1402,19 @@
     blogsToggle.addEventListener('click', () => {
       blogsMenu.classList.toggle('show');
       blogsArrow.classList.toggle('rotate');
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const productsToggle = document.querySelector('.products-toggle-custom');
+    const productsMenu = document.getElementById('productsMenuCustom');
+    const productsArrow = productsToggle.querySelector('.arrow-icon');
+
+    productsToggle.addEventListener('click', () => {
+      productsMenu.classList.toggle('show');
+      productsArrow.classList.toggle('rotate');
     });
   });
 </script>

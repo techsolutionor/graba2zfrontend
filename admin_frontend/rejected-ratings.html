@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rating Management</title>
-    <link rel="shortcut icon" type="image/png" href="./assets/images/logos/favicon.png" />
+    <title> Rejected Rating </title>
+  <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/images/icon/favicon.png">
     <link rel="stylesheet" href="./assets/css/styles.min.css" />
     <link rel="stylesheet" href="./assets/css/navbar.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -358,7 +359,18 @@
 
                 <!-- PRODUCTS & STOCK -->
                 <li class="section-title">PRODUCTS & STOCK</li>
-                <li class="nav-item"><a class="nav-link" href="products.html"><i class="fas fa-box"></i> Products</a>
+                <li class="nav-item">
+  <a href="javascript:void(0);" class="nav-link d-flex justify-content-between align-items-center products-toggle-custom">
+    <span><i class="fas fa-box me-1"></i> Products</span>
+    <i class="ph ph-caret-down arrow-icon rotate-icon"></i>
+  </a>
+
+  <ul class="sidebar-submenu" id="productsMenuCustom">
+    <li><a class="nav-link" href="products.html"><i class="fas fa-box"></i> Product</a></li>
+    <li><a class="nav-link" href="product-brands.html"><i class="fas fa-tag"></i> Product Brands</a></li>
+    <li><a class="nav-link" href="product-categories.html"><i class="fas fa-tags"></i> Product Categories</a></li>
+  </ul>
+</li>
                 </li>
                 <li class="nav-item">
                     <a href="javascript:void(0);"
@@ -1544,6 +1556,21 @@
     });
   });
 </script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const productsToggle = document.querySelector('.products-toggle-custom');
+    const productsMenu = document.getElementById('productsMenuCustom');
+    const productsArrow = productsToggle.querySelector('.arrow-icon');
+
+    productsToggle.addEventListener('click', () => {
+      productsMenu.classList.toggle('show');
+      productsArrow.classList.toggle('rotate');
+    });
+  });
+</script>
+
 </body>
 
 </html>
