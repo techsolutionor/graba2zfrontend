@@ -1112,114 +1112,43 @@
   }
 </style>
 
-
-<div class="slider-container">
-  <div class="slider22">
-    <!-- Slide 1 -->
-    <div class="slider22-box">
-      <div class="slider22-image" style="background-image: url('./assets/images/slider 1.jpg') !important;"></div>
-      <div class="slider22-title">Perfume 1</div>
+ <div id="newsider2" style="width: 100%; overflow: hidden; position: relative;">
+    <div class="slider-container" style="display: flex; transition: transform 0.5s ease; width: 500% !important;">
+      <div class="slider-item" style="flex: 1 0 20% !important; display: flex; justify-content: center; align-items: center; position: relative;">
+        <img src="https://blog.vperfumes.com/wp-content/uploads/2022/07/best-perfumes-men-1170x585.jpg" alt="Image 1" style="width: 100% !important; height: auto !important;">
+      </div>
+      <div class="slider-item" style="flex: 1 0 20% !important; display: flex; justify-content: center; align-items: center; position: relative;">
+        <img src="https://blog.vperfumes.com/wp-content/uploads/2022/07/best-perfumes-men-1170x585.jpg" alt="Image 2" style="width: 100% !important; height: auto !important;">
+      </div>
+      <div class="slider-item" style="flex: 1 0 20% !important; display: flex; justify-content: center; align-items: center; position: relative;">
+        <img src="https://blog.vperfumes.com/wp-content/uploads/2022/07/best-perfumes-men-1170x585.jpg" alt="Image 3" style="width: 100% !important; height: auto !important;">
+      </div>
+      <div class="slider-item" style="flex: 1 0 20% !important; display: flex; justify-content: center; align-items: center; position: relative;">
+        <img src="https://blog.vperfumes.com/wp-content/uploads/2022/07/best-perfumes-men-1170x585.jpg" alt="Image 4" style="width: 100% !important; height: auto !important;">
+      </div>
+      <div class="slider-item" style="flex: 1 0 20% !important; display: flex; justify-content: center; align-items: center; position: relative;">
+        <img src="https://blog.vperfumes.com/wp-content/uploads/2022/07/best-perfumes-men-1170x585.jpg" alt="Image 5" style="width: 100% !important; height: auto !important;">
+      </div>
     </div>
-    <!-- Slide 2 -->
-    <div class="slider22-box">
-      <div class="slider22-image" style="background-image: url('./assets/images/slider2.jpg') !important;"></div>
-      <div class="slider22-title">Perfume 2</div>
+    <div class="arrow arrow-left" onclick="moveSlider(-1)" style="position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.5); color: white; padding: 10px; font-size: 1.5rem; cursor: pointer; left: 10px;">
+      &#10094;
     </div>
-    <!-- Slide 3 -->
-    <div class="slider22-box">
-      <div class="slider22-image" style="background-image: url('./assets/images/slider3.jpg') !important;"></div>
-      <div class="slider22-title">Perfume 3</div>
-    </div>
-    <!-- Slide 4 -->
-    <div class="slider22-box">
-      <div class="slider22-image" style="background-image: url('./assets/images/slider 4.jpg') !important;"></div>
-      <div class="slider22-title">Perfume 4</div>
-    </div>
-    <!-- Slide 5 -->
-    <div class="slider22-box">
-      <div class="slider22-image" style="background-image: url('./assets/images/slider 5.jpg') !important;"></div>
-      <div class="slider22-title">Perfume 5</div>
+    <div class="arrow arrow-right" onclick="moveSlider(1)" style="position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.5); color: white; padding: 10px; font-size: 1.5rem; cursor: pointer; right: 10px;">
+      &#10095;
     </div>
   </div>
 
-  <!-- Slider navigation buttons -->
-  <div class="slider22-nav">
-    <button class="slider22-prev">&#8249;</button>
-    <button class="slider22-next">&#8250;</button>
-  </div>
-</div>
-
-
-  <!-- JavaScript to control slider functionality -->
   <script>
-    // Slider functionality
-    let currentSlide = 0;
+    let currentIndex = 0;
 
-    const slides = document.querySelectorAll('.slider22-box');
-    const prevButton = document.querySelector('.slider22-prev');
-    const nextButton = document.querySelector('.slider22-next');
-
-    const totalSlides = slides.length;
-
-    // Function to show the current slide
-    function showSlide(index) {
-      if (index < 0) {
-        currentSlide = totalSlides - 1;
-      } else if (index >= totalSlides) {
-        currentSlide = 0;
-      } else {
-        currentSlide = index;
-      }
-
-      // Hide all slides
-      slides.forEach(slide => slide.style.display = 'none');
-
-      // Show the current slide
-      slides[currentSlide].style.display = 'block';
+    function moveSlider(direction) {
+      const sliderContainer = document.querySelector('.slider-container');
+      const items = document.querySelectorAll('.slider-item');
+      currentIndex = (currentIndex + direction + items.length) % items.length;
+      sliderContainer.style.transform = `translateX(-${currentIndex * 20}%)`; /* 20% because we're showing 5 items */
     }
-
-    // Previous slide button
-    prevButton.addEventListener('click', () => {
-      showSlide(currentSlide - 1);
-    });
-
-    // Next slide button
-    nextButton.addEventListener('click', () => {
-      showSlide(currentSlide + 1);
-    });
-
-    // Initially show the first slide
-    showSlide(currentSlide);
-  </script>                  
-    <div class="slider-container">
-      <div class="text-center pb-5">
-        <h1 class="display-6 fw-bold text-dark">Perfumes Trending This Week</h1>
-      </div>
-
-      <div class="perfume-slider">
-        <!-- Slides -->
-        <div class="slide-box">
-          <div class="slide-image" style="background-image: url('./assets/images/slider\ 1.jpg')"></div>
-          <div class="slide-title">Perfume 1</div>
-        </div>
-        <div class="slide-box">
-          <div class="slide-image" style="background-image: url('./assets/images/slider2.jpg')"></div>
-          <div class="slide-title">Perfume 2</div>
-        </div>
-        <div class="slide-box">
-          <div class="slide-image" style="background-image: url('./assets/images/slider3.jpg')"></div>
-          <div class="slide-title">Perfume 3</div>
-        </div>
-        <div class="slide-box">
-          <div class="slide-image" style="background-image: url('./assets/images/slider\ 4.jpg')"></div>
-          <div class="slide-title">Perfume 4</div>
-        </div>
-        <div class="slide-box">
-          <div class="slide-image" style="background-image: url('./assets/images/slider\ 5.jpg')"></div>
-          <div class="slide-title">Perfume 5</div>
-        </div>
-      </div>
-    </div>
+  </script>
+        
     
     <section class="container px-4 py-5">
       <div class="row g-4">
@@ -1422,54 +1351,25 @@
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>  
 
     <!-- Enable Autoplay -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        // Wait for Spring Slider to initialize
-        setTimeout(() => {
-          const swiperInstance = document.querySelector('.swiper')?.swiper;
-          if (swiperInstance) {
-            swiperInstance.params.loop = true;
-            swiperInstance.params.autoplay = {
-              delay: 3000,
-              disableOnInteraction: false,
-            };
-            swiperInstance.loopCreate?.(); // Reinitialize loop
-            swiperInstance.autoplay?.start();
-          }
-        }, 500);
-      });
+ <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Wait for Spring Slider to initialize
+    setTimeout(() => {
+      const swiperInstance = document.querySelector('.swiper')?.swiper;
+      if (swiperInstance) {
+        swiperInstance.params.loop = true;
+        swiperInstance.params.autoplay = {
+          delay: 3000,
+          disableOnInteraction: false,
+        };
+        swiperInstance.params.slidesPerView = 2; // Show 2 slides at a time
+        swiperInstance.loopCreate?.(); // Reinitialize loop
+        swiperInstance.autoplay?.start();
+      }
+    }, 500);
+  });
+</script>
 
-      $(document).ready(function(){
-        $('.perfume-slider').slick({
-          infinite: true,
-          slidesToShow: 4,
-          slidesToScroll: 1,
-          speed: 500,
-          arrows: true,
-          dots: false,
-          responsive: [
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 3
-              }
-            },
-            {
-              breakpoint: 768,
-              settings: {
-                slidesToShow: 2
-              }
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 1
-              }
-            }
-          ]
-        });
-      });
-    </script>
 
 
 <!-- Footer -->
