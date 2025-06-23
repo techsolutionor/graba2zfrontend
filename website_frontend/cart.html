@@ -1776,13 +1776,12 @@
             });
 
 
-           function showCouponMessage(msg, isError) {
+         function showCouponMessage(msg, isError) {
     const alertBox = document.createElement('div');
     alertBox.innerText = msg;
     alertBox.style.position = 'fixed';
-    alertBox.style.top = '20px'; // Changed from bottom to top
-    alertBox.style.left = '50%'; // Center horizontally
-    alertBox.style.transform = 'translateX(-50%)'; // Center precisely
+    alertBox.style.top = '20px'; // 20px from the top
+    alertBox.style.right = '20px'; // 20px from the right
     alertBox.style.backgroundColor = isError ? '#f44336' : '#28a745';
     alertBox.style.color = '#fff';
     alertBox.style.padding = '12px 20px';
@@ -1792,8 +1791,8 @@
     alertBox.style.fontSize = '14px';
     alertBox.style.transition = 'opacity 0.5s ease';
     alertBox.style.opacity = '1';
-    alertBox.style.maxWidth = '90%'; // Ensure it doesn't overflow on mobile
-    alertBox.style.textAlign = 'center'; // Center text
+    alertBox.style.maxWidth = '300px'; // Prevent too wide messages
+    alertBox.style.wordBreak = 'break-word'; // Ensure long text wraps
 
     document.body.appendChild(alertBox);
 
