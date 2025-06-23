@@ -421,54 +421,68 @@
 
 
 
+ /* Step circle styling */
         .step-circle {
-    width: 45px;
-    height: 45px;
-    font-size: 16px;
-    border: 2px solid black !important;
-    color: black !important;
-    margin-right: 8px;  /* Adds space between circle and text */
-}
+            width: 45px;
+            height: 45px;
+            font-size: 16px;
+            border: 2px solid black !important;
+            color: black !important;
+            margin-right: 8px;  /* Adds space between circle and text */
+        }
 
-.step-text {
-    font-size: 16px;
-    color: black !important;
-}
+        .step-text {
+            font-size: 16px;
+            color: black !important;
+        }
 
-.step-separator {
-    font-size: 16px;
-    color: black !important;
-}
+        .step-separator {
+            font-size: 16px;
+            color: black !important;
+        }
 
-@media (max-width: 768px) {
-    .step-circle {
-        width: 35px;
-        height: 35px;
-        font-size: 14px;
-        margin-right: 6px; /* Adjust for smaller screens */
-    }
-    .step-text {
-        font-size: 14px;
-    }
-    .step-separator {
-        font-size: 14px;
-    }
-}
+        /* Active step color */
+        .active-step {
+            background-color: green !important;
+            color: white !important;
+        }
 
-@media (max-width: 480px) {
-    .step-circle {
-        width: 30px;
-        height: 30px;
-        font-size: 12px;
-        margin-right: 5px; /* Adjust for mobile */
-    }
-    .step-text {
-        font-size: 12px;
-    }
-    .step-separator {
-        font-size: 12px;
-    }
-}
+        /* Completed step color */
+        .completed-step {
+            background-color: grey !important;
+            color: white !important;
+        }
+
+        /* Adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .step-circle {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+                margin-right: 6px; /* Adjust for smaller screens */
+            }
+            .step-text {
+                font-size: 14px;
+            }
+            .step-separator {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .step-circle {
+                width: 30px;
+                height: 30px;
+                font-size: 12px;
+                margin-right: 5px; /* Adjust for mobile */
+            }
+            .step-text {
+                font-size: 12px;
+            }
+            .step-separator {
+                font-size: 12px;
+            }
+        }
 
 
 
@@ -828,22 +842,62 @@
     <!-- ========================= Breadcrumb End =============================== -->
     <div class="container mt-5">
         <!-- Step Indicator -->
-        <div class="d-flex flex-wrap align-items-center justify-content-center mb-4 step-indicator">
-    <div class="d-flex align-items-center">
-        <span id="step1" class="fw-bold border rounded-circle d-flex justify-content-center align-items-center step-circle">01</span>
-        <span class="fw-bold step-text ms-1">Shipping Details</span>
+       <!-- Step Indicator -->
+    <div class="d-flex flex-wrap align-items-center justify-content-center mb-4 step-indicator">
+        <div class="d-flex align-items-center">
+            <span id="step1" class="fw-bold border rounded-circle d-flex justify-content-center align-items-center step-circle">01</span>
+            <span class="fw-bold step-text ms-1">Shipping Details</span>
+        </div>
+        <span class="mx-1 step-separator">—</span>
+        <div class="d-flex align-items-center">
+            <span id="step2" class="border rounded-circle d-flex justify-content-center align-items-center step-circle">02</span>
+            <br><span class="step-text ms-1">Summary</span>
+        </div>
+        <span class="mx-1 step-separator">—</span>
+        <div class="d-flex align-items-center">
+            <span id="step3" class="border rounded-circle d-flex justify-content-center align-items-center step-circle">03</span>
+            <span class="step-text ms-1">Payment Method</span>
+        </div>
     </div>
-    <span class="mx-1 step-separator">—</span>
-    <div class="d-flex align-items-center">
-        <span id="step2" class="border rounded-circle d-flex justify-content-center align-items-center step-circle">02</span>
-        <br><span class="step-text ms-1">Summary</span>
-    </div>
-    <span class="mx-1 step-separator">—</span>
-    <div class="d-flex align-items-center">
-        <span id="step3" class="border rounded-circle d-flex justify-content-center align-items-center step-circle">03</span>
-        <span class="step-text ms-1">Payment Method</span>
-    </div>
-</div>
+    <script>
+        // Function to update the steps dynamically based on the current step
+        function updateStepIndicator(stepNumber) {
+            const steps = ['#step1', '#step2', '#step3'];
+
+            // Reset all steps to grey
+            steps.forEach((step) => {
+                document.querySelector(step).classList.remove('active-step');
+                document.querySelector(step).classList.add('completed-step');
+            });
+
+            // Set the current step as active (green)
+            for (let i = 0; i < stepNumber; i++) {
+                document.querySelector(steps[i]).classList.add('completed-step');
+            }
+            document.querySelector(`#step${stepNumber}`).classList.add('active-step');
+        }
+
+        // Function to simulate page navigation and update the step indicator
+        function goToNextStep(stepNumber) {
+            // Hide all sections
+            document.getElementById("shipping").style.display = "none";
+            document.getElementById("summary").style.display = "none";
+            document.getElementById("payment").style.display = "none";
+
+            // Show the page for the current step
+            if (stepNumber === 2) {
+                document.getElementById("summary").style.display = "block";
+            } else if (stepNumber === 3) {
+                document.getElementById("payment").style.display = "block";
+            }
+
+            // Update the step indicator
+            updateStepIndicator(stepNumber);
+        }
+
+        // Initialize with Step 1 as the active step
+        updateStepIndicator(1);
+    </script>
 
 
         <div class="mb-3">
