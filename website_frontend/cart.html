@@ -1147,11 +1147,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-4">
-                    <div class="cart-sidebar border border-gray-100 rounded-8 px-4 py-4"
-                        style="height: 505px; background-color: #f7f4f4;">
-                                <div id="coupon-message-container" class="mb-3"></div>
-                        <h6 class="text-xl mb-3 mt-14 ms-2 text-black">Cart Totals</h6>
+                <div class="col-xl-3 col-lg-4 position-relative"> <!-- Add position-relative here -->
+    <div class="cart-sidebar border border-gray-100 rounded-8 px-4 py-4"
+        style="height: 505px; background-color: #f7f4f4;">
+        
+        <!-- This div will be positioned absolutely over the heading -->
+        <div id="coupon-message-container" 
+             style="position: absolute; top: -40px; left: 0; right: 0; z-index: 100;"></div>
+        
+        <h6 class="text-xl mb-3 mt-14 ms-2 text-black">Cart Totals</h6>
                         <p class="mt-12" style="color: black; font-size: 15px;">Enter Discount Code</p>
                         <div class="mb-3 input-group">
                             <input type="text" id="coupon-code" class="form-control" placeholder="Enter coupon code"
