@@ -1776,29 +1776,32 @@
             });
 
 
-            function showCouponMessage(msg, isError) {
-                const alertBox = document.createElement('div');
-                alertBox.innerText = msg;
-                alertBox.style.position = 'fixed';
-                alertBox.style.bottom = '30px';
-                alertBox.style.right = '30px';
-                alertBox.style.backgroundColor = isError ? '#f44336' : '#28a745';
-                alertBox.style.color = '#fff';
-                alertBox.style.padding = '12px 20px';
-                alertBox.style.borderRadius = '4px';
-                alertBox.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
-                alertBox.style.zIndex = '99999';
-                alertBox.style.fontSize = '14px';
-                alertBox.style.transition = 'opacity 0.5s ease';
-                alertBox.style.opacity = '1';
+           function showCouponMessage(msg, isError) {
+    const alertBox = document.createElement('div');
+    alertBox.innerText = msg;
+    alertBox.style.position = 'fixed';
+    alertBox.style.top = '20px'; // Changed from bottom to top
+    alertBox.style.left = '50%'; // Center horizontally
+    alertBox.style.transform = 'translateX(-50%)'; // Center precisely
+    alertBox.style.backgroundColor = isError ? '#f44336' : '#28a745';
+    alertBox.style.color = '#fff';
+    alertBox.style.padding = '12px 20px';
+    alertBox.style.borderRadius = '4px';
+    alertBox.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
+    alertBox.style.zIndex = '99999';
+    alertBox.style.fontSize = '14px';
+    alertBox.style.transition = 'opacity 0.5s ease';
+    alertBox.style.opacity = '1';
+    alertBox.style.maxWidth = '90%'; // Ensure it doesn't overflow on mobile
+    alertBox.style.textAlign = 'center'; // Center text
 
-                document.body.appendChild(alertBox);
+    document.body.appendChild(alertBox);
 
-                setTimeout(() => {
-                    alertBox.style.opacity = '0';
-                    setTimeout(() => alertBox.remove(), 500);
-                }, 3000);
-            }
+    setTimeout(() => {
+        alertBox.style.opacity = '0';
+        setTimeout(() => alertBox.remove(), 500);
+    }, 3000);
+}
 
 
 
