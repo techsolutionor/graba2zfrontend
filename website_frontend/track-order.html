@@ -1022,11 +1022,36 @@ ul {
 
   const tracker = document.getElementById('status-tracker');
   tracker.innerHTML = '';
-  const activeIndex = steps.findIndex(s => s.label.toLowerCase() === (currentStatus || '').toLowerCase());
+  
+  // Normalize the current status to match the step labels
+  currentStatus = currentStatus || '';
+  const normalizedCurrentStatus = currentStatus.toLowerCase().trim();
+  
+  // Find the index of the current status in the steps array
+  let activeIndex = -1;
+  steps.forEach((step, index) => {
+    if (step.label.toLowerCase() === normalizedCurrentStatus) {
+      activeIndex = index;
+    }
+  });
+
+  // If no exact match found, try partial matching
+  if (activeIndex === -1) {
+    steps.forEach((step, index) => {
+      if (normalizedCurrentStatus.includes(step.label.toLowerCase())) {
+        activeIndex = index;
+      }
+    });
+  }
+
+  // If still no match, default to first step
+  if (activeIndex === -1) {
+    activeIndex = 0;
+  }
 
   steps.forEach((step, index) => {
-    const isActive = index <= activeIndex;
-    const isCurrent = index === activeIndex;
+    const isActive = index === activeIndex;
+    const isDone = index < activeIndex;
 
     const wrapper = document.createElement('div');
     wrapper.className = 'step-container d-flex align-items-center';
@@ -1034,7 +1059,7 @@ ul {
     const div = document.createElement('div');
     div.className = 'tracker-step';
     div.innerHTML = `
-      <div class="tracker-icon ${isCurrent ? 'active' : isActive ? 'done' : ''}">
+      <div class="tracker-icon ${isActive ? 'active' : isDone ? 'done' : ''}">
         <i class="fa-solid ${step.icon}"></i>
       </div>
       <div class="tracker-label">${step.label}</div>
@@ -1045,14 +1070,13 @@ ul {
     // Add line after step except last
     if (index < steps.length - 1) {
       const connector = document.createElement('div');
-      connector.className = `tracker-connector ${index < activeIndex ? 'done' : ''}`;
+      connector.className = `tracker-connector ${isDone ? 'done' : ''}`;
       wrapper.appendChild(connector);
     }
 
     tracker.appendChild(wrapper);
   });
 }
-
 
 </script>
 
