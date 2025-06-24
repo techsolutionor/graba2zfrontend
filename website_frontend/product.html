@@ -212,39 +212,55 @@
             color: rgb(49, 136, 49);
         }
 
-        /* Menu button */
-        .menu-btn {
+        /* Open Button (☰) */
+        .menu-open-btn {
             display: none;
-            position: fixed;
+            position: absolute;
             top: 61px;
             right: 31px;
             font-size: 24px;
             background-color: #ffffff;
-            color: rgb(0, 0, 0);
+            color: #000;
             padding: 10px;
-            z-index: 1000;
             border-radius: 5px;
-            text-align: left;
+            z-index: 1000;
+            cursor: pointer;
         }
 
-        /* Show on mobile and tablet only */
+        /* Close Button (✖) inside Sidebar */
+        .menu-close-btn {
+            display: none;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            background: transparent;
+            border: none;
+            color: red;
+            z-index: 1001;
+            cursor: pointer;
+        }
+
+        /* Responsive Display Settings */
         @media (max-width: 1024px) {
-            .menu-btn {
+            .menu-open-btn {
                 display: block;
             }
 
             .sidebar {
+                display: block;
+            }
+
+            .sidebar.open .menu-close-btn {
                 display: block;
             }
         }
 
-        /* Hide on larger screens */
         @media (min-width: 1025px) {
-            .sidebar {
-                display: none !important;
-            }
 
-            .menu-btn {
+            .sidebar,
+            .menu-open-btn,
+            .menu-close-btn {
                 display: none !important;
             }
         }
