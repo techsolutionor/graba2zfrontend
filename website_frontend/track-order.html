@@ -1009,75 +1009,73 @@ ul {
     renderStatusGraph(order.order_status);
   }
 
-  function renderStatusGraph(currentStatus) {
+ function renderStatusGraph(currentStatus) {
+  // Define all possible status variations
+  const statusMap = {
+    'received': { step: 0, label: 'Received Order', icon: 'fa-cart-shopping' },
+    'progress': { step: 1, label: 'In Progress Orders', icon: 'fa-gears' },
+    'processing': { step: 1, label: 'In Progress Orders', icon: 'fa-gears' },
+    'inprogress': { step: 1, label: 'In Progress Orders', icon: 'fa-gears' },
+    'ready': { step: 2, label: 'Ready for Shipment', icon: 'fa-gift' },
+    'shipment': { step: 2, label: 'Ready for Shipment', icon: 'fa-gift' },
+    'shipped': { step: 3, label: 'On the Way', icon: 'fa-truck' },
+    'shipping': { step: 3, label: 'On the Way', icon: 'fa-truck' },
+    'delivered': { step: 4, label: 'Delivered', icon: 'fa-box' },
+    'completed': { step: 4, label: 'Delivered', icon: 'fa-box' },
+    'hold': { step: 5, label: 'On Hold', icon: 'fa-pause-circle' },
+    'paused': { step: 5, label: 'On Hold', icon: 'fa-pause-circle' },
+    'rejected': { step: 6, label: 'Rejected', icon: 'fa-xmark-circle' },
+    'cancelled': { step: 6, label: 'Rejected', icon: 'fa-xmark-circle' }
+  };
+
   const steps = [
-    { label: 'Received Order', icon: 'fa-cart-shopping' },
-    { label: 'In Progress Orders', icon: 'fa-gears' },
-    { label: 'Ready for Shipment', icon: 'fa-gift' },
-    { label: 'On the Way', icon: 'fa-truck' },
-    { label: 'Delivered', icon: 'fa-box' },
-    { label: 'On Hold', icon: 'fa-pause-circle' },
-    { label: 'Rejected', icon: 'fa-xmark-circle' }
+    'Received Order',
+    'In Progress Orders',
+    'Ready for Shipment',
+    'On the Way',
+    'Delivered',
+    'On Hold',
+    'Rejected'
   ];
 
   const tracker = document.getElementById('status-tracker');
   tracker.innerHTML = '';
-  
-  // Normalize the current status to match the step labels
-  currentStatus = currentStatus || '';
-  const normalizedCurrentStatus = currentStatus.toLowerCase().trim();
-  
-  // Find the index of the current status in the steps array
-  let activeIndex = -1;
-  steps.forEach((step, index) => {
-    if (step.label.toLowerCase() === normalizedCurrentStatus) {
-      activeIndex = index;
+
+  // Normalize the current status
+  currentStatus = (currentStatus || '').toLowerCase().replace(/\s+/g, '');
+
+  // Find matching status
+  let activeStep = 0;
+  for (const [key, value] of Object.entries(statusMap)) {
+    if (currentStatus.includes(key)) {
+      activeStep = value.step;
+      break;
     }
-  });
-
-  // If no exact match found, try partial matching
-  if (activeIndex === -1) {
-    steps.forEach((step, index) => {
-      if (normalizedCurrentStatus.includes(step.label.toLowerCase())) {
-        activeIndex = index;
-      }
-    });
   }
 
-  // If still no match, default to first step
-  if (activeIndex === -1) {
-    activeIndex = 0;
-  }
-
-  steps.forEach((step, index) => {
-    const isActive = index === activeIndex;
-    const isDone = index < activeIndex;
+  // Render each step
+  steps.forEach((label, index) => {
+    const isActive = index === activeStep;
+    const isDone = index < activeStep;
+    const icon = statusMap[Object.keys(statusMap).find(key => statusMap[key].step === index)]?.icon || 'fa-circle';
 
     const wrapper = document.createElement('div');
     wrapper.className = 'step-container d-flex align-items-center';
 
-    const div = document.createElement('div');
-    div.className = 'tracker-step';
-    div.innerHTML = `
-      <div class="tracker-icon ${isActive ? 'active' : isDone ? 'done' : ''}">
-        <i class="fa-solid ${step.icon}"></i>
+    wrapper.innerHTML = `
+      <div class="tracker-step">
+        <div class="tracker-icon ${isActive ? 'active' : isDone ? 'done' : ''}">
+          <i class="fa-solid ${icon}"></i>
+        </div>
+        <div class="tracker-label">${label}</div>
       </div>
-      <div class="tracker-label">${step.label}</div>
+      ${index < steps.length - 1 ? 
+        `<div class="tracker-connector ${isDone ? 'done' : ''}"></div>` : ''}
     `;
-
-    wrapper.appendChild(div);
-
-    // Add line after step except last
-    if (index < steps.length - 1) {
-      const connector = document.createElement('div');
-      connector.className = `tracker-connector ${isDone ? 'done' : ''}`;
-      wrapper.appendChild(connector);
-    }
 
     tracker.appendChild(wrapper);
   });
 }
-
 </script>
 
 
