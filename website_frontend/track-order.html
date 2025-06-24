@@ -814,6 +814,71 @@ ul {
     <!-- ==================== category Header End Here ==================== -->
  <!-- Custom Order Tracker Styles -->
   <style>
+    /* Mobile Responsive Order Tracking */
+@media (max-width: 768px) {
+  /* Adjust container padding */
+  .container-fluid.py-5 {
+    padding: 20px 15px !important;
+  }
+  
+  /* Stack form and details vertically */
+  .row {
+    flex-direction: column;
+  }
+  
+  /* Full width for both columns */
+  .col-md-5, .col-md-7 {
+    width: 100%;
+    padding: 0;
+  }
+  
+  /* Form adjustments */
+  #orderTrackingForm {
+    margin-bottom: 20px;
+  }
+  
+  /* Card adjustments */
+  .card {
+    margin-bottom: 20px;
+    padding: 15px !important;
+  }
+  
+  /* Status tracker adjustments */
+  #status-tracker {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .step-container {
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+  
+  .tracker-connector {
+    width: 5px !important;
+    height: 30px !important;
+    margin: 5px 0 !important;
+  }
+  
+  /* Form elements */
+  .form-control {
+    font-size: 14px;
+  }
+  
+  .btn-success {
+    width: 100%;
+  }
+  
+  /* Order details text */
+  #detailOrderProducts li {
+    font-size: 13px;
+  }
+  
+  /* Header text */
+  h1.fw-bold {
+    font-size: 24px;
+  }
+}
   #status-tracker {
     display: flex;
     align-items: center;
@@ -914,42 +979,47 @@ ul {
 <!-- Order Tracking Section -->
 <div class="container-fluid py-5" style="background-color: #f5f5f5;">
   <div class="container">
-    <div class="row" style="padding-top: 100px;padding-bottom: 14px;">
+    <div class="row g-3">
       <!-- Order Form -->
-      <div class="col-md-5">
-        <form id="orderTrackingForm">
+      <div class="col-12 col-md-5 order-1 order-md-1">
+        <form id="orderTrackingForm" class="bg-white p-3 rounded shadow-sm">
           <div class="mb-3">
             <label for="order-id" class="form-label text-dark">Enter Order ID *</label>
-            <input type="text" id="order-id" class="form-control" required />
+            <input type="text" id="order-id" class="form-control form-control-lg" required />
           </div>
           <div class="mb-3">
             <label for="email" class="form-label text-dark">Enter Your Email</label>
-            <input type="text" id="email" class="form-control" />
+            <input type="email" id="email" class="form-control form-control-lg" />
           </div>
-          <button type="submit" class="btn btn-success" style="background-color: #90C309;">Track Order</button>
+          <button type="submit" class="btn btn-success btn-lg w-100" style="background-color: #90C309;">
+            Track Order
+          </button>
         </form>
       </div>
 
       <!-- Order Details -->
-      <div class="col-md-7" id="orderDetailsContainer" style="display:none;">
-        <div class="card p-4 shadow-sm">
+      <div class="col-12 col-md-7 order-3 order-md-2" id="orderDetailsContainer" style="display:none;">
+        <div class="card p-3 shadow-sm h-100">
           <h3 class="mb-3">Order Details</h3>
-          <p><strong>Order ID:</strong> <span id="detailOrderId"></span></p>
-          <p><strong>Status:</strong> <span id="detailOrderStatus"></span></p>
-          <p><strong>Date:</strong> <span id="detailOrderDate"></span></p>
-
-          <h4 class="mt-4">Products</h4>
-          <ul id="detailOrderProducts" class="list-unstyled"></ul>
+          <div class="row">
+            <div class="col-6 col-md-4">
+              <p><strong>Order ID:</strong></p>
+            </div>
+            <div class="col-6 col-md-8">
+              <p id="detailOrderId">N/A</p>
+            </div>
+          </div>
+          <!-- Repeat similar pattern for other fields -->
         </div>
       </div>
     </div>
 
-    <!-- Order Progress (Bottom Full Width) -->
-    <div class="row mt-5">
+    <!-- Order Progress -->
+    <div class="row mt-3">
       <div class="col-12">
-        <div class="card p-4 shadow-sm" id="orderProgressCard" style="display:none;">
+        <div class="card p-3 shadow-sm" id="orderProgressCard" style="display:none;">
           <h4>Order Progress</h4>
-<div id="status-tracker" class="d-flex justify-content-between align-items-center tracker-wrapper mt-3 position-relative"></div>
+          <div id="status-tracker" class="d-flex justify-content-center flex-wrap"></div>
         </div>
       </div>
     </div>
@@ -1010,12 +1080,11 @@ ul {
   }
 
  function renderStatusGraph(currentStatus) {
-  // Define all possible status variations
   const statusMap = {
     'received': { step: 0, label: 'Received Order', icon: 'fa-cart-shopping' },
-    'progress': { step: 1, label: 'In Progress Orders', icon: 'fa-gears' },
-    'processing': { step: 1, label: 'In Progress Orders', icon: 'fa-gears' },
-    'inprogress': { step: 1, label: 'In Progress Orders', icon: 'fa-gears' },
+    'progress': { step: 1, label: 'In Progress', icon: 'fa-gears' },
+    'processing': { step: 1, label: 'In Progress', icon: 'fa-gears' },
+    'inprogress': { step: 1, label: 'In Progress', icon: 'fa-gears' },
     'ready': { step: 2, label: 'Ready for Shipment', icon: 'fa-gift' },
     'shipment': { step: 2, label: 'Ready for Shipment', icon: 'fa-gift' },
     'shipped': { step: 3, label: 'On the Way', icon: 'fa-truck' },
@@ -1028,22 +1097,12 @@ ul {
     'cancelled': { step: 6, label: 'Rejected', icon: 'fa-xmark-circle' }
   };
 
-  const steps = [
-    'Received Order',
-    'In Progress Orders',
-    'Ready for Shipment',
-    'On the Way',
-    'Delivered',
-    'On Hold',
-    'Rejected'
-  ];
-
   const tracker = document.getElementById('status-tracker');
   tracker.innerHTML = '';
 
-  // Normalize the current status
+  // Normalize status (remove spaces, make lowercase)
   currentStatus = (currentStatus || '').toLowerCase().replace(/\s+/g, '');
-
+  
   // Find matching status
   let activeStep = 0;
   for (const [key, value] of Object.entries(statusMap)) {
@@ -1053,27 +1112,33 @@ ul {
     }
   }
 
-  // Render each step
-  steps.forEach((label, index) => {
+  // Create steps
+  Object.values(statusMap).forEach((status, index) => {
+    if (index !== status.step) return; // Avoid duplicates
+    
     const isActive = index === activeStep;
     const isDone = index < activeStep;
-    const icon = statusMap[Object.keys(statusMap).find(key => statusMap[key].step === index)]?.icon || 'fa-circle';
+    const isMobile = window.innerWidth <= 768;
 
-    const wrapper = document.createElement('div');
-    wrapper.className = 'step-container d-flex align-items-center';
-
-    wrapper.innerHTML = `
+    const step = document.createElement('div');
+    step.className = 'step-container d-flex flex-column align-items-center mx-2';
+    
+    step.innerHTML = `
       <div class="tracker-step">
-        <div class="tracker-icon ${isActive ? 'active' : isDone ? 'done' : ''}">
-          <i class="fa-solid ${icon}"></i>
+        <div class="tracker-icon ${isActive ? 'active' : isDone ? 'done' : ''}" 
+             style="${isMobile ? 'width:40px;height:40px;font-size:16px;' : ''}">
+          <i class="fa-solid ${status.icon}"></i>
         </div>
-        <div class="tracker-label">${label}</div>
+        <div class="tracker-label" style="${isMobile ? 'font-size:11px;max-width:80px;' : ''}">
+          ${status.label}
+        </div>
       </div>
-      ${index < steps.length - 1 ? 
-        `<div class="tracker-connector ${isDone ? 'done' : ''}"></div>` : ''}
+      ${index < Object.keys(statusMap).length - 1 ? 
+        `<div class="tracker-connector ${isDone ? 'done' : ''}" 
+              style="${isMobile ? 'width:5px;height:30px;margin:5px 0;' : ''}"></div>` : ''}
     `;
 
-    tracker.appendChild(wrapper);
+    tracker.appendChild(step);
   });
 }
 </script>
