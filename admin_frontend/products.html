@@ -57,7 +57,7 @@
     }
 
     .sidebar-submenu .nav-link.active {
-      background-color: #e0e0e0;
+      background-color: #000000;
     }
 
 
@@ -1220,17 +1220,7 @@
               settingsSubmenu.style.display = (settingsSubmenu.style.display === 'block') ? 'none' : 'block';
             });
 
-            // Handle active link
-            navLinks.forEach(link => {
-              link.addEventListener('click', function () {
-                // Remove active class from all links
-                navLinks.forEach(nav => nav.classList.remove('active'));
-                // Add active class to the clicked link
-                this.classList.add('active');
-              });
-            });
-          });
-
+            
 
           async function populateUnitOptions() {
             const token = localStorage.getItem('token');
@@ -2337,29 +2327,7 @@ try {
 
 
         <script>
-          document.addEventListener("DOMContentLoaded", function () {
-            const currentFile = window.location.pathname.split("/").pop();
-
-            // Remove all active classes first
-            document.querySelectorAll(".nav-link").forEach(link => {
-              const href = link.getAttribute("href");
-              if (href && href.includes(currentFile)) {
-                link.classList.add("active");
-
-                // If inside a collapse menu (like Orders or Purchases), open it
-                const parentCollapse = link.closest(".collapse");
-                if (parentCollapse) {
-                  parentCollapse.classList.add("show");
-                  const parentToggle = parentCollapse.previousElementSibling;
-                  if (parentToggle && parentToggle.classList.contains("nav-link")) {
-                    parentToggle.classList.add("active");
-                  }
-                }
-              } else {
-                link.classList.remove("active");
-              }
-            });
-          });
+        
         </script>
 
         <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -2457,6 +2425,35 @@ try {
       productsArrow.classList.toggle('rotate');
     });
   });
+</script>
+
+ <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+  const currentFile = window.location.pathname.split("/").pop(); // Get the last part of the URL
+
+  document.querySelectorAll(".nav-link").forEach(link => {
+    const href = link.getAttribute("href").split("/").pop(); // Get the last part of the href
+
+    if (href && href === currentFile) {
+      link.classList.add("active");
+
+      // Handle submenu
+      const sidebarSubmenu = link.closest(".sidebar-submenu");
+      if (sidebarSubmenu) {
+        sidebarSubmenu.classList.add("show");
+
+        // Rotate arrow icon of the parent toggle
+        const parentToggle = sidebarSubmenu.previousElementSibling;
+        if (parentToggle && parentToggle.querySelector('.arrow-icon')) {
+          parentToggle.querySelector('.arrow-icon').classList.add('rotate');
+        }
+      }
+    } else {
+      link.classList.remove("active");
+    }
+  });
+});
 </script>
 
 
