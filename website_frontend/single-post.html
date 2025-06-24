@@ -875,50 +875,175 @@ ul {
             </p>
           </div>
         </div>
+        <style>
+            /* Sidebar Styles */
+.graba2z-sidebar-container {
+  flex: 1 !important;
+}
+
+.graba2z-sidebar-content {
+  max-width: 320px !important;
+  margin: auto !important;
+  padding-left: 20px !important;
+}
+
+.graba2z-author-card {
+  border: 1px solid #a3d02c !important;
+  padding: 10px !important;
+  margin-bottom: 24px !important;
+}
+
+.graba2z-section-title {
+  font-size: 16px !important;
+  margin-bottom: 15px !important;
+  border-bottom: 1px solid #000 !important;
+  padding-bottom: 6px !important;
+  color: #000;
+}
+
+.graba2z-author-profile {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 15px !important;
+}
+
+.graba2z-author-avatar {
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 50% !important;
+  /* object-fit: cover !important; */
+}
+
+.graba2z-author-name {
+  margin-bottom: 5px !important;
+  color: #000;
+}
+
+.graba2z-author-bio {
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  color: #000 !important;
+}
+
+.graba2z-store-link {
+  color: #a3d02c !important;
+  text-decoration: none !important;
+  font-weight: bold !important;
+  display: inline-block !important;
+  margin-top: 10px !important;
+}
+
+.graba2z-promo-card {
+  border: 1px solid #e0e0e0 !important;
+  margin-bottom: 24px !important;
+  padding: 10px !important;
+}
+
+.graba2z-promo-header {
+  background-color: #e6a32e !important;
+  color: white !important;
+  font-weight: bold !important;
+  padding: 6px 12px !important;
+  display: inline-block !important;
+  font-size: 14px !important;
+  margin-bottom: 10px !important;
+  width: 100% !important;
+}
+
+.graba2z-promo-img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+.graba2z-topics-card, 
+.graba2z-recent-posts {
+  margin-bottom: 24px !important;
+}
+
+.graba2z-topics-list, 
+.graba2z-posts-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.graba2z-topics-list li, 
+.graba2z-posts-list li {
+  margin-bottom: 10px !important;
+}
+
+.graba2z-topics-list a, 
+.graba2z-posts-list a {
+  text-decoration: none !important;
+  color: #333 !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+}
+
+/* Mobile sidebar - hidden on desktop */
+.mobile-sidebar {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .mobile-sidebar {
+    display: block;
+    margin-bottom: 30px;
+  }
+  
+  .graba2z-sidebar-container {
+    display: none !important;
+  }
+}
+            </style>
         
-        <!-- Sidebar -->
-        <div class="right-side" style="flex: 1 !important;">
-          <div class="sidebar" style="max-width: 320px !important; margin: auto !important; padding-left: 20px !important;">
-            <!-- Author Box -->
-            <div class="author-box" style="border: 1px solid #e0e0e0 !important; padding: 20px !important; margin-bottom: 24px !important;">
-              <h3 style="font-size: 16px !important; margin-bottom: 15px !important; border-bottom: 1px solid #eee !important; padding-bottom: 6px !important;">About The Author</h3>
-              <div class="author-profile" style="display: flex !important; align-items: flex-start !important; gap: 15px !important;">
-                <img src="https://graba2z.netlify.app/assets/images/logo/logo1.svg" alt="Graba2z Logo" style="width: 80px !important; height: 80px !important; border-radius: 50% !important; object-fit: cover !important;">
-                <div class="author-info">
-                  <h4 style="margin-bottom: 5px !important;">Graba2z</h4>
-                  <p style="font-size: 14px !important; line-height: 1.5 !important; color: #666 !important;">
-                    Graba2z is your one-stop destination for all your tech needs. From laptops to accessories, 
-                    we provide quality products at competitive prices. Our blog features expert insights, 
-                    product reviews, and the latest trends in technology.
-                  </p>
-                  <a href="https://graba2z.netlify.app/" class="author-link" style="color: #8224e3 !important; text-decoration: none !important; font-weight: bold !important; display: inline-block !important; margin-top: 10px !important;">Visit our store →</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="sale-box" style="border: 1px solid #e0e0e0 !important; margin-bottom: 24px !important; padding: 10px !important;">
-              <div class="sale-title" style="background-color: #e6a32e !important; color: white !important; font-weight: bold !important; padding: 6px 12px !important; display: inline-block !important; font-size: 14px !important; margin-bottom: 10px !important; width: 100% !important;">TECH DEALS</div>
-              <div class="sale-img">
-                <img src="https://graba2z.netlify.app/assets/images/logo/logo1.svg" alt="Tech Deals" style="max-width: 100% !important; height: auto !important; display: block !important;">
-              </div>
-            </div>
-
-            <!-- Topics Section -->
-            <div class="topics-section" style="margin-bottom: 24px !important;">
-              <h3 style="font-size: 16px !important; margin-bottom: 10px !important; border-bottom: 1px solid #eee !important; padding-bottom: 6px !important;">Blog Topics</h3>
-              <ul id="blog-topics" style="list-style: none !important; padding: 0 !important; margin: 0 !important;">
-                <!-- Will be populated by JavaScript -->
-              </ul>
-            </div>
-
-            <div class="recent-posts">
-              <h3 style="font-size: 16px !important; margin-bottom: 10px !important; border-bottom: 1px solid #eee !important; padding-bottom: 6px !important;">Recent Posts</h3>
-              <ul id="recent-posts-list" style="list-style: none !important; padding: 0 !important; margin: 0 !important;">
-                <!-- Will be populated by JavaScript -->
-              </ul>
-            </div>
-          </div>
+        <!-- Sidebar for desktop -->
+<div class="graba2z-sidebar-container">
+  <div class="graba2z-sidebar-content">
+    <!-- Author Box -->
+    <div class="graba2z-author-card">
+      <h3 class="graba2z-section-title">About The Author</h3>
+      <div class="graba2z-author-profile">
+        <img src="https://graba2z.netlify.app/assets/images/logo/logo1.svg" alt="Graba2z Logo" class="graba2z-author-avatar">
+        <div class="graba2z-author-details">
+          <h4 class="graba2z-author-name">Graba2z</h4>
+          <p class="graba2z-author-bio">
+            Graba2z is your one-stop destination for all your tech needs. From laptops to accessories, 
+            we provide quality products at competitive prices. 
+          </p>
+          <a href="https://graba2z.netlify.app/" class="graba2z-store-link">Visit our store →</a>
         </div>
+      </div>
+    </div>
+
+    <!-- Sale Box -->
+    <div class="graba2z-promo-card">
+      <div class="graba2z-promo-header">TECH DEALS</div>
+      <div class="graba2z-promo-image">
+        <img src="https://graba2z.netlify.app/assets/images/logo/logo1.svg" alt="Tech Deals" class="graba2z-promo-img">
+      </div>
+    </div>
+
+    <!-- Topics Section -->
+    <div class="graba2z-topics-card">
+      <h3 class="graba2z-section-title">Blog Topics</h3>
+      <ul class="graba2z-topics-list" id="blog-topics">
+        <!-- Will be populated by JavaScript -->
+      </ul>
+    </div>
+
+    <!-- Recent Posts -->
+    <div class="graba2z-recent-posts">
+      <h3 class="graba2z-section-title">Recent Posts</h3>
+      <ul class="graba2z-posts-list" id="recent-posts-list">
+        <!-- Will be populated by JavaScript -->
+      </ul>
+    </div>
+  </div>
+</div>
+        
+       
       </div>
     </div>
       <!-- Footer Section Begin -->
