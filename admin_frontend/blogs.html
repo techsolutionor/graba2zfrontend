@@ -15,45 +15,19 @@
     <script src="./popupMessages.js"></script>
     <style>
         .input-group-text {
-            border-top-right-radius: 0px !important;
-            border-bottom-right-radius: 0px !important;
-            padding-right: 0px !important;
+            border-top-right-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+            padding-right: 0 !important;
             background-color: transparent !important;
             border-color: #DFE5EF !important;
-            border-right: 0px !important;
+            border-right: 0 !important;
         }
         .slug-input {
-            border-left: 0px !important;
-            padding-left: 0px !important;
+            border-left: 0 !important;
+            padding-left: 0 !important;
         }
         .slug-input:focus {
             border-color: #DFE5EF !important;
-        }
-        .sidebar-submenu {
-            padding-left: 40px;
-            list-style-type: disc;
-        }
-        .sidebar-submenu li {
-            padding: 5px 0;
-        }
-        .sidebar-submenu li a {
-            color: #000000;
-            text-decoration: none;
-        }
-        .nav-link.active, .nav-link:hover {
-            background-color: #f0f0f0;
-            color: #000;
-            border-radius: 8px;
-            font-weight: 600;
-        }
-        .sidebar-submenu .nav-link.active {
-            background-color: #e0e0e0;
-        }
-        .toggle-arrow {
-            transition: transform 0.3s ease;
-        }
-        .nav-link[aria-expanded="true"] .toggle-arrow {
-            transform: rotate(180deg);
         }
         .left-sidebar {
             width: 260px;
@@ -78,6 +52,7 @@
         }
         .nav-link:hover {
             background-color: #f0f0f0;
+            border-radius: 8px;
         }
         .nav-link.active {
             background-color: #000;
@@ -98,25 +73,24 @@
             border-radius: 50%;
         }
         .sidebar-submenu {
-            padding-left: 30px;
             list-style: none;
+            padding-left: 30px;
+            display: none;
+            transition: all 0.3s ease;
+        }
+        .sidebar-submenu.show {
+            display: block;
         }
         .sidebar-submenu .nav-link {
             font-size: 14px;
             padding: 6px 20px;
         }
+        .sidebar-submenu .nav-link.active {
+            background-color: #e0e0e0;
+        }
         .body-wrapper {
             margin-left: 260px;
             padding: 30px;
-        }
-        .sidebar-submenu {
-            display: none;
-            list-style: none;
-            padding-left: 20px;
-            transition: all 0.3s ease;
-        }
-        .sidebar-submenu.show {
-            display: block;
         }
         .rotate-icon {
             transition: transform 0.3s ease;
@@ -201,6 +175,10 @@
             display: none;
             margin-top: 10px;
         }
+        .content-section label.form-label {
+            font-weight: bold;
+            font-style: italic;
+        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -250,8 +228,7 @@
     <div id="loader" class="loader-container">
         <div class="loader"></div>
     </div>
-    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-        data-sidebar-position="fixed" data-header-position="fixed">
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
         <aside class="left-sidebar">
             <div class="logo-img text-center p-3">
                 <a href="index.html">
@@ -292,7 +269,7 @@
                         <li><a class="nav-link" href="ontheWay_onlineOrders.html">On the Way</a></li>
                         <li><a class="nav-link" href="delevered_onlineOrders.html">Delivered</a></li>
                         <li><a class="nav-link" href="onhold_onlineOrders.html">On Hold</a></li>
-                        <li><a class="nav-link" href="rejected_onlineOrders.html">Rejected</a></li>
+                        <li><a class="nav-link" href="rejected_onlineOrders.html">Online Orders</a></li>
                     </ul>
                 </li>
                 <li class="section-title">COMMUNICATIONS</li>
@@ -419,7 +396,7 @@
                                                     </div>
                                                     <div class="col-12 col-md-6">
                                                         <label for="addMainCategory" class="form-label">Main Category</label>
-                                                        <select id="addMainCategory" name="parent_category_id" class="form-select">
+                                                        <select id="addMainCategory" name="main_category_id" class="form-select" required>
                                                             <option value="">Select Main Category</option>
                                                         </select>
                                                     </div>
@@ -427,7 +404,7 @@
                                                 <div class="mb-3 row">
                                                     <div class="col-12 col-md-6">
                                                         <label for="addSubCategory" class="form-label">Sub Category</label>
-                                                        <select id="addSubCategory" name="child_category_id" class="form-select">
+                                                        <select id="addSubCategory" name="sub_category_id" class="form-select">
                                                             <option value="">Select Sub Category</option>
                                                         </select>
                                                     </div>
@@ -447,18 +424,18 @@
                                                     <input type="number" id="addReadMinutes" name="read_minutes" class="form-control" placeholder="Read Minutes">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="addPostBy" class="form-label">Post By</label>
-                                                    <input type="text" id="addPostBy" name="post_by" class="form-control" readonly>
-                                                    <input type="hidden" id="addPostById" name="post_by_id">
+                                                    <label for="addPostedBy" class="form-label">Posted By</label>
+                                                    <input type="text" id="addPostedBy" name="posted_by_name" class="form-control" readonly>
+                                                    <input type="hidden" id="addPostedById" name="posted_by">
                                                 </div>
                                                 <div id="addContentSections">
                                                     <div class="content-section">
                                                         <i class="fas fa-plus-circle add-content-btn" onclick="addContentSection('add')"></i>
                                                         <div class="mb-3">
                                                             <label class="form-label">Blog Title</label>
-                                                            <input type="text" name="post_titles[]" class="form-control" placeholder="Blog Title">
+                                                            <input type="text" name="blog_title[]" class="form-control" placeholder="Blog Title">
                                                         </div>
-                                                        <div class="mb-3">
+                                                        <div class="mb-3 image-group" data-index="0">
                                                             <label class="form-label">Additional Image</label>
                                                             <input type="file" name="additional_images[]" class="form-control additional-image-input" accept="image/*" onchange="toggleAdditionalFields(this, 'add')">
                                                             <div class="additional-image-container">
@@ -517,7 +494,7 @@
                                                     </div>
                                                     <div class="col-12 col-md-6">
                                                         <label for="updateMainCategory" class="form-label">Main Category</label>
-                                                        <select id="updateMainCategory" name="parent_category_id" class="form-select">
+                                                        <select id="updateMainCategory" name="main_category_id" class="form-select" required>
                                                             <option value="">Select Main Category</option>
                                                         </select>
                                                     </div>
@@ -525,7 +502,7 @@
                                                 <div class="mb-3 row">
                                                     <div class="col-12 col-md-6">
                                                         <label for="updateSubCategory" class="form-label">Sub Category</label>
-                                                        <select id="updateSubCategory" name="child_category_id" class="form-select">
+                                                        <select id="updateSubCategory" name="sub_category_id" class="form-select">
                                                             <option value="">Select Sub Category</option>
                                                         </select>
                                                     </div>
@@ -546,9 +523,9 @@
                                                     <input type="number" id="updateReadMinutes" name="read_minutes" class="form-control" placeholder="Read Minutes">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="updatePostBy" class="form-label">Post By</label>
-                                                    <input type="text" id="updatePostBy" name="post_by" class="form-control" readonly>
-                                                    <input type="hidden" id="updatePostById" name="post_by_id">
+                                                    <label for="updatePostedBy" class="form-label">Posted By</label>
+                                                    <input type="text" id="updatePostedBy" name="posted_by_name" class="form-control" readonly>
+                                                    <input type="hidden" id="updatePostedById" name="posted_by">
                                                 </div>
                                                 <div id="updateContentSections">
                                                     <div class="content-section">
@@ -556,9 +533,9 @@
                                                         <i class="fas fa-minus-circle remove-content-btn" onclick="removeContentSection(this)"></i>
                                                         <div class="mb-3">
                                                             <label class="form-label">Blog Title</label>
-                                                            <input type="text" name="post_titles[]" class="form-control" placeholder="Blog Title">
+                                                            <input type="text" name="blog_title[]" class="form-control" placeholder="Blog Title">
                                                         </div>
-                                                        <div class="mb-3">
+                                                        <div class="mb-3 image-group" data-index="0">
                                                             <label class="form-label">Additional Image</label>
                                                             <input type="file" name="additional_images[]" class="form-control additional-image-input" accept="image/*" onchange="toggleAdditionalFields(this, 'update')">
                                                             <div class="additional-image-container">
@@ -600,7 +577,7 @@
                                                 <p><strong>Sub Category:</strong> <span id="blogSubCategory"></span></p>
                                                 <p><strong>Topic:</strong> <span id="blogTopic"></span></p>
                                                 <p><strong>Read Minutes:</strong> <span id="blogReadMinutes"></span></p>
-                                                <p><strong>Post By:</strong> <span id="blogPostBy"></span></p>
+                                                <p><strong>Posted By:</strong> <span id="blogPostBy"></span></p>
                                                 <p><strong>Post Date:</strong> <span id="blogPostDate"></span></p>
                                                 <p><strong>Main Image:</strong></p>
                                                 <img id="blogMainImage" class="blog-image" alt="Blog Main Image" style="display: none;">
@@ -616,16 +593,46 @@
                             <div id="printableBlogTable" style="display: none;">
                                 <table border="1" cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse;">
                                     <tbody>
-                                        <tr><th align="left">Blog Name</th><td id="blogNameTable"></td></tr>
-                                        <tr><th align="left">Slug</th><td id="blogSlugTable"></td></tr>
-                                        <tr><th align="left">Status</th><td id="blogStatusTable"></td></tr>
-                                        <tr><th align="left">Main Category</th><td id="blogMainCategoryTable"></td></tr>
-                                        <tr><th align="left">Sub Category</th><td id="blogSubCategoryTable"></td></tr>
-                                        <tr><th align="left">Topic</th><td id="blogTopicTable"></td></tr>
-                                        <tr><th align="left">Read Minutes</th><td id="blogReadMinutesTable"></td></tr>
-                                        <tr><th align="left">Post By</th><td id="blogPostByTable"></td></tr>
-                                        <tr><th align="left">Post Date</th><td id="blogPostDateTable"></td></tr>
-                                        <tr><th align="left">Content</th><td id="blogContentTable"></td></tr>
+                                        <tr>
+                                            <th align="left">Blog Name</th>
+                                            <td id="blogNameTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Slug</th>
+                                            <td id="blogSlugTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Status</th>
+                                            <td id="blogStatusTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Main Category</th>
+                                            <td id="blogMainCategoryTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Sub Category</th>
+                                            <td id="blogSubCategoryTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Topic</th>
+                                            <td id="blogTopicTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Read Minutes</th>
+                                            <td id="blogReadMinutesTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Posted By</th>
+                                            <td id="blogPostByTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Post Date</th>
+                                            <td id="blogPostDateTable"></td>
+                                        </tr>
+                                        <tr>
+                                            <th align="left">Content</th>
+                                            <td id="blogContentTable"></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -677,21 +684,21 @@
                         const addBlogModal = document.getElementById('addBlogModal');
                         addBlogModal.addEventListener('hidden.bs.modal', function () {
                             document.getElementById('addBlogForm').reset();
-                            document.getElementById('addContentSections').innerHTML = getContentSectionTemplate('add');
+                            document.getElementById('addContentSections').innerHTML = getContentSectionTemplate('add', 0);
                             initializeQuillEditors('add');
                         });
 
                         const updateBlogModal = document.getElementById('updateBlogModal');
                         updateBlogModal.addEventListener('hidden.bs.modal', function () {
                             document.getElementById('updateBlogForm').reset();
-                            document.getElementById('updateContentSections').innerHTML = getContentSectionTemplate('update');
+                            document.getElementById('updateContentSections').innerHTML = getContentSectionTemplate('update', 0);
                             initializeQuillEditors('update');
                             document.getElementById('currentMainImagePreview').style.display = 'none';
                             currentBlogId = null;
                         });
 
-                        document.getElementById('saveUpdateBlogBtn').addEventListener('click', saveUpdateBlogModal);
                         document.getElementById('saveAddBlogBtn').addEventListener('click', addBlog);
+                        document.getElementById('saveUpdateBlogBtn').addEventListener('click', saveUpdateBlogModal);
 
                         document.getElementById('addBlogName').addEventListener('input', function () {
                             const slugField = document.getElementById('addSlug');
@@ -718,7 +725,6 @@
                         document.getElementById('addMainCategory').addEventListener('change', function () {
                             updateChildCategories('add', this.value);
                         });
-
                         document.getElementById('updateMainCategory').addEventListener('change', function () {
                             updateChildCategories('update', this.value);
                         });
@@ -735,10 +741,20 @@
                     function initializeQuillEditors(mode) {
                         const editors = document.querySelectorAll(`#${mode}ContentSections .description-editor`);
                         const quillArray = mode === 'add' ? addQuillEditors : updateQuillEditors;
-                        quillArray.forEach(quill => quill.destroy);
+
+                        quillArray.forEach(quill => {
+                            if (quill && typeof quill.destroy === 'function') {
+                                quill.destroy();
+                            }
+                        });
                         quillArray.length = 0;
 
                         editors.forEach((editor, index) => {
+                            const toolbar = editor.previousElementSibling;
+                            if (toolbar && toolbar.classList.contains('ql-toolbar')) {
+                                toolbar.remove();
+                            }
+
                             const quill = new Quill(editor, {
                                 theme: 'snow',
                                 modules: {
@@ -758,24 +774,34 @@
                                 },
                                 placeholder: 'Enter description...',
                             });
+
                             quillArray.push(quill);
+
+                            const hiddenInput = editor.parentElement.querySelector('input[type="hidden"]');
                             quill.on('text-change', function () {
-                                const hiddenInput = editor.parentElement.querySelector('input[type="hidden"]');
                                 hiddenInput.value = quill.root.innerHTML;
                             });
+
+                            if (mode === 'update' && currentBlogId) {
+                                const blog = blogsCache?.find(b => b.id == currentBlogId);
+                                if (blog && blog.descriptions && blog.descriptions[index]) {
+                                    quill.root.innerHTML = blog.descriptions[index];
+                                    hiddenInput.value = blog.descriptions[index];
+                                }
+                            }
                         });
                     }
 
-                    function getContentSectionTemplate(mode) {
+                    function getContentSectionTemplate(mode, sectionIndex) {
                         return `
-                            <div class="content-section">
+                            <div class="content-section" data-section-index="${sectionIndex}">
                                 <i class="fas fa-plus-circle add-content-btn" onclick="addContentSection('${mode}')"></i>
-                                ${mode === 'update' ? `<i class="fas fa-minus-circle remove-content-btn" onclick="removeContentSection(this)"></i>` : ''}
+                                ${mode === 'update' ? '<i class="fas fa-minus-circle remove-content-btn" onclick="removeContentSection(this)"></i>' : ''}
                                 <div class="mb-3">
                                     <label class="form-label">Blog Title</label>
-                                    <input type="text" name="post_titles[]" class="form-control" placeholder="Blog Title">
+                                    <input type="text" name="blog_title[]" class="form-control" placeholder="Blog Title">
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-3 image-group" data-index="0">
                                     <label class="form-label">Additional Image</label>
                                     <input type="file" name="additional_images[]" class="form-control additional-image-input" accept="image/*" onchange="toggleAdditionalFields(this, '${mode}')">
                                     <div class="additional-image-container">
@@ -796,15 +822,22 @@
 
                     function addContentSection(mode) {
                         const container = document.getElementById(`${mode}ContentSections`);
+                        const sections = container.querySelectorAll('.content-section');
+                        if (sections.length >= 20) {
+                            showErrorMessage('Maximum 20 content sections allowed');
+                            return;
+                        }
+                        const newIndex = sections.length;
                         const newSection = document.createElement('div');
-                        newSection.innerHTML = getContentSectionTemplate(mode);
+                        newSection.innerHTML = getContentSectionTemplate(mode, newIndex);
                         container.appendChild(newSection);
                         initializeQuillEditors(mode);
                     }
 
                     function removeContentSection(btn) {
                         const section = btn.closest('.content-section');
-                        if (document.querySelectorAll('#updateContentSections .content-section').length > 1) {
+                        const container = document.getElementById('updateContentSections');
+                        if (container.querySelectorAll('.content-section').length > 1) {
                             section.remove();
                             initializeQuillEditors('update');
                         }
@@ -819,9 +852,8 @@
                         const token = localStorage.getItem('token');
                         showLoader();
                         try {
-                            const response = await fetch(`${API_ADMINGRAB_URL}/api/blogs`, {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/blog`, {
                                 method: 'GET',
-                                headers: { 'Authorization': token },
                             });
                             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                             const data = await response.json();
@@ -841,111 +873,39 @@
                         try {
                             const response = await fetch(`${API_ADMINGRAB_URL}/api/product-categories`, {
                                 method: 'GET',
-                                headers: { 'Authorization': token },
+                                headers: { 'Authorization': `${token}` },
                             });
-                            if (!response.ok) {
-                                const errorText = await response.text();
-                                throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
-                            }
+                            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                             const categories = await response.json();
-                            populateCategoryDropdowns(categories);
+                            window.allCategories = categories;
+                            const mainCategories = categories.filter(cat => !cat.parent_id || cat.parent_id === 0);
+                            populateCategoryDropdowns(mainCategories);
                         } catch (error) {
                             console.error('Error fetching categories:', error);
-                            showErrorMessage('Failed to fetch categories. Please check your network or try again.');
+                            showErrorMessage('Failed to load categories. Please try again.');
                         } finally {
                             hideLoader();
                         }
                     }
 
                     async function fetchTopics() {
-                        const token = localStorage.getItem('token');
                         showLoader();
                         try {
                             const response = await fetch(`${API_ADMINGRAB_URL}/api/blog-topics`, {
                                 method: 'GET',
-                                headers: { 'Authorization': token },
                             });
-                            if (!response.ok) {
-                                const errorText = await response.text();
-                                throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
-                            }
+                            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                             const topics = await response.json();
-                            populateTopicDropdowns(topics);
+                            const topicsArray = Array.isArray(topics) ? topics :
+                                (topics.data ? topics.data :
+                                    (topics.topics ? topics.topics : []));
+                            populateTopicDropdowns(topicsArray);
                         } catch (error) {
                             console.error('Error fetching topics:', error);
-                            showErrorMessage('Failed to fetch topics. Please check your network or try again.');
+                            showErrorMessage('Failed to fetch topics. Please try again.');
                         } finally {
                             hideLoader();
                         }
-                    }
-
-                    async function fetchUser() {
-                        const token = localStorage.getItem('token');
-                        showLoader();
-                        try {
-                            const response = await fetch(`${API_ADMINGRAB_URL}/user`, {
-                                method: 'GET',
-                                headers: { 'Authorization': token },
-                            });
-                            if (!response.ok) {
-                                const errorText = await response.text();
-                                throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
-                            }
-                            const user = await response.json();
-                            populateUserFields(user);
-                        } catch (error) {
-                            console.error('Error fetching user:', error);
-                            showErrorMessage('Failed to fetch user data. Please check your network or try again.');
-                        } finally {
-                            hideLoader();
-                        }
-                    }
-
-                    async function updateChildCategories(mode, parentId) {
-                        const token = localStorage.getItem('token');
-                        const childSelect = document.getElementById(`${mode}SubCategory`);
-                        childSelect.innerHTML = '<option value="">Select Sub Category</option>';
-                        if (!parentId) return;
-                        showLoader();
-                        try {
-                            const response = await fetch(`${API_ADMINGRAB_URL}/api/product-categories?parent_id=${parentId}`, {
-                                method: 'GET',
-                                headers: { 'Authorization': token },
-                            });
-                            if (!response.ok) {
-                                const errorText = await response.text();
-                                throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
-                            }
-                            const childCategories = await response.json();
-                            childCategories.forEach(category => {
-                                const option = document.createElement('option');
-                                option.value = category.id;
-                                option.textContent = category.category_name || 'Unknown';
-                                childSelect.appendChild(option);
-                            });
-                        } catch (error) {
-                            console.error('Error fetching child categories:', error);
-                            showErrorMessage('Failed to fetch sub categories. Please check your network or try again.');
-                        } finally {
-                            hideLoader();
-                        }
-                    }
-
-                    function populateCategoryDropdowns(categories) {
-                        const addMainCategory = document.getElementById('addMainCategory');
-                        const updateMainCategory = document.getElementById('updateMainCategory');
-                        addMainCategory.innerHTML = '<option value="">Select Main Category</option>';
-                        updateMainCategory.innerHTML = '<option value="">Select Main Category</option>';
-                        categories.filter(cat => !cat.parent_id).forEach(category => {
-                            const option1 = document.createElement('option');
-                            option1.value = category.id;
-                            option1.textContent = category.category_name || 'Unknown';
-                            addMainCategory.appendChild(option1);
-                            const option2 = document.createElement('option');
-                            option2.value = category.id;
-                            option2.textContent = category.category_name || 'Unknown';
-                            updateMainCategory.appendChild(option2);
-                        });
                     }
 
                     function populateTopicDropdowns(topics) {
@@ -954,26 +914,67 @@
                         addTopic.innerHTML = '<option value="">Select Topic</option>';
                         updateTopic.innerHTML = '<option value="">Select Topic</option>';
                         topics.forEach(topic => {
-                            const option1 = document.createElement('option');
-                            option1.value = topic.id;
-                            option1.textContent = topic.topic_name || 'Unknown';
-                            addTopic.appendChild(option1);
-                            const option2 = document.createElement('option');
-                            option2.value = topic.id;
-                            option2.textContent = topic.topic_name || 'Unknown';
-                            updateTopic.appendChild(option2);
+                            const option = document.createElement('option');
+                            option.value = topic.id || topic._id;
+                            option.textContent = topic.topic_name || topic.name || 'Unknown Topic';
+                            addTopic.appendChild(option.cloneNode(true));
+                            updateTopic.appendChild(option);
+                        });
+                    }
+
+                    async function fetchUser() {
+                        const token = localStorage.getItem('token');
+                        showLoader();
+                        try {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/user`, {
+                                method: 'GET',
+                                headers: { 'Authorization': `${token}` },
+                            });
+                            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                            const user = await response.json();
+                            populateUserFields(user);
+                        } catch (error) {
+                            console.error('Error fetching user:', error);
+                            showErrorMessage('Failed to fetch user data. Please try again.');
+                        } finally {
+                            hideLoader();
+                        }
+                    }
+
+                    function populateCategoryDropdowns(mainCategories) {
+                        const addMainCategory = document.getElementById('addMainCategory');
+                        const updateMainCategory = document.getElementById('updateMainCategory');
+                        addMainCategory.innerHTML = '<option value="">Select Main Category</option>';
+                        updateMainCategory.innerHTML = '<option value="">Select Main Category</option>';
+                        mainCategories.forEach(category => {
+                            const option = document.createElement('option');
+                            option.value = category.id;
+                            option.textContent = category.name;
+                            addMainCategory.appendChild(option.cloneNode(true));
+                            updateMainCategory.appendChild(option);
+                        });
+                    }
+
+                    function updateChildCategories(mode, parentId) {
+                        const childSelect = document.getElementById(`${mode}SubCategory`);
+                        childSelect.innerHTML = '<option value="">Select Sub Category</option>';
+                        if (!parentId || !window.allCategories) return;
+                        const subCategories = window.allCategories.filter(cat =>
+                            cat.parent_category && cat.parent_category.toString() === parentId.toString()
+                        );
+                        subCategories.forEach(category => {
+                            const option = document.createElement('option');
+                            option.value = category.id;
+                            option.textContent = category.name;
+                            childSelect.appendChild(option);
                         });
                     }
 
                     function populateUserFields(user) {
-                        const addPostBy = document.getElementById('addPostBy');
-                        const addPostById = document.getElementById('addPostById');
-                        const updatePostBy = document.getElementById('updatePostBy');
-                        const updatePostById = document.getElementById('updatePostById');
-                        addPostBy.value = user.name || user.email || 'Unknown';
-                        addPostById.value = user.id || '';
-                        updatePostBy.value = user.name || user.email || 'Unknown';
-                        updatePostById.value = user.id || '';
+                        document.getElementById('addPostedBy').value = user.name || user.email || 'Unknown';
+                        document.getElementById('addPostedById').value = user.id || user.name || '';
+                        document.getElementById('updatePostedBy').value = user.name || user.email || 'Unknown';
+                        document.getElementById('updatePostedById').value = user.id || '';
                     }
 
                     function populateTable(blogs) {
@@ -988,12 +989,12 @@
                             const row = document.createElement('tr');
                             row.setAttribute('data-id', blog.id);
                             row.innerHTML = `
-                                <td>${blog.image ? `<img src="${API_ADMINGRAB_URL}/${blog.image}" class="blog-image" alt="Blog Image" style="width:50px;">` : '—'}</td>
+                                <td>${blog.main_image ? `<img src="${API_ADMINGRAB_URL}/${blog.main_image}" class="blog-image" alt="Blog Image" style="width:50px;">` : '—'}</td>
                                 <td>${blog.blog_name || '—'}</td>
                                 <td>${blog.status || '—'}</td>
-                                <td>${blog.post_date ? new Date(blog.post_date).toLocaleDateString() : '—'}</td>
+                                <td>${blog.created_at ? new Date(blog.created_at).toLocaleDateString() : '—'}</td>
                                 <td class="no-print action-buttons">
-                                    <button class="btn btn-view" onclick="viewBlog('${blog.id}')">👁</button>
+                                    
                                     <button class="btn" onclick="updateBlog('${blog.id}')" data-bs-toggle="modal" data-bs-target="#updateBlogModal">✏️</button>
                                     <button class="btn" onclick="deleteBlog('${blog.id}')">🗑</button>
                                 </td>
@@ -1004,23 +1005,100 @@
 
                     async function addBlog() {
                         const token = localStorage.getItem('token');
-                        const formData = new FormData(document.getElementById('addBlogForm'));
+                        const form = document.getElementById('addBlogForm');
+                        const formData = new FormData();
+
+                        // Append basic fields
+                        formData.append('blog_name', form.querySelector('[name="blog_name"]').value);
+                        formData.append('slug', form.querySelector('[name="slug"]').value);
+                        formData.append('status', form.querySelector('[name="status"]').value);
+                        formData.append('main_category_id', document.getElementById('addMainCategory').value);
+                        formData.append('sub_category_id', document.getElementById('addSubCategory').value || '');
+                        formData.append('topic_id', document.getElementById('addTopic').value || '');
+                        formData.append('read_minutes', form.querySelector('[name="read_minutes"]').value || '');
+                        formData.append('posted_by', form.querySelector('[name="posted_by"]').value || '');
+
+                        // Handle main image
+                        const mainImage = form.querySelector('[name="main_image"]').files[0];
+                        if (mainImage) {
+                            formData.append('additional_images', mainImage);
+                        }
+
+                        // Handle additional images
+                        const additionalImageInputs = form.querySelectorAll('[name="additional_images[]"]');
+                        additionalImageInputs.forEach(input => {
+                            if (input.files[0]) {
+                                formData.append('additional_images', input.files[0]);
+                            }
+                        });
+
+                        // Collect array data
+                        const blogTitles = Array.from(form.querySelectorAll('[name="blog_title[]"]'))
+                            .map(input => input.value)
+                            .filter(val => val.trim() !== '');
+                        const imageCaptions = Array.from(form.querySelectorAll('[name="image_captions[]"]'))
+                            .map(input => input.value)
+                            .filter(val => val.trim() !== '');
+                        const descriptions = addQuillEditors.map(quill => quill.root.innerHTML)
+                            .filter(val => val.trim() !== '<p><br></p>');
+
+                        // Ensure arrays have consistent lengths
+                        const maxLength = Math.max(blogTitles.length, imageCaptions.length, descriptions.length);
+                        while (blogTitles.length < maxLength) blogTitles.push('');
+                        while (imageCaptions.length < maxLength) imageCaptions.push('');
+                        while (descriptions.length < maxLength) descriptions.push('');
+
+                        // Stringify arrays before appending
+                        formData.append('blog_title', JSON.stringify(blogTitles));
+                        formData.append('image_captions', JSON.stringify(imageCaptions));
+                        formData.append('descriptions', JSON.stringify(descriptions));
+
+                        // Validation
+                        if (!formData.get('blog_name') || !formData.get('slug') || !formData.get('status') ||
+                            !formData.get('main_category_id') || !mainImage) {
+                            showErrorMessage('Please fill all required fields');
+                            return;
+                        }
+
+                        // Log FormData for debugging
+                        for (let pair of formData.entries()) {
+                            console.log(`${pair[0]}: ${pair[1] instanceof File ? 'File' : pair[1]}`);
+                        }
+
                         showLoader();
                         try {
-                            const response = await fetch(`${API_ADMINGRAB_URL}/api/blogs`, {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/blog`, {
                                 method: 'POST',
-                                headers: { 'Authorization': token },
-                                body: formData,
+                                headers: {
+                                    'Authorization': `${token}`
+                                },
+                                body: formData
                             });
-                            const result = await response.json();
-                            if (!response.ok) throw new Error(result.message || 'Failed to add blog');
-                            const addBlogModal = bootstrap.Modal.getInstance(document.getElementById('addBlogModal'));
-                            addBlogModal.hide();
+
+                            const responseText = await response.text();
+                            console.log('Raw response:', responseText);
+
+                            if (!response.ok) {
+                                try {
+                                    const errorData = JSON.parse(responseText);
+                                    console.error('Server error response:', errorData);
+                                    throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+                                } catch (parseError) {
+                                    console.error('Failed to parse error response as JSON:', responseText);
+                                    throw new Error(`Server error ${response.status}: ${responseText}`);
+                                }
+                            }
+
+                            const result = JSON.parse(responseText);
+                            bootstrap.Modal.getInstance(document.getElementById('addBlogModal')).hide();
+                            form.reset();
+                            document.getElementById('addContentSections').innerHTML = getContentSectionTemplate('add', 0);
+                            initializeQuillEditors('add');
                             fetchBlogs();
-                            showSuccessMessage(result.message);
+                            showSuccessMessage('Blog added successfully');
                         } catch (error) {
                             console.error('Error adding blog:', error);
-                            showErrorMessage(error.message);
+                            showErrorMessage(error.message || 'Failed to add blog. Check the console for details.');
                         } finally {
                             hideLoader();
                         }
@@ -1053,19 +1131,16 @@
                         const token = localStorage.getItem('token');
                         showLoader();
                         try {
-                            const response = await fetch(`${API_ADMINGRAB_URL}/api/blogs/${blogId}`, {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/blog/${blogId}`, {
                                 method: 'GET',
-                                headers: { 'Authorization': token },
+                                headers: { 'Authorization': `${token}` },
                             });
-                            if (!response.ok) {
-                                const errorText = await response.text();
-                                throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
-                            }
+                            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                             const data = await response.json();
                             populateBlogDetails(data);
                         } catch (error) {
                             console.error('Error fetching blog details:', error);
-                            showErrorMessage('Failed to fetch blog details. Please check your network or try again.');
+                            showErrorMessage('Failed to fetch blog details. Please try again.');
                         } finally {
                             hideLoader();
                         }
@@ -1075,19 +1150,16 @@
                         const token = localStorage.getItem('token');
                         showLoader();
                         try {
-                            const response = await fetch(`${API_ADMINGRAB_URL}/api/blogs/${blogId}`, {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/blog/${blogId}`, {
                                 method: 'GET',
-                                headers: { 'Authorization': token },
+                                headers: { 'Authorization': `${token}` },
                             });
-                            if (!response.ok) {
-                                const errorText = await response.text();
-                                throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
-                            }
+                            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                             const data = await response.json();
                             populateUpdateModal(data);
                         } catch (error) {
                             console.error('Error fetching blog details for update:', error);
-                            showErrorMessage('Failed to fetch blog details. Please check your network or try again.');
+                            showErrorMessage('Failed to fetch blog details. Please try again.');
                         } finally {
                             hideLoader();
                         }
@@ -1097,27 +1169,26 @@
                         document.getElementById('blogName').textContent = blog.blog_name || '—';
                         document.getElementById('blogSlug').textContent = blog.slug || '—';
                         document.getElementById('blogStatus').textContent = blog.status || '—';
-                        document.getElementById('blogMainCategory').textContent = blog.parent_category || '—';
-                        document.getElementById('blogSubCategory').textContent = blog.child_category || '—';
+                        document.getElementById('blogMainCategory').textContent = blog.main_category_name || '—';
+                        document.getElementById('blogSubCategory').textContent = blog.sub_category_name || '—';
                         document.getElementById('blogTopic').textContent = blog.topic_name || '—';
                         document.getElementById('blogReadMinutes').textContent = blog.read_minutes || '—';
-                        document.getElementById('blogPostBy').textContent = blog.post_by_user_name || blog.post_by_user_email || '—';
-                        document.getElementById('blogPostDate').textContent = blog.post_date ? new Date(blog.post_date).toLocaleString() : '—';
+                        document.getElementById('blogPostBy').textContent = blog.posted_by || '—';
+                        document.getElementById('blogPostDate').textContent = blog.created_at ? new Date(blog.created_at).toLocaleString() : '—';
                         const blogMainImage = document.getElementById('blogMainImage');
-                        if (blog.image) {
-                            blogMainImage.src = `${API_ADMINGRAB_URL}/${blog.image}`;
+                        if (blog.main_image) {
+                            blogMainImage.src = `${API_ADMINGRAB_URL}/${blog.main_image}`;
                             blogMainImage.style.display = 'block';
                         } else {
                             blogMainImage.style.display = 'none';
                         }
                         const contentDetails = document.getElementById('blogContentDetails');
                         contentDetails.innerHTML = '';
-                        const additionalImages = JSON.parse(blog.images || '[]');
-                        blog.post_titles?.forEach((title, index) => {
+                        blog.blog_title?.forEach((title, index) => {
                             const section = document.createElement('div');
                             section.innerHTML = `
                                 <p><strong>Blog Title:</strong> ${title || '—'}</p>
-                                ${additionalImages[index] ? `<p><strong>Additional Image:</strong><br><img src="${API_ADMINGRAB_URL}/${additionalImages[index]}" class="blog-image" alt="Additional Image"></p>` : ''}
+                                ${blog.additional_images[index] ? `<p><strong>Additional Image:</strong><br><img src="${API_ADMINGRAB_URL}/${blog.additional_images[index]}" class="blog-image" alt="Additional Image"><br><span>${blog.image_captions[index] || ''}</span></p>` : ''}
                                 <p><strong>Description:</strong></p>
                                 <div>${blog.descriptions[index] || '—'}</div>
                             `;
@@ -1131,80 +1202,139 @@
                         document.getElementById('updateBlogName').value = blog.blog_name || '';
                         document.getElementById('updateSlug').value = blog.slug || '';
                         document.getElementById('updateStatus').value = blog.status || 'Draft';
-                        document.getElementById('updateMainCategory').value = blog.parent_category_id || '';
-                        updateChildCategories('update', blog.parent_category_id);
-                        document.getElementById('updateSubCategory').value = blog.child_category_id || '';
+                        document.getElementById('updateMainCategory').value = blog.main_category_id || '';
+                        updateChildCategories('update', blog.main_category_id);
+                        setTimeout(() => {
+                            document.getElementById('updateSubCategory').value = blog.sub_category_id || '';
+                        }, 100);
                         document.getElementById('updateTopic').value = blog.topic_id || '';
                         document.getElementById('updateReadMinutes').value = blog.read_minutes || '';
-                        document.getElementById('updatePostBy').value = blog.post_by_user_name || blog.post_by_user_email || 'Unknown';
-                        document.getElementById('updatePostById').value = blog.post_by || '';
+                        document.getElementById('updatePostedBy').value = blog.posted_by || 'Unknown';
+                        document.getElementById('updatePostedById').value = blog.posted_by || '';
                         const currentMainImagePreview = document.getElementById('currentMainImagePreview');
-                        if (blog.image) {
-                            currentMainImagePreview.src = `${API_ADMINGRAB_URL}/${blog.image}`;
+                        if (blog.main_image) {
+                            currentMainImagePreview.src = `${API_ADMINGRAB_URL}/${blog.main_image}`;
                             currentMainImagePreview.style.display = 'block';
                         } else {
                             currentMainImagePreview.style.display = 'none';
                         }
-                        const contentSections = document.getElementById('updateContentSections');
-                        contentSections.innerHTML = '';
-                        const additionalImages = JSON.parse(blog.images || '[]');
-                        blog.post_titles?.forEach((title, index) => {
+
+                        const updateContentSections = document.getElementById('updateContentSections');
+                        updateContentSections.innerHTML = '';
+                        const maxSections = Math.max(blog.blog_title?.length || 1, 1);
+                        for (let i = 0; i < maxSections; i++) {
                             const section = document.createElement('div');
-                            section.className = 'content-section';
-                            section.innerHTML = `
-                                <i class="fas fa-plus-circle add-content-btn" onclick="addContentSection('update')"></i>
-                                <i class="fas fa-minus-circle remove-content-btn" onclick="removeContentSection(this)"></i>
-                                <div class="mb-3">
-                                    <label class="form-label">Blog Title</label>
-                                    <input type="text" name="post_titles[]" class="form-control" value="${title || ''}" placeholder="Blog Title">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Additional Image</label>
-                                    <input type="file" name="additional_images[]" class="form-control additional-image-input" accept="image/*" onchange="toggleAdditionalFields(this, 'update')">
-                                    <div class="additional-image-container" style="display: ${additionalImages[index] ? 'block' : 'none'};">
-                                        <div class="mb-3">
-                                            <label class="form-label">Image Caption</label>
-                                            <input type="text" name="image_captions[]" class="form-control" value="${blog.image_captions?.[index] || ''}" placeholder="Image Caption">
-                                        </div>
-                                    </div>
-                                    ${additionalImages[index] ? `<img src="${API_ADMINGRAB_URL}/${additionalImages[index]}" class="blog-image mt-2" alt="Current Additional Image">` : ''}
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Description</label>
-                                    <div class="description-editor" style="border: 1px solid #ddd; border-radius: 4px;"></div>
-                                    <input type="hidden" name="descriptions[]" value="${blog.descriptions?.[index] || ''}">
-                                </div>
-                            `;
-                            contentSections.appendChild(section);
-                        });
-                        initializeQuillEditors('update');
-                        updateQuillEditors.forEach((quill, index) => {
-                            if (blog.descriptions?.[index]) {
-                                quill.root.innerHTML = blog.descriptions[index];
+                            section.innerHTML = getContentSectionTemplate('update', i);
+                            updateContentSections.appendChild(section);
+                            const titleInput = section.querySelector('[name="blog_title[]"]');
+                            const captionInput = section.querySelector('[name="image_captions[]"]');
+                            const additionalImageContainer = section.querySelector('.additional-image-container');
+                            titleInput.value = blog.blog_title?.[i] || '';
+                            captionInput.value = blog.image_captions?.[i] || '';
+                            if (blog.additional_images?.[i]) {
+                                const imgPreview = document.createElement('img');
+                                imgPreview.src = `${API_ADMINGRAB_URL}/${blog.additional_images[i]}`;
+                                imgPreview.className = 'blog-image mt-2';
+                                imgPreview.alt = 'Current Additional Image';
+                                additionalImageContainer.prepend(imgPreview);
+                                additionalImageContainer.style.display = 'block';
                             }
-                        });
+                        }
+                        initializeQuillEditors('update');
                     }
 
                     async function saveUpdateBlogModal() {
                         const token = localStorage.getItem('token');
                         const blogId = document.getElementById('updateBlogId').value;
-                        const formData = new FormData(document.getElementById('updateBlogForm'));
+                        const form = document.getElementById('updateBlogForm');
+                        const formData = new FormData();
+                        const blog = blogsCache?.find(b => b.id == blogId);
+
+                        // Append basic fields
+                        formData.append('blog_name', form.querySelector('[name="blog_name"]').value);
+                        formData.append('slug', form.querySelector('[name="slug"]').value);
+                        formData.append('status', form.querySelector('[name="status"]').value);
+                        formData.append('main_category_id', form.querySelector('[name="main_category_id"]').value);
+                        formData.append('sub_category_id', form.querySelector('[name="sub_category_id"]').value || '');
+                        formData.append('topic_id', form.querySelector('[name="topic_id"]').value || '');
+                        formData.append('read_minutes', form.querySelector('[name="read_minutes"]').value || '');
+                        formData.append('posted_by', form.querySelector('[name="posted_by"]').value || '');
+
+                        // Handle main image
+                        const mainImage = form.querySelector('[name="main_image"]').files[0];
+                        if (mainImage) {
+                            formData.append('main_image', mainImage);
+                        } else if (blog && blog.main_image) {
+                            formData.append('existing_main_image', blog.main_image);
+                        }
+
+                        // Collect array data
+                        const blogTitles = Array.from(form.querySelectorAll('[name="blog_title[]"]')).map(input => input.value || '');
+                        const imageCaptions = Array.from(form.querySelectorAll('[name="image_captions[]"]')).map(input => input.value || '');
+                        const descriptions = updateQuillEditors.map(quill => quill.root.innerHTML || '');
+                        const additionalImages = form.querySelectorAll('[name="additional_images[]"]');
+
+                        // Handle existing and new additional images
+                        let existingAdditionalImages = blog && blog.additional_images ? blog.additional_images : [];
+                        additionalImages.forEach((input, index) => {
+                            if (input.files[0]) {
+                                formData.append('additional_images', input.files[0]);
+                                if (existingAdditionalImages[index]) {
+                                    existingAdditionalImages[index] = null; // Mark for replacement
+                                } else {
+                                    existingAdditionalImages.push(null); // New image
+                                }
+                            }
+                        });
+
+                        // Filter out null values and keep existing images that weren't replaced
+                        existingAdditionalImages = existingAdditionalImages.filter(img => img !== null);
+                        formData.append('existing_additional_images', JSON.stringify(existingAdditionalImages));
+
+                        // Ensure arrays have consistent lengths
+                        const maxLength = Math.max(blogTitles.length, imageCaptions.length, descriptions.length, existingAdditionalImages.length);
+                        while (blogTitles.length < maxLength) blogTitles.push('');
+                        while (imageCaptions.length < maxLength) imageCaptions.push('');
+                        while (descriptions.length < maxLength) descriptions.push('');
+
+                        // Stringify arrays before appending
+                        formData.append('blog_title', JSON.stringify(blogTitles));
+                        formData.append('image_captions', JSON.stringify(imageCaptions));
+                        formData.append('descriptions', JSON.stringify(descriptions));
+
+                        // Validation
+                        if (!formData.get('blog_name') || !formData.get('slug') || !formData.get('status') || !formData.get('main_category_id')) {
+                            showErrorMessage('Please fill all required fields');
+                            return;
+                        }
+
                         showLoader();
                         try {
-                            const response = await fetch(`${API_ADMINGRAB_URL}/api/blogs/${blogId}`, {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/blog/${blogId}`, {
                                 method: 'PUT',
-                                headers: { 'Authorization': token },
+                                headers: {
+                                    'Authorization': `${token}`
+                                },
                                 body: formData,
                             });
-                            const result = await response.json();
-                            if (!response.ok) throw new Error(result.message || 'Failed to update blog');
-                            const updateBlogModal = bootstrap.Modal.getInstance(document.getElementById('updateBlogModal'));
-                            updateBlogModal.hide();
+
+                            const responseText = await response.text();
+                            if (!response.ok) {
+                                try {
+                                    const errorData = JSON.parse(responseText);
+                                    throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+                                } catch (parseError) {
+                                    throw new Error(`Server error ${response.status}: ${responseText}`);
+                                }
+                            }
+
+                            const result = JSON.parse(responseText);
+                            bootstrap.Modal.getInstance(document.getElementById('updateBlogModal')).hide();
                             fetchBlogs();
-                            showSuccessMessage(result.message);
+                            showSuccessMessage('Blog updated successfully');
                         } catch (error) {
                             console.error('Error updating blog:', error);
-                            showErrorMessage(error.message);
+                            showErrorMessage(error.message || 'Failed to update blog');
                         } finally {
                             hideLoader();
                         }
@@ -1215,17 +1345,16 @@
                         const token = localStorage.getItem('token');
                         showLoader();
                         try {
-                            const response = await fetch(`${API_ADMINGRAB_URL}/api/blogs/${blogId}`, {
+                            const response = await fetch(`${API_ADMINGRAB_URL}/api/blog/${blogId}`, {
                                 method: 'DELETE',
-                                headers: { 'Authorization': token },
+                                headers: { 'Authorization': `${token}` },
                             });
-                            const result = await response.json();
-                            if (!response.ok) throw new Error(result.message || 'Failed to delete blog');
+                            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                             fetchBlogs();
-                            showSuccessMessage(result.message);
+                            showSuccessMessage('Blog deleted successfully');
                         } catch (error) {
                             console.error('Error deleting blog:', error);
-                            showErrorMessage(error.message);
+                            showErrorMessage('Failed to delete blog');
                         } finally {
                             hideLoader();
                         }
@@ -1246,7 +1375,7 @@
                             row.style.display = isMatch ? '' : 'none';
                             if (isMatch) visibleCount++;
                         });
-                        document.getElementById("totalBlogsCount").textContent = visibleCount;
+                        document.getElementById('totalBlogsCount').textContent = visibleCount;
                     });
 
                     function printOnlyTable() {
