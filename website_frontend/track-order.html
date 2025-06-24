@@ -926,31 +926,33 @@ ul {
             <label for="email" class="form-label text-dark">Enter Your Email</label>
             <input type="text" id="email" class="form-control" />
           </div>
-          <button type="submit" class="btn btn-success" style="background-color: #90C309;">Track Order</button>
+          <button type="submit" class="btn btn-success mt-10" style="background-color: #90C309;">Track Order</button>
         </form>
       </div>
 
       <!-- Order Details -->
-      <div class="col-md-7" id="orderDetailsContainer" style="display:none;">
-        <div class="card p-4 shadow-sm">
-          <h3 class="mb-3">Order Details</h3>
-          <p><strong>Order ID:</strong> <span id="detailOrderId"></span></p>
-          <p><strong>Status:</strong> <span id="detailOrderStatus"></span></p>
-          <p><strong>Date:</strong> <span id="detailOrderDate"></span></p>
+      <div class="col-md-7" id="orderDetailsContainer" style="display:none; ">
+  <div class="card p-20 mt-20 shadow-sm">
+     <h3 class="mb-3" style="font-family: 'Poppins', sans-serif; font-style: normal; font-weight: 600; color: rgb(10, 10, 10); font-size: 19px; line-height: 19px;">Order Details</h3>
+    <p style="font-size: 18px;"><strong>Order ID:</strong> <span id="detailOrderId"></span></p>
+    <p style="font-size: 18px;"><strong>Status:</strong> <span id="detailOrderStatus"></span></p>
+    <p style="font-size: 18px;"><strong>Date:</strong> <span id="detailOrderDate"></span></p>
 
-          <h4 class="mt-4">Products</h4>
-          <ul id="detailOrderProducts" class="list-unstyled"></ul>
-        </div>
-      </div>
-    </div>
+    <h4 class="mt-10" style="font-family: 'Poppins', sans-serif; font-style: normal; font-weight: 600; color: rgb(10, 10, 10); font-size: 19px;">Products</h4>
+    <ul id="detailOrderProducts" class="list-unstyled"></ul>
+  </div>
+</div>
+
+
 
     <!-- Order Progress (Bottom Full Width) -->
     <div class="row mt-5">
       <div class="col-12">
-        <div class="card p-4 shadow-sm" id="orderProgressCard" style="display:none;">
-          <h4>Order Progress</h4>
-<div id="status-tracker" class="d-flex justify-content-between align-items-center tracker-wrapper mt-3 position-relative"></div>
-        </div>
+      <div class="card p-10 shadow-sm" id="orderProgressCard" style="display:none; width: 102%;">
+    <h4>Order Progress</h4>
+    <div id="status-tracker" class="d-flex justify-content-between align-items-center tracker-wrapper mt-3 position-relative"></div>
+</div>
+
       </div>
     </div>
   </div>
@@ -988,7 +990,7 @@ ul {
 
   function displayOrderDetails(order) {
     document.getElementById('orderDetailsContainer').style.display = 'block';
-      document.getElementById('orderProgressCard').style.display = 'block'; 
+    document.getElementById('orderProgressCard').style.display = 'block'; 
     document.getElementById('detailOrderId').textContent = order.order_id || 'N/A';
     document.getElementById('detailOrderStatus').textContent = order.order_status || 'N/A';
     document.getElementById('detailOrderDate').textContent = order.created_at ? new Date(order.created_at).toLocaleString() : 'N/A';
@@ -996,18 +998,28 @@ ul {
     const productsList = document.getElementById('detailOrderProducts');
     productsList.innerHTML = '';
     try {
-      const products = JSON.parse(order.card_info || '[]');
-      products.forEach(p => {
-        const li = document.createElement('li');
-        li.textContent = `${p.name} - Qty: ${p.quantity} - Price: AED ${parseFloat(p.selling_price).toFixed(2)}`;
-        productsList.appendChild(li);
-      });
+        const products = JSON.parse(order.card_info || '[]');
+        products.forEach(p => {
+            const li = document.createElement('li');
+            li.textContent = `${p.name} - Qty: ${p.quantity} - Price: AED ${parseFloat(p.selling_price).toFixed(2)}`;
+
+            // Adding inline styles to the <li> element
+            li.style.fontFamily = 'Poppins, sans-serif';
+            li.style.fontWeight = '700';
+            li.style.fontSize = '14px';
+            li.style.color = 'rgb(0, 0, 0)';
+            li.style.lineHeight = '1px';
+            li.style.marginBottom = '10px'; // Optional: Adds space between list items
+
+            productsList.appendChild(li);
+        });
     } catch {
-      productsList.innerHTML = '<li>Error loading products.</li>';
+        productsList.innerHTML = '<li>Error loading products.</li>';
     }
 
     renderStatusGraph(order.order_status);
-  }
+}
+
 
  function renderStatusGraph(currentStatus) {
   // Define all possible status variations
