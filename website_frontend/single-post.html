@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VPerfume Blog</title>
+    <title>Graba2z Tech Blog</title>
     <style>
       * {
         margin: 0;
@@ -196,79 +196,51 @@
         display: block;
       }
 
-      .recent-posts h3 {
+      .recent-posts h3, .topics-section h3 {
         font-size: 16px;
         margin-bottom: 10px;
         border-bottom: 1px solid #eee;
         padding-bottom: 6px;
       }
 
-      .recent-posts ul {
+      .recent-posts ul, .topics-section ul {
         list-style: none;
         padding: 0;
         margin: 0;
       }
 
-      .recent-posts li {
+      .recent-posts li, .topics-section li {
         margin-bottom: 10px;
       }
 
-      .recent-posts a {
+      .recent-posts a, .topics-section a {
         text-decoration: none;
         color: #333;
         font-size: 14px;
         line-height: 1.4;
       }
 
-      .recent-posts a:hover {
+      .recent-posts a:hover, .topics-section a:hover {
         color: #e6a32e;
       }
 
-      /* Responsive */
-      @media (max-width: 500px) {
-        .sidebar {
-          padding: 12px;
-        }
-
-        .recent-posts h3 {
-          font-size: 15px;
-        }
-
-        .recent-posts a {
-          font-size: 13px;
-        }
-      }
-      .tabs {
-        display: flex;
-        border-bottom: 2px solid #e2e2e2;
-        cursor: pointer;
+      .author-box {
+        border: 1px solid #e0e0e0;
+        padding: 20px;
+        margin-bottom: 24px;
       }
 
-      .tab {
-        padding: 10px 20px;
-        border-bottom: 3px solid transparent;
-        font-weight: bold;
-        transition: 0.3s;
-      }
-
-      .tab.active {
-        border-bottom: 3px solid goldenrod;
-        color: goldenrod;
-      }
-
-      .tab-content {
-        display: none;
-        padding: 20px 0;
-      }
-
-      .tab-content.active {
-        display: block;
+      .author-box h3 {
+        font-size: 16px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 6px;
       }
 
       .author-profile {
         display: flex;
         align-items: flex-start;
-        gap: 35px;
+        gap: 15px;
       }
 
       .author-profile img {
@@ -278,6 +250,44 @@
         object-fit: cover;
       }
 
+      .author-info h4 {
+        margin-bottom: 5px;
+      }
+
+      .author-info p {
+        font-size: 14px;
+        line-height: 1.5;
+        color: #666;
+      }
+
+      .author-link {
+        color: #8224e3;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      /* Responsive */
+      @media (max-width: 500px) {
+        .sidebar {
+          padding: 12px;
+        }
+
+        .recent-posts h3, .topics-section h3 {
+          font-size: 15px;
+        }
+
+        .recent-posts a, .topics-section a {
+          font-size: 13px;
+        }
+
+        .author-profile {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+      }
       .nav-links {
         display: flex;
         justify-content: space-between;
@@ -303,7 +313,7 @@
         margin: auto;
       }
 
-      h3 {
+      .comment-section h3 {
         text-align: center;
         text-transform: uppercase;
         font-size: 16px;
@@ -435,6 +445,25 @@
           width: 100%;
         }
       }
+
+      /* Topics section styles */
+      .topics-section {
+        margin-bottom: 24px;
+      }
+
+      .topic-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+
+      .topic-item img {
+        width: 30px;
+        height: 30px;
+        object-fit: cover;
+        border-radius: 4px;
+      }
     </style>
   </head>
   <body>
@@ -445,54 +474,30 @@
             <img id="blog-main-image" src="" alt="feature-img" />
           </div>
           <div class="purple-text" style="padding-top: 15px">
-            <span id="blog-category">Perfumes & Fragrances</span>
+            <span id="blog-category">Tech & Laptops</span>
           </div>
           <h1 style="padding-top: 10px; color: #313131" id="blog-title">
             Loading...
           </h1>
           <div class="blog-detail" id="blog-meta">
-            <span>written by <strong class="hover-effect" id="blog-author">Hala Kaawach</strong></span>
+            <span>written by <strong class="hover-effect" id="blog-author">Graba2z Team</strong></span>
             <span class="separator">|</span>
-            <span id="blog-date">February 19, 2025</span>
+            <span id="blog-date">Loading date...</span>
             <span class="separator">|</span>
-            <span id="blog-views">24277 views</span>
+            <span id="blog-views">Loading views...</span>
             <span class="separator">|</span>
-            <span id="blog-read-time">8 minutes read</span>
+            <span id="blog-read-time">Loading read time...</span>
           </div>
 
           <div class="paragraph" id="blog-content">
             <!-- Blog content will be loaded here -->
           </div>
 
-          <!-- Author section - Updated with Graba2z info -->
-          <div class="tabs" style="padding-top: 40px;">
-            <div class="tab active" onclick="switchTab('profile')">About Graba2z</div>
-            <div class="tab" onclick="switchTab('posts')">Related Posts</div>
-          </div>
-        
-          <div id="profile" class="tab-content active">
-            <div class="author-profile">
-              <img src="https://graba2z.netlify.app/assets/images/logo/logo1.svg" alt="Graba2z Logo" style="width: 120px; height: auto;">
-              <div>
-                <h1>Graba2z</h1>
-                <p style="font-size: 18px; line-height: 34px; padding-top: 10px;">
-                  Graba2z is your one-stop destination for all your tech needs. From laptops to accessories, 
-                  we provide quality products at competitive prices. Our blog features expert insights, 
-                  product reviews, and the latest trends in technology and perfumes.
-                </p>
-                <div style="padding-top: 15px;">
-                  <a href="https://graba2z.netlify.app/" style="color: #8224e3; text-decoration: none; font-weight: bold;">Visit our store →</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        
-          <div id="posts" class="tab-content">
-            <div class="suggested-post">
-              <div class="section-title">You Might Be Interested In</div>
-              <div class="post-grid" id="related-posts">
-                <!-- Will be populated by JavaScript -->
-              </div>
+          <!-- Related posts section -->
+          <div class="suggested-post">
+            <div class="section-title">You Might Be Interested In</div>
+            <div class="post-grid" id="related-posts">
+              <!-- Will be populated by JavaScript -->
             </div>
           </div>
         
@@ -518,12 +523,38 @@
         <!-- Sidebar -->
         <div class="right-side">
           <div class="sidebar">
-            <div class="sale-box">
-              <div class="sale-title">PACK AND GO SALE</div>
-              <div class="sale-img">
-                <img src="images/side-bar.jpg" alt="Pack and Go Sale">
+            <!-- Author Box -->
+            <div class="author-box">
+              <h3>About The Author</h3>
+              <div class="author-profile">
+                <img src="https://graba2z.netlify.app/assets/images/logo/logo1.svg" alt="Graba2z Logo">
+                <div class="author-info">
+                  <h4>Graba2z</h4>
+                  <p>
+                    Graba2z is your one-stop destination for all your tech needs. From laptops to accessories, 
+                    we provide quality products at competitive prices. Our blog features expert insights, 
+                    product reviews, and the latest trends in technology.
+                  </p>
+                  <a href="https://graba2z.netlify.app/" class="author-link">Visit our store →</a>
+                </div>
               </div>
             </div>
+
+            <div class="sale-box">
+              <div class="sale-title">TECH DEALS</div>
+              <div class="sale-img">
+                <img src="https://graba2z.netlify.app/assets/images/logo/logo1.svg" alt="Tech Deals">
+              </div>
+            </div>
+
+            <!-- Topics Section -->
+            <div class="topics-section">
+              <h3>Blog Topics</h3>
+              <ul id="blog-topics">
+                <!-- Will be populated by JavaScript -->
+              </ul>
+            </div>
+
             <div class="recent-posts">
               <h3>Recent Posts</h3>
               <ul id="recent-posts-list">
@@ -539,25 +570,13 @@
       // Function to get the slug from the URL
       function getSlugFromURL() {
         const path = window.location.pathname.split('/');
-        return path[path.length - 1];
+        return path[path.length - 1].replace('.html', '');
       }
 
       // Function to format date
       function formatDate(dateString) {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(dateString).toLocaleDateString(undefined, options);
-      }
-
-      // Function to switch tabs
-      function switchTab(tabId) {
-        const tabs = document.querySelectorAll('.tab');
-        const contents = document.querySelectorAll('.tab-content');
-
-        tabs.forEach(tab => tab.classList.remove('active'));
-        contents.forEach(content => content.classList.remove('active'));
-
-        document.querySelector(`.tab[onclick*="${tabId}"]`).classList.add('active');
-        document.getElementById(tabId).classList.add('active');
       }
 
       // Function to load blog data from API
@@ -586,45 +605,60 @@
       // Function to display blog data
       function displayBlogData(blog) {
         // Set basic blog info
-        document.title = `${blog.blog_name} | VPerfume Blog`;
+        document.title = `${blog.blog_name} | Graba2z Tech Blog`;
         document.getElementById('blog-title').textContent = blog.blog_name;
-        document.getElementById('blog-category').textContent = blog.main_category_name || 'Perfumes & Fragrances';
+        document.getElementById('blog-category').textContent = blog.main_category_name || 'Tech & Laptops';
         document.getElementById('blog-date').textContent = formatDate(blog.created_at);
-        document.getElementById('blog-read-time').textContent = `${blog.read_minutes || 8} minutes read`;
+        document.getElementById('blog-read-time').textContent = `${blog.read_minutes || 8} minute read`;
+        document.getElementById('blog-views').textContent = `${Math.floor(Math.random() * 9000) + 1000} views`;
+        
+        // Set author if available
+        if (blog.author_name) {
+          document.getElementById('blog-author').textContent = blog.author_name;
+        }
 
         // Set main image
         const mainImage = document.getElementById('blog-main-image');
         if (blog.main_image) {
           mainImage.src = `https://grabatoz-production.up.railway.app/${blog.main_image}`;
           mainImage.alt = blog.blog_name;
+        } else {
+          mainImage.src = 'https://graba2z.netlify.app/assets/images/logo/logo1.svg';
         }
 
         // Set blog content
         const contentContainer = document.getElementById('blog-content');
-        if (blog.blog_title && blog.blog_title.descriptions && blog.blog_title.descriptions.length > 0) {
-          // Display the first description as main content
-          contentContainer.innerHTML = blog.blog_title.descriptions[0];
+        
+        // Check if blog_title exists and has content
+        if (blog.blog_title && blog.blog_title.blog_title && blog.blog_title.blog_title.length > 0) {
+          let contentHTML = '';
           
-          // Display additional sections if they exist
-          for (let i = 1; i < blog.blog_title.blog_title.length; i++) {
-            const sectionDiv = document.createElement('div');
-            sectionDiv.className = 'blog-section';
-            
-            sectionDiv.innerHTML = `
-              <h2 style="padding-top: 20px; color: #8224e3">
+          // Loop through all sections in the blog
+          for (let i = 0; i < blog.blog_title.blog_title.length; i++) {
+            // Add section title if it exists
+            if (blog.blog_title.blog_title[i]) {
+              contentHTML += `<h2 style="padding-top: ${i > 0 ? '30px' : '0'}; color: #8224e3">
                 <strong>${blog.blog_title.blog_title[i]}</strong>
-              </h2>
-              ${blog.blog_title.descriptions[i] ? 
-                `<div class="paragraph">${blog.blog_title.descriptions[i]}</div>` : ''}
-              ${blog.blog_title.additional_images[i] ? 
-                `<img src="https://grabatoz-production.up.railway.app/${blog.blog_title.additional_images[i]}" 
-                  alt="${blog.blog_title.image_captions[i] || ''}" style="width: 40%; height: 100%">` : ''}
-            `;
+              </h2>`;
+            }
             
-            contentContainer.appendChild(sectionDiv);
+            // Add description if it exists
+            if (blog.blog_title.descriptions && blog.blog_title.descriptions[i]) {
+              contentHTML += `<div class="paragraph">${blog.blog_title.descriptions[i]}</div>`;
+            }
+            
+            // Add image if it exists
+            if (blog.blog_title.additional_images && blog.blog_title.additional_images[i]) {
+              contentHTML += `<img src="https://grabatoz-production.up.railway.app/${blog.blog_title.additional_images[i]}" 
+                alt="${blog.blog_title.image_captions[i] || ''}" style="max-width: 100%; height: auto; margin: 20px 0;">`;
+            }
           }
+          
+          contentContainer.innerHTML = contentHTML;
         } else {
-          contentContainer.innerHTML = '<p>No content available for this blog post.</p>';
+          // Fallback if no structured content is available
+          contentContainer.innerHTML = blog.blog_description || 
+            '<p>No content available for this blog post.</p>';
         }
       }
 
@@ -655,10 +689,48 @@
 
         if (recentBlogs.length > 0) {
           recentPostsList.innerHTML = recentBlogs.map(blog => `
-            <li><a href="${blog.slug}">${blog.blog_name}</a></li>
+            <li><a href="${blog.slug}.html">${blog.blog_name}</a></li>
           `).join('');
         } else {
           recentPostsList.innerHTML = '<li>No recent posts available</li>';
+        }
+      }
+
+      // Function to load blog topics
+      async function loadBlogTopics() {
+        try {
+          const response = await fetch('https://grabatoz-production.up.railway.app/api/blog/topics');
+          if (!response.ok) {
+            throw new Error('Failed to fetch blog topics');
+          }
+
+          const topics = await response.json();
+          displayBlogTopics(topics);
+        } catch (error) {
+          console.error('Error loading blog topics:', error);
+          // Fallback to default topics if API fails
+          displayBlogTopics([
+            { id: 4, topic_name: "CPU World", slug: "cpu-world", image: "Uploads/1750251745243.png" },
+            { id: 1, topic_name: "MobileWorld", slug: "mobile-world", image: "Uploads/1750249376190.jpg" }
+          ]);
+        }
+      }
+
+      // Function to display blog topics in sidebar
+      function displayBlogTopics(topics) {
+        const topicsContainer = document.getElementById('blog-topics');
+        
+        if (topics.length > 0) {
+          topicsContainer.innerHTML = topics.map(topic => `
+            <li class="topic-item">
+              ${topic.image ? 
+                `<img src="https://grabatoz-production.up.railway.app/${topic.image}" alt="${topic.topic_name}">` : 
+                ''}
+              <a href="/topic/${topic.slug}">${topic.topic_name}</a>
+            </li>
+          `).join('');
+        } else {
+          topicsContainer.innerHTML = '<li>No topics available</li>';
         }
       }
 
@@ -697,9 +769,9 @@
             <div class="post-column">
               ${leftColumn.map(blog => `
                 <div class="post-item">
-                  <img src="${blog.main_image ? `https://grabatoz-production.up.railway.app/${blog.main_image}` : 'images/default-post.jpg'}" alt="${blog.blog_name}">
+                  <img src="${blog.main_image ? `https://grabatoz-production.up.railway.app/${blog.main_image}` : 'https://graba2z.netlify.app/assets/images/logo/logo1.svg'}" alt="${blog.blog_name}">
                   <div>
-                    <a href="${blog.slug}">${blog.blog_name}</a>
+                    <a href="${blog.slug}.html">${blog.blog_name}</a>
                     <div class="view-count">👁 ${Math.floor(Math.random() * 9000) + 1000} views</div>
                   </div>
                 </div>
@@ -708,9 +780,9 @@
             <div class="post-column">
               ${rightColumn.map(blog => `
                 <div class="post-item">
-                  <img src="${blog.main_image ? `https://grabatoz-production.up.railway.app/${blog.main_image}` : 'images/default-post.jpg'}" alt="${blog.blog_name}">
+                  <img src="${blog.main_image ? `https://grabatoz-production.up.railway.app/${blog.main_image}` : 'https://graba2z.netlify.app/assets/images/logo/logo1.svg'}" alt="${blog.blog_name}">
                   <div>
-                    <a href="${blog.slug}">${blog.blog_name}</a>
+                    <a href="${blog.slug}.html">${blog.blog_name}</a>
                     <div class="view-count">👁 ${Math.floor(Math.random() * 9000) + 1000} views</div>
                   </div>
                 </div>
@@ -726,6 +798,7 @@
       document.addEventListener('DOMContentLoaded', () => {
         loadBlogData();
         loadRecentPosts();
+        loadBlogTopics();
         loadRelatedPosts();
         
         // Handle comment form submission
