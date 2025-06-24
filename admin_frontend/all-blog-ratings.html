@@ -370,7 +370,7 @@
                     </a>
                     <ul class="sidebar-submenu" id="blogsMenuCustom">
                         <li><a class="nav-link" href="./blogs.html">Blogs</a></li>
-                        <li><a class="nav-link" href="./blog-categories.html">Blog Categories</a></li>
+                        <li><a class="nav-link" href="./all-blog-ratings.html">Blog Topic</a></li>
                         <li><a class="nav-link" href="./blog-topics.html">Blog Topics</a></li>
                     </ul>
                 </li>
@@ -387,9 +387,9 @@
                 <li class="nav-item"><a class="nav-link" href="theme.html"><i class="fas fa-paint-brush"></i> Theme</a></li>
                 <li class="nav-item"><a class="nav-link" href="sliders.html"><i class="fas fa-sliders-h"></i> Sliders</a></li>
                 <li class="nav-item"><a class="nav-link" href="currencies.html"><i class="fas fa-money-bill-wave"></i> Currencies</a></li>
-                <li class="nav-item"><a class="nav-link" href="product-categories.html"><i class="fas fa-tags"></i> Product Categories</a></li>
+                
                 <li class="nav-item"><a class="nav-link" href="product-attributes.html"><i class="fas fa-cube"></i> Product Attributes</a></li>
-                <li class="nav-item"><a class="nav-link" href="product-brands.html"><i class="fas fa-tag"></i> Product Brands</a></li>
+                
                 <li class="nav-item"><a class="nav-link" href="supplier.html"><i class="fas fa-industry"></i> Suppliers</a></li>
                 <li class="nav-item"><a class="nav-link" href="outlets.html"><i class="fas fa-store"></i> Outlets</a></li>
                 <li class="nav-item"><a class="nav-link" href="benefits.html"><i class="fas fa-gift"></i> Benefits</a></li>
@@ -1242,27 +1242,31 @@
                     });
                 </script>
                 <script>
-                    document.addEventListener("DOMContentLoaded", function () {
-                        const currentFile = window.location.pathname.split("/").pop();
+                  document.addEventListener("DOMContentLoaded", function () {
+  const currentFile = window.location.pathname.split("/").pop(); // Get the last part of the URL
 
-                        document.querySelectorAll(".nav-link").forEach(link => {
-                            const href = link.getAttribute("href");
-                            if (href && href.includes(currentFile)) {
-                                link.classList.add("active");
+  document.querySelectorAll(".nav-link").forEach(link => {
+    const href = link.getAttribute("href").split("/").pop(); // Get the last part of the href
 
-                                const parentCollapse = link.closest(".sidebar-submenu");
-                                if (parentCollapse) {
-                                    parentCollapse.classList.add("show");
-                                    const parentToggle = parentCollapse.previousElementSibling;
-                                    if (parentToggle && parentToggle.classList.contains("nav-link")) {
-                                        parentToggle.classList.add("active");
-                                    }
-                                }
-                            } else {
-                                link.classList.remove("active");
-                            }
-                        });
-                    });
+    if (href && href === currentFile) {
+      link.classList.add("active");
+
+      // Handle submenu
+      const sidebarSubmenu = link.closest(".sidebar-submenu");
+      if (sidebarSubmenu) {
+        sidebarSubmenu.classList.add("show");
+
+        // Rotate arrow icon of the parent toggle
+        const parentToggle = sidebarSubmenu.previousElementSibling;
+        if (parentToggle && parentToggle.querySelector('.arrow-icon')) {
+          parentToggle.querySelector('.arrow-icon').classList.add('rotate');
+        }
+      }
+    } else {
+      link.classList.remove("active");
+    }
+  });
+});
                 </script>
             </div>
         </div>

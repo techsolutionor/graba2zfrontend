@@ -1028,21 +1028,31 @@
        
       </script>
       <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const currentPath = window.location.pathname.split("/").pop();
-          const navLinks = document.querySelectorAll(".left-sidebar .nav-link");
-    
-          navLinks.forEach((link) => {
-            const href = link.getAttribute("href");
-            if (href && href.endsWith(".html") && href === currentPath) {
-              link.classList.add("active");
-              const parentCollapse = link.closest(".collapse");
-              if (parentCollapse) {
-                new bootstrap.Collapse(parentCollapse, { toggle: false }).show();
-              }
-            }
-          });
-        });
+       document.addEventListener("DOMContentLoaded", function () {
+  const currentFile = window.location.pathname.split("/").pop(); // Get the last part of the URL
+
+  document.querySelectorAll(".nav-link").forEach(link => {
+    const href = link.getAttribute("href").split("/").pop(); // Get the last part of the href
+
+    if (href && href === currentFile) {
+      link.classList.add("active");
+
+      // Handle submenu
+      const sidebarSubmenu = link.closest(".sidebar-submenu");
+      if (sidebarSubmenu) {
+        sidebarSubmenu.classList.add("show");
+
+        // Rotate arrow icon of the parent toggle
+        const parentToggle = sidebarSubmenu.previousElementSibling;
+        if (parentToggle && parentToggle.querySelector('.arrow-icon')) {
+          parentToggle.querySelector('.arrow-icon').classList.add('rotate');
+        }
+      }
+    } else {
+      link.classList.remove("active");
+    }
+  });
+});
       </script>
 
 
