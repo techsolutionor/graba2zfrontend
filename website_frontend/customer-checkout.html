@@ -1746,42 +1746,51 @@ function updateWishlistBadge() {
                 }
             }
         </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', async function () {
-            const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/product-categories';
+   <script>
+    document.addEventListener('DOMContentLoaded', async function () {
+        const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/product-categories';
 
-            try {
-                const res = await fetch(API_URL);
-                const data = await res.json();
+        try {
+            const res = await fetch(API_URL);
+            const data = await res.json();
 
-                const categories = data.categories || [];
+            const categories = data.categories || [];
 
-                // Filter only parent categories (parent_category is null)
-                const parentCategories = categories.filter(cat => cat.parent_category === null);
+            // Filter only parent categories (parent_category is null)
+            const parentCategories = categories.filter(cat => cat.parent_category === null);
 
-                const topList = document.getElementById('top-categories');
-                const moreList = document.getElementById('more-categories');
+            // Limit to 6 categories for top and more lists
+            const topCategories = parentCategories.slice(0, 6); // First 6 categories
+            const moreCategories = parentCategories.slice(6, 12); // Next 6 categories
 
-                parentCategories.forEach((cat, index) => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `<a href="/product-category/${slugify(cat.name)}">${cat.name}</a>`;
+            const topList = document.getElementById('top-categories');
+            const moreList = document.getElementById('more-categories');
 
-                    if (index < 6) {
-                        topList.appendChild(li);
-                    } else {
-                        moreList.appendChild(li);
-                    }
-                });
-            } catch (err) {
-                console.error('Failed to load categories:', err);
-            }
+            // Add top categories to the top list
+            topCategories.forEach(cat => {
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="/product-category/${slugify(cat.name)}">${cat.name}</a>`;
+                topList.appendChild(li);
+            });
 
-            // Helper to slugify category name
-            function slugify(text) {
-                return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
-            }
-        });
-    </script>
+            // Add more categories to the more list (only up to 6 items)
+            moreCategories.forEach(cat => {
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="/product-category/${slugify(cat.name)}">${cat.name}</a>`;
+                moreList.appendChild(li);
+            });
+
+        } catch (err) {
+            console.error('Failed to load categories:', err);
+        }
+
+        // Helper to slugify category name
+        function slugify(text) {
+            return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
+        }
+    });
+</script>
+
 
 </body>
 
