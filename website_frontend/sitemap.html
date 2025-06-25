@@ -889,8 +889,7 @@ ul {
             }
         });
 
-
-document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function() {
   console.log('Search functionality initializing...');
   
   const searchInput = document.getElementById('mobileSearchInput');
@@ -1009,7 +1008,96 @@ document.addEventListener('DOMContentLoaded', function() {
 
   console.log('Search functionality ready');
 });
-</script>
+    </script>  
+    <!-- ==================== Mobile Header ==================== -->
+    <div class="mobile-header">
+        <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰</button>
+        
+        <div class="mobile-logo">
+            <a href="index">
+                <img src="https://graba2z.netlify.app/assets/images/logo/logo1.svg" alt="Graba2z">
+            </a>
+        </div>
+        
+        <button class="mobile-search-btn" onclick="toggleMobileSearch()">
+            <i class="ph ph-magnifying-glass"></i>
+        </button>
+    </div>
+    
+   <div class="mobile-search-container" id="mobileSearchContainer">
+  <div class="mobile-search-form" id="mobileSearchForm">
+    <input type="text" 
+           class="mobile-search-input" 
+           placeholder="Search for products..." 
+           id="mobileSearchInput" 
+           autocomplete="off"
+           aria-label="Search products">
+    <div class="search-results-container" id="mobileSearchResultsContainer"></div>
+  </div>
+</div>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="mobile-sidebar-close" onclick="toggleMobileSidebar()">×</button>
+        <div class="mobile-sidebar-content">
+            <div class="sidebar-section">
+                <a href="account"><i class="ph ph-user me-10"></i>My Account</a>
+                <a href="register" id="mobile-auth-link">
+                    <i class="ph ph-sign-in me-10" id="mobile-auth-icon"></i>
+                    <span id="mobile-auth-text">Sign In</span>
+                </a>
+                <a href="track-order"><i class="ph ph-truck me-10"></i>Track Order</a>
+                <a href="help-center"><i class="ph ph-question me-10"></i>Help Center</a>
+            </div>
+            
+            <div class="sidebar-section">
+                <h5>Shop Categories</h5>
+                <a href="https://graba2z.netlify.app/product-category/all-in-one">All In One</a>
+                <a href="https://graba2z.netlify.app/product-category/apple-all-in-one">Apple All In One</a>
+                <a href="https://graba2z.netlify.app/product-category/hp-all-in-one">HP All In One</a>
+                <a href="https://graba2z.netlify.app/product-category/desktop">Desktops</a>
+                <a href="https://graba2z.netlify.app/product-category/lenovo-desktops">Lenovo Desktop</a>
+                <a href="https://graba2z.netlify.app/product-category/monitors">Monitors</a>
+                <a href="https://graba2z.netlify.app/product-category/msi-monitors">MSI Monitors</a>
+                <a href="https://graba2z.netlify.app/product-category/mobiles">Mobiles</a>
+                <a href="https://graba2z.netlify.app/product-category/apple">Apple Mobile</a>
+                <a href="https://graba2z.netlify.app/product-category/laptops">Laptops</a>
+                <a href="https://graba2z.netlify.app/product-category/asus-laptops">Asus Laptops</a>
+                <a href="https://graba2z.netlify.app/product-category/dell-laptops">Dell Laptops</a>
+                <a href="https://graba2z.netlify.app/product-category/pirnters-copier">Printers Copier</a>
+                <a href="https://graba2z.netlify.app/product-category/hp-printers-copier">Hp Printers Copier</a>
+                <a href="https://graba2z.netlify.app/product-category/routers">Routers</a>
+                <a href="https://graba2z.netlify.app/product-category/tp-link-routers">Tp Link Routers</a>
+                <a href="https://graba2z.netlify.app/product-category/projector">Projector</a>
+                <a href="https://graba2z.netlify.app/product-category/lg">LG Products</a>
+                <a href="https://graba2z.netlify.app/product-category/accessories">Accessories</a>
+                <a href="https://graba2z.netlify.app/product-category/rams">Rams</a>
+                <a href="https://graba2z.netlify.app/product-category/mouse">Mouse</a>
+                <a href="https://graba2z.netlify.app/product-category/networking">Networking</a>
+                <a href="https://graba2z.netlify.app/product-category/cables">Cables</a>
+                <a href="https://graba2z.netlify.app/product-category/usb-dongles">Usb Dongles</a>
+                <a href="https://graba2z.netlify.app/product-category/storage-devices">Storage Devices</a>
+                <a href="https://graba2z.netlify.app/product-category/bags">Bags</a>
+            </div>
+            
+            <div class="sidebar-section">
+                <h5>Company</h5>
+                <a href="./about-us">About Us</a>
+                <a href="./contact">Contact Us</a>
+            </div>
+            
+            <div class="sidebar-section">
+                <h5>Policies</h5>
+                <a href="./terms-conditions">Terms & Conditions</a>
+                <a href="./refund-and-return">Refund and Returns</a>
+                <a href="./cookies-policy">Cookies Policies</a>
+                <a href="./privacy-policy">Privacy Policies</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Overlay when sidebar is open -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleMobileSidebar()"></div>
 
 <!-- ======================= top Header Start ========================= -->
     <div class="header-top flex-between" style="background-color: #a3d02c;">
