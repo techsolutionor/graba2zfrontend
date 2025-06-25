@@ -1758,7 +1758,153 @@ function renderMainMenu(categoryMap, limitedCategories) {
                     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                     .join(' ');
             }
-            async function loadProductsByCategoryAndBrand() {
+            // Function to load products based on the selected category
+async function loadProductsByCategory(categoryName) {
+    const productGrid = document.getElementById('product-grid');
+    productGrid.innerHTML = '<p>Loading products...</p>';
+
+    try {
+        const response = await fetch(`https://websitegrabatoz-production.up.railway.app/api/products?category=${encodeURIComponent(categoryName)}`);
+        const data = await response.json();
+
+        // Display products
+        displayProducts(data.products, data.totalCount);
+    } catch (error) {
+        console.error('Error loading products for category:', error);
+        productGrid.innerHTML = '<p>Error loading products.</p>';
+    }
+}
+
+// Function to handle category click
+function handleCategoryClick(event) {
+    event.preventDefault(); // Prevent default link behavior
+    const category = event.target.dataset.name;
+
+    // Update the URL to reflect the selected category
+    const url = new URL(window.location.href);
+    url.searchParams.set('category', category);
+    history.pushState({}, '', url);
+
+    // Load products for the selected category
+    loadProductsByCategory(category);
+}
+
+// Function to load and display categories
+async function loadCategories() {
+    const response = await fetch('https://websitegrabatoz-production.up.railway.app/api/product-categories');
+    const { categories } = await response.json();
+
+    const container = document.getElementById('left-navigation');
+    container.innerHTML = '';
+
+    // Filter parent categories
+    const parents = categories.filter(c => c.parent_category === null);
+    const childrenMap = {};
+
+    categories.forEach(cat => {
+        if (cat.parent_category !== null) {
+            if (!childrenMap[cat.parent_category]) childrenMap[cat.parent_category] = [];
+            childrenMap[cat.parent_category].push(cat);
+        }
+    });
+
+    // Render each parent category and its children (brands)
+    parents.forEach(parent => {
+        const hasChildren = childrenMap[parent.id] && childrenMap[parent.id].length > 0;
+        const li = document.createElement('li');
+        li.classList.add('mb-3', 'py-5');
+
+        li.innerHTML = `
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="#" class="text-dark category-link" data-name="${parent.name}">${parent.name}</a>
+                ${hasChildren ? `<button class="btn-sm toggle-subcategory" data-id="${parent.id}" style="">+</button>` : ''}
+            </div>
+            ${hasChildren ? `<ul class="subcategory-list ms-3 mt-2 d-none" id="subcategory-${parent.id}"></ul>` : ''}
+        `;
+        container.appendChild(li);
+
+        if (hasChildren) {
+            const subList = li.querySelector(`#subcategory-${parent.id}`);
+            childrenMap[parent.id].forEach(child => {
+                const subLi = document.createElement('li');
+                subLi.innerHTML = `<a href="#" class="text-secondary subcategory-link" data-name="${child.name}">${child.name}</a>`;
+                subList.appendChild(subLi);
+            });
+        }
+
+        // Add click event for the parent category
+        const parentLink = li.querySelector('.category-link');
+        parentLink.addEventListener('click', handleCategoryClick);
+    });
+
+    // Toggle subcategory list (brands)
+    document.querySelectorAll('.toggle-subcategory').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = btn.dataset.id;
+            const list = document.getElementById(`subcategory-${id}`);
+            list.classList.toggle('d-none');
+            btn.textContent = list.classList.contains('d-none') ? '+' : '–';
+        });
+    });
+
+    // Add click event for subcategory (brand) links
+    document.querySelectorAll('.subcategory-link').forEach(link => {
+        link.addEventListener('click', handleCategoryClick); // Trigger the same function to load products for the subcategory
+    });
+}
+
+// Function to display products
+function displayProducts(products, totalCount) {
+    const container = document.getElementById('product-grid');
+    const productCountElement = document.getElementById('product-count');
+
+    // Clear product list
+    container.innerHTML = '';
+
+    // Show product count
+    const shownCount = products.length;
+    productCountElement.textContent = `Showing 1-${shownCount} of ${totalCount ?? shownCount} results`;
+
+    if (shownCount === 0) {
+        container.innerHTML = '<p>No products found.</p>';
+        return;
+    }
+
+    // Render each product
+    products.forEach(product => {
+        const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
+        const productCardHTML = `
+            <div class="product-card col-6 col-md-6 col-lg-4 col-xl-3">
+                <div class="card h-100 border border-gray-100 rounded-16 position-relative">
+                    <a href="/product/${product.slug}" class="product-card__thumb d-block position-relative">
+                        <img src="${API_ADMINGRAB_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
+                    </a>
+                    <div class="card-body">
+                        <div class="mb-2 d-flex justify-content-between">
+                            <span class="badge bg-success">In stock</span>
+                            <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
+                        </div>
+                        <h6 class="card-title" style="font-size: 14px; color:black;">${limitWords(product.name, 5)}</h6>
+                        <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
+                        <del class="text-muted">${product.selling_price} AED</del>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-block btn-primary fw-medium py-2" style="background-color: #90c309 !important">
+                            Add To Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.insertAdjacentHTML('beforeend', productCardHTML);
+    });
+}
+
+// Load categories and brands when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    loadCategories();
+});
+
                 const category = getCategoryFromPath();
 
                 try {
@@ -1780,70 +1926,7 @@ function renderMainMenu(categoryMap, limitedCategories) {
                     productGrid.innerHTML = '<p>Error loading products.</p>';
                 }
             }
-            // // Update your loadProductsByCategoryAndBrand function:
-            // async function loadProductsByCategoryAndBrand() {
-            //     const category = getCategoryFromURL();
-            //     const brand = null; // or get from URL if needed
-
-            //     try {
-            //         const productGrid = document.getElementById('product-grid');
-            //         productGrid.innerHTML = '<p>Loading products...</p>';
-
-            //         let apiUrl = `${API_CUSTOMER_URL}/api/products?`;
-            //         if (category) apiUrl += `category=${encodeURIComponent(category)}&`;
-            //         if (brand) apiUrl += `brand=${encodeURIComponent(brand)}&`;
-
-            //         const response = await fetch(apiUrl);
-            //                 if (!response.ok) throw new Error('Failed to fetch products');
-            //                 const data = await response.json();
-            //                 const { products, totalCount } = data;
-            //                 document.getElementById('product-count').textContent = `Showing 1-${products.length} of ${totalCount} results`;
-            //                 productGrid.innerHTML = '';
-            //                 products.forEach((product) => {
-            //                     const sanitizedImagePath = product.image_path.replace(/\\/g, '/');
-            //                     // Create product card container div
-            //                     const productCard = document.createElement('div');
-            //                     productCard.className = "product-card col-6 col-md-6 col-lg-4 col-xl-3";
-            //                     // Set inner HTML (no inline onclick)
-            //                     productCard.innerHTML = `
-            //         <div class="card h-100 border border-gray-100 rounded-16 position-relative w-200 h-400" style="min-width: 200px !important;">
-            //             <a href="/product/${product.slug}" class="product-card__thumb d-block position-relative">
-            //                 <img src="${API_ADMINGRAB_URL}/${sanitizedImagePath}" alt="${product.name}" class="img-fluid rounded-8">
-            //             </a>
-            //             <div class="card-body">
-            //                 <div class="mb-2 d-flex justify-content-between">
-            //                     <span class="badge bg-success">In stock</span>
-            //                     <span class="badge bg-warning text-dark">${product.discount || 0}% Off</span>
-            //                 </div>
-            //                 <h6 class="card-title" style="font-size: 14px; color:black;">${limitWords(product.name, 5)}</h6>
-            //                 <h6 class="card-price text-danger fw-bold mb-0">${product.offer_price} AED</h6>
-            //                 <del class="text-muted">${product.selling_price} AED</del>
-            //             </div>
-            //             <div class="card-body">
-            //                 <button class="btn btn-block btn-primary btn-outline-primary fw-medium py-2" style="background-color: #90c309 !important">
-            //                     Add To Cart
-            //                 </button>
-            //             </div>
-            //         </div>
-            //     `;
-            //                     // Attach event listener to Add To Cart button
-            //                     const addToCartBtn = productCard.querySelector('button');
-            //                     addToCartBtn.addEventListener('click', () => {
-            //                         handleAddToCart({
-            //                             id: product.id,
-            //                             name: product.name,
-            //                             selling_price: product.selling_price,
-            //                             image_path: sanitizedImagePath,
-            //                         });
-            //                     });
-
-            //                     productGrid.appendChild(productCard);
-            //                 });
-            //             } catch (error) {
-            //                 console.error('❌ Error fetching products:', error);
-            //                 document.getElementById('product-grid').innerHTML = '<p>Error loading products.</p>';
-            //             }
-            //         }
+          
 
             async function fetchFilteredProducts(searchQuery) {
                 try {
