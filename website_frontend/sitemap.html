@@ -736,19 +736,20 @@ ul {
 /* Search results styling */
 .search-results-container {
     position: absolute;
-    top: 100%; /* Position just below the search input */
+    top: 100%;
     left: 0;
     width: 100%;
     max-height: 400px;
     overflow-y: auto;
-    background: white;
+    background: white; /* Add this */
     border: 1px solid #ddd;
     border-top: none;
     border-radius: 0 0 8px 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    display: none; /* Hidden by default */
+    display: none;
 }
+
 
 .search-result-item {
     padding: 10px;
@@ -943,12 +944,13 @@ const fetchProducts = async (query) => {
 
   // Display search results
  const displayResults = (products) => {
+    console.log('Products:', products); // Log to see if the products are being processed correctly
     const resultsContainer = document.getElementById('mobileSearchResultsContainer');
     resultsContainer.innerHTML = ''; // Clear previous results
 
     if (products.length === 0) {
         resultsContainer.innerHTML = '<div class="search-no-results">No products found</div>';
-        resultsContainer.style.display = 'block'; // Make the container visible
+        resultsContainer.style.display = 'block';
         return;
     }
 
@@ -976,17 +978,19 @@ const fetchProducts = async (query) => {
         resultsContainer.appendChild(item);
     });
 
-    resultsContainer.style.display = 'block'; // Make the container visible
+    resultsContainer.style.display = 'block';
 };
 
 
+
   // Handle search input
-  const handleSearch = debounce(async (e) => {
+ const handleSearch = debounce(async (e) => {
     const query = e.target.value.trim();
-    console.log('Searching for:', query); // Log the search query
+    console.log('Searching for:', query); // Check if the query is correct
     const products = await fetchProducts(query);
     displayResults(products);
 }, 300);
+
 
 searchInput.addEventListener('input', handleSearch); // Attach the event listener
 
