@@ -889,50 +889,85 @@ ul {
             }
         });
 
-   // Search functionality
-document.addEventListener('DOMContentLoaded', function() {
+   document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM fully loaded');
+  
   const searchInput = document.getElementById('mobileSearchInput');
   const resultsContainer = document.getElementById('mobileSearchResultsContainer');
   
-  // Remove the submit button if it exists
-  const submitButton = document.querySelector('.mobile-search-submit');
-  if (submitButton) {
-    submitButton.remove();
+  if (!searchInput || !resultsContainer) {
+    console.error('Essential elements not found!', { searchInput, resultsContainer });
+    return;
   }
 
-  // Debounce function to limit API calls
+  // Debug: Log when search input is focused
+  searchInput.addEventListener('focus', () => {
+    console.log('Search input focused');
+  });
+
+  // Debug: Log all input events
+  searchInput.addEventListener('input', (e) => {
+    console.log('Input event:', e.target.value);
+  });
+
+  // Enhanced debounce function with logging
   const debounce = (func, delay) => {
     let timeoutId;
     return function(...args) {
+      console.log('Debounce triggered');
       clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => func.apply(this, args), delay);
+      timeoutId = setTimeout(() => {
+        console.log('Debounce executing');
+        func.apply(this, args);
+      }, delay);
     };
   };
 
-  // Fetch products from API
+  // Fetch products with detailed logging
   const fetchProducts = async (query) => {
+    console.log('[fetchProducts] Query:', query);
+    
     if (query.length < 2) {
+      console.log('[fetchProducts] Query too short');
       resultsContainer.innerHTML = '';
       resultsContainer.style.display = 'none';
       return [];
     }
     
     try {
-      const response = await fetch(`https://websitegrabatoz-production.up.railway.app/api/products?search=${encodeURIComponent(query)}`);
-      if (!response.ok) throw new Error('Network response was not ok');
+      const url = `https://websitegrabatoz-production.up.railway.app/api/products?search=${encodeURIComponent(query)}`;
+      console.log('[fetchProducts] Fetching from:', url);
+      
+      const response = await fetch(url);
+      console.log('[fetchProducts] Response status:', response.status);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const data = await response.json();
+      console.log('[fetchProducts] Response data:', data);
+      
       return data.products || [];
     } catch (error) {
-      console.error('Error fetching products:', error);
+      console.error('[fetchProducts] Error:', error);
+      
+      // Show error to user
+      resultsContainer.innerHTML = '<div class="search-no-results">Error loading results. Please try again.</div>';
+      resultsContainer.style.display = 'block';
+      
       return [];
     }
   };
 
-  // Display search results
+  // Display results with logging
   const displayResults = (products) => {
+    console.log('[displayResults] Products:', products);
+    
     resultsContainer.innerHTML = '';
     
-    if (products.length === 0) {
+    if (!products || products.length === 0) {
+      console.log('[displayResults] No products to display');
       resultsContainer.innerHTML = '<div class="search-no-results">No products found</div>';
       resultsContainer.style.display = 'block';
       return;
@@ -963,11 +998,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     resultsContainer.style.display = 'block';
+    console.log('[displayResults] Results displayed');
   };
 
-  // Handle input events with debouncing
+  // Handle search with debouncing
   const handleSearch = debounce(async (e) => {
     const query = e.target.value.trim();
+    console.log('[handleSearch] Processing query:', query);
+    
     const products = await fetchProducts(query);
     displayResults(products);
   }, 300);
@@ -975,15 +1013,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // Event listeners
   searchInput.addEventListener('input', handleSearch);
   
-  searchInput.addEventListener('focus', () => {
-    if (searchInput.value.trim().length >= 2 && resultsContainer.children.length > 0) {
-      resultsContainer.style.display = 'block';
-    }
-  });
-
   // Close results when clicking outside
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.mobile-search-form') && e.target !== searchInput) {
+      console.log('Click outside - hiding results');
       resultsContainer.style.display = 'none';
     }
   });
@@ -991,9 +1024,12 @@ document.addEventListener('DOMContentLoaded', function() {
   // Close on escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
+      console.log('Escape pressed - hiding results');
       resultsContainer.style.display = 'none';
     }
   });
+
+  console.log('Search functionality initialized');
 });
     </script>  
     <!-- ==================== Mobile Header ==================== -->
