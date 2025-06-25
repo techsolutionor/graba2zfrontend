@@ -889,85 +889,60 @@ ul {
             }
         });
 
-   document.addEventListener('DOMContentLoaded', function() {
-  console.log('DOM fully loaded');
+  document.addEventListener('DOMContentLoaded', function() {
+  console.log('Search functionality initializing...');
   
   const searchInput = document.getElementById('mobileSearchInput');
   const resultsContainer = document.getElementById('mobileSearchResultsContainer');
   
   if (!searchInput || !resultsContainer) {
-    console.error('Essential elements not found!', { searchInput, resultsContainer });
+    console.error('Critical elements not found');
     return;
   }
 
-  // Debug: Log when search input is focused
-  searchInput.addEventListener('focus', () => {
-    console.log('Search input focused');
-  });
-
-  // Debug: Log all input events
-  searchInput.addEventListener('input', (e) => {
-    console.log('Input event:', e.target.value);
-  });
-
-  // Enhanced debounce function with logging
+  // Enhanced debounce function
   const debounce = (func, delay) => {
     let timeoutId;
     return function(...args) {
-      console.log('Debounce triggered');
       clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        console.log('Debounce executing');
-        func.apply(this, args);
-      }, delay);
+      timeoutId = setTimeout(() => func.apply(this, args), delay);
     };
   };
 
-  // Fetch products with detailed logging
+  // Process API response data
+  const processProducts = (products) => {
+    return products.map(product => ({
+      name: product.name,
+      slug: product.slug,
+      price: product.selling_price,
+      discounted_price: product.offer_price !== product.selling_price ? product.offer_price : null,
+      image_url: product.image_path ? `https://websitegrabatoz-production.up.railway.app/${product.image_path}` : 'https://via.placeholder.com/80'
+    }));
+  };
+
+  // Fetch products from API
   const fetchProducts = async (query) => {
-    console.log('[fetchProducts] Query:', query);
-    
     if (query.length < 2) {
-      console.log('[fetchProducts] Query too short');
-      resultsContainer.innerHTML = '';
       resultsContainer.style.display = 'none';
       return [];
     }
     
     try {
-      const url = `https://websitegrabatoz-production.up.railway.app/api/products?search=${encodeURIComponent(query)}`;
-      console.log('[fetchProducts] Fetching from:', url);
-      
-      const response = await fetch(url);
-      console.log('[fetchProducts] Response status:', response.status);
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
+      const response = await fetch(`https://websitegrabatoz-production.up.railway.app/api/products?search=${encodeURIComponent(query)}`);
+      if (!response.ok) throw new Error('Network response was not ok');
       const data = await response.json();
-      console.log('[fetchProducts] Response data:', data);
-      
-      return data.products || [];
+      return processProducts(data.products || []);
     } catch (error) {
-      console.error('[fetchProducts] Error:', error);
-      
-      // Show error to user
-      resultsContainer.innerHTML = '<div class="search-no-results">Error loading results. Please try again.</div>';
-      resultsContainer.style.display = 'block';
-      
+      console.error('Error fetching products:', error);
       return [];
     }
   };
 
-  // Display results with logging
+  // Display search results
   const displayResults = (products) => {
-    console.log('[displayResults] Products:', products);
-    
     resultsContainer.innerHTML = '';
     
-    if (!products || products.length === 0) {
-      console.log('[displayResults] No products to display');
+    if (products.length === 0) {
       resultsContainer.innerHTML = '<div class="search-no-results">No products found</div>';
       resultsContainer.style.display = 'block';
       return;
@@ -979,7 +954,7 @@ ul {
       item.innerHTML = `
         <a href="/product/${product.slug}" class="search-result-link">
           <div class="search-result-image">
-            <img src="${product.image_url || 'https://via.placeholder.com/80'}" alt="${product.name}">
+            <img src="${product.image_url}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/80'">
           </div>
           <div class="search-result-details">
             <h4 class="search-result-title">${product.name}</h4>
@@ -998,14 +973,12 @@ ul {
     });
     
     resultsContainer.style.display = 'block';
-    console.log('[displayResults] Results displayed');
   };
 
-  // Handle search with debouncing
+  // Handle search input
   const handleSearch = debounce(async (e) => {
     const query = e.target.value.trim();
-    console.log('[handleSearch] Processing query:', query);
-    
+    console.log('Searching for:', query);
     const products = await fetchProducts(query);
     displayResults(products);
   }, 300);
@@ -1013,10 +986,15 @@ ul {
   // Event listeners
   searchInput.addEventListener('input', handleSearch);
   
+  searchInput.addEventListener('focus', () => {
+    if (searchInput.value.trim().length >= 2 && resultsContainer.children.length > 0) {
+      resultsContainer.style.display = 'block';
+    }
+  });
+
   // Close results when clicking outside
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.mobile-search-form') && e.target !== searchInput) {
-      console.log('Click outside - hiding results');
       resultsContainer.style.display = 'none';
     }
   });
@@ -1024,12 +1002,11 @@ ul {
   // Close on escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      console.log('Escape pressed - hiding results');
       resultsContainer.style.display = 'none';
     }
   });
 
-  console.log('Search functionality initialized');
+  console.log('Search functionality ready');
 });
     </script>  
     <!-- ==================== Mobile Header ==================== -->
@@ -1047,7 +1024,7 @@ ul {
         </button>
     </div>
     
-    <div class="mobile-search-container" id="mobileSearchContainer">
+   <div class="mobile-search-container" id="mobileSearchContainer">
   <div class="mobile-search-form" id="mobileSearchForm">
     <input type="text" 
            class="mobile-search-input" 
@@ -1057,7 +1034,7 @@ ul {
            aria-label="Search products">
     <div class="search-results-container" id="mobileSearchResultsContainer"></div>
   </div>
-</div> 
+</div>
 
     <!-- Mobile Sidebar -->
     <div class="mobile-sidebar" id="mobileSidebar">
