@@ -538,8 +538,518 @@ ul {
         font-weight: bold;
         white-space: nowrap;
     }
+         /* ==================== Mobile Header Styles ==================== */
+        @media (max-width: 1024px) {
+            /* Hide desktop header elements on mobile */
+            .header-top, .header-middle {
+                display: none !important;
+            }
+            
+            /* Mobile header container */
+            .mobile-header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background: white;
+                z-index: 1000;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                padding: 10px 15px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            /* Mobile logo - centered */
+            .mobile-logo {
+                flex-grow: 1;
+                text-align: center;
+            }
+            
+            .mobile-logo img {
+                height: 40px;
+                width: auto;
+            }
+            
+            /* Mobile header icons */
+            .mobile-header-icons {
+                display: flex;
+                gap: 15px;
+                align-items: center;
+            }
+            
+            .mobile-header-icon {
+                font-size: 20px;
+                color: #333;
+                position: relative;
+            }
+            
+            /* Badge styles */
+            .mobile-badge {
+                position: absolute;
+                top: -8px;
+                right: -8px;
+                background: #a3d02c;
+                color: white;
+                border-radius: 50%;
+                width: 18px;
+                height: 18px;
+                font-size: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            /* Mobile menu button */
+            .mobile-menu-btn {
+                font-size: 24px;
+                background: none;
+                border: none;
+                color: #333;
+            }
+            
+            /* Mobile search bar */
+            .mobile-search-container {
+                display: none;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 10px;
+                z-index: 999;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            
+            .mobile-search-form {
+                display: flex;
+                width: 100%;
+                position: relative;
+            }
+            
+            .mobile-search-input {
+                flex: 1;
+                padding: 8px 15px;
+                border: 1px solid #ddd;
+                border-radius: 20px;
+                font-size: 14px;
+            }
+            
+            .mobile-search-submit {
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: none;
+                border: none;
+                color: #a3d02c;
+            }
+            
+            /* Mobile sidebar */
+            .mobile-sidebar {
+                height: 100%;
+                width: 0;
+                position: fixed;
+                top: 0;
+                right: 0;
+                background-color: white;
+                overflow-x: hidden;
+                transition: 0.3s;
+                z-index: 1001;
+                padding-top: 20px;
+            }
+            
+            .mobile-sidebar.open {
+                width: 280px;
+            }
+            
+            .mobile-sidebar-close {
+                position: absolute;
+                top: 10px;
+                right: 20px;
+                font-size: 24px;
+                color: #333;
+                background: none;
+                border: none;
+            }
+            
+            .mobile-sidebar-content {
+                padding: 20px;
+            }
+            
+            .mobile-sidebar a {
+                display: block;
+                padding: 10px 0;
+                color: #333;
+                text-decoration: none;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .mobile-sidebar a:hover {
+                color: #a3d02c;
+            }
+            
+            /* Overlay when sidebar is open */
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 1000;
+            }
+        }
+        
+        /* ==================== Desktop Styles ==================== */
+        @media (min-width: 1025px) {
+            .mobile-header,
+            .mobile-search-container,
+            .mobile-sidebar,
+            .sidebar-overlay {
+                display: none !important;
+            }
+        }
+         @media (max-width: 1024px) {
+        /* Add padding to body to account for fixed header */
+        body {
+            padding-top: 60px; /* Should match your mobile header height */
+        }
+        
+        /* Ensure mobile header has a fixed height */
+        .mobile-header {
+            height: 60px;
+        }
+        
+        /* Make sure sidebar appears above content */
+        .mobile-sidebar {
+            z-index: 1001;
+        }
+        
+        /* Make sure overlay appears above content but below sidebar */
+        .sidebar-overlay {
+            z-index: 1000;
+        }
+    }
+    /* Search results styling */
+.search-results-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+  display: none;
+}
 
-    </style>    
+.search-result-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+}
+
+.search-result-image {
+  width: 60px;
+  height: 60px;
+  margin-right: 15px;
+}
+
+.search-result-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.search-result-title {
+  font-size: 14px;
+  margin: 0 0 5px 0;
+  font-weight: 500;
+}
+
+.search-result-price {
+  font-size: 14px;
+}
+
+.current-price {
+  color: #a3d02c;
+  font-weight: bold;
+}
+
+.original-price {
+  color: #999;
+  text-decoration: line-through;
+  margin-left: 8px;
+}
+
+.search-no-results {
+  padding: 15px;
+  text-align: center;
+  color: #666;
+}
+
+    </style>  
+     <script>
+      // ==================== Mobile Header Functions ====================
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('mobileSidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            
+            sidebar.classList.toggle('open');
+            overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
+            
+            // Prevent scrolling when sidebar is open
+            document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+        }
+        
+        function toggleMobileSearch() {
+            const searchContainer = document.getElementById('mobileSearchContainer');
+            searchContainer.style.display = searchContainer.style.display === 'block' ? 'none' : 'block';
+            
+            // Focus on input when shown
+            if (searchContainer.style.display === 'block') {
+                document.getElementById('mobileSearchInput').focus();
+            }
+        }
+        
+        // Close search when clicking outside
+        document.addEventListener('click', function(event) {
+            const searchContainer = document.getElementById('mobileSearchContainer');
+            const searchForm = document.getElementById('mobileSearchForm');
+            const searchBtn = document.querySelector('.mobile-search-btn');
+            
+            if (searchContainer.style.display === 'block' && 
+                !searchForm.contains(event.target) && 
+                event.target !== searchBtn) {
+                searchContainer.style.display = 'none';
+            }
+        });
+        
+        // Handle search form submission
+        document.getElementById('mobileSearchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const query = document.getElementById('mobileSearchInput').value.trim();
+            if (query) {
+                window.location.href = `/search?q=${encodeURIComponent(query)}`;
+            }
+        });
+        
+        // Check auth status and update mobile auth link
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = false; // Replace with your actual auth check
+            const mobileAuthLink = document.getElementById('mobile-auth-link');
+            const mobileAuthIcon = document.getElementById('mobile-auth-icon');
+            const mobileAuthText = document.getElementById('mobile-auth-text');
+            
+            if (isLoggedIn) {
+                mobileAuthLink.href = "account";
+                mobileAuthIcon.className = "ph ph-sign-out me-10";
+                mobileAuthText.textContent = "Sign Out";
+            }
+        });
+
+        // Search functionality
+// Search functionality
+const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/products';
+
+// Debounce function to limit API calls while typing
+function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
+
+// Search products function
+async function searchProducts(query) {
+  try {
+    const response = await fetch(`${API_URL}?search=${encodeURIComponent(query)}`);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error searching products:', error);
+    return { products: [] };
+  }
+}
+
+// Display search results
+function displaySearchResults(results, container) {
+  container.innerHTML = '';
+  
+  if (!results.products || results.products.length === 0) {
+    container.innerHTML = '<div class="search-no-results">No products found</div>';
+    return;
+  }
+
+  results.products.forEach(product => {
+    const productElement = document.createElement('div');
+    productElement.className = 'search-result-item';
+    productElement.innerHTML = `
+      <a href="/product/${product.slug}" class="search-result-link">
+        <div class="search-result-image">
+          <img src="${product.image_url || 'https://via.placeholder.com/80'}" alt="${product.name}">
+        </div>
+        <div class="search-result-details">
+          <h4 class="search-result-title">${product.name}</h4>
+          <div class="search-result-price">
+            ${product.discounted_price ? `
+              <span class="current-price">${product.discounted_price} AED</span>
+              <span class="original-price">${product.price} AED</span>
+            ` : `
+              <span class="current-price">${product.price} AED</span>
+            `}
+          </div>
+        </div>
+      </a>
+    `;
+    container.appendChild(productElement);
+  });
+}
+
+// Initialize search functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileSearchInput = document.getElementById('mobileSearchInput');
+  const mobileResultsContainer = document.getElementById('mobileSearchResultsContainer');
+
+  // Function to handle search
+  const handleSearch = debounce(async function(event) {
+    const query = event.target.value.trim();
+    
+    // Only search if query has at least 2 characters
+    if (query.length >= 2) {
+      const results = await searchProducts(query);
+      displaySearchResults(results, mobileResultsContainer);
+      mobileResultsContainer.style.display = 'block';
+    } else {
+      mobileResultsContainer.style.display = 'none';
+    }
+  }, 300);
+
+  // Add event listeners to mobile search input
+  if (mobileSearchInput) {
+    mobileSearchInput.addEventListener('input', handleSearch);
+    mobileSearchInput.addEventListener('focus', function() {
+      if (this.value.length >= 2 && mobileResultsContainer.innerHTML) {
+        mobileResultsContainer.style.display = 'block';
+      }
+    });
+  }
+
+  // Hide results when clicking outside
+  document.addEventListener('click', function(event) {
+    if (!event.target.closest('.mobile-search-form') && 
+        !event.target.closest('.search-results-container')) {
+      mobileResultsContainer.style.display = 'none';
+    }
+  });
+});
+    </script>  
+    <!-- ==================== Mobile Header ==================== -->
+    <div class="mobile-header">
+        <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰</button>
+        
+        <div class="mobile-logo">
+            <a href="index">
+                <img src="https://graba2z.netlify.app/assets/images/logo/logo1.svg" alt="Graba2z">
+            </a>
+        </div>
+        
+        <button class="mobile-search-btn" onclick="toggleMobileSearch()">
+            <i class="ph ph-magnifying-glass"></i>
+        </button>
+    </div>
+    
+    <div class="mobile-search-container" id="mobileSearchContainer">
+  <form class="mobile-search-form" id="mobileSearchForm">
+    <input type="text" class="mobile-search-input" placeholder="Search for products..." id="mobileSearchInput" autocomplete="off">
+    <button type="submit" class="mobile-search-submit">
+      <i class="ph ph-magnifying-glass"></i>
+    </button>
+  </form>
+  <div class="search-results-container" id="mobileSearchResultsContainer"></div>
+</div>
+    
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <button class="mobile-sidebar-close" onclick="toggleMobileSidebar()">×</button>
+        <div class="mobile-sidebar-content">
+            <div class="sidebar-section">
+                <a href="account"><i class="ph ph-user me-10"></i>My Account</a>
+                <a href="register" id="mobile-auth-link">
+                    <i class="ph ph-sign-in me-10" id="mobile-auth-icon"></i>
+                    <span id="mobile-auth-text">Sign In</span>
+                </a>
+                <a href="track-order"><i class="ph ph-truck me-10"></i>Track Order</a>
+                <a href="help-center"><i class="ph ph-question me-10"></i>Help Center</a>
+            </div>
+            
+            <div class="sidebar-section">
+                <h5>Shop Categories</h5>
+                <a href="https://graba2z.netlify.app/product-category/all-in-one">All In One</a>
+                <a href="https://graba2z.netlify.app/product-category/apple-all-in-one">Apple All In One</a>
+                <a href="https://graba2z.netlify.app/product-category/hp-all-in-one">HP All In One</a>
+                <a href="https://graba2z.netlify.app/product-category/desktop">Desktops</a>
+                <a href="https://graba2z.netlify.app/product-category/lenovo-desktops">Lenovo Desktop</a>
+                <a href="https://graba2z.netlify.app/product-category/monitors">Monitors</a>
+                <a href="https://graba2z.netlify.app/product-category/msi-monitors">MSI Monitors</a>
+                <a href="https://graba2z.netlify.app/product-category/mobiles">Mobiles</a>
+                <a href="https://graba2z.netlify.app/product-category/apple">Apple Mobile</a>
+                <a href="https://graba2z.netlify.app/product-category/laptops">Laptops</a>
+                <a href="https://graba2z.netlify.app/product-category/asus-laptops">Asus Laptops</a>
+                <a href="https://graba2z.netlify.app/product-category/dell-laptops">Dell Laptops</a>
+                <a href="https://graba2z.netlify.app/product-category/pirnters-copier">Printers Copier</a>
+                <a href="https://graba2z.netlify.app/product-category/hp-printers-copier">Hp Printers Copier</a>
+                <a href="https://graba2z.netlify.app/product-category/routers">Routers</a>
+                <a href="https://graba2z.netlify.app/product-category/tp-link-routers">Tp Link Routers</a>
+                <a href="https://graba2z.netlify.app/product-category/projector">Projector</a>
+                <a href="https://graba2z.netlify.app/product-category/lg">LG Products</a>
+                <a href="https://graba2z.netlify.app/product-category/accessories">Accessories</a>
+                <a href="https://graba2z.netlify.app/product-category/rams">Rams</a>
+                <a href="https://graba2z.netlify.app/product-category/mouse">Mouse</a>
+                <a href="https://graba2z.netlify.app/product-category/networking">Networking</a>
+                <a href="https://graba2z.netlify.app/product-category/cables">Cables</a>
+                <a href="https://graba2z.netlify.app/product-category/usb-dongles">Usb Dongles</a>
+                <a href="https://graba2z.netlify.app/product-category/storage-devices">Storage Devices</a>
+                <a href="https://graba2z.netlify.app/product-category/bags">Bags</a>
+            </div>
+            
+            <div class="sidebar-section">
+                <h5>Company</h5>
+                <a href="./about-us">About Us</a>
+                <a href="./contact">Contact Us</a>
+            </div>
+            
+            <div class="sidebar-section">
+                <h5>Policies</h5>
+                <a href="./terms-conditions">Terms & Conditions</a>
+                <a href="./refund-and-return">Refund and Returns</a>
+                <a href="./cookies-policy">Cookies Policies</a>
+                <a href="./privacy-policy">Privacy Policies</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Overlay when sidebar is open -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleMobileSidebar()"></div>
+
 <!-- ======================= top Header Start ========================= -->
     <div class="header-top flex-between" style="background-color: #a3d02c;">
         <div class="container container-lg">
@@ -678,9 +1188,15 @@ ul {
           </div>
           
 				<!-- ===================mobile responsive design ==============================  -->
+<!-- Mobile Header Actions - Left Side -->
+<div class="graba2z-mobile-header-actions">
+    <button class="graba2z-mobile-search-btn" onclick="graba2zToggleSearch()">
+        <i class="ph ph-magnifying-glass"></i>
+    </button>
+</div>
 
-        <!-- Open Sidebar Button -->
-        <div class="menu-open-btn" onclick="toggleSidebar()">☰</div>
+<!-- Mobile Header Actions - Right Side -->
+<div class="graba2z-mobile-menu-btn" onclick="graba2zToggleSidebar()">☰</div>
 
         <!-- Sidebar -->
         <div id="sidebar" class="sidebar">
@@ -772,7 +1288,190 @@ ul {
         </div>
         <!-- ===================== mobile responsive end ==============================  -->
 
+<!-- Mobile Search Bar -->
+<div id="graba2z-mobile-search-bar" class="graba2z-mobile-search-container">
+    <form id="graba2z-mobile-search-form" class="graba2z-mobile-search-form">
+        <input type="text" id="graba2z-mobile-search-input" class="graba2z-mobile-search-input" 
+               placeholder="Search for products...">
+        <button type="submit" class="graba2z-mobile-search-submit">
+            <i class="ph ph-magnifying-glass"></i>
+        </button>
+        <button type="button" class="graba2z-mobile-search-close" onclick="graba2zToggleSearch()">
+            <i class="ph ph-x"></i>
+        </button>
+    </form>
+</div>
+<style>
+/* Center the Logo in Mobile Header and Keep Search Icon on the Left */
+@media (max-width: 1024px) {
+    /* Ensure the header container spans full width */
+    .graba2z-mobile-header-actions {
+        display: flex;
+        justify-content: space-between; /* Keep items spaced out */
+        width: 100%;
+        position: fixed;
+        top: 61px;
+        left: 0;
+        z-index: 1000;
+    }
 
+    /* Keep the search button on the left */
+    .graba2z-mobile-search-btn {
+        order: 1;
+    }
+
+    /* Center the logo */
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .logo img {
+        width: 170px;
+        height: 70px;
+    }
+
+    /* Keep the mobile menu button on the right */
+    .graba2z-mobile-menu-btn {
+        order: 3;
+    }
+}
+
+
+    /* Mobile Header Actions - Left Side */
+.graba2z-mobile-header-actions {
+    display: flex;
+    position: fixed;
+    top: 61px;
+    left: 20px;
+    z-index: 1000;
+}
+
+/* Mobile Header Actions - Right Side */
+.graba2z-mobile-menu-btn {
+    position: absolute;
+    top: 61px;
+    right: 20px;
+    background-color: #ffffff;
+    color: #000;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 24px;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+/* Mobile Search Button */
+.graba2z-mobile-search-btn {
+    background-color: #ffffff;
+    color: #000;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Mobile Search Container */
+.graba2z-mobile-search-container {
+    width: 100%;
+    background: white;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1100;
+    display: none;
+    align-items: center;
+    position: absolute; /* Changed from fixed to absolute */
+    top: 120px; /* Adjust this value based on your header height */
+    left: 0;
+}
+
+.graba2z-mobile-search-form {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.graba2z-mobile-search-input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.graba2z-mobile-search-submit {
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #a3d02c;
+    font-size: 18px;
+}
+
+.graba2z-mobile-search-close {
+    margin-left: 10px;
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 18px;
+}
+
+@media (min-width: 1025px) {
+    .graba2z-mobile-header-actions,
+    .graba2z-mobile-menu-btn,
+    .graba2z-mobile-search-container {
+        display: none !important;
+    }
+}
+
+    </style>
+    <script>
+// Toggle sidebar function
+function graba2zToggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('open');
+}
+
+// Toggle search function
+function graba2zToggleSearch() {
+    const searchBar = document.getElementById('graba2z-mobile-search-bar');
+    searchBar.style.display = searchBar.style.display === 'flex' ? 'none' : 'flex';
+    
+    // Focus on input when shown
+    if (searchBar.style.display === 'flex') {
+        document.getElementById('graba2z-mobile-search-input').focus();
+    }
+}
+
+// Close search when clicking outside
+document.addEventListener('click', function(event) {
+    const searchBar = document.getElementById('graba2z-mobile-search-bar');
+    const searchForm = document.getElementById('graba2z-mobile-search-form');
+    const searchBtn = document.querySelector('.graba2z-mobile-search-btn');
+    
+    if (searchBar.style.display === 'flex' && 
+        !searchForm.contains(event.target) && 
+        event.target !== searchBtn) {
+        searchBar.style.display = 'none';
+    }
+});
+
+// Handle search form submission
+document.getElementById('graba2z-mobile-search-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const query = document.getElementById('graba2z-mobile-search-input').value.trim();
+    if (query) {
+        // Perform search action here
+        window.location.href = `/search?q=${encodeURIComponent(query)}`;
+    }
+});
+
+</script>
       </header>
     <!-- ======================= Middle Header End ========================= -->
       <!-- ==================== category Header Start Here ==================== -->
