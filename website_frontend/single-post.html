@@ -852,8 +852,8 @@
               style="color: #222 !important; font-weight: 600 !important;">Graba2z Team</strong></span>
           <span class="separator" style="color: #999 !important; padding: 0 4px !important;">|</span>
           <span id="blog-date">Loading date...</span>
-          <span class="separator" style="color: #999 !important; padding: 0 4px !important;">|</span>
-          <span id="blog-views">Loading views...</span>
+          <!-- <span class="separator" style="color: #999 !important; padding: 0 4px !important;">|</span>
+          <span id="blog-views">Loading views...</span> -->
           <span class="separator" style="color: #999 !important; padding: 0 4px !important;">|</span>
           <span id="blog-read-time">Loading read time...</span>
         </div>
@@ -1311,7 +1311,7 @@ function displayBlogData(blog) {
   document.getElementById('blog-category').textContent = blog.main_category_name || 'Tech & Laptops';
   document.getElementById('blog-date').textContent = new Date(blog.created_at).toLocaleDateString();
   document.getElementById('blog-read-time').textContent = `${blog.read_minutes || 8} minute read`;
-  document.getElementById('blog-views').textContent = `${Math.floor(Math.random() * 9000) + 1000} views`;
+  // document.getElementById('blog-views').textContent = `${Math.floor(Math.random() * 9000) + 1000} views`;
 
   const mainImage = document.getElementById('blog-main-image');
   if (blog.main_image) {
@@ -1579,6 +1579,75 @@ document.addEventListener('DOMContentLoaded', function () {
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+<script>
+function getSlugFromQuery() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('slug');
+}
+
+function formatDate(dateString) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(dateString).toLocaleDateString(undefined, options);
+}
+
+async function loadBlogData() {
+  const slug = getSlugFromQuery();
+  if (!slug) {
+    console.error('Slug not found in URL');
+    document.getElementById('blog-title').textContent = 'Invalid Blog';
+    return;
+  }
+
+  try {
+    const res = await fetch(`https://grabatoz-production.up.railway.app/api/blog/slug/${slug}`);
+    if (!res.ok) throw new Error('Failed to fetch blog');
+    const blog = await res.json();
+
+    // Update page title
+    document.title = `${blog.blog_name} | Graba2z Tech Blog`;
+
+    // Main title, category, meta info
+    document.getElementById('blog-title').textContent = blog.blog_name;
+    document.getElementById('blog-category').textContent = blog.main_category_name || 'Tech & Laptops';
+    document.getElementById('blog-date').textContent = formatDate(blog.created_at);
+    document.getElementById('blog-read-time').textContent = `${blog.read_minutes || 8} minute read`;
+    // document.getElementById('blog-views').textContent = `${Math.floor(Math.random() * 9000) + 1000} views`;
+
+    // Main image
+    const mainImg = document.getElementById('blog-main-image');
+    mainImg.src = blog.main_image ? `https://grabatoz-production.up.railway.app/${blog.main_image}` : 'https://graba2z.netlify.app/assets/images/logo/logo1.svg';
+    mainImg.alt = blog.blog_name;
+
+    // Build content
+    let contentHTML = '';
+    const { blog_title } = blog;
+    if (blog_title && blog_title.blog_title) {
+      blog_title.blog_title.forEach((title, i) => {
+        contentHTML += `<h2 style="color: #8224e3;">${title}</h2>`;
+
+        if (blog_title.additional_images && blog_title.additional_images[i]) {
+          contentHTML += `<img src="https://grabatoz-production.up.railway.app/${blog_title.additional_images[i]}" style="max-width: 100%; height: auto; margin: 15px 0;" alt="">`;
+        }
+
+        if (blog_title.descriptions && blog_title.descriptions[i]) {
+          contentHTML += `<div>${blog_title.descriptions[i]}</div>`;
+        }
+      });
+    } else {
+      contentHTML = '<p>No content available.</p>';
+    }
+
+    document.getElementById('blog-content').innerHTML = contentHTML;
+  } catch (err) {
+    console.error(err);
+    document.getElementById('blog-title').textContent = 'Error loading blog';
+    document.getElementById('blog-content').innerHTML = '<p>Unable to load this blog post.</p>';
+  }
+}
+
+// Run on page load
+document.addEventListener('DOMContentLoaded', loadBlogData);
+</script>
 
 
     <script>
