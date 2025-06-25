@@ -733,6 +733,7 @@ ul {
         }
     }
     /* Search results styling */
+/* Search results styling */
 .search-results-container {
   position: absolute;
   top: 100%;
@@ -742,6 +743,7 @@ ul {
   overflow-y: auto;
   background: white;
   border: 1px solid #ddd;
+  border-top: none;
   border-radius: 0 0 8px 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   z-index: 1000;
@@ -751,6 +753,11 @@ ul {
 .search-result-item {
   padding: 10px;
   border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+}
+
+.search-result-item:hover {
+  background-color: #f8f8f8;
 }
 
 .search-result-item:last-child {
@@ -768,6 +775,10 @@ ul {
   width: 60px;
   height: 60px;
   margin-right: 15px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .search-result-image img {
@@ -801,6 +812,21 @@ ul {
   padding: 15px;
   text-align: center;
   color: #666;
+  font-style: italic;
+}
+
+/* Mobile search input styling */
+.mobile-search-input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 14px;
+  outline: none;
+}
+
+.mobile-search-input:focus {
+  border-color: #a3d02c;
 }
 
     </style>  
@@ -863,8 +889,7 @@ ul {
             }
         });
 
-        // Search functionality
-// Search functionality
+   // Search functionality
 const API_URL = 'https://websitegrabatoz-production.up.railway.app/api/products';
 
 // Debounce function to limit API calls while typing
@@ -876,26 +901,32 @@ function debounce(func, wait) {
   };
 }
 
-// Search products function
+// Search products function with error handling
 async function searchProducts(query) {
+  if (!query || query.length < 2) {
+    return { products: [] }; // Return empty for short queries
+  }
+  
   try {
     const response = await fetch(`${API_URL}?search=${encodeURIComponent(query)}`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
-    return await response.json();
+    const data = await response.json();
+    return data || { products: [] }; // Ensure we always return an object with products array
   } catch (error) {
     console.error('Error searching products:', error);
-    return { products: [] };
+    return { products: [] }; // Return empty on error
   }
 }
 
-// Display search results
+// Display search results with clear states
 function displaySearchResults(results, container) {
-  container.innerHTML = '';
+  container.innerHTML = ''; // Clear previous results
   
-  if (!results.products || results.products.length === 0) {
+  if (!results || !results.products || results.products.length === 0) {
     container.innerHTML = '<div class="search-no-results">No products found</div>';
+    container.style.display = 'block'; // Show even when no results
     return;
   }
 
@@ -922,6 +953,8 @@ function displaySearchResults(results, container) {
     `;
     container.appendChild(productElement);
   });
+  
+  container.style.display = 'block'; // Show results
 }
 
 // Initialize search functionality
@@ -932,22 +965,15 @@ document.addEventListener('DOMContentLoaded', function() {
   // Function to handle search
   const handleSearch = debounce(async function(event) {
     const query = event.target.value.trim();
-    
-    // Only search if query has at least 2 characters
-    if (query.length >= 2) {
-      const results = await searchProducts(query);
-      displaySearchResults(results, mobileResultsContainer);
-      mobileResultsContainer.style.display = 'block';
-    } else {
-      mobileResultsContainer.style.display = 'none';
-    }
+    const results = await searchProducts(query);
+    displaySearchResults(results, mobileResultsContainer);
   }, 300);
 
   // Add event listeners to mobile search input
   if (mobileSearchInput) {
     mobileSearchInput.addEventListener('input', handleSearch);
     mobileSearchInput.addEventListener('focus', function() {
-      if (this.value.length >= 2 && mobileResultsContainer.innerHTML) {
+      if (this.value.trim().length >= 2 && mobileResultsContainer.innerHTML) {
         mobileResultsContainer.style.display = 'block';
       }
     });
@@ -956,7 +982,15 @@ document.addEventListener('DOMContentLoaded', function() {
   // Hide results when clicking outside
   document.addEventListener('click', function(event) {
     if (!event.target.closest('.mobile-search-form') && 
-        !event.target.closest('.search-results-container')) {
+        !event.target.closest('.search-results-container') &&
+        event.target !== mobileSearchInput) {
+      mobileResultsContainer.style.display = 'none';
+    }
+  });
+
+  // Also hide results when pressing Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
       mobileResultsContainer.style.display = 'none';
     }
   });
@@ -979,14 +1013,19 @@ document.addEventListener('DOMContentLoaded', function() {
     
     <div class="mobile-search-container" id="mobileSearchContainer">
   <form class="mobile-search-form" id="mobileSearchForm">
-    <input type="text" class="mobile-search-input" placeholder="Search for products..." id="mobileSearchInput" autocomplete="off">
+    <input type="text" 
+           class="mobile-search-input" 
+           placeholder="Search for products..." 
+           id="mobileSearchInput" 
+           autocomplete="off"
+           aria-label="Search products">
     <button type="submit" class="mobile-search-submit">
       <i class="ph ph-magnifying-glass"></i>
     </button>
   </form>
   <div class="search-results-container" id="mobileSearchResultsContainer"></div>
 </div>
-    
+
     <!-- Mobile Sidebar -->
     <div class="mobile-sidebar" id="mobileSidebar">
         <button class="mobile-sidebar-close" onclick="toggleMobileSidebar()">×</button>
