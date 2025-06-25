@@ -698,6 +698,7 @@
                                             <tr>
                                                 <th style="font-size: 10px;">Main Image</th>
                                                 <th style="font-size: 10px;">Blog Name</th>
+                                                <th style="font-size: 10px;">Blog URl</th>
                                                 <th style="font-size: 10px;">Status</th>
                                                 <th style="font-size: 10px;">Post Date</th>
                                                 <th style="font-size: 10px;" class="no-print">Actions</th>
@@ -1041,6 +1042,8 @@
                             row.innerHTML = `
                                 <td>${blog.main_image ? `<img src="${API_ADMINGRAB_URL}/${blog.main_image}" class="blog-image" alt="Blog Image" style="width:50px;">` : '—'}</td>
                                 <td>${blog.blog_name || '—'}</td>
+                                <td><a href="https://graba2z.netlify.app/single-post?slug=${blog.slug || '—'}">
+                                    https://graba2z.netlify.app/single-post?slug=${blog.slug || '—'}</a></td>
                                 <td>${blog.status || '—'}</td>
                                 <td>${blog.created_at ? new Date(blog.created_at).toLocaleDateString() : '—'}</td>
                                 <td class="no-print action-buttons">
