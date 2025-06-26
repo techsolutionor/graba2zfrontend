@@ -1093,6 +1093,21 @@
     <section class="container px-4 py-5">
         <!-- Styles -->
         <style>
+            /* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    .spring-slider .swiper {
+        height: auto !important;
+    }
+    
+    .spring-slider .swiper-slide {
+        padding: 0 !important; /* Remove any padding */
+    }
+    
+    .spring-slider .swiper-slide img {
+        max-height: 300px; /* Adjust based on your needs */
+        object-fit: contain;
+    }
+}
             #newslider12345-container {
                 overflow: hidden;
                 position: relative;
