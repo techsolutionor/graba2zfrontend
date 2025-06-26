@@ -143,6 +143,19 @@
         box-sizing: border-box;
         padding: 0 0px;
     }
+    .spring-slider {
+    overflow: hidden;
+}
+.swiper-wrapper {
+    display: flex;
+    transition-timing-function: ease-out;
+}
+.spring-slider .swiper-wrapper {
+    visibility: hidden; /* Hide slides initially */
+}
+.spring-slider .swiper-wrapper.initialized {
+    visibility: visible; /* Show only after initialization */
+}
 
     /* Overlay effect */
     .slide-overlay {
@@ -1006,71 +1019,72 @@
 
     <!-- ==================== category Header End Here ==================== -->
 
-    <div class="container-fluid min-vh-40 d-flex p-0">
-        <div class="spring-slider w-100 h-65">
-            <div class="swiper h-100">
-                <div class="swiper-wrapper">
-                    <!-- Slide 1 -->
-                    <div class="swiper-slide">
-                        <img src="assets/images/allinone-banner-top.png" alt="Slide 1" class="w-100 h-100" />
-                        <div class="slide-overlay">
-                            <h2 class="text-white text-center px-3 pb-3 fw-semibold" style="font-size:14px;">
-                                All In One Collection
-                            </h2>
-                        </div>
-                    </div>
-                    <!-- Slide 2 -->
-                    <div class="swiper-slide">
-                        <img src="assets/images/accer-banner-top.png" alt="Slide 2" class="w-100 h-100" />
-                        <div class="slide-overlay">
-                            <h2 class="text-white text-center px-3 pb-3 fw-semibold" style="font-size:14px;">
-                                Acer Collection
-                            </h2>
-                        </div>
-                    </div>
-                    <!-- Slide 3 -->
-                    <div class="swiper-slide">
-                        <img src="assets/images/accer-banner2-top.png" alt="Slide 3" class="w-100 h-100" />
-                        <div class="slide-overlay">
-                            <h2 class="text-white text-center px-3 pb-3 fw-semibold" style="font-size:14px;">
-                                Acer Series
-                            </h2>
-                        </div>
-                    </div>
-                    <!-- Slide 4 -->
-                    <div class="swiper-slide">
-                        <img src="assets/images/appel-banner-top.png" alt="Slide 4" class="w-100 h-100" />
-                        <div class="slide-overlay">
-                            <h2 class="text-white text-center px-3 pb-3 fw-semibold" style="font-size:14px;">
-                                Apple Collection
-                            </h2>
-                        </div>
-                    </div>
-                    <!-- Slide 5 -->
-                    <div class="swiper-slide">
-                        <img src="assets/images/assus-banner-top.png" alt="Slide 5" class="w-100 h-100" />
-                        <div class="slide-overlay">
-                            <h2 class="text-white text-center px-3 pb-3 fw-semibold" style="font-size:14px;">
-                                Asus Collection
-                            </h2>
-                        </div>
-                    </div>
-                    <!-- Slide 6 -->
-                    <div class="swiper-slide">
-                        <img src="assets/images/accer-banner3-top.png" alt="Slide 6" class="w-100 h-100" />
-                        <div class="slide-overlay">
-                            <h2 class="text-white text-center px-3 pb-3 fw-semibold" style="font-size:14px;">
-                                Acer Series
-                            </h2>
-                        </div>
+  <!-- Replace your current Spring Slider section with this -->
+<div class="container-fluid min-vh-40 d-flex p-0">
+    <div class="spring-slider w-100 h-65">
+        <div class="swiper h-100">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                    <img src="assets/images/allinone-banner-top.png" alt="Slide 1" class="w-100 h-100" />
+                    <div class="slide-overlay">
+                        <h2 class="text-white text-center px-3 pb-3 fw-semibold" style="font-size:14px;">
+                            All In One Collection
+                        </h2>
                     </div>
                 </div>
-                <!-- Navigation Arrows -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                    <img src="assets/images/accer-banner-top.png" alt="Slide 2" class="w-100 h-100" />
+                    <div class="slide-overlay">
+                        <h2 class="text-white text-center px-3 pb-3 fw-semibold" style="font-size:14px;">
+                            Acer Collection
+                        </h2>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="swiper-slide">
+                    <img src="assets/images/accer-banner2-top.png" alt="Slide 3" class="w-100 h-100" />
+                    <div class="slide-overlay">
+                        <h2 class="text-white text-center px-3 pb-3 fw-semibold" style="font-size:14px;">
+                            Acer Series
+                        </h2>
+                    </div>
+                </div>
+                <!-- Slide 4 -->
+                <div class="swiper-slide">
+                    <img src="assets/images/appel-banner-top.png" alt="Slide 4" class="w-100 h-100" />
+                    <div class="slide-overlay">
+                        <h2 class="text-white text-center px-3 pb-3 fw-semibold" style="font-size:14px;">
+                            Apple Collection
+                        </h2>
+                    </div>
+                </div>
+                <!-- Slide 5 -->
+                <div class="swiper-slide">
+                    <img src="assets/images/assus-banner-top.png" alt="Slide 5" class="w-100 h-100" />
+                    <div class="slide-overlay">
+                        <h2 class="text-white text-center px-3 pb-3 fw-semibold" style="font-size:14px;">
+                            Asus Collection
+                        </h2>
+                    </div>
+                </div>
+                <!-- Slide 6 -->
+                <div class="swiper-slide">
+                    <img src="assets/images/accer-banner3-top.png" alt="Slide 6" class="w-100 h-100" />
+                    <div class="slide-overlay">
+                        <h2 class="text-white text-center px-3 pb-3 fw-semibold" style="font-size:14px;">
+                            Acer Series
+                        </h2>
+                    </div>
+                </div>
             </div>
+            <!-- Navigation Arrows -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
     </div>
+</div>
 
 
 
@@ -1417,42 +1431,42 @@
     <!-- Enable Autoplay -->
     <!-- Add this script to configure the slider -->
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            // Wait for Spring Slider to initialize
-            setTimeout(() => {
-                const swiperInstance = document.querySelector('.swiper')?.swiper;
-                if (swiperInstance) {
-                    // Configure to show 2 slides at a time
-                    swiperInstance.params.slidesPerView = 2;
-                    swiperInstance.params.spaceBetween = 20;
-                    swiperInstance.params.loop = true;
-                    swiperInstance.params.autoplay = {
-                        delay: 3000,
-                        disableOnInteraction: false,
-                    };
+    document.addEventListener("DOMContentLoaded", () => {
+        const checkSwiper = setInterval(() => {
+            const swiper = document.querySelector('.swiper')?.swiper;
+            if (swiper) {
+                clearInterval(checkSwiper);
+                
+                // Apply configuration before making visible
+                configureSwiper(swiper);
+                
+                // Mark as initialized
+                document.querySelector('.swiper-wrapper').classList.add('initialized');
+            }
+        }, 100);
+    });
 
-                    // Responsive breakpoints
-                    swiperInstance.params.breakpoints = {
-                        // when window width is >= 320px
-                        320: {
-                            slidesPerView: 1,
-                            spaceBetween: 10
-                        },
-                        // when window width is >= 768px
-                        768: {
-                            slidesPerView: 2,
-                            spaceBetween: 20
-                        }
-                    };
+    function configureSwiper(swiper) {
+        // Configure to show 2 slides at a time
+        swiper.params.slidesPerView = 2;
+        swiper.params.spaceBetween = 20;
+        swiper.params.loop = true;
+        swiper.params.autoplay = {
+            delay: 3000,
+            disableOnInteraction: false,
+        };
 
-                    swiperInstance.loopCreate?.(); // Reinitialize loop
-                    swiperInstance.autoplay?.start();
-                    swiperInstance.update(); // Update the slider with new settings
-                }
-            }, 500);
-        });
-    </script>
+        // Responsive breakpoints
+        swiper.params.breakpoints = {
+            320: { slidesPerView: 1, spaceBetween: 10 },
+            768: { slidesPerView: 2, spaceBetween: 20 }
+        };
 
+        // Force update and start
+        swiper.update();
+        swiper.autoplay?.start();
+    }
+</script>
     <!-- Footer -->
 
 
